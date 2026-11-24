@@ -107,7 +107,7 @@
       "schemaName": "Tarifs — Neuron Runner",
       "description": "Calcul cloud transparent facturé à la seconde et forfaits d'abonnement pour agents d'IA autonomes. Niveaux Free, Plus (10 $) et Pro (25 $) avec VM Linux dédiées et prise en charge BYOS et BYOK.",
       "faq1Question": "Comment fonctionne la facturation du calcul pour les agents cloud autonomes ?",
-      "faq1Answer": "Chaque forfait inclut un quota mensuel en USD (0,50 $ Free, 10 $ Plus, 25 $ Pro) couvrant les tokens LLM et l'exécution des VM cloud à la seconde (0,16 $/h 4 cœurs, 0,24 $/h 6 cœurs, 0,32 $/h 8 cœurs ; 0,00 $/h à l'arrêt). Free et Plus couvrent les 6 modèles du niveau gratuit ; Pro couvre tous les modèles. Les modèles premium sur Free et Plus sont facturés depuis votre portefeuille.",
+      "faq1Answer": "Chaque forfait inclut un quota mensuel en USD ($0.50 Free, $10 Plus, $25 Pro) dédié au calcul Cloud VM à la seconde ($0.16/h 4 cœurs, $0.24/h 6 cœurs, $0.32/h 8 cœurs ; $0.00/h à l'arrêt). Connectez votre propre abonnement IA (BYOS) ou vos clés API (BYOK) à 0 % de majoration.",
       "faq2Question": "Puis-je apporter mes propres clés API (BYOK) ?",
       "faq2Answer": "Oui ! Sur chaque offre — y compris Free — vous pouvez ajouter vos clés API Anthropic, OpenAI, DeepSeek ou personnalisées dans les paramètres de l'espace de travail sans aucun frais de plateforme (0 %)."
     }
@@ -484,10 +484,10 @@
   },
   "pricingPage": {
     "hero": {
-      "badge": "Offres prévisibles · Tarification transparente des tokens · VMs inactives à 0,00 $",
-      "titleLine1": "Des offres simples qui évoluent avec vous.",
-      "titleLine2": "Tarification transparente des tokens.",
-      "subtitle": "Commencez gratuitement avec <s1>0,50 $/mois d'utilisation gratuite de LLM et de VM cloud</s1>, passez à <s2>Plus (10 $) ou Pro (25 $)</s2> pour des VM Linux dédiées avec votre propre abonnement Claude Code, Codex ou Antigravity, ou apportez vos propres clés d'API sans frais de plateforme (0 %). Pro inclut tous les modèles dans son quota ; sur Free et Plus, les modèles premium sont facturés à l'usage."
+      "badge": "Forfaits VM Prévisibles · Facturation à la Seconde · $0.00 VM Arrêtée",
+      "titleLine1": "Des forfaits VM simples qui évoluent avec vous.",
+      "titleLine2": "Apportez votre propre IA.",
+      "subtitle": "Démarrez gratuitement avec <s1>$0.50/mois de Cloud VM</s1>, passez à <s2>Plus ($10) ou Pro ($25)</s2> pour des VM Linux dédiées avec votre abonnement Claude Code, Codex ou Antigravity, ou connectez vos clés API sans commission."
     },
     "planLabels": {
       "llmAllowance": "Crédit d'utilisation (LLM + VM)",
@@ -498,7 +498,7 @@
         "name": "Free",
         "period": "/ mois",
         "badge": "Gratuit à vie",
-        "tagline": "Découvrez le codage autonome avec des modèles gratuits rapides, BYOK et des VMs cloud de démarrage.",
+        "tagline": "Découvrez le codage autonome avec des VM Linux cloud de démarrage, BYOS et BYOK.",
         "llmAllowance": "0,50 $ / mois",
         "vcpuQuota": "Jusqu'à 2 h vCPU / mois",
         "vcpuSubnote": "Couvre LLMs gratuits & VM 4 cœurs (0,16 $/h)",
@@ -563,11 +563,11 @@
     "mechanics": {
       "wallet": {
         "title": "Portefeuille de dépassement (recharge 10 $+)",
-        "description": "Le quota de votre forfait est toujours utilisé en premier ; les abonnements n'ajoutent pas d'argent au portefeuille. Rechargez (min. <s1>10,00 $</s1>, 0 % de frais) pour dépassement de quota, modèles premium sur Free et Plus ou calcul de VM cloud à l'usage (0,16–0,32 $/h) avec BYOS/BYOK."
+        "description": "Votre quota VM mensuel est toujours utilisé en premier ; les abonnements n'ajoutent pas de solde. Rechargez (min. <s1>$10.00</s1>, 0 % de frais) pour du temps Cloud VM supplémentaire ($0.16–$0.32/h)."
       },
       "byok": {
         "title": "Apportez votre clé (0 % de frais)",
-        "description": "Connectez vos clés Anthropic, OpenAI, DeepSeek ou personnalisées avec <s1>0,00 $ de marge</s1> (ne consomme pas le quota du forfait ; les modèles payants sur Free nécessitent du solde ou un forfait payant)."
+        "description": "Connectez vos propres clés OpenRouter, OpenAI, Gemini, DeepSeek, Groq ou serveur personnalisé avec <s1>$0.00 de majoration</s1> — vous payez vos tokens directement à votre fournisseur."
       },
       "byos": {
         "title": "Apportez votre abonnement (BYOS)",
@@ -576,33 +576,11 @@
     },
     "breakdown": {
       "eyebrow": "Détail transparent",
-      "title": "Explorez les tarifs des modèles, les VMs cloud et les spécifications",
+      "title": "Explorez les VM cloud et les caractéristiques des forfaits",
       "tabs": {
-        "models": "Tarifs modèles IA ({{count}})",
         "vms": "VMs Sandbox & VNC",
         "compare": "Comparer les offres"
       }
-    },
-    "models": {
-      "filters": {
-        "all": "Tous les modèles ({{count}})",
-        "free": "Inclus en Free ({{count}})",
-        "paid": "Premium ({{count}})"
-      },
-      "searchPlaceholder": "Rechercher un modèle ou fournisseur…",
-      "columns": {
-        "model": "Modèle",
-        "context": "Contexte",
-        "planAccess": "Accès",
-        "input": "Entrée / 1M",
-        "output": "Sortie / 1M",
-        "cacheRead": "Lecture cache / 1M"
-      },
-      "accessBadges": {
-        "free": "Free + Toutes offres",
-        "paid": "Pro · ou portefeuille"
-      },
-      "empty": "Aucun modèle ne correspond à votre recherche."
     },
     "vms": {
       "vcpuHrsUnit": "{{cpu}} h vCPU",
@@ -696,18 +674,11 @@
           "team": "200 $ / mois"
         },
         {
-          "feature": "Crédit mensuel (LLM + VM)",
+          "feature": "Quota VM Mensuel",
           "free": "0,50 $ / mois",
           "plus": "10,00 $ / mois",
           "pro": "25,00 $ / mois",
           "team": "200,00 $ / mois"
-        },
-        {
-          "feature": "Modèles accessibles",
-          "free": "6 modèles gratuits",
-          "plus": "6 modèles du niveau gratuit (premium via le portefeuille)",
-          "pro": "Tous les modèles (quota partagé)",
-          "team": "Les 16 modèles de pointe"
         },
         {
           "feature": "Tarif VM Cloud (sur crédit)",
@@ -777,38 +748,38 @@
     "faq": {
       "eyebrow": "FAQ",
       "title": "Questions & réponses",
-      "description": "Tout ce qu'il faut savoir sur les quotas mensuels unifiés, la tarification à la seconde des VM et les recharges d'utilisation supplémentaire.",
+      "description": "Tout ce qu'il faut savoir sur les quotas VM mensuels, les tarifs à la seconde et les recharges.",
       "docsLink": "Lire la documentation",
       "items": [
         {
-          "question": "Comment fonctionne le quota mensuel unifié ?",
-          "answer": "Plus (10 $) et Pro (25 $) incluent un quota mensuel en USD (10 $ Plus, 25 $ Pro ; Free : 0,50 $) pour l'exécution des VM cloud et les tokens LLM. Pro couvre tous les modèles ; Free et Plus couvrent les 6 modèles du niveau gratuit et facturent les modèles premium depuis votre portefeuille."
+          "question": "Comment fonctionne le quota VM mensuel ?",
+          "answer": "Plus ($10) et Pro ($25) incluent un quota mensuel en USD ($10 Plus, $25 Pro ; Free $0.50) dédié exclusivement au temps d'exécution des Cloud VM. Connectez votre propre abonnement IA (BYOS) ou vos clés API (BYOK) sans frais plateforme."
         },
         {
-          "question": "Comment est facturée l'exécution des VMs Cloud Sandbox ?",
-          "answer": "Les VMs actives déduisent à la seconde de votre crédit mensuel unifié : 0,16 $/h (4 cœurs), 0,24 $/h (6 cœurs) et 0,32 $/h (8 cœurs). À l'arrêt, elles coûtent 0,00 $/h."
+          "question": "Comment l'utilisation des Cloud Sandbox VM est-elle facturée ?",
+          "answer": "Les VM actives sont déduites à la seconde de votre quota mensuel : $0.16/h (4 cœurs), $0.24/h (6 cœurs) et $0.32/h (8 cœurs). Les VM arrêtées coûtent $0.00/h."
         },
         {
-          "question": "Comment accéder aux VMs Sandbox Cloud avec l'offre Free ?",
-          "answer": "L'offre Free inclut 0,50 $/mois valable sur les modèles gratuits et les VMs 4 cœurs (0,16 $/h). Vérifiez simplement votre compte dans Paramètres pour lancer une VM."
+          "question": "Comment accéder aux Cloud Sandbox VM avec le forfait Free ?",
+          "answer": "Le forfait Free inclut $0.50/mois de quota VM pour les Cloud VM 4 cœurs ($0.16/h). Complétez la vérification de compte dans les Paramètres pour activer le lancement de VM."
         },
         {
-          "question": "Que se passe-t-il si je dépasse le crédit de mon forfait ?",
-          "answer": "Votre quota mensuel de forfait est toujours consommé en premier — les abonnements débloquent des quotas plutôt que d'ajouter du cash au portefeuille, et les VM actives restent en ligne à 0,00 $ de solde tant qu'il reste du quota. Une fois à 0, le dépassement est déduit de votre portefeuille d'utilisation supplémentaire (recharge min. 10,00 $)."
+          "question": "Que se passe-t-il si je dépasse mon quota mensuel ?",
+          "answer": "Votre quota mensuel est toujours utilisé en premier. À 0, le dépassement VM est prélevé sur votre portefeuille d'usage supplémentaire (recharge min. $10.00)."
         },
         {
-          "question": "Pourquoi y a-t-il un minimum de 10,00 $ pour les recharges ?",
-          "answer": "Un minimum de 10,00 $ réduit les frais de traitement des paiements et nous permet de ne facturer aucuns frais supplémentaires au moment du paiement. 100 % du montant payé est crédité sur votre solde permanent."
+          "question": "Pourquoi un minimum de $10.00 pour les recharges ?",
+          "answer": "Ce minimum limite les frais de paiement afin de ne facturer aucun surcoût. 100 % du montant est crédité sur votre solde sans expiration."
         },
         {
-          "question": "Puis-je toujours apporter mes propres clés API (BYOK) ?",
-          "answer": "Oui ! Ajoutez des clés Anthropic, OpenAI, DeepSeek ou de fournisseurs personnalisés dans les paramètres de l'espace de travail sans majoration de plateforme (0 %). Les requêtes BYOK ne consomment jamais l'allocation LLM de votre forfait ; sur Free et Plus, les modèles premium nécessitent des fonds dans le portefeuille, tandis que Pro les couvre avec son quota."
+          "question": "Comment connecter ma propre IA (BYOS / BYOK) ?",
+          "answer": "Connectez-vous avec Claude Pro/Max, ChatGPT Plus/Pro ou Antigravity dans votre VM sandbox, ou ajoutez vos clés OpenRouter, OpenAI, Gemini, DeepSeek, Groq ou personnalisées dans les Paramètres avec 0 % de majoration."
         }
       ]
     },
     "bottomCta": {
       "title": "Commencez gratuitement. Évoluez à votre rythme.",
-      "description": "Profitez de 0,50 $/mois d'utilisation gratuite de LLM et de VM cloud avec le forfait Free, ou de VM Linux dédiées avec votre propre abonnement d'agent avec Plus (10 $) et Pro (25 $).",
+      "description": "Obtenez $0.50/mois de Cloud VM avec Free, ou passez à Plus ($10) et Pro ($25) pour des VM Linux dédiées avec votre propre abonnement IA ou vos clés API.",
       "managePlan": "Gérer l'offre de l'espace de travail",
       "getStarted": "Commencer gratuitement",
       "signIn": "Se connecter"
@@ -821,13 +792,12 @@
     },
     "specs": {
       "labels": {
-        "quota": "Quota mensuel",
+        "quota": "Quota VM mensuel",
         "vcpu": "Calcul de VM inclus",
         "vm": "Taille max. de VM",
         "session": "Durée de session",
         "snapshots": "Snapshots",
         "members": "Membres",
-        "llm": "Modèles LLM",
         "byo": "BYOS / BYOK"
       },
       "vcpuValue": "{{hours}} vCPU-h",
@@ -836,18 +806,13 @@
       "vmSize": "{{cores}} cœurs · {{ram}} Go de RAM",
       "minutes": "{{minutes}} min",
       "none": "Aucun",
-      "llm": {
-        "free": "6 modèles du niveau gratuit",
-        "plus": "6 du niveau gratuit · jusqu'à 2 $/mois",
-        "pro": "Tous les modèles · pool partagé"
-      },
       "included": "Inclus",
       "freeFootnote": "* L'accès aux VM sur Free nécessite la vérification standard du compte.",
       "limits": {
         "title": "Que se passe-t-il lorsque mon quota est épuisé ?",
         "p1": "Le quota est réinitialisé à chaque cycle de facturation et n'est pas illimité.",
-        "p2": "Rechargez votre portefeuille pour que les VM et les modèles continuent de fonctionner, ou attendez le prochain cycle.",
-        "p3": "Sur Free et Plus, les modèles premium sont facturés depuis votre portefeuille. Pro les couvre avec son quota."
+        "p2": "Rechargez votre portefeuille pour continuer à exécuter vos VM, ou attendez le prochain cycle.",
+        "p3": "Les VM arrêtées coûtent $0.00/h et vos abonnements ou clés API fonctionnent toujours à 0 % de commission."
       }
     }
   },

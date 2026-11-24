@@ -97,7 +97,7 @@
       "schemaName": "Fiyatlandırma — Neuron Runner",
       "description": "Otonom yapay zeka ajanları için şeffaf saniye bazlı bulut işlem gücü ve abonelik planları. Özel Linux VM'ler, BYOS ve BYOK desteğiyle Free, Plus ($10) ve Pro ($25) katmanları.",
       "faq1Question": "Otonom bulut ajanı işlem gücü faturalandırması nasıl çalışır?",
-      "faq1Answer": "Her plan, LLM token'larını ve saniye bazlı Bulut VM çalışma süresini kapsayan aylık bir USD kotası içerir ($0.50 Free, $10 Plus, $25 Pro; 4 çekirdek $0.16/sa, 6 çekirdek $0.24/sa, 8 çekirdek $0.32/sa; durdurulmuşken $0.00/sa). Free ve Plus 6 Ücretsiz Katman modelini, Pro tüm modelleri kapsar. Free ve Plus'ta premium modeller cüzdanınızdan ücretlendirilir.",
+      "faq1Answer": "Her plan, saniye bazlı Bulut VM çalışma süresi için aylık bir USD işlem gücü kotası içerir ($0.50 Free, $10 Plus, $25 Pro; 4 çekirdek $0.16/sa, 6 çekirdek $0.24/sa, 8 çekirdek $0.32/sa; durdurulmuşken $0.00/sa). Kendi yapay zekâ aboneliğinizi (BYOS) veya API anahtarlarınızı (BYOK) %0 platform farkıyla bağlarsınız.",
       "faq2Question": "Kendi API anahtarlarımı (BYOK) getirebilir miyim?",
       "faq2Answer": "Evet! Free dahil her planda, Çalışma Alanı Ayarları'ndan Anthropic, OpenAI, DeepSeek veya özel sağlayıcı API anahtarlarınızı %0 platform komisyonuyla ekleyebilirsiniz."
     }
@@ -474,10 +474,10 @@
   },
   "pricingPage": {
     "hero": {
-      "badge": "Öngörülebilir Planlar · Şeffaf Token Tarifeleri · Boşta $0.00 VM",
-      "titleLine1": "Sizinle birlikte büyüyen sade planlar.",
-      "titleLine2": "Şeffaf token fiyatlandırması.",
-      "subtitle": "<s1>Aylık $0.50 ücretsiz LLM ve Bulut VM kullanımıyla</s1> başlayın, kendi Claude Code, Codex veya Antigravity aboneliğinizle özel Linux VM'ler için <s2>Plus ($10) veya Pro ($25)</s2> planına geçin ya da %0 komisyonla kendi API anahtarlarınızı getirin. Pro, kotasında tüm modelleri içerir; Free ve Plus'ta premium modeller kullandıkça öde şeklindedir."
+      "badge": "Öngörülebilir VM Planları · Saniye Bazlı Ücretlendirme · Boşta $0.00 VM",
+      "titleLine1": "Sizinle birlikte büyüyen sade VM planları.",
+      "titleLine2": "Kendi yapay zekânızı getirin.",
+      "subtitle": "<s1>Aylık $0.50 Bulut VM kullanımıyla</s1> ücretsiz başlayın, kendi Claude Code, Codex veya Antigravity aboneliğinizle özel Linux VM'ler için <s2>Plus ($10) veya Pro ($25)</s2> planına geçin ya da %0 komisyonla kendi API anahtarlarınızı bağlayın."
     },
     "planLabels": {
       "llmAllowance": "Kullanım Kotası (LLM + VM)",
@@ -488,7 +488,7 @@
         "name": "Free",
         "period": "/ ay",
         "badge": "Sonsuza Dek Ücretsiz",
-        "tagline": "Hızlı Ücretsiz Katman modelleri, BYOK ve başlangıç bulut VM'leriyle otonom kodlamayı keşfedin.",
+        "tagline": "Başlangıç bulut Linux VM'leri, BYOS ve BYOK ile otonom kodlamayı keşfedin.",
         "llmAllowance": "$0.50 / ay",
         "vcpuQuota": "Maks. 2 vCPU-sa / ay",
         "vcpuSubnote": "Ücretsiz LLM'ler ve 4 çekirdek VM ($0.16/sa)",
@@ -553,11 +553,11 @@
     "mechanics": {
       "wallet": {
         "title": "Ekstra Kullanım Cüzdanı ($10+ Yükleme)",
-        "description": "Önce her zaman plan kotanız kullanılır; abonelikler cüzdana nakit eklemez. Kota aşımı, Free ve Plus'taki premium modeller veya BYOS/BYOK ile bağımsız kullandıkça öde Bulut VM hesaplaması ($0.16–$0.32/sa) için bakiye yükleyin (min <s1>$10.00</s1>, %0 komisyon)."
+        "description": "Önce her zaman plan VM kotanız kullanılır; abonelikler cüzdana nakit eklemez. Ekstra Bulut VM çalışma süresi ($0.16–$0.32/sa) gerektiğinde cüzdanınıza bakiye yükleyin (min <s1>$10.00</s1>, %0 komisyon)."
       },
       "byok": {
         "title": "Kendi Anahtarınızı Getirin (%0 Komisyon)",
-        "description": "Kendi Anthropic, OpenAI, DeepSeek veya özel anahtarlarınızı <s1>$0.00 platform farkıyla</s1> bağlayın (plan kotasını harcamaz; Free planda ücretli modeller için bakiye veya ücretli plan gerekir)."
+        "description": "Kendi OpenRouter, OpenAI, Gemini, DeepSeek, Groq veya özel API anahtarlarınızı <s1>$0.00 platform farkıyla</s1> bağlayın — token ücretini yalnızca sağlayıcınıza ödersiniz."
       },
       "byos": {
         "title": "Kendi Aboneliğini Getir (BYOS)",
@@ -566,33 +566,11 @@
     },
     "breakdown": {
       "eyebrow": "Şeffaf Döküm",
-      "title": "Model tarifelerini, bulut VM'leri ve plan özelliklerini inceleyin",
+      "title": "Bulut VM'leri ve plan özelliklerini inceleyin",
       "tabs": {
-        "models": "Yapay Zeka Model Tarifeleri ({{count}})",
         "vms": "Bulut Sandbox VM ve VNC",
         "compare": "Planları Karşılaştır"
       }
-    },
-    "models": {
-      "filters": {
-        "all": "Tüm Modeller ({{count}})",
-        "free": "Ücretsiz Katmana Dahil ({{count}})",
-        "paid": "Premium ({{count}})"
-      },
-      "searchPlaceholder": "Model veya sağlayıcı ara…",
-      "columns": {
-        "model": "Model",
-        "context": "Bağlam",
-        "planAccess": "Plan Erişimi",
-        "input": "Girdi / 1M",
-        "output": "Çıktı / 1M",
-        "cacheRead": "Önbellek Okuma / 1M"
-      },
-      "accessBadges": {
-        "free": "Free + Tüm Planlar",
-        "paid": "Pro · veya cüzdan"
-      },
-      "empty": "Aramanızla eşleşen model bulunamadı."
     },
     "vms": {
       "vcpuHrsUnit": "{{cpu}} vCPU-saat",
@@ -686,18 +664,11 @@
           "team": "$200 / ay"
         },
         {
-          "feature": "Aylık Kullanım Kotası (LLM + VM)",
+          "feature": "Aylık VM Kotası",
           "free": "$0.50 / ay",
           "plus": "$10.00 / ay",
           "pro": "$25.00 / ay",
           "team": "$200.00 / ay"
-        },
-        {
-          "feature": "Erişilebilir Modeller",
-          "free": "6 Ücretsiz Model",
-          "plus": "6 Ücretsiz Model (premium cüzdandan)",
-          "pro": "Tüm modeller (ortak kota)",
-          "team": "Tüm 16 Model"
         },
         {
           "feature": "Bulut VM Tarifesi (Kotadan)",
@@ -767,12 +738,12 @@
     "faq": {
       "eyebrow": "SSS",
       "title": "Sorular ve yanıtlar",
-      "description": "Tek aylık kullanım kotası, saniye bazlı VM tarifeleri ve ekstra yüklemeler hakkında bilmeniz gereken her şey.",
+      "description": "Aylık VM işlem gücü kotaları, saniye bazlı VM tarifeleri ve ekstra bakiye yüklemeleri hakkında bilmeniz gereken her şey.",
       "docsLink": "Dokümantasyonu inceleyin",
       "items": [
         {
-          "question": "Tek aylık kullanım kotası nasıl çalışır?",
-          "answer": "Plus ($10) ve Pro ($25), Bulut VM çalışma süresi ve LLM token'ları için aylık bir USD kotası içerir ($10 Plus, $25 Pro; Free'de $0.50). Pro tüm modelleri kapsar; Free ve Plus 6 Ücretsiz Katman modelini kapsar ve premium modelleri cüzdanınızdan ücretlendirir."
+          "question": "Aylık VM kotası nasıl çalışır?",
+          "answer": "Plus ($10) ve Pro ($25), yalnızca Bulut VM çalışma süresine ayrılmış aylık USD işlem gücü kotası içerir ($10 Plus, $25 Pro; Free'de $0.50). Kendi yapay zekâ aboneliğinizi (BYOS) veya API anahtarlarınızı (BYOK) %0 platform komisyonuyla bağlarsınız."
         },
         {
           "question": "Bulut Sandbox VM kullanımı nasıl ücretlendirilir?",
@@ -780,7 +751,7 @@
         },
         {
           "question": "Free planda Bulut Sandbox VM'lere nasıl erişebilirim?",
-          "answer": "Free planı hem Ücretsiz Katman modelleri hem de 4 çekirdekli Bulut VM'ler ($0.16/saat) için aylık $0.50 kota içerir. Ayarlar bölümünden standart hesap doğrulamasını tamamlayarak VM başlatma özelliğini açabilirsiniz."
+          "answer": "Free planı 4 çekirdekli Bulut VM'ler ($0.16/saat) için aylık $0.50 işlem gücü kotası içerir. Ayarlar bölümünden standart hesap doğrulamasını tamamlayarak VM başlatma özelliğini açabilirsiniz."
         },
         {
           "question": "Plan kotamı aşarsam ne olur?",
@@ -791,14 +762,14 @@
           "answer": "$10.00 minimum yükleme alt limiti ödeme işlem maliyetlerini düşük tutarak sizden ekstra işlem ücreti almamızı önler. Ödediğiniz tutarın %100'ü doğrudan süresi dolmayan çalışma alanı bakiyenize eklenir."
         },
         {
-          "question": "Kendi API Anahtarlarımı (BYOK) yine de getirebilir miyim?",
-          "answer": "Evet! Çalışma Alanı Ayarları'ndan Anthropic, OpenAI, DeepSeek veya özel sağlayıcı anahtarlarınızı %0 platform komisyonuyla ekleyin. BYOK istekleri plan LLM hakkınızı tüketmez; Free ve Plus'ta premium modeller için cüzdan bakiyesi gerekir, Pro ise bunları kotasından karşılar."
+          "question": "Kendi yapay zekâmı (BYOS / BYOK) nasıl bağlarım?",
+          "answer": "Sandbox VM içinden Claude Pro/Max, ChatGPT Plus/Pro veya Antigravity ile giriş yapabilir ya da Çalışma Alanı Ayarları'ndan OpenRouter, OpenAI, Gemini, DeepSeek, Groq veya özel API anahtarlarınızı %0 platform komisyonuyla ekleyebilirsiniz. Token ücreti almıyoruz."
         }
       ]
     },
     "bottomCta": {
       "title": "Bugün ücretsiz başlayın. Ürettikçe yükseltin.",
-      "description": "Free planında aylık $0.50 Ücretsiz Katman LLM ve Bulut VM kullanımı alın ya da Plus ($10) ve Pro ($25) ile kendi ajan aboneliğinizle özel Linux VM'ler kullanın.",
+      "description": "Free planında aylık $0.50 Bulut VM kullanımı alın ya da kendi yapay zekâ aboneliğiniz veya API anahtarlarınızla özel Linux VM'ler için Plus ($10) ve Pro ($25) planlarına geçin.",
       "managePlan": "Çalışma Alanı Planını Yönet",
       "getStarted": "Ücretsiz başlayın",
       "signIn": "Giriş yap"
@@ -811,13 +782,12 @@
     },
     "specs": {
       "labels": {
-        "quota": "Aylık kota",
+        "quota": "Aylık VM kotası",
         "vcpu": "Dahil VM hesaplama",
         "vm": "Maks. VM boyutu",
         "session": "Oturum süresi",
         "snapshots": "Snapshot",
         "members": "Üyeler",
-        "llm": "LLM modelleri",
         "byo": "BYOS / BYOK"
       },
       "vcpuValue": "{{hours}} vCPU-sa",
@@ -826,18 +796,13 @@
       "vmSize": "{{cores}} çekirdek · {{ram}} GB RAM",
       "minutes": "{{minutes}} dk",
       "none": "Yok",
-      "llm": {
-        "free": "6 Ücretsiz Katman modeli",
-        "plus": "6 Ücretsiz Katman · $2/aya kadar",
-        "pro": "Tüm modeller · ortak havuz"
-      },
       "included": "Dahil",
       "freeFootnote": "* Free'de VM erişimi için standart hesap doğrulaması gerekir.",
       "limits": {
         "title": "Kotam bitince ne olur?",
         "p1": "Kota her fatura döneminde sıfırlanır ve sınırsız değildir.",
-        "p2": "VM'lerin ve modellerin çalışmaya devam etmesi için cüzdanınıza bakiye yükleyin ya da bir sonraki dönemi bekleyin.",
-        "p3": "Free ve Plus'ta premium modeller cüzdanınızdan ücretlendirilir. Pro bunları kotasından karşılar."
+        "p2": "VM'lerin çalışmaya devam etmesi için cüzdanınıza bakiye yükleyin ya da bir sonraki fatura dönemini bekleyin.",
+        "p3": "Durdurulan VM'ler $0.00/saat tutar; kendi yapay zekâ abonelikleriniz veya API anahtarlarınız her zaman %0 platform farkıyla çalışır."
       }
     }
   },

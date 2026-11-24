@@ -97,7 +97,7 @@
       "schemaName": "Pricing — Neuron Runner",
       "description": "Transparent per-second cloud compute and subscription plans for autonomous AI agents. Free, Plus ($10) and Pro ($25) tiers with dedicated Linux VMs, BYOS and BYOK support.",
       "faq1Question": "How does autonomous cloud agent compute billing work?",
-      "faq1Answer": "Each plan includes a monthly USD quota ($0.50 Free, $10 Plus, $25 Pro) covering LLM tokens and per-second Cloud VM runtime ($0.16/hr 4-core, $0.24/hr 6-core, $0.32/hr 8-core; $0.00/hr when stopped). Free and Plus cover the 6 Free-Tier models; Pro covers all models. Premium models on Free and Plus are billed from your wallet.",
+      "faq1Answer": "Each plan includes a monthly USD compute quota ($0.50 Free, $10 Plus, $25 Pro) for per-second Cloud VM runtime ($0.16/hr 4-core, $0.24/hr 6-core, $0.32/hr 8-core; $0.00/hr when stopped). Bring your own AI subscription (BYOS) or API keys (BYOK) at 0% platform markup.",
       "faq2Question": "Can I bring my own API keys (BYOK)?",
       "faq2Answer": "Yes! On every plan—including Free—you can add your own Anthropic, OpenAI, DeepSeek, or custom provider API keys in Workspace Settings with 0% platform fee."
     }
@@ -474,10 +474,10 @@
   },
   "pricingPage": {
     "hero": {
-      "badge": "Predictable Plans · Transparent Token Rates · $0.00 Idle VMs",
-      "titleLine1": "Simple plans that scale with you.",
-      "titleLine2": "Transparent token pricing.",
-      "subtitle": "Start free with <s1>$0.50/mo of free LLM & Cloud VM usage</s1>, upgrade to <s2>Plus ($10) or Pro ($25)</s2> for dedicated Linux VMs with your own Claude Code, Codex or Antigravity subscription, or bring your own API keys at 0% platform fee. Pro includes every model in its quota; on Free and Plus, premium models are pay-as-you-go."
+      "badge": "Predictable VM Plans · Per-Second Compute · $0.00 Idle VMs",
+      "titleLine1": "Simple VM plans that scale with you.",
+      "titleLine2": "Bring your own AI.",
+      "subtitle": "Start free with <s1>$0.50/mo of Cloud VM compute</s1>, upgrade to <s2>Plus ($10) or Pro ($25)</s2> for dedicated Linux VMs with your own Claude Code, Codex, or Antigravity subscription, or connect your own API keys at 0% platform fee."
     },
     "planLabels": {
       "llmAllowance": "Usage Quota (LLM + VM)",
@@ -488,7 +488,7 @@
         "name": "Free",
         "period": "/ month",
         "badge": "Free Forever",
-        "tagline": "Explore autonomous coding with fast Free-Tier models, BYOK, and starter cloud VMs.",
+        "tagline": "Explore autonomous coding with starter cloud Linux VMs, BYOS, and BYOK.",
         "llmAllowance": "$0.50 / mo",
         "vcpuQuota": "Up to 2 vCPU-hrs / mo",
         "vcpuSubnote": "Covers Free-Tier LLMs & 4-core VM ($0.16/hr)",
@@ -553,11 +553,11 @@
     "mechanics": {
       "wallet": {
         "title": "Extra-Usage Wallet ($10+ Top-Up)",
-        "description": "Your plan quota is always used first; subscriptions do not add wallet cash. Top up (min <s1>$10.00</s1>, 0% fee) for quota overage, premium models on Free and Plus, or standalone pay-as-you-go Cloud VM compute ($0.16–$0.32/hr) with BYOS/BYOK."
+        "description": "Your plan VM quota is always used first; subscriptions do not add wallet cash. Top up (min <s1>$10.00</s1>, 0% fee) for extra Cloud VM compute ($0.16–$0.32/hr) whenever you need more runtime."
       },
       "byok": {
         "title": "Bring Your Own Key (0% Fee)",
-        "description": "Connect your own Anthropic, OpenAI, DeepSeek, or custom keys with <s1>$0.00 platform markup</s1> (never uses plan allowance; paid models on Free require wallet funds or a paid plan)."
+        "description": "Connect your own OpenRouter, OpenAI, Gemini, DeepSeek, Groq, or custom API keys with <s1>$0.00 platform markup</s1> — you only pay your provider directly for tokens."
       },
       "byos": {
         "title": "Bring Your Own Subscription (BYOS)",
@@ -566,33 +566,11 @@
     },
     "breakdown": {
       "eyebrow": "Transparent Breakdown",
-      "title": "Explore model rates, cloud VMs & plan specs",
+      "title": "Explore cloud VMs & plan specs",
       "tabs": {
-        "models": "AI Model Rates ({{count}})",
         "vms": "Cloud Sandbox VMs & VNC",
         "compare": "Compare Plans"
       }
-    },
-    "models": {
-      "filters": {
-        "all": "All Models ({{count}})",
-        "free": "Free Tier Included ({{count}})",
-        "paid": "Premium ({{count}})"
-      },
-      "searchPlaceholder": "Search model or provider…",
-      "columns": {
-        "model": "Model",
-        "context": "Context",
-        "planAccess": "Plan Access",
-        "input": "Input / 1M",
-        "output": "Output / 1M",
-        "cacheRead": "Cache Read / 1M"
-      },
-      "accessBadges": {
-        "free": "Free + All Plans",
-        "paid": "Pro · or wallet"
-      },
-      "empty": "No models matched your search."
     },
     "vms": {
       "vcpuHrsUnit": "{{cpu}} vCPU-hrs",
@@ -686,18 +664,11 @@
           "team": "$200 / mo"
         },
         {
-          "feature": "Monthly Usage Quota (LLM + VM)",
+          "feature": "Monthly VM Quota",
           "free": "$0.50 / mo",
           "plus": "$10.00 / mo",
           "pro": "$25.00 / mo",
           "team": "$200.00 / mo"
-        },
-        {
-          "feature": "Accessible Models",
-          "free": "6 Free-Tier Models",
-          "plus": "6 Free-Tier Models (premium via wallet)",
-          "pro": "All models (shared quota)",
-          "team": "All 16 Frontier Models"
         },
         {
           "feature": "Cloud VM Rate (from Quota)",
@@ -767,20 +738,20 @@
     "faq": {
       "eyebrow": "FAQ",
       "title": "Questions & answers",
-      "description": "Everything you need to know about unified monthly usage quotas, per-second VM rates, and extra-usage top-ups.",
+      "description": "Everything you need to know about monthly VM compute quotas, per-second VM rates, and extra-usage top-ups.",
       "docsLink": "Read the documentation",
       "items": [
         {
-          "question": "How does the unified monthly usage quota work?",
-          "answer": "Plus ($10) and Pro ($25) include a monthly USD quota ($10 Plus, $25 Pro; Free has $0.50) for Cloud VM runtime and LLM tokens. Pro covers all models; Free and Plus cover the 6 Free-Tier models and bill premium models from your wallet."
+          "question": "How does the monthly VM quota work?",
+          "answer": "Plus ($10) and Pro ($25) include a monthly USD compute quota ($10 Plus, $25 Pro; Free includes $0.50) dedicated exclusively to Cloud VM runtime. You connect your own AI subscription (BYOS) or API keys (BYOK) at 0% platform markup."
         },
         {
           "question": "How is Cloud Sandbox VM runtime billed?",
-          "answer": "Active VMs deduct in USD directly from your unified monthly plan quota at $0.16/hr for 4-core (tier_1), $0.24/hr for 6-core (tier_2), and $0.32/hr for 8-core (tier_3)—metered per second. Stopped VMs cost strictly $0.00/hr."
+          "answer": "Active VMs deduct in USD directly from your monthly plan quota at $0.16/hr for 4-core (tier_1), $0.24/hr for 6-core (tier_2), and $0.32/hr for 8-core (tier_3)—metered per second. Stopped VMs cost strictly $0.00/hr."
         },
         {
           "question": "How do I access Cloud Sandbox VMs on the Free plan?",
-          "answer": "The Free plan includes a $0.50/mo quota valid for both Free-Tier models and 4-core Cloud VMs ($0.16/hr). Complete standard account verification (Google/GitHub or phone) in Settings to unlock Cloud VM launches."
+          "answer": "The Free plan includes a $0.50/mo compute quota for 4-core Cloud VMs ($0.16/hr). Complete standard account verification (Google/GitHub or phone) in Settings to unlock Cloud VM launches."
         },
         {
           "question": "What happens if I exceed my plan quota?",
@@ -791,14 +762,14 @@
           "answer": "Enforcing a $10.00 minimum top-up keeps payment processing overhead low so we don't charge you any extra fee at checkout. 100% of what you pay is credited directly to your non-expiring workspace balance."
         },
         {
-          "question": "Can I still Bring My Own API Keys (BYOK)?",
-          "answer": "Yes! Add Anthropic, OpenAI, DeepSeek, or custom provider keys in Workspace Settings with 0% platform markup. BYOK requests never consume your plan's LLM allowance; on Free and Plus, premium models need wallet funds, while Pro covers them from its quota."
+          "question": "How do I connect my own AI (BYOS / BYOK)?",
+          "answer": "Sign in with Claude Pro/Max, ChatGPT Plus/Pro, or Antigravity inside your sandbox VM, or add OpenRouter, OpenAI, Gemini, DeepSeek, Groq, or custom API keys in Workspace Settings with 0% platform markup. We never charge for tokens."
         }
       ]
     },
     "bottomCta": {
       "title": "Start free today. Upgrade as you ship.",
-      "description": "Get $0.50/mo of Free-Tier LLM & Cloud VM usage on the Free plan, or get dedicated Linux VMs with your own agent subscription on Plus ($10) and Pro ($25).",
+      "description": "Get $0.50/mo of Cloud VM compute on the Free plan, or upgrade to Plus ($10) and Pro ($25) for dedicated Linux VMs with your own AI subscription or API keys.",
       "managePlan": "Manage Workspace Plan",
       "getStarted": "Get started for free",
       "signIn": "Sign in"
@@ -811,13 +782,12 @@
     },
     "specs": {
       "labels": {
-        "quota": "Monthly quota",
+        "quota": "Monthly VM quota",
         "vcpu": "VM compute included",
         "vm": "Max VM size",
         "session": "Session length",
         "snapshots": "Snapshots",
         "members": "Members",
-        "llm": "LLM models",
         "byo": "BYOS / BYOK"
       },
       "vcpuValue": "{{hours}} vCPU-hrs",
@@ -826,18 +796,13 @@
       "vmSize": "{{cores}}-core · {{ram}} GB RAM",
       "minutes": "{{minutes}} min",
       "none": "None",
-      "llm": {
-        "free": "6 Free-Tier models",
-        "plus": "6 Free-Tier · up to $2/mo",
-        "pro": "All models · shared pool"
-      },
       "included": "Included",
       "freeFootnote": "* VM access on Free needs standard account verification.",
       "limits": {
         "title": "What happens when my quota runs out?",
         "p1": "The quota resets every billing cycle and is not unlimited.",
-        "p2": "Top up your wallet to keep VMs and models running, or wait for the next cycle.",
-        "p3": "On Free and Plus, premium models are billed from your wallet. Pro covers them from its quota."
+        "p2": "Top up your wallet to keep VMs running, or wait for the next billing cycle.",
+        "p3": "Stopped VMs cost $0.00/hr, and your own AI subscriptions or API keys always run at 0% platform markup."
       }
     }
   },
