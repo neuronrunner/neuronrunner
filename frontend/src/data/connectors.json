@@ -1,0 +1,4966 @@
+{
+  "source": "https://registry.modelcontextprotocol.io/v0.1/servers",
+  "retrievedAt": "2026-10-17",
+  "selection": "37 public remote MCP integrations, with 12 recommended. Package-only, provider-setup, placeholder, and third-party-gateway entries remain in the snapshot for provenance but are hidden from the public directory.",
+  "connectors": [
+    {
+      "id": "io.github.github/github-mcp-server",
+      "name": "GitHub",
+      "description": "Manage repositories, issues, pull requests, and workflows from your agent.",
+      "version": "2.0.2",
+      "category": "Development",
+      "publisher": "io.github.github",
+      "website": "https://github.com/github/github-mcp-server",
+      "featured": true,
+      "logo": "/integrations/github.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://api.githubcopilot.com/mcp/",
+          "authentication": "token",
+          "headers": [
+            {
+              "name": "Authorization",
+              "description": "Bearer followed by your GitHub access token",
+              "isRequired": true,
+              "isSecret": true
+            }
+          ]
+        }
+      ],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "@modelcontextprotocol/server-github",
+          "version": "2025.4.8",
+          "environmentVariables": [
+            {
+              "name": "GITHUB_PERSONAL_ACCESS_TOKEN",
+              "description": "GitHub Personal Access Token (classic or fine-grained)",
+              "isRequired": true,
+              "isSecret": true
+            }
+          ]
+        }
+      ],
+      "chatgptDirectory": {
+        "name": "GitHub",
+        "pluginId": "plugin_connector_1p_1a69035c238881919c4190932b2df699",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "com.gitlab/mcp",
+      "name": "GitLab",
+      "description": "Search GitLab projects and work with issues, merge requests, and pipelines.",
+      "version": "0.0.1",
+      "category": "Development",
+      "publisher": "com.gitlab",
+      "website": "https://docs.gitlab.com/user/model_context_protocol/mcp_server/",
+      "featured": false,
+      "logo": "/integrations/gitlab.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://gitlab.com/api/v4/mcp",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": []
+    },
+    {
+      "id": "io.github.upstash/context7",
+      "curated": true,
+      "name": "Context7",
+      "description": "Pull up-to-date, version-specific documentation and code examples for libraries.",
+      "version": "4.4.2",
+      "category": "Development",
+      "publisher": "io.github.upstash",
+      "website": "https://context7.com",
+      "featured": true,
+      "logo": "/integrations/context7.png",
+      "logoSource": "https://raw.githubusercontent.com/upstash/context7/master/public/icon.png",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.context7.com/mcp",
+          "headers": [
+            {
+              "description": "API key for authentication. Accepts \"Bearer <key>\" or the raw key.",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        }
+      ],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "@upstash/context7-mcp",
+          "version": "4.4.2",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "description": "API key for authentication",
+              "isSecret": true,
+              "name": "CONTEXT7_API_KEY"
+            }
+          ]
+        }
+      ],
+      "chatgptDirectory": {
+        "name": "Context7",
+        "pluginId": "plugin_asdk_app_69ef18c674308191a2f952431f91ea61",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "io.github.microsoft/playwright-mcp",
+      "name": "Playwright",
+      "description": "Playwright Tools for MCP",
+      "version": "0.0.82",
+      "category": "Development",
+      "publisher": "io.github.microsoft",
+      "website": "https://github.com/microsoft/playwright-mcp",
+      "featured": true,
+      "logo": "/integrations/playwright.svg",
+      "logoSource": "https://raw.githubusercontent.com/pheralb/svgl/main/static/library/playwright.svg",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "@playwright/mcp",
+          "version": "0.0.82",
+          "transport": {
+            "type": "stdio"
+          }
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "io.github.ChromeDevTools/chrome-devtools-mcp",
+      "name": "Chrome DevTools",
+      "description": "MCP server for Chrome DevTools",
+      "version": "1.11.0",
+      "category": "Development",
+      "publisher": "io.github.ChromeDevTools",
+      "website": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+      "featured": false,
+      "logo": "/integrations/chrome-devtools.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "registryBaseUrl": "https://registry.npmjs.org",
+          "identifier": "chrome-devtools-mcp",
+          "version": "1.11.0",
+          "transport": {
+            "type": "stdio"
+          }
+        }
+      ]
+    },
+    {
+      "id": "io.github.getsentry/sentry-mcp",
+      "curated": true,
+      "name": "Sentry",
+      "description": "Debug production errors and inspect issues with Sentry context.",
+      "version": "0.42.0",
+      "category": "Development",
+      "publisher": "io.github.getsentry",
+      "website": "https://docs.sentry.io/product/sentry-mcp/",
+      "featured": false,
+      "logo": "/integrations/sentry.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.sentry.dev/mcp",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "@sentry/mcp-server",
+          "version": "0.42.0",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "description": "Your Sentry user authentication token",
+              "isRequired": true,
+              "format": "string",
+              "isSecret": true,
+              "name": "SENTRY_ACCESS_TOKEN"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "com.postman/postman-mcp-server",
+      "name": "Postman",
+      "description": "Search and run Postman collections, requests, and API workflows.",
+      "version": "2.14.0",
+      "category": "Development",
+      "publisher": "com.postman",
+      "website": "https://www.postman.com/product/mcp-server/",
+      "featured": false,
+      "logo": "/integrations/postman.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.postman.com/mcp",
+          "headers": [
+            {
+              "description": "A Bearer token and a valid Postman API key for authentication.",
+              "isRequired": true,
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "token"
+        },
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.postman.com/minimal",
+          "headers": [
+            {
+              "description": "A Bearer token and a valid Postman API key for authentication.",
+              "isRequired": true,
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "token"
+        },
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.eu.postman.com/mcp",
+          "headers": [
+            {
+              "description": "A Bearer token and a valid Postman API key for authentication.",
+              "isRequired": true,
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "token"
+        },
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.eu.postman.com/minimal",
+          "headers": [
+            {
+              "description": "A Bearer token and a valid Postman API key for authentication.",
+              "isRequired": true,
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "token"
+        }
+      ],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "@postman/postman-mcp-server",
+          "version": "2.14.0",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "description": "A valid Postman API key.",
+              "isRequired": true,
+              "isSecret": true,
+              "name": "POSTMAN_API_KEY"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "io.github.browserbase/mcp-server-browserbase",
+      "name": "Browserbase",
+      "description": "MCP server for AI web browser automation using Browserbase and Stagehand",
+      "version": "2.1.1",
+      "category": "Development",
+      "publisher": "io.github.browserbase",
+      "website": "https://github.com/browserbase/mcp-server-browserbase",
+      "featured": false,
+      "logo": "/integrations/browserbase.png",
+      "logoSource": "https://github.com/browserbase.png?size=96",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "registryBaseUrl": "https://registry.npmjs.org",
+          "identifier": "@browserbasehq/mcp-server-browserbase",
+          "version": "2.1.1",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "description": "Your Browserbase API key",
+              "isRequired": true,
+              "format": "string",
+              "isSecret": true,
+              "name": "BROWSERBASE_API_KEY"
+            },
+            {
+              "description": "Your Browserbase Project ID",
+              "isRequired": true,
+              "format": "string",
+              "name": "BROWSERBASE_PROJECT_ID"
+            },
+            {
+              "description": "Your Gemini API key (default model)",
+              "isRequired": true,
+              "format": "string",
+              "isSecret": true,
+              "name": "GEMINI_API_KEY"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "com.notion/mcp",
+      "curated": true,
+      "name": "Notion",
+      "description": "Search, read, and update Notion pages, databases, and workspace content.",
+      "version": "1.0.1",
+      "category": "Productivity",
+      "publisher": "com.notion",
+      "website": "https://developers.notion.com/guides/mcp/overview",
+      "featured": true,
+      "logo": "/integrations/notion.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.notion.com/mcp",
+          "authentication": "oauth"
+        },
+        {
+          "type": "sse",
+          "url": "https://mcp.notion.com/sse",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": [],
+      "chatgptDirectory": {
+        "name": "Notion",
+        "pluginId": "plugin_asdk_app_69c18c28f1188191bf5b8445c4ab0a2e",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "app.linear/linear",
+      "curated": true,
+      "name": "Linear",
+      "description": "Manage Linear issues, projects, cycles, and team workflows.",
+      "version": "1.0.1",
+      "category": "Productivity",
+      "publisher": "app.linear",
+      "website": "https://linear.app/docs/mcp",
+      "featured": true,
+      "logo": "/integrations/linear.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.linear.app/mcp",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": [],
+      "chatgptDirectory": {
+        "name": "Linear",
+        "pluginId": "plugin_asdk_app_69a089a326dc8191b32a3f2553f5be2c",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "com.atlassian/atlassian-mcp-server",
+      "curated": true,
+      "name": "Atlassian",
+      "description": "Search and update Jira issues, Confluence pages, and Atlassian work.",
+      "version": "2.0.0",
+      "category": "Productivity",
+      "publisher": "com.atlassian",
+      "website": "https://support.atlassian.com/atlassian-ai-gateway/docs/get-started-with-the-atlassian-remote-mcp-server/",
+      "featured": false,
+      "logo": "/integrations/atlassian.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.atlassian.com/v2/mcp",
+          "authentication": "oauth"
+        },
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.atlassian.com/v1/mcp/authv2",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": [],
+      "chatgptDirectory": {
+        "name": "Atlassian",
+        "pluginId": "plugin_asdk_app_6a83901dde988191b3f3cefdcc19acfa",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "io.github.jtalk22/asana-mcp-server",
+      "name": "Asana",
+      "description": "Change Asana without opening Asana \u2014 custom fields, sections, start dates, rich notes, bulk. PAT.",
+      "version": "1.0.1",
+      "category": "Productivity",
+      "publisher": "com.asana",
+      "website": "https://developers.asana.com/docs/mcp-server",
+      "featured": false,
+      "logo": "/integrations/asana.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.asana.com/v2/mcp",
+          "authentication": "oauth"
+        },
+        {
+          "type": "sse",
+          "url": "https://mcp.asana.com/sse",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "@jtalk22/asana-mcp",
+          "version": "1.0.1",
+          "environmentVariables": [
+            {
+              "name": "ASANA_PAT",
+              "description": "Asana Personal Access Token",
+              "isRequired": true,
+              "isSecret": true
+            }
+          ]
+        }
+      ],
+      "chatgptDirectory": {
+        "name": "Asana",
+        "pluginId": "plugin_asdk_app_69616780bd208191b4fb44ba44f72b61",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "io.github.taazkareem/clickup",
+      "name": "ClickUp",
+      "description": "Premium AI integration. Tasks, lists, docs, folders, time. 50+ tools. Instant setup.",
+      "version": "0.12.12",
+      "category": "Productivity",
+      "publisher": "com.clickup",
+      "website": "https://clickup.com",
+      "featured": false,
+      "logo": "/integrations/clickup.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.clickup.com/mcp",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "@taazkareem/clickup-mcp-server",
+          "version": "0.12.12",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "description": "Your ClickUp MCP License Key from Polar.sh",
+              "isRequired": true,
+              "isSecret": true,
+              "name": "CLICKUP_MCP_LICENSE_KEY"
+            },
+            {
+              "description": "Your ClickUp API key",
+              "isRequired": true,
+              "isSecret": true,
+              "name": "CLICKUP_API_KEY"
+            },
+            {
+              "description": "Your ClickUp Team ID",
+              "isRequired": true,
+              "name": "CLICKUP_TEAM_ID"
+            },
+            {
+              "description": "Enable ClickUp Document support",
+              "default": "true",
+              "name": "DOCUMENT_SUPPORT"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "net.todoist/mcp",
+      "name": "Todoist",
+      "description": "Create and manage Todoist tasks, projects, and labels.",
+      "version": "1.0.0",
+      "category": "Productivity",
+      "publisher": "net.todoist",
+      "website": "https://developer.todoist.com/",
+      "featured": false,
+      "logo": "/integrations/todoist.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://ai.todoist.net/mcp",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": [],
+      "chatgptDirectory": {
+        "name": "Todoist: To Do List & Calendar",
+        "pluginId": "plugin_asdk_app_6943b73823548191a9f9216c6790c453",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "io.github.delorenj/mcp-server-trello",
+      "name": "Trello",
+      "description": "MCP server for Trello boards with rate limiting, type safety, and comprehensive API integration.",
+      "version": "1.8.1",
+      "category": "Productivity",
+      "publisher": "io.github.delorenj",
+      "website": "https://delorenj.github.io/mcp-server-trello",
+      "featured": false,
+      "logo": "/integrations/trello.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "registryBaseUrl": "https://registry.npmjs.org",
+          "identifier": "@delorenj/mcp-server-trello",
+          "version": "1.8.1",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "description": "Your Trello API key",
+              "isRequired": true,
+              "format": "string",
+              "isSecret": true,
+              "name": "TRELLO_API_KEY"
+            },
+            {
+              "description": "Your Trello token",
+              "isRequired": true,
+              "format": "string",
+              "isSecret": true,
+              "name": "TRELLO_TOKEN"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "com.monday/monday.com",
+      "name": "monday.com",
+      "description": "Manage monday.com boards, items, and workspace workflows.",
+      "version": "0.0.1",
+      "category": "Productivity",
+      "publisher": "com.monday",
+      "website": "https://github.com/mondaycom/mcp",
+      "featured": false,
+      "logo": "/integrations/monday-com.png",
+      "logoSource": "https://github.com/mondaycom.png?size=96",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.monday.com/mcp",
+          "headers": [
+            {
+              "description": "monday.com API token (format: 'Bearer your_token_here' or just 'your_token_here')",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "sse",
+          "url": "https://mcp.monday.com/sse",
+          "headers": [
+            {
+              "description": "monday.com API token (format: 'Bearer your_token_here' or just 'your_token_here')",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        }
+      ],
+      "packages": [],
+      "chatgptDirectory": {
+        "name": "monday.com",
+        "pluginId": "plugin_connector_690aabb71bf481918b8d5b614ed3fd4c",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "io.github.piotr-agier/google-drive-mcp",
+      "name": "Google Drive",
+      "description": "Secure access to Google Drive, Docs, Sheets, Slides, and Calendar through MCP.",
+      "version": "2.12.0",
+      "category": "Productivity",
+      "publisher": "io.github.piotr-agier",
+      "website": "https://github.com/piotr-agier/google-drive-mcp#readme",
+      "featured": false,
+      "logo": "/integrations/google-drive.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "@piotr-agier/google-drive-mcp",
+          "version": "2.12.0",
+          "runtimeHint": "npx",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "description": "Path to a Google OAuth 2.0 Desktop app credentials JSON file.",
+              "isRequired": true,
+              "format": "filepath",
+              "isSecret": true,
+              "name": "GOOGLE_DRIVE_OAUTH_CREDENTIALS"
+            }
+          ]
+        }
+      ],
+      "chatgptDirectory": {
+        "name": "Google Drive",
+        "pluginId": "plugin_connector_1p_ab21a553bfbc81919ea8fd1858e3ffa7",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "io.github.domdomegg/google-sheets-mcp",
+      "name": "Google Sheets",
+      "description": "Allow AI systems to read, write, and query spreadsheet data via Google Sheets.",
+      "version": "1.2.1",
+      "category": "Productivity",
+      "publisher": "io.github.domdomegg",
+      "website": "https://github.com/domdomegg/google-sheets-mcp#readme",
+      "featured": false,
+      "logo": "/integrations/google-sheets.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "google-sheets-mcp",
+          "version": "1.2.1",
+          "runtimeHint": "npx",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "description": "Google OAuth access token with Sheets scopes.",
+              "isRequired": true,
+              "isSecret": true,
+              "name": "GOOGLE_ACCESS_TOKEN"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "com.airtable/mcp",
+      "name": "Airtable",
+      "description": "Query and update Airtable bases, tables, records, and automations.",
+      "version": "0.1.0",
+      "category": "Productivity",
+      "publisher": "com.airtable",
+      "website": "https://airtable.com/developers/agents/mcp/getting-started",
+      "featured": false,
+      "logo": "/integrations/airtable.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.airtable.com/mcp",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": [],
+      "chatgptDirectory": {
+        "name": "Airtable",
+        "pluginId": "plugin_asdk_app_693ca6ce2db08191bb52d66743c65184",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "io.github.pipeworx-io/dropbox",
+      "name": "Dropbox",
+      "description": "Dropbox MCP Pack \u2014 wraps the Dropbox API v2",
+      "version": "0.1.3",
+      "category": "Productivity",
+      "publisher": "com.dropbox",
+      "website": "https://www.dropbox.com",
+      "featured": false,
+      "logo": "/integrations/dropbox.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.dropbox.com/mcp",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": [],
+      "chatgptDirectory": {
+        "name": "Dropbox",
+        "pluginId": "plugin_asdk_app_69b31dc2110c8191b8b47dc98fe5a052",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "io.github.aaronsb/slack-mcp",
+      "name": "Slack",
+      "description": "Read and write Slack with session tokens \u2014 no OAuth, no bot, no admin approval.",
+      "version": "2.8.0",
+      "category": "Communication",
+      "publisher": "io.github.aaronsb",
+      "website": "https://github.com/aaronsb/slack-mcp#readme",
+      "featured": false,
+      "logo": "/integrations/slack.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "@aaronsb/slack-mcp",
+          "version": "2.8.0",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "description": "Slack session token. Optional \u2014 the auth tool extracts it from your browser and stores it in the config file.",
+              "name": "SLACK_MCP_XOXC_TOKEN"
+            },
+            {
+              "description": "Slack session cookie. Optional \u2014 the auth tool extracts it from your browser and stores it in the config file.",
+              "name": "SLACK_MCP_XOXD_TOKEN"
+            }
+          ]
+        }
+      ],
+      "chatgptDirectory": {
+        "name": "Slack",
+        "pluginId": "plugin_asdk_app_69a1d78e929881919bba0dbda1f6436d",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "io.github.willuhmjs/discord-mcp",
+      "name": "Discord",
+      "description": "Discord for LLM agents: 168 tools for messages, moderation, channels, roles, threads and AutoMod.",
+      "version": "1.1.1",
+      "category": "Communication",
+      "publisher": "io.github.willuhmjs",
+      "website": "https://github.com/willuhmjs/discord-mcp#readme",
+      "featured": false,
+      "logo": "/integrations/discord.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "registryBaseUrl": "https://registry.npmjs.org",
+          "identifier": "@willuhmjs/discord-mcp",
+          "version": "1.1.1",
+          "runtimeHint": "npx",
+          "transport": {
+            "type": "stdio"
+          },
+          "packageArguments": [
+            {
+              "value": "--stdio",
+              "type": "positional"
+            }
+          ],
+          "environmentVariables": [
+            {
+              "description": "Discord bot token from https://discord.com/developers/applications",
+              "isRequired": true,
+              "isSecret": true,
+              "name": "DISCORD_TOKEN"
+            },
+            {
+              "description": "Default server (guild) ID used when a tool call omits guildId",
+              "name": "DISCORD_GUILD_ID"
+            },
+            {
+              "description": "Set to 1 to enable the privileged Server Members intent (needed for member-list tools)",
+              "name": "ENABLE_MEMBERS_INTENT"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "com.pulsemcp/gmail",
+      "name": "Gmail",
+      "description": "MCP server for Gmail with OAuth2 (personal) and service account (Workspace) support.",
+      "version": "0.4.12",
+      "category": "Communication",
+      "publisher": "com.pulsemcp",
+      "website": "https://github.com/pulsemcp/mcp-servers",
+      "featured": false,
+      "logo": "/integrations/gmail.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "registryBaseUrl": "https://registry.npmjs.org",
+          "identifier": "gmail-workspace-mcp-server",
+          "version": "0.4.12",
+          "runtimeHint": "npx",
+          "transport": {
+            "type": "stdio"
+          },
+          "runtimeArguments": [
+            {
+              "value": "-y",
+              "type": "positional"
+            }
+          ],
+          "environmentVariables": [
+            {
+              "description": "OAuth2 client ID from Google Cloud Console (for personal Gmail accounts).",
+              "isSecret": true,
+              "name": "GMAIL_OAUTH_CLIENT_ID"
+            },
+            {
+              "description": "OAuth2 client secret from Google Cloud Console.",
+              "isSecret": true,
+              "name": "GMAIL_OAUTH_CLIENT_SECRET"
+            },
+            {
+              "description": "Refresh token from the OAuth2 setup script.",
+              "isSecret": true,
+              "name": "GMAIL_OAUTH_REFRESH_TOKEN"
+            },
+            {
+              "description": "Service account email address (for Google Workspace).",
+              "name": "GMAIL_SERVICE_ACCOUNT_CLIENT_EMAIL"
+            },
+            {
+              "description": "Service account private key in PEM format (for Google Workspace).",
+              "isSecret": true,
+              "name": "GMAIL_SERVICE_ACCOUNT_PRIVATE_KEY"
+            },
+            {
+              "description": "Email address to impersonate (required for service account mode).",
+              "name": "GMAIL_IMPERSONATE_EMAIL"
+            },
+            {
+              "description": "Comma-separated list of tool groups to enable (readonly, readwrite, readwrite_external).",
+              "name": "GMAIL_ENABLED_TOOLGROUPS"
+            }
+          ]
+        }
+      ],
+      "chatgptDirectory": {
+        "name": "Gmail",
+        "pluginId": "plugin_connector_1p_95d39881713c8191931482a62d6edff9",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "io.github.mcp-z/mcp-outlook",
+      "name": "Microsoft Outlook",
+      "description": "Outlook integration with OAuth, message search, batch operations, and calendar management",
+      "version": "2.2.3",
+      "category": "Communication",
+      "publisher": "io.github.mcp-z",
+      "website": "https://github.com/mcp-z/mcp-outlook#readme",
+      "featured": false,
+      "logo": "/integrations/microsoft-outlook.svg",
+      "logoSource": "https://raw.githubusercontent.com/pheralb/svgl/main/static/library/microsoft-outlook.svg",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "@mcp-z/mcp-outlook",
+          "version": "2.2.3",
+          "runtimeHint": "npx",
+          "transport": {
+            "type": "stdio"
+          },
+          "runtimeArguments": [
+            {
+              "type": "named",
+              "name": "-y"
+            }
+          ],
+          "packageArguments": [
+            {
+              "description": "Authentication mode",
+              "choices": [
+                "loopback-oauth",
+                "device-code"
+              ],
+              "type": "named",
+              "name": "--auth"
+            },
+            {
+              "description": "Microsoft tenant ID (overrides MS_TENANT_ID env var)",
+              "type": "named",
+              "name": "--tenant-id"
+            },
+            {
+              "description": "Disable browser auto-open, return auth URL instead",
+              "type": "named",
+              "name": "--headless"
+            },
+            {
+              "description": "OAuth redirect URI (default: ephemeral loopback)",
+              "type": "named",
+              "name": "--redirect-uri"
+            },
+            {
+              "description": "Override resource store URI for CSV export files",
+              "type": "named",
+              "name": "--resource-store-uri"
+            },
+            {
+              "description": "Override base URL for HTTP transport (used for OAuth/DCR endpoints and file links)",
+              "type": "named",
+              "name": "--base-url"
+            },
+            {
+              "description": "Override logging level",
+              "choices": [
+                "debug",
+                "info",
+                "warn",
+                "error"
+              ],
+              "type": "named",
+              "name": "--log-level"
+            }
+          ],
+          "environmentVariables": [
+            {
+              "description": "Microsoft OAuth client ID (required for OAuth authentication modes)",
+              "isRequired": true,
+              "placeholder": "12345678-abcd-1234-abcd-123456789abc",
+              "name": "MS_CLIENT_ID"
+            },
+            {
+              "description": "Microsoft tenant ID (required for OAuth authentication)",
+              "isRequired": true,
+              "placeholder": "common",
+              "name": "MS_TENANT_ID"
+            },
+            {
+              "description": "Microsoft OAuth client secret (optional for public clients)",
+              "isSecret": true,
+              "placeholder": "abc~123DEF.456ghi-789JKL_012mno",
+              "name": "MS_CLIENT_SECRET"
+            },
+            {
+              "description": "Authentication mode",
+              "value": "loopback-oauth",
+              "placeholder": "loopback-oauth",
+              "choices": [
+                "loopback-oauth",
+                "device-code"
+              ],
+              "name": "AUTH_MODE"
+            },
+            {
+              "description": "Disable browser auto-open, return auth URL instead (true/false)",
+              "default": "false",
+              "placeholder": "false",
+              "name": "HEADLESS"
+            },
+            {
+              "description": "OAuth redirect URI (optional, default: ephemeral loopback)",
+              "placeholder": "http://localhost:{PORT}/oauth/callback",
+              "name": "REDIRECT_URI"
+            },
+            {
+              "description": "Resource store URI for CSV export files (file://)",
+              "value": "file://~/.mcp-z/mcp-outlook/files",
+              "placeholder": "file://~/.mcp-z/mcp-outlook/files",
+              "name": "RESOURCE_STORE_URI"
+            },
+            {
+              "description": "HTTP server port (overrides --port)",
+              "placeholder": "3000",
+              "name": "PORT"
+            },
+            {
+              "description": "Base URL for HTTP transport (used for OAuth/DCR endpoints and file links)",
+              "placeholder": "http://localhost:{PORT}",
+              "name": "BASE_URL"
+            },
+            {
+              "description": "Logging level",
+              "value": "info",
+              "placeholder": "info",
+              "choices": [
+                "debug",
+                "info",
+                "warn",
+                "error"
+              ],
+              "name": "LOG_LEVEL"
+            }
+          ]
+        }
+      ],
+      "chatgptDirectory": {
+        "name": "Outlook Email",
+        "pluginId": "plugin_connector_1p_6bcb5879c73c819196abc70016166099",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "com.microsoft/workiq-teamsserver",
+      "name": "Microsoft Teams",
+      "description": "Manage Microsoft Teams chats, channels, users, and messages via Graph API.",
+      "version": "1.0.0",
+      "category": "Communication",
+      "publisher": "com.microsoft",
+      "website": "https://github.com/bap-microsoft/MCP-Platform/",
+      "featured": false,
+      "logo": "/integrations/microsoft-teams.svg",
+      "logoSource": "https://raw.githubusercontent.com/pheralb/svgl/main/static/library/microsoft-teams.svg",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://agent365.svc.cloud.microsoft/agents/tenants/{tenant_id}/servers/mcp_TeamsServer",
+          "variables": {
+            "tenant_id": {
+              "description": "Microsoft Entra tenant ID",
+              "isRequired": true
+            }
+          },
+          "authentication": "oauth"
+        }
+      ],
+      "packages": [],
+      "chatgptDirectory": {
+        "name": "Teams",
+        "pluginId": "plugin_connector_1p_eba8b52fe53881918408d4b46b957644",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "io.github.zoom/zoom-meetings",
+      "name": "Zoom",
+      "description": "Search meetings, recordings, transcripts, and summaries in Zoom.",
+      "version": "1.0.0",
+      "category": "Communication",
+      "publisher": "io.github.zoom",
+      "website": "https://github.com/zoom/mcp-registry",
+      "featured": false,
+      "logo": "/integrations/zoom.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.zoom.us/mcp/meeting/streamable",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": [],
+      "chatgptDirectory": {
+        "name": "Zoom",
+        "pluginId": "plugin_asdk_app_69373a13116c819189d046aea1278836",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "io.github.codespar/mcp-twilio",
+      "name": "Twilio",
+      "description": "MCP server for Twilio \u2014 global SMS, WhatsApp, Voice, Verify, and Lookup across 180+ countries",
+      "version": "0.2.2",
+      "category": "Communication",
+      "publisher": "io.github.codespar",
+      "website": "https://github.com/codespar/mcp-dev-latam",
+      "featured": false,
+      "logo": "/integrations/twilio.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "@codespar/mcp-twilio",
+          "version": "0.2.2",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "description": "Twilio Account SID (starts with AC...). Used as username for HTTP Basic auth.",
+              "isRequired": true,
+              "format": "string",
+              "name": "TWILIO_ACCOUNT_SID"
+            },
+            {
+              "description": "Twilio Auth Token. Used as password for HTTP Basic auth.",
+              "isRequired": true,
+              "format": "string",
+              "isSecret": true,
+              "name": "TWILIO_AUTH_TOKEN"
+            },
+            {
+              "description": "Optional default Messaging Service SID (starts with MG...) used for send_message when From is omitted.",
+              "format": "string",
+              "name": "TWILIO_MESSAGING_SERVICE_SID"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "com.supabase/mcp",
+      "curated": true,
+      "name": "Supabase",
+      "description": "Inspect and manage Supabase projects, databases, and edge functions.",
+      "version": "0.14.0",
+      "category": "Data & analytics",
+      "publisher": "com.supabase",
+      "website": "https://supabase.com/docs/guides/ai-tools/mcp",
+      "featured": true,
+      "logo": "/integrations/supabase.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.supabase.com/mcp",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": [
+        {
+          "registryType": "npm",
+          "registryBaseUrl": "https://registry.npmjs.org",
+          "identifier": "@supabase/mcp-server-supabase",
+          "version": "0.14.0",
+          "runtimeHint": "npx",
+          "transport": {
+            "type": "stdio"
+          },
+          "runtimeArguments": [
+            {
+              "description": "Supabase project reference ID",
+              "format": "string",
+              "type": "named",
+              "name": "--project-ref"
+            },
+            {
+              "description": "Enable read-only mode",
+              "format": "boolean",
+              "type": "named",
+              "name": "--read-only"
+            },
+            {
+              "description": "Comma-separated list of features to enable",
+              "format": "string",
+              "type": "named",
+              "name": "--features"
+            },
+            {
+              "description": "Custom API URL",
+              "format": "string",
+              "type": "named",
+              "name": "--api-url"
+            }
+          ],
+          "environmentVariables": [
+            {
+              "description": "Personal access token for Supabase API",
+              "isRequired": true,
+              "format": "string",
+              "isSecret": true,
+              "name": "SUPABASE_ACCESS_TOKEN"
+            }
+          ]
+        }
+      ],
+      "chatgptDirectory": {
+        "name": "Supabase",
+        "pluginId": "plugin_asdk_app_69d3e5ee6a708191baa733f7b8931995",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "com.neon/mcp",
+      "curated": true,
+      "name": "Neon",
+      "description": "Manage Neon projects, branches, and Postgres databases.",
+      "version": "1.0.0",
+      "category": "Data & analytics",
+      "publisher": "com.neon",
+      "website": "https://neon.com/docs/ai/neon-mcp-server",
+      "featured": false,
+      "logo": "/integrations/neon.svg",
+      "logoSource": "https://raw.githubusercontent.com/pheralb/svgl/main/static/library/neon.svg",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.neon.tech/mcp",
+          "headers": [
+            {
+              "description": "Optional Bearer token with a Neon API key.",
+              "isSecret": true,
+              "name": "Authorization"
+            },
+            {
+              "description": "Optional header to enable read-only mode for tool filtering.",
+              "format": "boolean",
+              "default": "false",
+              "name": "x-read-only"
+            }
+          ],
+          "authentication": "oauth"
+        }
+      ],
+      "packages": [],
+      "chatgptDirectory": {
+        "name": "Neon",
+        "pluginId": "plugin_asdk_app_69e0086d87088191a3edc052fa50c29f",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "io.github.mongodb-js/mongodb-mcp-server",
+      "name": "MongoDB",
+      "description": "MongoDB Model Context Protocol Server",
+      "version": "2.1.0",
+      "category": "Data & analytics",
+      "publisher": "io.github.mongodb-js",
+      "website": "https://github.com/mongodb-js/mongodb-mcp-server",
+      "featured": false,
+      "logo": "/integrations/mongodb.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "mongodb-mcp-server",
+          "version": "2.1.0",
+          "transport": {
+            "type": "stdio"
+          },
+          "packageArguments": [
+            {
+              "description": "When set to true, allows configuration values to be overridden via request headers and query parameters.",
+              "format": "boolean",
+              "type": "named",
+              "name": "--allowRequestOverrides"
+            },
+            {
+              "description": "Atlas API client ID for authentication. Required for running Atlas tools.",
+              "type": "named",
+              "name": "--apiClientId"
+            },
+            {
+              "description": "Atlas API client secret for authentication. Required for running Atlas tools.",
+              "type": "named",
+              "name": "--apiClientSecret"
+            },
+            {
+              "description": "Base URL for the MongoDB Assistant API.",
+              "type": "named",
+              "name": "--assistantBaseUrl"
+            },
+            {
+              "description": "Time in milliseconds that temporary database users created when connecting to MongoDB Atlas clusters will remain active before being automatically deleted.",
+              "format": "number",
+              "type": "named",
+              "name": "--atlasTemporaryDatabaseUserLifetimeMs"
+            },
+            {
+              "description": "Comma separated values of tool names that require user confirmation before execution. Requires the client to support elicitation.",
+              "type": "named",
+              "name": "--confirmationRequiredTools"
+            },
+            {
+              "description": "Visibility scope for MongoDB connections created at runtime. With 'session' (the default), each MCP session only sees the connections it created (plus the shared 'preconfigured' one) and they are closed when the session ends \u2014 recommended when the HTTP transport is exposed to multiple clients without authentication. With 'global', connections are shared across all sessions and survive session rotation.",
+              "type": "named",
+              "name": "--connectionScope"
+            },
+            {
+              "description": "MongoDB connection string for direct database connections. Optional, if not set, you'll need to call the connect tool before interacting with MongoDB data.",
+              "type": "named",
+              "name": "--connectionString"
+            },
+            {
+              "description": "When set to true, disallows the use of server-side JavaScript operators (such as $where, $function, and $accumulator) in query filters and aggregation pipelines.",
+              "format": "boolean",
+              "type": "named",
+              "name": "--disableServerSideJs"
+            },
+            {
+              "description": "Comma separated values of tool names, operation types, and/or categories of tools that will be disabled.",
+              "type": "named",
+              "name": "--disabledTools"
+            },
+            {
+              "description": "When true, runs the server in dry mode: dumps configuration and enabled tools, then exits without starting the server.",
+              "format": "boolean",
+              "type": "named",
+              "name": "--dryRun"
+            },
+            {
+              "description": "Time in milliseconds the user has to respond to an elicitation request (such as a tool confirmation prompt) before it fails.",
+              "format": "number",
+              "type": "named",
+              "name": "--elicitationTimeoutMs"
+            },
+            {
+              "description": "Time in milliseconds between export cleanup cycles that remove expired export files.",
+              "format": "number",
+              "type": "named",
+              "name": "--exportCleanupIntervalMs"
+            },
+            {
+              "description": "Time in milliseconds after which an export is considered expired and eligible for cleanup.",
+              "format": "number",
+              "type": "named",
+              "name": "--exportTimeoutMs"
+            },
+            {
+              "description": "Folder to store exported data files.",
+              "type": "named",
+              "name": "--exportsPath"
+            },
+            {
+              "description": "When true, the HTTP transport allows requests with a session ID supplied externally through the 'mcp-session-id' header. When an external ID is supplied, the initialization request is optional.",
+              "format": "boolean",
+              "type": "named",
+              "name": "--externallyManagedSessions"
+            },
+            {
+              "description": "Deprecated. Use `monitoringServerHost` instead. Host address to bind the healthCheck HTTP server to (only used when transport is 'http'). If provided, `healthCheckPort` must also be set.",
+              "type": "named",
+              "name": "--healthCheckHost"
+            },
+            {
+              "description": "Deprecated. Use `monitoringServerPort` instead. Port number for the healthCheck HTTP server (only used when transport is 'http'). If provided, `healthCheckHost` must also be set.",
+              "format": "number",
+              "type": "named",
+              "name": "--healthCheckPort"
+            },
+            {
+              "description": "Maximum size of the HTTP request body in bytes (only used when transport is 'http'). This value is passed as the optional limit parameter to the Express.js json() middleware.",
+              "format": "number",
+              "type": "named",
+              "name": "--httpBodyLimit"
+            },
+            {
+              "description": "Header that the HTTP server will validate when making requests (only used when transport is 'http').",
+              "type": "named",
+              "name": "--httpHeaders"
+            },
+            {
+              "description": "Host address to bind the HTTP server to (only used when transport is 'http').",
+              "type": "named",
+              "name": "--httpHost"
+            },
+            {
+              "description": "Port number for the HTTP server (only used when transport is 'http'). Use 0 for a random port.",
+              "format": "number",
+              "type": "named",
+              "name": "--httpPort"
+            },
+            {
+              "description": "The HTTP response type for tool responses: 'sse' for Server-Sent Events, 'json' for standard JSON responses.",
+              "type": "named",
+              "name": "--httpResponseType"
+            },
+            {
+              "description": "Idle timeout for a client to disconnect (only applies to http transport).",
+              "format": "number",
+              "type": "named",
+              "name": "--idleTimeoutMs"
+            },
+            {
+              "description": "When set to true, enforces that query operations must use an index, rejecting queries that perform a collection scan.",
+              "format": "boolean",
+              "type": "named",
+              "name": "--indexCheck"
+            },
+            {
+              "description": "Folder to store logs.",
+              "type": "named",
+              "name": "--logPath"
+            },
+            {
+              "description": "Comma separated values of logger types.",
+              "type": "named",
+              "name": "--loggers"
+            },
+            {
+              "description": "Maximum number of MongoDB connections a single scope (an MCP session by default, see connectionScope) can hold open. When exceeded, the scope's least-recently-used connection is closed and its connectionId revoked. The preconfigured connection does not count towards the limit.",
+              "format": "number",
+              "type": "named",
+              "name": "--maxActiveConnections"
+            },
+            {
+              "description": "The maximum size in bytes for results from a find or aggregate tool call. This serves as an upper bound for the responseBytesLimit parameter in those tools.",
+              "format": "number",
+              "type": "named",
+              "name": "--maxBytesPerQuery"
+            },
+            {
+              "description": "The maximum number of documents that can be returned by a find or aggregate tool call. For the find tool, the effective limit will be the smaller of this value and the tool's limit parameter.",
+              "format": "number",
+              "type": "named",
+              "name": "--maxDocumentsPerQuery"
+            },
+            {
+              "description": "Maximum number of concurrent sessions the HTTP transport will hold in memory (only used when transport is 'http'). Each session holds a full server instance, transport, and timers, so choose a value based on your deployment's available memory; the default is a conservative safety net rather than a recommended production value.",
+              "format": "number",
+              "type": "named",
+              "name": "--maxSessions"
+            },
+            {
+              "description": "The maximum time in milliseconds that operations are allowed to run on the MongoDB server. When set, this value is passed as the maxTimeMS option to read operations such as find, aggregate, and count.",
+              "format": "number",
+              "type": "named",
+              "name": "--maxTimeMS"
+            },
+            {
+              "description": "Minimum severity level for log messages forwarded to the MCP client.",
+              "type": "named",
+              "name": "--mcpClientLogLevel"
+            },
+            {
+              "description": "Features to expose on the monitoring server (only used when transport is 'http' and monitoringServerHost/monitoringServerPort are set).",
+              "type": "named",
+              "name": "--monitoringServerFeatures"
+            },
+            {
+              "description": "Host address to bind the monitoring HTTP server to (only used when transport is 'http'). If provided, `monitoringServerPort` must also be set.",
+              "type": "named",
+              "name": "--monitoringServerHost"
+            },
+            {
+              "description": "Port number for the monitoring HTTP server (only used when transport is 'http'). If provided, `monitoringServerHost` must also be set.",
+              "format": "number",
+              "type": "named",
+              "name": "--monitoringServerPort"
+            },
+            {
+              "description": "Notification timeout for a client to be aware of disconnect (only applies to http transport).",
+              "format": "number",
+              "type": "named",
+              "name": "--notificationTimeoutMs"
+            },
+            {
+              "description": "Comma separated values of preview features that are enabled.",
+              "type": "named",
+              "name": "--previewFeatures"
+            },
+            {
+              "description": "When set to true, only allows read, connect, and metadata operation types, disabling create/update/delete operations.",
+              "format": "boolean",
+              "type": "named",
+              "name": "--readOnly"
+            },
+            {
+              "description": "When set to disabled, disables telemetry collection.",
+              "type": "named",
+              "name": "--telemetry"
+            },
+            {
+              "description": "Either 'stdio' or 'http'.",
+              "type": "named",
+              "name": "--transport"
+            },
+            {
+              "description": "API key for Voyage AI embeddings service (required for creating Atlas Local deployments with auto-embed vector search capabilities).",
+              "type": "named",
+              "name": "--voyageApiKey"
+            }
+          ],
+          "environmentVariables": [
+            {
+              "description": "When set to true, allows configuration values to be overridden via request headers and query parameters.",
+              "format": "boolean",
+              "name": "MDB_MCP_ALLOW_REQUEST_OVERRIDES"
+            },
+            {
+              "description": "Atlas API client ID for authentication. Required for running Atlas tools.",
+              "format": "string",
+              "isSecret": true,
+              "name": "MDB_MCP_API_CLIENT_ID"
+            },
+            {
+              "description": "Atlas API client secret for authentication. Required for running Atlas tools.",
+              "format": "string",
+              "isSecret": true,
+              "name": "MDB_MCP_API_CLIENT_SECRET"
+            },
+            {
+              "description": "Base URL for the MongoDB Assistant API.",
+              "format": "string",
+              "name": "MDB_MCP_ASSISTANT_BASE_URL"
+            },
+            {
+              "description": "Time in milliseconds that temporary database users created when connecting to MongoDB Atlas clusters will remain active before being automatically deleted.",
+              "format": "number",
+              "name": "MDB_MCP_ATLAS_TEMPORARY_DATABASE_USER_LIFETIME_MS"
+            },
+            {
+              "description": "Comma separated values of tool names that require user confirmation before execution. Requires the client to support elicitation.",
+              "format": "string",
+              "name": "MDB_MCP_CONFIRMATION_REQUIRED_TOOLS"
+            },
+            {
+              "description": "Visibility scope for MongoDB connections created at runtime. With 'session' (the default), each MCP session only sees the connections it created (plus the shared 'preconfigured' one) and they are closed when the session ends \u2014 recommended when the HTTP transport is exposed to multiple clients without authentication. With 'global', connections are shared across all sessions and survive session rotation.",
+              "format": "string",
+              "name": "MDB_MCP_CONNECTION_SCOPE"
+            },
+            {
+              "description": "MongoDB connection string for direct database connections. Optional, if not set, you'll need to call the connect tool before interacting with MongoDB data.",
+              "format": "string",
+              "isSecret": true,
+              "name": "MDB_MCP_CONNECTION_STRING"
+            },
+            {
+              "description": "When set to true, disallows the use of server-side JavaScript operators (such as $where, $function, and $accumulator) in query filters and aggregation pipelines.",
+              "format": "boolean",
+              "name": "MDB_MCP_DISABLE_SERVER_SIDE_JS"
+            },
+            {
+              "description": "Comma separated values of tool names, operation types, and/or categories of tools that will be disabled.",
+              "format": "string",
+              "name": "MDB_MCP_DISABLED_TOOLS"
+            },
+            {
+              "description": "When true, runs the server in dry mode: dumps configuration and enabled tools, then exits without starting the server.",
+              "format": "boolean",
+              "name": "MDB_MCP_DRY_RUN"
+            },
+            {
+              "description": "Time in milliseconds the user has to respond to an elicitation request (such as a tool confirmation prompt) before it fails.",
+              "format": "number",
+              "name": "MDB_MCP_ELICITATION_TIMEOUT_MS"
+            },
+            {
+              "description": "Time in milliseconds between export cleanup cycles that remove expired export files.",
+              "format": "number",
+              "name": "MDB_MCP_EXPORT_CLEANUP_INTERVAL_MS"
+            },
+            {
+              "description": "Time in milliseconds after which an export is considered expired and eligible for cleanup.",
+              "format": "number",
+              "name": "MDB_MCP_EXPORT_TIMEOUT_MS"
+            },
+            {
+              "description": "Folder to store exported data files.",
+              "format": "string",
+              "name": "MDB_MCP_EXPORTS_PATH"
+            },
+            {
+              "description": "When true, the HTTP transport allows requests with a session ID supplied externally through the 'mcp-session-id' header. When an external ID is supplied, the initialization request is optional.",
+              "format": "boolean",
+              "name": "MDB_MCP_EXTERNALLY_MANAGED_SESSIONS"
+            },
+            {
+              "description": "Deprecated. Use `monitoringServerHost` instead. Host address to bind the healthCheck HTTP server to (only used when transport is 'http'). If provided, `healthCheckPort` must also be set.",
+              "format": "string",
+              "name": "MDB_MCP_HEALTH_CHECK_HOST"
+            },
+            {
+              "description": "Deprecated. Use `monitoringServerPort` instead. Port number for the healthCheck HTTP server (only used when transport is 'http'). If provided, `healthCheckHost` must also be set.",
+              "format": "number",
+              "name": "MDB_MCP_HEALTH_CHECK_PORT"
+            },
+            {
+              "description": "Maximum size of the HTTP request body in bytes (only used when transport is 'http'). This value is passed as the optional limit parameter to the Express.js json() middleware.",
+              "format": "number",
+              "name": "MDB_MCP_HTTP_BODY_LIMIT"
+            },
+            {
+              "description": "Header that the HTTP server will validate when making requests (only used when transport is 'http').",
+              "format": "string",
+              "name": "MDB_MCP_HTTP_HEADERS"
+            },
+            {
+              "description": "Host address to bind the HTTP server to (only used when transport is 'http').",
+              "format": "string",
+              "name": "MDB_MCP_HTTP_HOST"
+            },
+            {
+              "description": "Port number for the HTTP server (only used when transport is 'http'). Use 0 for a random port.",
+              "format": "number",
+              "name": "MDB_MCP_HTTP_PORT"
+            },
+            {
+              "description": "The HTTP response type for tool responses: 'sse' for Server-Sent Events, 'json' for standard JSON responses.",
+              "format": "string",
+              "name": "MDB_MCP_HTTP_RESPONSE_TYPE"
+            },
+            {
+              "description": "Idle timeout for a client to disconnect (only applies to http transport).",
+              "format": "number",
+              "name": "MDB_MCP_IDLE_TIMEOUT_MS"
+            },
+            {
+              "description": "When set to true, enforces that query operations must use an index, rejecting queries that perform a collection scan.",
+              "format": "boolean",
+              "name": "MDB_MCP_INDEX_CHECK"
+            },
+            {
+              "description": "Folder to store logs.",
+              "format": "string",
+              "name": "MDB_MCP_LOG_PATH"
+            },
+            {
+              "description": "Comma separated values of logger types.",
+              "format": "string",
+              "name": "MDB_MCP_LOGGERS"
+            },
+            {
+              "description": "Maximum number of MongoDB connections a single scope (an MCP session by default, see connectionScope) can hold open. When exceeded, the scope's least-recently-used connection is closed and its connectionId revoked. The preconfigured connection does not count towards the limit.",
+              "format": "number",
+              "name": "MDB_MCP_MAX_ACTIVE_CONNECTIONS"
+            },
+            {
+              "description": "The maximum size in bytes for results from a find or aggregate tool call. This serves as an upper bound for the responseBytesLimit parameter in those tools.",
+              "format": "number",
+              "name": "MDB_MCP_MAX_BYTES_PER_QUERY"
+            },
+            {
+              "description": "The maximum number of documents that can be returned by a find or aggregate tool call. For the find tool, the effective limit will be the smaller of this value and the tool's limit parameter.",
+              "format": "number",
+              "name": "MDB_MCP_MAX_DOCUMENTS_PER_QUERY"
+            },
+            {
+              "description": "Maximum number of concurrent sessions the HTTP transport will hold in memory (only used when transport is 'http'). Each session holds a full server instance, transport, and timers, so choose a value based on your deployment's available memory; the default is a conservative safety net rather than a recommended production value.",
+              "format": "number",
+              "name": "MDB_MCP_MAX_SESSIONS"
+            },
+            {
+              "description": "The maximum time in milliseconds that operations are allowed to run on the MongoDB server. When set, this value is passed as the maxTimeMS option to read operations such as find, aggregate, and count.",
+              "format": "number",
+              "name": "MDB_MCP_MAX_TIME_M_S"
+            },
+            {
+              "description": "Minimum severity level for log messages forwarded to the MCP client.",
+              "format": "string",
+              "name": "MDB_MCP_MCP_CLIENT_LOG_LEVEL"
+            },
+            {
+              "description": "Features to expose on the monitoring server (only used when transport is 'http' and monitoringServerHost/monitoringServerPort are set).",
+              "format": "string",
+              "name": "MDB_MCP_MONITORING_SERVER_FEATURES"
+            },
+            {
+              "description": "Host address to bind the monitoring HTTP server to (only used when transport is 'http'). If provided, `monitoringServerPort` must also be set.",
+              "format": "string",
+              "name": "MDB_MCP_MONITORING_SERVER_HOST"
+            },
+            {
+              "description": "Port number for the monitoring HTTP server (only used when transport is 'http'). If provided, `monitoringServerHost` must also be set.",
+              "format": "number",
+              "name": "MDB_MCP_MONITORING_SERVER_PORT"
+            },
+            {
+              "description": "Notification timeout for a client to be aware of disconnect (only applies to http transport).",
+              "format": "number",
+              "name": "MDB_MCP_NOTIFICATION_TIMEOUT_MS"
+            },
+            {
+              "description": "Comma separated values of preview features that are enabled.",
+              "format": "string",
+              "name": "MDB_MCP_PREVIEW_FEATURES"
+            },
+            {
+              "description": "When set to true, only allows read, connect, and metadata operation types, disabling create/update/delete operations.",
+              "format": "boolean",
+              "name": "MDB_MCP_READ_ONLY"
+            },
+            {
+              "description": "When set to disabled, disables telemetry collection.",
+              "format": "string",
+              "name": "MDB_MCP_TELEMETRY"
+            },
+            {
+              "description": "Either 'stdio' or 'http'.",
+              "format": "string",
+              "name": "MDB_MCP_TRANSPORT"
+            },
+            {
+              "description": "API key for Voyage AI embeddings service (required for creating Atlas Local deployments with auto-embed vector search capabilities).",
+              "format": "string",
+              "isSecret": true,
+              "name": "MDB_MCP_VOYAGE_API_KEY"
+            }
+          ]
+        }
+      ],
+      "chatgptDirectory": {
+        "name": "MongoDB Atlas",
+        "pluginId": "plugin_asdk_app_6a5fa5e2392c8191824fb0340191afba",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "io.github.redis/mcp-redis",
+      "name": "Redis",
+      "description": "Natural language interface designed for agentic applications to manage and search data in Redis.",
+      "version": "0.5.1",
+      "category": "Data & analytics",
+      "publisher": "io.github.redis",
+      "website": "https://registry.modelcontextprotocol.io/?q=io.github.redis/mcp-redis",
+      "featured": false,
+      "logo": "/integrations/redis.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "pypi",
+          "identifier": "redis-mcp-server",
+          "version": "0.5.1",
+          "transport": {
+            "type": "stdio"
+          }
+        }
+      ],
+      "chatgptDirectory": {
+        "name": "Redis",
+        "pluginId": "plugins_6a85b91f8aa081918a9daf1444559586",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "io.github.pgEdge/postgres-mcp",
+      "name": "PostgreSQL",
+      "description": "Enterprise PostgreSQL MCP server with NL queries, hybrid search (pgvector+BM25), and web UI",
+      "version": "1.0.0",
+      "category": "Data & analytics",
+      "publisher": "io.github.pgEdge",
+      "website": "https://github.com/pgEdge/pgedge-postgres-mcp",
+      "featured": false,
+      "logo": "/integrations/postgresql.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "@modelcontextprotocol/server-postgres",
+          "version": "0.6.2",
+          "packageArguments": [
+            {
+              "type": "positional",
+              "name": "connection_string",
+              "value": "postgresql://localhost:5432/postgres",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "io.github.neverinfamous/sqlite-mcp-server",
+      "name": "SQLite",
+      "description": "SQLite MCP server with 73 tools for JSONB, full-text search, geospatial, and analytics.",
+      "version": "2.6.3",
+      "category": "Data & analytics",
+      "publisher": "io.github.neverinfamous",
+      "website": "https://github.com/neverinfamous/sqlite-mcp-server.git",
+      "featured": false,
+      "logo": "/integrations/sqlite.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "pypi",
+          "identifier": "sqlite-mcp-server-enhanced",
+          "version": "2.6.3",
+          "transport": {
+            "type": "stdio"
+          }
+        }
+      ]
+    },
+    {
+      "id": "io.github.neverinfamous/mysql-mcp",
+      "name": "MySQL",
+      "description": "Enterprise-grade MySQL MCP Server with OAuth 2.0, 106 tools, and Docker deployment",
+      "version": "1.0.0",
+      "category": "Data & analytics",
+      "publisher": "io.github.neverinfamous",
+      "website": "https://github.com/neverinfamous/mysql-mcp.git",
+      "featured": false,
+      "logo": "/integrations/mysql.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "oci",
+          "identifier": "docker.io/writenotenow/mysql-mcp:v1.0.0",
+          "transport": {
+            "type": "stdio"
+          }
+        }
+      ]
+    },
+    {
+      "id": "io.github.ClickHouse/mcp-clickhouse",
+      "name": "ClickHouse",
+      "description": "Official ClickHouse MCP server for querying and exploring ClickHouse clusters and chDB.",
+      "version": "0.7.0",
+      "category": "Data & analytics",
+      "publisher": "io.github.ClickHouse",
+      "website": "https://clickhouse.com",
+      "featured": false,
+      "logo": "/integrations/clickhouse.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "pypi",
+          "identifier": "mcp-clickhouse",
+          "version": "0.7.0",
+          "runtimeHint": "uvx",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "description": "Hostname of the ClickHouse server",
+              "isRequired": true,
+              "name": "CLICKHOUSE_HOST"
+            },
+            {
+              "description": "Username for ClickHouse authentication",
+              "isRequired": true,
+              "name": "CLICKHOUSE_USER"
+            },
+            {
+              "description": "Password for ClickHouse authentication. Required unless a client certificate uses the default or mutual TLS mode",
+              "isSecret": true,
+              "name": "CLICKHOUSE_PASSWORD"
+            },
+            {
+              "description": "ClickHouse HTTP(S) port. Defaults to 8443 when CLICKHOUSE_SECURE=true, 8123 otherwise",
+              "name": "CLICKHOUSE_PORT"
+            },
+            {
+              "description": "Use HTTPS to connect to ClickHouse",
+              "format": "boolean",
+              "default": "true",
+              "name": "CLICKHOUSE_SECURE"
+            },
+            {
+              "description": "Verify SSL certificates",
+              "format": "boolean",
+              "default": "true",
+              "name": "CLICKHOUSE_VERIFY"
+            },
+            {
+              "description": "Path to a PEM CA bundle for ClickHouse server certificate verification",
+              "format": "filepath",
+              "name": "CLICKHOUSE_CA_CERT"
+            },
+            {
+              "description": "Path to a PEM client certificate for the ClickHouse HTTPS connection",
+              "format": "filepath",
+              "name": "CLICKHOUSE_CLIENT_CERT"
+            },
+            {
+              "description": "Path to the PEM private key for CLICKHOUSE_CLIENT_CERT",
+              "format": "filepath",
+              "name": "CLICKHOUSE_CLIENT_CERT_KEY"
+            },
+            {
+              "description": "Client certificate mode: mutual, proxy, or strict",
+              "choices": [
+                "mutual",
+                "proxy",
+                "strict"
+              ],
+              "name": "CLICKHOUSE_TLS_MODE"
+            },
+            {
+              "description": "Default database to use",
+              "name": "CLICKHOUSE_DATABASE"
+            },
+            {
+              "description": "ClickHouse role to activate for the session",
+              "name": "CLICKHOUSE_ROLE"
+            },
+            {
+              "description": "Allow write operations (DDL and DML). Queries run read-only by default",
+              "format": "boolean",
+              "default": "false",
+              "name": "CLICKHOUSE_ALLOW_WRITE_ACCESS"
+            },
+            {
+              "description": "Allow destructive operations (DROP, TRUNCATE, DELETE, UPDATE, REPLACE, CLEAR, and DETACH PERMANENTLY) when write access is also enabled",
+              "format": "boolean",
+              "default": "false",
+              "name": "CLICKHOUSE_ALLOW_DROP"
+            },
+            {
+              "description": "Query tool timeout in seconds",
+              "format": "number",
+              "default": "30",
+              "name": "CLICKHOUSE_MCP_QUERY_TIMEOUT"
+            },
+            {
+              "description": "Maximum query worker thread pool size",
+              "format": "number",
+              "default": "10",
+              "name": "CLICKHOUSE_MCP_MAX_WORKERS"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "io.github.cr7258/elasticsearch-mcp-server",
+      "name": "Elasticsearch",
+      "description": "MCP server for interacting with Elasticsearch",
+      "version": "2.0.15",
+      "category": "Data & analytics",
+      "publisher": "io.github.cr7258",
+      "website": "https://github.com/cr7258/elasticsearch-mcp-server",
+      "featured": false,
+      "logo": "/integrations/elasticsearch.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "@elastic/mcp-server-elasticsearch",
+          "version": "0.3.1",
+          "environmentVariables": [
+            {
+              "name": "ES_URL",
+              "description": "Elasticsearch host URL",
+              "default": "http://localhost:9200"
+            },
+            {
+              "name": "ES_API_KEY",
+              "description": "Elasticsearch API key",
+              "isRequired": true,
+              "isSecret": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "io.github.Snowflake-Labs/mcp",
+      "name": "Snowflake",
+      "description": "MCP Server for Snowflake from Snowflake Labs",
+      "version": "1.3.5",
+      "category": "Data & analytics",
+      "publisher": "io.github.Snowflake-Labs",
+      "website": "https://github.com/Snowflake-Labs/mcp",
+      "featured": false,
+      "logo": "/integrations/snowflake.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "pypi",
+          "registryBaseUrl": "https://pypi.org",
+          "identifier": "snowflake-labs-mcp",
+          "version": "1.3.5",
+          "transport": {
+            "type": "stdio"
+          },
+          "packageArguments": [
+            {
+              "description": "Path to service specification file",
+              "isRequired": true,
+              "type": "named",
+              "name": "--service-config-file"
+            },
+            {
+              "description": "Account identifier (e.g. xy12345.us-east-1)",
+              "type": "named",
+              "name": "--account"
+            },
+            {
+              "description": "Snowflake host URL",
+              "type": "named",
+              "name": "--host"
+            },
+            {
+              "description": "Username for authentication",
+              "type": "named",
+              "name": "--user"
+            },
+            {
+              "description": "Password or programmatic access token",
+              "type": "named",
+              "name": "--password"
+            },
+            {
+              "description": "Role to use for connection",
+              "type": "named",
+              "name": "--role"
+            },
+            {
+              "description": "Warehouse to use for queries",
+              "type": "named",
+              "name": "--warehouse"
+            },
+            {
+              "description": "Whether passcode is embedded in password",
+              "type": "named",
+              "name": "--passcode-in-password"
+            },
+            {
+              "description": "MFA passcode for authentication",
+              "type": "named",
+              "name": "--passcode"
+            },
+            {
+              "description": "Private key for key pair authentication",
+              "type": "named",
+              "name": "--private-key"
+            },
+            {
+              "description": "Path to private key file",
+              "type": "named",
+              "name": "--private-key-file"
+            },
+            {
+              "description": "Password for encrypted private key",
+              "type": "named",
+              "name": "--private-key-file-pwd"
+            },
+            {
+              "description": "Authentication type",
+              "default": "snowflake",
+              "type": "named",
+              "name": "--authenticator"
+            },
+            {
+              "description": "Name of connection from connections.toml (or config.toml) file",
+              "type": "named",
+              "name": "--connection-name"
+            },
+            {
+              "description": "Transport for the MCP server",
+              "default": "stdio",
+              "choices": [
+                "stdio",
+                "http",
+                "sse",
+                "streamable-http"
+              ],
+              "type": "named",
+              "name": "--transport"
+            },
+            {
+              "description": "Host address to bind the server to (default: 0.0.0.0)",
+              "default": "0.0.0.0",
+              "type": "named",
+              "name": "--server-host"
+            },
+            {
+              "description": "Port number for the server to listen on (default: 9000)",
+              "default": "9000",
+              "type": "named",
+              "name": "--port"
+            },
+            {
+              "description": "Custom endpoint path for HTTP transports",
+              "default": "/mcp",
+              "type": "named",
+              "name": "--endpoint"
+            }
+          ],
+          "environmentVariables": [
+            {
+              "description": "Account identifier (e.g. xy12345.us-east-1)",
+              "format": "string",
+              "name": "SNOWFLAKE_ACCOUNT"
+            },
+            {
+              "description": "Snowflake host URL",
+              "format": "string",
+              "name": "SNOWFLAKE_HOST"
+            },
+            {
+              "description": "Username for authentication",
+              "format": "string",
+              "name": "SNOWFLAKE_USER"
+            },
+            {
+              "description": "Password or programmatic access token",
+              "format": "string",
+              "isSecret": true,
+              "name": "SNOWFLAKE_PASSWORD"
+            },
+            {
+              "description": "Role to use for connection",
+              "format": "string",
+              "name": "SNOWFLAKE_ROLE"
+            },
+            {
+              "description": "Warehouse to use for queries",
+              "format": "string",
+              "name": "SNOWFLAKE_WAREHOUSE"
+            },
+            {
+              "description": "MFA passcode for authentication",
+              "format": "string",
+              "name": "SNOWFLAKE_PASSCODE"
+            },
+            {
+              "description": "Private key for key pair authentication",
+              "format": "string",
+              "isSecret": true,
+              "name": "SNOWFLAKE_PRIVATE_KEY"
+            },
+            {
+              "description": "Path to private key file",
+              "format": "string",
+              "name": "SNOWFLAKE_PRIVATE_KEY_FILE"
+            },
+            {
+              "description": "Password for encrypted private key",
+              "format": "string",
+              "name": "SNOWFLAKE_PRIVATE_KEY_FILE_PWD"
+            },
+            {
+              "description": "Host address to bind the server to (default: 0.0.0.0)",
+              "format": "string",
+              "name": "SNOWFLAKE_MCP_HOST"
+            },
+            {
+              "description": "Port number for the server to listen on (default: 9000)",
+              "format": "number",
+              "name": "SNOWFLAKE_MCP_PORT"
+            },
+            {
+              "description": "Endpoint path for the MCP server (default: /mcp)",
+              "format": "string",
+              "name": "SNOWFLAKE_MCP_ENDPOINT"
+            }
+          ]
+        }
+      ],
+      "chatgptDirectory": {
+        "name": "Snowflake",
+        "pluginId": "Plugin_2af00ca970e88191b55798e3995f2aa3",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "io.github.SnowLeopard-AI/bigquery-mcp",
+      "name": "BigQuery",
+      "description": "A SnowLeopardAI-managed MCP server that provides access to Google BigQuery data.",
+      "version": "0.1.1",
+      "category": "Data & analytics",
+      "publisher": "io.github.SnowLeopard-AI",
+      "website": "https://github.com/SnowLeopard-AI/bigquery-mcp",
+      "featured": false,
+      "logo": "/integrations/bigquery.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "pypi",
+          "registryBaseUrl": "https://pypi.org",
+          "identifier": "sl-bigquery-mcp",
+          "version": "0.1.9",
+          "transport": {
+            "type": "stdio"
+          }
+        }
+      ],
+      "chatgptDirectory": {
+        "name": "BigQuery",
+        "pluginId": "plugin_connector_1p_b1cefad35a80819184ba7ed35d601d34",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "io.github.pramodbhatofficial/databricks-sdk-mcp",
+      "name": "Databricks",
+      "description": "263 tools for Databricks: Unity Catalog, SQL, Compute, Jobs, Serving, and more.",
+      "version": "0.1.0",
+      "category": "Data & analytics",
+      "publisher": "io.github.pramodbhatofficial",
+      "website": "https://github.com/pramodbhatofficial/databricks-mcp-server",
+      "featured": false,
+      "logo": "/integrations/databricks.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "pypi",
+          "identifier": "databricks-sdk-mcp",
+          "version": "0.1.0",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "description": "Your Databricks workspace URL (e.g. https://adb-123.azuredatabricks.net)",
+              "isRequired": true,
+              "format": "string",
+              "name": "DATABRICKS_HOST"
+            },
+            {
+              "description": "Databricks personal access token or OAuth token",
+              "isRequired": true,
+              "format": "string",
+              "isSecret": true,
+              "name": "DATABRICKS_TOKEN"
+            },
+            {
+              "description": "Comma-separated list of tool modules to load (e.g. unity_catalog,sql,compute). Leave empty to load all 263 tools.",
+              "format": "string",
+              "name": "DATABRICKS_MCP_TOOLS_INCLUDE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "com.mcparmory/pinecone",
+      "name": "Pinecone",
+      "description": "Create and manage vector database indexes, backups, and collections",
+      "version": "1.0.2",
+      "category": "Data & analytics",
+      "publisher": "com.mcparmory",
+      "website": "https://github.com/mcparmory/registry",
+      "featured": false,
+      "logo": "/integrations/pinecone.png",
+      "logoSource": "https://github.com/pinecone-io.png?size=96",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "pypi",
+          "identifier": "mcparmory-pinecone",
+          "version": "1.0.2",
+          "runtimeHint": "uvx",
+          "transport": {
+            "type": "stdio"
+          }
+        }
+      ]
+    },
+    {
+      "id": "io.github.avaazquezz/mcp-qdrant",
+      "name": "Qdrant",
+      "description": "MCP server that wraps the Qdrant vector database API as tools.",
+      "version": "1.0.1",
+      "category": "Data & analytics",
+      "publisher": "io.github.avaazquezz",
+      "website": "https://github.com/avaazquezz/Qdrant-MCP",
+      "featured": false,
+      "logo": "/integrations/qdrant.svg",
+      "logoSource": "https://raw.githubusercontent.com/pheralb/svgl/main/static/library/qdrant-icon-light.svg",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "pypi",
+          "identifier": "mcp-server-qdrant",
+          "version": "0.8.0",
+          "environmentVariables": [
+            {
+              "name": "QDRANT_URL",
+              "description": "Qdrant server URL",
+              "default": "http://localhost:6333"
+            },
+            {
+              "name": "COLLECTION_NAME",
+              "description": "Qdrant collection name",
+              "default": "documents"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "com.figma.mcp/mcp",
+      "curated": true,
+      "name": "Figma",
+      "description": "Bring Figma design context, components, and variables into your agent.",
+      "version": "1.0.3",
+      "category": "Design",
+      "publisher": "com.figma.mcp",
+      "website": "https://github.com/figma/mcp-server-guide",
+      "featured": true,
+      "logo": "/integrations/figma.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.figma.com/mcp",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": [],
+      "chatgptDirectory": {
+        "name": "Figma",
+        "pluginId": "plugin_connector_68df038e0ba48191908c8434991bbac2",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "com.canva.mcp/mcp",
+      "name": "Canva",
+      "description": "Search, create, edit, and export Canva designs and assets.",
+      "version": "1.0.0",
+      "category": "Design",
+      "publisher": "com.canva.mcp",
+      "website": "https://www.canva.dev/docs/apps/dev-mcp-server/",
+      "featured": false,
+      "logo": "/integrations/canva.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.canva.com/mcp",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": [],
+      "chatgptDirectory": {
+        "name": "Canva",
+        "pluginId": "plugin_connector_68df33b1a2d081918778431a9cfca8ba",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "io.github.cmd8/excalidraw-mcp",
+      "name": "Excalidraw",
+      "description": "Model Context Protocol server for Excalidraw diagrams.",
+      "version": "1.2.0",
+      "category": "Design",
+      "publisher": "io.github.cmd8",
+      "website": "https://github.com/cmd8/excalidraw-mcp",
+      "featured": false,
+      "logo": "/integrations/excalidraw.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "registryBaseUrl": "https://registry.npmjs.org",
+          "identifier": "@cmd8/excalidraw-mcp",
+          "version": "1.2.0",
+          "transport": {
+            "type": "stdio"
+          },
+          "packageArguments": [
+            {
+              "description": "Path to the Excalidraw diagram file",
+              "isRequired": true,
+              "type": "",
+              "name": "diagram",
+              "valueHint": "/path/to/diagram.excalidraw"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "io.github.nirholas/blender-mcp",
+      "name": "Blender",
+      "description": "Drive a local Blender headlessly: inspect, convert, render and script 3D files.",
+      "version": "0.5.0",
+      "category": "Design",
+      "publisher": "io.github.nirholas",
+      "website": "https://three.ws",
+      "featured": false,
+      "logo": "/integrations/blender.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "@three-ws/blender-mcp",
+          "version": "0.5.0",
+          "runtimeHint": "npx",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "description": "Absolute path to the Blender 3.0+ executable. Leave unset to discover it on PATH and at the platform's standard install locations.",
+              "format": "string",
+              "name": "BLENDER_PATH"
+            },
+            {
+              "description": "Ceiling for one Blender job in milliseconds. Renders and heavy conversions are the slow ones.",
+              "format": "number",
+              "default": "300000",
+              "name": "BLENDER_MCP_TIMEOUT_MS"
+            },
+            {
+              "description": "Directory for outputs written when a tool is called without an explicit output path.",
+              "format": "string",
+              "name": "BLENDER_MCP_WORKDIR"
+            },
+            {
+              "description": "Set to 0 to withdraw blender_run_python, which executes caller-supplied Python inside Blender, from the advertised tool list.",
+              "format": "string",
+              "default": "1",
+              "name": "BLENDER_MCP_ALLOW_PYTHON"
+            },
+            {
+              "description": "Ceiling on inlined image bytes. Past this the image stays on disk and the response says where.",
+              "format": "number",
+              "default": "1500000",
+              "name": "BLENDER_MCP_INLINE_IMAGE_BYTES"
+            },
+            {
+              "description": "Longest edge of the render copy returned inline in a tool result. The full-resolution PNG is always written to disk.",
+              "format": "number",
+              "default": "768",
+              "name": "BLENDER_MCP_INLINE_IMAGE_PX"
+            },
+            {
+              "description": "How many Blender processes may run at once. Further calls queue rather than compete for memory.",
+              "format": "number",
+              "default": "2",
+              "name": "BLENDER_MCP_MAX_CONCURRENCY"
+            },
+            {
+              "description": "Base URL of the three.ws deployment backing blender_forge_import.",
+              "format": "string",
+              "default": "https://three.ws",
+              "name": "THREE_WS_BASE"
+            },
+            {
+              "description": "Ceiling for one text-to-3D generation in milliseconds.",
+              "format": "number",
+              "default": "600000",
+              "name": "THREE_WS_FORGE_TIMEOUT_MS"
+            },
+            {
+              "description": "Meshy/Tripo API key for the bring-your-own-key geometry lane. The default image lane is free and needs no key.",
+              "format": "string",
+              "isSecret": true,
+              "name": "THREE_WS_FORGE_PROVIDER_KEY"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "com.webflow/mcp",
+      "name": "Webflow",
+      "description": "Manage Webflow sites, pages, CMS content, and design assets.",
+      "version": "2.0.0",
+      "category": "Design",
+      "publisher": "com.webflow",
+      "website": "https://github.com/webflow/mcp-server",
+      "featured": false,
+      "logo": "/integrations/webflow.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.webflow.com/mcp",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": [],
+      "chatgptDirectory": {
+        "name": "Webflow",
+        "pluginId": "plugin_asdk_app_6a0783a98c4c8191841404d786d4a4b9",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "io.github.ohneben/hubspot-mcp",
+      "name": "HubSpot",
+      "description": "HubSpot API: 1,000+ endpoints as safety-categorized, hub- and plan-aware MCP tools, stdio or HTTP.",
+      "version": "2.0.1",
+      "category": "Sales & marketing",
+      "publisher": "com.hubspot",
+      "website": "https://developers.hubspot.com/mcp",
+      "featured": false,
+      "logo": "/integrations/hubspot.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.hubspot.com/mcp",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "@hubspot/mcp-server",
+          "version": "0.3.0",
+          "environmentVariables": [
+            {
+              "name": "PRIVATE_APP_ACCESS_TOKEN",
+              "description": "HubSpot Private App Access Token",
+              "isRequired": true,
+              "isSecret": true
+            }
+          ]
+        }
+      ],
+      "chatgptDirectory": {
+        "name": "HubSpot",
+        "pluginId": "plugin_asdk_app_697acb8e53d88191bf7a79e62012ae14",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "ai.cirra/salesforce-mcp",
+      "thirdPartyGateway": true,
+      "name": "Salesforce",
+      "description": "Comprehensive Salesforce administration and management",
+      "version": "1.0.2",
+      "category": "Sales & marketing",
+      "publisher": "ai.cirra",
+      "website": "https://docs.cirra.ai",
+      "featured": false,
+      "logo": "/integrations/salesforce.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.cirra.ai/sfdc/mcp",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": [],
+      "chatgptDirectory": {
+        "name": "Salesforce",
+        "pluginId": "plugin_asdk_app_697d413990c88191a2bf4799604f8f6c",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "com.swifteq/zendesk-mcp-server",
+      "thirdPartyGateway": true,
+      "name": "Zendesk",
+      "description": "Work with support tickets, customer satisfaction, macros, and Help Center content.",
+      "version": "1.0.0",
+      "category": "Sales & marketing",
+      "publisher": "com.swifteq",
+      "website": "https://www.swifteq.com/zendesk-mcp-server",
+      "featured": false,
+      "logo": "/integrations/zendesk.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.swifteq.com/api/mcp/mcp",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": []
+    },
+    {
+      "id": "io.github.pipeworx-io/intercom",
+      "name": "Intercom",
+      "description": "Intercom MCP Pack \u2014 contacts, conversations, companies via OAuth.",
+      "version": "0.1.2",
+      "category": "Sales & marketing",
+      "publisher": "com.intercom",
+      "website": "https://developers.intercom.com/docs/guides/mcp",
+      "featured": false,
+      "logo": "/integrations/intercom.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.intercom.com/mcp",
+          "authentication": "oauth"
+        },
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.eu.intercom.com/mcp",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": []
+    },
+    {
+      "id": "io.github.cyanheads/mailchimp-mcp-server",
+      "name": "Mailchimp",
+      "description": "Mailchimp via MCP: draft, test, and send campaigns; manage audiences and subscribers; pull reports.",
+      "version": "0.4.0",
+      "category": "Sales & marketing",
+      "publisher": "io.github.cyanheads",
+      "website": "https://github.com/cyanheads/mailchimp-mcp-server",
+      "featured": false,
+      "logo": "/integrations/mailchimp.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "registryBaseUrl": "https://registry.npmjs.org",
+          "identifier": "@cyanheads/mailchimp-mcp-server",
+          "version": "0.4.0",
+          "runtimeHint": "npx",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "description": "Mailchimp Marketing API key, including the '-dc' data-center suffix (e.g. 'abc...-us22'). Generate at Mailchimp \u2192 Account \u2192 Extras \u2192 API keys.",
+              "isRequired": true,
+              "format": "string",
+              "name": "MAILCHIMP_API_KEY"
+            },
+            {
+              "description": "Override the API base URL (for mock servers or testing). Defaults to 'https://{dc}.api.mailchimp.com/3.0' derived from the API key suffix.",
+              "format": "string",
+              "name": "MAILCHIMP_BASE_URL"
+            },
+            {
+              "description": "Per-request timeout in milliseconds.",
+              "format": "string",
+              "default": "60000",
+              "name": "MAILCHIMP_TIMEOUT_MS"
+            },
+            {
+              "description": "Max retry attempts for transient upstream failures (0-10).",
+              "format": "string",
+              "default": "3",
+              "name": "MAILCHIMP_MAX_RETRIES"
+            },
+            {
+              "description": "Max in-flight upstream requests across this process (1-10).",
+              "format": "string",
+              "default": "4",
+              "name": "MAILCHIMP_CONCURRENCY_LIMIT"
+            },
+            {
+              "description": "Absolute path to a local assets directory. When set (Node-only \u2014 Workers ignored), enables the `mailchimp_assets` tool and auto-uploads `@assets/<path>` references in campaign HTML to Mailchimp File Manager at send time. Cache at <dir>/.mailchimp-cache.json.",
+              "format": "string",
+              "name": "MAILCHIMP_ASSETS_DIR"
+            },
+            {
+              "description": "Absolute path to a local templates directory. When set (Node-only), enables the `mailchimp_local_templates` tool and support for `content.localTemplate` on campaign tools. Templates are `.eta` files with optional YAML frontmatter; legacy `<name>.meta.yaml` sidecars are read when frontmatter is absent. Canonical write path on free-tier Mailchimp.",
+              "format": "string",
+              "name": "MAILCHIMP_TEMPLATES_DIR"
+            },
+            {
+              "description": "Minimum log level for output: debug, info, notice, warning, or error.",
+              "format": "string",
+              "default": "info",
+              "name": "MCP_LOG_LEVEL"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "io.github.surendranb/google-analytics-mcp",
+      "name": "Google Analytics",
+      "description": "GA4 MCP server for AI agents: schema discovery, server-side aggregation, analysis-ready defaults.",
+      "version": "2.8.2",
+      "category": "Sales & marketing",
+      "publisher": "io.github.surendranb",
+      "website": "https://github.com/surendranb/google-analytics-mcp",
+      "featured": false,
+      "logo": "/integrations/google-analytics.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "pypi",
+          "identifier": "google-analytics-mcp",
+          "version": "2.8.2",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "description": "Absolute path to your Google Cloud service account JSON key with GA4 property access.",
+              "isRequired": true,
+              "format": "string",
+              "isSecret": true,
+              "name": "GOOGLE_APPLICATION_CREDENTIALS"
+            },
+            {
+              "description": "Numeric GA4 Property ID to query, for example 123456789.",
+              "isRequired": true,
+              "format": "string",
+              "name": "GA4_PROPERTY_ID"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "co.pipeboard/google-ads-mcp",
+      "thirdPartyGateway": true,
+      "name": "Google Ads",
+      "description": "Google Ads automation with AI: analyze performance, manage campaigns, optimize bids.",
+      "version": "1.0.59",
+      "category": "Sales & marketing",
+      "publisher": "co.pipeboard",
+      "website": "https://registry.modelcontextprotocol.io/?q=co.pipeboard/google-ads-mcp",
+      "featured": false,
+      "logo": "/integrations/google-ads.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://google-ads.mcp.pipeboard.co/",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": []
+    },
+    {
+      "id": "io.github.firecrawl/firecrawl-mcp-server",
+      "curated": true,
+      "name": "Firecrawl",
+      "description": "Scrape, crawl, and search the web for clean, agent-ready content.",
+      "version": "3.30.2",
+      "category": "Research",
+      "publisher": "io.github.firecrawl",
+      "website": "https://github.com/firecrawl/firecrawl-mcp-server",
+      "featured": true,
+      "logo": "/integrations/firecrawl.svg",
+      "logoSource": "https://raw.githubusercontent.com/pheralb/svgl/main/static/library/firecrawl.svg",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.firecrawl.dev/v2/mcp",
+          "headers": [
+            {
+              "description": "Optional. Bearer <FIRECRAWL_API_KEY>. Omit for the keyless tier.",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "token"
+        }
+      ],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "firecrawl-mcp",
+          "version": "3.30.2",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "description": "Your API key for Firecrawl",
+              "format": "string",
+              "isSecret": true,
+              "name": "FIRECRAWL_API_KEY"
+            }
+          ]
+        }
+      ],
+      "chatgptDirectory": {
+        "name": "Firecrawl",
+        "pluginId": "plugin_asdk_app_6a314a73f8ac819195b0d55e36b9c609",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "io.github.brave/brave-search-mcp-server",
+      "name": "Brave Search",
+      "description": "Brave Search MCP Server: web results, images, videos, rich results, AI summaries, and more.",
+      "version": "2.1.3",
+      "category": "Research",
+      "publisher": "io.github.brave",
+      "website": "https://github.com/brave/brave-search-mcp-server",
+      "featured": false,
+      "logo": "/integrations/brave-search.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "registryBaseUrl": "https://registry.npmjs.org",
+          "identifier": "@brave/brave-search-mcp-server",
+          "version": "2.1.3",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "description": "Your API key for the service",
+              "isRequired": true,
+              "format": "string",
+              "isSecret": true,
+              "name": "BRAVE_API_KEY"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ai.exa/exa",
+      "curated": true,
+      "name": "Exa",
+      "description": "Search the web and fetch high-quality content for research and RAG.",
+      "version": "3.4.1",
+      "category": "Research",
+      "publisher": "ai.exa",
+      "website": "https://github.com/exa-labs/exa-mcp-server",
+      "featured": false,
+      "logo": "/integrations/exa.svg",
+      "logoSource": "https://raw.githubusercontent.com/lobehub/lobe-icons/master/packages/static-svg/icons/exa-color.svg",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.exa.ai/mcp",
+          "authentication": "none"
+        }
+      ],
+      "packages": []
+    },
+    {
+      "id": "io.github.tavily-ai/tavily-mcp",
+      "name": "Tavily",
+      "description": "MCP server for advanced web search using Tavily",
+      "version": "0.2.15",
+      "category": "Research",
+      "publisher": "io.github.tavily-ai",
+      "website": "https://docs.tavily.com/documentation/mcp",
+      "featured": false,
+      "logo": "/integrations/tavily.svg",
+      "logoSource": "https://raw.githubusercontent.com/lobehub/lobe-icons/master/packages/static-svg/icons/tavily-color.svg",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.tavily.com/mcp/",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "tavily-mcp",
+          "version": "0.2.15",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "description": "Your Tavily API key from tavily.com",
+              "isRequired": true,
+              "format": "string",
+              "isSecret": true,
+              "name": "TAVILY_API_KEY"
+            },
+            {
+              "description": "JSON string with default search parameters (e.g., {\"include_images\": true, \"max_results\": 15})",
+              "format": "string",
+              "name": "DEFAULT_PARAMETERS"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ai.perplexity/mcp-server",
+      "name": "Perplexity",
+      "description": "Real-time web search, reasoning, and research through Perplexity's API",
+      "version": "1.2.1",
+      "category": "Research",
+      "publisher": "ai.perplexity",
+      "website": "https://registry.modelcontextprotocol.io/?q=ai.perplexity/mcp-server",
+      "featured": false,
+      "logo": "/integrations/perplexity.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "@perplexity-ai/mcp-server",
+          "version": "1.2.1",
+          "environmentVariables": [
+            {
+              "name": "PERPLEXITY_API_KEY",
+              "description": "Perplexity API Key",
+              "isRequired": true,
+              "isSecret": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "io.github.pipeworx-io/jina-reader",
+      "name": "Jina AI",
+      "description": "Jina AI Reader/Search MCP \u2014 turn any URL into clean LLM-ready markdown, plus web search.",
+      "version": "0.1.3",
+      "category": "Research",
+      "publisher": "ai.jina",
+      "website": "https://jina.ai",
+      "featured": false,
+      "logo": "/integrations/jina-ai.svg",
+      "logoSource": "https://raw.githubusercontent.com/lobehub/lobe-icons/master/packages/static-svg/icons/jina.svg",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.jina.ai/v1",
+          "authentication": "none",
+          "headers": [
+            {
+              "name": "Authorization",
+              "description": "Optional Bearer jina_... API key for higher rate limits",
+              "isSecret": true
+            }
+          ]
+        }
+      ],
+      "packages": []
+    },
+    {
+      "id": "com.apify/apify-mcp-server",
+      "name": "Apify",
+      "description": "Run Apify actors and extract data from websites and apps.",
+      "version": "0.18.4",
+      "category": "Research",
+      "publisher": "com.apify",
+      "website": "https://github.com/apify/apify-mcp-server",
+      "featured": false,
+      "logo": "/integrations/apify.png",
+      "logoSource": "https://github.com/apify.png?size=96",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.apify.com/",
+          "headers": [
+            {
+              "description": "Apify API token for authentication with Apify platform services. For example 'Bearer <apify-api-token>'",
+              "isRequired": true,
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        }
+      ],
+      "packages": []
+    },
+    {
+      "id": "io.github.cyanheads/wikipedia-mcp-server",
+      "thirdPartyGateway": true,
+      "name": "Wikipedia",
+      "description": "Search Wikipedia, read summaries and full text, target sections, find nearby pages, list languages.",
+      "version": "0.2.6",
+      "category": "Research",
+      "publisher": "io.github.cyanheads",
+      "website": "https://github.com/cyanheads/wikipedia-mcp-server",
+      "featured": false,
+      "logo": "/integrations/wikipedia.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://wikipedia.caseyjhand.com/mcp",
+          "authentication": "none"
+        }
+      ],
+      "packages": [
+        {
+          "registryType": "npm",
+          "registryBaseUrl": "https://registry.npmjs.org",
+          "identifier": "@cyanheads/wikipedia-mcp-server",
+          "version": "0.2.6",
+          "runtimeHint": "npx",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "description": "Sets the minimum log level for output (e.g., 'debug', 'info', 'warn').",
+              "format": "string",
+              "default": "info",
+              "name": "MCP_LOG_LEVEL"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "com.vercel/vercel-mcp",
+      "curated": true,
+      "name": "Vercel",
+      "description": "Manage Vercel projects, deployments, and logs from your agent.",
+      "version": "0.0.3",
+      "category": "Infrastructure",
+      "publisher": "com.vercel",
+      "website": "https://vercel.com/docs/mcp",
+      "featured": false,
+      "logo": "/integrations/vercel.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.vercel.com",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": [],
+      "chatgptDirectory": {
+        "name": "Vercel",
+        "pluginId": "plugin_connector_690a90ec05c881918afb6a55dc9bbaa1",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "com.cloudflare.mcp/mcp",
+      "curated": true,
+      "name": "Cloudflare",
+      "description": "Inspect Cloudflare docs and manage Workers bindings, observability, and infrastructure.",
+      "version": "1.0.0",
+      "category": "Infrastructure",
+      "publisher": "com.cloudflare.mcp",
+      "website": "https://developers.cloudflare.com/agents/model-context-protocol/",
+      "featured": false,
+      "logo": "/integrations/cloudflare.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://docs.mcp.cloudflare.com/mcp",
+          "authentication": "none"
+        },
+        {
+          "type": "streamable-http",
+          "url": "https://observability.mcp.cloudflare.com/mcp",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "streamable-http",
+          "url": "https://bindings.mcp.cloudflare.com/mcp",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "streamable-http",
+          "url": "https://builds.mcp.cloudflare.com/mcp",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "streamable-http",
+          "url": "https://radar.mcp.cloudflare.com/mcp",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "streamable-http",
+          "url": "https://containers.mcp.cloudflare.com/mcp",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "streamable-http",
+          "url": "https://browser.mcp.cloudflare.com/mcp",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "streamable-http",
+          "url": "https://logs.mcp.cloudflare.com/mcp",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "streamable-http",
+          "url": "https://ai-gateway.mcp.cloudflare.com/mcp",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "streamable-http",
+          "url": "https://autorag.mcp.cloudflare.com/mcp",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "streamable-http",
+          "url": "https://auditlogs.mcp.cloudflare.com/mcp",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "streamable-http",
+          "url": "https://dns-analytics.mcp.cloudflare.com/mcp",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "streamable-http",
+          "url": "https://dex.mcp.cloudflare.com/mcp",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "streamable-http",
+          "url": "https://casb.mcp.cloudflare.com/mcp",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "streamable-http",
+          "url": "https://graphql.mcp.cloudflare.com/mcp",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "sse",
+          "deprecated": true,
+          "url": "https://docs.mcp.cloudflare.com/sse",
+          "authentication": "none"
+        },
+        {
+          "type": "sse",
+          "deprecated": true,
+          "url": "https://observability.mcp.cloudflare.com/sse",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "sse",
+          "deprecated": true,
+          "url": "https://bindings.mcp.cloudflare.com/sse",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "sse",
+          "deprecated": true,
+          "url": "https://builds.mcp.cloudflare.com/sse",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "sse",
+          "deprecated": true,
+          "url": "https://radar.mcp.cloudflare.com/sse",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "sse",
+          "deprecated": true,
+          "url": "https://containers.mcp.cloudflare.com/sse",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "sse",
+          "deprecated": true,
+          "url": "https://browser.mcp.cloudflare.com/sse",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "sse",
+          "deprecated": true,
+          "url": "https://logs.mcp.cloudflare.com/sse",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "sse",
+          "deprecated": true,
+          "url": "https://ai-gateway.mcp.cloudflare.com/sse",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "sse",
+          "deprecated": true,
+          "url": "https://autorag.mcp.cloudflare.com/sse",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "sse",
+          "deprecated": true,
+          "url": "https://auditlogs.mcp.cloudflare.com/sse",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "sse",
+          "deprecated": true,
+          "url": "https://dns-analytics.mcp.cloudflare.com/sse",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "sse",
+          "deprecated": true,
+          "url": "https://dex.mcp.cloudflare.com/sse",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "sse",
+          "deprecated": true,
+          "url": "https://casb.mcp.cloudflare.com/sse",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "sse",
+          "deprecated": true,
+          "url": "https://graphql.mcp.cloudflare.com/sse",
+          "headers": [
+            {
+              "description": "Bearer token or API key if not using OAuth",
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        }
+      ],
+      "packages": []
+    },
+    {
+      "id": "com.microsoft/azure",
+      "name": "Microsoft Azure",
+      "description": "All Azure MCP tools to create a seamless connection between AI agents and Azure services.",
+      "version": "3.0.0-beta.48",
+      "category": "Infrastructure",
+      "publisher": "com.microsoft",
+      "website": "https://github.com/microsoft/mcp/tree/main/servers/Azure.Mcp.Server",
+      "featured": false,
+      "logo": "/integrations/microsoft-azure.svg",
+      "logoSource": "https://raw.githubusercontent.com/pheralb/svgl/main/static/library/azure.svg",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "@azure/mcp",
+          "version": "3.0.0-beta.48",
+          "transport": {
+            "type": "stdio"
+          },
+          "packageArguments": [
+            {
+              "value": "server",
+              "type": "positional"
+            },
+            {
+              "value": "start",
+              "type": "positional"
+            }
+          ]
+        },
+        {
+          "registryType": "pypi",
+          "identifier": "msmcp-azure",
+          "version": "3.0.0b48",
+          "transport": {
+            "type": "stdio"
+          },
+          "packageArguments": [
+            {
+              "value": "server",
+              "type": "positional"
+            },
+            {
+              "value": "start",
+              "type": "positional"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "io.github.aws/aws-mcp",
+      "name": "AWS",
+      "description": "A managed MCP server enabling AI agents to access AWS using docs, API calls, and SOP workflows.",
+      "version": "1.0.0-preview.1",
+      "category": "Infrastructure",
+      "publisher": "io.github.aws",
+      "website": "https://docs.aws.amazon.com/aws-mcp",
+      "featured": false,
+      "logo": "/integrations/aws.svg",
+      "logoSource": "https://raw.githubusercontent.com/pheralb/svgl/main/static/library/aws_light.svg",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "pypi",
+          "identifier": "mcp-proxy-for-aws",
+          "version": "1.1.6",
+          "runtimeHint": "uvx",
+          "transport": {
+            "type": "stdio"
+          },
+          "packageArguments": [
+            {
+              "description": "AWS MCP endpoint URL",
+              "value": "https://aws-mcp.us-east-1.api.aws/mcp",
+              "type": "positional",
+              "valueHint": "mcp_endpoint_url"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "io.github.alisaitteke/docker-mcp",
+      "name": "Docker",
+      "description": "MCP server for managing Docker containers, images, networks, volumes, and registries",
+      "version": "0.2.4",
+      "category": "Infrastructure",
+      "publisher": "io.github.alisaitteke",
+      "website": "https://github.com/alisaitteke/docker-mcp",
+      "featured": false,
+      "logo": "/integrations/docker.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "@alisaitteke/docker-mcp",
+          "version": "0.2.4",
+          "additionalPackages": [
+            "ajv@8.17.1"
+          ],
+          "executable": "docker-mcp-server",
+          "transport": {
+            "type": "stdio"
+          }
+        }
+      ]
+    },
+    {
+      "id": "io.github.containers/kubernetes-mcp-server",
+      "name": "Kubernetes",
+      "description": "A Model Context Protocol (MCP) server for Kubernetes and OpenShift",
+      "version": "0.0.67",
+      "category": "Infrastructure",
+      "publisher": "io.github.containers",
+      "website": "https://github.com/containers/kubernetes-mcp-server",
+      "featured": false,
+      "logo": "/integrations/kubernetes.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "registryBaseUrl": "https://registry.npmjs.org",
+          "identifier": "kubernetes-mcp-server",
+          "version": "0.0.67",
+          "transport": {
+            "type": "stdio"
+          }
+        },
+        {
+          "registryType": "pypi",
+          "registryBaseUrl": "https://pypi.org",
+          "identifier": "kubernetes-mcp-server",
+          "version": "0.0.67",
+          "runtimeHint": "uvx",
+          "transport": {
+            "type": "stdio"
+          }
+        }
+      ]
+    },
+    {
+      "id": "io.github.hashicorp/terraform-mcp-server",
+      "name": "Terraform",
+      "description": "Generate more accurate Terraform and automate workflows for HCP Terraform and Terraform Enterprise",
+      "version": "1.0.0",
+      "category": "Infrastructure",
+      "publisher": "io.github.hashicorp",
+      "website": "https://github.com/hashicorp/terraform-mcp-server",
+      "featured": false,
+      "logo": "/integrations/terraform.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "oci",
+          "identifier": "docker.io/hashicorp/terraform-mcp-server:1.0.0",
+          "runtimeHint": "docker",
+          "transport": {
+            "type": "stdio"
+          },
+          "runtimeArguments": [
+            {
+              "description": "HCP Terraform or Terraform Enterprise base URL.",
+              "value": "TFE_ADDRESS={address}",
+              "variables": {
+                "address": {
+                  "format": "string",
+                  "default": "https://app.terraform.io"
+                }
+              },
+              "type": "named",
+              "name": "-e"
+            },
+            {
+              "description": "HCP Terraform or Terraform Enterprise API token used to authenticate requests.",
+              "value": "TFE_TOKEN={token}",
+              "variables": {
+                "token": {
+                  "format": "string",
+                  "isSecret": true
+                }
+              },
+              "type": "named",
+              "name": "-e"
+            },
+            {
+              "description": "Set to true to enable tools that execute Terraform operations requiring explicit approval.",
+              "value": "ENABLE_TF_OPERATIONS={enabled}",
+              "variables": {
+                "enabled": {
+                  "format": "boolean",
+                  "default": "false"
+                }
+              },
+              "type": "named",
+              "name": "-e"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "com.stripe/mcp",
+      "name": "Stripe",
+      "description": "Query and manage Stripe customers, payments, products, and invoices.",
+      "version": "0.2.4",
+      "category": "Finance",
+      "publisher": "com.stripe",
+      "website": "https://docs.stripe.com/mcp",
+      "featured": true,
+      "logo": "/integrations/stripe.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.stripe.com",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": [],
+      "chatgptDirectory": {
+        "name": "Stripe",
+        "pluginId": "plugin_connector_690ab09fa43c8191bca40280e4563238",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "com.paypal.mcp/mcp",
+      "name": "PayPal",
+      "description": "Access PayPal payments, orders, disputes, and business operations.",
+      "version": "1.0.0",
+      "category": "Finance",
+      "publisher": "com.paypal.mcp",
+      "website": "https://developer.paypal.com/ai-tools/mcp-server",
+      "featured": false,
+      "logo": "/integrations/paypal.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.paypal.com/mcp",
+          "headers": [
+            {
+              "description": "OAuth Bearer token for API authentication (format: Bearer <token>)",
+              "isRequired": true,
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        },
+        {
+          "type": "sse",
+          "url": "https://mcp.paypal.com/sse",
+          "headers": [
+            {
+              "description": "OAuth Bearer token for API authentication (format: Bearer <token>)",
+              "isRequired": true,
+              "isSecret": true,
+              "name": "Authorization"
+            }
+          ],
+          "authentication": "oauth"
+        }
+      ],
+      "packages": []
+    },
+    {
+      "id": "io.github.cyanheads/coingecko-mcp-server",
+      "name": "CoinGecko",
+      "description": "Crypto market data via CoinGecko \u2014 prices, markets, history, trending, and deep coin metadata.",
+      "version": "0.2.0",
+      "category": "Finance",
+      "publisher": "com.coingecko",
+      "website": "https://docs.coingecko.com/docs/mcp-server",
+      "featured": false,
+      "logo": "/integrations/coingecko.png",
+      "logoSource": "https://github.com/coingecko.png?size=96",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.api.coingecko.com/mcp",
+          "authentication": "none"
+        },
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.pro-api.coingecko.com/mcp",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": [
+        {
+          "registryType": "npm",
+          "registryBaseUrl": "https://registry.npmjs.org",
+          "identifier": "@cyanheads/coingecko-mcp-server",
+          "version": "0.2.0",
+          "runtimeHint": "npx",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "description": "Optional CoinGecko Demo API key. Present \u2192 sent as the x-cg-demo-api-key header for the dedicated Demo tier (10k/mo, 100 rpm). Absent \u2192 keyless public tier.",
+              "format": "string",
+              "isSecret": true,
+              "name": "COINGECKO_API_KEY"
+            },
+            {
+              "description": "Sets the minimum log level for output (e.g., 'debug', 'info', 'warn').",
+              "format": "string",
+              "default": "info",
+              "name": "MCP_LOG_LEVEL"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "io.github.oraios/serena",
+      "name": "Serena",
+      "description": "A powerful toolkit for coding, providing semantic retrieval and editing capabilities.",
+      "version": "1.5.3",
+      "category": "Development",
+      "publisher": "io.github.oraios",
+      "website": "https://github.com/oraios/serena",
+      "featured": false,
+      "logo": "/integrations/serena.png",
+      "logoSource": "https://avatars.githubusercontent.com/oraios?s=96",
+      "metadataSource": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.oraios%2Fserena/versions/1.5.3",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "pypi",
+          "identifier": "serena-agent",
+          "version": "1.5.3",
+          "runtimeHint": "uvx",
+          "transport": {
+            "type": "stdio"
+          },
+          "runtimeArguments": [
+            {
+              "description": "Select the python version",
+              "value": "3.13",
+              "type": "named",
+              "name": "-p"
+            },
+            {
+              "value": "start-mcp-server",
+              "type": "positional"
+            },
+            {
+              "value": "--project-from-cwd",
+              "type": "positional"
+            },
+            {
+              "description": "The name of a markdown file representing Serena's execution context, typically related to the executing client.  Allowed values are: agent, antigravity, chatgpt, claude-code, codex, context.template, copilot-cli, desktop-app, ide, jb-ai-assistant, jb-copilot-plugin, junie, oaicompat-agent, vscode ",
+              "default": "desktop-app",
+              "type": "named",
+              "name": "--context"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "io.github.DeusData/codebase-memory-mcp",
+      "name": "Codebase Memory MCP",
+      "description": "Codebase knowledge graph for AI agents \u2014 162 languages, sub-ms queries, 99% fewer tokens.",
+      "version": "0.12.1",
+      "category": "Development",
+      "publisher": "io.github.DeusData",
+      "website": "https://deusdata.github.io/codebase-memory-mcp/",
+      "featured": true,
+      "logo": "/integrations/codebase-memory-mcp.svg",
+      "logoSource": "https://deusdata.github.io/codebase-memory-mcp/",
+      "metadataSource": "https://registry.npmjs.org/codebase-memory-mcp/0.12.1",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "codebase-memory-mcp",
+          "version": "0.12.1",
+          "runtimeHint": "npx",
+          "transport": {
+            "type": "stdio"
+          }
+        },
+        {
+          "registryType": "pypi",
+          "identifier": "codebase-memory-mcp",
+          "version": "0.12.1",
+          "runtimeHint": "uvx",
+          "transport": {
+            "type": "stdio"
+          }
+        }
+      ]
+    },
+    {
+      "id": "io.github.wonderwhy-er/desktop-commander",
+      "name": "Desktop Commander",
+      "description": "MCP server for terminal commands, file operations, and process management",
+      "version": "0.3.0",
+      "category": "Development",
+      "publisher": "io.github.wonderwhy-er",
+      "website": "https://github.com/wonderwhy-er/DesktopCommanderMCP",
+      "featured": false,
+      "logo": "/integrations/desktop-commander.png",
+      "logoSource": "https://avatars.githubusercontent.com/wonderwhy-er?s=96",
+      "metadataSource": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.wonderwhy-er%2Fdesktop-commander/versions/0.3.0",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "registryBaseUrl": "https://registry.npmjs.org",
+          "identifier": "@wonderwhy-er/desktop-commander",
+          "version": "0.3.0",
+          "transport": {
+            "type": "stdio"
+          }
+        }
+      ]
+    },
+    {
+      "id": "com.browser-use/browser-use",
+      "name": "Browser Use",
+      "description": "Control a real Chrome browser to complete any task: fill forms, extract data, book flights.",
+      "version": "0.13.5",
+      "category": "Development",
+      "publisher": "com.browser-use",
+      "website": "https://browser-use.com",
+      "featured": false,
+      "logo": "/integrations/browser-use.png",
+      "logoSource": "https://avatars.githubusercontent.com/browser-use?s=96",
+      "metadataSource": "https://registry.modelcontextprotocol.io/v0.1/servers/com.browser-use%2Fbrowser-use/versions/0.13.5",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "pypi",
+          "registryBaseUrl": "https://pypi.org",
+          "identifier": "browser-use",
+          "version": "0.13.5",
+          "runtimeHint": "uvx",
+          "transport": {
+            "type": "stdio"
+          },
+          "packageArguments": [
+            {
+              "value": "--cli-mcp",
+              "type": "positional"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "io.github.true-alter/mcp-ollama",
+      "name": "Ollama",
+      "description": "Wraps local Ollama models so bulk generation runs on your own hardware, not a paid API.",
+      "version": "0.2.1",
+      "category": "Development",
+      "publisher": "io.github.true-alter",
+      "website": "https://github.com/true-alter/mcp-ollama#readme",
+      "featured": false,
+      "logo": "/integrations/ollama.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "metadataSource": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.true-alter%2Fmcp-ollama/versions/0.2.1",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "registryBaseUrl": "https://registry.npmjs.org",
+          "identifier": "@truealter/mcp-ollama",
+          "version": "0.2.1",
+          "transport": {
+            "type": "stdio"
+          }
+        }
+      ]
+    },
+    {
+      "id": "io.github.sourcegraph/mcp",
+      "name": "Sourcegraph",
+      "description": "Sourcegraph code search, semantic search, go-to-definition, find-references, and diff search.",
+      "version": "0.1.0",
+      "category": "Development",
+      "publisher": "io.github.sourcegraph",
+      "website": "https://github.com/sourcegraph-community/mcpregistry",
+      "featured": false,
+      "logo": "/integrations/sourcegraph.png",
+      "logoSource": "https://avatars.githubusercontent.com/sourcegraph-community?s=96",
+      "metadataSource": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.sourcegraph%2Fmcp/versions/0.1.0",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://{sourcegraph_hostname}/.api/mcp",
+          "variables": {
+            "sourcegraph_hostname": {
+              "description": "Hostname of your Sourcegraph instance (e.g., sourcegraph.mycompany.com)",
+              "isRequired": true
+            }
+          },
+          "authentication": "oauth"
+        }
+      ],
+      "packages": []
+    },
+    {
+      "id": "io.github.FabianSchurig/bitbucket-mcp",
+      "name": "Bitbucket",
+      "description": "Bitbucket Cloud MCP in Go: complete API auto-generated from spec, customizable prompts.",
+      "version": "0.20.2",
+      "category": "Development",
+      "publisher": "io.github.FabianSchurig",
+      "website": "https://github.com/FabianSchurig/bitbucket-cli",
+      "featured": false,
+      "logo": "/integrations/bitbucket.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "metadataSource": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.FabianSchurig%2Fbitbucket-mcp/versions/0.20.2",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "@aashari/mcp-server-atlassian-bitbucket",
+          "version": "3.1.0",
+          "environmentVariables": [
+            {
+              "name": "BITBUCKET_HOST",
+              "description": "Bitbucket instance host",
+              "default": "https://api.bitbucket.org"
+            },
+            {
+              "name": "BITBUCKET_ACCESS_TOKEN",
+              "description": "Bitbucket personal access token",
+              "isRequired": true,
+              "isSecret": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "io.github.seynurmammad0v/obsidian-mcp",
+      "name": "Obsidian",
+      "description": "Turns Obsidian vaults into AI-queryable knowledge graphs with 12 tools",
+      "version": "1.0.3",
+      "category": "Productivity",
+      "publisher": "io.github.seynurmammad0v",
+      "website": "https://github.com/seynurmammad0v/obsidian-mcp",
+      "featured": false,
+      "logo": "/integrations/obsidian.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "metadataSource": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.seynurmammad0v%2Fobsidian-mcp/versions/1.0.3",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "@smammadov/obsidian-mcp",
+          "version": "1.0.3",
+          "packageArguments": [
+            {
+              "type": "named",
+              "name": "--vault",
+              "default": "/workspace",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "io.github.A1-x-Tech/mcp-google-docs",
+      "name": "Google Docs",
+      "description": "MCP server for the Google Docs API: read and edit documents, styles, tables, images, comments.",
+      "version": "1.0.0",
+      "category": "Productivity",
+      "publisher": "io.github.A1-x-Tech",
+      "website": "https://github.com/A1-x-Tech/mcp-google-docs#readme",
+      "featured": false,
+      "logo": "/integrations/google-docs.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "metadataSource": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.A1-x-Tech%2Fmcp-google-docs/versions/1.0.0",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "registryBaseUrl": "https://registry.npmjs.org",
+          "identifier": "@a1-x-tech/mcp-google-docs",
+          "version": "1.0.0",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "description": "Google OAuth2 client id (refresh-token flow).",
+              "name": "GOOGLE_DOCS_CLIENT_ID"
+            },
+            {
+              "description": "Google OAuth2 client secret (refresh-token flow). Treat it as a secret.",
+              "isSecret": true,
+              "name": "GOOGLE_DOCS_CLIENT_SECRET"
+            },
+            {
+              "description": "Google OAuth2 refresh token, exchanged for access tokens automatically. Treat it as a secret.",
+              "isSecret": true,
+              "name": "GOOGLE_DOCS_REFRESH_TOKEN"
+            },
+            {
+              "description": "Static OAuth2 access token (~1h lifetime) \u2014 alternative to the refresh-token trio, mostly for testing.",
+              "isSecret": true,
+              "name": "GOOGLE_DOCS_ACCESS_TOKEN"
+            },
+            {
+              "description": "Fixed port for the loopback listener of the in-chat login (127.0.0.1 + PKCE). Set it when the client runs over SSH port forwarding; otherwise a free port is picked per login.",
+              "name": "GOOGLE_DOCS_OAUTH_PORT"
+            },
+            {
+              "description": "Docs API root override.",
+              "default": "https://docs.googleapis.com",
+              "name": "GOOGLE_DOCS_API_BASE"
+            },
+            {
+              "description": "Drive API root override (markdown import/export, document export, comments).",
+              "default": "https://www.googleapis.com",
+              "name": "GOOGLE_DOCS_DRIVE_API_BASE"
+            },
+            {
+              "description": "Per-request timeout in milliseconds.",
+              "default": "60000",
+              "name": "GOOGLE_DOCS_TIMEOUT_MS"
+            },
+            {
+              "description": "Retries on transient errors (429 always; 5xx/network for reads).",
+              "default": "3",
+              "name": "GOOGLE_DOCS_MAX_RETRIES"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "io.github.A1-x-Tech/mcp-google-calendar",
+      "name": "Google Calendar",
+      "description": "MCP server for the Google Calendar API: events, recurrence, invitations, availability, calendars.",
+      "version": "1.0.0",
+      "category": "Productivity",
+      "publisher": "io.github.A1-x-Tech",
+      "website": "https://github.com/A1-x-Tech/mcp-google-calendar#readme",
+      "featured": false,
+      "logo": "/integrations/google-calendar.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "metadataSource": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.A1-x-Tech%2Fmcp-google-calendar/versions/1.0.0",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "registryBaseUrl": "https://registry.npmjs.org",
+          "identifier": "@a1-x-tech/mcp-google-calendar",
+          "version": "1.0.0",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "description": "Google OAuth2 client id (refresh-token flow).",
+              "name": "GOOGLE_CALENDAR_CLIENT_ID"
+            },
+            {
+              "description": "Google OAuth2 client secret (refresh-token flow). Treat it as a secret.",
+              "isSecret": true,
+              "name": "GOOGLE_CALENDAR_CLIENT_SECRET"
+            },
+            {
+              "description": "Google OAuth2 refresh token, exchanged for access tokens automatically. Treat it as a secret.",
+              "isSecret": true,
+              "name": "GOOGLE_CALENDAR_REFRESH_TOKEN"
+            },
+            {
+              "description": "Static OAuth2 access token (~1h lifetime) \u2014 alternative to the refresh-token trio, mostly for testing.",
+              "isSecret": true,
+              "name": "GOOGLE_CALENDAR_ACCESS_TOKEN"
+            },
+            {
+              "description": "Fixed port for the loopback listener of the in-chat login (127.0.0.1 + PKCE). Set it when the client runs over SSH port forwarding; otherwise a free port is picked per login.",
+              "name": "GOOGLE_CALENDAR_OAUTH_PORT"
+            },
+            {
+              "description": "API root override.",
+              "default": "https://www.googleapis.com",
+              "name": "GOOGLE_CALENDAR_API_BASE"
+            },
+            {
+              "description": "Per-request timeout in milliseconds.",
+              "default": "60000",
+              "name": "GOOGLE_CALENDAR_TIMEOUT_MS"
+            },
+            {
+              "description": "Retries on transient errors (429 always; 5xx/network for reads).",
+              "default": "3",
+              "name": "GOOGLE_CALENDAR_MAX_RETRIES"
+            }
+          ]
+        }
+      ],
+      "chatgptDirectory": {
+        "name": "Google Calendar",
+        "pluginId": "plugin_connector_1p_f8509de903288191b14a160c6c5d20b0",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "io.github.ravikant1918/sharepoint-mcp",
+      "name": "Microsoft SharePoint",
+      "description": "MCP server for Microsoft SharePoint \u2014 manage folders, documents, and metadata.",
+      "version": "1.1.1",
+      "category": "Productivity",
+      "publisher": "io.github.ravikant1918",
+      "website": "https://github.com/ravikant1918/sharepoint-mcp",
+      "featured": false,
+      "logo": "/integrations/microsoft-sharepoint.png",
+      "logoSource": "https://avatars.githubusercontent.com/ravikant1918?s=96",
+      "metadataSource": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.ravikant1918%2Fsharepoint-mcp/versions/1.1.1",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "pypi",
+          "identifier": "sharepoint-mcp",
+          "version": "1.1.1",
+          "runtimeHint": "uvx",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "description": "Azure AD application (client) ID",
+              "isRequired": true,
+              "name": "SHP_ID_APP"
+            },
+            {
+              "description": "Azure AD client secret",
+              "isRequired": true,
+              "isSecret": true,
+              "name": "SHP_ID_APP_SECRET"
+            },
+            {
+              "description": "Microsoft Entra (Azure AD) tenant ID",
+              "isRequired": true,
+              "name": "SHP_TENANT_ID"
+            },
+            {
+              "description": "SharePoint site URL (e.g. https://tenant.sharepoint.com/sites/MySite)",
+              "isRequired": true,
+              "name": "SHP_SITE_URL"
+            },
+            {
+              "description": "SharePoint document library path",
+              "default": "Shared Documents/mcp_server",
+              "name": "SHP_DOC_LIBRARY"
+            }
+          ]
+        }
+      ],
+      "chatgptDirectory": {
+        "name": "SharePoint",
+        "pluginId": "plugin_connector_1p_dca009ae2c848191ae14df3a47c5e7fd",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "io.github.pipeworx-io/onedrive",
+      "thirdPartyGateway": true,
+      "name": "Microsoft OneDrive",
+      "description": "OneDrive (Microsoft Graph) MCP Pack",
+      "version": "0.1.2",
+      "category": "Productivity",
+      "publisher": "io.github.pipeworx-io",
+      "website": "https://pipeworx.io/packs/onedrive",
+      "featured": false,
+      "logo": "/integrations/microsoft-onedrive.png",
+      "logoSource": "https://avatars.githubusercontent.com/pipeworx-io?s=96",
+      "metadataSource": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.pipeworx-io%2Fonedrive/versions/0.1.2",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://gateway.pipeworx.io/onedrive/mcp",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": []
+    },
+    {
+      "id": "io.github.haris-musa/excel-mcp-server",
+      "name": "Microsoft Excel",
+      "description": "Create and edit Excel files with AI: charts, PivotTables, formulas. No Excel needed.",
+      "version": "2.1.1",
+      "category": "Productivity",
+      "publisher": "io.github.haris-musa",
+      "website": "https://github.com/haris-musa/excel-mcp-server",
+      "featured": false,
+      "logo": "/integrations/microsoft-excel.jpg",
+      "logoSource": "https://avatars.githubusercontent.com/haris-musa?s=96",
+      "metadataSource": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.haris-musa%2Fexcel-mcp-server/versions/2.1.1",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "pypi",
+          "registryBaseUrl": "https://pypi.org",
+          "identifier": "excel-mcp-server",
+          "version": "2.1.1",
+          "runtimeHint": "uvx",
+          "transport": {
+            "type": "stdio"
+          },
+          "packageArguments": [
+            {
+              "value": "stdio",
+              "type": "positional"
+            },
+            {
+              "description": "Folder the server may read and write workbooks in.",
+              "format": "filepath",
+              "type": "named",
+              "name": "--allow-dir"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "io.github.A1-x-Tech/mcp-google-chat",
+      "name": "Google Chat",
+      "description": "MCP server for the Google Chat API: spaces, messages, threads, reactions and memberships.",
+      "version": "1.0.0",
+      "category": "Communication",
+      "publisher": "io.github.A1-x-Tech",
+      "website": "https://github.com/A1-x-Tech/mcp-google-chat#readme",
+      "featured": false,
+      "logo": "/integrations/google-chat.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "metadataSource": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.A1-x-Tech%2Fmcp-google-chat/versions/1.0.0",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "registryBaseUrl": "https://registry.npmjs.org",
+          "identifier": "mcp-google-chat",
+          "version": "1.0.0",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "description": "Google OAuth2 client id (refresh-token flow).",
+              "name": "GOOGLE_CHAT_CLIENT_ID"
+            },
+            {
+              "description": "Google OAuth2 client secret (refresh-token flow). Treat it as a secret.",
+              "isSecret": true,
+              "name": "GOOGLE_CHAT_CLIENT_SECRET"
+            },
+            {
+              "description": "Google OAuth2 refresh token, exchanged for access tokens automatically. Treat it as a secret.",
+              "isSecret": true,
+              "name": "GOOGLE_CHAT_REFRESH_TOKEN"
+            },
+            {
+              "description": "Static OAuth2 access token (~1h lifetime) \u2014 alternative to the refresh-token trio, e.g. a service-account (Chat app) token or for testing.",
+              "isSecret": true,
+              "name": "GOOGLE_CHAT_ACCESS_TOKEN"
+            },
+            {
+              "description": "Fixed port for the loopback listener of the in-chat login (127.0.0.1 + PKCE). Set it when the client runs over SSH port forwarding; otherwise a free port is picked per login.",
+              "name": "GOOGLE_CHAT_OAUTH_PORT"
+            },
+            {
+              "description": "API root override.",
+              "default": "https://chat.googleapis.com",
+              "name": "GOOGLE_CHAT_API_BASE"
+            },
+            {
+              "description": "Per-request timeout in milliseconds.",
+              "default": "60000",
+              "name": "GOOGLE_CHAT_TIMEOUT_MS"
+            },
+            {
+              "description": "Retries on transient errors (429 always; 5xx/network for reads).",
+              "default": "3",
+              "name": "GOOGLE_CHAT_MAX_RETRIES"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "io.github.us-all/dbt",
+      "name": "dbt",
+      "description": "dbt MCP \u2014 manifest/run_results/sources/catalog parsing + DQ result tables (BigQuery/Postgres)",
+      "version": "1.0.7",
+      "category": "Data & analytics",
+      "publisher": "io.github.us-all",
+      "website": "https://github.com/us-all/dbt-mcp-server",
+      "featured": false,
+      "logo": "/integrations/dbt.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "metadataSource": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.us-all%2Fdbt/versions/1.0.7",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "@us-all/dbt-mcp",
+          "version": "1.0.7",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "description": "Path to dbt project root (where dbt_project.yml lives).",
+              "isRequired": true,
+              "name": "DBT_PROJECT_DIR",
+              "default": "/workspace"
+            },
+            {
+              "description": "dbt target dir for manifest.json/run_results.json (default: $DBT_PROJECT_DIR/target).",
+              "name": "DBT_TARGET_DIR"
+            },
+            {
+              "description": "Optional dir for archived run_results.json history (glob-scanned).",
+              "name": "DBT_RUN_HISTORY_DIR"
+            },
+            {
+              "description": "DQ result table backend: 'bigquery' (default) or 'postgres'.",
+              "name": "DQ_BACKEND"
+            },
+            {
+              "description": "Fully qualified DQ checks table, e.g. 'project.data_ops.quality_checks'.",
+              "name": "DQ_RESULTS_TABLE"
+            },
+            {
+              "description": "Fully qualified DQ score-daily table, e.g. 'project.data_ops.quality_score_daily'.",
+              "name": "DQ_SCORE_TABLE"
+            },
+            {
+              "description": "Service account key path for BigQuery (ADC fallback supported).",
+              "name": "GOOGLE_APPLICATION_CREDENTIALS"
+            },
+            {
+              "description": "Explicit BigQuery project ID for DQ queries.",
+              "name": "BQ_PROJECT_ID"
+            },
+            {
+              "description": "Postgres connection string when DQ_BACKEND=postgres.",
+              "isSecret": true,
+              "name": "PG_CONNECTION_STRING"
+            },
+            {
+              "description": "Reserved for future write tools. Default read-only.",
+              "default": "false",
+              "name": "DBT_ALLOW_WRITE"
+            },
+            {
+              "description": "DQ result-table schema preset: 'generic' (default) or 'us-all'. Use DQ_COL_* env vars to override individual columns on top of the preset.",
+              "default": "generic",
+              "name": "DQ_SCHEMA"
+            },
+            {
+              "description": "Override for the timestamp/date column on the DQ checks table. Default depends on DQ_SCHEMA preset.",
+              "name": "DQ_COL_RUN_AT"
+            },
+            {
+              "description": "Override for the check-type column on the DQ checks table. Default 'check_type'.",
+              "name": "DQ_COL_CHECK_TYPE"
+            },
+            {
+              "description": "Override for the status column on the DQ checks table. Default 'status'.",
+              "name": "DQ_COL_STATUS"
+            },
+            {
+              "description": "Override for the dataset/source column on the DQ checks table. Default depends on preset.",
+              "name": "DQ_COL_DATASET"
+            },
+            {
+              "description": "Override for the table/target-name column on the DQ checks table. Default depends on preset.",
+              "name": "DQ_COL_TABLE_NAME"
+            },
+            {
+              "description": "Override for the severity/dimension column on the DQ checks table. Default depends on preset.",
+              "name": "DQ_COL_SEVERITY"
+            },
+            {
+              "description": "Override for the numeric failure-count column on the DQ checks table. Default depends on preset.",
+              "name": "DQ_COL_FAILURE_COUNT"
+            },
+            {
+              "description": "Override for the message column on the DQ checks table. Default depends on preset.",
+              "name": "DQ_COL_MESSAGE"
+            },
+            {
+              "description": "Override for the check_name column on the DQ checks table. Set to 'none'/'null'/'-' to synthesize check_name from check_type and table_name.",
+              "name": "DQ_COL_CHECK_NAME"
+            },
+            {
+              "description": "Override for the date column on the DQ score-daily table. Default depends on preset.",
+              "name": "DQ_COL_SCORE_DATE"
+            },
+            {
+              "description": "Override for the scope column on the DQ score-daily table. Set to 'none'/'null'/'-' if the table has no per-scope rollup.",
+              "name": "DQ_COL_SCOPE"
+            },
+            {
+              "description": "Override for the tier column on the DQ score-daily table. Set to 'none'/'null'/'-' if the table has no tier dimension.",
+              "name": "DQ_COL_TIER"
+            },
+            {
+              "description": "When no tier column is configured (us-all preset or DQ_COL_TIER=none), the overall_score threshold dq-tier-status compares against (default 99.5). Superseded by DBT_SLA_CONFIG_PATH tier_sla.1 if both are set.",
+              "name": "DQ_TIER1_TARGET_PCT"
+            },
+            {
+              "description": "Optional path to a YAML file that defines tier_sla (per-tier overall_score targets) and dbt_sla (test/freshness pass rates). When set, dq-tier-status and dq-tier-by-source read tier targets from this file, and dbt-sla-status compares run_results / sources pass rates against dbt_sla.test_pass_pct / freshness_pass_pct. Mtime cached.",
+              "name": "DBT_SLA_CONFIG_PATH"
+            },
+            {
+              "description": "Comma-separated category allowlist (dbt,quality,meta).",
+              "name": "DBT_TOOLS"
+            },
+            {
+              "description": "Comma-separated category disablelist.",
+              "name": "DBT_DISABLE"
+            }
+          ]
+        }
+      ],
+      "chatgptDirectory": {
+        "name": "dbt",
+        "pluginId": "plugin_templated_apps_6a710de0c6b08191a298927933709e4e",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "io.github.pipeworx-io/posthog",
+      "name": "PostHog",
+      "description": "PostHog MCP \u2014 wraps PostHog Analytics API (app.posthog.com/api)",
+      "version": "0.1.2",
+      "category": "Data & analytics",
+      "publisher": "com.posthog",
+      "website": "https://posthog.com/docs/model-context-protocol",
+      "featured": false,
+      "logo": "/integrations/posthog.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "metadataSource": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.pipeworx-io%2Fposthog/versions/0.1.2",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.posthog.com/mcp",
+          "authentication": "oauth",
+          "headers": [
+            {
+              "name": "Authorization",
+              "description": "Bearer PostHog personal API key if not using OAuth",
+              "isSecret": true
+            }
+          ]
+        },
+        {
+          "type": "streamable-http",
+          "url": "https://mcp-eu.posthog.com/mcp",
+          "authentication": "oauth",
+          "headers": [
+            {
+              "name": "Authorization",
+              "description": "Bearer PostHog personal API key (EU Cloud) if not using OAuth",
+              "isSecret": true
+            }
+          ]
+        }
+      ],
+      "packages": [],
+      "chatgptDirectory": {
+        "name": "PostHog",
+        "pluginId": "plugin_asdk_app_699caef2d680819188727b0ddbb349dd",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "io.github.olgasafonova/miro-mcp-server",
+      "name": "Miro",
+      "description": "Control Miro whiteboards with AI. 110 tools for boards, diagrams, mindmaps, comments, SVG.",
+      "version": "1.25.0",
+      "category": "Design",
+      "publisher": "com.miro",
+      "website": "https://miro.com",
+      "featured": false,
+      "logo": "/integrations/miro.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "metadataSource": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.olgasafonova%2Fmiro-mcp-server/versions/1.25.0",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.miro.com/",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": [
+        {
+          "registryType": "oci",
+          "identifier": "ghcr.io/olgasafonova/miro-mcp-server:1.25.0",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "description": "Miro API access token with boards:read and boards:write permissions",
+              "name": "MIRO_ACCESS_TOKEN"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "io.scalably/shopify-mcp",
+      "name": "Shopify",
+      "description": "Read-only Shopify Admin GraphQL MCP: query, introspect, bulk export, ShopifyQL. 6 tools.",
+      "version": "1.1.0",
+      "category": "Sales & marketing",
+      "publisher": "io.scalably",
+      "website": "https://scalably.io/mcp/shopify-mcp",
+      "featured": false,
+      "logo": "/integrations/shopify.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "metadataSource": "https://registry.modelcontextprotocol.io/v0.1/servers/io.scalably%2Fshopify-mcp/versions/1.1.0",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "@shopify/dev-mcp",
+          "version": "1.2.0"
+        }
+      ],
+      "chatgptDirectory": {
+        "name": "Shopify",
+        "pluginId": "plugin_asdk_app_69e65c430b3081919aa4d962ab5d1698",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      }
+    },
+    {
+      "id": "io.github.YawLabs/fetch-mcp",
+      "name": "Fetch",
+      "description": "HTTP fetch MCP server: SSRF protection, HTML-to-markdown, reader mode, metadata extraction",
+      "version": "0.8.5",
+      "category": "Research",
+      "publisher": "io.github.YawLabs",
+      "website": "https://yaw.sh/mcp-servers/fetch-mcp/",
+      "featured": false,
+      "logo": "/integrations/fetch.png",
+      "logoSource": "https://avatars.githubusercontent.com/YawLabs?s=96",
+      "metadataSource": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.YawLabs%2Ffetch-mcp/versions/0.8.5",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "@yawlabs/fetch-mcp",
+          "version": "0.8.5",
+          "transport": {
+            "type": "stdio"
+          }
+        }
+      ]
+    },
+    {
+      "id": "io.github.Oncorporation/filesystem-server",
+      "name": "Filesystem",
+      "description": "Secure filesystem access for AI agents with configurable directory and file type restrictions",
+      "version": "0.1.4",
+      "category": "Development",
+      "publisher": "io.github.Oncorporation",
+      "website": "https://github.com/Oncorporation/filesystem_server",
+      "featured": false,
+      "logo": "/integrations/filesystem.png",
+      "logoSource": "https://avatars.githubusercontent.com/Oncorporation?s=96",
+      "metadataSource": "https://registry.modelcontextprotocol.io/v0.1/servers/io.github.Oncorporation%2Ffilesystem-server/versions/0.1.4",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "pypi",
+          "identifier": "vs-filesystem-mcp-server",
+          "version": "0.1.4",
+          "transport": {
+            "type": "stdio"
+          }
+        }
+      ]
+    },
+    {
+      "id": "npm/comfyui-mcp",
+      "name": "ComfyUI",
+      "description": "Control ComfyUI workflows and generate images through a local MCP server.",
+      "version": "0.52.206",
+      "category": "Design",
+      "publisher": "artokun",
+      "website": "https://github.com/artokun/comfyui-mcp",
+      "featured": false,
+      "logo": "/integrations/comfyui.png",
+      "logoSource": "https://avatars.githubusercontent.com/artokun?s=96",
+      "metadataSource": "https://registry.npmjs.org/comfyui-mcp/0.52.206",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "comfyui-mcp",
+          "version": "0.52.206",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "name": "CIVITAI_API_TOKEN",
+              "description": "Configure CIVITAI_API_TOKEN as described in the publisher\u2019s setup guide.",
+              "isSecret": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "io.github.elevenlabs/elevenlabs-mcp",
+      "name": "ElevenLabs",
+      "description": "Create and manage ElevenLabs agents, voices, and speech generation.",
+      "version": "0.12.2",
+      "category": "Design",
+      "publisher": "ElevenLabs",
+      "website": "https://elevenlabs.io/docs/eleven-agents/operate/hosted-mcp",
+      "featured": true,
+      "logo": "/integrations/elevenlabs.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "metadataSource": "https://pypi.org/pypi/elevenlabs-mcp/0.12.2/json",
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://api.us.elevenlabs.io/v1/mcp",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": [
+        {
+          "registryType": "pypi",
+          "identifier": "elevenlabs-mcp",
+          "version": "0.12.2",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "name": "ELEVENLABS_API_KEY",
+              "description": "Your ElevenLabs API key",
+              "isRequired": true,
+              "isSecret": true
+            },
+            {
+              "name": "ELEVENLABS_MCP_BASE_PATH",
+              "description": "Directory for input and generated audio files inside the workspace sandbox. Defaults to the current workspace directory.",
+              "isRequired": false,
+              "isSecret": false,
+              "default": "."
+            },
+            {
+              "name": "ELEVENLABS_API_RESIDENCY",
+              "description": "The optional data residency region. Defaults to 'us' if not provided.",
+              "isRequired": false,
+              "isSecret": false
+            },
+            {
+              "name": "ELEVENLABS_MCP_OUTPUT_MODE",
+              "description": "The output mode for the MCP server. Defaults to 'files' if not provided.",
+              "isRequired": false,
+              "isSecret": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "npm/@cyanheads/git-mcp-server",
+      "name": "Git",
+      "description": "A secure and scalable Git MCP server enabling AI agents to perform comprehensive Git version control operations via STDIO and Streamable HTTP.",
+      "version": "2.15.3",
+      "category": "Development",
+      "publisher": "@cyanheads",
+      "website": "https://github.com/cyanheads/git-mcp-server",
+      "featured": false,
+      "logo": "/integrations/git.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "metadataSource": "https://registry.npmjs.org/@cyanheads%2Fgit-mcp-server/2.15.3",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "@cyanheads/git-mcp-server",
+          "version": "2.15.3",
+          "transport": {
+            "type": "stdio"
+          },
+          "environmentVariables": [
+            {
+              "name": "MCP_TRANSPORT_TYPE",
+              "description": "Configure MCP_TRANSPORT_TYPE as described in the publisher\u2019s setup guide.",
+              "isSecret": false
+            },
+            {
+              "name": "MCP_LOG_LEVEL",
+              "description": "Configure MCP_LOG_LEVEL as described in the publisher\u2019s setup guide.",
+              "isSecret": false
+            },
+            {
+              "name": "GIT_BASE_DIR",
+              "description": "Configure GIT_BASE_DIR as described in the publisher\u2019s setup guide.",
+              "isSecret": false
+            },
+            {
+              "name": "LOGS_DIR",
+              "description": "Configure LOGS_DIR as described in the publisher\u2019s setup guide.",
+              "isSecret": false
+            },
+            {
+              "name": "GIT_USERNAME",
+              "description": "Configure GIT_USERNAME as described in the publisher\u2019s setup guide.",
+              "isSecret": false
+            },
+            {
+              "name": "GIT_EMAIL",
+              "description": "Configure GIT_EMAIL as described in the publisher\u2019s setup guide.",
+              "isSecret": false
+            },
+            {
+              "name": "GIT_SIGN_COMMITS",
+              "description": "Configure GIT_SIGN_COMMITS as described in the publisher\u2019s setup guide.",
+              "isSecret": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "npm/puppeteer-mcp-claude",
+      "name": "Puppeteer",
+      "description": "Browser automation MCP server for Claude, powered by Puppeteer.",
+      "version": "0.2.2",
+      "category": "Development",
+      "publisher": "jaenster",
+      "website": "https://github.com/jaenster/puppeteer-mcp-claude",
+      "featured": false,
+      "logo": "/integrations/puppeteer.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "metadataSource": "https://registry.npmjs.org/puppeteer-mcp-claude/0.2.2",
+      "remotes": [],
+      "packages": [
+        {
+          "registryType": "npm",
+          "identifier": "@modelcontextprotocol/server-puppeteer",
+          "version": "2025.5.12"
+        }
+      ]
+    },
+    {
+      "id": "chatgpt/plugin_asdk_app_695bfc98071c8191bac7bc479aa27de7",
+      "name": "Box",
+      "description": "Search and organize Box content, summarize and compare documents, extract metadata with Box AI, and collaborate through comments and shared links.",
+      "version": "directory",
+      "category": "Productivity",
+      "publisher": "Box",
+      "website": "https://developer.box.com/guides/box-mcp/remote/",
+      "featured": false,
+      "logo": "/integrations/box.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "metadataSource": "https://chatgpt.com/plugins",
+      "chatgptDirectory": {
+        "name": "Box",
+        "pluginId": "plugin_asdk_app_695bfc98071c8191bac7bc479aa27de7",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      },
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://mcp.box.com",
+          "authentication": "oauth"
+        }
+      ],
+      "packages": []
+    },
+    {
+      "id": "chatgpt/plugin_asdk_app_6938a7d323f48191aeabaf579802bf45",
+      "name": "Adobe Acrobat",
+      "description": "Edit and organize PDFs, convert documents, redact sensitive content, and extract information.",
+      "version": "directory",
+      "category": "Productivity",
+      "publisher": "Adobe Acrobat",
+      "website": "https://adobe.com/acrobat",
+      "featured": false,
+      "logo": "/integrations/adobe-acrobat.png",
+      "logoSource": "https://www.google.com/s2/favicons?domain=adobe.com&sz=128",
+      "metadataSource": "https://chatgpt.com/plugins",
+      "chatgptDirectory": {
+        "name": "Adobe Acrobat",
+        "pluginId": "plugin_asdk_app_6938a7d323f48191aeabaf579802bf45",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      },
+      "remotes": [],
+      "packages": [],
+      "availability": "provider-setup"
+    },
+    {
+      "id": "chatgpt/plugin_asdk_app_6939e86417648191b7bda087d872685b",
+      "name": "Hugging Face",
+      "description": "Inspect models, datasets, Spaces, and research",
+      "version": "directory",
+      "category": "Development",
+      "publisher": "Hugging Face",
+      "website": "https://huggingface.co/settings/mcp",
+      "featured": false,
+      "logo": "/integrations/hugging-face.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "metadataSource": "https://chatgpt.com/plugins",
+      "chatgptDirectory": {
+        "name": "Hugging Face",
+        "pluginId": "plugin_asdk_app_6939e86417648191b7bda087d872685b",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      },
+      "remotes": [
+        {
+          "type": "streamable-http",
+          "url": "https://huggingface.co/mcp",
+          "authentication": "oauth",
+          "headers": [
+            {
+              "name": "Authorization",
+              "description": "Bearer hf_... token if not using OAuth",
+              "isSecret": true
+            }
+          ]
+        }
+      ],
+      "packages": []
+    },
+    {
+      "id": "chatgpt/plugin_asdk_app_6934801c799081918131791660f02890",
+      "name": "Replit",
+      "description": "Replit turns your ideas into real, running web apps and websites, with no coding or setup required. Describe what you want in plain language and Replit's AI Agent builds a working app for you (frontend,\u2026",
+      "version": "directory",
+      "category": "Development",
+      "publisher": "Replit",
+      "website": "https://replit.com",
+      "featured": false,
+      "logo": "/integrations/replit.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "metadataSource": "https://chatgpt.com/plugins",
+      "chatgptDirectory": {
+        "name": "Replit",
+        "pluginId": "plugin_asdk_app_6934801c799081918131791660f02890",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      },
+      "remotes": [],
+      "packages": [],
+      "availability": "provider-setup"
+    },
+    {
+      "id": "chatgpt/plugins_6a8ddf314ab88191864c208fda197798",
+      "name": "Firebase",
+      "description": "Official Firebase plugin for Codex. Manage projects, add backend services, develop AI features, deploy and host apps, and more.",
+      "version": "directory",
+      "category": "Infrastructure",
+      "publisher": "Firebase",
+      "website": "https://firebase.google.com",
+      "featured": false,
+      "logo": "/integrations/firebase.svg",
+      "logoSource": "https://github.com/simple-icons/simple-icons",
+      "metadataSource": "https://chatgpt.com/plugins",
+      "chatgptDirectory": {
+        "name": "Firebase",
+        "pluginId": "plugins_6a8ddf314ab88191864c208fda197798",
+        "url": "https://chatgpt.com/plugins",
+        "retrievedAt": "2026-10-17"
+      },
+      "remotes": [],
+      "packages": [],
+      "availability": "provider-setup"
+    }
+  ],
+  "sources": [
+    "https://registry.modelcontextprotocol.io/v0.1/servers",
+    "https://registry.npmjs.org/",
+    "https://pypi.org/",
+    "https://chatgpt.com/plugins",
+    "https://learn.chatgpt.com/docs/plugins"
+  ]
+}

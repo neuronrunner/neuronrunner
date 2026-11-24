@@ -1,0 +1,340 @@
+{
+  "seo": {
+    "landingTitle": "Entegrasyonlar ve MCP Bağlantıları",
+    "landingDescription": "Otonom bulut yapay zeka ajanınızı GitHub, Slack, Notion, Linear, Postgres, Supabase ve onlarca Model Context Protocol (MCP) sunucusuna bağlayın.",
+    "workspaceTitle": "Çalışma Alanı Entegrasyonları"
+  },
+  "categories": {
+    "all": "Tümü",
+    "popular": "Popüler",
+    "newNoteworthy": "Yeni ve Öne Çıkanlar",
+    "development": "Geliştirme",
+    "productivity": "Üretkenlik",
+    "communication": "İletişim",
+    "dataAnalytics": "Veri ve Analitik",
+    "design": "Tasarım",
+    "salesMarketing": "Satış ve Pazarlama",
+    "research": "Araştırma",
+    "infrastructure": "Altyapı",
+    "finance": "Finans",
+    "custom": "Özel"
+  },
+  "categoryDescriptions": {
+    "popular": "En sık kullanılan ve önerilen MCP sunucuları ve uygulamalar.",
+    "newNoteworthy": "Yeni eklenen ve trend olan MCP sunucuları, ajan araçları ve entegrasyonlar.",
+    "development": "Kod geliştirme, Git iş akışları, terminaller, konteynerler ve geliştirici altyapısı.",
+    "productivity": "Not alma, görev yönetimi, issue takibi ve kişisel organizasyon.",
+    "communication": "Ekip sohbeti, e-posta, mesajlaşma kanalları ve bildirimler.",
+    "dataAnalytics": "Veritabanları, veri ambarları, vektör arama, sorgular ve iş zekâsı.",
+    "design": "Tasarım araçları, ortak çalışma alanları, görsel düzenleme ve UI varlıkları.",
+    "salesMarketing": "Müşteri verileri, iletişim, pazarlama analitiği ve CRM sistemleri.",
+    "research": "Web scraping, arama motorları, makale arşivleri ve bilgi keşfi.",
+    "infrastructure": "Bulut barındırma, sunucu altyapısı, DNS ve serverless backend'ler.",
+    "finance": "Faturalandırma platformları, ödeme altyapıları, muhasebe ve finansal raporlama."
+  },
+  "workspace": {
+    "ariaLabel": "Entegrasyonlar",
+    "eyebrow": "Çalışma Alanı / MCP Entegrasyonları",
+    "title": "Entegrasyonlar",
+    "subtitle": "Neuron Runner'ın araçlarınız genelinde çalışabilmesi için eklentiler ve MCP sunucuları bağlayın.",
+    "openSidebar": "Kenar çubuğunu aç",
+    "addCustomConnector": "Özel entegrasyon ekle",
+    "addCustomShort": "Özel ekle",
+    "backToExplore": "Keşfet'e dön",
+    "categoryFallbackDescription": "Tüm {{category}} entegrasyonlarına ve MCP sunucularına göz atın.",
+    "searchAria": "Entegrasyonları ara",
+    "searchPlaceholder": "Entegrasyonlarda ara",
+    "searchCategoryAria": "{{category}} entegrasyonlarında ara",
+    "searchCategoryPlaceholder": "{{category}} içinde ara...",
+    "clearSearch": "Aramayı temizle",
+    "sort": {
+      "ariaLabel": "Entegrasyonları sırala",
+      "featured": "Önce öne çıkanlar",
+      "nameAsc": "Ad: A–Z"
+    },
+    "tabs": {
+      "ariaLabel": "Entegrasyon görünümleri",
+      "explore": "Keşfet",
+      "connections": "Bağlantılarım"
+    },
+    "loadError": "Bağlantılarınız yüklenemedi. {{error}}",
+    "tryAgain": "Tekrar dene",
+    "directoryAriaLabel": "Entegrasyon dizini",
+    "searchResults": "Arama sonuçları",
+    "allConnectors": "Tüm entegrasyonlar",
+    "browseCategoryAria": "{{category}} entegrasyonlarına göz atın",
+    "seeAll": "Tümünü gör ({{count}})",
+    "showingCount": "{{total}} uygulamadan {{shown}} tanesi gösteriliyor",
+    "showMore": "Daha fazla entegrasyon göster",
+    "footerCatalog": "{{count}} uygulama ve MCP sunucusu · Güncelleme {{date}}",
+    "mcpRegistry": "MCP Registry",
+    "connections": {
+      "ariaLabel": "Kayıtlı bağlantılar",
+      "loading": "Bağlantılarınız yükleniyor…",
+      "emptyTitle": "İlk bağlantınızı burada kurun",
+      "emptySearchTitle": "Bağlantı bulunamadı",
+      "emptyDescription": "Sohbete dahil etmek için ilk uygulamanızı bağlayın.",
+      "emptySearchDescription": "\"{{query}}\" ile eşleşen bağlantı bulunamadı.",
+      "exploreCta": "Entegrasyonları keşfet"
+    },
+    "empty": {
+      "noConnectorsTitle": "Entegrasyon bulunamadı",
+      "noCategoryMatches": "{{category}} kategorisinde \"{{query}}\" ile eşleşen entegrasyon bulunamadı.",
+      "noCategoryItems": "{{category}} kategorisinde entegrasyon yok.",
+      "noSearchDescription": "Dizini keşfetmek için başka bir uygulama deneyin veya aramanızı temizleyin."
+    },
+    "mcpConnectionsTitle": "MCP bağlantıları"
+  },
+  "card": {
+    "configureAria": "{{name}} yapılandır",
+    "connected": "Bağlı",
+    "configured": "Yapılandırıldı",
+    "customDescription": "Özel MCP bağlantınız.",
+    "providerSetup": "Sağlayıcı kurulumu"
+  },
+  "dialog": {
+    "customTitle": "Özel entegrasyon ekle",
+    "customDescription": "Kendi MCP sunucunuzu çalışma alanınıza ekleyin.",
+    "setupGuide": "Kurulum kılavuzu",
+    "authHeaderDescription": "İsteğe bağlı. Bearer ardından erişim token'ınızı girin.",
+    "providerSetup": {
+      "title": "Sağlayıcı üzerinden kurulum yapın",
+      "description": "Bu uygulama için herkese açık bir MCP bağlantısı henüz doğrulanmadı. Bağlantı ayrıntıları için sağlayıcıyı ziyaret edin veya elinizdeki bir MCP endpoint'ini ekleyin.",
+      "visitProvider": "Sağlayıcıyı ziyaret et",
+      "addEndpoint": "MCP endpoint'i ekle"
+    },
+    "verified": {
+      "title": "Bağlantı doğrulandı",
+      "descriptionOne": "Ajanınız için {{count}} araç kullanılabilir durumda. Entegrasyonunuz kullanıma hazır.",
+      "descriptionOther": "Ajanınız için {{count}} araç kullanılabilir durumda. Entegrasyonunuz kullanıma hazır.",
+      "done": "Tamam"
+    },
+    "fields": {
+      "name": "Entegrasyon adı",
+      "namePlaceholder": "Ekibimin araçları",
+      "connectionMethod": "Bağlantı yöntemi",
+      "serverUrl": "Sunucu URL'si",
+      "httpProtocol": "HTTP protokolü",
+      "workspaceSandbox": "Çalışma alanı sandbox'ı",
+      "workspacePlaceholder": "Bir çalışma alanı seçin",
+      "noWorkspaces": "Kullanılabilir çalışma alanı yok",
+      "workspaceHint": "Bu çalışma alanının sandbox'ı içinde çalışır ve bu çalışma alanındaki sohbetlerde kullanılabilir.",
+      "serverCommand": "Sunucu komutu",
+      "serverCommandHint": "İlgili çalışma zamanının çalışma alanı sandbox'ında kurulu olması gerekir.",
+      "authentication": "Kimlik doğrulama",
+      "required": "zorunlu",
+      "keepSavedPlaceholder": "Kayıtlı kimlik bilgilerini korumak için boş bırakın",
+      "enterFieldPlaceholder": "{{name}} girin"
+    },
+    "methods": {
+      "remote": "Uzak · {{protocol}}{{suffix}}",
+      "local": "Yerel · {{runtime}}",
+      "remoteHttp": "Uzak · HTTP",
+      "localStdio": "Yerel · stdio"
+    },
+    "auth": {
+      "oauth": "OAuth · Hesabınızı bağlayın",
+      "token": "API token'ı",
+      "none": "Kimlik doğrulama yok"
+    },
+    "oauth": {
+      "description": "Sağlayıcı ile oturum açın ve bu entegrasyonun nelere erişebileceğini seçin. Yetkilendirme tamamlandığında buraya döneceksiniz.",
+      "settings": "OAuth ayarları",
+      "settingsHint": "Yalnızca sağlayıcı kayıtlı bir OAuth uygulaması istediğinde gereklidir.",
+      "clientId": "Client ID",
+      "clientSecret": "Client secret",
+      "redirectUrl": "Yönlendirme URL'si"
+    },
+    "advanced": {
+      "headersSummary": "Gelişmiş header'lar",
+      "envSummary": "Gelişmiş ortam değişkenleri",
+      "description": "String değerler içeren JSON nesnesi. Kayıtlı kimlik bilgilerini değiştirirken tüm değerleri girin.",
+      "ariaLabel": "Gelişmiş ayarlar JSON"
+    },
+    "security": {
+      "oauth": "Access ve refresh token'ları sunucuda şifrelenerek saklanır. İstediğiniz zaman bağlantıyı kesebilirsiniz.",
+      "credentials": "Kimlik bilgileri sunucuda şifrelenerek saklanır."
+    },
+    "savedInactiveNotice": "Yapılandırma kaydedildi. Doğrulama başarılı olana kadar entegrasyon pasif durumda kalır.",
+    "status": {
+      "completeInProvider": "Yetkilendirmeyi sağlayıcı penceresinde tamamlayın.",
+      "startingSandbox": "Entegrasyon çalışma alanı sandbox'ınızda başlatılıyor. İlk paket kurulumu iki dakikaya kadar sürebilir."
+    },
+    "actions": {
+      "disconnect": "Bağlantıyı kes",
+      "cancelAuth": "Yetkilendirmeyi iptal et",
+      "waitingAuth": "Yetkilendirme bekleniyor…",
+      "verifying": "Bağlantı doğrulanıyor…",
+      "reconnectAccount": "Hesabı yeniden bağla",
+      "connectAccount": "Hesabı bağla",
+      "saveAndVerify": "Kaydet ve doğrula",
+      "connect": "Bağlan",
+      "signInToConnect": "Bağlanmak için giriş yapın"
+    },
+    "errors": {
+      "allowPopups": "Hesabınızı bağlamak için açılır pencerelere (pop-up) izin verin.",
+      "invalidJsonObject": "{\"API_KEY\": \"your-key\"} gibi string değerler içeren geçerli bir JSON nesnesi girin.",
+      "fieldRequired": "{{name}} zorunludur.",
+      "urlPlaceholders": "Sunucu URL'sindeki yer tutucuları kendi hesap bilgilerinizle değiştirin.",
+      "commandPlaceholders": "Bağlanmadan önce komuttaki yer tutucuları doldurun.",
+      "selectWorkspace": "Bu entegrasyonun çalışacağı çalışma alanı sandbox'ını seçin.",
+      "verificationFailed": "Bağlantı doğrulaması başarısız oldu. Kimlik bilgilerinizi kontrol edip tekrar deneyin.",
+      "invalidAdvancedJson": "Gelişmiş ayarlar geçerli JSON formatında olmalıdır."
+    },
+    "footerManage": "Araçlarınızı <link>Entegrasyonlar</link> bölümünden yönetin.",
+    "legacyLocal": {
+      "title": "Yerel bağlantı artık desteklenmiyor",
+      "description": "Bu MCP sunucusu yerel bir stdio komutu kullanıyor. Yeni yerel bağlantılar kapalıdır; bağlantıyı kesip uzak bir HTTP/SSE endpoint'i bağlayın."
+    }
+  },
+  "oauth": {
+    "status": {
+      "pendingTitle": "Hesabınız bağlanıyor…",
+      "connectedTitle": "Hesap bağlandı",
+      "errorTitle": "Hesabınız bağlanamadı",
+      "pendingDescription": "Yetkilendirme tamamlanıyor ve MCP bağlantısı doğrulanıyor.",
+      "connectedDescription": "Bu pencereyi kapatıp entegrasyonlarınıza dönebilirsiniz."
+    },
+    "backToConnectors": "Entegrasyonlara dön",
+    "errors": {
+      "missingState": "Yetkilendirme durumu eksik. Entegrasyonlar bölümünden tekrar başlatın.",
+      "wrongTab": "Bu yetkilendirme bu tarayıcı sekmesinde başlatılmadı. Entegrasyonlar bölümünden tekrar başlatın.",
+      "unverified": "MCP bağlantısı doğrulanamadı. Entegrasyonlar bölümünden tekrar başlatın."
+    }
+  },
+  "landing": {
+    "hero": {
+      "pill": "Model Context Protocol ve Ekosistem",
+      "title": "Entegrasyonlar",
+      "tagline": "Yapay zeka ajanınızı <highlight>entegrasyonlarla</highlight> güçlendirin.",
+      "subtitle": "Ajanınızı veritabanlarına, dokümanlara, issue tracker'lara ve bulut araçlarına şifreli kimlik bilgileri ve çalışma alanına özel erişimle bağlayın.",
+      "browseCta": "Entegrasyonlara göz at",
+      "more": "+{{count}} daha"
+    },
+    "stats": {
+      "servers": "Onaylı MCP Sunucusu",
+      "auth": "Sıfır Kurulumlu Yetki",
+      "sandbox": "Sandbox İzole",
+      "fee": "Platform Komisyonu",
+      "install": "Yerel kurulum"
+    },
+    "search": {
+      "placeholder": "Ad, kategori veya açıklamaya göre 37 entegrasyonda arayın...",
+      "sortLabel": "Sırala:"
+    },
+    "sort": {
+      "featured": "Önerilen",
+      "az": "Ad: A–Z",
+      "za": "Ad: Z–A"
+    },
+    "categories": {
+      "allWithCount": "Tümü ({{count}})",
+      "recommendedWithCount": "Önerilen ({{count}})"
+    },
+    "catalog": {
+      "showing": "{{total}} entegrasyondan <strong>{{shown}}</strong> tanesi gösteriliyor",
+      "title": "Seçilmiş remote entegrasyonlar",
+      "subtitle": "Önerilen geliştirici araçları önce, ardından stack'inizin geri kalanı için güvenilir remote bağlantılar."
+    },
+    "empty": {
+      "title": "Entegrasyon bulunamadı",
+      "description": "\"{{query}}\" ile eşleşen bir entegrasyon bulunamadı. Başka bir ad veya anahtar kelime aramayı deneyin.",
+      "reset": "Filtreleri sıfırla"
+    },
+    "card": {
+      "byPublisher": "{{publisher}} tarafından",
+      "featured": "Öne Çıkan",
+      "inspectDetails": "Detayları incele",
+      "remote": "Remote",
+      "endpoints": "{{count}} remote endpoint"
+    },
+    "howItWorks": {
+      "eyebrow": "Güvenli ve Ölçeklenebilir Mimari",
+      "title": "Neuron Runner'da MCP araçları nasıl çalışır?",
+      "subtitle": "Üç katmanlı mimari, token'larınızı güvende tutarken en gelişmiş modellere otonom yetenekler kazandırır.",
+      "step1": {
+        "eyebrow": "01 / Depolama",
+        "title": "Şifreli Kimlik Bilgisi Kasası",
+        "description": "OAuth token'larınız ve API anahtarlarınız Fernet kriptografisiyle şifrelenerek saklanır. Yalnızca doğrulanmış sunucu tarafı MCP isteklerine eklenir; asla loglanmaz veya modele gösterilmez."
+      },
+      "step2": {
+        "eyebrow": "02 / Yürütme",
+        "title": "Doğrulanmış Uzak Ağ Geçidi",
+        "description": "Uzak MCP sunucularına şifreli kimlik bilgileri ve çalışma alanına özel yetkilendirmeyle doğrulanmış bir HTTPS ağ geçidi üzerinden erişilir."
+      },
+      "step3": {
+        "eyebrow": "03 / Araç Çağırma",
+        "title": "Otonom Model Çağırma",
+        "description": "Akıl yürütme modelleri kullanılabilir araç şemalarını otomatik olarak keşfeder. Ajan veritabanlarını sorgular, API spesifikasyonlarını çeker ve tam diff inceleme kontrolleriyle düzeltmeler uygular."
+      }
+    },
+    "faq": {
+      "eyebrow": "Entegrasyonlar SSS",
+      "title": "Sıkça Sorulan Sorular",
+      "items": {
+        "q1": {
+          "question": "Model Context Protocol (MCP) nedir?",
+          "answer": "Model Context Protocol (MCP), yapay zeka modellerinin araçları, veritabanlarını ve API'leri güvenli ve standartlaştırılmış bir biçimde keşfetmesine, okumasına ve çağırmasına olanak tanıyan açık bir standarttır. Her servis için özel entegrasyon yazmak yerine evrensel tak-çalıştır araç kullanımı sunar."
+        },
+        "q2": {
+          "question": "Entegrasyonlar Neuron Runner içinde nasıl güvenle çalışır?",
+          "answer": "Neuron Runner uzak MCP oturumlarını HTTPS üzerinden doğrular ve proxy'ler. Kimlik bilgileri sunucuda şifreli kalır ve modele veya tarayıcıya asla gösterilmez; built-in browser izole çalışma alanı sandbox'ında çalışır."
+        },
+        "q3": {
+          "question": "API token'larım ve OAuth kimlik bilgilerim nasıl korunuyor?",
+          "answer": "OAuth token'larınız ve API anahtarlarınız Fernet kriptografisiyle şifrelenerek saklanır. Yalnızca doğrulanmış sunucu tarafı MCP isteklerine eklenir; asla loglanmaz veya modele gösterilmez."
+        },
+        "q4": {
+          "question": "Kendi özel veya şirket içi MCP sunucumu bağlayabilir miyim?",
+          "answer": "Evet. Integrations üzerinden herhangi bir uzak HTTP/SSE MCP endpoint'i ekleyebilirsiniz. Yerel stdio komutları artık desteklenmiyor."
+        },
+        "q5": {
+          "question": "Neuron Runner entegrasyonları kullanmak için ek ücret alıyor mu?",
+          "answer": "Hayır. Tüm entegrasyonlar ve MCP sunucuları hiçbir platform ek ücreti olmadan tamamen ücretsizdir. Yalnızca sandbox Docker container'iniz aktif olarak çalışırken standart saniye bazlı işlem ücretlerini ödersiniz."
+        }
+      }
+    },
+    "cta": {
+      "title": "Araçlarınızı saniyeler içinde bağlamaya başlayın.",
+      "subtitle": "Bir çalışma alanı oluşturun, favori servislerinizi bağlayın ve modellerinizin tam bağlam bilinciyle kod yazmasına ve doğrulamasına izin verin.",
+      "primary": "Ücretsiz çalışma alanı oluşturun",
+      "secondary": "Dokümanları inceleyin"
+    },
+    "footer": {
+      "pricing": "Fiyatlandırma",
+      "integrations": "Entegrasyonlar",
+      "docs": "Dokümanlar",
+      "terms": "Koşullar",
+      "privacy": "Gizlilik"
+    },
+    "preview": {
+      "publishedBy": "Yayınlayan: {{publisher}}",
+      "protocolTitle": "Protokol ve Aktarım",
+      "transportTypeLabel": "Aktarım türü:",
+      "transportStdio": "stdio (CLI çalışma zamanı)",
+      "transportHttp": "SSE / HTTP Stream",
+      "sandboxLabel": "Erişim:",
+      "sandboxValue": "Çalışma alanına özel",
+      "websiteLabel": "Web sitesi:",
+      "close": "Kapat",
+      "connectInWorkspace": "Çalışma Alanında Bağla",
+      "authLabel": "Kimlik doğrulama:"
+    },
+    "auth": {
+      "oauth": "OAuth 2.0",
+      "token": "API anahtarı",
+      "none": "Kimlik doğrulama yok",
+      "multi": "OAuth / token"
+    }
+  },
+  "errors": {
+    "unexpected": "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.",
+    "unreachable": "Sunucuya ulaşılamadı. Bağlantınızı kontrol edip tekrar deneyin.",
+    "serverUnavailable": "Sunucu geçici olarak kullanılamıyor. Lütfen daha sonra tekrar deneyin.",
+    "serverError": "Beklenmeyen bir sunucu hatası oluştu. Lütfen daha sonra tekrar deneyin.",
+    "sessionExpired": "Oturumunuzun süresi doldu. Lütfen tekrar giriş yapın.",
+    "forbidden": "Bu işlemi gerçekleştirme yetkiniz yok.",
+    "notFound": "İstenen entegrasyon bulunamadı.",
+    "invalidRequest": "Geçersiz istek. Lütfen girdilerinizi kontrol edip tekrar deneyin."
+  }
+}

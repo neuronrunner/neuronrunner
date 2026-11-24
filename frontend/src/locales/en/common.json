@@ -1,0 +1,62 @@
+{
+  "common": {
+    "save": "Save Changes",
+    "saving": "Saving...",
+    "saved": "Changes saved successfully",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "loading": "Loading...",
+    "search": "Search",
+    "confirm": "Confirm",
+    "copy": "Copy",
+    "copied": "Copied",
+    "upload": "Upload",
+    "change": "Change",
+    "removePicture": "Remove picture"
+  },
+  "language": {
+    "label": "Language",
+    "description": "Choose the display language for the Neuron Runner interface.",
+    "selectPlaceholder": "Select language",
+    "updatedTitle": "Language updated",
+    "updatedDescription": "Interface language changed to {{language}}."
+  },
+  "settings": {
+    "title": "Settings",
+    "sections": {
+      "workspace": "Workspace",
+      "account": "Account"
+    },
+    "tabs": {
+      "workspace": "Workspace",
+      "team": "Team",
+      "providerKeys": "Provider keys (BYOK)",
+      "vmSecrets": "VM Secrets",
+      "billing": "Billing",
+      "usage": "Usage",
+      "logs": "Logs",
+      "profile": "Profile",
+      "personalization": "Personalization",
+      "security": "Security",
+      "apiKeys": "API Keys"
+    }
+  },
+  "nav": {
+    "docs": "Docs",
+    "pricing": "Pricing",
+    "connectors": "Connectors",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "signOut": "Sign out",
+    "newChat": "New chat",
+    "projects": "Projects"
+  },
+  "billingPrompt": {
+    "title": "Insufficient Balance",
+    "defaultDescription": "Your workspace balance is $0. Add wallet funds or upgrade your plan to continue.",
+    "hint": "Add funds to your workspace wallet or upgrade to a higher plan with monthly included quota.",
+    "action": "Upgrade or Add Funds"
+  }
+}

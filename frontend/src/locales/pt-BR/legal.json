@@ -1,0 +1,352 @@
+{
+  "nav": {
+    "backToHome": "Voltar para o Neuron Runner",
+    "termsOfService": "Termos de Serviço",
+    "privacyPolicy": "Política de Privacidade",
+    "onThisPage": "Nesta página",
+    "tocAriaLabel": "Índice"
+  },
+  "footer": {
+    "pricing": "Preços",
+    "integrations": "Integrações",
+    "docs": "Documentação",
+    "terms": "Termos",
+    "privacy": "Privacidade"
+  },
+  "terms": {
+    "seo": {
+      "title": "Termos de Serviço e Política de Uso Aceitável",
+      "description": "Termos de Serviço e Política de Uso Aceitável do Neuron Runner. Proíbe estritamente gerar conteúdo sexualmente explícito, adulto ou NSFW em geral, CSAM, imagens não consensuais e conteúdo ilícito."
+    },
+    "lastUpdated": "Última atualização: 12 de novembro de 2026",
+    "title": "Termos de Serviço",
+    "intro": "Bem-vindo ao Neuron Runner (\"Neuron Runner\", \"nós\", \"nosso\" ou \"conosco\"). Estes Termos de Serviço (\"Termos\") regem seu acesso e uso do nosso site em neuronrunner.com, nosso workspace autônomo de programação, máquinas virtuais sandbox Linux na nuvem (\"VMs\"), conectores Model Context Protocol (\"MCP\"), APIs compatíveis com OpenAI e serviços relacionados (coletivamente, o \"Serviço\"). Ao criar uma conta, acessar ou usar o Serviço, você concorda em ficar vinculado a estes Termos e à nossa <privacyLink>Política de Privacidade</privacyLink>.",
+    "toc": {
+      "eligibility": "1. Elegibilidade e Contas",
+      "sandboxCompute": "2. Sandboxes na Nuvem e VMs",
+      "acceptableUse": "3. Política de Uso Aceitável",
+      "billing": "4. Planos, Cotas e Cobrança",
+      "byokMcp": "5. BYOK, MCP e Acesso à API",
+      "ipOutputs": "6. Propriedade de Código e Saídas de IA",
+      "aiDisclaimers": "7. Avisos sobre IA e Execução",
+      "termination": "8. Suspensão e Encerramento",
+      "warranties": "9. Isenção de Garantias",
+      "liability": "10. Limitação de Responsabilidade",
+      "indemnification": "11. Indenização e Alterações",
+      "contact": "12. Contato"
+    },
+    "sections": {
+      "eligibility": {
+        "heading": "1. Elegibilidade e Cadastro de Conta",
+        "p1": "Você deve ter pelo menos 18 anos (ou a maioridade legal em sua jurisdição, ou pelo menos 16 anos com consentimento verificável dos pais ou responsável legal) para usar o Serviço. Ao concordar com estes Termos, você declara e garante que: (a) atende a esses requisitos mínimos de idade; (b) não foi anteriormente suspenso ou removido do Serviço; e (c) seu cadastro e uso do Serviço estão em conformidade com todas as leis, controles de exportação e regulamentações aplicáveis.",
+        "p2": "Para acessar a maioria dos recursos do Serviço, você deve registrar uma conta usando um endereço de e-mail válido ou um provedor OAuth compatível (como Google ou GitHub). Você concorda em fornecer informações precisas e completas e mantê-las atualizadas. Você é o único responsável por manter a confidencialidade de suas credenciais, tokens de API e convites de workspace, bem como por todas as atividades que ocorram sob sua conta ou workspace de equipe."
+      },
+      "sandboxCompute": {
+        "heading": "2. Sandboxes Linux na Nuvem, VMs e Snapshots",
+        "intro": "O Neuron Runner fornece máquinas virtuais Linux isoladas na nuvem, terminais web, transmissões de desktop VNC ao vivo e relays de visualização de portas para desenvolvimento e testes de software. Seu uso dos recursos de computação em nuvem está sujeito aos limites de nível do seu plano de assinatura ativo:",
+        "items": {
+          "sessionDuration": {
+            "title": "Duração da Sessão e Limites de Inatividade.",
+            "body": "Sessões contínuas de VM estão sujeitas a durações máximas específicas do plano (por exemplo, até 20 minutos no plano Free e até 60 minutos nos planos pagos, salvo extensão ou criação de snapshot). O estado efêmero não salvo em uma sessão encerrada ou expirada não pode ser recuperado."
+          },
+          "persistentSnapshots": {
+            "title": "Snapshots Persistentes.",
+            "body": "Os planos pagos incluem uma cota designada de snapshots de VM persistentes. Se você fizer downgrade ou cancelar sua assinatura, ou se sua conta permanecer inativa por um período prolongado, reservamo-nos o direito de remover ou excluir snapshots que excedam a alocação de armazenamento do seu plano atual após aviso razoável."
+          },
+          "fairUse": {
+            "title": "Uso Justo de Recursos e Isolamento.",
+            "body": "Podemos limitar o tráfego de saída de rede, CPU, E/S de disco ou portas de visualização expostas caso um sandbox ameace a estabilidade da plataforma ou viole nossa Política de Uso Aceitável."
+          }
+        }
+      },
+      "acceptableUse": {
+        "heading": "3. Política de Uso Aceitável",
+        "intro": "Você concorda em usar o Serviço, os modelos de IA e as VMs na nuvem apenas para fins lícitos de desenvolvimento de software, pesquisa e produtividade. É estritamente proibido gerar, solicitar, renderizar, hospedar ou distribuir qualquer conteúdo sexualmente explícito, adulto, pornográfico ou NSFW (\"Not Safe For Work\") em geral. Você concorda em <not>não</not>:",
+        "items": {
+          "nsfw": {
+            "title": "Conteúdo Sexualmente Explícito, Adulto e NSFW.",
+            "body": "Gerar, solicitar, inserir prompts, enviar, renderizar, hospedar, armazenar ou distribuir qualquer conteúdo sexualmente explícito, pornográfico, adulto ou NSFW (\"Not Safe For Work\") em geral—não apenas subcategorias extremas ou ilegais. Isso inclui, sem limitação, nudez, erotismo, mídia sexualmente sugestiva ou explícita, atos sexuais explícitos, texto, código, imagens, áudio ou vídeo sexualmente explícitos gerados por IA, ou serviços adultos."
+          },
+          "harmful": {
+            "title": "Conteúdo Nocivo, Abusivo e Ilegal.",
+            "body": "Gerar, armazenar, enviar ou distribuir Material de Abuso Sexual Infantil (CSAM) ou Exploração e Abuso Sexual Infantil (CSAE), imagens íntimas não consensuais (NCII), deepfakes sexuais ilegais ou não consensuais, violência extrema, gore, incentivo à automutilação ou suicídio, discurso de ódio, assédio, ferramentas de ataque cibernético ou instruções para armas de destruição em massa."
+          },
+          "cryptoMining": {
+            "title": "Mineração de Criptomoedas.",
+            "body": "Realizar mineração de criptomoedas, hashing de prova de trabalho (proof-of-work) ou validação de nós de blockchain dentro de qualquer sandbox ou VM do Neuron Runner."
+          },
+          "networkAbuse": {
+            "title": "Abuso de Rede e Ataques Cibernéticos.",
+            "body": "Usar VMs na nuvem ou URLs de visualização para lançar ataques de negação de serviço (DoS/DDoS), varreduras de portas não autorizadas, exploração de vulnerabilidades contra alvos de terceiros, servidores de comando e controle (C2), páginas de phishing, distribuição de malware ou envio em massa de mensagens não solicitadas (spam)."
+          },
+          "sandboxEscape": {
+            "title": "Escape de Sandbox e Adulteração de Infraestrutura.",
+            "body": "Tentar violar o isolamento de contêiner/VM, sondar redes host ou serviços de metadados, ou obter acesso não autorizado a workspaces, sandboxes ou contas de outros usuários."
+          },
+          "rateLimit": {
+            "title": "Evasão de Limites de Taxa e Cotas.",
+            "body": "Criar múltiplas contas gratuitas, automatizar cadastros abusivos ou contornar de outra forma as cotas mensais, cotas de vCPU ou controles de cobrança."
+          }
+        },
+        "outro": "O Neuron Runner mantém uma política de tolerância zero para conteúdo sexualmente explícito e ilícito. Aplicamos controles automatizados e manuais de segurança de conteúdo e nos reservamos o direito de analisar prompts, entradas e conteúdos gerados para garantir a conformidade com nossas políticas de conteúdo e padrões de processadores de pagamento. Qualquer violação resultará na suspensão imediata da conta, encerramento das VMs e perda dos saldos restantes sem reembolso."
+      },
+      "billing": {
+        "heading": "4. Assinaturas, cotas de uso e cobrança",
+        "items": {
+          "plansRenewal": {
+            "title": "Planos de Assinatura e Renovação.",
+            "body": "Os planos pagos (como Plus, Pro e planos Team por assento) são cobrados antecipadamente em um ciclo mensal ou anual e renovados automaticamente ao final de cada período de cobrança, salvo cancelamento prévio."
+          },
+          "allowances": {
+            "title": "Cotas mensais.",
+            "body": "Cada plano inclui uma cota mensal de uso de LLM e uma cota mensal de computação em nuvem (medida em vCPU-horas). As cotas mensais não utilizadas e as vCPU-horas incluídas expiram ao final do ciclo de cobrança e não são acumuladas."
+          },
+          "teamWorkspaces": {
+            "title": "Workspaces de Equipe.",
+            "body": "As assinaturas Team são cobradas por assento de membro ativo. Os administradores do workspace são responsáveis pelas atribuições de assentos; adicionar assentos no meio do ciclo pode gerar cobranças proporcionais, e os orçamentos de computação são compartilhados em todo o workspace."
+          },
+          "topUps": {
+            "title": "Recargas de Uso Extra e Taxas de Processamento.",
+            "body": "Assinantes pagos podem ativar recargas de carteira de uso adicional para continuar executando modelos ou VMs além das cotas incluídas. As transações de recarga podem estar sujeitas a uma taxa de processamento de pagamento divulgada. Créditos adquiridos e saldos de recarga não têm valor em dinheiro, são intransferíveis e não reembolsáveis, exceto quando exigido pela lei aplicável."
+          },
+          "cancellations": {
+            "title": "Cancelamentos e Alterações de Plano.",
+            "body": "Você pode cancelar sua assinatura ou agendar um downgrade de plano a qualquer momento nas configurações de cobrança do seu workspace. Cancelamentos e downgrades entram em vigor ao final do ciclo de cobrança pago atual."
+          }
+        }
+      },
+      "byokMcp": {
+        "heading": "5. Bring Your Own Key (BYOK), Conectores MCP e Acesso à API",
+        "intro": "O Neuron Runner permite que você configure suas próprias chaves de API de provedores de LLM de terceiros (\"BYOK\"), conecte ferramentas externas via Model Context Protocol (\"MCP\") ou OAuth e acesse modelos por meio de nossos endpoints <code>/v1</code> compatíveis com OpenAI:",
+        "items": {
+          "thirdPartyTerms": {
+            "title": "Termos e Cobranças de Terceiros.",
+            "body": "Quando você usa BYOK ou conecta servidores MCP externos (por exemplo, GitHub, Linear, Slack, Notion ou servidores HTTP/Stdio personalizados), seu uso desses serviços é regido pelo seu contrato separado com o respectivo provedor. Você é o único responsável por quaisquer taxas de uso cobradas diretamente pelo seu provedor BYOK."
+          },
+          "vmCliSessions": {
+            "title": "Sessões CLI na VM e Assinaturas de Terceiros.",
+            "body": "Se você fizer login em uma ferramenta oficial de linha de comando de terceiros dentro da sua Cloud VM isolada, sua sessão de autenticação e credenciais permanecerão estritamente dentro dessa VM e não serão lidas, extraídas ou armazenadas pelo Neuron Runner. O Neuron Runner é uma plataforma independente de computação em nuvem e não é afiliado, patrocinado ou endossado pela Anthropic, OpenAI, Google ou qualquer outro provedor de modelos. Você é o único responsável por verificar e cumprir os termos de assinatura, políticas de uso aceitável e limites de uso aplicáveis do seu provedor; qualquer suspensão de conta, limitação de taxa ou restrição imposta por um provedor terceiro está fora do controle e da responsabilidade do Neuron Runner."
+          },
+          "connectorSafety": {
+            "title": "Segurança de Conectores Externos.",
+            "body": "O Neuron Runner não se responsabiliza pela disponibilidade, precisão, segurança ou práticas de tratamento de dados de servidores MCP de terceiros ou APIs externas que você autorize seus agentes ou sandboxes a invocar."
+          }
+        }
+      },
+      "ipOutputs": {
+        "heading": "6. Propriedade Intelectual, Código do Cliente e Saídas de IA",
+        "yourContent": {
+          "title": "Seu Conteúdo.",
+          "body": "Entre você e o Neuron Runner, você retém todos os direitos, títulos e propriedade sobre o código-fonte, arquivos, prompts, variáveis de ambiente e repositórios que enviar ou criar em seus workspaces (\"Entradas\"), bem como sobre o código, diffs e respostas gerados para você pelo Serviço (\"Saídas\"), na máxima extensão permitida pela lei aplicável."
+        },
+        "limitedLicense": {
+          "title": "Licença Limitada do Serviço.",
+          "body": "Você concede ao Neuron Runner uma licença mundial, não exclusiva e livre de royalties para hospedar, executar em sandboxes, criar snapshots de VM, transmitir aos provedores de modelos de IA selecionados por você e exibir suas Entradas e Saídas exclusivamente conforme necessário para fornecer, proteger e manter o Serviço para você e seus membros autorizados do workspace."
+        },
+        "platformIp": {
+          "title": "Propriedade Intelectual da Plataforma.",
+          "body": "O Neuron Runner e seus licenciadores detêm todos os direitos, títulos e interesses sobre o próprio Serviço, incluindo nosso software de orquestração, interface de usuário, infraestrutura de sandboxes, logotipos e documentação."
+        }
+      },
+      "aiDisclaimers": {
+        "heading": "7. Avisos sobre Inteligência Artificial e Execução de Código",
+        "body": "Modelos de linguagem grandes e agentes autônomos de programação são sistemas probabilísticos. As Saídas geradas pelo Serviço podem conter bugs, vulnerabilidades de segurança, declarações imprecisas (\"alucinações\"), comandos de shell destrutivos ou trechos de código semelhantes a código open-source ou de terceiros existente. Você é o único responsável por revisar, testar e validar todas as Saídas, alterações de código, pull requests e comandos de terminal antes de implantá-los em produção ou executá-los fora de um sandbox isolado."
+      },
+      "termination": {
+        "heading": "8. Suspensão e Encerramento",
+        "body": "Reservamo-nos o direito de suspender ou encerrar imediatamente sua conta, VMs ativas, URLs de visualização ou acesso à API, com ou sem aviso prévio, se determinarmos razoavelmente que: (a) você violou estes Termos ou nossa Política de Uso Aceitável (incluindo gerar, solicitar ou distribuir conteúdo sexualmente explícito, adulto, NSFW ou ilícito); (b) seu sandbox representa um risco de segurança, jurídico ou operacional para nossa infraestrutura ou terceiros; ou (c) sua conta possui obrigações de pagamento vencidas, incobráveis ou contestadas."
+      },
+      "warranties": {
+        "heading": "9. Isenção de Garantias",
+        "body": "O SERVIÇO, OS SANDBOXES NA NUVEM E TODAS AS SAÍDAS DE IA SÃO FORNECIDOS \"NO ESTADO EM QUE SE ENCONTRAM\" E \"CONFORME DISPONÍVEIS\", SEM GARANTIAS DE QUALQUER TIPO, EXPRESSAS OU IMPLÍCITAS, INCLUINDO, ENTRE OUTRAS, GARANTIAS IMPLÍCITAS DE COMERCIABILIDADE, ADEQUAÇÃO A UM PROPÓSITO ESPECÍFICO, TITULARIDADE, PRECISÃO, DISPONIBILIDADE E NÃO VIOLAÇÃO. O NEURON RUNNER NÃO GARANTE QUE O SERVIÇO OU O CÓDIGO GERADO SEJAM LIVRES DE ERROS, SEGUROS OU ININTERRUPTOS."
+      },
+      "liability": {
+        "heading": "10. Limitação de Responsabilidade",
+        "body": "NA MÁXIMA EXTENSÃO PERMITIDA PELA LEI APLICÁVEL, EM NENHUM CASO O NEURON RUNNER, SUAS AFILIADAS, DIRETORES, FUNCIONÁRIOS OU FORNECEDORES SERÃO RESPONSÁVEIS POR QUAISQUER DANOS INDIRETOS, INCIDENTAIS, ESPECIAIS, CONSEQUENCIAIS OU PUNITIVOS, OU POR QUALQUER PERDA DE LUCROS, RECEITAS, DADOS, SNAPSHOTS OU FUNDO DE COMÉRCIO DECORRENTES DE OU RELACIONADOS AO SEU USO DO SERVIÇO. NOSSA RESPONSABILIDADE AGREGADA POR TODAS AS REIVINDICAÇÕES RELACIONADAS AO SERVIÇO NÃO EXCEDERÁ O MAIOR ENTRE: (A) O VALOR TOTAL PAGO POR VOCÊ AO NEURON RUNNER NOS DOZE (12) MESES ANTERIORES AO EVENTO QUE DEU ORIGEM À REIVINDICAÇÃO OU (B) CEM DÓLARES NORTE-AMERICANOS (US$ 100,00)."
+      },
+      "indemnification": {
+        "heading": "11. Indenização, Lei Aplicável e Modificações",
+        "indemnity": {
+          "title": "Indenização.",
+          "body": "Você concorda em defender, indenizar e isentar o Neuron Runner e suas afiliadas contra quaisquer reivindicações, responsabilidades, danos, perdas e despesas (incluindo honorários advocatícios razoáveis) decorrentes de ou relacionados às suas Entradas, ao seu uso de VMs na nuvem ou conectores MCP, ou à sua violação destes Termos ou da lei aplicável."
+        },
+        "modifications": {
+          "title": "Modificações dos Termos.",
+          "body": "Podemos atualizar estes Termos periodicamente para refletir novos recursos, requisitos legais ou estruturas de preços. Quando fizermos alterações materiais, atualizaremos a data de \"Última atualização\" no topo desta página. Seu uso continuado do Serviço após a entrada em vigor das alterações constitui aceitação dos Termos revisados."
+        }
+      },
+      "contact": {
+        "heading": "12. Fale Conosco",
+        "body": "Se você tiver dúvidas, consultas sobre cobrança ou notificações legais referentes a estes Termos, entre em contato conosco pelo e-mail:"
+      }
+    }
+  },
+  "privacy": {
+    "seo": {
+      "title": "Política de Privacidade",
+      "description": "Política de Privacidade do Neuron Runner abrangendo coleta de dados, sandboxes Linux na nuvem, privacidade de modelos de IA, credenciais BYOK e direitos dos usuários."
+    },
+    "lastUpdated": "Última atualização: 11 de novembro de 2026",
+    "title": "Política de Privacidade",
+    "intro": "O Neuron Runner (\"Neuron Runner\", \"nós\", \"nosso\" ou \"conosco\") valoriza a privacidade e a segurança dos desenvolvedores e equipes que utilizam nosso site, workspaces autônomos de programação, sandboxes Linux na nuvem e APIs (coletivamente, os \"Serviços\"). Esta Política de Privacidade explica quais informações coletamos, como tratamos seu código, prompts e credenciais, e os direitos disponíveis a você. Consulte também nossos <termsLink>Termos de Serviço</termsLink>.",
+    "toc": {
+      "informationCollected": "1. Informações que Coletamos",
+      "howWeUse": "2. Como Usamos as Informações",
+      "aiPrivacy": "3. Privacidade de IA e Treinamento",
+      "sandboxCredentials": "4. Dados de Sandboxes, BYOK e MCP",
+      "dataSharing": "5. Compartilhamento e Subprocessadores",
+      "cookiesStorage": "6. Cookies e Armazenamento Local",
+      "retentionSecurity": "7. Retenção e Segurança de Dados",
+      "yourRights": "8. Seus Direitos e Escolhas",
+      "childrenTransfers": "9. Limites de Idade e Transferências",
+      "contact": "10. Fale Conosco"
+    },
+    "sections": {
+      "informationCollected": {
+        "heading": "1. Informações que Coletamos",
+        "directLabel": "Informações que você nos fornece diretamente:",
+        "directItems": {
+          "account": {
+            "title": "Dados de Conta e Perfil.",
+            "body": "Seu nome de usuário, endereço de e-mail, hash de senha e informações de perfil recebidas quando você se cadastra diretamente ou se autentica via OAuth do Google ou GitHub."
+          },
+          "workspaceContent": {
+            "title": "Prompts, Código e Conteúdo do Workspace.",
+            "body": "Os prompts de chat, arquivos, repositórios, comandos de terminal e saídas de IA que você cria ou processa em seus projetos e sandboxes de VM Linux na nuvem."
+          },
+          "credentials": {
+            "title": "Credenciais de Integração (BYOK e MCP).",
+            "body": "Chaves de API de LLM de terceiros que você configura (\"Bring Your Own Key\") e tokens OAuth, cabeçalhos ou variáveis de ambiente que você fornece para conectar ferramentas externas do Model Context Protocol (\"MCP\")."
+          },
+          "billing": {
+            "title": "Metadados de Cobrança e Transações.",
+            "body": "Quando você assina um plano pago ou faz recarga na sua carteira de uso extra, nosso processador de pagamentos coleta os detalhes completos do seu cartão de pagamento. Armazenamos apenas metadados de cobrança não sensíveis—como bandeira do cartão, os últimos quatro dígitos do cartão, mês/ano de validade, status de cobrança e histórico de faturas."
+          },
+          "communications": {
+            "title": "Comunicações.",
+            "body": "Seu nome, endereço de e-mail e conteúdo das mensagens quando você entra em contato com o suporte ao cliente ou responde a convites de workspace."
+          }
+        },
+        "autoLabel": "Informações coletadas automaticamente:",
+        "autoItems": {
+          "telemetry": {
+            "title": "Telemetria de Uso e Cotas.",
+            "body": "Modelos invocados, contagens de tokens, duração de execução de VM em nuvem (vCPU-horas), contagens de snapshots e registros de data/hora de execução de ferramentas MCP necessários para cobrança e limitação de taxa."
+          },
+          "deviceLog": {
+            "title": "Informações de Dispositivo e Logs.",
+            "body": "Endereço IP, região geográfica aproximada inferida a partir do IP, tipo de navegador, sistema operacional e logs de requisições usados para segurança, autenticação e prevenção de abusos."
+          }
+        }
+      },
+      "howWeUse": {
+        "heading": "2. Como Usamos as Informações e Bases Legais",
+        "intro": "Processamos suas informações para os seguintes fins (com base na execução de contrato, interesses comerciais legítimos, cumprimento legal ou seu consentimento quando aplicável sob GDPR/KVKK):",
+        "items": {
+          "provisioning": "Provisionar e operar seus workspaces de programação, sandboxes Linux na nuvem e snapshots de VM persistentes.",
+          "routing": "Rotear seus prompts e chamadas de ferramentas para os modelos de IA e conectores MCP que você selecionar.",
+          "billing": "Para calcular cotas de LLM, consumo de vCPU-horas e processar pagamentos de assinatura ou recarga.",
+          "auth": "Autenticar suas sessões, enviar códigos de verificação de uso único (OTP) e gerenciar convites de workspace de equipe.",
+          "abuse": "Detectar e prevenir fraudes, escapes não autorizados de sandbox, criptomineração, abuso de rede e violações de confiança e segurança.",
+          "metrics": "Gerar métricas de desempenho agregadas e não identificáveis (como latência de cold-start e taxa de transferência do modelo) para melhorar a confiabilidade da plataforma."
+        }
+      },
+      "aiPrivacy": {
+        "heading": "3. Privacidade de Dados de IA e Política de Treinamento de Modelos",
+        "calloutTitle": "Sem Treinamento em Código Privado de Workspace:",
+        "calloutBody": "O Neuron Runner <not>não</not> utiliza seu código-fonte privado, arquivos de workspace, snapshots de VM, variáveis de ambiente ou prompts para treinar ou ajustar modelos fundacionais de IA.",
+        "body": "Quando você executa um modelo por meio do Neuron Runner, seu prompt e contexto relevante são transmitidos ao provedor de inferência de modelo selecionado (ou diretamente usando sua própria chave de API quando BYOK está habilitado) exclusivamente para gerar a resposta solicitada. Se você usar sua própria chave de API (BYOK), a retenção e o processamento de dados por esse provedor de origem são regidos pelo seu contrato direto e configurações de privacidade com esse provedor."
+      },
+      "sandboxCredentials": {
+        "heading": "4. Sandboxes na Nuvem, Chaves BYOK e Credenciais MCP",
+        "items": {
+          "encryption": {
+            "title": "Criptografia de Credenciais.",
+            "body": "Chaves de API de terceiros (BYOK), variáveis de ambiente de servidores MCP, cabeçalhos HTTP personalizados e tokens OAuth são criptografados em repouso antes de serem armazenados em nosso banco de dados e são descriptografados apenas em memória ao executar solicitações em seu nome."
+          },
+          "isolation": {
+            "title": "Isolamento de Sandbox.",
+            "body": "Cada sessão de VM na nuvem é executada em um ambiente virtualizado isolado com canais dedicados de terminal e visualização de desktop autenticados por token."
+          }
+        }
+      },
+      "dataSharing": {
+        "heading": "5. Compartilhamento de Dados e Subprocessadores",
+        "intro": "<notSell>Não vendemos</notSell> nem alugamos suas informações pessoais ou código-fonte a terceiros. Compartilhamos informações apenas nas seguintes circunstâncias:",
+        "items": {
+          "infrastructure": {
+            "title": "Provedores de Infraestrutura e Computação.",
+            "body": "Provedores de hospedagem em nuvem, banco de dados e infraestrutura de máquinas virtuais que hospedam nossa plataforma e executam os contêineres sandbox."
+          },
+          "aiProviders": {
+            "title": "Provedores de Inferência de Modelos de IA.",
+            "body": "Provedores de LLM de origem estritamente conforme necessário para atender às solicitações de inferência de modelo que você iniciar."
+          },
+          "connectors": {
+            "title": "Conectores Autorizados pelo Usuário.",
+            "body": "Servidores MCP de terceiros ou serviços OAuth (como GitHub ou Google) que você conectar explicitamente ao seu workspace."
+          },
+          "paymentProcessors": {
+            "title": "Processadores de Pagamentos.",
+            "body": "Gateways de pagamento confiáveis para processar assinaturas, faturas e recargas de carteira."
+          },
+          "teamAdmins": {
+            "title": "Administradores de Workspace de Equipe.",
+            "body": "Se você ingressar em um workspace Team compartilhado, o proprietário/administradores do workspace podem visualizar os membros do workspace, o consumo de créditos compartilhados e os recursos de projetos compartilhados."
+          },
+          "legal": {
+            "title": "Conformidade Legal e Transferências de Negócios.",
+            "body": "Quando exigido para cumprir a legislação aplicável, processo legal válido ou em conexão com uma fusão, aquisição ou venda de ativos."
+          }
+        }
+      },
+      "cookiesStorage": {
+        "heading": "6. Cookies e Armazenamento Local",
+        "body": "Usamos armazenamento estritamente necessário do navegador (<code>localStorage</code> e cookies de sessão) para manter você conectado (armazenando tokens de acesso e refresh tokens), lembrar seu workspace ativo e estado da VM selecionada, e manter preferências de interface como o modo de tema claro/escuro. Não utilizamos cookies publicitários de terceiros entre sites."
+      },
+      "retentionSecurity": {
+        "heading": "7. Retenção e Segurança de Dados",
+        "p1": "Retemos os dados da sua conta, histórico de chat, arquivos do workspace e snapshots de VM persistentes enquanto sua conta permanecer ativa ou conforme necessário para fornecer os Serviços. Sessões de sandbox efêmeras sem snapshot são destruídas automaticamente quando a sessão da VM termina.",
+        "p2": "Quando você exclui um projeto, revoga um conector MCP, remove uma chave BYOK ou solicita a exclusão da conta, excluímos as credenciais e artefatos de workspace associados dos sistemas ativos, retendo apenas registros de cobrança e auditoria exigidos para fins fiscais, contábeis, de prevenção a fraudes ou conformidade legal."
+      },
+      "yourRights": {
+        "heading": "8. Seus Direitos e Escolhas de Privacidade (GDPR, CCPA e KVKK)",
+        "intro": "Dependendo de sua localização, você pode ter os seguintes direitos em relação às suas informações pessoais:",
+        "items": {
+          "access": {
+            "title": "Acesso e Portabilidade.",
+            "body": "Solicitar uma cópia dos dados pessoais que mantemos sobre você em um formato estruturado e legível por máquina."
+          },
+          "correction": {
+            "title": "Correção.",
+            "body": "Atualizar ou corrigir informações imprecisas da conta ou do perfil."
+          },
+          "deletion": {
+            "title": "Exclusão (\"Direito ao Esquecimento\").",
+            "body": "Solicitar a exclusão da sua conta, informações pessoais e dados armazenados do workspace, sujeito aos requisitos legais obrigatórios de retenção."
+          },
+          "objection": {
+            "title": "Oposição, Restrição e Cancelamento de Marketing.",
+            "body": "Opor-se a determinadas atividades de processamento ou cancelar a inscrição em e-mails promocionais não transacionais a qualquer momento por meio do link de cancelamento."
+          }
+        },
+        "contact": "Para exercer qualquer um desses direitos, envie um e-mail para <emailLink>privacy@neuronrunner.com</emailLink>. Respondemos a solicitações verificáveis em até 30 dias."
+      },
+      "childrenTransfers": {
+        "heading": "9. Privacidade Infantil e Transferências Internacionais de Dados",
+        "ageLimits": {
+          "title": "Limitações de Idade.",
+          "body": "Em consonância com nossos Termos de Serviço, nossos Serviços são destinados a desenvolvedores com 18 anos ou mais (ou pelo menos 16 anos com consentimento verificável dos pais ou responsável). Não coletamos intencionalmente informações pessoais de crianças menores de 16 anos. Se você acredita que uma criança menor de 16 anos nos forneceu dados pessoais, entre em contato com <emailLink>privacy@neuronrunner.com</emailLink> e os excluiremos prontamente."
+        },
+        "transfers": {
+          "title": "Transferências Internacionais.",
+          "body": "Nossa infraestrutura em nuvem e subprocessadores podem processar dados nos Estados Unidos, no Espaço Econômico Europeu e em outras jurisdições. Quando exigido, contamos com salvaguardas apropriadas, como Cláusulas Contratuais Padrão (SCCs), para proteger as transferências internacionais de dados."
+        }
+      },
+      "contact": {
+        "heading": "10. Fale Conosco",
+        "body": "Se você tiver dúvidas, preocupações ou solicitações sobre esta Política de Privacidade ou nossas práticas de dados, entre em contato com nossa equipe de privacidade:"
+      }
+    }
+  }
+}

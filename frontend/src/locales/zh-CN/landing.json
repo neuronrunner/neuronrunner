@@ -1,0 +1,1153 @@
+{
+  "home": {
+    "newConversation": "新对话",
+    "errors": {
+      "createConversationFailed": "创建对话失败",
+      "messageFailedTitle": "消息发送失败",
+      "messageFailedDescription": "发送消息失败，请重试。"
+    },
+    "status": {
+      "vmAttached": "云端智能体 · 已挂载虚拟机",
+      "ready": "云端智能体已就绪"
+    },
+    "prompt": {
+      "codePlaceholder": "向您的云端智能体下达编程任务...",
+      "chatPlaceholder": "向您的云端智能体提问或委派任务...",
+      "codeMobilePlaceholder": "下达编程任务...",
+      "chatMobilePlaceholder": "提问或委派任务..."
+    },
+    "agentSelector": {
+      "ariaLabel": "Select cloud agent",
+      "title": "Cloud Agent",
+      "back": "Back",
+      "readyBadge": "Ready",
+      "connectedBadge": "Connected",
+      "oauthConnectBadge": "OAuth Connect",
+      "reconnect": "Reconnect OAuth",
+      "agents": {
+        "neuron": {
+          "name": "Neuron Agent",
+          "desc": "Built-in cloud agent with NeuronRunner models"
+        },
+        "claude": {
+          "name": "Claude Code",
+          "desc": "Claude Pro / Max subscription"
+        },
+        "codex": {
+          "name": "OpenAI Codex",
+          "desc": "ChatGPT Plus / Pro subscription"
+        },
+        "antigravity": {
+          "name": "Antigravity",
+          "desc": "Google Antigravity / Gemini OAuth"
+        }
+      },
+      "oauth": {
+        "title": "Connect {{agent}}",
+        "noWorkspace": "Select or sign in to a workspace first to connect a subscription.",
+        "adminOnly": "Only workspace owners or admins can connect OAuth subscriptions.",
+        "vmSyncTitle": "OAuth from Sandbox VM",
+        "claudeHint": "Run `claude setup-token` or `claude login` in your VM",
+        "codexHint": "Run `codex login` in your VM or paste ~/.codex/auth.json",
+        "syncButton": "Sync OAuth from VM",
+        "pasteLabel": "Or paste OAuth token / credentials",
+        "connectButton": "Connect & Select",
+        "connectedToast": "{{agent}} connected and selected",
+        "syncFailed": "Could not sync OAuth session from VM. Run login in your VM first or paste a token below.",
+        "saveFailed": "Invalid subscription token or credentials.",
+        "starting": "Opening OAuth login...",
+        "startFailed": "Could not start OAuth login.",
+        "completeFailed": "Invalid or expired authorization code.",
+        "pkceStepTitle": "1. Authorize in Claude tab",
+        "deviceStepTitle": "1. Authorize in OpenAI tab",
+        "openTab": "Open Tab",
+        "deviceCodeDesc": "Enter this one-time code in the opened browser tab. Connection completes automatically:",
+        "waitingAuth": "Waiting for authorization...",
+        "pkceCodeDesc": "After authorizing in the opened tab, paste the code shown there:",
+        "codePlaceholder": "Paste authorization code...",
+        "completeButton": "Complete OAuth",
+        "launchButton": "Open OAuth Login",
+        "showFallback": "Or paste token / sync from VM",
+        "hideFallback": "Hide manual / VM options",
+        "antigravityStepTitle": "1. Authorize in Google tab",
+        "antigravityCodeDesc": "After authorizing with Google, copy the authorization code shown on the Antigravity callback page and paste it here:",
+        "vmDisclaimer": "您的 {{agent}} 会话和凭据仅保留在您的隔离 Cloud VM 内，Neuron Runner 服务器绝不会读取或存储它们。Neuron Runner 是与该提供商无关联的独立平台；您需自行全权负责遵守提供商的订阅条款。",
+        "vmDisclaimerTerms": "服务条款",
+        "vmDialogTitle": "在虚拟机终端中连接 {{agent}}",
+        "vmDialogSubtitle": "直接在隔离的云虚拟机内使用官方 CLI 登录。点击生成的登录链接进行授权。",
+        "linkReady": "登录链接已就绪 — 点击后在浏览器中授权",
+        "verifyButton": "验证并连接",
+        "showManual": "或手动粘贴 Token / 认证 JSON",
+        "hideManual": "隐藏手动粘贴 Token",
+        "statusPreparing": "正在准备虚拟机...",
+        "statusNeedsVm": "没有运行中的虚拟机",
+        "statusStartingVm": "正在启动云虚拟机...",
+        "statusConnecting": "正在连接终端...",
+        "statusReady": "交互式 — 点击链接或直接粘贴代码",
+        "statusError": "连接错误",
+        "noVmTitle": "此工作区中没有运行中的云虚拟机",
+        "noVmDesc": "启动一台 {{minutes}} 分钟的虚拟机，让官方 CLI 在您的隔离环境中运行并输出登录链接。",
+        "launchVmButton": "启动虚拟机并连接（{{minutes}} 分钟）",
+        "wakingVm": "正在启动 {{name}} — 就绪后终端将自动打开...",
+        "checkingVm": "正在检查工作区虚拟机...",
+        "vmBootFailed": "无法启动虚拟机。",
+        "vmBootTimeout": "虚拟机启动超时，请重试。",
+        "wsTimeout": "终端连接超时。点击“重试”重新连接。",
+        "retryButton": "重试"
+      }
+    }
+  },
+  "seo": {
+    "landing": {
+      "title": "Neuron Runner — 配备隔离 Linux 虚拟机与实时 VNC 的云端 AI 智能体",
+      "description": "每个项目都配备隔离的 Linux 虚拟机、实时 VNC 桌面、浏览器和终端。只需委派任务，智能体即可在云端编写、运行并交付代码，全程不触碰您的本地环境。"
+    },
+    "pricing": {
+      "title": "定价与算力方案",
+      "schemaName": "定价 — Neuron Runner",
+      "description": "面向自主 AI Agent 的透明按秒计费云算力与订阅方案。Free、Plus（$10）和 Pro（$25）层级，提供专属 Linux 虚拟机，并支持 BYOS 与 BYOK。",
+      "faq1Question": "自主云端智能体的算力如何计费？",
+      "faq1Answer": "每个方案都包含每月美元额度（Free $0.50、Plus $10、Pro $25），可用于 LLM Token 与按秒计费的云虚拟机运行时间（4 核 $0.16/小时，6 核 $0.24/小时，8 核 $0.32/小时；停止时 $0.00/小时）。Free 和 Plus 涵盖 6 个免费层模型，Pro 涵盖所有模型。Free 和 Plus 中的高级模型从您的钱包扣费。",
+      "faq2Question": "我可以使用自己的 API 密钥（BYOK）吗？",
+      "faq2Answer": "可以！在包括 Free 在内的所有方案中，您都可以在工作区设置中添加自己的 Anthropic、OpenAI、DeepSeek 或自定义提供商 API 密钥，享受 0% 平台加价。"
+    }
+  },
+  "hero": {
+    "badge": "自主云端智能体 · 专属 Linux 虚拟机与实时 VNC",
+    "titleLine1": "您的智能体在云端工作。",
+    "titleLine2": "还拥有专属电脑。",
+    "subtitle": "每个项目都配备隔离的 Linux 虚拟机、实时 VNC 桌面、浏览器和终端。只需委派任务，智能体即可在云端编写、运行并交付代码，全程不触碰您的本地环境。",
+    "launchCta": "启动智能体",
+    "signInCta": "登录",
+    "chipsAriaLabel": "支持的工作流",
+    "chips": {
+      "autonomousAgent": "自主智能体",
+      "isolatedVm": "隔离云端虚拟机",
+      "liveVnc": "实时 VNC 桌面",
+      "gitAutoPr": "Git 与自动 PR",
+      "byos": "自带订阅 (BYOS)"
+    },
+    "discordCta": "有疑问？在 Discord 上与我们的团队交流"
+  },
+  "connectors": {
+    "eyebrow": "智能体可无缝连接您已在使用的工具"
+  },
+  "workflow": {
+    "eyebrow": "智能体如何工作",
+    "title": "委派任务，智能体在云端直接交付。",
+    "description": "无需本地配置，没有依赖冲突，也不用跨标签页复制粘贴。每一步都在智能体的专属云端机器中完成。",
+    "steps": {
+      "assign": {
+        "label": "委派",
+        "detail": "将新功能、缺陷修复或 GitHub Issue 交给熟悉您代码库的智能体。"
+      },
+      "execute": {
+        "label": "执行",
+        "detail": "智能体在云端 Linux 虚拟机内编辑代码、安装依赖包并执行构建。"
+      },
+      "watchLive": {
+        "label": "实时观看",
+        "detail": "通过实时 VNC 桌面、浏览器和终端随时观察或介入接管。"
+      },
+      "shipPr": {
+        "label": "提交 PR",
+        "detail": "在云端沙箱中验证无误后，智能体会自动提交变更并发起 Pull Request。"
+      }
+    }
+  },
+  "featuresSection": {
+    "eyebrow": "全栈云端智能体",
+    "title": "拥有双手、双眼和独立云环境的智能体",
+    "description": "不同于只能聊天的助手，智能体能够读取代码库、在云端虚拟机中运行代码、通过实时 VNC 桌面检查界面，并在同一闭环中调用您的 MCP 集成。"
+  },
+  "features": {
+    "cards": {
+      "models": {
+        "eyebrow": "多模型智能体大脑",
+        "title": "任务途中随时切换前沿模型",
+        "description": "在同一智能体对话中，用深度推理模型做规划，用高速编程模型做执行。可在任意步骤创建分支探索替代方案，或切换模型重试。",
+        "points": [
+          "推理与编程模型",
+          "分支与重试",
+          "自带订阅 (BYOS)"
+        ]
+      },
+      "sandbox": {
+        "eyebrow": "云端虚拟机与实时 VNC",
+        "title": "每个智能体都拥有一台真实电脑",
+        "description": "智能体不只是输出代码片段，而是会在配备实时终端、浏览器和交互式 VNC 桌面的隔离云端 Linux 虚拟机中真正运行它们。"
+      },
+      "git": {
+        "eyebrow": "自主 Git 与 PR",
+        "title": "从提示词直达 Pull Request",
+        "description": "连接代码仓库后，让智能体在云端自动创建分支、修改文件、运行测试套件并提交可供审查的 Pull Request。"
+      },
+      "connectors": {
+        "eyebrow": "集成",
+        "title": "接入您常用的工具",
+        "description": "通过 OAuth MCP 集成，让云端智能体安全访问 GitHub、Slack、Notion、数据库以及 60 多项服务。"
+      },
+      "memory": {
+        "eyebrow": "持久记忆",
+        "title": "记住您开发习惯的智能体",
+        "description": "编码规范、技术栈偏好与项目上下文会跨会话保留，智能体永远无需从零开始。"
+      },
+      "team": {
+        "eyebrow": "团队工作区",
+        "title": "与团队共同部署智能体",
+        "description": "在组织内共享云端项目、沙箱机器与集成，并支持基于角色的访问控制。"
+      },
+      "byos": {
+        "eyebrow": "Bring Your Own Subscription",
+        "title": "使用您自己的 Claude、ChatGPT 和 Gemini 订阅",
+        "description": "一键连接您的 Claude Pro / Max、ChatGPT Plus / Pro 或 Google Antigravity OAuth 订阅——在云端 VM 中直接运行官方编程代理，零额外 LLM Token 费用。",
+        "points": [
+          "Claude Pro / Max",
+          "ChatGPT Plus / Pro",
+          "Google Antigravity",
+          "$0 LLM Token 费用"
+        ]
+      }
+    },
+    "visuals": {
+      "models": {
+        "searchPlaceholder": "搜索模型...",
+        "reasoningModel": "推理模型",
+        "reasoningTag": "思考 · 高",
+        "fastModel": "极速对话模型",
+        "fastTag": "低延迟",
+        "codingModel": "编程与智能体模型",
+        "codingTag": "工具调用",
+        "byokModel": "您的提供商密钥",
+        "byokTag": "BYOK",
+        "userMessage": "对比这两种方案",
+        "thoughtDuration": "思考用时 6 秒",
+        "assistantReply": "方案 B 的扩展性更好，因为…",
+        "branchAction": "创建分支",
+        "retryAction": "换个模型重试"
+      },
+      "sandbox": {
+        "running": "运行中",
+        "vcpu": "vCPU",
+        "ram": "内存",
+        "disk": "磁盘",
+        "liveVnc": "实时 VNC 桌面",
+        "guiPort": ":5901 GUI",
+        "desktopAndBrowser": "Linux 桌面与浏览器",
+        "interactive": "可交互"
+      },
+      "git": {
+        "prTitle": "#42 添加启动页",
+        "diffSummary": "+134 −12 · 3 个文件",
+        "ready": "已就绪",
+        "issueTitle": "Issue #18 · 调整窗口大小时图表闪烁"
+      },
+      "connectors": {
+        "badge": "MCP 连接器"
+      },
+      "memory": {
+        "header": "已记住您的偏好",
+        "items": [
+          "偏好 TypeScript",
+          "使用 Vite + Tailwind",
+          "保持回答简洁",
+          "项目：product-launch"
+        ]
+      },
+      "team": {
+        "roles": {
+          "owner": "所有者",
+          "admin": "管理员",
+          "member": "成员"
+        },
+        "inviteByEmail": "+ 通过邮箱邀请"
+      },
+      "byos": {
+        "selectorLabel": "云端代理",
+        "claudeName": "Claude Code",
+        "claudePlan": "Claude Pro / Max",
+        "codexName": "OpenAI Codex",
+        "codexPlan": "ChatGPT Plus / Pro",
+        "antigravityName": "Antigravity",
+        "antigravityPlan": "Google / Gemini OAuth",
+        "connectedBadge": "已连接",
+        "oauthBadge": "OAuth",
+        "vmCardTitle": "云端 VM CLI 运行器",
+        "vmCardDetail": "一键 OAuth · 从 VM 同步",
+        "zeroFeeLabel": "$0.00 LLM 加价",
+        "zeroFeeTitle": "零 LLM Token 费用",
+        "zeroFeeSubtitle": "直接使用您当前的订阅运行"
+      }
+    }
+  },
+  "architecture": {
+    "eyebrow": "云端智能体架构",
+    "title": "三层云架构协同运转",
+    "description": "智能体大脑、项目工作区与专属 Linux 虚拟机在云端持续同步。悬停在任意层级上查看智能体的运作方式。",
+    "floatCards": {
+      "vmAttachedTitle": "云端智能体 · 已挂载虚拟机",
+      "vmAttachedSubtitle": "lightning-atlas · 4 vCPU",
+      "testsPassedTitle": "终端 2 · 18 项测试通过",
+      "vncTitle": "VNC 桌面上的智能体",
+      "vncSubtitle": "lightning-atlas · :5901 GUI",
+      "prOpenedTitle": "智能体已发起 PR #42"
+    },
+    "layers": {
+      "sandbox": {
+        "title": "云端沙箱虚拟机与 VNC",
+        "eyebrow": "执行与图形界面",
+        "description": "每个项目配备专属云端 Linux 机器，智能体可在其中运行终端、浏览器以及交互式 VNC 桌面会话。"
+      },
+      "workspace": {
+        "title": "云端工作区",
+        "eyebrow": "文件与 Git",
+        "description": "您的代码仓库、代码编辑器、Git 分支和 Pull Request 在智能体工作期间实时同步。"
+      },
+      "conversation": {
+        "title": "自主智能体",
+        "eyebrow": "模型与记忆",
+        "description": "由前沿推理模型驱动。智能体负责规划任务、编辑文件、运行云端命令并记住您的偏好。"
+      }
+    },
+    "plates": {
+      "terminalLabel": "终端 2",
+      "testsPassed": "✓ 18 项测试通过 (1.42s)",
+      "vncLive": "VNC · :5901 实时",
+      "specs": "4 vCPU · 12 GB 内存",
+      "vmAttached": "已挂载虚拟机",
+      "promptPlaceholder": "向您的云端智能体下达编程任务...",
+      "modelSummary": "Kimi K3.1 Pro · 中等"
+    }
+  },
+  "trust": {
+    "eyebrow": "为真实工程打造",
+    "title": "零本地风险，完全云端掌控",
+    "items": {
+      "isolated": {
+        "title": "100% 云端隔离",
+        "text": "每个智能体都运行在项目专属的云端虚拟机内——不受信任的代码和繁重构建绝不会触碰您的本地电脑。"
+      },
+      "liveVnc": {
+        "title": "实时 VNC 与浏览器",
+        "text": "实时观看智能体操作完整的 Linux 图形会话和线上 Web 应用，或一键接管控制权。"
+      },
+      "byok": {
+        "title": "您的订阅与密钥",
+        "text": "通过 OAuth 连接 Claude Pro / Max、ChatGPT Plus / Pro 或 Google Antigravity——或零加价自带提供商 API 密钥。"
+      },
+      "roles": {
+        "title": "角色与权限",
+        "text": "工作区所有者可决定谁能调度智能体、访问云端机器以及管理集成。"
+      }
+    }
+  },
+  "cta": {
+    "title": "数秒内启动您的云端智能体。",
+    "description": "连接代码仓库，选择前沿模型，让智能体在自己的云端机器中完成构建、测试和交付。",
+    "launchButton": "启动您的云端智能体",
+    "pricingButton": "查看详细定价",
+    "discordButton": "有问题？在 Discord 上直接与创始人沟通"
+  },
+  "footer": {
+    "pricing": "定价",
+    "integrations": "集成",
+    "docs": "文档",
+    "terms": "条款",
+    "privacy": "隐私"
+  },
+  "preview": {
+    "rootAriaLabel": "Neuron Runner 工作区预览",
+    "toolsGroupAriaLabel": "工作区工具",
+    "mobileToolsGroupAriaLabel": "移动端工作区工具",
+    "tools": {
+      "files": "文件",
+      "git": "Git",
+      "browser": "浏览器",
+      "desktop": "桌面",
+      "terminal": "终端"
+    },
+    "sidebar": {
+      "newChat": "新建对话",
+      "issues": "Issues",
+      "pullRequests": "Pull Requests",
+      "integrations": "集成",
+      "projectsHeading": "项目 ({{count}})",
+      "noConversations": "暂无对话",
+      "historyHeading": "历史记录 ({{count}})",
+      "historyItems": [
+        "带实时分析的上线页面",
+        "定价表文案优化",
+        "重构身份验证中间件",
+        "Chrome 端到端视觉检查",
+        "数据库 pgvector Schema 设计",
+        "Docker Compose 生产环境配置"
+      ],
+      "workspaceSummary": "{{owner}} 的工作区 · {{balance}}"
+    },
+    "chat": {
+      "newConversation": "新对话",
+      "vmAttached": "云端智能体 · 已挂载虚拟机",
+      "promptPlaceholder": "向您的云端智能体下达编程任务...",
+      "reasoningLevel": "中等",
+      "suggestions": [
+        {
+          "label": "分析技术栈",
+          "prompt": "检查根目录并列出所有配置文件（如 package.json、pyproject.toml）..."
+        },
+        {
+          "label": "定位入口文件",
+          "prompt": "查找主应用入口文件（如 index.js、main.py、App.tsx）并追踪启动流程..."
+        },
+        {
+          "label": "梳理项目结构",
+          "prompt": "生成 /workspace/neuronrunner 路径的详细目录树以映射核心模块..."
+        },
+        {
+          "label": "运行测试",
+          "prompt": "查找指定的测试运行器配置并执行命令以运行测试套件..."
+        },
+        {
+          "label": "检查环境变量",
+          "prompt": "识别配置文件（如 .env、config.yaml）并列出所需的环境变量键..."
+        }
+      ]
+    },
+    "terminal": {
+      "tabTitle": "终端 {{number}}",
+      "passBadge": "PASS",
+      "testsPassed": "✓ 18 项测试通过 (1.42s)"
+    },
+    "git": {
+      "changesCount": "{{count}} 处更改",
+      "changesHeading": "更改",
+      "commitMessage": "添加带实时分析仪表盘的上线页面",
+      "commitButton": "提交"
+    },
+    "browser": {
+      "dashboardTitle": "上线仪表盘",
+      "live": "实时",
+      "visitors": "访客",
+      "signups": "注册",
+      "conversion": "转化率",
+      "chartTitle": "注册人数 · 最近 8 天"
+    },
+    "desktop": {
+      "windowTitle": "Chromium — 端到端运行器",
+      "checkTitle": "上线页面视觉检查",
+      "checksPassed": "4 / 4 通过",
+      "checkCanvas": "✓ 图表画布已渲染",
+      "checkResponsive": "✓ 响应式布局正常",
+      "linuxGui": "Linux GUI"
+    },
+    "mobile": {
+      "title": "带实时分析的上线页面",
+      "connectedMachineTitle": "已连接机器：lightning-atlas（运行中）",
+      "toolsButton": "工具",
+      "userPrompt": "构建带实时分析的上线页面，运行测试套件，并提交一个 PR。",
+      "hideResponseDetails": "隐藏响应详情",
+      "showResponseDetails": "显示响应详情",
+      "responseDetails": "响应详情",
+      "stepsCount": "{{count}} 个步骤",
+      "steps": [
+        {
+          "title": "已编辑 3 个文件",
+          "detail": "src/app/page.tsx, src/lib/analytics.ts, src/components/chart.tsx"
+        },
+        {
+          "title": "终端 2 · npm run test",
+          "detail": "root@neuronrunner:/workspace/neuronrunner · ✓ 18 项测试通过"
+        },
+        {
+          "title": "已在实时 VNC 桌面验证",
+          "detail": "lightning-atlas · :5901 GUI · 4 / 4 视觉检查通过"
+        },
+        {
+          "title": "已发起 PR #42",
+          "detail": "neuronrunner · feat/launch-page → main"
+        }
+      ],
+      "assistantSummary1": "我已在 <branch>feat/launch-page</branch> 分支构建了上线分析仪表盘，在实时 VNC 桌面上验证了布局，并确认 <vm>lightning-atlas</vm> 上的全部 <passed>18 项测试均已通过</passed>。",
+      "assistantSummary2": "Pull Request <pr>#42</pr> 已准备好接受审查——接下来需要我为您交付什么？",
+      "askPlaceholder": "随便问点什么...",
+      "closeToolsAriaLabel": "关闭工具面板",
+      "vmFooterSpec": "lightning-atlas · 4 vCPU",
+      "backToChat": "返回对话"
+    },
+    "vmDropdown": {
+      "machines": "云主机",
+      "activeCount": "{{count}} 运行中",
+      "running": "运行中",
+      "stopped": "已停止",
+      "cpu": "CPU",
+      "ram": "RAM"
+    }
+  },
+  "pricingPage": {
+    "hero": {
+      "badge": "可预测方案 · 透明 Token 费率 · 空闲虚拟机 $0.00",
+      "titleLine1": "随您成长的简洁方案。",
+      "titleLine2": "透明的 Token 定价。",
+      "subtitle": "免费开始，每月享 <s1>$0.50 的免费 LLM 与云虚拟机用量</s1>；升级到 <s2>Plus（$10）或 Pro（$25）</s2>，即可结合您自己的 Claude Code、Codex 或 Antigravity 订阅使用专属 Linux 虚拟机，也可以自带 API 密钥，平台费用 0%。Pro 的额度包含所有模型；Free 和 Plus 的高级模型按用量计费。"
+    },
+    "planLabels": {
+      "llmAllowance": "使用额度 (LLM + VM)",
+      "cloudSandboxVm": "云端沙箱虚拟机"
+    },
+    "plans": {
+      "free": {
+        "name": "Free",
+        "period": "/ 月",
+        "badge": "永久免费",
+        "tagline": "使用高速免费版模型、BYOK 与入门级云端虚拟机体验自主编程。",
+        "llmAllowance": "$0.50 / 月",
+        "vcpuQuota": "每月最高 2 vCPU 小时",
+        "vcpuSubnote": "覆盖免费 LLM 与 4 核 VM ($0.16/时)",
+        "highlights": [
+          "6 个免费模型与云端 VM <strong>每月 $0.50 统一额度</strong>",
+          "可使用 <strong>4 核（8 GB 内存）</strong> Linux 沙箱虚拟机",
+          "最长 <strong>5 分钟</strong> 自动停止虚拟机会话",
+          "自带<strong>您自己的订阅（BYOS）</strong>或 <strong>API 密钥（BYOK）</strong>，0% 手续费"
+        ],
+        "ctaLabel": "免费开始"
+      },
+      "plus": {
+        "name": "Plus",
+        "period": "/ 月",
+        "badge": "最受欢迎",
+        "tagline": "为您自己的编码 Agent 提供专属云 Linux 虚拟机：自带订阅（BYOS）或 API 密钥。",
+        "llmAllowance": "$10.00 / 月",
+        "vcpuQuota": "最多 200 vCPU 小时 / 月",
+        "vcpuSubnote": "涵盖 4/6/8 核虚拟机，并含免费层模型 $2 的 LLM 额度",
+        "highlights": [
+          "云虚拟机的 <strong>$10.00/月额度</strong>（<strong>约 200 vCPU 小时</strong>）+ 免费层模型的 <strong>$2 LLM 额度</strong>",
+          "自带<strong>您自己的 Claude Code、Codex 或 Antigravity 订阅</strong>（BYOS）或 API 密钥（BYOK）",
+          "最高 <strong>8 核（16 GB 内存）</strong> 虚拟机 + 实时 VNC 桌面",
+          "<strong>60 分钟会话</strong> 与持久化虚拟机磁盘"
+        ],
+        "ctaLabel": "升级到 Plus"
+      },
+      "pro": {
+        "name": "Pro",
+        "period": "/ 月",
+        "badge": "4 倍算力",
+        "tagline": "为高强度全栈开发提供更多虚拟机时长、快照，最多 4 位成员。",
+        "llmAllowance": "$25.00 / 月",
+        "vcpuQuota": "最多 550 vCPU 小时 / 月",
+        "vcpuSubnote": "免费层 LLM 与 4/6/8 核虚拟机共享额度",
+        "highlights": [
+          "云虚拟机（<strong>约 550 vCPU 小时</strong>）+ 免费层 LLM 的 <strong>$25.00/月共享额度</strong>",
+          "高级模型从您的<strong>钱包</strong>按用量扣费，绝不会消耗方案额度",
+          "最多 <strong>4 名工作区成员</strong> · 1 台共享云端虚拟机",
+          "<strong>60 分钟会话</strong> 与持久化虚拟机磁盘"
+        ],
+        "ctaLabel": "升级到 Pro"
+      },
+      "team": {
+        "name": "Team",
+        "period": "/ 月",
+        "badge": "团队协作",
+        "tagline": "专为团队打造的协作工作区，支持多达 20 个席位与共享云端算力。",
+        "llmAllowance": "$200.00 / 月",
+        "vcpuQuota": "每月最高 400 vCPU 小时",
+        "vcpuSubnote": "团队共享 16 款模型与 VM ($0.16–$0.32/时)",
+        "highlights": [
+          "团队共享 16 款模型与 VM <strong>每月 $200.00 额度</strong>",
+          "云端 VM 从团队池扣除（<strong>$0.16–$0.32/时</strong> · 停机 $0.00）",
+          "最多 <strong>20 名工作区成员</strong> 与角色权限管理",
+          "<strong>1 台共享云端虚拟机</strong>（最高 8 核）与持久化磁盘",
+          "<strong>共享超额钱包</strong> 与统一团队账单"
+        ],
+        "ctaLabel": "开通 Team 方案"
+      }
+    },
+    "mechanics": {
+      "wallet": {
+        "title": "额外用量钱包（$10 起充）",
+        "description": "始终优先使用您的方案额度；订阅不会向钱包添加现金。如需额度超出部分、Free 和 Plus 中的高级模型，或搭配 BYOS/BYOK 的独立按量云虚拟机算力（$0.16–$0.32/小时），请充值（最低 <s1>$10.00</s1>，0% 手续费）。"
+      },
+      "byok": {
+        "title": "自带密钥（0% 手续费）",
+        "description": "连接您自己的 Anthropic、OpenAI、DeepSeek 或自定义密钥，享受 <s1>$0.00 平台加价</s1>（不消耗方案额度；Free 方案使用付费模型需钱包有余额或升级付费方案）。"
+      },
+      "byos": {
+        "title": "自带订阅 (BYOS)",
+        "description": "连接 Claude Pro/Max、ChatGPT Plus/Pro 或 Antigravity，享受 <s1>$0.00 LLM Token 费用</s1>。代理在云端 VM 中运行，使用套餐 VM 时长或 $10 起纯算力 Top-Up 余额。"
+      }
+    },
+    "breakdown": {
+      "eyebrow": "透明明细",
+      "title": "查看模型费率、云端虚拟机与方案规格",
+      "tabs": {
+        "models": "AI 模型费率 ({{count}})",
+        "vms": "云端沙箱虚拟机与 VNC",
+        "compare": "方案对比"
+      }
+    },
+    "models": {
+      "filters": {
+        "all": "全部模型 ({{count}})",
+        "free": "免费版可用 ({{count}})",
+        "paid": "高级（{{count}}）"
+      },
+      "searchPlaceholder": "搜索模型或提供商…",
+      "columns": {
+        "model": "模型",
+        "context": "上下文",
+        "planAccess": "方案权限",
+        "input": "输入 / 1M",
+        "output": "输出 / 1M",
+        "cacheRead": "缓存读取 / 1M"
+      },
+      "accessBadges": {
+        "free": "Free + 全部方案",
+        "paid": "Pro · 或钱包"
+      },
+      "empty": "没有匹配您搜索条件的模型。"
+    },
+    "vms": {
+      "vcpuHrsUnit": "{{cpu}} vCPU 小时",
+      "perActiveHour": "/ 活跃小时",
+      "overageRate": "从方案额度扣除 · 停机 $0.00",
+      "cpuLabel": "CPU",
+      "cpuValue": "{{cpu}} vCPU",
+      "memoryLabel": "内存",
+      "memoryValue": "{{memory}} GB",
+      "nvmeLabel": "NVMe",
+      "nvmeValue": "{{disk}} GB",
+      "includedIn": "包含于",
+      "bestForLabel": "最适合：",
+      "standardTitle": "每台云端沙箱机器的标准配置",
+      "standardMeta": "按秒计量 · 停止时 $0.00",
+      "tiers": {
+        "tier_1": {
+          "label": "4 核",
+          "badge": "标准版 · tier_1",
+          "tagline": "日常编程、脚本与轻量 Web 预览。",
+          "planAccess": "Free、Plus 和 Pro",
+          "highlights": [
+            "8 核（8 vCPU）专属云端算力",
+            "8 GB DDR 高速内存 · 32 GB NVMe 磁盘",
+            "费率：$0.16 / 运行小时（停机时 $0.00）",
+            "Plus：最多 50 小时/月 · Pro：最多 137 小时/月（含 vCPU 小时）"
+          ],
+          "bestFor": "前端应用、API 与快速脚本"
+        },
+        "tier_2": {
+          "label": "6 核",
+          "badge": "最受欢迎 · tier_2",
+          "tagline": "全栈开发、Docker 服务与实时 VNC 测试。",
+          "planAccess": "Plus 和 Pro",
+          "highlights": [
+            "8 核（8 vCPU）多核构建引擎",
+            "12 GB DDR 内存 · 32 GB NVMe 磁盘",
+            "费率：$0.24 / 运行小时（停机时 $0.00）",
+            "Plus：最多 33 小时/月 · Pro：最多 92 小时/月（含 vCPU 小时）"
+          ],
+          "bestFor": "全栈 Next.js、Vite 与 Docker 技术栈"
+        },
+        "tier_3": {
+          "label": "8 核",
+          "badge": "高性能 · tier_3",
+          "tagline": "大型编译、大型 Monorepo 与并行测试套件。",
+          "planAccess": "Plus 和 Pro",
+          "highlights": [
+            "8 核（8 vCPU）高并发算力",
+            "16 GB DDR 大容量内存池 · 64 GB NVMe 磁盘",
+            "费率：$0.32 / 运行小时（停机时 $0.00）",
+            "Plus：最多 25 小时/月 · Pro：最多 69 小时/月（含 vCPU 小时）"
+          ],
+          "bestFor": "Monorepo、Rust/Go 编译器与端到端测试套件"
+        }
+      },
+      "includedCapabilities": [
+        {
+          "title": "Root 权限 Linux 虚拟机",
+          "description": "在隔离的云端机器中拥有免密 sudo、Docker、apt、npm、pip 与自定义系统包管理权限。"
+        },
+        {
+          "title": "实时 VNC 桌面 (:5901)",
+          "description": "在工作区中直接串流真实的 Linux 图形界面与 Chromium 浏览器，无额外授权费用。"
+        },
+        {
+          "title": "即时端口预览",
+          "description": "在应用内直接通过实时 HTTPS 反向代理预览开发服务器（3000、5173、8000）。"
+        },
+        {
+          "title": "空闲自动停止保护",
+          "description": "可配置 2–60 分钟无操作自动关机定时器，在空闲时将费用降至 $0.00。"
+        }
+      ]
+    },
+    "compare": {
+      "columns": {
+        "feature": "功能",
+        "free": "Free",
+        "plus": "Plus（$10）",
+        "pro": "Pro（$25）",
+        "team": "Team ($200)"
+      },
+      "footnote": "* 完成账户验证后，Free 方案即可通过 $0.50 额度使用 4 核云端虚拟机（$0.16/时）。",
+      "rows": [
+        {
+          "feature": "月度价格",
+          "free": "$0 / 月",
+          "plus": "$10 / 月",
+          "pro": "$25 / 月",
+          "team": "$200 / 月"
+        },
+        {
+          "feature": "月度使用额度 (LLM + VM)",
+          "free": "$0.50 / 月",
+          "plus": "$10.00 / 月",
+          "pro": "$25.00 / 月",
+          "team": "$200.00 / 月"
+        },
+        {
+          "feature": "可用模型",
+          "free": "6 个免费版模型",
+          "plus": "6 个免费层模型（高级模型通过钱包）",
+          "pro": "所有模型（共享额度）",
+          "team": "全部 16 个前沿模型"
+        },
+        {
+          "feature": "云端 VM 费率（从额度扣除）",
+          "free": "$0.16 / 时*",
+          "plus": "$0.16 – $0.32 / 时",
+          "pro": "$0.16 – $0.32 / 时",
+          "team": "$0.16 – $0.32 / 时"
+        },
+        {
+          "feature": "包含的虚拟机算力",
+          "free": "最多 1 小时 / 月",
+          "plus": "最多 200 vCPU 小时 / 月",
+          "pro": "最多 550 vCPU 小时 / 月",
+          "team": "最多 1,250 小时 / 月"
+        },
+        {
+          "feature": "最高虚拟机硬件规格",
+          "free": "4 核 · 8 GB 内存",
+          "plus": "8 核 · 16 GB 内存",
+          "pro": "8 核 · 16 GB 内存",
+          "team": "8 核 · 16 GB 内存"
+        },
+        {
+          "feature": "最大云端虚拟机数量",
+          "free": "1 台",
+          "plus": "1 台",
+          "pro": "1 台",
+          "team": "1 台"
+        },
+        {
+          "feature": "工作区成员",
+          "free": "1 名成员",
+          "plus": "1 名成员（无团队）",
+          "pro": "最多 4 名成员",
+          "team": "最多 20 名成员"
+        },
+        {
+          "feature": "单次最长虚拟机时长",
+          "free": "5 分钟",
+          "plus": "60 分钟",
+          "pro": "60 分钟",
+          "team": "60 分钟"
+        },
+        {
+          "feature": "自带密钥 (BYOK)",
+          "free": "0% 手续费",
+          "plus": "0% 手续费",
+          "pro": "0% 手续费",
+          "team": "0% 手续费"
+        },
+        {
+          "feature": "超额充值",
+          "free": "最低 $10.00（0% 手续费）",
+          "plus": "最低 $10.00（0% 手续费）",
+          "pro": "最低 $10.00（0% 手续费）",
+          "team": "最低 $10.00（共享钱包，0% 手续费）"
+        },
+        {
+          "feature": "扣除顺序与共享池",
+          "free": "优先扣额度 · 1 位成员",
+          "plus": "优先扣额度 · 1 位成员",
+          "pro": "优先扣额度 · 共享池",
+          "team": "优先扣额度 · 共享池"
+        }
+      ]
+    },
+    "faq": {
+      "eyebrow": "常见问题",
+      "title": "问题与解答",
+      "description": "关于统一月度用量配额、按秒计费虚拟机费率及额外用量充值的一切说明。",
+      "docsLink": "阅读文档",
+      "items": [
+        {
+          "question": "统一月度用量配额是如何运作的？",
+          "answer": "Plus（$10）和 Pro（$25）包含每月美元额度（Plus $10、Pro $25；Free 为 $0.50），可用于云虚拟机运行时间和 LLM Token。Pro 涵盖所有模型；Free 和 Plus 涵盖 6 个免费层模型，高级模型从您的钱包扣费。"
+        },
+        {
+          "question": "云端沙箱虚拟机如何计费？",
+          "answer": "运行中的虚拟机按秒计费，并直接从月度方案额度扣除美元：4 核（tier_1）$0.16/时、6 核（tier_2）$0.24/时、8 核（tier_3）$0.32/时。停止时费用严格为 $0.00/时。"
+        },
+        {
+          "question": "如何在 Free 方案中使用云端沙箱虚拟机？",
+          "answer": "Free 方案提供每月 $0.50 额度，可用于免费版模型与 4 核云端虚拟机（$0.16/时）。在设置中完成账户验证即可启用虚拟机。"
+        },
+        {
+          "question": "如果超出方案额度会怎样？",
+          "answer": "系统始终优先消耗您的月度方案配额——订阅解锁的是方案配额而非向钱包充现金，只要方案配额仍有剩余，即使钱包余额为 $0.00，运行中的虚拟机也会保持在线。配额归零后，仅超额部分从您的额外用量钱包（最低充值 $10.00）扣除。"
+        },
+        {
+          "question": "为什么额外用量充值有 $10.00 的最低门槛？",
+          "answer": "$10.00 的最低充值门槛有助于控制支付通道成本，从而免除您结账时的任何额外手续费。您支付的 100% 金额都将直接计入永久有效的工作区余额。"
+        },
+        {
+          "question": "我还可以继续自带 API 密钥（BYOK）吗？",
+          "answer": "可以！您可以在工作区设置中添加 Anthropic、OpenAI、DeepSeek 或自定义服务商的密钥，平台加价 0%。BYOK 请求不会消耗方案的 LLM 额度；在 Free 和 Plus 中，高级模型需要钱包有余额，而 Pro 用其额度涵盖。"
+        }
+      ]
+    },
+    "bottomCta": {
+      "title": "今天免费开始，随交付进度随时升级。",
+      "description": "在 Free 方案中每月获得 $0.50 的免费层 LLM 与云虚拟机用量，或在 Plus（$10）和 Pro（$25）中结合您自己的 Agent 订阅使用专属 Linux 虚拟机。",
+      "managePlan": "管理工作区方案",
+      "getStarted": "免费开始使用",
+      "signIn": "登录"
+    },
+    "intervalToggle": {
+      "monthly": "按月付费",
+      "yearly": "按年付费",
+      "saveBadge": "省 2 个月",
+      "perYear": "/ 年"
+    },
+    "specs": {
+      "labels": {
+        "quota": "每月额度",
+        "vcpu": "包含的虚拟机算力",
+        "vm": "最大虚拟机规格",
+        "session": "会话时长",
+        "snapshots": "快照",
+        "members": "成员",
+        "llm": "LLM 模型",
+        "byo": "BYOS / BYOK"
+      },
+      "vcpuValue": "{{hours}} vCPU 小时",
+      "approxMinutes": "≈ {{cores}} 核虚拟机上 {{minutes}} 分钟",
+      "approxHours": "≈ {{cores}} 核虚拟机上 {{hours}} 小时",
+      "vmSize": "{{cores}} 核 · {{ram}} GB 内存",
+      "minutes": "{{minutes}} 分钟",
+      "none": "无",
+      "llm": {
+        "free": "6 个免费层模型",
+        "plus": "6 个免费层 · 最多 $2/月",
+        "pro": "所有模型 · 共享额度"
+      },
+      "included": "已包含",
+      "freeFootnote": "* Free 方案使用虚拟机需要完成标准账号验证。",
+      "limits": {
+        "title": "额度用完后会怎样？",
+        "p1": "额度会在每个账单周期重置，并非无限。",
+        "p2": "为钱包充值即可让虚拟机和模型继续运行，或等待下一个周期。",
+        "p3": "在 Free 和 Plus 中，高级模型从您的钱包扣费。Pro 用其额度涵盖。"
+      }
+    }
+  },
+  "pricingSection": {
+    "principles": {
+      "p1Eyebrow": "01 · 灵活方案 + 钱包",
+      "p1Value": "$0 – $25",
+      "p1Unit": "/ 月或 $10+ 充值",
+      "p1Desc": "从 Free 开始（每月 $0.50 的 LLM + 虚拟机额度），升级到 Plus（$10）或 Pro（$25/月），并可随时充值额外额度。",
+      "p1Footer": "✓ Free、Plus 和 Pro 方案",
+      "p2Eyebrow": "02 · 按资源精确计费",
+      "p2Value": "精确",
+      "p2Unit": "按秒与按 Token",
+      "p2Desc": "虚拟机仅在运行时按 $0.16/小时起计费，停止时为 $0.00。Token 缓存最高可节省约 80% 提示词费用。",
+      "p2Footer": "按秒计量虚拟机 + 上下文缓存",
+      "p3Eyebrow": "03 · 零意外账单",
+      "p3Value": "$0.00",
+      "p3Unit": "硬性下限",
+      "p3Desc": "余额降至 $0.00 时立即暂停执行。绝不透支，没有意外月度账单，并支持即时 PDF 收据。",
+      "p3Footer": "细粒度每台虚拟机与成员账本"
+    },
+    "miniPlans": {
+      "popular": "热门",
+      "free": {
+        "name": "Free",
+        "period": "/月",
+        "quota": "每月 $0.50 Free (LLM + VM)",
+        "vm": "4 核云端 VM ($0.16/时)",
+        "note": "完成标准账号验证即可解锁虚拟机运行时"
+      },
+      "plus": {
+        "name": "Plus",
+        "period": "/月",
+        "quota": "$10.00/月额度（虚拟机 + $2 免费层 LLM）",
+        "vm": "最高 8 核虚拟机 · 约 200 vCPU 小时",
+        "note": "BYOS/BYOK · 1 台云虚拟机 · 单用户"
+      },
+      "pro": {
+        "name": "Pro",
+        "period": "/月",
+        "quota": "$25.00/月共享额度（虚拟机 + 所有 LLM）",
+        "vm": "最高 8 核虚拟机 · 约 550 vCPU 小时",
+        "note": "最多 4 位成员 · BYOS/BYOK"
+      },
+      "team": {
+        "name": "Team",
+        "period": "/月",
+        "quota": "每月 $200.00 团队共享池",
+        "vm": "最多 20 台 VM ($0.16–$0.32/时)",
+        "note": "最多 20 名团队成员 + 共享钱包"
+      },
+      "yearlyPeriod": "/年"
+    },
+    "nav": {
+      "eyebrow": "透明定价",
+      "title": "选择您想了解的内容",
+      "tabs": {
+        "compute": "沙箱虚拟机与 VNC",
+        "tokens": "Token 与 BYOK",
+        "calculator": "费用估算器",
+        "compare": "对比订阅制"
+      }
+    },
+    "compute": {
+      "perHour": "/ 小时",
+      "vcpuUnit": "{{cpu}} vCPU",
+      "ramUnit": "{{memory}} GB 内存",
+      "diskUnit": "{{disk}} GB 磁盘",
+      "tierHighlightsLabel": "档位亮点：",
+      "bestForLabel": "最适合：{{bestFor}}",
+      "tiers": {
+        "tier_1": {
+          "label": "8 核",
+          "tagline": "日常开发与轻量网页预览",
+          "badge": "标准版",
+          "perMinute": "$0.0027 / 分钟",
+          "highlights": [
+            "4 核 (2 vCPU) 计算引擎",
+            "6 GB DDR 内存 • 32 GB NVMe 磁盘",
+            "快速冷启动配置",
+            "轻量前端应用、API 与脚本",
+            "每小时消耗：$0.16 / 小时"
+          ],
+          "bestFor": "前端应用、单文件脚本与快速调试",
+          "buttonText": "从 4 核开始"
+        },
+        "tier_2": {
+          "label": "8 核",
+          "tagline": "全栈开发、构建与测试套件",
+          "badge": "最受欢迎",
+          "perMinute": "$0.0040 / 分钟",
+          "highlights": [
+            "4 核 (4 vCPU) 构建引擎",
+            "12 GB DDR 高速内存 • 32 GB NVMe 磁盘",
+            "完整的 Next.js、Vite 与后端服务栈",
+            "流畅的实时 VNC 桌面与浏览器自动化",
+            "每小时消耗：$0.24 / 小时"
+          ],
+          "bestFor": "全栈应用、Docker 后端与日常编码",
+          "buttonText": "部署 4 核"
+        },
+        "tier_3": {
+          "label": "8 核",
+          "tagline": "大型编译、Monorepo 与并行测试套件",
+          "badge": "旗舰版",
+          "perMinute": "$0.0053 / 分钟",
+          "highlights": [
+            "6 核 (6 vCPU) 高并发算力",
+            "16 GB DDR 大容量内存池 • 64 GB NVMe 磁盘",
+            "大型 Monorepo 与并行编译器",
+            "复杂多服务与数据库测试",
+            "每小时消耗：$0.32 / 小时"
+          ],
+          "bestFor": "大型 Monorepo、重度编译器与大型测试套件",
+          "buttonText": "启动 6 核"
+        }
+      },
+      "standardEyebrow": "标准架构",
+      "standardTitle": "每台沙盒机器免费内置以下能力",
+      "standardMeta": "零配置 · 随项目自动扩展",
+      "sharedCapabilities": [
+        {
+          "label": "Root Linux 沙盒",
+          "desc": "完整的 Shell 与软件包安装控制权"
+        },
+        {
+          "label": "即时端口转发",
+          "desc": "在应用内直接预览 3000、8000、5173 端口"
+        },
+        {
+          "label": "实时 VNC 桌面 (:5901)",
+          "desc": "交互式 Chromium 与 Linux GUI"
+        },
+        {
+          "label": "ANSI WebSocket 终端",
+          "desc": "支持分屏的持久化终端会话"
+        },
+        {
+          "label": "自动停止保护",
+          "desc": "可配置 2–60 分钟空闲定时器"
+        },
+        {
+          "label": "$0.00 空闲政策",
+          "desc": "停止后算力费用为零"
+        }
+      ],
+      "vncBannerTitle": "实时 VNC 远程桌面 (:5901)",
+      "vncBannerDesc": "将真实的 Linux 图形桌面直接串流到浏览器中，满足完整 GUI 应用与 Chromium 自动化需求。",
+      "vncBannerCta": "立即使用沙盒虚拟机开始构建"
+    },
+    "tokens": {
+      "eyebrow": "透明 Token 计量",
+      "title": "按 Token 付费，自动享受上下文缓存折扣",
+      "description": "每次请求都会对输入、缓存命中读取和输出 Token 生成不可变定价快照。当提示词重复代码库上下文时，上下文缓存会自动大幅削减你的账单。",
+      "rows": [
+        {
+          "category": "标准输入 Token",
+          "rate": "按模型精确费率（每 1M Token）",
+          "description": "发送给模型的提示词、指令、代码库上下文和工具模式。",
+          "benefit": "直接按成本透传，无任何平台加价。"
+        },
+        {
+          "category": "缓存上下文读取",
+          "rate": "比普通输入便宜约 75% 至 80%",
+          "description": "重复的对话轮次、项目指令和持久系统提示词。",
+          "benefit": "自动缓存检测大幅降低多轮对话成本。"
+        },
+        {
+          "category": "输出与推理 Token",
+          "rate": "按模型精确费率（每 1M Token）",
+          "description": "代码生成、Diff 格式化、思考过程以及自主工具调用。",
+          "benefit": "按实际生成的 Token 计量；可随时在流式输出中途取消。"
+        },
+        {
+          "category": "自带密钥 (BYOK)",
+          "rate": "$0.00 平台加价",
+          "description": "使用你自己的 Anthropic、OpenAI、DeepSeek 或自定义提供商密钥。",
+          "benefit": "所有平台功能 100% 免费；仅在启动虚拟机时支付运行费用。"
+        },
+        {
+          "category": "兼容 OpenAI 的 API",
+          "rate": "同样透明的 Token 费率",
+          "description": "从本地脚本或 CI/CD 中调用 /v1/chat/completions 和 /v1/responses。",
+          "benefit": "可复用的作用域 API 密钥，关联至你的工作区额度池。"
+        }
+      ],
+      "byokCardTitle": "自带密钥 (BYOK)",
+      "byokCardDesc": "在设置中连接你现有的 OpenAI、Anthropic、DeepSeek 或自定义提供商 API 密钥。使用自有密钥时，模型 Token 由你的提供商直接计费，<strong>平台加价为 0%</strong>。",
+      "apiCardTitle": "兼容 OpenAI 的端点",
+      "apiCardDesc": "在任意 CLI、IDE 插件或脚本中使用你的 Neuron Runner 工作区。只需将 OpenAI SDK 的 Base URL 指向 <codeTag>/v1</codeTag> 并配合工作区 API 密钥即可。"
+    },
+    "calculator": {
+      "eyebrow": "用量估算器",
+      "title": "模拟你的算力支出",
+      "description": "拖动运行时间滑块或选择快捷工作流预设，即可查看预估的每周与每月费用。",
+      "presetsLabel": "工作流预设",
+      "presetMeta": "{{hours}} 小时/周 · {{tier}}",
+      "presets": [
+        {
+          "name": "轻量编码者",
+          "tag": "独立开发者",
+          "description": "偶尔运行脚本、快速修复 Bug 以及轻量网页预览。"
+        },
+        {
+          "name": "全栈构建者",
+          "tag": "推荐",
+          "description": "每日功能开发、Next.js / Vite 应用以及实时 VNC 桌面测试。"
+        },
+        {
+          "name": "重度 Monorepo",
+          "tag": "高阶用户",
+          "description": "复杂多容器架构、长时间编译以及高负载工作流。"
+        }
+      ],
+      "chooseTierLabel": "选择算力档位",
+      "tierRate": "${{rate}} / 小时",
+      "tierSpecs": "{{memory}}GB 内存 • {{disk}}GB",
+      "runtimePerWeek": "每周活跃虚拟机运行时间",
+      "hoursPerWeekValue": "{{hours}} 小时 / 周",
+      "sliderTicks": {
+        "h1": "1 小时",
+        "h15": "15 小时",
+        "h30": "30 小时",
+        "h45": "45 小时",
+        "h60": "60 小时"
+      },
+      "summaryEyebrow": "预估汇总",
+      "summaryTitle": "预计算力账单",
+      "monthlySpendLabel": "预计每月虚拟机支出",
+      "perMonth": "/ 月",
+      "weeklyBreakdown": "约 ${{weekly}} / 周（{{tier}} 上运行 {{hours}} 小时）",
+      "topUp10Label": "$10.00 充值可使用：",
+      "topUp20Label": "$20.00 充值可使用：",
+      "approxHours": "约 {{hours}} 小时",
+      "idleTimerLabel": "空闲自动停止定时器：",
+      "idleTimerValue": "已包含（零消耗）",
+      "footnote": "* 模型 Token 根据对话量单独计费；如使用 BYOK，则由你的提供商直接计费。",
+      "addCredits": "向工作区充值额度",
+      "getStarted10": "充值 $10 开始使用"
+    },
+    "compare": {
+      "columns": {
+        "feature": "特性",
+        "payAsYouGo": "Neuron Runner（按量付费）",
+        "traditional": "传统 AI 编程订阅"
+      },
+      "items": [
+        {
+          "feature": "月度方案",
+          "payAsYouGo": "Free（$0）、Plus（$10）、Pro（$25/月）",
+          "traditional": "仅固定每位用户 $20 – $40/月"
+        },
+        {
+          "feature": "模型定价",
+          "payAsYouGo": "直接按提供商 Token 费率（0% BYOK 手续费）",
+          "traditional": "不透明的积分倍率与加价"
+        },
+        {
+          "feature": "云端 Linux 虚拟机配额",
+          "payAsYouGo": "从额度扣除 $0.16–$0.32/时 · 停机 $0.00",
+          "traditional": "全天候计费或无持久化 Linux 虚拟机"
+        },
+        {
+          "feature": "超额保护",
+          "payAsYouGo": "月度配额 + $10 起额外钱包",
+          "traditional": "硬性锁死或月底意外高额账单"
+        },
+        {
+          "feature": "团队协作",
+          "payAsYouGo": "用于云虚拟机 + 所有 LLM 的 $25/月 Pro 共享额度（最多 4 位成员）",
+          "traditional": "彼此孤立的单人限额，无共享虚拟机池"
+        },
+        {
+          "feature": "自带密钥 (BYOK)",
+          "payAsYouGo": "全方案支持，平台手续费 $0.00",
+          "traditional": "禁止使用或仅限企业版"
+        }
+      ]
+    },
+    "faq": {
+      "eyebrow": "常见问题",
+      "title": "关于计费您需要了解的一切",
+      "items": [
+        {
+          "q": "Free、Plus 和 Pro 方案如何运作？",
+          "a": "每个方案都提供每月美元额度（Free $0.50、Plus $10、Pro $25），可用于 LLM Token 和云虚拟机运行时间（$0.16–$0.32/小时）。Pro 涵盖所有模型；Free 和 Plus 中的高级模型从您的钱包扣费。"
+        },
+        {
+          "q": "达到月度限额后会发生什么？",
+          "a": "方案额度始终优先使用；只要仍有额度，即便钱包为 $0.00 虚拟机也持续运行。仅超出部分从永不过期的充值钱包（最低 $10.00）中扣除。"
+        },
+        {
+          "q": "沙箱虚拟机停止后还需要付费吗？",
+          "a": "不会。停止的机器费用严格为 $0.00/小时，仅在开机运行时按秒计费。"
+        },
+        {
+          "q": "我可以使用自己的 API 密钥（BYOK）吗？",
+          "a": "可以。在“设置 > 提供商密钥”中可 0% 加价添加自有密钥，且不消耗方案额度；Free 方案余额为 $0.00 时，付费模型需钱包余额或付费方案。"
+        }
+      ]
+    }
+  }
+}

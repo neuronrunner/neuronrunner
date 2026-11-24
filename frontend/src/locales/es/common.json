@@ -1,0 +1,62 @@
+{
+  "common": {
+    "save": "Guardar cambios",
+    "saving": "Guardando...",
+    "saved": "Cambios guardados correctamente",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "close": "Cerrar",
+    "loading": "Cargando...",
+    "search": "Buscar",
+    "confirm": "Confirmar",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "upload": "Subir",
+    "change": "Cambiar",
+    "removePicture": "Eliminar imagen"
+  },
+  "language": {
+    "label": "Idioma",
+    "description": "Elige el idioma de la interfaz de Neuron Runner.",
+    "selectPlaceholder": "Seleccionar idioma",
+    "updatedTitle": "Idioma actualizado",
+    "updatedDescription": "El idioma de la interfaz se cambió a {{language}}."
+  },
+  "settings": {
+    "title": "Configuración",
+    "sections": {
+      "workspace": "Espacio de trabajo",
+      "account": "Cuenta"
+    },
+    "tabs": {
+      "workspace": "Espacio de trabajo",
+      "team": "Equipo",
+      "providerKeys": "Claves de proveedor (BYOK)",
+      "billing": "Facturación",
+      "usage": "Uso",
+      "logs": "Logs",
+      "profile": "Perfil",
+      "personalization": "Personalización",
+      "security": "Seguridad",
+      "apiKeys": "Claves API",
+      "vmSecrets": "Secretos de VM"
+    }
+  },
+  "nav": {
+    "docs": "Documentación",
+    "pricing": "Precios",
+    "connectors": "Conectores",
+    "signIn": "Iniciar sesión",
+    "signUp": "Registrarse",
+    "signOut": "Cerrar sesión",
+    "newChat": "Nuevo chat",
+    "projects": "Proyectos"
+  },
+  "billingPrompt": {
+    "title": "Saldo insuficiente",
+    "defaultDescription": "El saldo de tu espacio de trabajo es $0. Agrega fondos o mejora tu plan para continuar.",
+    "hint": "Agrega fondos a la billetera de tu espacio de trabajo o mejora a un plan con cuota mensual incluida.",
+    "action": "Mejorar plan o agregar fondos"
+  }
+}

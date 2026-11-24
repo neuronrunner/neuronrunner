@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /billing/
+Disallow: /chat/
+Disallow: /integrations/oauth/
+Disallow: /projects/
+Disallow: /settings/
+Disallow: /workspaces/
+
+Sitemap: https://neuronrunner.com/sitemap.xml

@@ -1,0 +1,1160 @@
+{
+  "home": {
+    "newConversation": "नई चैट",
+    "errors": {
+      "createConversationFailed": "चैट नहीं बन सकी",
+      "messageFailedTitle": "मैसेज फ़ेल हो गया",
+      "messageFailedDescription": "मैसेज भेजा नहीं जा सका। कृपया फिर से कोशिश करें।"
+    },
+    "status": {
+      "vmAttached": "क्लाउड एजेंट · VM कनेक्टेड",
+      "ready": "क्लाउड एजेंट तैयार"
+    },
+    "prompt": {
+      "codePlaceholder": "अपने क्लाउड एजेंट को कोडिंग टास्क दें...",
+      "chatPlaceholder": "अपने क्लाउड एजेंट से पूछें या कोई टास्क सौंपें...",
+      "codeMobilePlaceholder": "कोडिंग टास्क दें...",
+      "chatMobilePlaceholder": "पूछें या टास्क दें..."
+    },
+    "agentSelector": {
+      "ariaLabel": "Select cloud agent",
+      "title": "Cloud Agent",
+      "back": "Back",
+      "readyBadge": "Ready",
+      "connectedBadge": "Connected",
+      "oauthConnectBadge": "OAuth Connect",
+      "reconnect": "Reconnect OAuth",
+      "agents": {
+        "neuron": {
+          "name": "Neuron Agent",
+          "desc": "Built-in cloud agent with NeuronRunner models"
+        },
+        "claude": {
+          "name": "Claude Code",
+          "desc": "Claude Pro / Max subscription"
+        },
+        "codex": {
+          "name": "OpenAI Codex",
+          "desc": "ChatGPT Plus / Pro subscription"
+        },
+        "antigravity": {
+          "name": "Antigravity",
+          "desc": "Google Antigravity / Gemini OAuth"
+        }
+      },
+      "oauth": {
+        "title": "Connect {{agent}}",
+        "noWorkspace": "Select or sign in to a workspace first to connect a subscription.",
+        "adminOnly": "Only workspace owners or admins can connect OAuth subscriptions.",
+        "vmSyncTitle": "OAuth from Sandbox VM",
+        "claudeHint": "Run `claude setup-token` or `claude login` in your VM",
+        "codexHint": "Run `codex login` in your VM or paste ~/.codex/auth.json",
+        "syncButton": "Sync OAuth from VM",
+        "pasteLabel": "Or paste OAuth token / credentials",
+        "connectButton": "Connect & Select",
+        "connectedToast": "{{agent}} connected and selected",
+        "syncFailed": "Could not sync OAuth session from VM. Run login in your VM first or paste a token below.",
+        "saveFailed": "Invalid subscription token or credentials.",
+        "starting": "Opening OAuth login...",
+        "startFailed": "Could not start OAuth login.",
+        "completeFailed": "Invalid or expired authorization code.",
+        "pkceStepTitle": "1. Authorize in Claude tab",
+        "deviceStepTitle": "1. Authorize in OpenAI tab",
+        "openTab": "Open Tab",
+        "deviceCodeDesc": "Enter this one-time code in the opened browser tab. Connection completes automatically:",
+        "waitingAuth": "Waiting for authorization...",
+        "pkceCodeDesc": "After authorizing in the opened tab, paste the code shown there:",
+        "codePlaceholder": "Paste authorization code...",
+        "completeButton": "Complete OAuth",
+        "launchButton": "Open OAuth Login",
+        "showFallback": "Or paste token / sync from VM",
+        "hideFallback": "Hide manual / VM options",
+        "antigravityStepTitle": "1. Authorize in Google tab",
+        "antigravityCodeDesc": "After authorizing with Google, copy the authorization code shown on the Antigravity callback page and paste it here:",
+        "vmDisclaimer": "आपका {{agent}} सत्र और क्रेडेंशियल केवल आपके अलग-थलग Cloud VM के अंदर रहते हैं और Neuron Runner सर्वरों पर कभी पढ़े या संग्रहीत नहीं किए जाते हैं। Neuron Runner एक स्वतंत्र प्लेटफ़ॉर्म है जो इस प्रदाता से संबद्ध नहीं है; अपने प्रदाता की सदस्यता शर्तों का पालन करने के लिए केवल आप ज़िम्मेदार हैं।",
+        "vmDisclaimerTerms": "सेवा की शर्तें",
+        "vmDialogTitle": "अपने VM टर्मिनल में {{agent}} कनेक्ट करें",
+        "vmDialogSubtitle": "अपने आइसोलेटेड क्लाउड VM में आधिकारिक CLI से सीधे साइन इन करें। ऑथराइज़ करने के लिए जनरेट हुए लॉगिन लिंक पर क्लिक करें।",
+        "linkReady": "लॉगिन लिंक तैयार है — अपने ब्राउज़र में ऑथराइज़ करने के लिए क्लिक करें",
+        "verifyButton": "वेरिफ़ाई करें और कनेक्ट करें",
+        "showManual": "या टोकन / ऑथ JSON मैन्युअली पेस्ट करें",
+        "hideManual": "मैन्युअल टोकन पेस्ट छिपाएँ",
+        "statusPreparing": "VM तैयार हो रहा है...",
+        "statusNeedsVm": "कोई एक्टिव VM नहीं",
+        "statusStartingVm": "क्लाउड VM शुरू हो रहा है...",
+        "statusConnecting": "टर्मिनल कनेक्ट हो रहा है...",
+        "statusReady": "इंटरैक्टिव — लिंक पर क्लिक करें या कोड सीधे पेस्ट करें",
+        "statusError": "कनेक्शन एरर",
+        "noVmTitle": "इस वर्कस्पेस में कोई क्लाउड VM नहीं चल रहा है",
+        "noVmDesc": "{{minutes}} मिनट का VM लॉन्च करें ताकि आधिकारिक CLI आपके आइसोलेटेड एनवायरनमेंट में चले और आपका लॉगिन लिंक प्रिंट करे।",
+        "launchVmButton": "VM लॉन्च करें और कनेक्ट करें ({{minutes}} मिनट)",
+        "wakingVm": "{{name}} शुरू हो रहा है — तैयार होते ही टर्मिनल अपने आप खुल जाएगा...",
+        "checkingVm": "वर्कस्पेस VM जाँचा जा रहा है...",
+        "vmBootFailed": "वर्चुअल मशीन शुरू नहीं हो सकी।",
+        "vmBootTimeout": "वर्चुअल मशीन शुरू होने में टाइमआउट हो गया। कृपया फिर से कोशिश करें।",
+        "wsTimeout": "टर्मिनल कनेक्शन टाइमआउट हो गया। फिर से कनेक्ट करने के लिए \"फिर कोशिश करें\" पर क्लिक करें।",
+        "retryButton": "फिर कोशिश करें"
+      }
+    }
+  },
+  "seo": {
+    "landing": {
+      "title": "Neuron Runner — आइसोलेटेड Linux VM और लाइव VNC के साथ क्लाउड AI एजेंट्स",
+      "description": "हर प्रोजेक्ट को एक आइसोलेटेड Linux VM, लाइव VNC डेस्कटॉप, ब्राउज़र और टर्मिनल मिलता है। टास्क असाइन करें — आपका एजेंट आपकी लोकल मशीन को छुए बिना क्लाउड में कोड लिखता, चलाता और शिप करता है।"
+    },
+    "pricing": {
+      "title": "प्राइसिंग और कंप्यूट प्लान्स",
+      "schemaName": "प्राइसिंग — Neuron Runner",
+      "description": "ऑटोनॉमस AI एजेंट्स के लिए पारदर्शी प्रति-सेकंड क्लाउड कंप्यूट और सब्सक्रिप्शन प्लान। डेडिकेटेड Linux VM, BYOS और BYOK सपोर्ट के साथ Free, Plus ($10) और Pro ($25) टियर।",
+      "faq1Question": "ऑटोनॉमस क्लाउड एजेंट कंप्यूट बिलिंग कैसे काम करती है?",
+      "faq1Answer": "हर प्लान में LLM टोकन और प्रति-सेकंड क्लाउड VM रनटाइम ($0.16/घंटा 4-कोर, $0.24/घंटा 6-कोर, $0.32/घंटा 8-कोर; रुकने पर $0.00/घंटा) के लिए मासिक USD कोटा शामिल है ($0.50 Free, $10 Plus, $25 Pro)। Free और Plus 6 फ्री-टियर मॉडल कवर करते हैं; Pro सभी मॉडल। Free और Plus में प्रीमियम मॉडल आपके वॉलेट से चार्ज होते हैं।",
+      "faq2Question": "क्या मैं अपनी API Keys (BYOK) इस्तेमाल कर सकता हूँ?",
+      "faq2Answer": "हाँ! Free समेत हर प्लान पर, आप वर्कस्पेस सेटिंग्स में 0% प्लेटफ़ॉर्म फ़ीस के साथ अपनी Anthropic, OpenAI, DeepSeek या कस्टम प्रोवाइडर API Keys जोड़ सकते हैं।"
+    }
+  },
+  "hero": {
+    "badge": "ऑटोनॉमस क्लाउड एजेंट्स · डेडिकेटेड Linux VM और लाइव VNC",
+    "titleLine1": "आपका एजेंट क्लाउड में काम करता है।",
+    "titleLine2": "अपने खुद के कंप्यूटर के साथ।",
+    "subtitle": "हर प्रोजेक्ट को एक आइसोलेटेड Linux VM, लाइव VNC डेस्कटॉप, ब्राउज़र और टर्मिनल मिलता है। टास्क असाइन करें — आपका एजेंट आपकी लोकल मशीन को छुए बिना क्लाउड में कोड लिखता, चलाता और शिप करता है।",
+    "launchCta": "एजेंट लॉन्च करें",
+    "signInCta": "साइन इन",
+    "chipsAriaLabel": "समर्थित वर्कफ़्लो",
+    "chips": {
+      "autonomousAgent": "ऑटोनॉमस एजेंट",
+      "isolatedVm": "आइसोलेटेड क्लाउड VM",
+      "liveVnc": "लाइव VNC डेस्कटॉप",
+      "gitAutoPr": "Git और Auto-PR",
+      "byos": "अपना सब्सक्रिप्शन लाएं"
+    },
+    "discordCta": "कोई सवाल है? Discord पर हमारी टीम से बात करें"
+  },
+  "connectors": {
+    "eyebrow": "आपका एजेंट उन टूल्स से जुड़ता है जिन्हें आप पहले से इस्तेमाल करते हैं"
+  },
+  "workflow": {
+    "eyebrow": "एजेंट कैसे काम करता है",
+    "title": "टास्क दें। आपका एजेंट क्लाउड से शिप करेगा।",
+    "description": "कोई लोकल सेटअप नहीं, कोई डिपेंडेंसी कॉन्फ़्लिक्ट नहीं और टैब्स के बीच कॉपी-पेस्ट नहीं। हर स्टेप आपके एजेंट की डेडिकेटेड क्लाउड मशीन में चलता है।",
+    "steps": {
+      "assign": {
+        "label": "असाइन करें",
+        "detail": "कोई फ़ीचर, बग या GitHub Issue उस एजेंट को सौंपें जो आपके रेपो को समझता है।"
+      },
+      "execute": {
+        "label": "बिल्ड और रन",
+        "detail": "एजेंट क्लाउड Linux VM के अंदर कोड एडिट करता है, पैकेज इंस्टॉल करता है और बिल्ड चलाता है।"
+      },
+      "watchLive": {
+        "label": "लाइव देखें",
+        "detail": "लाइव VNC डेस्कटॉप, ब्राउज़र और टर्मिनल के ज़रिए कभी भी देखें या खुद कंट्रोल लें।"
+      },
+      "shipPr": {
+        "label": "PR शिप करें",
+        "detail": "क्लाउड सैंडबॉक्स में वेरिफ़ाई करने के बाद, एजेंट कमिट करता है और एक Pull Request खोलता है।"
+      }
+    }
+  },
+  "featuresSection": {
+    "eyebrow": "फुल-स्टैक क्लाउड एजेंट",
+    "title": "एक एजेंट जिसके पास हाथ, आँखें और अपना क्लाउड एनवायरनमेंट है",
+    "description": "सिर्फ़ चैट करने वाले असिस्टेंट्स के उलट, आपका एजेंट आपका रेपो पढ़ता है, क्लाउड VM में कोड चलाता है, लाइव VNC डेस्कटॉप पर UI चेक करता है और एक ही लूप में आपके MCP इंटीग्रेशन्स का इस्तेमाल करता है।"
+  },
+  "features": {
+    "cards": {
+      "models": {
+        "eyebrow": "मल्टी-मॉडल एजेंट ब्रेन",
+        "title": "टास्क के बीच में फ़्रंटियर मॉडल्स स्विच करें",
+        "description": "एक ही एजेंट थ्रेड में प्लानिंग के लिए डीप रीज़निंग मॉडल्स और एक्ज़ीक्यूशन के लिए फ़ास्ट कोडिंग मॉडल्स चलाएं। विकल्प देखने के लिए किसी भी स्टेप को ब्रांच करें या दूसरे मॉडल के साथ फिर से ट्राई करें।",
+        "points": [
+          "रीज़निंग और कोडिंग मॉडल्स",
+          "ब्रांच और रीट्राई",
+          "अपना सब्सक्रिप्शन लाएं"
+        ]
+      },
+      "sandbox": {
+        "eyebrow": "क्लाउड VM और लाइव VNC",
+        "title": "हर एजेंट को एक असली कंप्यूटर मिलता है",
+        "description": "आपका एजेंट सिर्फ़ कोड स्निपेट नहीं देता — वह उन्हें लाइव टर्मिनल, ब्राउज़र और इंटरैक्टिव VNC डेस्कटॉप वाले आइसोलेटेड क्लाउड Linux VM के अंदर चलाता है।"
+      },
+      "git": {
+        "eyebrow": "ऑटोनॉमस Git और PRs",
+        "title": "प्रॉम्प्ट से सीधे Pull Request तक",
+        "description": "एक रिपॉज़िटरी कनेक्ट करें और एजेंट को ब्रांच बनाने, फ़ाइलें एडिट करने, क्लाउड में टेस्ट सूट चलाने और रिव्यू के लिए तैयार Pull Requests खोलने दें।"
+      },
+      "connectors": {
+        "eyebrow": "इंटीग्रेशन्स",
+        "title": "अपने रोज़मर्रा के टूल्स प्लग इन करें",
+        "description": "OAuth MCP इंटीग्रेशन्स के ज़रिए अपने क्लाउड एजेंट को GitHub, Slack, Notion, डेटाबेस और 60+ सर्विसेज़ का सुरक्षित एक्सेस दें।"
+      },
+      "memory": {
+        "eyebrow": "परसिस्टेंट मेमोरी",
+        "title": "एक एजेंट जो याद रखता है कि आप कैसे बिल्ड करते हैं",
+        "description": "कोडिंग स्टाइल, टेक स्टैक प्रेफ़रेंसेज़ और प्रोजेक्ट कॉन्टेक्स्ट हर सेशन में बने रहते हैं ताकि आपका एजेंट कभी ज़ीरो से शुरू न करे।"
+      },
+      "team": {
+        "eyebrow": "टीम वर्कस्पेस",
+        "title": "अपनी टीम के साथ एजेंट्स डिप्लॉय करें",
+        "description": "रोल-बेस्ड एक्सेस कंट्रोल के साथ अपने ऑर्गनाइज़ेशन में क्लाउड प्रोजेक्ट्स, सैंडबॉक्स मशीन्स और इंटीग्रेशन्स शेयर करें।"
+      },
+      "byos": {
+        "eyebrow": "Bring Your Own Subscription",
+        "title": "अपनी Claude, ChatGPT और Gemini सदस्यता का उपयोग करें",
+        "description": "एक क्लिक में अपना Claude Pro / Max, ChatGPT Plus / Pro या Google Antigravity OAuth सब्सक्रिप्शन कनेक्ट करें — शून्य LLM टोकन शुल्क के साथ अपने क्लाउड VM में आधिकारिक कोडिंग एजेंट चलाएं।",
+        "points": [
+          "Claude Pro / Max",
+          "ChatGPT Plus / Pro",
+          "Google Antigravity",
+          "$0 LLM टोकन शुल्क"
+        ]
+      }
+    },
+    "visuals": {
+      "models": {
+        "searchPlaceholder": "मॉडल्स सर्च करें...",
+        "reasoningModel": "रीज़निंग मॉडल",
+        "reasoningTag": "थिंकिंग · हाई",
+        "fastModel": "फ़ास्ट चैट मॉडल",
+        "fastTag": "लो लेटेंसी",
+        "codingModel": "कोडिंग और एजेंट मॉडल",
+        "codingTag": "टूल यूज़",
+        "byokModel": "आपकी प्रोवाइडर Key",
+        "byokTag": "BYOK",
+        "userMessage": "दोनों अप्रोच की तुलना करें",
+        "thoughtDuration": "6 सेकंड सोचा",
+        "assistantReply": "ऑप्शन B बेहतर स्केल करता है क्योंकि…",
+        "branchAction": "ब्रांच",
+        "retryAction": "दूसरे मॉडल से रीट्राई करें"
+      },
+      "sandbox": {
+        "running": "चल रहा है",
+        "vcpu": "vCPU",
+        "ram": "RAM",
+        "disk": "डिस्क",
+        "liveVnc": "लाइव VNC डेस्कटॉप",
+        "guiPort": ":5901 GUI",
+        "desktopAndBrowser": "Linux डेस्कटॉप और ब्राउज़र",
+        "interactive": "इंटरैक्टिव"
+      },
+      "git": {
+        "prTitle": "#42 लॉन्च पेज जोड़ें",
+        "diffSummary": "+134 −12 · 3 फ़ाइलें",
+        "ready": "तैयार",
+        "issueTitle": "Issue #18 · रीसाइज़ करने पर चार्ट फ़्लिकर करता है"
+      },
+      "connectors": {
+        "badge": "MCP कनेक्टर्स"
+      },
+      "memory": {
+        "header": "आपके बारे में याद रखा गया",
+        "items": [
+          "TypeScript पसंद करते हैं",
+          "Vite + Tailwind इस्तेमाल करते हैं",
+          "जवाब छोटे और सटीक रखते हैं",
+          "प्रोजेक्ट: product-launch"
+        ]
+      },
+      "team": {
+        "roles": {
+          "owner": "ओनर",
+          "admin": "एडमिन",
+          "member": "मेंबर"
+        },
+        "inviteByEmail": "+ ईमेल से इनवाइट करें"
+      },
+      "byos": {
+        "selectorLabel": "क्लाउड एजेंट",
+        "claudeName": "Claude Code",
+        "claudePlan": "Claude Pro / Max",
+        "codexName": "OpenAI Codex",
+        "codexPlan": "ChatGPT Plus / Pro",
+        "antigravityName": "Antigravity",
+        "antigravityPlan": "Google / Gemini OAuth",
+        "connectedBadge": "कनेक्टेड",
+        "oauthBadge": "OAuth",
+        "vmCardTitle": "क्लाउड VM CLI रनर",
+        "vmCardDetail": "1-क्लिक OAuth · VM से सिंक करें",
+        "zeroFeeLabel": "$0.00 LLM सरचार्ज",
+        "zeroFeeTitle": "शून्य LLM टोकन शुल्क",
+        "zeroFeeSubtitle": "सीधे आपकी सक्रिय सदस्यता पर चलता है"
+      }
+    }
+  },
+  "architecture": {
+    "eyebrow": "क्लाउड एजेंट आर्किटेक्चर",
+    "title": "तीन क्लाउड लेयर्स जो एक साथ काम करती हैं",
+    "description": "एजेंट का ब्रेन, आपका प्रोजेक्ट वर्कस्पेस और एक डेडिकेटेड Linux VM क्लाउड में लगातार सिंक रहते हैं। एजेंट कैसे काम करता है, यह देखने के लिए किसी लेयर पर होवर करें।",
+    "floatCards": {
+      "vmAttachedTitle": "क्लाउड एजेंट · VM कनेक्टेड",
+      "vmAttachedSubtitle": "lightning-atlas · 4 vCPU",
+      "testsPassedTitle": "टर्मिनल 2 · 18 टेस्ट पास",
+      "vncTitle": "VNC डेस्कटॉप पर एजेंट",
+      "vncSubtitle": "lightning-atlas · :5901 GUI",
+      "prOpenedTitle": "एजेंट ने PR #42 खोला"
+    },
+    "layers": {
+      "sandbox": {
+        "title": "क्लाउड सैंडबॉक्स VM और VNC",
+        "eyebrow": "एक्ज़ीक्यूशन और GUI",
+        "description": "हर प्रोजेक्ट के लिए एक डेडिकेटेड क्लाउड Linux मशीन जहाँ एजेंट टर्मिनल, ब्राउज़र और इंटरैक्टिव VNC डेस्कटॉप सेशन्स चलाता है।"
+      },
+      "workspace": {
+        "title": "क्लाउड वर्कस्पेस",
+        "eyebrow": "फ़ाइलें और Git",
+        "description": "आपकी रिपॉज़िटरीज़, कोड एडिटर्स, git ब्रांचेज़ और Pull Requests — एजेंट के काम करते समय रियल टाइम में सिंक होते रहते हैं।"
+      },
+      "conversation": {
+        "title": "ऑटोनॉमस एजेंट",
+        "eyebrow": "मॉडल्स और मेमोरी",
+        "description": "फ़्रंटियर रीज़निंग मॉडल्स द्वारा संचालित। एजेंट टास्क प्लान करता है, फ़ाइलें एडिट करता है, क्लाउड कमांड्स चलाता है और आपकी प्रेफ़रेंसेज़ याद रखता है।"
+      }
+    },
+    "plates": {
+      "terminalLabel": "टर्मिनल 2",
+      "testsPassed": "✓ 18 टेस्ट पास (1.42s)",
+      "vncLive": "VNC · :5901 लाइव",
+      "specs": "4 vCPU · 12 GB RAM",
+      "vmAttached": "VM कनेक्टेड",
+      "promptPlaceholder": "अपने क्लाउड एजेंट को कोडिंग टास्क दें...",
+      "modelSummary": "Kimi K3.1 Pro · मीडियम"
+    }
+  },
+  "trust": {
+    "eyebrow": "असली इंजीनियरिंग के लिए निर्मित",
+    "title": "ज़ीरो लोकल रिस्क, फ़ुल क्लाउड कंट्रोल",
+    "items": {
+      "isolated": {
+        "title": "100% क्लाउड-आइसोलेटेड",
+        "text": "हर एजेंट प्रोजेक्ट के लिए बने डेडिकेटेड क्लाउड VM में चलता है — अनट्रस्टेड कोड और भारी बिल्ड्स कभी आपके लोकल कंप्यूटर को नहीं छूते।"
+      },
+      "liveVnc": {
+        "title": "लाइव VNC और ब्राउज़र",
+        "text": "अपने एजेंट को फ़ुल Linux GUI सेशन्स और लाइव वेब ऐप्स के साथ रियल टाइम में काम करते देखें, या एक क्लिक में खुद कंट्रोल लें।"
+      },
+      "byok": {
+        "title": "आपके सब्सक्रिप्शन और कुंजियाँ",
+        "text": "OAuth के माध्यम से Claude Pro / Max, ChatGPT Plus / Pro या Google Antigravity कनेक्ट करें — या 0% मार्कअप के साथ अपनी API कुंजियाँ उपयोग करें।"
+      },
+      "roles": {
+        "title": "रोल्स और एक्सेस",
+        "text": "वर्कस्पेस ओनर्स तय करते हैं कि कौन एजेंट्स रन कर सकता है, क्लाउड मशीन्स एक्सेस कर सकता है और इंटीग्रेशन्स मैनेज कर सकता है।"
+      }
+    }
+  },
+  "cta": {
+    "title": "सेकंडों में अपना क्लाउड एजेंट लॉन्च करें।",
+    "description": "एक रिपॉज़िटरी कनेक्ट करें, फ़्रंटियर मॉडल चुनें और अपने एजेंट को अपनी ही क्लाउड मशीन से बिल्ड, टेस्ट और शिप करने दें।",
+    "launchButton": "अपना क्लाउड एजेंट लॉन्च करें",
+    "pricingButton": "डिटेल्ड प्राइसिंग देखें",
+    "discordButton": "कोई सवाल? Discord पर सीधे संस्थापक से चैट करें"
+  },
+  "footer": {
+    "pricing": "प्राइसिंग",
+    "integrations": "इंटीग्रेशन्स",
+    "docs": "डॉक्स",
+    "terms": "शर्तें",
+    "privacy": "प्राइवेसी"
+  },
+  "preview": {
+    "rootAriaLabel": "Neuron Runner वर्कस्पेस प्रीव्यू",
+    "toolsGroupAriaLabel": "वर्कस्पेस टूल्स",
+    "mobileToolsGroupAriaLabel": "मोबाइल वर्कस्पेस टूल्स",
+    "tools": {
+      "files": "फ़ाइलें",
+      "git": "Git",
+      "browser": "ब्राउज़र",
+      "desktop": "डेस्कटॉप",
+      "terminal": "टर्मिनल"
+    },
+    "sidebar": {
+      "newChat": "नई चैट",
+      "issues": "Issues",
+      "pullRequests": "Pull Requests",
+      "integrations": "इंटीग्रेशन्स",
+      "projectsHeading": "प्रोजेक्ट्स ({{count}})",
+      "noConversations": "अभी तक कोई चैट नहीं",
+      "historyHeading": "हिस्ट्री ({{count}})",
+      "historyItems": [
+        "लाइव एनालिटिक्स के साथ लॉन्च पेज",
+        "प्राइसिंग टेबल कॉपी",
+        "auth मिडलवेयर रीफ़ैक्टर करें",
+        "Chrome E2E विज़ुअल चेक",
+        "डेटाबेस pgvector स्कीमा",
+        "Docker compose prod सेटअप"
+      ],
+      "workspaceSummary": "{{owner}} का वर्कस्पेस · {{balance}}"
+    },
+    "chat": {
+      "newConversation": "नई चैट",
+      "vmAttached": "क्लाउड एजेंट · VM कनेक्टेड",
+      "promptPlaceholder": "अपने क्लाउड एजेंट को कोडिंग टास्क दें...",
+      "reasoningLevel": "मीडियम",
+      "suggestions": [
+        {
+          "label": "टेक स्टैक एनालाइज़ करें",
+          "prompt": "रूट डायरेक्टरी चेक करें और सभी कॉन्फ़िग फ़ाइलें लिस्ट करें (जैसे package.json, pyproject.toml)..."
+        },
+        {
+          "label": "एंट्री पॉइंट ढूंढें",
+          "prompt": "मुख्य एप्लिकेशन एंट्री पॉइंट फ़ाइल खोजें (जैसे index.js, main.py, App.tsx) और स्टार्टअप ट्रेस करें..."
+        },
+        {
+          "label": "प्रोजेक्ट स्ट्रक्चर देखें",
+          "prompt": "कोर मॉड्यूल्स मैप करने के लिए /workspace/neuronrunner पाथ का डिटेल्ड डायरेक्टरी ट्री जनरेट करें..."
+        },
+        {
+          "label": "टेस्ट रन करें",
+          "prompt": "टेस्ट रनर कॉन्फ़िगरेशन खोजें और पूरा टेस्ट सूट चलाने के लिए कमांड चलाएं..."
+        },
+        {
+          "label": "एनवायरनमेंट वेरिएबल्स चेक करें",
+          "prompt": "सभी कॉन्फ़िग फ़ाइलें (जैसे .env, config.yaml) पहचानें और ज़रूरी Keys लिस्ट करें..."
+        }
+      ]
+    },
+    "terminal": {
+      "tabTitle": "टर्मिनल {{number}}",
+      "passBadge": "PASS",
+      "testsPassed": "✓ 18 टेस्ट पास (1.42s)"
+    },
+    "git": {
+      "changesCount": "{{count}} बदलाव",
+      "changesHeading": "बदलाव",
+      "commitMessage": "लाइव एनालिटिक्स डैशबोर्ड के साथ लॉन्च पेज जोड़ें",
+      "commitButton": "कमिट करें"
+    },
+    "browser": {
+      "dashboardTitle": "लॉन्च डैशबोर्ड",
+      "live": "लाइव",
+      "visitors": "विज़िटर्स",
+      "signups": "साइनअप",
+      "conversion": "कन्वर्ज़न",
+      "chartTitle": "साइनअप · पिछले 8 दिन"
+    },
+    "desktop": {
+      "windowTitle": "Chromium — E2E रनर",
+      "checkTitle": "लॉन्च पेज विज़ुअल चेक",
+      "checksPassed": "4 / 4 पास",
+      "checkCanvas": "✓ चार्ट कैनवास रेंडर हुआ",
+      "checkResponsive": "✓ रेस्पॉन्सिव लेआउट",
+      "linuxGui": "Linux GUI"
+    },
+    "mobile": {
+      "title": "लाइव एनालिटिक्स के साथ लॉन्च पेज",
+      "connectedMachineTitle": "कनेक्टेड मशीन: lightning-atlas (चल रही है)",
+      "toolsButton": "टूल्स",
+      "userPrompt": "लाइव एनालिटिक्स के साथ लॉन्च पेज बनाएं, टेस्ट सूट चलाएं और एक PR खोलें।",
+      "hideResponseDetails": "रिस्पॉन्स डिटेल्स छिपाएं",
+      "showResponseDetails": "रिस्पॉन्स डिटेल्स दिखाएं",
+      "responseDetails": "रिस्पॉन्स डिटेल्स",
+      "stepsCount": "{{count}} स्टेप्स",
+      "steps": [
+        {
+          "title": "3 फ़ाइलें एडिट की गईं",
+          "detail": "src/app/page.tsx, src/lib/analytics.ts, src/components/chart.tsx"
+        },
+        {
+          "title": "टर्मिनल 2 · npm run test",
+          "detail": "root@neuronrunner:/workspace/neuronrunner · ✓ 18 टेस्ट पास"
+        },
+        {
+          "title": "लाइव VNC डेस्कटॉप पर वेरिफ़ाइड",
+          "detail": "lightning-atlas · :5901 GUI · 4 / 4 विज़ुअल चेक पास"
+        },
+        {
+          "title": "PR #42 खोला गया",
+          "detail": "neuronrunner · feat/launch-page → main"
+        }
+      ],
+      "assistantSummary1": "मैंने <branch>feat/launch-page</branch> पर लॉन्च एनालिटिक्स डैशबोर्ड बना दिया है, लाइव VNC डेस्कटॉप पर लेआउट वेरिफ़ाई कर लिया है और कन्फ़र्म किया है कि <vm>lightning-atlas</vm> पर सभी <passed>18 टेस्ट पास</passed> हो गए हैं।",
+      "assistantSummary2": "Pull Request <pr>#42</pr> रिव्यू के लिए तैयार है — आगे आपके लिए क्या शिप करूँ?",
+      "askPlaceholder": "कुछ भी पूछें...",
+      "closeToolsAriaLabel": "टूल्स पैनल बंद करें",
+      "vmFooterSpec": "lightning-atlas · 4 vCPU",
+      "backToChat": "चैट पर वापस जाएं"
+    },
+    "vmDropdown": {
+      "machines": "मशीनें",
+      "activeCount": "{{count}} सक्रिय",
+      "running": "चालू",
+      "stopped": "रुकी हुई",
+      "cpu": "CPU",
+      "ram": "RAM"
+    }
+  },
+  "pricingPage": {
+    "hero": {
+      "badge": "प्रेडिक्टेबल प्लान्स · पारदर्शी टोकन रेट्स · $0.00 आइडल VMs",
+      "titleLine1": "सरल प्लान्स जो आपके साथ स्केल करें।",
+      "titleLine2": "पारदर्शी टोकन प्राइसिंग।",
+      "subtitle": "<s1>हर महीने $0.50 के फ्री LLM और क्लाउड VM इस्तेमाल</s1> के साथ मुफ़्त शुरू करें, अपनी Claude Code, Codex या Antigravity सब्सक्रिप्शन के साथ डेडिकेटेड Linux VM के लिए <s2>Plus ($10) या Pro ($25)</s2> पर अपग्रेड करें, या 0% प्लेटफ़ॉर्म फीस पर अपनी API की लाएँ। Pro अपने कोटे में सभी मॉडल शामिल करता है; Free और Plus में प्रीमियम मॉडल इस्तेमाल के हिसाब से चार्ज होते हैं।"
+    },
+    "planLabels": {
+      "llmAllowance": "उपयोग कोटा (LLM + VM)",
+      "cloudSandboxVm": "क्लाउड सैंडबॉक्स VM"
+    },
+    "plans": {
+      "free": {
+        "name": "Free",
+        "period": "/ माह",
+        "badge": "हमेशा फ़्री",
+        "tagline": "फ़ास्ट फ़्री-टियर मॉडल्स, BYOK और स्टार्टर क्लाउड VMs के साथ ऑटोनॉमस कोडिंग आज़माएं।",
+        "llmAllowance": "$0.50 / माह",
+        "vcpuQuota": "अधिकतम 2 vCPU-घंटे / माह",
+        "vcpuSubnote": "फ़्री LLMs व 4-कोर VM के लिए ($0.16/घं)",
+        "highlights": [
+          "6 फ़्री LLMs + क्लाउड VM हेतु <strong>$0.50/माह एकल कोटा</strong>",
+          "<strong>4-कोर (6 GB RAM)</strong> Linux सैंडबॉक्स VMs का एक्सेस",
+          "<strong>20-मिनट</strong> तक के लगातार VM सेशन्स",
+          "अपनी <strong>खुद की सब्सक्रिप्शन (BYOS)</strong> या <strong>API की (BYOK)</strong> 0% फीस पर लाएँ"
+        ],
+        "ctaLabel": "फ़्री शुरू करें"
+      },
+      "plus": {
+        "name": "Plus",
+        "period": "/ माह",
+        "badge": "सबसे लोकप्रिय",
+        "tagline": "आपके अपने कोडिंग एजेंट्स के लिए डेडिकेटेड क्लाउड Linux VM: अपनी सब्सक्रिप्शन (BYOS) या API की लाएँ।",
+        "llmAllowance": "$10.00 / माह",
+        "vcpuQuota": "अधिकतम 200 vCPU-घंटे / माह",
+        "vcpuSubnote": "4/6/8-कोर VM और फ्री-टियर मॉडल के लिए $2 LLM अलाउंस शामिल",
+        "highlights": [
+          "क्लाउड VM (<strong>~200 vCPU-घंटे</strong>) के लिए <strong>$10.00/माह कोटा</strong> + फ्री-टियर मॉडल के लिए <strong>$2 LLM अलाउंस</strong>",
+          "अपनी <strong>खुद की Claude Code, Codex या Antigravity सब्सक्रिप्शन</strong> (BYOS) या API की (BYOK) लाएँ",
+          "<strong>4-कोर (12 GB RAM)</strong> तक के VMs + लाइव VNC डेस्कटॉप",
+          "<strong>60-मिनट के सेशन्स</strong> और 2 परसिस्टेंट VM स्नैपशॉट्स"
+        ],
+        "ctaLabel": "Plus में अपग्रेड करें"
+      },
+      "pro": {
+        "name": "Pro",
+        "period": "/ माह",
+        "badge": "4× पावर",
+        "tagline": "भारी full-stack इंजीनियरिंग के लिए ज़्यादा VM घंटे, स्नैपशॉट और 4 मेंबर तक।",
+        "llmAllowance": "$25.00 / माह",
+        "vcpuQuota": "अधिकतम 550 vCPU-घंटे / माह",
+        "vcpuSubnote": "फ्री-टियर LLM और 4/6/8-कोर VM के लिए साझा कोटा",
+        "highlights": [
+          "क्लाउड VM (<strong>~550 vCPU-घंटे</strong>) + फ्री-टियर LLM के लिए <strong>$25.00/माह साझा कोटा</strong>",
+          "प्रीमियम मॉडल आपके <strong>वॉलेट</strong> से (इस्तेमाल के हिसाब से) चार्ज होते हैं, प्लान कोटे से कभी नहीं",
+          "<strong>4 वर्कस्पेस मेंबर्स</strong> तक · अधिकतम 4 क्लाउड VMs",
+          "<strong>60-मिनट के सेशन्स</strong> और 10 परसिस्टेंट VM स्नैपशॉट्स"
+        ],
+        "ctaLabel": "Pro में अपग्रेड करें"
+      },
+      "team": {
+        "name": "Team",
+        "period": "/ माह",
+        "badge": "कोलैबोरेटिव",
+        "tagline": "20 सीट्स और 20 क्लाउड VMs तक वाली टीम्स के लिए डेडिकेटेड कोलैबोरेटिव वर्कस्पेस।",
+        "llmAllowance": "$200.00 / माह",
+        "vcpuQuota": "अधिकतम 400 vCPU-घंटे / माह",
+        "vcpuSubnote": "16 LLMs व VMs हेतु टीम पूल ($0.16–$0.32/घं)",
+        "highlights": [
+          "टीम हेतु 16 LLMs + VMs पर <strong>$200.00/माह साझा कोटा</strong>",
+          "क्लाउड VM पूल से कटता है (<strong>$0.16–$0.32/घं</strong> · बंद $0.00)",
+          "<strong>20 वर्कस्पेस मेंबर्स</strong> तक और रोल परमिशन्स",
+          "<strong>20 क्लाउड VMs</strong> और 20 परसिस्टेंट स्नैपशॉट्स तक",
+          "<strong>शेयर्ड एक्स्ट्रा-यूज़ेज वॉलेट</strong> और यूनिफ़ाइड टीम इनवॉइस"
+        ],
+        "ctaLabel": "Team प्लान शुरू करें"
+      }
+    },
+    "mechanics": {
+      "wallet": {
+        "title": "एक्स्ट्रा-यूज़ेज वॉलेट ($10+ टॉप-अप)",
+        "description": "पहले हमेशा आपका प्लान कोटा इस्तेमाल होता है; सब्सक्रिप्शन वॉलेट में कैश नहीं जोड़ते। कोटा ओवरेज, Free और Plus में प्रीमियम मॉडल या BYOS/BYOK के साथ स्टैंडअलोन पे-एज़-यू-गो क्लाउड VM कंप्यूट ($0.16–$0.32/घंटा) के लिए टॉप-अप करें (न्यूनतम <s1>$10.00</s1>, 0% फीस)।"
+      },
+      "byok": {
+        "title": "Bring Your Own Key (0% फ़ीस)",
+        "description": "अपनी Anthropic, OpenAI, DeepSeek या कस्टम कुंजियाँ <s1>$0.00 प्लेटफ़ॉर्म मार्कअप</s1> पर जोड़ें (प्लान कोटा खर्च नहीं होता; Free पर पेड मॉडल्स के लिए वॉलेट बैलेंस या पेड प्लान ज़रूरी है)।"
+      },
+      "byos": {
+        "title": "अपना सब्सक्रिप्शन लाएं (BYOS)",
+        "description": "Claude Pro/Max, ChatGPT Plus/Pro या Antigravity को <s1>$0.00 LLM टोकन शुल्क</s1> के साथ कनेक्ट करें। एजेंट आपके Cloud VM में प्लान VM घंटों या $10+ कंप्यूट-ओनली टॉप-अप से चलते हैं।"
+      }
+    },
+    "breakdown": {
+      "eyebrow": "पारदर्शी ब्रेकडाउन",
+      "title": "मॉडल रेट्स, क्लाउड VMs और प्लान स्पेक्स एक्सप्लोर करें",
+      "tabs": {
+        "models": "AI मॉडल रेट्स ({{count}})",
+        "vms": "क्लाउड सैंडबॉक्स VMs और VNC",
+        "compare": "प्लान्स की तुलना करें"
+      }
+    },
+    "models": {
+      "filters": {
+        "all": "सभी मॉडल्स ({{count}})",
+        "free": "फ़्री टियर में शामिल ({{count}})",
+        "paid": "प्रीमियम ({{count}})"
+      },
+      "searchPlaceholder": "मॉडल या प्रोवाइडर सर्च करें…",
+      "columns": {
+        "model": "मॉडल",
+        "context": "कॉन्टेक्स्ट",
+        "planAccess": "प्लान एक्सेस",
+        "input": "इनपुट / 1M",
+        "output": "आउटपुट / 1M",
+        "cacheRead": "कैश रीड / 1M"
+      },
+      "accessBadges": {
+        "free": "Free + सभी प्लान्स",
+        "paid": "Pro · या वॉलेट"
+      },
+      "empty": "आपके सर्च से कोई मॉडल मैच नहीं हुआ।"
+    },
+    "vms": {
+      "vcpuHrsUnit": "{{cpu}} vCPU-घंटे",
+      "perActiveHour": "/ एक्टिव घंटा",
+      "overageRate": "प्लान कोटा से · बंद $0.00",
+      "cpuLabel": "CPU",
+      "cpuValue": "{{cpu}} vCPU",
+      "memoryLabel": "मेमोरी",
+      "memoryValue": "{{memory}} GB",
+      "nvmeLabel": "NVMe",
+      "nvmeValue": "{{disk}} GB",
+      "includedIn": "इसमें शामिल",
+      "bestForLabel": "सबसे उपयुक्त:",
+      "standardTitle": "हर क्लाउड सैंडबॉक्स मशीन में स्टैंडर्ड",
+      "standardMeta": "प्रति-सेकंड मीटर · बंद होने पर $0.00",
+      "tiers": {
+        "tier_1": {
+          "label": "4-कोर",
+          "badge": "स्टैंडर्ड · tier_1",
+          "tagline": "रोज़मर्रा की कोडिंग, स्क्रिप्ट्स और लाइट वेब प्रीव्यूज़।",
+          "planAccess": "Free, Plus और Pro",
+          "highlights": [
+            "4-कोर (4 vCPU) डेडिकेटेड क्लाउड कंप्यूट",
+            "8 GB DDR हाई-स्पीड मेमोरी · 32 GB NVMe डिस्क",
+            "दर: $0.16 / सक्रिय घंटा (बंद होने पर $0.00)",
+            "Plus: 50 घंटे/माह तक · Pro: 137 घंटे/माह तक (शामिल vCPU-घंटे)"
+          ],
+          "bestFor": "फ़्रंटएंड ऐप्स, APIs और फ़ास्ट स्क्रिप्ट्स"
+        },
+        "tier_2": {
+          "label": "6-कोर",
+          "badge": "सबसे लोकप्रिय · tier_2",
+          "tagline": "फुल-स्टैक डेवलपमेंट, Docker सर्विसेज़ और लाइव VNC टेस्ट्स।",
+          "planAccess": "Plus और Pro",
+          "highlights": [
+            "4-कोर (6 vCPU) मल्टी-कोर बिल्ड इंजन",
+            "12 GB DDR मेमोरी · 32 GB NVMe डिस्क",
+            "दर: $0.24 / सक्रिय घंटा (बंद होने पर $0.00)",
+            "Plus: 33 घंटे/माह तक · Pro: 92 घंटे/माह तक (शामिल vCPU-घंटे)"
+          ],
+          "bestFor": "फुल-स्टैक Next.js, Vite और Docker स्टैक्स"
+        },
+        "tier_3": {
+          "label": "8-कोर",
+          "badge": "पावर · tier_3",
+          "tagline": "हेवी कंपाइलेशन, बड़े मोनोरेपो और पैरेलल टेस्ट सूट्स।",
+          "planAccess": "Plus और Pro",
+          "highlights": [
+            "8-कोर (8 vCPU) हाई-कन्करेंसी कंप्यूट",
+            "16 GB DDR बड़ा मेमोरी पूल · 64 GB NVMe डिस्क",
+            "दर: $0.32 / सक्रिय घंटा (बंद होने पर $0.00)",
+            "Plus: 25 घंटे/माह तक · Pro: 69 घंटे/माह तक (शामिल vCPU-घंटे)"
+          ],
+          "bestFor": "मोनोरेपो, Rust/Go कंपाइलर्स और E2E सूट्स"
+        }
+      },
+      "includedCapabilities": [
+        {
+          "title": "Root Linux VM",
+          "description": "एक आइसोलेटेड क्लाउड मशीन में बिना पासवर्ड वाला फ़ुल sudo, Docker, apt, npm, pip और कस्टम सिस्टम पैकेज।"
+        },
+        {
+          "title": "लाइव VNC डेस्कटॉप (:5901)",
+          "description": "बिना किसी एक्स्ट्रा लाइसेंस फ़ीस के सीधे अपने वर्कस्पेस में असली Linux GUI और Chromium ब्राउज़र स्ट्रीम करें।"
+        },
+        {
+          "title": "इंस्टेंट पोर्ट प्रीव्यूज़",
+          "description": "ऐप के अंदर ही लाइव HTTPS रिवर्स-प्रॉक्सी प्रीव्यू के साथ डेव सर्वर्स (3000, 5173, 8000) खोलें।"
+        },
+        {
+          "title": "ऑटो-स्टॉप आइडल गार्ड",
+          "description": "कॉन्फ़िगरेबल 2–60 मिनट का इनएक्टिविटी टाइमर आइडल VMs को अपने आप बंद कर देता है ताकि आपकी कॉस्ट $0.00 हो जाए।"
+        }
+      ]
+    },
+    "compare": {
+      "columns": {
+        "feature": "फ़ीचर",
+        "free": "Free",
+        "plus": "Plus ($10)",
+        "pro": "Pro ($25)",
+        "team": "Team ($200)"
+      },
+      "footnote": "* खाता सत्यापन के बाद Free प्लान में 4-कोर क्लाउड VM ($0.50 कोटा से $0.16/घं) अनलॉक होता है।",
+      "rows": [
+        {
+          "feature": "मंथली प्राइस",
+          "free": "$0 / माह",
+          "plus": "$10 / माह",
+          "pro": "$25 / माह",
+          "team": "$200 / माह"
+        },
+        {
+          "feature": "मासिक उपयोग कोटा (LLM + VM)",
+          "free": "$0.50 / माह",
+          "plus": "$10.00 / माह",
+          "pro": "$25.00 / माह",
+          "team": "$200.00 / माह"
+        },
+        {
+          "feature": "उपलब्ध मॉडल्स",
+          "free": "6 फ़्री-टियर मॉडल्स",
+          "plus": "6 फ्री-टियर मॉडल (प्रीमियम वॉलेट से)",
+          "pro": "सभी मॉडल (साझा कोटा)",
+          "team": "सभी 16 फ़्रंटियर मॉडल्स"
+        },
+        {
+          "feature": "क्लाउड VM दर (कोटा से)",
+          "free": "$0.16 / घं*",
+          "plus": "$0.16–$0.32 / घं",
+          "pro": "$0.16–$0.32 / घं",
+          "team": "$0.16–$0.32 / घं"
+        },
+        {
+          "feature": "शामिल VM कंप्यूट",
+          "free": "अधिकतम 1 घं / माह",
+          "plus": "अधिकतम 200 vCPU-घंटे / माह",
+          "pro": "अधिकतम 550 vCPU-घंटे / माह",
+          "team": "अधिकतम 1,666 घं / माह"
+        },
+        {
+          "feature": "अधिकतम VM हार्डवेयर टियर",
+          "free": "4-कोर · 6 GB RAM",
+          "plus": "4-कोर · 12 GB RAM",
+          "pro": "6-कोर · 16 GB RAM",
+          "team": "6-कोर · 16 GB RAM"
+        },
+        {
+          "feature": "अधिकतम क्लाउड VMs",
+          "free": "1 VM",
+          "plus": "1 VM",
+          "pro": "4 VMs",
+          "team": "20 VMs"
+        },
+        {
+          "feature": "वर्कस्पेस मेंबर्स",
+          "free": "1 मेंबर",
+          "plus": "1 मेंबर (कोई टीम नहीं)",
+          "pro": "4 मेंबर्स तक",
+          "team": "20 मेंबर्स तक"
+        },
+        {
+          "feature": "परसिस्टेंट VM स्नैपशॉट्स",
+          "free": "—",
+          "plus": "2 स्नैपशॉट्स",
+          "pro": "10 स्नैपशॉट्स",
+          "team": "20 स्नैपशॉट्स"
+        },
+        {
+          "feature": "अधिकतम VM सेशन अवधि",
+          "free": "20 मिनट",
+          "plus": "60 मिनट",
+          "pro": "60 मिनट",
+          "team": "60 मिनट"
+        },
+        {
+          "feature": "Bring Your Own Key (BYOK)",
+          "free": "0% फ़ीस",
+          "plus": "0% फ़ीस",
+          "pro": "0% फ़ीस",
+          "team": "0% फ़ीस"
+        },
+        {
+          "feature": "एक्स्ट्रा-यूज़ेज टॉप-अप्स",
+          "free": "न्यूनतम $10.00 (0% शुल्क)",
+          "plus": "न्यूनतम $10.00 (0% शुल्क)",
+          "pro": "न्यूनतम $10.00 (0% शुल्क)",
+          "team": "न्यूनतम $10.00 (साझा वॉलेट, 0% शुल्क)"
+        },
+        {
+          "feature": "कोटा प्राथमिकता और पूल",
+          "free": "कोटा पहले · 1 सदस्य",
+          "plus": "कोटा पहले · 1 सदस्य",
+          "pro": "कोटा पहले · साझा पूल",
+          "team": "कोटा पहले · साझा पूल"
+        }
+      ]
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "सवाल और जवाब",
+      "description": "यूनिफाइड मंथली यूज़ेज कोटा, प्रति-सेकंड VM दरों और अतिरिक्त उपयोग टॉप-अप के बारे में वह सब कुछ जो आपको जानना चाहिए।",
+      "docsLink": "डॉक्स पढ़ें",
+      "items": [
+        {
+          "question": "यूनिफाइड मंथली यूज़ेज कोटा कैसे काम करता है?",
+          "answer": "Plus ($10) और Pro ($25) में क्लाउड VM रनटाइम और LLM टोकन के लिए मासिक USD कोटा शामिल है ($10 Plus, $25 Pro; Free में $0.50)। Pro सभी मॉडल कवर करता है; Free और Plus 6 फ्री-टियर मॉडल कवर करते हैं और प्रीमियम मॉडल आपके वॉलेट से चार्ज करते हैं।"
+        },
+        {
+          "question": "क्लाउड सैंडबॉक्स VM का बिल कैसे बनता है?",
+          "answer": "चलते हुए VMs आपके मासिक प्लान कोटा से प्रति-सेकंड के हिसाब से 4-कोर के लिए $0.16/घं, 6-कोर के लिए $0.24/घं और 8-कोर के लिए $0.32/घं घटाते हैं। बंद VMs पर शुल्क $0.00/घं है।"
+        },
+        {
+          "question": "Free प्लान पर मैं क्लाउड सैंडबॉक्स VMs कैसे एक्सेस करूँ?",
+          "answer": "Free प्लान में फ़्री मॉडल्स और 4-कोर क्लाउड VM ($0.16/घं) दोनों के लिए $0.50/माह कोटा मिलता है। VM शुरू करने हेतु सेटिंग्स में खाता सत्यापन पूरा करें।"
+        },
+        {
+          "question": "प्लान कोटा पार होने पर क्या होगा?",
+          "answer": "आपका मंथली प्लान कोटा हमेशा पहले खर्च होता है—सब्सक्रिप्शन वॉलेट कैश जोड़ने के बजाय प्लान कोटा अनलॉक करते हैं, और कोटा शेष रहने तक $0.00 वॉलेट बैलेंस पर भी चल रहे VM ऑनलाइन रहते हैं। जब कोटा 0 हो जाता है, तो अतिरिक्त उपयोग आपके एक्स्ट्रा-यूज़ेज वॉलेट (न्यूनतम $10.00 टॉप-अप) से काटा जाता है।"
+        },
+        {
+          "question": "अतिरिक्त उपयोग टॉप-अप पर $10.00 की न्यूनतम सीमा क्यों है?",
+          "answer": "$10.00 की न्यूनतम सीमा पेमेंट प्रोसेसिंग लागत को कम रखती है ताकि आपसे चेकआउट पर कोई अतिरिक्त शुल्क न लिया जाए। आपके द्वारा भुगतान की गई 100% राशि सीधे आपके बैलेंस में क्रेडिट होती है।"
+        },
+        {
+          "question": "क्या मैं फिर भी अपनी API Keys (BYOK) इस्तेमाल कर सकता हूँ?",
+          "answer": "हाँ! वर्कस्पेस सेटिंग्स में Anthropic, OpenAI, DeepSeek या कस्टम प्रोवाइडर की 0% प्लेटफ़ॉर्म मार्कअप पर जोड़ें। BYOK रिक्वेस्ट आपके प्लान का LLM अलाउंस कभी इस्तेमाल नहीं करतीं; Free और Plus में प्रीमियम मॉडल के लिए वॉलेट बैलेंस चाहिए, जबकि Pro उन्हें अपने कोटे से कवर करता है।"
+        }
+      ]
+    },
+    "bottomCta": {
+      "title": "आज ही फ़्री शुरू करें। शिप करते हुए अपग्रेड करें।",
+      "description": "Free प्लान में हर महीने $0.50 का फ्री-टियर LLM और क्लाउड VM इस्तेमाल पाएँ, या Plus ($10) और Pro ($25) में अपनी एजेंट सब्सक्रिप्शन के साथ डेडिकेटेड Linux VM पाएँ।",
+      "managePlan": "वर्कस्पेस प्लान मैनेज करें",
+      "getStarted": "फ़्री में शुरू करें",
+      "signIn": "साइन इन"
+    },
+    "intervalToggle": {
+      "monthly": "मासिक",
+      "yearly": "वार्षिक",
+      "saveBadge": "2 माह मुफ़्त",
+      "perYear": "/ वर्ष"
+    },
+    "specs": {
+      "labels": {
+        "quota": "मासिक कोटा",
+        "vcpu": "शामिल VM कंप्यूट",
+        "vm": "अधिकतम VM साइज़",
+        "session": "सेशन अवधि",
+        "snapshots": "स्नैपशॉट",
+        "members": "मेंबर",
+        "llm": "LLM मॉडल",
+        "byo": "BYOS / BYOK"
+      },
+      "vcpuValue": "{{hours}} vCPU-घंटे",
+      "approxMinutes": "≈ {{cores}}-कोर VM पर {{minutes}} मिनट",
+      "approxHours": "≈ {{cores}}-कोर VM पर {{hours}} घंटे",
+      "vmSize": "{{cores}}-कोर · {{ram}} GB RAM",
+      "minutes": "{{minutes}} मिनट",
+      "none": "नहीं",
+      "llm": {
+        "free": "6 फ्री-टियर मॉडल",
+        "plus": "6 फ्री-टियर · $2/माह तक",
+        "pro": "सभी मॉडल · साझा पूल"
+      },
+      "included": "शामिल",
+      "freeFootnote": "* Free में VM एक्सेस के लिए स्टैंडर्ड अकाउंट वेरिफ़िकेशन ज़रूरी है।",
+      "limits": {
+        "title": "मेरा कोटा खत्म होने पर क्या होता है?",
+        "p1": "कोटा हर बिलिंग साइकिल में रीसेट होता है और असीमित नहीं है।",
+        "p2": "VM और मॉडल चलते रहें, इसके लिए अपने वॉलेट में टॉप-अप करें या अगली साइकिल का इंतज़ार करें।",
+        "p3": "Free और Plus में प्रीमियम मॉडल आपके वॉलेट से चार्ज होते हैं। Pro उन्हें अपने कोटे से कवर करता है।"
+      }
+    }
+  },
+  "pricingSection": {
+    "principles": {
+      "p1Eyebrow": "01 · फ़्लेक्सिबल प्लान्स + वॉलेट",
+      "p1Value": "$0 – $25",
+      "p1Unit": "/ माह या $10+ टॉप-अप",
+      "p1Desc": "Free से शुरू करें ($0.50/माह LLM + VM कोटा), Plus ($10) या Pro ($25/माह) पर अपग्रेड करें, और जब चाहें एक्स्ट्रा क्रेडिट टॉप-अप करें।",
+      "p1Footer": "✓ Free, Plus और Pro प्लान",
+      "p2Eyebrow": "02 · पे पर रिसोर्स",
+      "p2Value": "सटीक",
+      "p2Unit": "सेकंड्स और टोकन",
+      "p2Desc": "VMs की कॉस्ट केवल चलते समय $0.16/घंटा से शुरू होती है। बंद VMs की कॉस्ट $0.00 है। टोकन कैशिंग प्रॉम्प्ट्स पर ~80% तक बचत करती है।",
+      "p2Footer": "प्रति-सेकंड VM मीटर + कॉन्टेक्स्ट कैश",
+      "p3Eyebrow": "03 · ज़ीरो सरप्राइज़",
+      "p3Value": "$0.00",
+      "p3Unit": "हार्ड फ़्लोर",
+      "p3Desc": "$0.00 पर एक्ज़ीक्यूशन तुरंत रुक जाता है। कोई ओवरड्राफ़्ट नहीं, कोई सरप्राइज़ मंथली बिल नहीं और तुरंत PDF रिसीट्स।",
+      "p3Footer": "हर VM और मेंबर का डिटेल्ड लेजर"
+    },
+    "miniPlans": {
+      "popular": "लोकप्रिय",
+      "free": {
+        "name": "Free",
+        "period": "/माह",
+        "quota": "$0.50/माह Free कोटा (LLM + VM)",
+        "vm": "4-कोर क्लाउड VM ($0.16/घं)",
+        "note": "VM रनटाइम अनलॉक करने के लिए स्टैंडर्ड अकाउंट वेरिफ़िकेशन"
+      },
+      "plus": {
+        "name": "Plus",
+        "period": "/माह",
+        "quota": "$10.00/माह कोटा (VM + $2 फ्री-टियर LLM)",
+        "vm": "8-कोर तक VM · ~200 vCPU-घंटे",
+        "note": "BYOS/BYOK · 1 क्लाउड VM · सिंगल-यूज़र"
+      },
+      "pro": {
+        "name": "Pro",
+        "period": "/माह",
+        "quota": "$25.00/माह साझा कोटा (VM + सभी LLM)",
+        "vm": "8-कोर तक VM · ~550 vCPU-घंटे",
+        "note": "4 मेंबर तक · BYOS/BYOK"
+      },
+      "team": {
+        "name": "Team",
+        "period": "/माह",
+        "quota": "$200.00/माह साझा टीम कोटा",
+        "vm": "20 VMs तक ($0.16–$0.32/घं)",
+        "note": "20 टीम मेंबर्स तक + शेयर्ड वॉलेट"
+      },
+      "yearlyPeriod": "/वर्ष"
+    },
+    "nav": {
+      "eyebrow": "पारदर्शी प्राइसिंग",
+      "title": "चुनें कि आप क्या एक्सप्लोर करना चाहते हैं",
+      "tabs": {
+        "compute": "सैंडबॉक्स VMs और VNC",
+        "tokens": "टोकन और BYOK",
+        "calculator": "कॉस्ट एस्टिमेटर",
+        "compare": "बनाम सब्सक्रिप्शन्स"
+      }
+    },
+    "compute": {
+      "perHour": "/ घंटा",
+      "vcpuUnit": "{{cpu}} vCPU",
+      "ramUnit": "{{memory}} GB RAM",
+      "diskUnit": "{{disk}} GB डिस्क",
+      "tierHighlightsLabel": "टियर हाइलाइट्स:",
+      "bestForLabel": "सबसे उपयुक्त: {{bestFor}}",
+      "tiers": {
+        "tier_1": {
+          "label": "4-कोर",
+          "tagline": "रोज़मर्रा की डेवलपमेंट और लाइट वेब प्रीव्यूज़",
+          "badge": "स्टैंडर्ड",
+          "perMinute": "$0.0027 / मिनट",
+          "highlights": [
+            "4-कोर (2 vCPU) कंप्यूट इंजन",
+            "6 GB DDR RAM • 32 GB NVMe डिस्क",
+            "फ़ास्ट कोल्ड-स्टार्ट प्रोविज़निंग",
+            "लाइटवेट फ़्रंटएंड ऐप्स, APIs और स्क्रिप्ट्स",
+            "प्रति घंटा कॉस्ट: $0.16 प्रति घंटा"
+          ],
+          "bestFor": "फ़्रंटएंड ऐप्स, सिंगल-फ़ाइल स्क्रिप्ट्स और फ़ास्ट डीबगिंग",
+          "buttonText": "4-कोर से शुरू करें"
+        },
+        "tier_2": {
+          "label": "4-कोर",
+          "tagline": "फुल-स्टैक डेवलपमेंट, बिल्ड्स और टेस्ट सूट्स",
+          "badge": "सबसे लोकप्रिय",
+          "perMinute": "$0.0040 / मिनट",
+          "highlights": [
+            "4-कोर (4 vCPU) बिल्ड इंजन",
+            "12 GB DDR हाई-स्पीड मेमोरी • 32 GB NVMe डिस्क",
+            "पूरे Next.js, Vite और बैकएंड सर्वर स्टैक्स",
+            "स्मूद लाइव VNC डेस्कटॉप और ब्राउज़र ऑटोमेशन",
+            "प्रति घंटा कॉस्ट: $0.24 प्रति घंटा"
+          ],
+          "bestFor": "फुल-स्टैक ऐप्स, Docker बैकएंड्स और डेली कोडिंग",
+          "buttonText": "4-कोर डिप्लॉय करें"
+        },
+        "tier_3": {
+          "label": "6-कोर",
+          "tagline": "हेवी कंपाइलेशन, मोनोरेपो और पैरेलल सूट्स",
+          "badge": "पावर टियर",
+          "perMinute": "$0.0053 / मिनट",
+          "highlights": [
+            "6-कोर (6 vCPU) हाई-कन्करेंसी कंप्यूट",
+            "16 GB DDR बड़ा मेमोरी पूल • 64 GB NVMe डिस्क",
+            "हेवी मोनोरेपो और पैरेलल कंपाइलर्स",
+            "जटिल मल्टी-सर्विस और डेटाबेस टेस्टिंग",
+            "प्रति घंटा कॉस्ट: $0.32 प्रति घंटा"
+          ],
+          "bestFor": "बड़े मोनोरेपो, हेवी कंपाइलर्स और बड़े टेस्ट सूट्स",
+          "buttonText": "6-कोर लॉन्च करें"
+        }
+      },
+      "standardEyebrow": "स्टैंडर्ड आर्किटेक्चर",
+      "standardTitle": "बिना किसी एक्स्ट्रा चार्ज के हर सैंडबॉक्स मशीन में शामिल",
+      "standardMeta": "ज़ीरो सेटअप · आपके प्रोजेक्ट के साथ ऑटो-स्केल",
+      "sharedCapabilities": [
+        {
+          "label": "Root Linux सैंडबॉक्स",
+          "desc": "फ़ुल शेल और पैकेज इंस्टॉल कंट्रोल"
+        },
+        {
+          "label": "इंस्टेंट पोर्ट फ़ॉरवर्डिंग",
+          "desc": "3000, 8000, 5173 ऐप में प्रीव्यू"
+        },
+        {
+          "label": "लाइव VNC डेस्कटॉप (:5901)",
+          "desc": "इंटरैक्टिव Chromium और Linux GUI"
+        },
+        {
+          "label": "ANSI WebSocket टर्मिनल",
+          "desc": "स्प्लिट पेन्स के साथ परसिस्टेंट सेशन्स"
+        },
+        {
+          "label": "ऑटो-स्टॉप प्रोटेक्शन",
+          "desc": "कॉन्फ़िगरेबल 2–60 मिनट आइडल टाइमर"
+        },
+        {
+          "label": "$0.00 आइडल पॉलिसी",
+          "desc": "बंद होने पर ज़ीरो कंप्यूट फ़ीस"
+        }
+      ],
+      "vncBannerTitle": "लाइव VNC रिमोट डेस्कटॉप (:5901)",
+      "vncBannerDesc": "फ़ुल GUI ऐप्स और Chromium ऑटोमेशन के लिए सीधे अपने ब्राउज़र में असली Linux ग्राफ़िकल डिस्प्ले स्ट्रीम करें।",
+      "vncBannerCta": "सैंडबॉक्स VMs के साथ बिल्ड करना शुरू करें"
+    },
+    "tokens": {
+      "eyebrow": "पारदर्शी टोकन मीटरिंग",
+      "title": "ऑटोमैटिक कॉन्टेक्स्ट कैश डिस्काउंट के साथ प्रति टोकन पे करें",
+      "description": "हर रिक्वेस्ट इनपुट, कैश्ड इनपुट रीड और आउटपुट टोकन के लिए एक फिक्स्ड प्राइसिंग स्नैपशॉट लेती है। जब आपका प्रॉम्प्ट कोडबेस कॉन्टेक्स्ट दोहराता है, तो कॉन्टेक्स्ट कैशिंग अपने आप आपका बिल कम कर देती है।",
+      "rows": [
+        {
+          "category": "स्टैंडर्ड इनपुट टोकन",
+          "rate": "सटीक मॉडल रेट (प्रति 1M टोकन)",
+          "description": "मॉडल को भेजे गए प्रॉम्प्ट्स, इंस्ट्रक्शन्स, कोडबेस कॉन्टेक्स्ट और टूल स्कीमा।",
+          "benefit": "बिना किसी आर्टिफ़िशियल प्लेटफ़ॉर्म मार्कअप के सीधा पास-थ्रू।"
+        },
+        {
+          "category": "कैश्ड कॉन्टेक्स्ट रीड्स",
+          "rate": "इनपुट से ~75% से 80% सस्ता",
+          "description": "दोहराए गए चैट टर्न्स, प्रोजेक्ट इंस्ट्रक्शन्स और परसिस्टेंट सिस्टम प्रॉम्प्ट्स।",
+          "benefit": "ऑटोमैटिक कैश डिटेक्शन मल्टी-टर्न चैट्स की कॉस्ट काफ़ी कम कर देता है।"
+        },
+        {
+          "category": "आउटपुट और रीज़निंग टोकन",
+          "rate": "सटीक मॉडल रेट (प्रति 1M टोकन)",
+          "description": "कोड जनरेशन, Diff फ़ॉर्मेटिंग, थॉट प्रोसेस और ऑटोनॉमस टूल कॉल्स।",
+          "benefit": "जितने टोकन जनरेट हों, उतना ही चार्ज; मिड-स्ट्रीम कभी भी कैंसिल करें।"
+        },
+        {
+          "category": "Bring Your Own Key (BYOK)",
+          "rate": "$0.00 प्लेटफ़ॉर्म मार्कअप",
+          "description": "अपनी खुद की Anthropic, OpenAI, DeepSeek या कस्टम Provider Keys इस्तेमाल करें।",
+          "benefit": "सभी प्लेटफ़ॉर्म फ़ीचर्स 100% फ़्री रहते हैं; अगर आप VM लॉन्च करते हैं तो केवल VM रनटाइम का भुगतान करें।"
+        },
+        {
+          "category": "OpenAI-compatible API",
+          "rate": "वही पारदर्शी टोकन रेट्स",
+          "description": "अपनी लोकल स्क्रिप्ट्स या CI/CD से /v1/chat/completions और /v1/responses कॉल करें।",
+          "benefit": "आपके वर्कस्पेस क्रेडिट पूल से जुड़ी रीयूज़ेबल स्कोप्ड API Keys।"
+        }
+      ],
+      "byokCardTitle": "Bring Your Own Key (BYOK)",
+      "byokCardDesc": "सेटिंग्स में अपनी मौजूदा OpenAI, Anthropic, DeepSeek या कस्टम प्रोवाइडर API Keys कनेक्ट करें। अपनी Keys इस्तेमाल करते समय, मॉडल टोकन सीधे आपके प्रोवाइडर द्वारा <strong>0% प्लेटफ़ॉर्म सरचार्ज</strong> के साथ बिल किए जाते हैं।",
+      "apiCardTitle": "OpenAI-Compatible एंडपॉइंट",
+      "apiCardDesc": "किसी भी CLI, IDE प्लगइन या स्क्रिप्ट से अपने Neuron Runner वर्कस्पेस का इस्तेमाल करें। अपनी वर्कस्पेस API Key के साथ अपने OpenAI SDK का Base URL <codeTag>/v1</codeTag> पर पॉइंट करें।"
+    },
+    "calculator": {
+      "eyebrow": "यूज़ेज एस्टिमेटर",
+      "title": "अपने कंप्यूट खर्च का अनुमान लगाएं",
+      "description": "अनुमानित साप्ताहिक और मंथली कॉस्ट देखने के लिए रनटाइम स्लाइड करें या क्विक वर्कफ़्लो प्रीसेट चुनें।",
+      "presetsLabel": "वर्कफ़्लो प्रीसेट्स",
+      "presetMeta": "{{hours}} घं/सप्ताह · {{tier}}",
+      "presets": [
+        {
+          "name": "लाइट कोडर",
+          "tag": "सोलो देव",
+          "description": "कभी-कभार स्क्रिप्ट्स, क्विक बग फ़िक्स और लाइट वेब प्रीव्यूज़।"
+        },
+        {
+          "name": "फुल-स्टैक बिल्डर",
+          "tag": "अनुशंसित",
+          "description": "रोज़ाना के फ़ीचर बिल्ड्स, Next.js / Vite ऐप्स और लाइव VNC डेस्कटॉप टेस्ट्स।"
+        },
+        {
+          "name": "हेवी मोनोरेपो",
+          "tag": "पावर यूज़र",
+          "description": "जटिल मल्टी-कंटेनर स्टैक्स, लंबे कंपाइलेशन रन्स और हेवी वर्कलोड्स।"
+        }
+      ],
+      "chooseTierLabel": "कंप्यूट टियर चुनें",
+      "tierRate": "${{rate}} / घंटा",
+      "tierSpecs": "{{memory}}GB RAM • {{disk}}GB",
+      "runtimePerWeek": "हर सप्ताह एक्टिव VM रनटाइम",
+      "hoursPerWeekValue": "{{hours}} घंटे / सप्ताह",
+      "sliderTicks": {
+        "h1": "1 घं",
+        "h15": "15 घं",
+        "h30": "30 घं",
+        "h45": "45 घं",
+        "h60": "60 घं"
+      },
+      "summaryEyebrow": "अनुमानित समरी",
+      "summaryTitle": "अनुमानित कंप्यूट बिल",
+      "monthlySpendLabel": "अनुमानित मंथली VM खर्च",
+      "perMonth": "/ माह",
+      "weeklyBreakdown": "~${{weekly}} / सप्ताह ({{tier}} पर {{hours}} घंटे)",
+      "topUp10Label": "$10.00 टॉप-अप में आपको मिलता है:",
+      "topUp20Label": "$20.00 टॉप-अप में आपको मिलता है:",
+      "approxHours": "~{{hours}} घंटे",
+      "idleTimerLabel": "ऑटो-स्टॉप आइडल टाइमर:",
+      "idleTimerValue": "शामिल ($0 खर्च)",
+      "footnote": "* मॉडल टोकन आपकी चैट के वॉल्यूम के हिसाब से अलग से बिल होते हैं, या BYOK इस्तेमाल करने पर सीधे आपके प्रोवाइडर द्वारा बिल होते हैं।",
+      "addCredits": "वर्कस्पेस में क्रेडिट्स जोड़ें",
+      "getStarted10": "$10 से शुरू करें"
+    },
+    "compare": {
+      "columns": {
+        "feature": "फ़ीचर",
+        "payAsYouGo": "Neuron Runner (Pay-As-You-Go)",
+        "traditional": "सामान्य AI कोडिंग सब्सक्रिप्शन"
+      },
+      "items": [
+        {
+          "feature": "मंथली प्लान्स",
+          "payAsYouGo": "Free ($0), Plus ($10), Pro ($25/माह)",
+          "traditional": "केवल प्रति यूज़र फ़िक्स्ड $20 – $40/माह"
+        },
+        {
+          "feature": "मॉडल प्राइसिंग",
+          "payAsYouGo": "सीधे प्रोवाइडर टोकन रेट्स (0% BYOK फ़ीस)",
+          "traditional": "अस्पष्ट क्रेडिट मल्टीप्लायर्स और मार्कअप्स"
+        },
+        {
+          "feature": "क्लाउड Linux VM कोटा",
+          "payAsYouGo": "कोटा से $0.16–$0.32/घं · बंद पर $0.00",
+          "traditional": "24/7 बिलिंग या कोई परसिस्टेंट Linux VM नहीं"
+        },
+        {
+          "feature": "ओवरेज सुरक्षा",
+          "payAsYouGo": "मंथली कोटा + $10+ एक्स्ट्रा वॉलेट",
+          "traditional": "हार्ड लॉकआउट्स या महीने के अंत में सरप्राइज़ बिल"
+        },
+        {
+          "feature": "टीम कोलैबोरेशन",
+          "payAsYouGo": "क्लाउड VM + सभी LLM के लिए $25/माह साझा Pro कोटा (4 मेंबर तक)",
+          "traditional": "बिना शेयर्ड VM पूल के अलग-अलग प्रति-यूज़र लिमिट्स"
+        },
+        {
+          "feature": "Bring Your Own Key (BYOK)",
+          "payAsYouGo": "$0.00 प्लेटफ़ॉर्म फ़ीस के साथ हर टियर पर फ़ुल सपोर्ट",
+          "traditional": "बैन या केवल एंटरप्राइज़ टियर्स तक सीमित"
+        }
+      ]
+    },
+    "faq": {
+      "eyebrow": "अक्सर पूछे जाने वाले सवाल",
+      "title": "बिलिंग के बारे में हर ज़रूरी जानकारी",
+      "items": [
+        {
+          "q": "Free, Plus और Pro प्लान कैसे काम करते हैं?",
+          "a": "हर प्लान LLM टोकन और क्लाउड VM रनटाइम ($0.16–$0.32/घंटा) के लिए मासिक USD कोटा देता है ($0.50 Free, $10 Plus, $25 Pro)। Pro सभी मॉडल कवर करता है; Free और Plus में प्रीमियम मॉडल आपके वॉलेट से चार्ज होते हैं।"
+        },
+        {
+          "q": "जब मैं अपनी मंथली सीमा तक पहुँच जाता हूँ तो क्या होता है?",
+          "a": "प्लान कोटा हमेशा पहले खर्च होता है; कोटा शेष रहने तक $0.00 वॉलेट पर भी VMs चलते रहते हैं। केवल अतिरिक्त खर्च टॉप-अप वॉलेट (न्यूनतम $10.00) से कटता है।"
+        },
+        {
+          "q": "क्या सैंडबॉक्स VMs बंद होने पर मुझे पैसे देने होंगे?",
+          "a": "नहीं। बंद मशीनों पर शुल्क बिल्कुल $0.00/घंटा है। मीटरिंग केवल VM चालू रहने पर प्रति सेकंड चलती है।"
+        },
+        {
+          "q": "क्या मैं अपनी API Keys (BYOK) इस्तेमाल कर सकता हूँ?",
+          "a": "हाँ। सेटिंग्स > प्रोवाइडर कुंजियाँ में 0% मार्कअप पर अपनी कुंजियाँ जोड़ें। BYOK प्लान कोटा खर्च नहीं करता; $0.00 Free प्लान पर पेड मॉडल्स के लिए वॉलेट बैलेंस या पेड प्लान आवश्यक है।"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,103 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-neuronrunner}
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres} -d ${DB_NAME:-neuronrunner}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    env_file:
+      # Defaults from the example; backend/.env (optional) overrides them.
+      - ./backend/.env.example
+      - path: ./backend/.env
+        required: false
+    environment:
+      DB_ENGINE: django.db.backends.postgresql
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      REDIS_URL: redis://redis:6379/0
+      SANDBOX_PROVIDER: docker
+      DOCKER_SANDBOX_IMAGE: ${DOCKER_SANDBOX_IMAGE:-neuronrunner-sandbox:latest}
+      LOCAL_WORKSPACE_ROOT: /app/workspaces
+      PREVIEW_PROXY_BASE_URL: ${PREVIEW_PROXY_BASE_URL:-http://localhost:8090}
+      FRONTEND_BASE_URL: ${FRONTEND_BASE_URL:-http://localhost:3000}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./workspaces:/app/workspaces
+    command: >
+      sh -c "python manage.py migrate --noinput &&
+             daphne -b 0.0.0.0 -p 8000 app.asgi:application"
+
+  preview-proxy:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      redis:
+        condition: service_healthy
+      backend:
+        condition: service_started
+    ports:
+      - "${PREVIEW_PROXY_PORT:-8090}:8090"
+    env_file:
+      # Defaults from the example; backend/.env (optional) overrides them.
+      - ./backend/.env.example
+      - path: ./backend/.env
+        required: false
+    environment:
+      DB_ENGINE: django.db.backends.postgresql
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      REDIS_URL: redis://redis:6379/0
+      PREVIEW_PROXY_BASE_URL: ${PREVIEW_PROXY_BASE_URL:-http://localhost:8090}
+    command: ["python", "manage.py", "run_preview_proxy", "--host", "0.0.0.0", "--port", "8090"]
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      additional_contexts:
+        docs: ./docs
+      args:
+        VITE_API_URL: ${VITE_API_URL:-http://localhost:8000}
+        VITE_GOOGLE_CLIENT_ID: ${VITE_GOOGLE_CLIENT_ID:-}
+        VITE_ENABLE_STUDIO: ${VITE_ENABLE_STUDIO:-false}
+        VITE_DOCS_ENABLED: ${VITE_DOCS_ENABLED:-false}
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "${FRONTEND_PORT:-3000}:80"
+
+volumes:
+  postgres_data:

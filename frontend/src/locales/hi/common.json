@@ -1,0 +1,62 @@
+{
+  "common": {
+    "save": "बदलाव सेव करें",
+    "saving": "सेव हो रहा है...",
+    "saved": "बदलाव सफलतापूर्वक सेव हो गए",
+    "cancel": "कैंसिल करें",
+    "delete": "डिलीट करें",
+    "edit": "एडिट करें",
+    "close": "बंद करें",
+    "loading": "लोड हो रहा है...",
+    "search": "सर्च करें",
+    "confirm": "कन्फ़र्म करें",
+    "copy": "कॉपी करें",
+    "copied": "कॉपी हो गया",
+    "upload": "अपलोड करें",
+    "change": "बदलें",
+    "removePicture": "चित्र हटाएं"
+  },
+  "language": {
+    "label": "भाषा",
+    "description": "Neuron Runner इंटरफ़ेस के लिए डिस्प्ले भाषा चुनें।",
+    "selectPlaceholder": "भाषा चुनें",
+    "updatedTitle": "भाषा अपडेट हो गई",
+    "updatedDescription": "इंटरफ़ेस की भाषा बदलकर {{language}} कर दी गई है।"
+  },
+  "settings": {
+    "title": "सेटिंग्स",
+    "sections": {
+      "workspace": "वर्कस्पेस",
+      "account": "अकाउंट"
+    },
+    "tabs": {
+      "workspace": "वर्कस्पेस",
+      "team": "टीम",
+      "providerKeys": "Provider Keys (BYOK)",
+      "billing": "बिलिंग",
+      "usage": "यूज़ेज",
+      "logs": "लॉग्स",
+      "profile": "प्रोफ़ाइल",
+      "personalization": "पर्सनलाइज़ेशन",
+      "security": "सिक्योरिटी",
+      "apiKeys": "API Keys",
+      "vmSecrets": "VM सीक्रेट्स"
+    }
+  },
+  "nav": {
+    "docs": "डॉक्स",
+    "pricing": "प्राइसिंग",
+    "connectors": "कनेक्टर्स",
+    "signIn": "साइन इन",
+    "signUp": "साइन अप",
+    "signOut": "साइन आउट",
+    "newChat": "नई चैट",
+    "projects": "प्रोजेक्ट्स"
+  },
+  "billingPrompt": {
+    "title": "अपर्याप्त बैलेंस",
+    "defaultDescription": "आपके कार्यक्षेत्र का बैलेंस $0 है। जारी रखने के लिए फंड जोड़ें या अपना प्लान अपग्रेड करें।",
+    "hint": "अपने कार्यक्षेत्र वॉलेट में फंड जोड़ें या मासिक कोटा वाले उच्च प्लान में अपग्रेड करें।",
+    "action": "प्लान अपग्रेड करें या फंड जोड़ें"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "common": {
+    "save": "Değişiklikleri Kaydet",
+    "saving": "Kaydediliyor...",
+    "saved": "Değişiklikler başarıyla kaydedildi",
+    "cancel": "İptal",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "close": "Kapat",
+    "loading": "Yükleniyor...",
+    "search": "Ara",
+    "confirm": "Onayla",
+    "copy": "Kopyala",
+    "copied": "Kopyalandı",
+    "upload": "Yükle",
+    "change": "Değiştir",
+    "removePicture": "Fotoğrafı kaldır"
+  },
+  "language": {
+    "label": "Dil",
+    "description": "Neuron Runner arayüz dilini seçin.",
+    "selectPlaceholder": "Dil seçin",
+    "updatedTitle": "Dil güncellendi",
+    "updatedDescription": "Arayüz dili {{language}} olarak değiştirildi."
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "sections": {
+      "workspace": "Çalışma Alanı",
+      "account": "Hesap"
+    },
+    "tabs": {
+      "workspace": "Çalışma Alanı",
+      "team": "Ekip",
+      "providerKeys": "Sağlayıcı API Anahtarları (BYOK)",
+      "vmSecrets": "VM Gizli Anahtarları",
+      "billing": "Faturalandırma",
+      "usage": "Kullanım",
+      "logs": "Loglar",
+      "profile": "Profil",
+      "personalization": "Kişiselleştirme",
+      "security": "Güvenlik",
+      "apiKeys": "API Anahtarları"
+    }
+  },
+  "nav": {
+    "docs": "Dokümantasyon",
+    "pricing": "Fiyatlandırma",
+    "connectors": "Entegrasyonlar",
+    "signIn": "Giriş yap",
+    "signUp": "Kayıt ol",
+    "signOut": "Çıkış yap",
+    "newChat": "Yeni sohbet",
+    "projects": "Projeler"
+  },
+  "billingPrompt": {
+    "title": "Yetersiz Bakiye",
+    "defaultDescription": "Çalışma alanı bakiyeniz $0. Devam etmek için bakiye ekleyin veya planınızı yükseltin.",
+    "hint": "Devam etmek için çalışma alanı cüzdanınıza bakiye ekleyin ya da aylık kota içeren bir üst plana geçin.",
+    "action": "Planı Yükselt veya Bakiye Ekle"
+  }
+}

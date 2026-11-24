@@ -1,0 +1,62 @@
+{
+  "common": {
+    "save": "Salvar alterações",
+    "saving": "Salvando...",
+    "saved": "Alterações salvas com sucesso",
+    "cancel": "Cancelar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "close": "Fechar",
+    "loading": "Carregando...",
+    "search": "Buscar",
+    "confirm": "Confirmar",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "upload": "Enviar",
+    "change": "Alterar",
+    "removePicture": "Remover foto"
+  },
+  "language": {
+    "label": "Idioma",
+    "description": "Escolha o idioma de exibição da interface do Neuron Runner.",
+    "selectPlaceholder": "Selecionar idioma",
+    "updatedTitle": "Idioma atualizado",
+    "updatedDescription": "Idioma da interface alterado para {{language}}."
+  },
+  "settings": {
+    "title": "Configurações",
+    "sections": {
+      "workspace": "Workspace",
+      "account": "Conta"
+    },
+    "tabs": {
+      "workspace": "Workspace",
+      "team": "Equipe",
+      "providerKeys": "Chaves de provedor (BYOK)",
+      "billing": "Faturamento",
+      "usage": "Uso",
+      "logs": "Logs",
+      "profile": "Perfil",
+      "personalization": "Personalização",
+      "security": "Segurança",
+      "apiKeys": "Chaves de API",
+      "vmSecrets": "Segredos de VM"
+    }
+  },
+  "nav": {
+    "docs": "Documentação",
+    "pricing": "Preços",
+    "connectors": "Conectores",
+    "signIn": "Entrar",
+    "signUp": "Criar conta",
+    "signOut": "Sair",
+    "newChat": "Novo chat",
+    "projects": "Projetos"
+  },
+  "billingPrompt": {
+    "title": "Saldo insuficiente",
+    "defaultDescription": "O saldo do seu workspace é $0. Adicione fundos ou faça upgrade do plano para continuar.",
+    "hint": "Adicione fundos à carteira do seu workspace ou faça upgrade para um plano com cota mensal incluída.",
+    "action": "Fazer upgrade ou adicionar fundos"
+  }
+}

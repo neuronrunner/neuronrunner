@@ -1,0 +1,1153 @@
+{
+  "home": {
+    "newConversation": "Nueva conversación",
+    "errors": {
+      "createConversationFailed": "Error al crear la conversación",
+      "messageFailedTitle": "Error en el mensaje",
+      "messageFailedDescription": "No se pudo enviar el mensaje. Inténtalo de nuevo."
+    },
+    "status": {
+      "vmAttached": "Agente en la nube · VM conectada",
+      "ready": "Agente en la nube listo"
+    },
+    "prompt": {
+      "codePlaceholder": "Asigna una tarea de programación a tu agente en la nube...",
+      "chatPlaceholder": "Pregunta o delega una tarea a tu agente en la nube...",
+      "codeMobilePlaceholder": "Asigna una tarea de código...",
+      "chatMobilePlaceholder": "Pregunta o delega una tarea..."
+    },
+    "agentSelector": {
+      "ariaLabel": "Select cloud agent",
+      "title": "Cloud Agent",
+      "back": "Back",
+      "readyBadge": "Ready",
+      "connectedBadge": "Connected",
+      "oauthConnectBadge": "OAuth Connect",
+      "reconnect": "Reconnect OAuth",
+      "agents": {
+        "neuron": {
+          "name": "Neuron Agent",
+          "desc": "Built-in cloud agent with NeuronRunner models"
+        },
+        "claude": {
+          "name": "Claude Code",
+          "desc": "Claude Pro / Max subscription"
+        },
+        "codex": {
+          "name": "OpenAI Codex",
+          "desc": "ChatGPT Plus / Pro subscription"
+        },
+        "antigravity": {
+          "name": "Antigravity",
+          "desc": "Google Antigravity / Gemini OAuth"
+        }
+      },
+      "oauth": {
+        "title": "Connect {{agent}}",
+        "noWorkspace": "Select or sign in to a workspace first to connect a subscription.",
+        "adminOnly": "Only workspace owners or admins can connect OAuth subscriptions.",
+        "vmSyncTitle": "OAuth from Sandbox VM",
+        "claudeHint": "Run `claude setup-token` or `claude login` in your VM",
+        "codexHint": "Run `codex login` in your VM or paste ~/.codex/auth.json",
+        "syncButton": "Sync OAuth from VM",
+        "pasteLabel": "Or paste OAuth token / credentials",
+        "connectButton": "Connect & Select",
+        "connectedToast": "{{agent}} connected and selected",
+        "syncFailed": "Could not sync OAuth session from VM. Run login in your VM first or paste a token below.",
+        "saveFailed": "Invalid subscription token or credentials.",
+        "starting": "Opening OAuth login...",
+        "startFailed": "Could not start OAuth login.",
+        "completeFailed": "Invalid or expired authorization code.",
+        "pkceStepTitle": "1. Authorize in Claude tab",
+        "deviceStepTitle": "1. Authorize in OpenAI tab",
+        "openTab": "Open Tab",
+        "deviceCodeDesc": "Enter this one-time code in the opened browser tab. Connection completes automatically:",
+        "waitingAuth": "Waiting for authorization...",
+        "pkceCodeDesc": "After authorizing in the opened tab, paste the code shown there:",
+        "codePlaceholder": "Paste authorization code...",
+        "completeButton": "Complete OAuth",
+        "launchButton": "Open OAuth Login",
+        "showFallback": "Or paste token / sync from VM",
+        "hideFallback": "Hide manual / VM options",
+        "antigravityStepTitle": "1. Authorize in Google tab",
+        "antigravityCodeDesc": "After authorizing with Google, copy the authorization code shown on the Antigravity callback page and paste it here:",
+        "vmDisclaimer": "Tu sesión de {{agent}} y tus credenciales permanecen dentro de tu Cloud VM aislada y nunca se leen ni almacenan en los servidores de Neuron Runner. Neuron Runner es una plataforma independiente no afiliada a este proveedor; eres el único responsable de cumplir con los términos de suscripción de tu proveedor.",
+        "vmDisclaimerTerms": "Términos de Servicio",
+        "vmDialogTitle": "Conecta {{agent}} en el terminal de tu VM",
+        "vmDialogSubtitle": "Inicia sesión directamente con la CLI oficial dentro de tu VM en la nube aislada. Haz clic en el enlace de inicio de sesión generado para autorizar.",
+        "linkReady": "Enlace de inicio de sesión listo — haz clic para autorizar en tu navegador",
+        "verifyButton": "Verificar y conectar",
+        "showManual": "O pega el token / JSON de autenticación manualmente",
+        "hideManual": "Ocultar pegado manual del token",
+        "statusPreparing": "Preparando VM...",
+        "statusNeedsVm": "Sin VM activa",
+        "statusStartingVm": "Iniciando VM en la nube...",
+        "statusConnecting": "Conectando terminal...",
+        "statusReady": "Interactivo — haz clic en los enlaces o pega el código directamente",
+        "statusError": "Error de conexión",
+        "noVmTitle": "No hay ninguna VM en la nube en ejecución en este espacio de trabajo",
+        "noVmDesc": "Inicia una VM de {{minutes}} minutos para que la CLI oficial se ejecute en tu entorno aislado e imprima tu enlace de inicio de sesión.",
+        "launchVmButton": "Iniciar VM y conectar ({{minutes}} min)",
+        "wakingVm": "Iniciando {{name}} — el terminal se abrirá automáticamente cuando esté listo...",
+        "checkingVm": "Comprobando la VM del espacio de trabajo...",
+        "vmBootFailed": "No se pudo iniciar la máquina virtual.",
+        "vmBootTimeout": "Se agotó el tiempo de inicio de la máquina virtual. Inténtalo de nuevo.",
+        "wsTimeout": "Se agotó el tiempo de conexión del terminal. Haz clic en Reintentar para volver a conectar.",
+        "retryButton": "Reintentar"
+      }
+    }
+  },
+  "seo": {
+    "landing": {
+      "title": "Neuron Runner — Agentes de IA en la nube con VM Linux aislada y VNC en vivo",
+      "description": "Cada proyecto recibe una VM Linux aislada, escritorio VNC en vivo, navegador y terminal. Delega una tarea: tu agente escribe, ejecuta y publica código en la nube sin tocar tu equipo."
+    },
+    "pricing": {
+      "title": "Precios y planes de cómputo",
+      "schemaName": "Precios — Neuron Runner",
+      "description": "Cómputo en la nube con facturación por segundo y planes de suscripción transparentes para agentes de IA autónomos. Niveles Free, Plus ($10) y Pro ($25) con VM Linux dedicadas y soporte BYOS y BYOK.",
+      "faq1Question": "¿Cómo funciona la facturación de cómputo para agentes autónomos en la nube?",
+      "faq1Answer": "Cada plan incluye una cuota mensual en USD ($0,50 Free, $10 Plus, $25 Pro) para tokens de LLM y ejecución de VM en la nube por segundo ($0,16/h 4 núcleos, $0,24/h 6 núcleos, $0,32/h 8 núcleos; $0,00/h en pausa). Free y Plus cubren los 6 modelos del plan gratuito; Pro cubre todos los modelos. Los modelos premium en Free y Plus se cobran de tu monedero.",
+      "faq2Question": "¿Puedo traer mis propias claves API (BYOK)?",
+      "faq2Answer": "¡Sí! En todos los planes, incluido Free, puedes añadir tus propias claves API de Anthropic, OpenAI, DeepSeek o proveedores personalizados en Configuración del espacio de trabajo con 0% de recargo de plataforma."
+    }
+  },
+  "hero": {
+    "badge": "Agentes autónomos en la nube · VM Linux dedicada y VNC en vivo",
+    "titleLine1": "Tu agente trabaja en la nube.",
+    "titleLine2": "Con su propia computadora.",
+    "subtitle": "Cada proyecto recibe una VM Linux aislada, escritorio VNC en vivo, navegador y terminal. Delega una tarea: tu agente escribe, ejecuta y publica código en la nube sin tocar tu equipo.",
+    "launchCta": "Lanzar un agente",
+    "signInCta": "Iniciar sesión",
+    "chipsAriaLabel": "Flujos de trabajo compatibles",
+    "chips": {
+      "autonomousAgent": "Agente autónomo",
+      "isolatedVm": "VM aislada en la nube",
+      "liveVnc": "Escritorio VNC en vivo",
+      "gitAutoPr": "Git y Auto-PR",
+      "byos": "Trae tu propia suscripción"
+    },
+    "discordCta": "¿Tienes preguntas? Habla con nuestro equipo en Discord"
+  },
+  "connectors": {
+    "eyebrow": "Tu agente se conecta con las herramientas que ya usas"
+  },
+  "workflow": {
+    "eyebrow": "Cómo funciona el agente",
+    "title": "Delega una tarea. Tu agente la entrega desde la nube.",
+    "description": "Sin configuración local, sin conflictos de dependencias ni copiar y pegar entre pestañas. Cada paso se ejecuta dentro de la máquina en la nube dedicada de tu agente.",
+    "steps": {
+      "assign": {
+        "label": "Asignar",
+        "detail": "Delega una funcionalidad, un bug o un issue de GitHub a un agente que conoce tu repositorio."
+      },
+      "execute": {
+        "label": "Ejecutar",
+        "detail": "El agente edita código, instala paquetes y compila dentro de una VM Linux en la nube."
+      },
+      "watchLive": {
+        "label": "Ver en vivo",
+        "detail": "Observa o intervén en cualquier momento a través del escritorio VNC en vivo, navegador y terminal."
+      },
+      "shipPr": {
+        "label": "Enviar PR",
+        "detail": "Una vez verificado en el sandbox en la nube, el agente hace commit y abre un pull request."
+      }
+    }
+  },
+  "featuresSection": {
+    "eyebrow": "Agente en la nube full-stack",
+    "title": "Un agente con manos, ojos y su propio entorno en la nube",
+    "description": "A diferencia de los asistentes de solo chat, tu agente lee tu repositorio, ejecuta código en una VM en la nube, inspecciona la interfaz en un escritorio VNC en vivo y usa tus integraciones MCP en un ciclo continuo."
+  },
+  "features": {
+    "cards": {
+      "models": {
+        "eyebrow": "Cerebro multi-modelo",
+        "title": "Cambia de modelo de frontera a mitad de tarea",
+        "description": "Ejecuta modelos de razonamiento profundo para planificar y modelos rápidos de programación para ejecutar en el mismo hilo. Bifurca cualquier paso para explorar una alternativa o reintenta con otro modelo.",
+        "points": [
+          "Modelos de razonamiento y código",
+          "Bifurcar y reintentar",
+          "Trae tu propia suscripción"
+        ]
+      },
+      "sandbox": {
+        "eyebrow": "VM en la nube y VNC en vivo",
+        "title": "Cada agente obtiene una computadora real",
+        "description": "Tu agente no solo genera fragmentos de código: los ejecuta dentro de una VM Linux aislada en la nube con terminal en vivo, navegador y escritorio VNC interactivo."
+      },
+      "git": {
+        "eyebrow": "Git autónomo y PRs",
+        "title": "Del prompt al pull request",
+        "description": "Conecta un repositorio y deja que el agente cree ramas, edite archivos, ejecute suites de pruebas en la nube y abra pull requests listos para revisar."
+      },
+      "connectors": {
+        "eyebrow": "Integraciones",
+        "title": "Conecta las herramientas que usas",
+        "description": "Dale a tu agente en la nube acceso seguro a GitHub, Slack, Notion, bases de datos y más de 60 servicios mediante integraciones MCP con OAuth."
+      },
+      "memory": {
+        "eyebrow": "Memoria persistente",
+        "title": "Un agente que recuerda cómo construyes",
+        "description": "Las convenciones de código, preferencias de stack y contexto del proyecto persisten entre sesiones para que tu agente nunca empiece de cero."
+      },
+      "team": {
+        "eyebrow": "Espacios de trabajo en equipo",
+        "title": "Despliega agentes con tu equipo",
+        "description": "Comparte proyectos en la nube, máquinas sandbox e integraciones en toda tu organización con control de acceso basado en roles."
+      },
+      "byos": {
+        "eyebrow": "Bring Your Own Subscription",
+        "title": "Usa tus suscripciones de Claude, ChatGPT y Gemini",
+        "description": "Conecta tu suscripción de Claude Pro / Max, ChatGPT Plus / Pro o Google Antigravity OAuth en un clic y ejecuta agentes oficiales en tu VM en la nube sin cargos por tokens LLM.",
+        "points": [
+          "Claude Pro / Max",
+          "ChatGPT Plus / Pro",
+          "Google Antigravity",
+          "$0 por tokens LLM"
+        ]
+      }
+    },
+    "visuals": {
+      "models": {
+        "searchPlaceholder": "Buscar modelos...",
+        "reasoningModel": "Modelo de razonamiento",
+        "reasoningTag": "Pensamiento · Alto",
+        "fastModel": "Modelo de chat rápido",
+        "fastTag": "Baja latencia",
+        "codingModel": "Modelo de código y agente",
+        "codingTag": "Uso de herramientas",
+        "byokModel": "Tu clave de proveedor",
+        "byokTag": "BYOK",
+        "userMessage": "Compara ambos enfoques",
+        "thoughtDuration": "Pensó durante 6s",
+        "assistantReply": "La opción B escala mejor porque…",
+        "branchAction": "Bifurcar",
+        "retryAction": "Reintentar con otro modelo"
+      },
+      "sandbox": {
+        "running": "en ejecución",
+        "vcpu": "vCPU",
+        "ram": "RAM",
+        "disk": "Disco",
+        "liveVnc": "Escritorio VNC en vivo",
+        "guiPort": ":5901 GUI",
+        "desktopAndBrowser": "Escritorio Linux y navegador",
+        "interactive": "Interactivo"
+      },
+      "git": {
+        "prTitle": "#42 Añadir página de lanzamiento",
+        "diffSummary": "+134 −12 · 3 archivos",
+        "ready": "Listo",
+        "issueTitle": "Issue #18 · El gráfico parpadea al redimensionar"
+      },
+      "connectors": {
+        "badge": "Conectores MCP"
+      },
+      "memory": {
+        "header": "Recordado sobre ti",
+        "items": [
+          "Prefiere TypeScript",
+          "Usa Vite + Tailwind",
+          "Mantiene respuestas concisas",
+          "Proyecto: product-launch"
+        ]
+      },
+      "team": {
+        "roles": {
+          "owner": "Propietario",
+          "admin": "Administrador",
+          "member": "Miembro"
+        },
+        "inviteByEmail": "+ Invitar por correo"
+      },
+      "byos": {
+        "selectorLabel": "Agente en la nube",
+        "claudeName": "Claude Code",
+        "claudePlan": "Claude Pro / Max",
+        "codexName": "OpenAI Codex",
+        "codexPlan": "ChatGPT Plus / Pro",
+        "antigravityName": "Antigravity",
+        "antigravityPlan": "Google / Gemini OAuth",
+        "connectedBadge": "Conectado",
+        "oauthBadge": "OAuth",
+        "vmCardTitle": "Ejecutor CLI en VM",
+        "vmCardDetail": "OAuth en 1 clic · Sincronizar desde VM",
+        "zeroFeeLabel": "$0.00 recargo LLM",
+        "zeroFeeTitle": "Sin cargos por tokens LLM",
+        "zeroFeeSubtitle": "Se ejecuta directo con tu suscripción activa"
+      }
+    }
+  },
+  "architecture": {
+    "eyebrow": "Arquitectura del agente en la nube",
+    "title": "Tres capas en la nube trabajando como una sola",
+    "description": "El cerebro del agente, tu espacio de trabajo y una VM Linux dedicada permanecen sincronizados continuamente en la nube. Pasa el cursor sobre una capa para ver cómo opera el agente.",
+    "floatCards": {
+      "vmAttachedTitle": "Agente en la nube · VM conectada",
+      "vmAttachedSubtitle": "lightning-atlas · 4 vCPU",
+      "testsPassedTitle": "Terminal 2 · 18 pruebas aprobadas",
+      "vncTitle": "Agente en escritorio VNC",
+      "vncSubtitle": "lightning-atlas · :5901 GUI",
+      "prOpenedTitle": "El agente abrió el PR #42"
+    },
+    "layers": {
+      "sandbox": {
+        "title": "VM Sandbox en la nube y VNC",
+        "eyebrow": "Ejecución y GUI",
+        "description": "Una máquina Linux dedicada en la nube por proyecto donde el agente ejecuta terminales, navegadores y sesiones interactivas de escritorio VNC."
+      },
+      "workspace": {
+        "title": "Espacio de trabajo en la nube",
+        "eyebrow": "Archivos y Git",
+        "description": "Tus repositorios, editores de código, ramas Git y pull requests sincronizados en tiempo real mientras el agente trabaja."
+      },
+      "conversation": {
+        "title": "Agente autónomo",
+        "eyebrow": "Modelos y memoria",
+        "description": "Impulsado por modelos de razonamiento de frontera. El agente planifica tareas, edita archivos, ejecuta comandos en la nube y recuerda tus preferencias."
+      }
+    },
+    "plates": {
+      "terminalLabel": "Terminal 2",
+      "testsPassed": "✓ 18 pruebas aprobadas (1.42s)",
+      "vncLive": "VNC · :5901 en vivo",
+      "specs": "4 vCPU · 12 GB RAM",
+      "vmAttached": "VM conectada",
+      "promptPlaceholder": "Asigna una tarea de programación a tu agente en la nube...",
+      "modelSummary": "Kimi K3.1 Pro · Medio"
+    }
+  },
+  "trust": {
+    "eyebrow": "Construido para ingeniería real",
+    "title": "Cero riesgo local, control total en la nube",
+    "items": {
+      "isolated": {
+        "title": "100% aislado en la nube",
+        "text": "Cada agente se ejecuta dentro de una VM en la nube dedicada para el proyecto: el código no confiable y las compilaciones pesadas nunca tocan tu computadora local."
+      },
+      "liveVnc": {
+        "title": "VNC y navegador en vivo",
+        "text": "Observa a tu agente interactuar con sesiones completas de GUI Linux y aplicaciones web en tiempo real, o toma el control con un clic."
+      },
+      "byok": {
+        "title": "Tus suscripciones y claves",
+        "text": "Conecta Claude Pro / Max, ChatGPT Plus / Pro o Google Antigravity vía OAuth, o usa tus propias claves API con 0% de margen."
+      },
+      "roles": {
+        "title": "Roles y acceso",
+        "text": "Los propietarios del espacio de trabajo deciden quién puede despachar agentes, acceder a las máquinas en la nube y gestionar integraciones."
+      }
+    }
+  },
+  "cta": {
+    "title": "Pon en marcha tu agente en la nube en segundos.",
+    "description": "Conecta un repositorio, elige un modelo de frontera y deja que tu agente compile, pruebe y publique desde su propia máquina en la nube.",
+    "launchButton": "Lanza tu agente en la nube",
+    "pricingButton": "Ver precios detallados",
+    "discordButton": "¿Preguntas? Chatea directamente con el fundador en Discord"
+  },
+  "footer": {
+    "pricing": "Precios",
+    "integrations": "Integraciones",
+    "docs": "Documentación",
+    "terms": "Términos",
+    "privacy": "Privacidad"
+  },
+  "preview": {
+    "rootAriaLabel": "Vista previa del espacio de trabajo de Neuron Runner",
+    "toolsGroupAriaLabel": "Herramientas del espacio de trabajo",
+    "mobileToolsGroupAriaLabel": "Herramientas móviles del espacio de trabajo",
+    "tools": {
+      "files": "Archivos",
+      "git": "Git",
+      "browser": "Navegador",
+      "desktop": "Escritorio",
+      "terminal": "Terminal"
+    },
+    "sidebar": {
+      "newChat": "Nuevo chat",
+      "issues": "Issues",
+      "pullRequests": "Pull Requests",
+      "integrations": "Integraciones",
+      "projectsHeading": "Proyectos ({{count}})",
+      "noConversations": "Aún no hay conversaciones",
+      "historyHeading": "Historial ({{count}})",
+      "historyItems": [
+        "Página de lanzamiento con analítica en vivo",
+        "Textos de tabla de precios",
+        "Refactorizar middleware de auth",
+        "Verificación visual Chrome E2E",
+        "Esquema pgvector en base de datos",
+        "Configuración Docker Compose prod"
+      ],
+      "workspaceSummary": "Espacio de {{owner}} · {{balance}}"
+    },
+    "chat": {
+      "newConversation": "Nueva conversación",
+      "vmAttached": "Agente en la nube · VM conectada",
+      "promptPlaceholder": "Asigna una tarea de programación a tu agente en la nube...",
+      "reasoningLevel": "Medio",
+      "suggestions": [
+        {
+          "label": "Analizar stack tecnológico",
+          "prompt": "Examina el directorio raíz y enumera todos los archivos de configuración (p. ej., package.json, pyproject.toml)..."
+        },
+        {
+          "label": "Identificar punto de entrada",
+          "prompt": "Localiza el archivo de entrada principal de la aplicación (p. ej., index.js, main.py, App.tsx) y rastrea el inicio..."
+        },
+        {
+          "label": "Revisar estructura del proyecto",
+          "prompt": "Genera un árbol de directorios detallado de la ruta /workspace/neuronrunner para mapear los módulos principales..."
+        },
+        {
+          "label": "Ejecutar pruebas",
+          "prompt": "Encuentra la configuración del ejecutor de pruebas y ejecuta el comando para correr la suite..."
+        },
+        {
+          "label": "Revisar variables de entorno",
+          "prompt": "Identifica cualquier archivo de configuración (p. ej., .env, config.yaml) y enumera las claves requeridas..."
+        }
+      ]
+    },
+    "terminal": {
+      "tabTitle": "Terminal {{number}}",
+      "passBadge": "PASS",
+      "testsPassed": "✓ 18 pruebas aprobadas (1.42s)"
+    },
+    "git": {
+      "changesCount": "{{count}} cambios",
+      "changesHeading": "Cambios",
+      "commitMessage": "Añadir página de lanzamiento con panel de analítica en vivo",
+      "commitButton": "Confirmar"
+    },
+    "browser": {
+      "dashboardTitle": "Panel de lanzamiento",
+      "live": "En vivo",
+      "visitors": "Visitantes",
+      "signups": "Registros",
+      "conversion": "Conv.",
+      "chartTitle": "Registros · últimos 8 días"
+    },
+    "desktop": {
+      "windowTitle": "Chromium — Ejecutor E2E",
+      "checkTitle": "Verificación visual de página de lanzamiento",
+      "checksPassed": "4 / 4 aprobadas",
+      "checkCanvas": "✓ lienzo de gráfico renderizado",
+      "checkResponsive": "✓ diseño adaptable",
+      "linuxGui": "Linux GUI"
+    },
+    "mobile": {
+      "title": "Página de lanzamiento con analítica en vivo",
+      "connectedMachineTitle": "Máquina conectada: lightning-atlas (en ejecución)",
+      "toolsButton": "Herramientas",
+      "userPrompt": "Construye la página de lanzamiento con analítica en vivo, ejecuta la suite de pruebas y abre un PR.",
+      "hideResponseDetails": "Ocultar detalles de respuesta",
+      "showResponseDetails": "Mostrar detalles de respuesta",
+      "responseDetails": "Detalles de la respuesta",
+      "stepsCount": "{{count}} pasos",
+      "steps": [
+        {
+          "title": "3 archivos editados",
+          "detail": "src/app/page.tsx, src/lib/analytics.ts, src/components/chart.tsx"
+        },
+        {
+          "title": "Terminal 2 · npm run test",
+          "detail": "root@neuronrunner:/workspace/neuronrunner · ✓ 18 pruebas aprobadas"
+        },
+        {
+          "title": "Verificado en escritorio VNC en vivo",
+          "detail": "lightning-atlas · :5901 GUI · 4 / 4 verificaciones visuales aprobadas"
+        },
+        {
+          "title": "PR #42 abierto",
+          "detail": "neuronrunner · feat/launch-page → main"
+        }
+      ],
+      "assistantSummary1": "He construido el panel de analítica de lanzamiento en <branch>feat/launch-page</branch>, verificado el diseño en el escritorio VNC en vivo y confirmado que las <passed>18 pruebas pasan</passed> en <vm>lightning-atlas</vm>.",
+      "assistantSummary2": "El pull request <pr>#42</pr> está listo para revisión. ¿Qué puedo entregar ahora?",
+      "askPlaceholder": "Pregunta lo que quieras...",
+      "closeToolsAriaLabel": "Cerrar panel de herramientas",
+      "vmFooterSpec": "lightning-atlas · 4 vCPU",
+      "backToChat": "Volver al chat"
+    },
+    "vmDropdown": {
+      "machines": "Máquinas",
+      "activeCount": "{{count}} activa",
+      "running": "activa",
+      "stopped": "detenida",
+      "cpu": "CPU",
+      "ram": "RAM"
+    }
+  },
+  "pricingPage": {
+    "hero": {
+      "badge": "Planes predecibles · Tarifas de tokens transparentes · VMs inactivas a $0.00",
+      "titleLine1": "Planes simples que escalan contigo.",
+      "titleLine2": "Precios de tokens transparentes.",
+      "subtitle": "Empieza gratis con <s1>$0,50/mes de uso gratuito de LLM y VM en la nube</s1>, pasa a <s2>Plus ($10) o Pro ($25)</s2> para tener VM Linux dedicadas con tu propia suscripción de Claude Code, Codex o Antigravity, o trae tus propias claves de API con 0 % de comisión de plataforma. Pro incluye todos los modelos en su cuota; en Free y Plus, los modelos premium se pagan por uso."
+    },
+    "planLabels": {
+      "llmAllowance": "Cuota de uso (LLM + VM)",
+      "cloudSandboxVm": "VM Sandbox en la nube"
+    },
+    "plans": {
+      "free": {
+        "name": "Free",
+        "period": "/ mes",
+        "badge": "Gratis para siempre",
+        "tagline": "Explora la programación autónoma con modelos rápidos del nivel gratuito, BYOK y VMs iniciales.",
+        "llmAllowance": "$0.50 / mes",
+        "vcpuQuota": "Hasta 2 vCPU-h / mes",
+        "vcpuSubnote": "Cubre LLMs Free y VM de 4 núcleos ($0.16/h)",
+        "highlights": [
+          "<strong>$0.50/mes de cuota única</strong> para 6 LLMs Free + VMs",
+          "Acceso a VMs Linux sandbox de <strong>4 núcleos (8 GB RAM)</strong>",
+          "Sesiones con apagado automático de hasta <strong>5 minutos</strong>",
+          "Trae tu <strong>propia suscripción (BYOS)</strong> o tus <strong>claves de API (BYOK)</strong> con 0 % de comisión"
+        ],
+        "ctaLabel": "Comenzar gratis"
+      },
+      "plus": {
+        "name": "Plus",
+        "period": "/ mes",
+        "badge": "Más popular",
+        "tagline": "VM Linux dedicadas en la nube para tus propios agentes de código: trae tu propia suscripción (BYOS) o tus claves de API.",
+        "llmAllowance": "$10,00 / mes",
+        "vcpuQuota": "Hasta 200 vCPU-h / mes",
+        "vcpuSubnote": "Cubre VM de 4/6/8 núcleos y $2 de LLM para modelos del plan gratuito",
+        "highlights": [
+          "<strong>$10,00/mes de cuota</strong> para VM en la nube (<strong>~200 vCPU-h</strong>) + <strong>$2 de LLM</strong> para modelos del plan gratuito",
+          "Trae tu <strong>propia suscripción de Claude Code, Codex o Antigravity</strong> (BYOS) o tus claves de API (BYOK)",
+          "VMs de hasta <strong>8 núcleos (16 GB RAM)</strong> + escritorio VNC en vivo",
+          "<strong>Sesiones de 60 minutos</strong> y disco de VM persistente"
+        ],
+        "ctaLabel": "Actualizar a Plus"
+      },
+      "pro": {
+        "name": "Pro",
+        "period": "/ mes",
+        "badge": "4× Potencia",
+        "tagline": "Más horas de VM, snapshots y hasta 4 miembros para ingeniería full-stack intensiva.",
+        "llmAllowance": "$25,00 / mes",
+        "vcpuQuota": "Hasta 550 vCPU-h / mes",
+        "vcpuSubnote": "Cuota compartida para LLM del plan gratuito y VM de 4/6/8 núcleos",
+        "highlights": [
+          "<strong>$25,00/mes de cuota compartida</strong> para VM en la nube (<strong>~550 vCPU-h</strong>) + LLM del plan gratuito",
+          "Los modelos premium se cobran de tu <strong>monedero</strong> (pago por uso), nunca de la cuota del plan",
+          "Hasta <strong>4 miembros</strong> en el espacio · 1 VM compartida",
+          "<strong>Sesiones de 60 minutos</strong> y disco de VM persistente"
+        ],
+        "ctaLabel": "Actualizar a Pro"
+      },
+      "team": {
+        "name": "Team",
+        "period": "/ mes",
+        "badge": "Colaborativo",
+        "tagline": "Espacio de trabajo colaborativo dedicado para equipos con hasta 20 puestos y cómputo en la nube compartido.",
+        "llmAllowance": "$200.00 / mes",
+        "vcpuQuota": "Hasta 400 vCPU-h / mes",
+        "vcpuSubnote": "Fondo de equipo para 16 LLMs y VMs ($0.16–$0.32/h)",
+        "highlights": [
+          "<strong>$200.00/mes compartido</strong> para 16 LLMs + VMs",
+          "VMs deducen del fondo (<strong>$0.16–$0.32/h</strong> · $0.00 detenida)",
+          "Hasta <strong>20 miembros</strong> y permisos por rol",
+          "<strong>1 VM en la nube compartida</strong> (hasta 8 núcleos) y disco persistente",
+          "<strong>Monedero compartido de uso extra</strong> y facturas unificadas"
+        ],
+        "ctaLabel": "Iniciar plan Team"
+      }
+    },
+    "mechanics": {
+      "wallet": {
+        "title": "Monedero de uso extra (recarga desde $10)",
+        "description": "Primero se usa siempre la cuota de tu plan; las suscripciones no añaden efectivo al monedero. Recarga (mín. <s1>$10,00</s1>, 0 % de comisión) para excedentes de cuota, modelos premium en Free y Plus o cómputo de VM en la nube de pago por uso ($0,16–$0,32/h) con BYOS/BYOK."
+      },
+      "byok": {
+        "title": "Trae tu propia clave (0% comisión)",
+        "description": "Conecta tus claves de Anthropic, OpenAI, DeepSeek o personalizadas con <s1>$0.00 de recargo</s1> (no consume cuota del plan; los modelos de pago en Free requieren saldo o plan de pago)."
+      },
+      "byos": {
+        "title": "Trae Tu Propia Suscripción (BYOS)",
+        "description": "Conecta Claude Pro/Max, ChatGPT Plus/Pro o Antigravity con <s1>$0.00 en tokens LLM</s1>. Los agentes se ejecutan en tu VM usando horas VM del plan o una recarga Top-Up solo de cómputo desde $10."
+      }
+    },
+    "breakdown": {
+      "eyebrow": "Desglose transparente",
+      "title": "Explora tarifas de modelos, VMs en la nube y especificaciones",
+      "tabs": {
+        "models": "Tarifas de modelos IA ({{count}})",
+        "vms": "VMs Sandbox y VNC",
+        "compare": "Comparar planes"
+      }
+    },
+    "models": {
+      "filters": {
+        "all": "Todos los modelos ({{count}})",
+        "free": "Incluidos en Free ({{count}})",
+        "paid": "Premium ({{count}})"
+      },
+      "searchPlaceholder": "Buscar modelo o proveedor…",
+      "columns": {
+        "model": "Modelo",
+        "context": "Contexto",
+        "planAccess": "Acceso por plan",
+        "input": "Entrada / 1M",
+        "output": "Salida / 1M",
+        "cacheRead": "Lectura caché / 1M"
+      },
+      "accessBadges": {
+        "free": "Free + Todos los planes",
+        "paid": "Pro · o monedero"
+      },
+      "empty": "Ningún modelo coincide con tu búsqueda."
+    },
+    "vms": {
+      "vcpuHrsUnit": "{{cpu}} vCPU-h",
+      "perActiveHour": "/ h activa",
+      "overageRate": "De cuota del plan · $0.00 parada",
+      "cpuLabel": "CPU",
+      "cpuValue": "{{cpu}} vCPU",
+      "memoryLabel": "Memoria",
+      "memoryValue": "{{memory}} GB",
+      "nvmeLabel": "NVMe",
+      "nvmeValue": "{{disk}} GB",
+      "includedIn": "Incluido en",
+      "bestForLabel": "Ideal para:",
+      "standardTitle": "Estándar en cada máquina sandbox en la nube",
+      "standardMeta": "Medición por segundo · $0.00 cuando está detenida",
+      "tiers": {
+        "tier_1": {
+          "label": "4 núcleos",
+          "badge": "Estándar · tier_1",
+          "tagline": "Programación diaria, scripts y vistas previas web ligeras.",
+          "planAccess": "Free, Plus y Pro",
+          "highlights": [
+            "Cómputo dedicado en la nube de 8 núcleos (8 vCPU)",
+            "8 GB DDR de alta velocidad · Disco NVMe de 32 GB",
+            "Tarifa: $0.16 / h activa ($0.00 detenida)",
+            "Plus: hasta 50 h/mes · Pro: hasta 137 h/mes (vCPU-horas incluidas)"
+          ],
+          "bestFor": "Apps frontend, APIs y scripts rápidos"
+        },
+        "tier_2": {
+          "label": "6 núcleos",
+          "badge": "Más popular · tier_2",
+          "tagline": "Desarrollo full-stack, servicios Docker y pruebas VNC en vivo.",
+          "planAccess": "Plus y Pro",
+          "highlights": [
+            "Motor de compilación multinúcleo de 8 núcleos (8 vCPU)",
+            "12 GB de memoria DDR · Disco NVMe de 32 GB",
+            "Tarifa: $0.24 / h activa ($0.00 detenida)",
+            "Plus: hasta 33 h/mes · Pro: hasta 92 h/mes (vCPU-horas incluidas)"
+          ],
+          "bestFor": "Stacks full-stack Next.js, Vite y Docker"
+        },
+        "tier_3": {
+          "label": "8 núcleos",
+          "badge": "Potencia · tier_3",
+          "tagline": "Compilación pesada, monorepos grandes y suites de pruebas paralelas.",
+          "planAccess": "Plus y Pro",
+          "highlights": [
+            "Cómputo de alta concurrencia de 8 núcleos (8 vCPU)",
+            "16 GB DDR de gran memoria · Disco NVMe de 64 GB",
+            "Tarifa: $0.32 / h activa ($0.00 detenida)",
+            "Plus: hasta 25 h/mes · Pro: hasta 69 h/mes (vCPU-horas incluidas)"
+          ],
+          "bestFor": "Monorepos, compiladores Rust/Go y suites E2E"
+        }
+      },
+      "includedCapabilities": [
+        {
+          "title": "VM Linux con acceso Root",
+          "description": "sudo sin contraseña, Docker, apt, npm, pip y paquetes del sistema personalizados en una máquina aislada en la nube."
+        },
+        {
+          "title": "Escritorio VNC en vivo (:5901)",
+          "description": "Transmite una GUI Linux real y navegador Chromium directo en tu espacio sin costos extra de licencia."
+        },
+        {
+          "title": "Vistas previas de puertos al instante",
+          "description": "Expón servidores de desarrollo (3000, 5173, 8000) con proxy inverso HTTPS en vivo dentro de la app."
+        },
+        {
+          "title": "Apagado automático por inactividad",
+          "description": "Temporizador configurable de 2 a 60 minutos que detiene las VMs inactivas para reducir tu costo a $0.00."
+        }
+      ]
+    },
+    "compare": {
+      "columns": {
+        "feature": "Característica",
+        "free": "Free",
+        "plus": "Plus ($10)",
+        "pro": "Pro ($25)",
+        "team": "Team ($200)"
+      },
+      "footnote": "* El plan Free desbloquea VMs Cloud de 4 núcleos ($0.16/h desde la cuota de $0.50) tras verificar la cuenta.",
+      "rows": [
+        {
+          "feature": "Precio mensual",
+          "free": "$0 / mes",
+          "plus": "$10 / mes",
+          "pro": "$25 / mes",
+          "team": "$200 / mes"
+        },
+        {
+          "feature": "Cuota mensual de uso (LLM + VM)",
+          "free": "$0.50 / mes",
+          "plus": "$10,00 / mes",
+          "pro": "$25,00 / mes",
+          "team": "$200.00 / mes"
+        },
+        {
+          "feature": "Modelos accesibles",
+          "free": "6 modelos gratuitos",
+          "plus": "6 modelos del plan gratuito (premium vía monedero)",
+          "pro": "Todos los modelos (cuota compartida)",
+          "team": "Los 16 modelos de frontera"
+        },
+        {
+          "feature": "Tarifa Cloud VM (de cuota)",
+          "free": "$0.16 / h*",
+          "plus": "$0.16 – $0.32 / h",
+          "pro": "$0.16 – $0.32 / h",
+          "team": "$0.16 – $0.32 / h"
+        },
+        {
+          "feature": "Cómputo de VM incluido",
+          "free": "Hasta 1 h / mes",
+          "plus": "Hasta 200 vCPU-h / mes",
+          "pro": "Hasta 550 vCPU-h / mes",
+          "team": "Hasta 1,250 h / mes"
+        },
+        {
+          "feature": "Nivel máx. de hardware de VM",
+          "free": "4 núcleos · 8 GB RAM",
+          "plus": "8 núcleos · 16 GB RAM",
+          "pro": "8 núcleos · 16 GB RAM",
+          "team": "8 núcleos · 16 GB RAM"
+        },
+        {
+          "feature": "Máx. de VMs en la nube",
+          "free": "1 VM",
+          "plus": "1 VM",
+          "pro": "1 VM",
+          "team": "1 VM"
+        },
+        {
+          "feature": "Miembros del espacio",
+          "free": "1 miembro",
+          "plus": "1 miembro (sin equipo)",
+          "pro": "Hasta 4 miembros",
+          "team": "Hasta 20 miembros"
+        },
+        {
+          "feature": "Duración máx. de sesión de VM",
+          "free": "5 minutos",
+          "plus": "60 minutos",
+          "pro": "60 minutos",
+          "team": "60 minutos"
+        },
+        {
+          "feature": "Trae tu propia clave (BYOK)",
+          "free": "0% comisión",
+          "plus": "0% comisión",
+          "pro": "0% comisión",
+          "team": "0% comisión"
+        },
+        {
+          "feature": "Recargas de uso extra",
+          "free": "Mín. $10.00 (0% comisión)",
+          "plus": "Mín. $10.00 (0% comisión)",
+          "pro": "Mín. $10.00 (0% comisión)",
+          "team": "Mín. $10.00 (monedero compartido, 0% comisión)"
+        },
+        {
+          "feature": "Prioridad y fondo compartido",
+          "free": "Cuota primero · 1 miembro",
+          "plus": "Cuota primero · 1 miembro",
+          "pro": "Cuota primero · Fondo compartido",
+          "team": "Cuota primero · Fondo compartido"
+        }
+      ]
+    },
+    "faq": {
+      "eyebrow": "Preguntas frecuentes",
+      "title": "Preguntas y respuestas",
+      "description": "Todo lo que necesitas saber sobre las cuotas mensuales unificadas, las tarifas de VM por segundo y las recargas de uso adicional.",
+      "docsLink": "Leer la documentación",
+      "items": [
+        {
+          "question": "¿Cómo funciona la cuota mensual unificada?",
+          "answer": "Plus ($10) y Pro ($25) incluyen una cuota mensual en USD ($10 Plus, $25 Pro; Free tiene $0,50) para ejecución de VM en la nube y tokens de LLM. Pro cubre todos los modelos; Free y Plus cubren los 6 modelos del plan gratuito y cobran los premium de tu monedero."
+        },
+        {
+          "question": "¿Cómo se cobra el tiempo de ejecución de las VMs en la nube?",
+          "answer": "Las VMs activas descuentan por segundo de tu cuota mensual unificada a $0.16/h (4 núcleos), $0.24/h (6 núcleos) y $0.32/h (8 núcleos). Las VMs detenidas cuestan $0.00/h."
+        },
+        {
+          "question": "¿Cómo accedo a las VMs Sandbox en la nube en el plan Free?",
+          "answer": "El plan Free ofrece $0.50/mes válidos para modelos gratuitos y VMs de 4 núcleos ($0.16/h). Completa la verificación de cuenta en Configuración para desbloquear VMs."
+        },
+        {
+          "question": "¿Qué ocurre si supero la cuota de mi plan?",
+          "answer": "Tu cuota mensual del plan siempre se consume primero: las suscripciones desbloquean cuotas del plan en lugar de añadir saldo en efectivo, y las VMs activas siguen funcionando con $0.00 de saldo mientras quede cuota del plan. Cuando la cuota llega a 0, el excedente se deduce de tu monedero de uso adicional (recarga mín. $10.00)."
+        },
+        {
+          "question": "¿Por qué hay un mínimo de $10.00 en las recargas de uso extra?",
+          "answer": "Un mínimo de $10.00 mantiene bajos los costos de procesamiento de pagos para no tener que cobrarte comisiones adicionales al pagar. El 100% de lo que pagas se acredita directamente en tu saldo sin vencimiento."
+        },
+        {
+          "question": "¿Puedo seguir trayendo mis propias claves API (BYOK)?",
+          "answer": "¡Sí! Añade claves de Anthropic, OpenAI, DeepSeek o de proveedores personalizados en Ajustes del espacio de trabajo con 0 % de recargo de plataforma. Las solicitudes BYOK nunca consumen la asignación de LLM de tu plan; en Free y Plus los modelos premium requieren fondos en el monedero, mientras que Pro los cubre con su cuota."
+        }
+      ]
+    },
+    "bottomCta": {
+      "title": "Empieza gratis hoy. Escala conforme lanzas.",
+      "description": "Obtén $0,50/mes de uso gratuito de LLM y VM en la nube en el plan Free, o VM Linux dedicadas con tu propia suscripción de agente en Plus ($10) y Pro ($25).",
+      "managePlan": "Gestionar plan del espacio",
+      "getStarted": "Comenzar gratis",
+      "signIn": "Iniciar sesión"
+    },
+    "intervalToggle": {
+      "monthly": "Mensual",
+      "yearly": "Anual",
+      "saveBadge": "2 meses gratis",
+      "perYear": "/ año"
+    },
+    "specs": {
+      "labels": {
+        "quota": "Cuota mensual",
+        "vcpu": "Cómputo de VM incluido",
+        "vm": "Tamaño máx. de VM",
+        "session": "Duración de sesión",
+        "snapshots": "Snapshots",
+        "members": "Miembros",
+        "llm": "Modelos LLM",
+        "byo": "BYOS / BYOK"
+      },
+      "vcpuValue": "{{hours}} vCPU-h",
+      "approxMinutes": "≈ {{minutes}} min en una VM de {{cores}} núcleos",
+      "approxHours": "≈ {{hours}} h en una VM de {{cores}} núcleos",
+      "vmSize": "{{cores}} núcleos · {{ram}} GB de RAM",
+      "minutes": "{{minutes}} min",
+      "none": "Ninguno",
+      "llm": {
+        "free": "6 modelos del plan gratuito",
+        "plus": "6 del plan gratuito · hasta $2/mes",
+        "pro": "Todos los modelos · bolsa compartida"
+      },
+      "included": "Incluido",
+      "freeFootnote": "* El acceso a VM en Free requiere la verificación estándar de la cuenta.",
+      "limits": {
+        "title": "¿Qué pasa cuando se agota mi cuota?",
+        "p1": "La cuota se reinicia en cada ciclo de facturación y no es ilimitada.",
+        "p2": "Recarga tu monedero para que las VM y los modelos sigan funcionando, o espera al próximo ciclo.",
+        "p3": "En Free y Plus, los modelos premium se cobran de tu monedero. Pro los cubre con su cuota."
+      }
+    }
+  },
+  "pricingSection": {
+    "principles": {
+      "p1Eyebrow": "01 · Planes flexibles + Monedero",
+      "p1Value": "$0 – $25",
+      "p1Unit": "/ mes o recarga $10+",
+      "p1Desc": "Empieza con Free ($0,50/mes de cuota de LLM + VM), pasa a Plus ($10) o Pro ($25/mes) y recarga créditos adicionales cuando quieras.",
+      "p1Footer": "✓ Planes Free, Plus y Pro",
+      "p2Eyebrow": "02 · Paga por recurso",
+      "p2Value": "Exacto",
+      "p2Unit": "segundos y tokens",
+      "p2Desc": "Las VMs cuestan desde $0.16/h solo mientras funcionan. Las VMs detenidas cuestan $0.00. La caché de tokens ahorra hasta ~80% en prompts.",
+      "p2Footer": "Medidor por segundo + caché de contexto",
+      "p3Eyebrow": "03 · Cero sorpresas",
+      "p3Value": "$0.00",
+      "p3Unit": "límite estricto",
+      "p3Desc": "La ejecución se pausa de inmediato al llegar a $0.00. Sin sobregiros, sin facturas mensuales sorpresa y con recibos PDF al instante.",
+      "p3Footer": "Registro detallado por VM y miembro"
+    },
+    "miniPlans": {
+      "popular": "Popular",
+      "free": {
+        "name": "Free",
+        "period": "/mes",
+        "quota": "$0.50/mes Free (LLM + VM)",
+        "vm": "VM 4 núcleos ($0.16/h)",
+        "note": "Verificación estándar de cuenta para desbloquear la VM"
+      },
+      "plus": {
+        "name": "Plus",
+        "period": "/mes",
+        "quota": "$10,00/mes de cuota (VM + $2 de LLM del plan gratuito)",
+        "vm": "VM de hasta 8 núcleos · ~200 vCPU-h",
+        "note": "BYOS/BYOK · 1 VM en la nube · Un solo usuario"
+      },
+      "pro": {
+        "name": "Pro",
+        "period": "/mes",
+        "quota": "$25,00/mes de cuota compartida (VM + todos los LLM)",
+        "vm": "VM de hasta 8 núcleos · ~550 vCPU-h",
+        "note": "Hasta 4 miembros · BYOS/BYOK"
+      },
+      "team": {
+        "name": "Team",
+        "period": "/mes",
+        "quota": "$200.00/mes Fondo común",
+        "vm": "Hasta 20 VMs ($0.16–$0.32/h)",
+        "note": "Hasta 20 miembros + monedero compartido"
+      },
+      "yearlyPeriod": "/año"
+    },
+    "nav": {
+      "eyebrow": "Precios transparentes",
+      "title": "Elige lo que quieres explorar",
+      "tabs": {
+        "compute": "VMs Sandbox y VNC",
+        "tokens": "Tokens y BYOK",
+        "calculator": "Estimador de costos",
+        "compare": "vs Suscripciones"
+      }
+    },
+    "compute": {
+      "perHour": "/ hora",
+      "vcpuUnit": "{{cpu}} vCPU",
+      "ramUnit": "{{memory}} GB RAM",
+      "diskUnit": "{{disk}} GB Disco",
+      "tierHighlightsLabel": "Destacados del nivel:",
+      "bestForLabel": "Ideal para: {{bestFor}}",
+      "tiers": {
+        "tier_1": {
+          "label": "8 núcleos",
+          "tagline": "Desarrollo diario y vistas web ligeras",
+          "badge": "Estándar",
+          "perMinute": "$0.0027 / min",
+          "highlights": [
+            "Motor de cómputo de 8 núcleos (8 vCPU)",
+            "6 GB DDR RAM • Disco NVMe de 32 GB",
+            "Aprovisionamiento rápido en frío",
+            "Apps frontend ligeras, APIs y scripts",
+            "Consumo por hora: $0.16 por hora"
+          ],
+          "bestFor": "Apps frontend, scripts simples y depuración rápida",
+          "buttonText": "Comenzar con 4 núcleos"
+        },
+        "tier_2": {
+          "label": "8 núcleos",
+          "tagline": "Desarrollo full-stack, builds y suites de pruebas",
+          "badge": "Más popular",
+          "perMinute": "$0.0040 / min",
+          "highlights": [
+            "Motor de build de 8 núcleos (8 vCPU)",
+            "12 GB DDR de alta velocidad • Disco NVMe de 32 GB",
+            "Stacks completos de Next.js, Vite y backend",
+            "Escritorio VNC fluido y automatización de navegador",
+            "Consumo por hora: $0.24 por hora"
+          ],
+          "bestFor": "Apps full-stack, backends Docker y código diario",
+          "buttonText": "Desplegar 4 núcleos"
+        },
+        "tier_3": {
+          "label": "8 núcleos",
+          "tagline": "Compilación pesada, monorepos y suites paralelas",
+          "badge": "Nivel Potencia",
+          "perMinute": "$0.0053 / min",
+          "highlights": [
+            "Cómputo de alta concurrencia de 8 núcleos (8 vCPU)",
+            "16 GB DDR gran memoria • Disco NVMe de 64 GB",
+            "Monorepos pesados y compiladores paralelos",
+            "Pruebas complejas multiservicio y bases de datos",
+            "Consumo por hora: $0.32 por hora"
+          ],
+          "bestFor": "Grandes monorepos, compiladores pesados y grandes suites",
+          "buttonText": "Lanzar 6 núcleos"
+        }
+      },
+      "standardEyebrow": "Arquitectura estándar",
+      "standardTitle": "Incluido en cada máquina sandbox sin costo adicional",
+      "standardMeta": "Cero configuración · Escala automáticamente con tu proyecto",
+      "sharedCapabilities": [
+        {
+          "label": "Sandbox Linux con Root",
+          "desc": "Control total de shell e instalación de paquetes"
+        },
+        {
+          "label": "Reenvío de puertos al instante",
+          "desc": "3000, 8000, 5173 previsualizados en la app"
+        },
+        {
+          "label": "Escritorio VNC en vivo (:5901)",
+          "desc": "Chromium interactivo y GUI Linux"
+        },
+        {
+          "label": "Terminal WebSocket ANSI",
+          "desc": "Sesiones persistentes con paneles divididos"
+        },
+        {
+          "label": "Protección de autoapagado",
+          "desc": "Temporizador de inactividad configurable de 2–60 min"
+        },
+        {
+          "label": "Política inactiva de $0.00",
+          "desc": "Cero tarifa de cómputo cuando está detenida"
+        }
+      ],
+      "vncBannerTitle": "Escritorio remoto VNC en vivo (:5901)",
+      "vncBannerDesc": "Transmite una pantalla gráfica Linux real directo a tu navegador para apps GUI completas y automatización en Chromium.",
+      "vncBannerCta": "Empieza a construir con VMs sandbox"
+    },
+    "tokens": {
+      "eyebrow": "Medición transparente de tokens",
+      "title": "Paga por token con descuentos automáticos de caché de contexto",
+      "description": "Cada solicitud toma una instantánea de precios inmutable para entrada, lectura en caché y salida. Cuando tu prompt repite contexto del código, la caché reduce tu factura automáticamente.",
+      "rows": [
+        {
+          "category": "Tokens de entrada estándar",
+          "rate": "Tarifa exacta del modelo (por 1M tokens)",
+          "description": "Prompts, instrucciones, contexto del código y esquemas de herramientas enviados al modelo.",
+          "benefit": "Costo directo sin márgenes artificiales de plataforma."
+        },
+        {
+          "category": "Lecturas de contexto en caché",
+          "rate": "~75% a 80% más barato que la entrada",
+          "description": "Turnos repetidos de conversación, instrucciones del proyecto y prompts de sistema persistentes.",
+          "benefit": "La detección automática de caché recorta costos en chats largos."
+        },
+        {
+          "category": "Tokens de salida y razonamiento",
+          "rate": "Tarifa exacta del modelo (por 1M tokens)",
+          "description": "Generación de código, formato de diffs, procesos de pensamiento y llamadas autónomas.",
+          "benefit": "Medido por token producido; cancela en cualquier momento."
+        },
+        {
+          "category": "Trae tu propia clave (BYOK)",
+          "rate": "$0.00 de recargo de plataforma",
+          "description": "Usa tus propias claves de Anthropic, OpenAI, DeepSeek o proveedores personalizados.",
+          "benefit": "Todas las funciones son 100% gratis; solo pagas la VM si lanzas una."
+        },
+        {
+          "category": "API compatible con OpenAI",
+          "rate": "Mismas tarifas transparentes de tokens",
+          "description": "Llama a /v1/chat/completions y /v1/responses desde tus scripts locales o CI/CD.",
+          "benefit": "Claves API reutilizables vinculadas al saldo de tu espacio."
+        }
+      ],
+      "byokCardTitle": "Trae tu propia clave (BYOK)",
+      "byokCardDesc": "Conecta tus claves existentes de OpenAI, Anthropic, DeepSeek o proveedores personalizados en Configuración. Al usar tus claves, tu proveedor factura los tokens directamente con <strong>0% de recargo de plataforma</strong>.",
+      "apiCardTitle": "Endpoint compatible con OpenAI",
+      "apiCardDesc": "Usa tu espacio de Neuron Runner desde cualquier CLI, plugin de IDE o script. Apunta la URL base de tu SDK de OpenAI a <codeTag>/v1</codeTag> con tu clave API."
+    },
+    "calculator": {
+      "eyebrow": "Estimador de uso",
+      "title": "Simula tu gasto de cómputo",
+      "description": "Desliza el tiempo de ejecución o elige un perfil rápido para ver el costo semanal y mensual estimado.",
+      "presetsLabel": "Perfiles de flujo de trabajo",
+      "presetMeta": "{{hours}} h/sem · {{tier}}",
+      "presets": [
+        {
+          "name": "Programador ligero",
+          "tag": "Dev individual",
+          "description": "Scripts ocasionales, correcciones rápidas y vistas previas web ligeras."
+        },
+        {
+          "name": "Constructor Full-Stack",
+          "tag": "Recomendado",
+          "description": "Desarrollo diario, apps Next.js / Vite y pruebas en escritorio VNC en vivo."
+        },
+        {
+          "name": "Monorepo pesado",
+          "tag": "Usuario avanzado",
+          "description": "Stacks multicontenedor complejos, compilaciones largas y cargas pesadas."
+        }
+      ],
+      "chooseTierLabel": "Elegir nivel de cómputo",
+      "tierRate": "${{rate}} / h",
+      "tierSpecs": "{{memory}}GB RAM • {{disk}}GB",
+      "runtimePerWeek": "Tiempo activo de VM por semana",
+      "hoursPerWeekValue": "{{hours}} horas / semana",
+      "sliderTicks": {
+        "h1": "1 h",
+        "h15": "15 h",
+        "h30": "30 h",
+        "h45": "45 h",
+        "h60": "60 h"
+      },
+      "summaryEyebrow": "Resumen estimado",
+      "summaryTitle": "Factura de cómputo estimada",
+      "monthlySpendLabel": "Gasto mensual estimado en VM",
+      "perMonth": "/ mes",
+      "weeklyBreakdown": "~${{weekly}} / semana ({{hours}} h en {{tier}})",
+      "topUp10Label": "Una recarga de $10.00 te da:",
+      "topUp20Label": "Una recarga de $20.00 te da:",
+      "approxHours": "~{{hours}} horas",
+      "idleTimerLabel": "Temporizador de inactividad:",
+      "idleTimerValue": "Incluido ($0 consumo)",
+      "footnote": "* Los tokens del modelo se facturan por separado según tu volumen de conversación o directamente por tu proveedor si usas BYOK.",
+      "addCredits": "Añadir créditos al espacio",
+      "getStarted10": "Comenzar con $10"
+    },
+    "compare": {
+      "columns": {
+        "feature": "Característica",
+        "payAsYouGo": "Neuron Runner (Pago por uso)",
+        "traditional": "Suscripción típica de IA"
+      },
+      "items": [
+        {
+          "feature": "Planes mensuales",
+          "payAsYouGo": "Free ($0), Plus ($10), Pro ($25/mes)",
+          "traditional": "Solo $20 – $40/mes fijos por usuario"
+        },
+        {
+          "feature": "Precios de modelos",
+          "payAsYouGo": "Tarifas directas del proveedor (0% comisión BYOK)",
+          "traditional": "Multiplicadores de créditos opacos y recargos"
+        },
+        {
+          "feature": "Cuota de VM Linux en la nube",
+          "payAsYouGo": "$0.16–$0.32/h desde cuota · $0.00 detenida",
+          "traditional": "Cobro 24/7 o sin VM Linux persistente"
+        },
+        {
+          "feature": "Protección contra excedentes",
+          "payAsYouGo": "Cuota mensual + monedero extra desde $10",
+          "traditional": "Bloqueos rígidos o facturas sorpresa a fin de mes"
+        },
+        {
+          "feature": "Colaboración en equipo",
+          "payAsYouGo": "Cuota Pro compartida de $25/mes para VM en la nube + todos los LLM (hasta 4 miembros)",
+          "traditional": "Límites aislados por usuario sin fondo de VM compartido"
+        },
+        {
+          "feature": "Trae tu propia clave (BYOK)",
+          "payAsYouGo": "Soporte total en cada plan con $0.00 de comisión",
+          "traditional": "Prohibido o limitado a planes empresariales"
+        }
+      ]
+    },
+    "faq": {
+      "eyebrow": "Preguntas frecuentes",
+      "title": "Todo lo que necesitas saber sobre facturación",
+      "items": [
+        {
+          "q": "¿Cómo funcionan los planes Free, Plus y Pro?",
+          "a": "Cada plan ofrece una cuota mensual en USD ($0,50 Free, $10 Plus, $25 Pro) para tokens de LLM y ejecución de VM en la nube ($0,16–$0,32/h). Pro cubre todos los modelos; en Free y Plus, los modelos premium se cobran de tu monedero."
+        },
+        {
+          "q": "¿Qué ocurre cuando alcanzo mi límite mensual?",
+          "a": "La cuota del plan siempre va primero; las VMs activas siguen funcionando con $0.00 de saldo mientras quede cuota. Solo el exceso se descuenta de tu monedero prepago (mín. $10.00)."
+        },
+        {
+          "q": "¿Pago por las VMs sandbox cuando están detenidas?",
+          "a": "No. Las máquinas detenidas cuestan $0.00/hora. La medición corre por segundo solo mientras la VM está encendida."
+        },
+        {
+          "q": "¿Puedo traer mis propias claves API (BYOK)?",
+          "a": "Sí. En Configuración > Claves de proveedor puedes añadir tus claves con 0% de recargo. BYOK no usa la cuota del plan; en Free con saldo $0.00, los modelos de pago requieren saldo o plan de pago."
+        }
+      ]
+    }
+  }
+}

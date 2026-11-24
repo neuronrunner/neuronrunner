@@ -1,0 +1,352 @@
+{
+  "nav": {
+    "backToHome": "Retour à Neuron Runner",
+    "termsOfService": "Conditions d'utilisation",
+    "privacyPolicy": "Politique de confidentialité",
+    "onThisPage": "Sur cette page",
+    "tocAriaLabel": "Table des matières"
+  },
+  "footer": {
+    "pricing": "Tarifs",
+    "integrations": "Intégrations",
+    "docs": "Documentation",
+    "terms": "Conditions",
+    "privacy": "Confidentialité"
+  },
+  "terms": {
+    "seo": {
+      "title": "Conditions d'utilisation et politique d'utilisation acceptable",
+      "description": "Conditions d'utilisation et politique d'utilisation acceptable de Neuron Runner. Interdiction stricte de générer des contenus sexuellement explicites, pour adultes ou NSFW en général, des CSAM, des images non consensuelles et des contenus illicites."
+    },
+    "lastUpdated": "Dernière mise à jour : 12 novembre 2026",
+    "title": "Conditions d'utilisation",
+    "intro": "Bienvenue sur Neuron Runner (« Neuron Runner », « nous », « notre » ou « nos »). Les présentes Conditions d'utilisation (« Conditions ») régissent votre accès et votre utilisation de notre site web à l'adresse neuronrunner.com, de notre espace de travail de développement autonome, de nos machines virtuelles sandbox Linux dans le cloud (« VMs »), de nos connecteurs Model Context Protocol (« MCP »), de nos API compatibles OpenAI et des services associés (collectivement, le « Service »). En créant un compte, en accédant au Service ou en l'utilisant, vous acceptez d'être lié par les présentes Conditions et notre <privacyLink>Politique de confidentialité</privacyLink>.",
+    "toc": {
+      "eligibility": "1. Éligibilité et comptes",
+      "sandboxCompute": "2. Sandboxes cloud et VMs",
+      "acceptableUse": "3. Politique d'utilisation acceptable",
+      "billing": "4. Offres, quotas et facturation",
+      "byokMcp": "5. BYOK, MCP et accès API",
+      "ipOutputs": "6. Propriété du code et des sorties IA",
+      "aiDisclaimers": "7. Avertissements IA et exécution",
+      "termination": "8. Suspension et résiliation",
+      "warranties": "9. Exclusion de garanties",
+      "liability": "10. Limitation de responsabilité",
+      "indemnification": "11. Indemnisation et modifications",
+      "contact": "12. Contact"
+    },
+    "sections": {
+      "eligibility": {
+        "heading": "1. Éligibilité et création de compte",
+        "p1": "Vous devez être âgé d'au moins 18 ans (ou avoir atteint la majorité légale dans votre juridiction, ou avoir au moins 16 ans avec le consentement vérifiable d'un parent ou tuteur légal) pour utiliser le Service. En acceptant les présentes Conditions, vous déclarez et garantissez que : (a) vous remplissez ces conditions d'âge minimum ; (b) vous n'avez pas été précédemment suspendu ou exclu du Service ; et (c) votre inscription et votre utilisation du Service sont conformes à toutes les lois, contrôles à l'exportation et réglementations applicables.",
+        "p2": "Pour accéder à la plupart des fonctionnalités du Service, vous devez créer un compte à l'aide d'une adresse e-mail valide ou d'un fournisseur OAuth pris en charge (tel que Google ou GitHub). Vous acceptez de fournir des informations exactes et complètes et de les tenir à jour. Vous êtes seul responsable du maintien de la confidentialité de vos identifiants, jetons API et invitations à l'espace de travail, ainsi que de toutes les activités effectuées sous votre compte ou espace de travail d'équipe."
+      },
+      "sandboxCompute": {
+        "heading": "2. Sandboxes Linux dans le cloud, VMs et instantanés",
+        "intro": "Neuron Runner fournit des machines virtuelles Linux isolées dans le cloud, des terminaux web, des flux de bureau VNC en direct et des relais d'aperçu de ports pour le développement et le test de logiciels. Votre utilisation des ressources de calcul cloud est soumise aux limites de votre offre d'abonnement active :",
+        "items": {
+          "sessionDuration": {
+            "title": "Durée de session et délais d'inactivité.",
+            "body": "Les sessions VM continues sont soumises à des durées maximales spécifiques à chaque offre (par exemple, jusqu'à 20 minutes sur l'offre Free et jusqu'à 60 minutes sur les offres payantes, sauf prolongation ou création d'un instantané). L'état éphémère non sauvegardé dans une session terminée ou expirée ne peut pas être récupéré."
+          },
+          "persistentSnapshots": {
+            "title": "Instantanés persistants.",
+            "body": "Les offres payantes incluent un quota dédié d'instantanés de VM persistants. Si vous passez à une offre inférieure ou résiliez votre abonnement, ou si votre compte reste inactif pendant une période prolongée, nous nous réservons le droit de purger ou de supprimer les instantanés dépassant l'allocation de stockage de votre offre actuelle après un préavis raisonnable."
+          },
+          "fairUse": {
+            "title": "Usage raisonnable des ressources et isolation.",
+            "body": "Nous pouvons limiter le débit sortant réseau, le CPU, les E/S disque ou les ports d'aperçu exposés si un sandbox menace la stabilité de la plateforme ou enfreint notre Politique d'utilisation acceptable."
+          }
+        }
+      },
+      "acceptableUse": {
+        "heading": "3. Politique d'utilisation acceptable",
+        "intro": "Vous acceptez d'utiliser le Service, les modèles d'IA et les VMs cloud uniquement à des fins légales de développement logiciel, de recherche et de productivité. Il est strictement interdit de générer, demander, afficher, héberger ou distribuer tout contenu sexuellement explicite, pour adultes, pornographique ou NSFW (« Not Safe For Work ») en général. Vous vous engagez à <not>ne pas</not> :",
+        "items": {
+          "nsfw": {
+            "title": "Contenu sexuellement explicite, pour adultes et NSFW.",
+            "body": "Générer, demander, soumettre des prompts, téléverser, afficher, héberger, stocker ou distribuer tout contenu sexuellement explicite, pornographique, pour adultes ou NSFW (« Not Safe For Work ») en général — pas uniquement les sous-catégories extrêmes ou illégales. Cela inclut, sans limitation, la nudité, l'érotisme, les médias sexuellement suggestifs ou explicites, les actes sexuels explicites, les textes, codes, images, audios ou vidéos sexuellement explicites générés par IA, ou les services pour adultes."
+          },
+          "harmful": {
+            "title": "Contenu nuisible, abusif et illégal.",
+            "body": "Générer, stocker, téléverser ou distribuer des contenus pédopornographiques (CSAM) ou d'exploitation et d'abus sexuels sur mineurs (CSAE), des images intimes non consensuelles (NCII), des deepfakes sexuels illégaux ou non consensuels, de la violence extrême, du gore, de l'incitation à l'automutilation ou au suicide, des discours haineux, du harcèlement, des outils de cyberattaque ou des instructions pour des armes de destruction massive."
+          },
+          "cryptoMining": {
+            "title": "Minage de cryptomonnaies.",
+            "body": "Effectuer du minage de cryptomonnaies, du hachage par preuve de travail ou de la validation de nœuds blockchain dans tout sandbox ou toute VM Neuron Runner."
+          },
+          "networkAbuse": {
+            "title": "Abus réseau et cyberattaques.",
+            "body": "Utiliser les VMs cloud ou les URL d'aperçu pour lancer des attaques par déni de service (DoS/DDoS), des scans de ports non autorisés, l'exploitation de vulnérabilités contre des cibles tierces, des serveurs de commande et de contrôle (C2), des pages d'hameçonnage, la distribution de logiciels malveillants ou l'envoi massif de messages non sollicités (spam)."
+          },
+          "sandboxEscape": {
+            "title": "Évasion de sandbox et altération d'infrastructure.",
+            "body": "Tenter de contourner l'isolation des conteneurs/VMs, sonder les réseaux hôtes ou les services de métadonnées, ou obtenir un accès non autorisé aux espaces de travail, sandboxes ou comptes d'autres utilisateurs."
+          },
+          "rateLimit": {
+            "title": "Contournement des limites de débit et quotas.",
+            "body": "Créer plusieurs comptes gratuits, automatiser des inscriptions abusives ou contourner de toute autre manière les allocations mensuelles, les quotas de vCPU ou les contrôles de facturation."
+          }
+        },
+        "outro": "Neuron Runner applique une politique de tolérance zéro envers les contenus sexuellement explicites et illicites. Nous mettons en œuvre des contrôles de sécurité automatisés et manuels des contenus, et nous nous réservons le droit d'examiner les prompts, les entrées et les contenus générés afin de garantir le respect de nos politiques de contenu et des exigences de nos prestataires de paiement. Toute infraction entraînera la suspension immédiate du compte, l'arrêt des VMs et la perte des soldes restants sans remboursement."
+      },
+      "billing": {
+        "heading": "4. Abonnements, allocations d'utilisation et facturation",
+        "items": {
+          "plansRenewal": {
+            "title": "Offres d'abonnement et renouvellement.",
+            "body": "Les offres payantes (telles que Plus, Pro et les offres Team par poste) sont facturées d'avance selon un cycle mensuel ou annuel et se renouvellent automatiquement à la fin de chaque période de facturation, sauf résiliation préalable."
+          },
+          "allowances": {
+            "title": "Allocations mensuelles.",
+            "body": "Chaque forfait inclut une allocation mensuelle d'utilisation LLM et un quota mensuel de calcul cloud (mesuré en vCPU-heures). Les allocations mensuelles inutilisées et les vCPU-heures incluses expirent à la fin du cycle de facturation et ne sont pas reportées."
+          },
+          "teamWorkspaces": {
+            "title": "Espaces de travail d'équipe.",
+            "body": "Les abonnements Team sont facturés par poste de membre actif. Les administrateurs de l'espace de travail sont responsables de l'attribution des postes ; l'ajout de postes en cours de cycle peut entraîner une facturation au prorata, et les budgets de calcul sont mutualisés à l'échelle de l'espace de travail."
+          },
+          "topUps": {
+            "title": "Recharges d'usage supplémentaire et frais de traitement.",
+            "body": "Les abonnés payants peuvent activer des recharges de portefeuille d'utilisation supplémentaire pour continuer à exécuter des modèles ou des VM au-delà de leurs allocations incluses. Les transactions de recharge peuvent être soumises à des frais de traitement de paiement communiqués. Les crédits achetés et les soldes de recharge n'ont aucune valeur monétaire, sont non transférables et non remboursables, sauf disposition légale contraire."
+          },
+          "cancellations": {
+            "title": "Résiliations et changements d'offre.",
+            "body": "Vous pouvez résilier votre abonnement ou programmer un passage à une offre inférieure à tout moment depuis les paramètres de facturation de votre espace de travail. Les résiliations et passages à une offre inférieure prennent effet à la fin du cycle de facturation payé en cours."
+          }
+        }
+      },
+      "byokMcp": {
+        "heading": "5. Bring Your Own Key (BYOK), connecteurs MCP et accès API",
+        "intro": "Neuron Runner vous permet de configurer vos propres clés API de fournisseurs de LLM tiers (« BYOK »), de connecter des outils externes via le Model Context Protocol (« MCP ») ou OAuth, et d'accéder aux modèles via nos points de terminaison <code>/v1</code> compatibles OpenAI :",
+        "items": {
+          "thirdPartyTerms": {
+            "title": "Conditions et frais tiers.",
+            "body": "Lorsque vous utilisez BYOK ou connectez des serveurs MCP externes (par exemple GitHub, Linear, Slack, Notion ou des serveurs HTTP/Stdio personnalisés), votre utilisation de ces services est régie par votre contrat distinct avec le fournisseur concerné. Vous êtes seul responsable de tous les frais d'utilisation facturés directement par votre fournisseur BYOK."
+          },
+          "vmCliSessions": {
+            "title": "Sessions CLI dans la VM et Abonnements Tiers.",
+            "body": "Si vous vous connectez à un outil en ligne de commande officiel d'un tiers dans votre Cloud VM isolée, votre session d'authentification et vos identifiants restent strictement dans cette VM et ne sont ni lus, ni extraits, ni stockés par Neuron Runner. Neuron Runner est une plateforme de calcul cloud indépendante et n'est ni affiliée, ni sponsorisée, ni approuvée par Anthropic, OpenAI, Google ou tout autre fournisseur de modèles. Vous êtes seul responsable de vérifier et de respecter les conditions d'abonnement, les politiques d'utilisation acceptable et les limites d'usage applicables de votre fournisseur ; toute suspension de compte, limitation de débit ou restriction imposée par un fournisseur tiers échappe au contrôle et à la responsabilité de Neuron Runner."
+          },
+          "connectorSafety": {
+            "title": "Sécurité des connecteurs externes.",
+            "body": "Neuron Runner n'est pas responsable de la disponibilité, de l'exactitude, de la sécurité ou des pratiques de traitement des données des serveurs MCP tiers ou API externes que vous autorisez vos agents ou sandboxes à invoquer."
+          }
+        }
+      },
+      "ipOutputs": {
+        "heading": "6. Propriété intellectuelle, code client et sorties d'IA",
+        "yourContent": {
+          "title": "Votre contenu.",
+          "body": "Entre vous et Neuron Runner, vous conservez tous les droits, titres et propriétés sur le code source, les fichiers, les prompts, les variables d'environnement et les dépôts que vous téléversez ou créez dans vos espaces de travail (« Entrées »), ainsi que sur le code, les diffs et les réponses générés pour vous par le Service (« Sorties »), dans toute la mesure permise par la loi applicable."
+        },
+        "limitedLicense": {
+          "title": "Licence limitée de Service.",
+          "body": "Vous accordez à Neuron Runner une licence mondiale, non exclusive et libre de redevances pour héberger, exécuter dans des sandboxes, créer des instantanés de VM, transmettre à vos fournisseurs de modèles d'IA sélectionnés et afficher vos Entrées et Sorties uniquement dans la mesure nécessaire pour fournir, sécuriser et maintenir le Service pour vous et les membres autorisés de votre espace de travail."
+        },
+        "platformIp": {
+          "title": "Propriété intellectuelle de la plateforme.",
+          "body": "Neuron Runner et ses concédants détiennent tous les droits, titres et intérêts relatifs au Service lui-même, y compris notre logiciel d'orchestration, notre interface utilisateur, notre infrastructure sandbox, nos logos et notre documentation."
+        }
+      },
+      "aiDisclaimers": {
+        "heading": "7. Avertissements relatifs à l'intelligence artificielle et à l'exécution de code",
+        "body": "Les grands modèles de langage et les agents de programmation autonomes sont des systèmes probabilistes. Les Sorties générées par le Service peuvent contenir des bugs, des vulnérabilités de sécurité, des affirmations inexactes (« hallucinations »), des commandes shell destructrices ou des extraits de code similaires à du code open-source ou tiers existant. Vous êtes seul responsable de la vérification, des tests et de la validation de toutes les Sorties, modifications de code, Pull Requests et commandes de terminal avant de les déployer en production ou de les exécuter en dehors d'un sandbox isolé."
+      },
+      "termination": {
+        "heading": "8. Suspension et résiliation",
+        "body": "Nous nous réservons le droit de suspendre ou de résilier immédiatement votre compte, vos VMs actives, vos URL d'aperçu ou votre accès API, avec ou sans préavis, si nous estimons raisonnablement que : (a) vous avez enfreint les présentes Conditions ou notre Politique d'utilisation acceptable (y compris en générant, demandant ou distribuant du contenu sexuellement explicite, pour adultes, NSFW ou illicite) ; (b) votre sandbox présente un risque sécuritaire, juridique ou opérationnel pour notre infrastructure ou des tiers ; ou (c) votre compte présente des obligations de paiement échues, irrécouvrables ou contestées."
+      },
+      "warranties": {
+        "heading": "9. Exclusion de garanties",
+        "body": "LE SERVICE, LES SANDBOXES CLOUD ET TOUTES LES SORTIES D'IA SONT FOURNIS « EN L'ÉTAT » ET « SELON DISPONIBILITÉ », SANS GARANTIE D'AUCUNE SORTE, EXPRESSE OU IMPLICITE, Y COMPRIS, SANS S'Y LIMITER, LES GARANTIES IMPLICITES DE QUALITÉ MARCHANDE, D'ADÉQUATION À UN USAGE PARTICULIER, DE TITRE, D'EXACTITUDE, DE DISPONIBILITÉ ET D'ABSENCE DE CONTREFAÇON. NEURON RUNNER NE GARANTIT PAS QUE LE SERVICE OU LE CODE GÉNÉRÉ SERONT EXEMPTS D'ERREURS, SÉCURISÉS OU ININTERROMPUS."
+      },
+      "liability": {
+        "heading": "10. Limitation de responsabilité",
+        "body": "DANS TOUTE LA MESURE PERMISE PAR LA LOI APPLICABLE, NEURON RUNNER, SES AFFILIÉS, DIRIGEANTS, EMPLOYÉS OU FOURNISSEURS NE SERONT EN AUCUN CAS RESPONSABLES DES DOMMAGES INDIRECTS, ACCESSOIRES, SPÉCIAUX, CONSÉCUTIFS OU PUNITIFS, NI D'AUCUNE PERTE DE PROFITS, DE REVENUS, DE DONNÉES, D'INSTANTANÉS OU DE CLIENTÈLE RÉSULTANT DE OU LIÉE À VOTRE UTILISATION DU SERVICE. NOTRE RESPONSABILITÉ CUMULÉE POUR TOUTES LES RÉCLAMATIONS LIÉES AU SERVICE N'EXCÉDERA PAS LE PLUS ÉLEVÉ DES DEUX MONTANTS SUIVANTS : (A) LE MONTANT TOTAL QUE VOUS AVEZ PAYÉ À NEURON RUNNER AU COURS DES DOUZE (12) MOIS PRÉCÉDANT L'ÉVÉNEMENT DONNANT LIEU À LA RÉCLAMATION OU (B) CENT DOLLARS AMÉRICAINS (100,00 $)."
+      },
+      "indemnification": {
+        "heading": "11. Indemnisation, droit applicable et modifications",
+        "indemnity": {
+          "title": "Indemnisation.",
+          "body": "Vous acceptez de défendre, d'indemniser et de dégager de toute responsabilité Neuron Runner et ses affiliés contre toute réclamation, responsabilité, dommage, perte et dépense (y compris les honoraires d'avocat raisonnables) découlant de ou liés à vos Entrées, à votre utilisation des VMs cloud ou des connecteurs MCP, ou à votre violation des présentes Conditions ou de la loi applicable."
+        },
+        "modifications": {
+          "title": "Modifications des Conditions.",
+          "body": "Nous pouvons mettre à jour les présentes Conditions de temps à autre pour refléter de nouvelles fonctionnalités, des exigences légales ou des structures tarifaires. Lorsque nous apportons des modifications importantes, nous mettons à jour la date de « Dernière mise à jour » en haut de cette page. Votre utilisation continue du Service après l'entrée en vigueur des modifications vaut acceptation des Conditions révisées."
+        }
+      },
+      "contact": {
+        "heading": "12. Nous contacter",
+        "body": "Si vous avez des questions, des demandes relatives à la facturation ou des notifications juridiques concernant ces Conditions, veuillez nous contacter à l'adresse :"
+      }
+    }
+  },
+  "privacy": {
+    "seo": {
+      "title": "Politique de confidentialité",
+      "description": "Politique de confidentialité de Neuron Runner couvrant la collecte de données, les sandboxes Linux dans le cloud, la confidentialité des modèles d'IA, les identifiants BYOK et les droits des utilisateurs."
+    },
+    "lastUpdated": "Dernière mise à jour : 11 novembre 2026",
+    "title": "Politique de confidentialité",
+    "intro": "Neuron Runner (« Neuron Runner », « nous », « notre » ou « nos ») accorde une grande importance à la confidentialité et à la sécurité des développeurs et des équipes qui utilisent notre site web, nos espaces de travail de développement autonomes, nos sandboxes Linux dans le cloud et nos API (collectivement, les « Services »). La présente Politique de confidentialité explique quelles informations nous collectons, comment nous traitons votre code, vos prompts et vos identifiants, et quels droits s'offrent à vous. Veuillez également consulter nos <termsLink>Conditions d'utilisation</termsLink>.",
+    "toc": {
+      "informationCollected": "1. Informations que nous collectons",
+      "howWeUse": "2. Utilisation des informations",
+      "aiPrivacy": "3. Confidentialité IA et entraînement",
+      "sandboxCredentials": "4. Données des sandboxes, BYOK et MCP",
+      "dataSharing": "5. Partage et sous-traitants",
+      "cookiesStorage": "6. Cookies et stockage local",
+      "retentionSecurity": "7. Conservation et sécurité",
+      "yourRights": "8. Vos droits et choix",
+      "childrenTransfers": "9. Limites d'âge et transferts",
+      "contact": "10. Nous contacter"
+    },
+    "sections": {
+      "informationCollected": {
+        "heading": "1. Informations que nous collectons",
+        "directLabel": "Informations que vous nous fournissez directement :",
+        "directItems": {
+          "account": {
+            "title": "Données de compte et de profil.",
+            "body": "Votre nom d'utilisateur, votre adresse e-mail, le hachage de votre mot de passe et les informations de profil reçues lorsque vous vous inscrivez directement ou vous authentifiez via OAuth Google ou GitHub."
+          },
+          "workspaceContent": {
+            "title": "Prompts, code et contenu de l'espace de travail.",
+            "body": "Les prompts de discussion, fichiers, dépôts, commandes de terminal et sorties d'IA que vous créez ou traitez dans vos projets et sandboxes VM Linux dans le cloud."
+          },
+          "credentials": {
+            "title": "Identifiants d'intégration (BYOK et MCP).",
+            "body": "Les clés API de LLM tiers que vous configurez (« Bring Your Own Key ») et les jetons OAuth, en-têtes ou variables d'environnement que vous fournissez pour connecter des outils externes Model Context Protocol (« MCP »)."
+          },
+          "billing": {
+            "title": "Métadonnées de facturation et de transaction.",
+            "body": "Lorsque vous souscrivez à une offre payante ou rechargez votre portefeuille d'usage supplémentaire, notre prestataire de paiement collecte les informations complètes de votre carte de paiement. Nous ne conservons que des métadonnées de facturation non sensibles, telles que la marque de la carte, les quatre derniers chiffres, le mois/année d'expiration, le statut de facturation et l'historique des factures."
+          },
+          "communications": {
+            "title": "Communications.",
+            "body": "Votre nom, votre adresse e-mail et le contenu de vos messages lorsque vous contactez le support client ou répondez à des invitations d'espace de travail."
+          }
+        },
+        "autoLabel": "Informations collectées automatiquement :",
+        "autoItems": {
+          "telemetry": {
+            "title": "Télémétrie d'utilisation et de quotas.",
+            "body": "Modèles invoqués, nombre de jetons, durée d'exécution des VM cloud (vCPU-heures), nombre d'instantanés et horodatages d'exécution d'outils MCP requis pour la facturation et la limitation de débit."
+          },
+          "deviceLog": {
+            "title": "Informations sur l'appareil et logs.",
+            "body": "Adresse IP, région géographique approximative déduite de l'IP, type de navigateur, système d'exploitation et logs de requêtes utilisés pour la sécurité, l'authentification et la prévention des abus."
+          }
+        }
+      },
+      "howWeUse": {
+        "heading": "2. Comment nous utilisons les informations et bases légales",
+        "intro": "Nous traitons vos informations aux fins suivantes (en nous appuyant sur l'exécution d'un contrat, des intérêts commerciaux légitimes, la conformité légale ou votre consentement le cas échéant en vertu du RGPD/KVKK) :",
+        "items": {
+          "provisioning": "Fournir et exploiter vos espaces de travail de développement, vos sandboxes Linux cloud et vos instantanés de VM persistants.",
+          "routing": "Acheminer vos prompts et appels d'outils vers les modèles d'IA et connecteurs MCP que vous sélectionnez.",
+          "billing": "Pour calculer les allocations LLM, la consommation de vCPU-heures et traiter les paiements d'abonnement ou de recharge.",
+          "auth": "Authentifier vos sessions, envoyer des codes de vérification à usage unique (OTP) et gérer les invitations aux espaces de travail d'équipe.",
+          "abuse": "Détecter et prévenir la fraude, les évasions de sandbox non autorisées, le cryptominage, les abus réseau et les atteintes à la confiance et à la sécurité.",
+          "metrics": "Générer des métriques de performance agrégées et non identifiantes (telles que la latence de démarrage à froid et le débit des modèles) afin d'améliorer la fiabilité de la plateforme."
+        }
+      },
+      "aiPrivacy": {
+        "heading": "3. Confidentialité des données d'IA et politique d'entraînement des modèles",
+        "calloutTitle": "Aucun entraînement sur le code privé de l'espace de travail :",
+        "calloutBody": "Neuron Runner n'utilise <not>pas</not> votre code source privé, vos fichiers d'espace de travail, vos instantanés de VM, vos variables d'environnement ni vos prompts pour entraîner ou affiner des modèles d'IA fondamentaux.",
+        "body": "Lorsque vous exécutez un modèle via Neuron Runner, votre prompt et le contexte pertinent sont transmis au fournisseur d'inférence de modèle sélectionné (ou directement à l'aide de votre propre clé API lorsque BYOK est activé) uniquement pour générer la réponse demandée. Si vous utilisez votre propre clé API (BYOK), la conservation et le traitement des données par ce fournisseur en amont sont régis par votre contrat direct et vos paramètres de confidentialité avec ce fournisseur."
+      },
+      "sandboxCredentials": {
+        "heading": "4. Sandboxes cloud, clés BYOK et identifiants MCP",
+        "items": {
+          "encryption": {
+            "title": "Chiffrement des identifiants.",
+            "body": "Les clés API tierces (BYOK), les variables d'environnement des serveurs MCP, les en-têtes HTTP personnalisés et les jetons OAuth sont chiffrés au repos avant d'être stockés dans notre base de données et ne sont déchiffrés en mémoire que lors de l'exécution de requêtes en votre nom."
+          },
+          "isolation": {
+            "title": "Isolation des sandboxes.",
+            "body": "Chaque session de VM cloud s'exécute dans un environnement virtualisé isolé doté de canaux dédiés de terminal et d'aperçu de bureau authentifiés par jeton."
+          }
+        }
+      },
+      "dataSharing": {
+        "heading": "5. Partage de données et sous-traitants",
+        "intro": "Nous <notSell>ne vendons pas</notSell> et ne louons pas vos informations personnelles ni votre code source à des tiers. Nous ne partageons des informations que dans les circonstances suivantes :",
+        "items": {
+          "infrastructure": {
+            "title": "Fournisseurs d'infrastructure et de calcul.",
+            "body": "Fournisseurs d'hébergement cloud, de bases de données et d'infrastructure de machines virtuelles qui hébergent notre plateforme et exécutent les conteneurs sandbox."
+          },
+          "aiProviders": {
+            "title": "Fournisseurs d'inférence de modèles d'IA.",
+            "body": "Fournisseurs de LLM en amont strictement dans la mesure nécessaire pour exécuter les requêtes d'inférence de modèle que vous initiez."
+          },
+          "connectors": {
+            "title": "Connecteurs autorisés par l'utilisateur.",
+            "body": "Serveurs MCP tiers ou services OAuth (tels que GitHub ou Google) que vous connectez explicitement à votre espace de travail."
+          },
+          "paymentProcessors": {
+            "title": "Prestataires de paiement.",
+            "body": "Passerelles de paiement de confiance pour traiter les abonnements, les factures et les recharges de portefeuille."
+          },
+          "teamAdmins": {
+            "title": "Administrateurs d'espace de travail d'équipe.",
+            "body": "Si vous rejoignez un espace de travail Team partagé, le propriétaire ou les administrateurs de l'espace de travail peuvent consulter la liste des membres, la consommation de crédits mutualisés et les ressources de projets partagés."
+          },
+          "legal": {
+            "title": "Conformité légale et transferts d'activité.",
+            "body": "Lorsque cela est nécessaire pour se conformer à la loi applicable, à une procédure légale valide ou dans le cadre d'une fusion, acquisition ou vente d'actifs."
+          }
+        }
+      },
+      "cookiesStorage": {
+        "heading": "6. Cookies et stockage local",
+        "body": "Nous utilisons un stockage de navigateur strictement nécessaire (<code>localStorage</code> et cookies de session) pour maintenir votre connexion (en stockant les jetons d'accès et de rafraîchissement), mémoriser votre espace de travail actif et l'état de la VM sélectionnée, et conserver vos préférences d'interface telles que le mode thème clair/sombre. Nous n'utilisons pas de cookies publicitaires tiers intersites."
+      },
+      "retentionSecurity": {
+        "heading": "7. Conservation et sécurité des données",
+        "p1": "Nous conservons les données de votre compte, votre historique de discussion, les fichiers de votre espace de travail et vos instantanés de VM persistants tant que votre compte reste actif ou selon les besoins pour fournir les Services. Les sessions sandbox éphémères qui ne font pas l'objet d'un instantané sont automatiquement détruites à la fin de la session VM.",
+        "p2": "Lorsque vous supprimez un projet, révoquez un connecteur MCP, supprimez une clé BYOK ou demandez la suppression de votre compte, nous supprimons les identifiants et artefacts d'espace de travail associés des systèmes actifs, en ne conservant que les registres de facturation et d'audit requis à des fins fiscales, comptables, de prévention de la fraude ou de conformité légale."
+      },
+      "yourRights": {
+        "heading": "8. Vos droits et choix en matière de confidentialité (RGPD, CCPA et KVKK)",
+        "intro": "Selon votre lieu de résidence, vous pouvez disposer des droits suivants concernant vos informations personnelles :",
+        "items": {
+          "access": {
+            "title": "Accès et portabilité.",
+            "body": "Demander une copie des données personnelles que nous détenons à votre sujet dans un format structuré et lisible par machine."
+          },
+          "correction": {
+            "title": "Rectification.",
+            "body": "Mettre à jour ou corriger les informations inexactes de votre compte ou de votre profil."
+          },
+          "deletion": {
+            "title": "Suppression (« Droit à l'oubli »).",
+            "body": "Demander la suppression de votre compte, de vos informations personnelles et des données stockées de votre espace de travail, sous réserve des obligations légales impératives de conservation."
+          },
+          "objection": {
+            "title": "Opposition, limitation et désinscription marketing.",
+            "body": "Vous opposer à certaines activités de traitement ou vous désabonner à tout moment des e-mails promotionnels non transactionnels via le lien de désinscription."
+          }
+        },
+        "contact": "Pour exercer l'un de ces droits, veuillez nous envoyer un e-mail à <emailLink>privacy@neuronrunner.com</emailLink>. Nous répondons aux demandes vérifiables dans un délai de 30 jours."
+      },
+      "childrenTransfers": {
+        "heading": "9. Confidentialité des enfants et transferts internationaux de données",
+        "ageLimits": {
+          "title": "Limites d'âge.",
+          "body": "Conformément à nos Conditions d'utilisation, nos Services sont destinés aux développeurs âgés de 18 ans et plus (ou d'au moins 16 ans avec le consentement vérifiable d'un parent ou tuteur). Nous ne collectons pas sciemment d'informations personnelles auprès d'enfants de moins de 16 ans. Si vous pensez qu'un enfant de moins de 16 ans nous a fourni des données personnelles, veuillez contacter <emailLink>privacy@neuronrunner.com</emailLink> et nous les supprimerons rapidement."
+        },
+        "transfers": {
+          "title": "Transferts internationaux.",
+          "body": "Notre infrastructure cloud et nos sous-traitants peuvent traiter des données aux États-Unis, dans l'Espace économique européen et dans d'autres juridictions. Le cas échéant, nous nous appuyons sur des garanties appropriées telles que les Clauses Contractuelles Types (SCCs) pour protéger les transferts transfrontaliers de données."
+        }
+      },
+      "contact": {
+        "heading": "10. Nous contacter",
+        "body": "Si vous avez des questions, des préoccupations ou des demandes concernant la présente Politique de confidentialité ou nos pratiques en matière de données, veuillez contacter notre équipe dédiée à la confidentialité :"
+      }
+    }
+  }
+}

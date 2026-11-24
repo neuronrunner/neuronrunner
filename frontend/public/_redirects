@@ -1,0 +1,4 @@
+/workspaces /projects 301
+/workspaces/* /projects/:splat 301
+/connectors /integrations 301
+/connectors/oauth/* /integrations/oauth/:splat 301

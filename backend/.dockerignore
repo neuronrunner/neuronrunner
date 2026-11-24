@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+.git/
+.env
+.env.*
+!.env.example
+*.sqlite3
+*.log
+dump.rdb
+workspaces/
+media/
+staticfiles/

@@ -1,0 +1,27 @@
+python-interpreter-path = ".venv/bin/python"
+search-path = [
+    "backend",
+    "."
+]
+ignore-missing-imports = [
+    "torch",
+    "torchvision",
+    "diffusers",
+    "rembg",
+    "cv2",
+    "opennsfw2",
+    "sentence_transformers",
+    "stable_diffusion_cpp",
+    "vllm"
+]
+check-unannotated-defs = false
+infer-return-types = "never"
+[errors]
+bad-override = "ignore"
+bad-override-param-name = "ignore"
+missing-attribute = "ignore"
+no-matching-overload = "ignore"
+bad-argument-type = "ignore"
+not-callable = "ignore"
+bad-return = "ignore"
+unknown-name = "ignore"

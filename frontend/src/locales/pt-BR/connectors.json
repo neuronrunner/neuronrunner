@@ -1,0 +1,340 @@
+{
+  "seo": {
+    "landingTitle": "Integrações e conectores MCP",
+    "landingDescription": "Conecte seu agente autônomo de IA na nuvem ao GitHub, Slack, Notion, Linear, Postgres, Supabase e dezenas de servidores Model Context Protocol (MCP).",
+    "workspaceTitle": "Integrações do workspace"
+  },
+  "categories": {
+    "all": "Todos",
+    "popular": "Populares",
+    "newNoteworthy": "Novidades e destaques",
+    "development": "Desenvolvimento",
+    "productivity": "Produtividade",
+    "communication": "Comunicação",
+    "dataAnalytics": "Dados e análise",
+    "design": "Design",
+    "salesMarketing": "Vendas e marketing",
+    "research": "Pesquisa",
+    "infrastructure": "Infraestrutura",
+    "finance": "Finanças",
+    "custom": "Personalizado"
+  },
+  "categoryDescriptions": {
+    "popular": "Os servidores MCP e aplicativos mais usados e recomendados.",
+    "newNoteworthy": "Servidores MCP, ferramentas de agente e integrações recentes e em alta.",
+    "development": "Geração de código, fluxos de trabalho Git, terminais, contêineres e infraestrutura para desenvolvedores.",
+    "productivity": "Anotações, gestão de tarefas, rastreamento de issues e organização pessoal.",
+    "communication": "Chat em equipe, e-mail, canais de mensagens e notificações.",
+    "dataAnalytics": "Bancos de dados, data warehouses, busca vetorial, consultas e business intelligence.",
+    "design": "Ferramentas de design, colaboração em tela, edição de imagens e recursos de UI.",
+    "salesMarketing": "Dados de clientes, prospecção, análise de marketing e sistemas de CRM.",
+    "research": "Extração da web, mecanismos de busca, arquivos de artigos e descoberta de conhecimento.",
+    "infrastructure": "Hospedagem em nuvem, runtimes de computação, DNS e backends serverless.",
+    "finance": "Plataformas de cobrança, gateways de pagamento, contabilidade e relatórios financeiros."
+  },
+  "workspace": {
+    "ariaLabel": "Integrações",
+    "eyebrow": "Workspace / Integrações MCP",
+    "title": "Integrações",
+    "subtitle": "Conecte plugins e servidores MCP para permitir que o NeuronRunner opere entre suas ferramentas.",
+    "openSidebar": "Abrir barra lateral",
+    "addCustomConnector": "Adicionar conector personalizado",
+    "addCustomShort": "Personalizado",
+    "backToExplore": "Voltar para Explorar",
+    "categoryFallbackDescription": "Explore todos os conectores e servidores MCP de {{category}}.",
+    "searchAria": "Buscar conectores",
+    "searchPlaceholder": "Buscar conectores",
+    "searchCategoryAria": "Buscar conectores em {{category}}",
+    "searchCategoryPlaceholder": "Buscar em {{category}}...",
+    "clearSearch": "Limpar busca",
+    "sort": {
+      "ariaLabel": "Ordenar conectores",
+      "featured": "Destaques primeiro",
+      "nameAsc": "Nome: A–Z"
+    },
+    "tabs": {
+      "ariaLabel": "Visualizações de conectores",
+      "explore": "Explorar",
+      "connections": "Minhas conexões"
+    },
+    "loadError": "Não foi possível carregar suas conexões. {{error}}",
+    "tryAgain": "Tentar novamente",
+    "directoryAriaLabel": "Diretório de conectores",
+    "searchResults": "Resultados da busca",
+    "allConnectors": "Todos os conectores",
+    "browseCategoryAria": "Explorar conectores de {{category}}",
+    "seeAll": "Ver tudo ({{count}})",
+    "showingCount": "Exibindo {{shown}} de {{total}} apps",
+    "showMore": "Mostrar mais conectores",
+    "footerCatalog": "{{count}} apps e servidores MCP · Atualizado em {{date}}",
+    "mcpRegistry": "MCP Registry",
+    "connections": {
+      "ariaLabel": "Conexões salvas",
+      "loading": "Carregando suas conexões…",
+      "emptyTitle": "Sua próxima conexão começa aqui",
+      "emptySearchTitle": "Nenhuma conexão encontrada",
+      "emptyDescription": "Conecte seu primeiro app para usá-lo na conversa.",
+      "emptySearchDescription": "Nenhuma conexão correspondeu a \"{{query}}\".",
+      "exploreCta": "Explorar conectores"
+    },
+    "empty": {
+      "noConnectorsTitle": "Nenhum conector encontrado",
+      "noCategoryMatches": "Nenhum conector em {{category}} correspondeu a \"{{query}}\".",
+      "noCategoryItems": "Não há conectores em {{category}}.",
+      "noSearchDescription": "Tente outro aplicativo ou limpe a busca para explorar o diretório."
+    },
+    "mcpConnectionsTitle": "Conexões MCP"
+  },
+  "card": {
+    "configureAria": "Configurar {{name}}",
+    "connected": "Conectado",
+    "configured": "Configurado",
+    "customDescription": "Sua conexão MCP personalizada.",
+    "providerSetup": "Configuração no provedor"
+  },
+  "dialog": {
+    "customTitle": "Adicionar um conector personalizado",
+    "customDescription": "Traga seu próprio servidor MCP para o seu workspace.",
+    "setupGuide": "Guia de configuração",
+    "authHeaderDescription": "Opcional. Use Bearer seguido pelo seu token de acesso.",
+    "providerSetup": {
+      "title": "Configurar com o provedor",
+      "description": "Uma conexão MCP pública para este aplicativo ainda não foi verificada. Visite o provedor para obter detalhes de conexão ou adicione um endpoint MCP que você já tenha.",
+      "visitProvider": "Visitar provedor",
+      "addEndpoint": "Adicionar endpoint MCP"
+    },
+    "verified": {
+      "title": "Conexão verificada",
+      "descriptionOne": "{{count}} ferramenta está disponível para o seu agente. Seu conector está pronto para uso.",
+      "descriptionOther": "{{count}} ferramentas estão disponíveis para o seu agente. Seu conector está pronto para uso.",
+      "done": "Concluído"
+    },
+    "fields": {
+      "name": "Nome do conector",
+      "namePlaceholder": "Ferramentas da minha equipe",
+      "connectionMethod": "Método de conexão",
+      "serverUrl": "URL do servidor",
+      "httpProtocol": "Protocolo HTTP",
+      "workspaceSandbox": "Sandbox do workspace",
+      "workspacePlaceholder": "Selecione um workspace",
+      "noWorkspaces": "Nenhum workspace disponível",
+      "workspaceHint": "Roda dentro do sandbox deste workspace e fica disponível nos chats deste workspace.",
+      "serverCommand": "Comando do servidor",
+      "serverCommandHint": "O runtime correspondente deve estar instalado no sandbox do workspace.",
+      "authentication": "Autenticação",
+      "required": "obrigatório",
+      "keepSavedPlaceholder": "Deixe em branco para manter as credenciais salvas",
+      "enterFieldPlaceholder": "Informe {{name}}"
+    },
+    "methods": {
+      "remote": "Remoto · {{protocol}}{{suffix}}",
+      "local": "Local · {{runtime}}",
+      "remoteHttp": "Remoto · HTTP",
+      "localStdio": "Local · stdio"
+    },
+    "auth": {
+      "oauth": "OAuth · Conectar sua conta",
+      "token": "Token de API",
+      "none": "Sem autenticação"
+    },
+    "oauth": {
+      "description": "Faça login com o provedor e escolha o que este conector pode acessar. Você retornará aqui quando a autorização for concluída.",
+      "settings": "Configurações de OAuth",
+      "settingsHint": "Necessário apenas quando o provedor exige um aplicativo OAuth registrado.",
+      "clientId": "Client ID",
+      "clientSecret": "Client secret",
+      "redirectUrl": "URL de redirecionamento"
+    },
+    "advanced": {
+      "headersSummary": "Cabeçalhos avançados",
+      "envSummary": "Variáveis de ambiente avançadas",
+      "description": "Objeto JSON com valores de texto. Informe todos os valores ao substituir credenciais salvas.",
+      "ariaLabel": "JSON de configurações avançadas"
+    },
+    "security": {
+      "oauth": "Os tokens de acesso e refresh tokens são criptografados no servidor. Você pode desconectar a qualquer momento.",
+      "credentials": "As credenciais são criptografadas no servidor."
+    },
+    "savedInactiveNotice": "Configuração salva. O conector permanece inativo até que a verificação seja concluída com sucesso.",
+    "status": {
+      "completeInProvider": "Conclua a autorização na janela do provedor.",
+      "startingSandbox": "Iniciando o conector no sandbox do seu workspace. A primeira instalação de pacotes pode levar até dois minutos."
+    },
+    "actions": {
+      "disconnect": "Desconectar",
+      "cancelAuth": "Cancelar autorização",
+      "waitingAuth": "Aguardando autorização…",
+      "verifying": "Verificando conexão…",
+      "reconnectAccount": "Reconectar conta",
+      "connectAccount": "Conectar conta",
+      "saveAndVerify": "Salvar e verificar",
+      "connect": "Conectar",
+      "signInToConnect": "Entrar para conectar"
+    },
+    "errors": {
+      "allowPopups": "Permita pop-ups para conectar sua conta.",
+      "invalidJsonObject": "Informe um objeto JSON com valores em string, como {\"API_KEY\": \"sua-chave\"}.",
+      "fieldRequired": "{{name}} é obrigatório.",
+      "urlPlaceholders": "Substitua os marcadores de posição na URL do servidor pelos dados da sua conta.",
+      "commandPlaceholders": "Substitua os marcadores de posição no comando antes de conectar.",
+      "selectWorkspace": "Selecione o sandbox do workspace onde este conector deve ser executado.",
+      "verificationFailed": "A verificação da conexão falhou. Confira suas credenciais e tente novamente.",
+      "invalidAdvancedJson": "As configurações avançadas devem ser um JSON válido."
+    },
+    "footerManage": "Gerencie suas ferramentas em <link>Integrações</link>.",
+    "legacyLocal": {
+      "title": "O conector local não é mais compatível",
+      "description": "Este servidor MCP usa um comando stdio local. Novos conectores locais estão desativados; desconecte-o e conecte um endpoint HTTP/SSE remoto."
+    }
+  },
+  "oauth": {
+    "status": {
+      "pendingTitle": "Conectando sua conta…",
+      "connectedTitle": "Conta conectada",
+      "errorTitle": "Não foi possível conectar sua conta",
+      "pendingDescription": "Concluindo a autorização e verificando a conexão MCP.",
+      "connectedDescription": "Você pode fechar esta janela e voltar para seus conectores."
+    },
+    "backToConnectors": "Voltar para integrações",
+    "errors": {
+      "missingState": "O estado de autorização está ausente. Comece novamente em Integrações.",
+      "wrongTab": "Esta autorização não foi iniciada nesta aba do navegador. Comece novamente em Integrações.",
+      "unverified": "Não foi possível verificar a conexão MCP. Comece novamente em Integrações."
+    }
+  },
+  "landing": {
+    "hero": {
+      "pill": "Model Context Protocol e Ecossistema",
+      "title": "Integrações",
+      "tagline": "Potencialize seu agente de IA com <highlight>integrações.</highlight>",
+      "subtitle": "Conecte seu agente a bancos de dados, docs, issue trackers e ferramentas de nuvem com credenciais criptografadas e acesso restrito ao workspace.",
+      "browseCta": "Explorar integrações",
+      "more": "+{{count}} mais"
+    },
+    "stats": {
+      "servers": "Servidores MCP verificados",
+      "auth": "Autenticação sem configuração",
+      "sandbox": "Isolado em Sandbox",
+      "fee": "Taxa da plataforma",
+      "install": "Instalações locais"
+    },
+    "search": {
+      "placeholder": "Busque mais de 37 conectores por nome, categoria ou descrição...",
+      "sortLabel": "Ordenar:"
+    },
+    "sort": {
+      "featured": "Recomendado",
+      "az": "Nome: A–Z",
+      "za": "Nome: Z–A"
+    },
+    "categories": {
+      "allWithCount": "Todos ({{count}})",
+      "recommendedWithCount": "Recomendado ({{count}})"
+    },
+    "catalog": {
+      "showing": "Exibindo <strong>{{shown}}</strong> de {{total}} conectores",
+      "title": "Integrações remotas selecionadas",
+      "subtitle": "Ferramentas de desenvolvimento recomendadas primeiro, além de conectores remotos confiáveis para o restante do seu stack."
+    },
+    "empty": {
+      "title": "Nenhum conector encontrado",
+      "description": "Nenhum conector correspondente para \"{{query}}\". Tente buscar outro nome ou palavra-chave.",
+      "reset": "Redefinir filtros"
+    },
+    "card": {
+      "byPublisher": "por {{publisher}}",
+      "featured": "Destaque",
+      "inspectDetails": "Ver detalhes",
+      "remote": "Remoto",
+      "endpoints": "{{count}} endpoints remotos"
+    },
+    "howItWorks": {
+      "eyebrow": "Arquitetura segura e escalável",
+      "title": "Como funciona a execução de ferramentas MCP no Neuron Runner",
+      "subtitle": "Três camadas garantem que seus tokens permaneçam seguros enquanto oferecem capacidades autônomas aos modelos de ponta.",
+      "step1": {
+        "eyebrow": "01 / Armazenamento",
+        "title": "Cofre de credenciais criptografado",
+        "description": "Seus tokens OAuth e chaves de API são criptografados em repouso com criptografia Fernet. Eles são anexados apenas a requisições MCP validadas no servidor e nunca são registrados ou expostos ao modelo."
+      },
+      "step2": {
+        "eyebrow": "02 / Execução",
+        "title": "Gateway remoto validado",
+        "description": "Servidores MCP remotos são acessados por um gateway HTTPS validado, com credenciais criptografadas e autorização restrita ao workspace."
+      },
+      "step3": {
+        "eyebrow": "03 / Chamada de ferramentas",
+        "title": "Chamadas autônomas de modelo",
+        "description": "Modelos de raciocínio descobrem os esquemas de ferramentas disponíveis automaticamente. O agente consulta bancos de dados, obtém especificações de API e aplica correções com controle total de revisão de diffs."
+      }
+    },
+    "faq": {
+      "eyebrow": "Perguntas frequentes sobre integrações",
+      "title": "Perguntas frequentes",
+      "items": {
+        "q1": {
+          "question": "O que é o Model Context Protocol (MCP)?",
+          "answer": "Model Context Protocol (MCP) é um padrão aberto que permite que modelos de IA de ponta descubram, leiam e invoquem ferramentas, bancos de dados e APIs em um formato seguro e padronizado. Em vez de codificar integrações personalizadas para cada serviço, o MCP permite chamadas de ferramentas universais plug-and-play."
+        },
+        "q2": {
+          "question": "Como os conectores são executados com segurança dentro do Neuron Runner?",
+          "answer": "O Neuron Runner valida e faz proxy de sessões MCP remotas via HTTPS. As credenciais permanecem criptografadas no servidor e nunca são expostas ao modelo ou ao navegador; o navegador integrado é executado no sandbox isolado do seu workspace."
+        },
+        "q3": {
+          "question": "Como meus tokens de API e credenciais OAuth são protegidos?",
+          "answer": "Seus tokens OAuth e chaves de API são criptografados em repouso com criptografia Fernet. Eles são anexados apenas a requisições MCP validadas no servidor e nunca são registrados ou expostos ao modelo."
+        },
+        "q4": {
+          "question": "Posso conectar meu próprio servidor MCP personalizado ou interno privado?",
+          "answer": "Sim. Você pode adicionar qualquer endpoint MCP HTTP/SSE remoto em Integrations. Comandos stdio locais não são mais compatíveis."
+        },
+        "q5": {
+          "question": "O Neuron Runner cobra taxas extras pelo uso de conectores?",
+          "answer": "Não. Todos os conectores e servidores MCP são totalmente gratuitos, sem margem adicional da plataforma. Você paga apenas as taxas padrão de computação por segundo quando sua Docker container sandbox está executando ativamente."
+        }
+      }
+    },
+    "cta": {
+      "title": "Comece a conectar suas ferramentas em segundos.",
+      "subtitle": "Crie um workspace, vincule seus serviços favoritos e deixe seus modelos escreverem e verificarem código com contexto completo.",
+      "primary": "Criar workspace grátis",
+      "secondary": "Ler documentação"
+    },
+    "footer": {
+      "pricing": "Preços",
+      "integrations": "Integrações",
+      "docs": "Documentação",
+      "terms": "Termos",
+      "privacy": "Privacidade"
+    },
+    "preview": {
+      "publishedBy": "Publicado por {{publisher}}",
+      "protocolTitle": "Protocolo e transporte",
+      "transportTypeLabel": "Tipo de transporte:",
+      "transportStdio": "stdio (runtime CLI)",
+      "transportHttp": "SSE / HTTP Stream",
+      "sandboxLabel": "Acesso:",
+      "sandboxValue": "Restrito ao workspace",
+      "websiteLabel": "Site:",
+      "close": "Fechar",
+      "connectInWorkspace": "Conectar no Workspace",
+      "authLabel": "Autenticação:"
+    },
+    "auth": {
+      "oauth": "OAuth 2.0",
+      "token": "Token de API",
+      "none": "Sem autenticação",
+      "multi": "OAuth / token"
+    }
+  },
+  "errors": {
+    "unexpected": "Ocorreu um erro inesperado. Tente novamente.",
+    "unreachable": "Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.",
+    "serverUnavailable": "O servidor está temporariamente indisponível. Tente novamente mais tarde.",
+    "serverError": "Ocorreu um erro inesperado no servidor. Tente novamente mais tarde.",
+    "sessionExpired": "Sua sessão expirou. Faça login novamente.",
+    "forbidden": "Você não tem permissão para realizar esta ação.",
+    "notFound": "O conector solicitado não foi encontrado.",
+    "invalidRequest": "Solicitação inválida. Verifique os dados informados e tente novamente."
+  }
+}

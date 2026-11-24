@@ -1,0 +1,738 @@
+{
+  "dialog": {
+    "description": "ワークスペース、チーム、請求、設定、セキュリティを管理します。"
+  },
+  "modal": {
+    "closeAriaLabel": "設定を閉じる"
+  },
+  "roles": {
+    "owner": "オーナー",
+    "admin": "管理者",
+    "member": "メンバー"
+  },
+  "workspaceSelector": {
+    "currentWorkspace": "現在のワークスペース",
+    "ariaLabel": "設定のワークスペース",
+    "fallbackName": "ワークスペース",
+    "selectWorkspace": "ワークスペースを選択",
+    "switching": "切り替え中…",
+    "summarySingle": "{{role}} · メンバー {{count}} 名",
+    "summaryPlural": "{{role}} · メンバー {{count}} 名",
+    "chooseTeam": "チームを選択",
+    "workspaces": "ワークスペース",
+    "noWorkspaces": "利用可能なワークスペースがありません。",
+    "newWorkspace": "新しいワークスペース"
+  },
+  "store": {
+    "billingCustomerIdMissing": "請求先の顧客IDが見つかりません。",
+    "paymentMethodUpdateTxMissing": "お支払い方法更新のトランザクションIDが見つかりません。",
+    "topUpTxMissing": "チャージのトランザクションIDが見つかりません。",
+    "checkoutUrlMissing": "チェックアウトURLが見つかりません"
+  },
+  "workspaceTab": {
+    "loadingAriaLabel": "ワークスペース設定を読み込み中",
+    "selectWorkspace": "設定を表示するにはワークスペースを選択または作成してください。",
+    "title": "ワークスペースプロフィール",
+    "subtitle": "ワークスペースの基本情報、スラッグ、アイコンがチームにどう表示されるかを管理します。",
+    "picture": {
+      "title": "ワークスペース画像",
+      "hint": "最大 10MB の PNG、JPG、または GIF。正方形のアスペクト比を推奨します。",
+      "permissionHint": "ワークスペース画像を更新できるのはオーナーと管理者のみです。"
+    },
+    "fields": {
+      "name": {
+        "label": "ワークスペース名",
+        "placeholder": "ワークスペース名"
+      },
+      "slug": {
+        "label": "ワークスペーススラッグ",
+        "hint": "ルーティングおよびプロジェクト識別のために使用されるスラッグです。"
+      }
+    },
+    "yourRole": "あなたの役割:",
+    "saveChanges": "変更を保存",
+    "toast": {
+      "pictureUpdatedTitle": "ワークスペース画像を更新しました",
+      "pictureUpdatedDescription": "ワークスペースのロゴが正常に更新されました。",
+      "uploadFailedTitle": "アップロードに失敗しました",
+      "pictureRemovedTitle": "ワークスペース画像を削除しました",
+      "pictureRemovedDescription": "ワークスペース画像が削除されました。",
+      "removalFailedTitle": "削除に失敗しました",
+      "updatedTitle": "ワークスペースを更新しました",
+      "updatedDescription": "ワークスペース名が保存されました。"
+    },
+    "errors": {
+      "uploadFailed": "ワークスペース画像のアップロードに失敗しました。",
+      "removeFailed": "ワークスペース画像の削除に失敗しました。",
+      "updateFailed": "ワークスペースを更新できませんでした。"
+    }
+  },
+  "team": {
+    "title": "チームメンバー",
+    "selectWorkspace": "チームを表示するにはワークスペースを選択または作成してください。",
+    "subtitle": "{{workspace}} の共有チームメンバーと保留中の招待を管理します。",
+    "inviteButton": "メンバーを招待",
+    "individualPlan": {
+      "title": "チーム機能は {{plan}} プランでは利用できません。",
+      "freeDescription": "Free プランはメンバー 1 名向けの個人プランです。チームメイトと共同作業するには、「請求」タブから Pro（最大 4 名）にアップグレードしてください。",
+      "plusDescription": "Plus プラン（$10/月）は VM 1 台・メンバー 1 名の個人プランです。チームメイトと共同作業するには、「請求」タブから Pro（最大 4 名）にアップグレードしてください。"
+    },
+    "inviteForm": {
+      "title": "チームメイトを招待",
+      "closeAriaLabel": "招待フォームを閉じる",
+      "emailLabel": "メールアドレス",
+      "emailPlaceholder": "teammate@example.com",
+      "roleLabel": "役割",
+      "roleAriaLabel": "招待時の役割",
+      "sending": "送信中…",
+      "send": "招待を送信",
+      "adminHint": "管理者はユーザーを招待し、チームメンバーを管理できます。",
+      "memberHint": "メンバーはチャットやプロジェクトで共同作業できます。"
+    },
+    "roles": {
+      "member": "メンバー",
+      "admin": "管理者"
+    },
+    "removeAlert": {
+      "title": "{{name}} を削除しますか？",
+      "description": "このワークスペースのチャットやプロジェクトへのアクセス権が失われます。",
+      "removing": "削除中…",
+      "confirm": "メンバーを削除"
+    },
+    "actions": {
+      "cancel": "キャンセル"
+    },
+    "tabs": {
+      "ariaLabel": "チームリスト",
+      "members": "メンバー",
+      "invitations": "招待"
+    },
+    "search": {
+      "membersAriaLabel": "メンバーを検索",
+      "invitationsAriaLabel": "招待を検索",
+      "membersPlaceholder": "名前またはメールで検索",
+      "invitationsPlaceholder": "招待を検索",
+      "clearAriaLabel": "検索をクリア"
+    },
+    "members": {
+      "you": "あなた",
+      "actionsAriaLabel": "{{name}} への操作",
+      "removeFromWorkspace": "ワークスペースから削除"
+    },
+    "invitations": {
+      "awaitingAcceptance": "承認待ち",
+      "cancelAriaLabel": "{{email}} への招待をキャンセル"
+    },
+    "emptyMembers": {
+      "filteredTitle": "一致するチームメイトがいません",
+      "defaultTitle": "チームはここから始まります",
+      "filteredDescription": "別の名前またはメールアドレスをお試しください。",
+      "defaultDescription": "このワークスペースで共同作業するユーザーを招待しましょう。"
+    },
+    "emptyInvitations": {
+      "filteredTitle": "一致する招待がありません",
+      "defaultTitle": "保留中の招待はありません",
+      "filteredDescription": "別のメールアドレスをお試しください。",
+      "defaultDescription": "チームメイトが承認するまで、招待がここに表示されます。"
+    },
+    "toast": {
+      "inviteSentTitle": "招待を送信しました",
+      "inviteSentDescription": "{{email}} はメールを承認すると参加できます。",
+      "memberRemovedTitle": "メンバーを削除しました",
+      "inviteCancelledTitle": "招待をキャンセルしました",
+      "inviteCancelledDescription": "{{email}} への招待がキャンセルされました。"
+    }
+  },
+  "providerKeys": {
+    "selectWorkspace": "プロバイダーキーを管理するにはワークスペースを選択してください。",
+    "noPermission": "プロバイダーキーを管理できるのはワークスペースのオーナーと管理者のみです。メンバーは設定済みのプロバイダーやカスタムモデルを利用できます。",
+    "title": "BYOK（API キー持ち込み）& カスタムモデル",
+    "subtitle": "プロバイダーキーは暗号化され、{{workspace}} 内で共有されます。ここで追加したカスタムモデルは、プラットフォームのトークン上乗せなしでチャットのモデル選択に直接表示されます。",
+    "providers": {
+      "custom": "カスタムエンドポイント (vLLM / Ollama)"
+    },
+    "tabs": {
+      "keys": "プロバイダーキー ({{count}})",
+      "models": "カスタムモデル ({{count}})"
+    },
+    "keyForm": {
+      "providerLabel": "プロバイダー",
+      "providerPlaceholder": "プロバイダーを選択",
+      "baseUrlLabel": "ベース URL（OpenAI 互換）",
+      "baseUrlPlaceholder": "例: http://localhost:11434/v1 または https://my-vllm.example.com/v1",
+      "apiKeyLabel": "API キー",
+      "apiKeyOptionalSuffix": "（ローカル/認証不要の場合は任意）",
+      "apiKeyPlaceholderCustom": "API キーを貼り付け（Ollama では任意）",
+      "apiKeyPlaceholder": "プロバイダーキーを貼り付け",
+      "encryptionNote": "キー全体は Fernet で暗号化され、再表示されることはありません。このプロバイダー向けに設定されたモデルは自動的にこのキーを使用します。",
+      "saving": "保存中…",
+      "updateKey": "キーを更新",
+      "saveKey": "キーを保存"
+    },
+    "configuredKeysTitle": "設定済みのプロバイダーキー",
+    "noKeys": "保存されたプロバイダーキーはまだありません。",
+    "connected": "接続済み",
+    "remove": "削除",
+    "noKeysPrompt": {
+      "title": "プロバイダーキーが設定されていません",
+      "description": "カスタムモデルを追加するには、まず「プロバイダーキー」タブで API キー（OpenRouter、Groq、OpenAI など）またはカスタムエンドポイントを追加してください。",
+      "cta": "プロバイダーキーへ移動"
+    },
+    "addModelButton": "カスタムモデルを追加",
+    "modelForm": {
+      "title": "カスタムモデルを追加",
+      "cancel": "キャンセル",
+      "selectKeyLabel": "設定済みのプロバイダーキーを選択",
+      "selectKeyPlaceholder": "設定済みのプロバイダーキーを選択",
+      "routedThrough": "このモデルはワークスペースの <strong>{{provider}}</strong> キー経由で請求・ルーティングされます。",
+      "displayNameLabel": "チャットでの表示名",
+      "displayNamePlaceholder": "例: Claude 3.7 Sonnet",
+      "externalIdLabel": "外部モデル ID（API 識別子）",
+      "externalIdPlaceholder": "例: anthropic/claude-3.7-sonnet",
+      "contextLengthLabel": "コンテキスト長（トークン）",
+      "reasoningLabel": "推論 / 思考モデル",
+      "toolsLabel": "Function Calling（ツール呼び出し）に対応",
+      "testing": "テスト中…",
+      "testConnection": "接続をテスト",
+      "saving": "保存中…",
+      "saveModel": "モデルを保存"
+    },
+    "activeModelsTitle": "有効なワークスペースモデル",
+    "noModels": "カスタムモデルはまだ追加されていません。",
+    "modelCard": {
+      "thinking": "思考",
+      "keyLabel": "キー: <strong>{{provider}}</strong> ({{maskedKey}})",
+      "providerLabel": "プロバイダー: <strong>{{provider}}</strong>",
+      "context": "コンテキスト: {{count}}k",
+      "tools": "ツール: {{supported}}",
+      "yes": "はい",
+      "no": "いいえ",
+      "test": "テスト"
+    },
+    "notices": {
+      "keySaved": "{{provider}} のプロバイダーキーが安全に保存されました。",
+      "keyRemoved": "{{provider}} のプロバイダーキーを削除しました。",
+      "modelAdded": "カスタムモデル「{{name}}」を追加しました。",
+      "modelRemoved": "モデル「{{name}}」を削除しました。"
+    },
+    "errors": {
+      "keySaveFailed": "このプロバイダーキーを保存できませんでした。形式を確認して再度お試しください。",
+      "keyRemoveFailed": "このプロバイダーキーを削除できませんでした。",
+      "selectKeyFirst": "先にプロバイダーキーを選択してください。",
+      "modelFieldsRequired": "表示名と外部モデル ID は必須です。",
+      "modelSaveFailed": "カスタムモデルを保存できませんでした。",
+      "modelRemoveFailed": "カスタムモデルを削除できませんでした。",
+      "enterExternalId": "接続をテストするには外部モデル ID を入力してください。",
+      "testFailed": "接続テストに失敗しました。"
+    },
+    "byos": {
+      "title": "サブスクリプション (BYOS)",
+      "subtitle": "Claude Pro / Max、ChatGPT Plus / Pro、または Google Antigravity のサブスクリプションを接続し、LLM トークン料金なしでクラウド VM 内の公式 CLI エージェントを実行します。",
+      "connect": "接続",
+      "update": "更新",
+      "syncFromVm": "VM から同期",
+      "disconnect": "接続解除",
+      "claude": {
+        "name": "Claude Pro / Max (Claude Code)",
+        "hint": "'claude setup-token' で取得したトークンを貼り付けるか、VM ターミナルで 'claude login' を実行して「VM から同期」を押してください。",
+        "placeholder": "claude setup-token (sk-ant-oat01-…) または認証情報 JSON を貼り付け"
+      },
+      "openai": {
+        "name": "ChatGPT Plus / Pro (OpenAI Codex)",
+        "hint": "~/.codex/auth.json の内容を貼り付けるか、VM ターミナルで 'codex login' を実行して「VM から同期」を押してください。",
+        "placeholder": "~/.codex/auth.json または OAuth トークンを貼り付け"
+      },
+      "notices": {
+        "connected": "{{provider}} が接続されました。チャットで BYOS モデルを利用できます。",
+        "syncedFromVm": "{{provider}} を稼働中の Cloud VM から同期しました。"
+      },
+      "errors": {
+        "syncFailed": "稼働中の VM からサブスクリプション認証情報を同期できませんでした。"
+      },
+      "antigravity": {
+        "name": "Google Antigravity / Gemini OAuth",
+        "hint": "Paste your ~/.gemini/oauth_creds.json content, or connect Google OAuth directly from the Cloud Agent Selector.",
+        "placeholder": "Paste ~/.gemini/oauth_creds.json or OAuth credentials"
+      },
+      "computeNote": "BYOS の LLM トークン料金は $0.00 です。エージェントはクラウド VM 内で実行され、プランの VM クォータまたは Top-Up ウォレット残高（$0.16–$0.32/時）を使用します（月額プラン不要）。",
+      "manageBilling": "VM・残高を管理"
+    }
+  },
+  "billing": {
+    "selectWorkspace": "請求情報を表示するにはワークスペースを選択してください。",
+    "title": "ワークスペースの請求とプラン",
+    "subtitle": "{{workspace}} のサブスクリプション、統一利用枠（LLM＋クラウドVM）、追加クレジット。",
+    "subscriptionPlans": "サブスクリプションプラン",
+    "currentPlanBadge": "現在: {{plan}}",
+    "freePlanName": "Free",
+    "perMemberMonth": "/メンバー/月",
+    "perMonth": "/月",
+    "llmQuota": "${{amount}} 利用枠 (LLM + VM)",
+    "vcpuHours": "最大 {{hours}} vCPU時間",
+    "maxVmsSingle": "最大 {{count}} VM",
+    "maxVmsPlural": "最大 {{count}} VM",
+    "upToSeats": "最大 {{count}} 名",
+    "activePlan": "現在のプラン",
+    "upgradeTo": "{{plan}} にアップグレード",
+    "walletBalance": "追加利用ウォレット残高",
+    "walletDescription": "月額クォータの超過分、Free・Plus のプレミアムモデル、月額プランなしでの BYOS/BYOK 向け単独クラウド VM コンピュート（$0.16–$0.32/時）に使用されます。有効期限はありません。",
+    "topUpLabel": "追加利用クレジットを購入（USD、最低 $10.00）",
+    "topUpButton": "${{amount}} を追加",
+    "topUpNote": "最低チャージ額は $10.00 です。追加の決済手数料はかからず、お支払い額の 100% が即座に残高へ付与されます。",
+    "memberNotice": "プランの管理、クレジットの追加、請求書の閲覧はワークスペースのオーナーまたは管理者にお問い合わせください。",
+    "invoicesTitle": "請求書",
+    "noInvoices": "請求書はまだありません。",
+    "paymentFallback": "お支払い",
+    "viewInvoice": "請求書を見る",
+    "fallbackPlans": {
+      "free": {
+        "name": "Free",
+        "description": "月$0.50 無料枠（無料LLM＋$0.16/時 4コアVM）"
+      },
+      "plus": {
+        "name": "Plus",
+        "description": "クラウド VM（約 200 vCPU 時間）向け月額 $10.00 クォータ + $2 の無料枠 LLM 利用枠 · BYOS/BYOK · VM 最大 1 台（チーム機能なし）"
+      },
+      "pro": {
+        "name": "Pro",
+        "description": "クラウド VM（約 550 vCPU 時間）+ すべての LLM モデル向け月額 $25.00 共有クォータ · 最大 4 名"
+      },
+      "team": {
+        "name": "Team",
+        "description": "全16モデル＋クラウドVM共通 月$200.00共有枠 · 最大20名＆20 VM"
+      }
+    },
+    "errors": {
+      "balanceLoad": "ワークスペース残高を読み込めませんでした。",
+      "invoicesLoad": "請求書を読み込めませんでした。",
+      "updatePlan": "サブスクリプションプランを更新できませんでした。",
+      "checkoutOpen": "チェックアウトを開けませんでした。再度お試しください。",
+      "invoiceOpen": "請求書を開けませんでした。",
+      "cancelPlan": "プラン解約の予約ができませんでした。",
+      "resumePlan": "サブスクリプションを再開できませんでした。"
+    },
+    "topUpNetCredit": "ウォレット残高追加（手数料 0%）",
+    "topUpProcessingFee": "決済処理手数料（3.9% + $0.40）",
+    "topUpTotalCharge": "チェックアウト時の合計請求額",
+    "invoiceNetAndFee": "正味 ${{net}} + 手数料 ${{fee}}",
+    "monthly": "月払い",
+    "yearly": "年払い",
+    "yearlySaveBadge": "2ヶ月分無料",
+    "perYear": "/年",
+    "perMemberYear": "/名/年",
+    "seatsLabel": "シート数",
+    "cancelPlan": "プランを解約",
+    "confirmCancel": "解約を確定",
+    "keepPlan": "プランを継続",
+    "cancelsOn": "{{date}} に解約予定",
+    "resumePlan": "プランを再開"
+  },
+  "usage": {
+    "selectWorkspace": "利用状況を表示するにはワークスペースを選択してください。",
+    "title": "ワークスペースの利用状況",
+    "subtitle": "すべてのチームメンバーを含む {{workspace}} 全体の利用状況。",
+    "allTime": "全期間",
+    "tryAgain": "再試行",
+    "loadingAriaLabel": "利用状況を読み込み中",
+    "errors": {
+      "loadFailed": "ワークスペースの利用状況を読み込めませんでした。"
+    },
+    "allowance": {
+      "title": "{{plan}} プラン · 利用枠ウィンドウ (LLM + VM)",
+      "subtitle": "月間共有利用枠（LLM・クラウドVM）",
+      "left": "残り ${{amount}}",
+      "monthlyCycle": "月間サイクル (100%)",
+      "vmQuota": "クラウド VM 使用量（共通枠より消費）: <strong>{{used}} / {{included}} vCPU時間</strong>（残り {{remaining}} vCPU時間利用可）",
+      "verifyForFreeVm": "FreeプランでクラウドVMを起動するには設定でアカウント認証を完了してください"
+    },
+    "cards": {
+      "creditsUsed": "使用済みワークスペースクレジット",
+      "requests": "リクエスト数",
+      "activeUsers": "アクティブユーザー"
+    },
+    "tokens": {
+      "input": "入力",
+      "output": "出力",
+      "cacheReads": "キャッシュ読み取り"
+    },
+    "byUser": {
+      "title": "ユーザー別の利用状況",
+      "subtitle": "コンピュート利用を含む各ユーザーに請求されたワークスペースクレジット。",
+      "columns": {
+        "user": "ユーザー",
+        "requests": "リクエスト数",
+        "inputOutput": "入力 / 出力",
+        "workspaceCost": "ワークスペース費用"
+      },
+      "empty": "ユーザーアクティビティはまだありません。"
+    },
+    "byModel": {
+      "title": "モデル別の利用状況",
+      "columns": {
+        "model": "モデル",
+        "requests": "リクエスト数",
+        "cacheReads": "キャッシュ読み取り",
+        "workspaceCost": "ワークスペース費用"
+      },
+      "deletedModel": "削除されたモデル",
+      "empty": "モデルアクティビティはまだありません。"
+    },
+    "vmSessions": {
+      "title": "VM コンピュートセッション",
+      "subtitle": "仮想マシンの実行履歴ログ、プリセットティア仕様、経過時間、請求金額。",
+      "sessions": "セッション数",
+      "billedRuntime": "請求稼働時間",
+      "vmCost": "VM 費用",
+      "columns": {
+        "instance": "インスタンス",
+        "tierSpecs": "ティア仕様",
+        "elapsedBilled": "経過 / 請求時間",
+        "billedAmount": "請求金額"
+      },
+      "statusRunning": "実行中",
+      "statusStopped": "停止",
+      "tierSpecs": "{{tier}} · {{cpu}} vCPU / {{ram}} GB RAM",
+      "hourlyRate": "${{rate}}/時間",
+      "billedDuration": "請求 {{duration}}",
+      "empty": "VM コンピュートセッションはまだ記録されていません。"
+    },
+    "footerNote": "キャッシュ読み取りは入力トークンに含まれ、モデルのキャッシュ読み取りレートで1回請求されます。BYOK プロバイダー料金はプロバイダーに直接支払われます。"
+  },
+  "logs": {
+    "selectWorkspace": "リクエストログを表示するにはワークスペースを選択してください。",
+    "title": "リクエストログ",
+    "subtitle": "{{workspace}} を誰がいつ利用し、各リクエストにいくらかかったかを確認できます。",
+    "refreshAriaLabel": "ログを更新",
+    "tryAgain": "再試行",
+    "loadingAriaLabel": "リクエストログを読み込み中",
+    "errors": {
+      "loadFailed": "リクエストログを読み込めませんでした。再度お試しください。"
+    },
+    "filters": {
+      "user": "ユーザー",
+      "userAriaLabel": "ログのユーザー",
+      "allUsers": "すべてのユーザー",
+      "status": "ステータス",
+      "statusAriaLabel": "ログのステータス",
+      "allStatuses": "すべてのステータス",
+      "fromUtc": "開始日 (UTC)",
+      "toUtc": "終了日 (UTC)",
+      "utcNote": "時刻は UTC で表示されます。",
+      "reset": "リセット",
+      "apply": "フィルターを適用",
+      "invalidDates": "開始日は終了日以前である必要があります。"
+    },
+    "statuses": {
+      "completed": "完了",
+      "processing": "処理中",
+      "pending": "保留中",
+      "failed": "失敗",
+      "canceled": "キャンセル"
+    },
+    "table": {
+      "timeUtc": "日時 (UTC)",
+      "user": "ユーザー",
+      "model": "モデル",
+      "tokensInOut": "入力 / 出力トークン",
+      "workspaceCost": "ワークスペース費用",
+      "status": "ステータス",
+      "requestTitle": "リクエスト {{uuid}}",
+      "deletedModel": "削除されたモデル",
+      "platform": "プラットフォーム",
+      "cachedTokens": "{{count}} キャッシュ済み",
+      "byokModelCostTooltip": "プロバイダーから直接請求されるモデル費用",
+      "byokModelCost": "モデル {{cost}}"
+    },
+    "empty": {
+      "title": "リクエストが見つかりません",
+      "filteredDescription": "フィルターを変更してみてください。",
+      "defaultDescription": "チームがこのワークスペースを使用し始めると、リクエストがここに表示されます。"
+    },
+    "pagination": {
+      "summary": "{{total}} 件中 {{start}}–{{end}} 件を表示",
+      "zero": "0 件のリクエスト",
+      "prevAriaLabel": "前のログページ",
+      "pageOf": "{{page}} / {{pages}} ページ",
+      "nextAriaLabel": "次のログページ"
+    },
+    "footerNote": "ワークスペース費用はワークスペースクレジットから引き落とされる金額です。BYOK モデル費用はプロバイダーに直接支払われ、コンピュート料金は「利用状況」に含まれます。"
+  },
+  "profile": {
+    "loadingAriaLabel": "プロフィールを読み込み中",
+    "title": "公開プロフィール",
+    "subtitle": "ワークスペース全体での個人情報とアバターの表示方法を管理します。",
+    "avatar": {
+      "title": "プロフィール画像",
+      "hint": "最大 5MB の PNG、JPG、または GIF。正方形のアスペクト比を推奨します。"
+    },
+    "fields": {
+      "username": {
+        "label": "ユーザー名",
+        "placeholder": "ユーザー名"
+      },
+      "firstName": {
+        "label": "名",
+        "placeholder": "名"
+      },
+      "lastName": {
+        "label": "姓",
+        "placeholder": "姓"
+      },
+      "bio": {
+        "label": "自己紹介",
+        "placeholder": "あなたについて簡単な自己紹介を書いてください…"
+      }
+    },
+    "toast": {
+      "updatedTitle": "プロフィールを更新しました",
+      "updatedDescription": "プロフィールの変更が保存されました。",
+      "errorTitle": "プロフィールの更新エラー"
+    },
+    "errors": {
+      "notSignedIn": "プロフィールを保存するにはサインインが必要です。",
+      "emptyUsername": "ユーザー名を空にすることはできません。",
+      "updateFailed": "プロフィールの更新に失敗しました。再度お試しください。"
+    }
+  },
+  "personalization": {
+    "title": "パーソナライズ & Claude スタイルメモリ",
+    "memoryActive": "メモリ有効",
+    "memoryPaused": "メモリ一時停止",
+    "subtitle": "セッションを跨いで記憶される AI プロフィール、個人の設定・情報、共有ワークスペースノートを管理します。",
+    "preferredName": {
+      "label": "希望する呼び名",
+      "placeholder": "例: Kaan、Ada、Alex",
+      "hint": "個人的な会話でアシスタントがあなたを呼ぶ名前です。"
+    },
+    "autoMemory": {
+      "title": "自動メモリ抽出",
+      "description": "チャットから継続的な好みを学習し、関連する情報を自動的に想起します。"
+    },
+    "privacyGuard": "<strong>チームプライバシー保護:</strong> 個人メモリは複数メンバーのチームワークスペースから自動的に除外されます。",
+    "recallEngine": "pgvector + 語彙リコール",
+    "categories": {
+      "identity": {
+        "label": "アイデンティティ",
+        "description": "役割・経歴・プロフィール"
+      },
+      "preference": {
+        "label": "好み",
+        "description": "口調・言語・コーディングスタイル"
+      },
+      "workspace": {
+        "label": "ワークスペース",
+        "description": "技術スタック・ツール・ワークフロー"
+      },
+      "knowledge": {
+        "label": "ナレッジ",
+        "description": "ドメイン知識とアーキテクチャ"
+      },
+      "relationship": {
+        "label": "関係性",
+        "description": "チーム・共同作業者・組織"
+      }
+    },
+    "templates": {
+      "languageTone": {
+        "title": "言語と口調",
+        "sample": "概念の説明は日本語で行い、コードコメントとコミットメッセージは英語にしてください。"
+      },
+      "roleStack": {
+        "title": "役割とスタック",
+        "sample": "主に TypeScript、React 19、Django、PostgreSQL を使用するフルスタックエンジニアです。"
+      },
+      "codeStyle": {
+        "title": "コードスタイル",
+        "sample": "早期リターンと最小限のボイラープレートを用いた、簡潔で厳格に型付けされた関数を好みます。"
+      },
+      "architecture": {
+        "title": "アーキテクチャ",
+        "sample": "本番サービスは Redis と PostgreSQL pgvector を備えた Docker コンテナ上で稼働しています。"
+      }
+    },
+    "importance": {
+      "core": "重要",
+      "standard": "標準",
+      "low": "低"
+    },
+    "markdown": {
+      "title": "# ユーザーメモリプロフィール",
+      "preferredName": "希望する呼び名: {{name}}",
+      "general": "全般"
+    },
+    "snapshot": {
+      "title": "統合メモリスナップショット",
+      "coreCount": "重要優先 {{count}} 件",
+      "subtitle": "NeuronRunner がカテゴリ別にコンテキストを整理する方法",
+      "copied": "コピーしました",
+      "copyMarkdown": "Markdown をコピー",
+      "factSingle": "{{count}} 件の記録",
+      "factPlural": "{{count}} 件の記録",
+      "moreInCategory": "{{category}} に他 +{{count}} 件"
+    },
+    "tabs": {
+      "memories": "個人メモリ",
+      "notes": "ワークスペースノート"
+    },
+    "actions": {
+      "addMemory": "メモリを追加",
+      "addNote": "ノートを追加",
+      "clearAll": "すべて消去",
+      "cancel": "キャンセル",
+      "saving": "保存中…",
+      "save": "保存",
+      "edit": "編集",
+      "delete": "削除"
+    },
+    "quickTemplatesLabel": "クイックテンプレート:",
+    "addForm": {
+      "newMemory": "新しい個人メモリ",
+      "newNote": "新しいワークスペースノート",
+      "memoryPlaceholder": "例: 常に日本語で回答し、バックエンドテストには pytest を使用する...",
+      "notePlaceholder": "例: バックエンドは PostgreSQL pgvector 付きの Daphne ASGI ポート 8000 で動作...",
+      "noCategory": "カテゴリなし",
+      "labelPlaceholder": "トピックタグ（任意）",
+      "priorityLabel": "優先度:"
+    },
+    "search": {
+      "memoriesPlaceholder": "キーワード、カテゴリ、または #ラベル でメモリを検索...",
+      "notesPlaceholder": "ワークスペースノートを検索...",
+      "allCategory": "すべて ({{count}})"
+    },
+    "emptyMemories": {
+      "noneTitle": "個人メモリはまだ記録されていません",
+      "filteredTitle": "フィルターに一致するメモリがありません",
+      "noneDescription": "アシスタントと自然に会話するか、上の「メモリを追加」をクリックして好みや技術スタック、コミュニケーションスタイルを登録してください。",
+      "filteredDescription": "検索クエリをクリアするか、カテゴリフィルターを切り替えてみてください。"
+    },
+    "emptyNotes": {
+      "title": "ワークスペースノートはまだ記録されていません",
+      "description": "ワークスペースノートは、個人メモリが無効な場合でも有効な環境情報、プロジェクト規約、ツール手順を保存します。"
+    },
+    "editForm": {
+      "memoryPlaceholder": "メモリの内容",
+      "notePlaceholder": "ワークスペースノートの内容",
+      "labelPlaceholder": "ラベル（例: language）",
+      "priorityLabel": "優先度 (1-10):"
+    },
+    "item": {
+      "importanceTitle": "重要度スコア: {{score}}/10",
+      "addedDate": "追加: {{date}}",
+      "recalledDate": "参照: {{date}}"
+    },
+    "deleteAllDialog": {
+      "title": "すべての個人メモリを消去しますか？",
+      "description": "この操作により、保存されている {{count}} 件の記録がすべて完全に削除され、元に戻すことはできません。ワークスペースノートには影響しません。",
+      "confirm": "すべて削除"
+    }
+  },
+  "security": {
+    "title": "セキュリティとパスワード",
+    "subtitle": "アカウントの認証情報と認証設定を管理します。",
+    "changePasswordTitle": "パスワードを変更",
+    "currentPassword": "現在のパスワード",
+    "newPassword": "新しいパスワード",
+    "passwordHint": "8文字以上を推奨します。",
+    "confirmPassword": "新しいパスワード（確認）",
+    "updatePassword": "パスワードを更新",
+    "errors": {
+      "fillAllFields": "すべてのパスワード欄を入力してください。",
+      "mismatch": "パスワードが一致しません。"
+    }
+  },
+  "apiKeys": {
+    "title": "API キー",
+    "subtitle": "NeuronRunner のモデル、エージェント、自動化ワークフローにプログラムからアクセスするための API キーを管理します。",
+    "generateTitle": "新しい API キーを生成",
+    "namePlaceholder": "例: CLI Runner、本番エージェント",
+    "createButton": "キーを作成",
+    "secretAlert": {
+      "title": "シークレットキーを今すぐ保存してください",
+      "description": "このキーをコピーして安全な場所に保管してください。セキュリティのため、この画面を閉じると二度と表示されません。",
+      "copy": "コピー",
+      "confirmSaved": "シークレットキーを保存しました"
+    },
+    "activeKeysTitle": "有効なキー",
+    "keyCountSingle": "{{count}} 個のキー",
+    "keyCountPlural": "{{count}} 個のキー",
+    "emptyTitle": "API キーはまだありません",
+    "emptyDescription": "API の利用を開始するには、上から新しいキーを作成してください。",
+    "statusActive": "有効",
+    "statusInactive": "無効",
+    "createdLabel": "作成日",
+    "lastUsedLabel": "最終使用日",
+    "neverUsed": "未使用",
+    "pauseAccess": "アクセスを一時停止",
+    "resumeAccess": "アクセスを再開",
+    "deleteKey": "キーを削除"
+  },
+  "vmSecrets": {
+    "selectWorkspace": "VM シークレットを管理するワークスペースを選択してください。",
+    "title": "VM シークレット",
+    "subtitle": "{{workspace}} の仮想マシンに自動的に注入される暗号化された環境変数です。",
+    "loadingAriaLabel": "VM シークレットを読み込み中",
+    "readOnlyNotice": "VM シークレットを追加・編集・削除できるのは、ワークスペースのオーナーまたは管理者のみです。",
+    "searchPlaceholder": "キー、説明、VM でシークレットを検索...",
+    "updatedAt": "{{date}} に更新",
+    "footerNote": "シークレットは保存時に暗号化され、保存後に平文で表示されることはありません。VM の環境変数、インタラクティブターミナル、エージェントのシェルコマンドに自動的に注入されます。",
+    "actions": {
+      "addSecret": "シークレットを追加",
+      "importEnv": ".env をインポート",
+      "edit": "編集",
+      "delete": "削除",
+      "confirmDelete": "確認",
+      "cancel": "キャンセル",
+      "save": "シークレットを保存",
+      "saving": "保存中..."
+    },
+    "scope": {
+      "allVms": "ワークスペース内のすべての VM",
+      "specificVm": "特定の VM"
+    },
+    "filter": {
+      "all": "すべてのスコープ"
+    },
+    "form": {
+      "addTitle": "新しい VM シークレットを追加",
+      "editTitle": "{{key}} を編集",
+      "keyLabel": "変数名",
+      "scopeLabel": "スコープ",
+      "valueLabel": "シークレットの値",
+      "valuePlaceholderAdd": "シークレットの値を入力...",
+      "valuePlaceholderEdit": "既存の値を維持するには空欄のままにしてください",
+      "showValue": "シークレットの値を表示",
+      "hideValue": "シークレットの値を非表示",
+      "descriptionLabel": "説明（任意）",
+      "descriptionPlaceholder": "例: データベースのパスワードや API トークン"
+    },
+    "importForm": {
+      "title": ".env から一括インポート",
+      "subtitle": "以下に KEY=VALUE の行を貼り付けてください。選択したスコープの既存のキーは更新されます。",
+      "submit": "シークレットをインポート",
+      "importing": "インポート中..."
+    },
+    "empty": {
+      "title": "VM シークレットはまだありません",
+      "description": "API キー、データベース URL、認証情報を安全に保存して、VM やエージェントが環境変数として使えるようにします。",
+      "filtered": "現在の検索またはフィルターに一致するシークレットはありません。"
+    },
+    "toast": {
+      "createdTitle": "シークレットを追加しました",
+      "updatedTitle": "シークレットを更新しました",
+      "savedDescription": "{{key}} を暗号化して保存しました。",
+      "syncedDescription": "{{key}} を保存し、実行中の VM {{count}} 台に同期しました。",
+      "importedTitle": "シークレットをインポートしました",
+      "importedDescription": "{{count}} 件のシークレットを暗号化して保存しました。",
+      "deletedTitle": "シークレットを削除しました",
+      "deletedDescription": "{{key}} を削除しました。"
+    },
+    "errors": {
+      "loadFailed": "VM シークレットを読み込めませんでした。",
+      "keyRequired": "変数名は必須です。",
+      "valueRequired": "シークレットの値は必須です。",
+      "saveFailed": "VM シークレットを保存できませんでした。",
+      "importFailed": ".env のシークレットをインポートできませんでした。",
+      "deleteFailed": "VM シークレットを削除できませんでした。"
+    }
+  }
+}

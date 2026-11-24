@@ -1,0 +1,340 @@
+{
+  "seo": {
+    "landingTitle": "集成与 MCP 连接器",
+    "landingDescription": "将您的自主云端 AI 智能体连接到 GitHub、Slack、Notion、Linear、Postgres、Supabase 以及数十个 Model Context Protocol (MCP) 服务器。",
+    "workspaceTitle": "工作区集成"
+  },
+  "categories": {
+    "all": "全部",
+    "popular": "热门",
+    "newNoteworthy": "新品与精选",
+    "development": "开发",
+    "productivity": "效率",
+    "communication": "沟通",
+    "dataAnalytics": "数据与分析",
+    "design": "设计",
+    "salesMarketing": "销售与营销",
+    "research": "研究",
+    "infrastructure": "基础设施",
+    "finance": "财务",
+    "custom": "自定义"
+  },
+  "categoryDescriptions": {
+    "popular": "最广泛使用和推荐的 MCP 服务器与应用。",
+    "newNoteworthy": "最新热门的 MCP 服务器、智能体工具与集成。",
+    "development": "代码生成、Git 工作流、终端、容器和开发者基础设施。",
+    "productivity": "笔记记录、任务管理、问题追踪与个人事务整理。",
+    "communication": "团队聊天、电子邮件、消息频道与通知。",
+    "dataAnalytics": "数据库、数据仓库、向量搜索、查询与商业智能。",
+    "design": "设计工具、画布协作、图像编辑与 UI 素材。",
+    "salesMarketing": "客户数据、外联沟通、营销分析与 CRM 系统。",
+    "research": "网页抓取、搜索引擎、论文归档与知识发现。",
+    "infrastructure": "云托管、计算运行时、DNS 与无服务器后端。",
+    "finance": "计费平台、支付网关、会计与财务报告。"
+  },
+  "workspace": {
+    "ariaLabel": "集成",
+    "eyebrow": "工作区 / MCP 集成",
+    "title": "集成",
+    "subtitle": "连接插件与 MCP 服务器，让 NeuronRunner 在您的工具间协同工作。",
+    "openSidebar": "打开侧边栏",
+    "addCustomConnector": "添加自定义连接器",
+    "addCustomShort": "添加自定义",
+    "backToExplore": "返回探索",
+    "categoryFallbackDescription": "浏览所有{{category}}连接器和 MCP 服务器。",
+    "searchAria": "搜索连接器",
+    "searchPlaceholder": "搜索连接器",
+    "searchCategoryAria": "搜索{{category}}连接器",
+    "searchCategoryPlaceholder": "在{{category}}中搜索...",
+    "clearSearch": "清除搜索",
+    "sort": {
+      "ariaLabel": "连接器排序",
+      "featured": "精选优先",
+      "nameAsc": "名称：A–Z"
+    },
+    "tabs": {
+      "ariaLabel": "连接器视图",
+      "explore": "探索",
+      "connections": "我的连接"
+    },
+    "loadError": "无法加载您的连接。{{error}}",
+    "tryAgain": "重试",
+    "directoryAriaLabel": "连接器目录",
+    "searchResults": "搜索结果",
+    "allConnectors": "全部连接器",
+    "browseCategoryAria": "浏览{{category}}连接器",
+    "seeAll": "查看全部 ({{count}})",
+    "showingCount": "显示 {{shown}} / {{total}} 个应用",
+    "showMore": "显示更多连接器",
+    "footerCatalog": "{{count}} 个应用与 MCP 服务器 · 更新于 {{date}}",
+    "mcpRegistry": "MCP Registry",
+    "connections": {
+      "ariaLabel": "已保存的连接",
+      "loading": "正在加载连接…",
+      "emptyTitle": "从连接第一个工具开始",
+      "emptySearchTitle": "未找到连接",
+      "emptyDescription": "连接您的第一个应用，将其引入对话。",
+      "emptySearchDescription": "没有与“{{query}}”匹配的连接。",
+      "exploreCta": "探索连接器"
+    },
+    "empty": {
+      "noConnectorsTitle": "未找到连接器",
+      "noCategoryMatches": "{{category}}中没有与“{{query}}”匹配的连接器。",
+      "noCategoryItems": "{{category}}中暂无连接器。",
+      "noSearchDescription": "尝试搜索其他应用或清除搜索条件以浏览目录。"
+    },
+    "mcpConnectionsTitle": "MCP 连接"
+  },
+  "card": {
+    "configureAria": "配置 {{name}}",
+    "connected": "已连接",
+    "configured": "已配置",
+    "customDescription": "您的自定义 MCP 连接。",
+    "providerSetup": "提供商设置"
+  },
+  "dialog": {
+    "customTitle": "添加自定义连接器",
+    "customDescription": "将您自己的 MCP 服务器接入工作区。",
+    "setupGuide": "设置指南",
+    "authHeaderDescription": "可选。请使用 Bearer 后接您的访问令牌。",
+    "providerSetup": {
+      "title": "通过提供商完成设置",
+      "description": "该应用的公开 MCP 连接尚未经过验证。请前往提供商查看连接详情，或添加您已有的 MCP 端点。",
+      "visitProvider": "访问提供商",
+      "addEndpoint": "添加 MCP 端点"
+    },
+    "verified": {
+      "title": "连接已验证",
+      "descriptionOne": "您的智能体已可使用 {{count}} 个工具，连接器已就绪。",
+      "descriptionOther": "您的智能体已可使用 {{count}} 个工具，连接器已就绪。",
+      "done": "完成"
+    },
+    "fields": {
+      "name": "连接器名称",
+      "namePlaceholder": "我团队的工具",
+      "connectionMethod": "连接方式",
+      "serverUrl": "服务器 URL",
+      "httpProtocol": "HTTP 协议",
+      "workspaceSandbox": "工作区沙箱",
+      "workspacePlaceholder": "选择工作区",
+      "noWorkspaces": "暂无可用工作区",
+      "workspaceHint": "在此工作区的沙箱内运行，并可供该工作区中的对话使用。",
+      "serverCommand": "服务器命令",
+      "serverCommandHint": "工作区沙箱中必须安装相应的运行时。",
+      "authentication": "身份验证",
+      "required": "必填",
+      "keepSavedPlaceholder": "留空以保留已保存的凭据",
+      "enterFieldPlaceholder": "输入 {{name}}"
+    },
+    "methods": {
+      "remote": "远程 · {{protocol}}{{suffix}}",
+      "local": "本地 · {{runtime}}",
+      "remoteHttp": "远程 · HTTP",
+      "localStdio": "本地 · stdio"
+    },
+    "auth": {
+      "oauth": "OAuth · 连接您的账号",
+      "token": "API 令牌",
+      "none": "无需身份验证"
+    },
+    "oauth": {
+      "description": "使用提供商账号登录并选择此连接器可访问的内容。授权完成后您将返回此处。",
+      "settings": "OAuth 设置",
+      "settingsHint": "仅当提供商要求注册 OAuth 应用时需要填写。",
+      "clientId": "Client ID",
+      "clientSecret": "Client secret",
+      "redirectUrl": "重定向 URL"
+    },
+    "advanced": {
+      "headersSummary": "高级请求头",
+      "envSummary": "高级环境变量",
+      "description": "值为字符串的 JSON 对象。替换已保存凭据时需填写所有字段。",
+      "ariaLabel": "高级设置 JSON"
+    },
+    "security": {
+      "oauth": "访问令牌和刷新令牌均在服务器端加密保存。您可以随时断开连接。",
+      "credentials": "凭据在服务器端加密保存。"
+    },
+    "savedInactiveNotice": "配置已保存。在验证成功之前，连接器将保持未激活状态。",
+    "status": {
+      "completeInProvider": "请在提供商窗口中完成授权。",
+      "startingSandbox": "正在您的工作区沙箱中启动连接器。首次安装软件包最多可能需要两分钟。"
+    },
+    "actions": {
+      "disconnect": "断开连接",
+      "cancelAuth": "取消授权",
+      "waitingAuth": "正在等待授权…",
+      "verifying": "正在验证连接…",
+      "reconnectAccount": "重新连接账号",
+      "connectAccount": "连接账号",
+      "saveAndVerify": "保存并验证",
+      "connect": "连接",
+      "signInToConnect": "登录后连接"
+    },
+    "errors": {
+      "allowPopups": "请允许弹出窗口以连接您的账号。",
+      "invalidJsonObject": "请输入包含字符串值的 JSON 对象，例如 {\"API_KEY\": \"your-key\"}。",
+      "fieldRequired": "{{name}} 为必填项。",
+      "urlPlaceholders": "请将服务器 URL 中的占位符替换为您的账号详情。",
+      "commandPlaceholders": "连接前请先替换命令中的占位符。",
+      "selectWorkspace": "请选择此连接器应运行的工作区沙箱。",
+      "verificationFailed": "连接验证失败。请检查您的凭据并重试。",
+      "invalidAdvancedJson": "高级设置必须是有效的 JSON。"
+    },
+    "footerManage": "在<link>集成</link>中管理您的工具。",
+    "legacyLocal": {
+      "title": "不再支持本地连接器",
+      "description": "此 MCP 服务器使用本地 stdio 命令。新的本地连接器已禁用；请断开它并连接远程 HTTP/SSE 端点。"
+    }
+  },
+  "oauth": {
+    "status": {
+      "pendingTitle": "正在连接您的账号…",
+      "connectedTitle": "账号已连接",
+      "errorTitle": "无法连接您的账号",
+      "pendingDescription": "正在完成授权并验证 MCP 连接。",
+      "connectedDescription": "您可以关闭此窗口并返回连接器页面。"
+    },
+    "backToConnectors": "返回集成",
+    "errors": {
+      "missingState": "缺少授权状态参数。请从“集成”页面重新开始。",
+      "wrongTab": "此授权并非在当前浏览器标签页中发起。请从“集成”页面重新开始。",
+      "unverified": "无法验证 MCP 连接。请从“集成”页面重新开始。"
+    }
+  },
+  "landing": {
+    "hero": {
+      "pill": "Model Context Protocol 与生态系统",
+      "title": "集成",
+      "tagline": "用<highlight>集成</highlight>全面增强您的 AI 智能体。",
+      "subtitle": "通过加密凭据和工作区级访问，将数据库、文档、issue tracker 与云工具连接到您的智能体。",
+      "browseCta": "浏览集成",
+      "more": "还有 {{count}} 个"
+    },
+    "stats": {
+      "servers": "精选验证 MCP 服务器",
+      "auth": "零配置认证",
+      "sandbox": "沙箱隔离",
+      "fee": "平台费用",
+      "install": "本地安装"
+    },
+    "search": {
+      "placeholder": "按名称、分类或描述搜索 37 连接器...",
+      "sortLabel": "排序："
+    },
+    "sort": {
+      "featured": "推荐",
+      "az": "名称：A–Z",
+      "za": "名称：Z–A"
+    },
+    "categories": {
+      "allWithCount": "全部 ({{count}})",
+      "recommendedWithCount": "推荐 ({{count}})"
+    },
+    "catalog": {
+      "showing": "共 {{total}} 个连接器，当前显示 <strong>{{shown}}</strong> 个",
+      "title": "精选远程集成",
+      "subtitle": "优先展示推荐的开发者工具，并提供适用于其余技术栈的可信远程连接器。"
+    },
+    "empty": {
+      "title": "未找到连接器",
+      "description": "没有与“{{query}}”匹配的连接器。请尝试搜索其他名称或关键词。",
+      "reset": "重置筛选"
+    },
+    "card": {
+      "byPublisher": "由 {{publisher}} 提供",
+      "featured": "精选",
+      "inspectDetails": "查看详情",
+      "remote": "远程",
+      "endpoints": "{{count}} 个远程端点"
+    },
+    "howItWorks": {
+      "eyebrow": "安全且可扩展的架构",
+      "title": "MCP 工具如何在 Neuron Runner 中安全执行",
+      "subtitle": "三层架构确保您的令牌安全无忧，同时赋予前沿模型强大的自主执行能力。",
+      "step1": {
+        "eyebrow": "01 / 存储",
+        "title": "加密凭据保险库",
+        "description": "您的 OAuth 令牌和 API 密钥使用 Fernet 加密保存。它们只会附加到经过验证的服务器端 MCP 请求中，绝不会被记录或暴露给模型。"
+      },
+      "step2": {
+        "eyebrow": "02 / 执行",
+        "title": "经过验证的远程网关",
+        "description": "远程 MCP 服务器通过经过验证的 HTTPS 网关访问，凭据加密，授权范围限定在工作区。"
+      },
+      "step3": {
+        "eyebrow": "03 / 工具调用",
+        "title": "自主模型调用",
+        "description": "推理模型自动发现可用的工具 Schema。智能体可查询数据库、拉取 API 规范，并在完整的 Diff 审查控制下应用修复。"
+      }
+    },
+    "faq": {
+      "eyebrow": "集成常见问题",
+      "title": "常见问题解答",
+      "items": {
+        "q1": {
+          "question": "什么是 Model Context Protocol (MCP)？",
+          "answer": "Model Context Protocol (MCP) 是一项开放标准，使前沿 AI 模型能够以安全、标准化的格式发现、读取和调用工具、数据库及 API。无需为每个服务硬编码自定义集成，MCP 即可实现通用的即插即用工具调用。"
+        },
+        "q2": {
+          "question": "连接器如何在 Neuron Runner 内安全运行？",
+          "answer": "Neuron Runner 通过 HTTPS 验证并代理远程 MCP 会话。凭据在服务器上加密保存，绝不会暴露给模型或浏览器；内置浏览器在隔离的工作区沙箱中运行。"
+        },
+        "q3": {
+          "question": "我的 API 令牌和 OAuth 凭据如何得到保护？",
+          "answer": "您的 OAuth 令牌和 API 密钥使用 Fernet 加密保存。它们只会附加到经过验证的服务器端 MCP 请求中，绝不会被记录或暴露给模型。"
+        },
+        "q4": {
+          "question": "我可以连接自己的自定义或私有内部 MCP 服务器吗？",
+          "answer": "可以。您可以从 Integrations 添加任何远程 HTTP/SSE MCP 端点。不再支持本地 stdio 命令。"
+        },
+        "q5": {
+          "question": "使用连接器时 Neuron Runner 会收取额外费用吗？",
+          "answer": "不会。所有连接器和 MCP 服务器完全免费使用，零平台加价。您只需在沙箱 Docker container 实际执行时按秒支付标准算力费用。"
+        }
+      }
+    },
+    "cta": {
+      "title": "几秒内即可接入您的工具。",
+      "subtitle": "创建一个工作区，关联您常用的服务，让模型在完整的上下文感知下编写并验证代码。",
+      "primary": "创建免费工作区",
+      "secondary": "阅读文档"
+    },
+    "footer": {
+      "pricing": "定价",
+      "integrations": "集成",
+      "docs": "文档",
+      "terms": "条款",
+      "privacy": "隐私"
+    },
+    "preview": {
+      "publishedBy": "发布者：{{publisher}}",
+      "protocolTitle": "协议与传输",
+      "transportTypeLabel": "传输类型：",
+      "transportStdio": "stdio (CLI 运行时)",
+      "transportHttp": "SSE / HTTP 流",
+      "sandboxLabel": "访问：",
+      "sandboxValue": "限定于工作区",
+      "websiteLabel": "网站：",
+      "close": "关闭",
+      "connectInWorkspace": "在工作区中连接",
+      "authLabel": "认证："
+    },
+    "auth": {
+      "oauth": "OAuth 2.0",
+      "token": "API 令牌",
+      "none": "无需认证",
+      "multi": "OAuth / 令牌"
+    }
+  },
+  "errors": {
+    "unexpected": "发生未知错误，请重试。",
+    "unreachable": "无法连接到服务器。请检查您的网络连接并重试。",
+    "serverUnavailable": "服务器暂时不可用，请稍后重试。",
+    "serverError": "发生意外的服务器错误，请稍后重试。",
+    "sessionExpired": "您的会话已过期，请重新登录。",
+    "forbidden": "您无权执行此操作。",
+    "notFound": "未找到所请求的连接器。",
+    "invalidRequest": "无效请求。请检查您的输入并重试。"
+  }
+}

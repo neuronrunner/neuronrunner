@@ -1,0 +1,745 @@
+{
+  "dialog": {
+    "description": "Çalışma alanınızı, ekibinizi, faturalandırmayı, tercihlerinizi ve güvenliğinizi yönetin."
+  },
+  "modal": {
+    "closeAriaLabel": "Ayarları kapat"
+  },
+  "roles": {
+    "owner": "sahip",
+    "admin": "yönetici",
+    "member": "üye"
+  },
+  "workspaceSelector": {
+    "currentWorkspace": "Geçerli çalışma alanı",
+    "ariaLabel": "Ayarlar çalışma alanı",
+    "fallbackName": "Çalışma Alanı",
+    "selectWorkspace": "Çalışma alanı seçin",
+    "switching": "Değiştiriliyor…",
+    "summarySingle": "{{role}} · {{count}} üye",
+    "summaryPlural": "{{role}} · {{count}} üye",
+    "chooseTeam": "Ekibinizi seçin",
+    "workspaces": "Çalışma Alanları",
+    "noWorkspaces": "Kullanılabilir çalışma alanı yok.",
+    "newWorkspace": "Yeni çalışma alanı"
+  },
+  "store": {
+    "billingCustomerIdMissing": "Faturalandırma müşteri ID'si eksik.",
+    "paymentMethodUpdateTxMissing": "Ödeme yöntemi güncelleme işlem ID'si eksik.",
+    "topUpTxMissing": "Bakiye yükleme işlem ID'si eksik.",
+    "checkoutUrlMissing": "Ödeme URL'si eksik"
+  },
+  "workspaceTab": {
+    "loadingAriaLabel": "Çalışma alanı ayarları yükleniyor",
+    "selectWorkspace": "Ayarlarını görüntülemek için bir çalışma alanı seçin veya oluşturun.",
+    "title": "Çalışma Alanı Profili",
+    "subtitle": "Çalışma alanı bilgilerinizin, kimliğinizin ve avatarınızın ekip genelinde nasıl göründüğünü yönetin.",
+    "picture": {
+      "title": "Çalışma Alanı Görseli",
+      "hint": "10 MB'a kadar PNG, JPG veya GIF. Kare oran önerilir.",
+      "permissionHint": "Yalnızca çalışma alanı sahipleri ve yöneticileri çalışma alanı görselini güncelleyebilir."
+    },
+    "fields": {
+      "name": {
+        "label": "Çalışma Alanı Adı",
+        "placeholder": "Çalışma alanı adı"
+      },
+      "slug": {
+        "label": "Çalışma Alanı Kısa Adı (Slug)",
+        "hint": "Yönlendirme ve proje tanımlama için kullanılan çalışma alanı kısa adı."
+      }
+    },
+    "yourRole": "Rolünüz:",
+    "saveChanges": "Değişiklikleri kaydet",
+    "toast": {
+      "pictureUpdatedTitle": "Çalışma alanı görseli güncellendi",
+      "pictureUpdatedDescription": "Çalışma alanı logonuz başarıyla güncellendi.",
+      "uploadFailedTitle": "Yükleme başarısız",
+      "pictureRemovedTitle": "Çalışma alanı görseli kaldırıldı",
+      "pictureRemovedDescription": "Çalışma alanı görseliniz kaldırıldı.",
+      "removalFailedTitle": "Kaldırma başarısız",
+      "updatedTitle": "Çalışma alanı güncellendi",
+      "updatedDescription": "Çalışma alanı adı kaydedildi."
+    },
+    "errors": {
+      "uploadFailed": "Çalışma alanı görseli yüklenemedi.",
+      "removeFailed": "Çalışma alanı görseli kaldırılamadı.",
+      "updateFailed": "Çalışma alanı güncellenemedi."
+    }
+  },
+  "team": {
+    "title": "Ekip üyeleri",
+    "selectWorkspace": "Ekibinizi görüntülemek için bir çalışma alanı seçin veya oluşturun.",
+    "subtitle": "{{workspace}} çalışma alanındaki ekip üyelerinizi ve bekleyen davetlerinizi yönetin.",
+    "inviteButton": "Üye davet et",
+    "individualPlan": {
+      "title": "Ekip özellikleri {{plan}} planında kullanılamaz.",
+      "freeDescription": "Ücretsiz (Free) plan, 1 üyeyi destekleyen bireysel bir plandır. Ekip arkadaşlarınızla iş birliği yapmak için Faturalandırma sekmesinden Pro (en fazla 4 üye) planına geçin.",
+      "plusDescription": "Plus planı ($10/ay), 1 VM ve 1 üyeyi destekleyen bireysel bir plandır. Ekip arkadaşlarınızla iş birliği yapmak için Faturalandırma sekmesinden Pro (en fazla 4 üye) planına geçin."
+    },
+    "inviteForm": {
+      "title": "Ekip arkadaşı davet edin",
+      "closeAriaLabel": "Davet formunu kapat",
+      "emailLabel": "E-posta adresi",
+      "emailPlaceholder": "ekip@ornek.com",
+      "roleLabel": "Rol",
+      "roleAriaLabel": "Davet rolü",
+      "sending": "Gönderiliyor…",
+      "send": "Davet gönder",
+      "adminHint": "Yöneticiler kişi davet edebilir ve ekip üyelerini yönetebilir.",
+      "memberHint": "Üyeler sohbetlerde ve projelerde iş birliği yapabilir."
+    },
+    "roles": {
+      "member": "Üye",
+      "admin": "Yönetici"
+    },
+    "removeAlert": {
+      "title": "{{name}} çıkarılsın mı?",
+      "description": "Bu çalışma alanının sohbetlerine ve projelerine erişimini kaybedecek.",
+      "removing": "Çıkarılıyor…",
+      "confirm": "Üyeyi çıkar"
+    },
+    "actions": {
+      "cancel": "İptal"
+    },
+    "tabs": {
+      "ariaLabel": "Ekip listeleri",
+      "members": "Üyeler",
+      "invitations": "Davetler"
+    },
+    "search": {
+      "membersAriaLabel": "Üyelerde ara",
+      "invitationsAriaLabel": "Davetlerde ara",
+      "membersPlaceholder": "Ad veya e-posta ile ara",
+      "invitationsPlaceholder": "Davetlerde ara",
+      "clearAriaLabel": "Aramayı temizle"
+    },
+    "members": {
+      "you": "Siz",
+      "actionsAriaLabel": "{{name}} için işlemler",
+      "removeFromWorkspace": "Çalışma alanından çıkar"
+    },
+    "invitations": {
+      "awaitingAcceptance": "Onay bekleniyor",
+      "cancelAriaLabel": "{{email}} için daveti iptal et"
+    },
+    "emptyMembers": {
+      "filteredTitle": "Eşleşen ekip arkadaşı yok",
+      "defaultTitle": "Ekibiniz burada başlar",
+      "filteredDescription": "Başka bir ad veya e-posta adresi deneyin.",
+      "defaultDescription": "Bu çalışma alanında birlikte çalışmak için ekip arkadaşlarınızı davet edin."
+    },
+    "emptyInvitations": {
+      "filteredTitle": "Eşleşen davet yok",
+      "defaultTitle": "Bekleyen davet yok",
+      "filteredDescription": "Başka bir e-posta adresi deneyin.",
+      "defaultDescription": "Ekip arkadaşlarınız kabul edene kadar davetler burada görünür."
+    },
+    "toast": {
+      "inviteSentTitle": "Davet gönderildi",
+      "inviteSentDescription": "{{email}} davet e-postasını onayladıktan sonra katılabilir.",
+      "memberRemovedTitle": "Üye çıkarıldı",
+      "inviteCancelledTitle": "Davet iptal edildi",
+      "inviteCancelledDescription": "{{email}} için gönderilen davet iptal edildi."
+    }
+  },
+  "providerKeys": {
+    "selectWorkspace": "Sağlayıcı anahtarlarını yönetmek için bir çalışma alanı seçin.",
+    "noPermission": "Yalnızca çalışma alanı sahipleri ve yöneticileri sağlayıcı anahtarlarını yönetebilir. Üyeler yapılandırılmış sağlayıcıları ve özel modelleri kullanabilir.",
+    "title": "Kendi Anahtarınızı Getirin (BYOK) ve Özel Modeller",
+    "subtitle": "Sağlayıcı anahtarları şifrelenir ve {{workspace}} içinde paylaşılır. Buraya eklenen özel modeller, hiçbir platform token komisyonu olmadan doğrudan Sohbet model seçicinizde görünür.",
+    "providers": {
+      "custom": "Özel Endpoint (vLLM / Ollama)"
+    },
+    "tabs": {
+      "keys": "Sağlayıcı Anahtarları ({{count}})",
+      "models": "Özel Modeller ({{count}})"
+    },
+    "keyForm": {
+      "providerLabel": "Sağlayıcı",
+      "providerPlaceholder": "Sağlayıcı seçin",
+      "baseUrlLabel": "Base URL (OpenAI uyumlu)",
+      "baseUrlPlaceholder": "örn. http://localhost:11434/v1 veya https://my-vllm.example.com/v1",
+      "apiKeyLabel": "API anahtarı",
+      "apiKeyOptionalSuffix": "(Yerel/kimlik doğrulamasız ise isteğe bağlı)",
+      "apiKeyPlaceholderCustom": "API anahtarını yapıştırın (Ollama için isteğe bağlı)",
+      "apiKeyPlaceholder": "Sağlayıcı anahtarınızı yapıştırın",
+      "encryptionNote": "Anahtarın tamamı Fernet ile şifrelenir ve bir daha gösterilmez. Bu sağlayıcı için yapılandırılan modeller anahtarı otomatik olarak kullanır.",
+      "saving": "Kaydediliyor…",
+      "updateKey": "Anahtarı güncelle",
+      "saveKey": "Anahtarı kaydet"
+    },
+    "configuredKeysTitle": "Yapılandırılmış Sağlayıcı Anahtarları",
+    "noKeys": "Henüz kaydedilmiş sağlayıcı anahtarı yok.",
+    "connected": "Bağlı",
+    "remove": "Kaldır",
+    "noKeysPrompt": {
+      "title": "Yapılandırılmış Sağlayıcı Anahtarı Yok",
+      "description": "Özel bir model eklemek için önce Sağlayıcı Anahtarları sekmesinden bir API anahtarı (ör. OpenRouter, Groq, OpenAI) veya Özel Endpoint ekleyin.",
+      "cta": "Sağlayıcı Anahtarlarına Git"
+    },
+    "addModelButton": "Özel Model Ekle",
+    "modelForm": {
+      "title": "Özel Model Ekle",
+      "cancel": "İptal",
+      "selectKeyLabel": "Yapılandırılmış Sağlayıcı Anahtarı Seçin",
+      "selectKeyPlaceholder": "Yapılandırılmış sağlayıcı anahtarı seçin",
+      "routedThrough": "Bu model çalışma alanınızın <strong>{{provider}}</strong> anahtarı üzerinden faturalandırılacak ve yönlendirilecektir.",
+      "displayNameLabel": "Sohbette Görünen Ad",
+      "displayNamePlaceholder": "örn. Claude 3.7 Sonnet",
+      "externalIdLabel": "Harici Model ID (API Tanımlayıcısı)",
+      "externalIdPlaceholder": "örn. anthropic/claude-3.7-sonnet",
+      "contextLengthLabel": "Bağlam Uzunluğu (Token)",
+      "reasoningLabel": "Akıl Yürütme / Düşünme Modeli",
+      "toolsLabel": "Function Calling Desteği",
+      "testing": "Test ediliyor…",
+      "testConnection": "Bağlantıyı Test Et",
+      "saving": "Kaydediliyor…",
+      "saveModel": "Modeli Kaydet"
+    },
+    "activeModelsTitle": "Aktif Çalışma Alanı Modelleri",
+    "noModels": "Henüz özel model eklenmedi.",
+    "modelCard": {
+      "thinking": "Düşünme",
+      "keyLabel": "Anahtar: <strong>{{provider}}</strong> ({{maskedKey}})",
+      "providerLabel": "Sağlayıcı: <strong>{{provider}}</strong>",
+      "context": "Bağlam: {{count}}k",
+      "tools": "Araçlar: {{supported}}",
+      "yes": "Evet",
+      "no": "Hayır",
+      "test": "Test et"
+    },
+    "notices": {
+      "keySaved": "{{provider}} için sağlayıcı anahtarı güvenli şekilde kaydedildi.",
+      "keyRemoved": "{{provider}} için sağlayıcı anahtarı kaldırıldı.",
+      "modelAdded": "'{{name}}' özel modeli başarıyla eklendi.",
+      "modelRemoved": "'{{name}}' modeli kaldırıldı."
+    },
+    "errors": {
+      "keySaveFailed": "Bu sağlayıcı anahtarı kaydedilemedi. Biçimi kontrol edip tekrar deneyin.",
+      "keyRemoveFailed": "Bu sağlayıcı anahtarı kaldırılamadı.",
+      "selectKeyFirst": "Lütfen önce bir sağlayıcı anahtarı seçin.",
+      "modelFieldsRequired": "Görünen Ad ve Harici Model ID zorunludur.",
+      "modelSaveFailed": "Özel model kaydedilemedi.",
+      "modelRemoveFailed": "Özel model kaldırılamadı.",
+      "enterExternalId": "Bağlantıyı test etmek için bir Harici Model ID girin.",
+      "testFailed": "Bağlantı testi başarısız oldu."
+    },
+    "byos": {
+      "title": "Abonelikler (BYOS)",
+      "subtitle": "Sıfır LLM token maliyetiyle Bulut VM içinde resmi CLI ajanlarını çalıştırmak için mevcut Claude Pro / Max, ChatGPT Plus / Pro veya Google Antigravity aboneliğinizi bağlayın.",
+      "connect": "Bağla",
+      "update": "Güncelle",
+      "syncFromVm": "VM’den Eşitle",
+      "disconnect": "Bağlantıyı Kes",
+      "claude": {
+        "name": "Claude Pro / Max (Claude Code)",
+        "hint": "Terminalde 'claude setup-token' çalıştırıp jetonu yapıştırın veya VM terminalinde 'claude login' yaptıktan sonra VM’den Eşitle'ye tıklayın.",
+        "placeholder": "claude setup-token (sk-ant-oat01-…) veya credentials JSON yapıştırın"
+      },
+      "openai": {
+        "name": "ChatGPT Plus / Pro (OpenAI Codex)",
+        "hint": "~/.codex/auth.json içeriğini yapıştırın veya VM terminalinde 'codex login' yaptıktan sonra VM’den Eşitle'ye tıklayın.",
+        "placeholder": "~/.codex/auth.json veya OAuth jetonu yapıştırın"
+      },
+      "notices": {
+        "connected": "{{provider}} bağlandı. BYOS modelleri artık Sohbet seçicisinde kullanılabilir.",
+        "syncedFromVm": "{{provider}} çalışan Bulut VM’den başarıyla eşitlendi."
+      },
+      "errors": {
+        "syncFailed": "Çalışan VM’den abonelik kimlik bilgileri okunamadı."
+      },
+      "antigravity": {
+        "name": "Google Antigravity / Gemini OAuth",
+        "hint": "~/.gemini/oauth_creds.json içeriğini yapıştırın veya Cloud Ajan Seçiciden tek tıkla Google OAuth bağlayın.",
+        "placeholder": "~/.gemini/oauth_creds.json veya OAuth kimlik bilgilerini yapıştırın"
+      },
+      "computeNote": "BYOS modellerinde LLM token ücreti $0.00'dır. Ajanlar Bulut VM içinde çalıştığı için plan VM kotanızı veya Top-Up cüzdan bakiyenizi ($0.16–$0.32/sa) kullanır — aylık NeuronRunner aboneliği gerekmez.",
+      "manageBilling": "VM ve Bakiye Yönetimi"
+    },
+    "auxiliary": {
+      "title": "Başlık ve hafıza modeli",
+      "description": "Sohbet başlıkları, düşünce özetleri ve hafıza bu modelle, çalışma alanının anahtarıyla çalışır. Ucuz ve hızlı bir model seç.",
+      "sameAsChat": "Sohbet modeliyle aynı",
+      "unusable": "Bu modelin anahtarı kaldırılmış, bu yüzden sohbet modeli kullanılıyor.",
+      "error": "Model kaydedilemedi. Tekrar dene."
+    }
+  },
+  "billing": {
+    "selectWorkspace": "Faturalandırmayı görüntülemek için bir çalışma alanı seçin.",
+    "title": "Çalışma alanı faturalandırma ve planları",
+    "subtitle": "{{workspace}} için abonelikler, ortak kullanım kotaları (LLM + Bulut VM) ve ekstra kullanım kredileri.",
+    "subscriptionPlans": "Abonelik planları",
+    "currentPlanBadge": "Geçerli: {{plan}}",
+    "freePlanName": "Ücretsiz",
+    "perMemberMonth": "/üye/ay",
+    "perMonth": "/ay",
+    "llmQuota": "${{amount}} kota (LLM + VM)",
+    "vcpuHours": "Maks. {{hours}} vCPU-saat",
+    "maxVmsSingle": "Maks. {{count}} VM",
+    "maxVmsPlural": "Maks. {{count}} VM",
+    "upToSeats": "En fazla {{count}} üye",
+    "activePlan": "Aktif plan",
+    "upgradeTo": "{{plan}} planına geç",
+    "walletBalance": "Ekstra kullanım cüzdan bakiyesi",
+    "walletDescription": "Aylık kota aşımı, Free ve Plus'taki premium modeller ve aylık plan olmadan BYOS/BYOK için bağımsız Bulut VM hesaplaması ($0.16–$0.32/sa) için kullanılır. Hiç sona ermez.",
+    "topUpLabel": "Ekstra kullanım kredisi ekle (USD, min. $10.00)",
+    "topUpButton": "${{amount}} ekle",
+    "topUpNetCredit": "Cüzdan bakiyesi (%0 işlem ücreti)",
+    "topUpProcessingFee": "Ödeme işlem ücreti (%3.9 + $0.40)",
+    "topUpTotalCharge": "Ödeme adımında tahsil edilecek toplam",
+    "topUpNote": "Minimum yükleme tutarı $10.00'dır. Ekstra ödeme işlem ücreti alınmaz; ödediğiniz tutarın %100'ü doğrudan bakiyenize aktarılır.",
+    "invoiceNetAndFee": "Net ${{net}} + ${{fee}} işlem ücreti",
+    "memberNotice": "Planları yönetmek, kredi eklemek veya faturaları görüntülemek için çalışma alanı sahibinden ya da yöneticisinden destek isteyin.",
+    "invoicesTitle": "Faturalar",
+    "noInvoices": "Henüz fatura yok.",
+    "paymentFallback": "Ödeme",
+    "viewInvoice": "Faturayı görüntüle",
+    "fallbackPlans": {
+      "free": {
+        "name": "Free",
+        "description": "Aylık $0.50 ücretsiz katman kotası (LLM + $0.16/sa 4 çekirdek VM)"
+      },
+      "plus": {
+        "name": "Plus",
+        "description": "Bulut VM için aylık $10.00 kota (~200 vCPU-sa) + $2 Ücretsiz Katman LLM hakkı · BYOS/BYOK · Maks. 1 VM (ekip yok)"
+      },
+      "pro": {
+        "name": "Pro",
+        "description": "Bulut VM (~550 vCPU-sa) + tüm LLM modelleri için aylık $25.00 ortak kota · En fazla 4 üye"
+      },
+      "team": {
+        "name": "Team",
+        "description": "Tüm 16 model + Bulut VM için aylık $200.00 ortak kota · En fazla 20 üye ve 20 VM"
+      }
+    },
+    "errors": {
+      "balanceLoad": "Çalışma alanı bakiyesi yüklenemedi.",
+      "invoicesLoad": "Faturalar yüklenemedi.",
+      "updatePlan": "Abonelik planı güncellenemedi.",
+      "checkoutOpen": "Ödeme sayfası açılamadı. Lütfen tekrar deneyin.",
+      "invoiceOpen": "Fatura açılamadı.",
+      "cancelPlan": "Plan iptali planlanamadı.",
+      "resumePlan": "Abonelik devam ettirilemedi."
+    },
+    "monthly": "Aylık",
+    "yearly": "Yıllık",
+    "yearlySaveBadge": "2 ay bedava",
+    "perYear": "/yıl",
+    "perMemberYear": "/üye/yıl",
+    "seatsLabel": "Koltuk",
+    "cancelPlan": "Planı iptal et",
+    "confirmCancel": "İptali onayla",
+    "keepPlan": "Planı koru",
+    "cancelsOn": "{{date}} tarihinde iptal edilir",
+    "resumePlan": "Planı devam ettir"
+  },
+  "usage": {
+    "selectWorkspace": "Kullanımı görüntülemek için bir çalışma alanı seçin.",
+    "title": "Çalışma alanı kullanımı",
+    "subtitle": "Tüm ekip üyeleri dahil {{workspace}} genelindeki kullanım.",
+    "allTime": "Tüm zamanlar",
+    "tryAgain": "Tekrar dene",
+    "loadingAriaLabel": "Kullanım yükleniyor",
+    "errors": {
+      "loadFailed": "Çalışma alanı kullanımı yüklenemedi."
+    },
+    "allowance": {
+      "title": "{{plan}} Planı · Kullanım Kotası Pencereleri (LLM + VM)",
+      "subtitle": "Aylık ortak kullanım kotası (LLM ve Bulut VM)",
+      "left": "${{amount}} kaldı",
+      "monthlyCycle": "Aylık Dönem (%100)",
+      "vmQuota": "Bulut VM Kullanımı (ortak kotadan): <strong>{{used}} / {{included}} vCPU-saat</strong> ({{remaining}} vCPU-saat kullanılabilir)",
+      "verifyForFreeVm": "Free planda Bulut VM başlatmayı açmak için Ayarlar'dan hesap doğrulamasını tamamlayın"
+    },
+    "cards": {
+      "creditsUsed": "Kullanılan çalışma alanı kredisi",
+      "requests": "İstekler",
+      "activeUsers": "Aktif kullanıcılar"
+    },
+    "tokens": {
+      "input": "Girdi",
+      "output": "Çıktı",
+      "cacheReads": "Önbellek okumaları"
+    },
+    "byUser": {
+      "title": "Kullanıcıya göre kullanım",
+      "subtitle": "İşlem gücü kullanımları dahil her kullanıcıya yansıyan çalışma alanı kredileri.",
+      "columns": {
+        "user": "Kullanıcı",
+        "requests": "İstekler",
+        "inputOutput": "Girdi / Çıktı",
+        "workspaceCost": "Çalışma alanı maliyeti"
+      },
+      "empty": "Henüz kullanıcı etkinliği yok."
+    },
+    "byModel": {
+      "title": "Modele göre kullanım",
+      "columns": {
+        "model": "Model",
+        "requests": "İstekler",
+        "cacheReads": "Önbellek okumaları",
+        "workspaceCost": "Çalışma alanı maliyeti"
+      },
+      "deletedModel": "Silinmiş model",
+      "empty": "Henüz model etkinliği yok."
+    },
+    "vmSessions": {
+      "title": "VM işlem gücü oturumları",
+      "subtitle": "Geçmiş sanal makine çalışma logları, donanım katmanı özellikleri, geçen süreler ve faturalandırılan tutarlar.",
+      "sessions": "Oturumlar",
+      "billedRuntime": "Faturalandırılan süre",
+      "vmCost": "VM maliyeti",
+      "columns": {
+        "instance": "Makine",
+        "tierSpecs": "Donanım özellikleri",
+        "elapsedBilled": "Geçen / Faturalandırılan",
+        "billedAmount": "Faturalandırılan tutar"
+      },
+      "statusRunning": "çalışıyor",
+      "statusStopped": "durduruldu",
+      "tierSpecs": "{{tier}} · {{cpu}} vCPU / {{ram}} GB RAM",
+      "hourlyRate": "${{rate}}/sa",
+      "billedDuration": "Faturalandırılan: {{duration}}",
+      "empty": "Henüz kaydedilmiş VM işlem gücü oturumu yok."
+    },
+    "footerNote": "Önbellek okumaları girdi tokenlarına dahildir ve modelin önbellek okuma tarifesinden bir kez ücretlendirilir. BYOK sağlayıcı ücretleri doğrudan sağlayıcınıza ödenir."
+  },
+  "logs": {
+    "selectWorkspace": "İstek loglarını görüntülemek için bir çalışma alanı seçin.",
+    "title": "İstek logları",
+    "subtitle": "{{workspace}} çalışma alanını kimin, ne zaman kullandığı ve her isteğin maliyeti.",
+    "refreshAriaLabel": "Logları yenile",
+    "tryAgain": "Tekrar dene",
+    "loadingAriaLabel": "İstek logları yükleniyor",
+    "errors": {
+      "loadFailed": "İstek logları yüklenemedi. Lütfen tekrar deneyin."
+    },
+    "filters": {
+      "user": "Kullanıcı",
+      "userAriaLabel": "Log kullanıcısı",
+      "allUsers": "Tüm kullanıcılar",
+      "status": "Durum",
+      "statusAriaLabel": "Log durumu",
+      "allStatuses": "Tüm durumlar",
+      "fromUtc": "Başlangıç (UTC)",
+      "toUtc": "Bitiş (UTC)",
+      "utcNote": "Saatler UTC olarak gösterilir.",
+      "reset": "Sıfırla",
+      "apply": "Filtreleri uygula",
+      "invalidDates": "Başlangıç tarihi bitiş tarihinden önce veya eşit olmalıdır."
+    },
+    "statuses": {
+      "completed": "tamamlandı",
+      "processing": "işleniyor",
+      "pending": "bekliyor",
+      "failed": "başarısız",
+      "canceled": "iptal edildi"
+    },
+    "table": {
+      "timeUtc": "Zaman (UTC)",
+      "user": "Kullanıcı",
+      "model": "Model",
+      "tokensInOut": "Girdi / çıktı tokenları",
+      "workspaceCost": "Çalışma alanı maliyeti",
+      "status": "Durum",
+      "requestTitle": "İstek {{uuid}}",
+      "deletedModel": "Silinmiş model",
+      "platform": "Platform",
+      "cachedTokens": "{{count}} önbellekli",
+      "byokModelCostTooltip": "Model maliyeti doğrudan sağlayıcınız tarafından faturalandırılır",
+      "byokModelCost": "Model {{cost}}"
+    },
+    "empty": {
+      "title": "İstek bulunamadı",
+      "filteredDescription": "Filtrelerinizi değiştirmeyi deneyin.",
+      "defaultDescription": "Ekibiniz bu çalışma alanını kullanmaya başladığında istekler burada görünecektir."
+    },
+    "pagination": {
+      "summary": "{{total}} istekten {{start}}–{{end}} arası",
+      "zero": "0 istek",
+      "prevAriaLabel": "Önceki log sayfası",
+      "pageOf": "Sayfa {{page}} / {{pages}}",
+      "nextAriaLabel": "Sonraki log sayfası"
+    },
+    "footerNote": "Çalışma alanı maliyeti, çalışma alanı kredilerinden düşülen tutardır. BYOK model maliyetleri doğrudan sağlayıcıya ödenir; işlem gücü ücretleri Kullanım bölümüne dahildir."
+  },
+  "profile": {
+    "loadingAriaLabel": "Profil yükleniyor",
+    "title": "Genel Profil",
+    "subtitle": "Kişisel bilgilerinizin ve avatarınızın çalışma alanı genelinde nasıl göründüğünü yönetin.",
+    "avatar": {
+      "title": "Profil Fotoğrafı",
+      "hint": "5 MB'a kadar PNG, JPG veya GIF. Kare oran önerilir."
+    },
+    "fields": {
+      "username": {
+        "label": "Kullanıcı Adı",
+        "placeholder": "kullanıcı adı"
+      },
+      "firstName": {
+        "label": "Ad",
+        "placeholder": "Ad"
+      },
+      "lastName": {
+        "label": "Soyad",
+        "placeholder": "Soyad"
+      },
+      "bio": {
+        "label": "Biyografi",
+        "placeholder": "Kendiniz hakkında kısa bir biyografi yazın…"
+      }
+    },
+    "toast": {
+      "updatedTitle": "Profil güncellendi",
+      "updatedDescription": "Profil değişiklikleriniz kaydedildi.",
+      "errorTitle": "Profil güncellenirken hata"
+    },
+    "errors": {
+      "notSignedIn": "Profilinizi kaydetmek için giriş yapmalısınız.",
+      "emptyUsername": "Kullanıcı adı boş olamaz.",
+      "updateFailed": "Profil güncellenemedi. Lütfen tekrar deneyin."
+    }
+  },
+  "personalization": {
+    "title": "Kişiselleştirme ve Claude Tarzı Bellek",
+    "memoryActive": "Bellek Aktif",
+    "memoryPaused": "Bellek Duraklatıldı",
+    "subtitle": "Oturumlar arasında sentezlenmiş yapay zeka profilinizi, kişisel bilgilerinizi ve paylaşılan çalışma alanı notlarınızı yönetin.",
+    "preferredName": {
+      "label": "Tercih Edilen Ad",
+      "placeholder": "örn. Kaan, Ada, Alex",
+      "hint": "Asistanın kişisel sohbetlerde size nasıl hitap edeceği."
+    },
+    "autoMemory": {
+      "title": "Otomatik Bellek Oluşturma",
+      "description": "Sohbetlerinizden kalıcı tercihlerinizi öğrenir ve ilgili bilgileri otomatik olarak hatırlar."
+    },
+    "privacyGuard": "<strong>Ekip Gizlilik Koruması:</strong> Kişisel bellekler çok üyeli ekip çalışma alanlarından otomatik olarak hariç tutulur.",
+    "recallEngine": "pgvector + anahtar kelime araması",
+    "categories": {
+      "identity": {
+        "label": "Kimlik",
+        "description": "Rol, geçmiş ve profil"
+      },
+      "preference": {
+        "label": "Tercih",
+        "description": "Üslup, dil ve kodlama stili"
+      },
+      "workspace": {
+        "label": "Çalışma Alanı",
+        "description": "Teknoloji yığını, araçlar ve iş akışları"
+      },
+      "knowledge": {
+        "label": "Bilgi",
+        "description": "Alan bilgisi ve mimari"
+      },
+      "relationship": {
+        "label": "İlişki",
+        "description": "Ekip, iş arkadaşları ve organizasyon"
+      }
+    },
+    "templates": {
+      "languageTone": {
+        "title": "Dil ve Üslup",
+        "sample": "Kavramları Türkçe açıkla, ancak kod yorumlarını ve commit mesajlarını İngilizce tut."
+      },
+      "roleStack": {
+        "title": "Rol ve Teknoloji Yığını",
+        "sample": "Ağırlıklı olarak TypeScript, React 19, Django ve PostgreSQL ile çalışan full-stack mühendisi."
+      },
+      "codeStyle": {
+        "title": "Kod Stili",
+        "sample": "Early-return kullanan, gereksiz tekrardan uzak, güçlü tipli ve sade fonksiyonlar yaz."
+      },
+      "architecture": {
+        "title": "Mimari",
+        "sample": "Prodüksiyon servisleri Redis ve PostgreSQL pgvector destekli Docker konteynerlerinde çalışır."
+      }
+    },
+    "importance": {
+      "core": "Çekirdek",
+      "standard": "Standart",
+      "low": "Düşük"
+    },
+    "markdown": {
+      "title": "# Kullanıcı Bellek Profili",
+      "preferredName": "Tercih Edilen Ad: {{name}}",
+      "general": "Genel"
+    },
+    "snapshot": {
+      "title": "Sentezlenmiş Bellek Özeti",
+      "coreCount": "{{count}} Çekirdek Öncelik",
+      "subtitle": "Neuron Runner'ın bağlamınızı kategoriler arasında nasıl yapılandırdığı",
+      "copied": "Kopyalandı",
+      "copyMarkdown": "Markdown Kopyala",
+      "factSingle": "{{count}} bilgi",
+      "factPlural": "{{count}} bilgi",
+      "moreInCategory": "{{category}} içinde +{{count}} daha"
+    },
+    "tabs": {
+      "memories": "Kişisel Bellekler",
+      "notes": "Çalışma Alanı Notları"
+    },
+    "actions": {
+      "addMemory": "Bellek Ekle",
+      "addNote": "Not Ekle",
+      "clearAll": "Tümünü Temizle",
+      "cancel": "İptal",
+      "saving": "Kaydediliyor…",
+      "save": "Kaydet",
+      "edit": "Düzenle",
+      "delete": "Sil"
+    },
+    "quickTemplatesLabel": "Hızlı şablonlar:",
+    "addForm": {
+      "newMemory": "Yeni Kişisel Bellek",
+      "newNote": "Yeni Çalışma Alanı Notu",
+      "memoryPlaceholder": "örn. Her zaman Türkçe yanıt ver ve backend testlerinde pytest kullan...",
+      "notePlaceholder": "örn. Backend PostgreSQL pgvector ile 8000 portunda Daphne ASGI üzerinde çalışır...",
+      "noCategory": "Kategori Yok",
+      "labelPlaceholder": "konu etiketi (isteğe bağlı)",
+      "priorityLabel": "Öncelik:"
+    },
+    "search": {
+      "memoriesPlaceholder": "Belleklerde anahtar kelime, kategori veya #etiket ile ara...",
+      "notesPlaceholder": "Çalışma alanı notlarında ara...",
+      "allCategory": "Tümü ({{count}})"
+    },
+    "emptyMemories": {
+      "noneTitle": "Henüz kişisel bellek kaydedilmedi",
+      "filteredTitle": "Filtrenizle eşleşen bellek yok",
+      "noneDescription": "Tercihlerinizi, teknoloji yığınınızı ve iletişim tarzınızı oluşturmak için asistanla doğal şekilde sohbet edin veya yukarıdaki 'Bellek Ekle'ye tıklayın.",
+      "filteredDescription": "Arama sorgusunu temizlemeyi veya kategori filtresini değiştirmeyi deneyin."
+    },
+    "emptyNotes": {
+      "title": "Henüz çalışma alanı notu kaydedilmedi",
+      "description": "Çalışma alanı notları, kişisel bellek devre dışı bırakıldığında bile aktif kalan ortam bilgilerini, proje kurallarını ve araç talimatlarını saklar."
+    },
+    "editForm": {
+      "memoryPlaceholder": "Bellek içeriği",
+      "notePlaceholder": "Çalışma alanı notu içeriği",
+      "labelPlaceholder": "Etiket (örn. dil)",
+      "priorityLabel": "Öncelik (1-10):"
+    },
+    "item": {
+      "importanceTitle": "Önem puanı: {{score}}/10",
+      "addedDate": "Eklendi: {{date}}",
+      "recalledDate": "Hatırlandı: {{date}}"
+    },
+    "deleteAllDialog": {
+      "title": "Tüm kişisel bellekler temizlensin mi?",
+      "description": "Bu işlem depolanan {{count}} kişisel bilginin tamamını kalıcı olarak silecek ve geri alınamayacaktır. Çalışma alanı notları etkilenmez.",
+      "confirm": "Tümünü Sil"
+    }
+  },
+  "security": {
+    "title": "Güvenlik ve Şifre",
+    "subtitle": "Hesap kimlik bilgilerinizi ve kimlik doğrulama ayarlarınızı yönetin.",
+    "changePasswordTitle": "Şifreyi Değiştir",
+    "currentPassword": "Mevcut Şifre",
+    "newPassword": "Yeni Şifre",
+    "passwordHint": "En az 8 karakter önerilir.",
+    "confirmPassword": "Yeni Şifreyi Onayla",
+    "updatePassword": "Şifreyi Güncelle",
+    "errors": {
+      "fillAllFields": "Lütfen tüm şifre alanlarını doldurun.",
+      "mismatch": "Şifreler eşleşmiyor."
+    }
+  },
+  "apiKeys": {
+    "title": "API Anahtarları",
+    "subtitle": "Neuron Runner modellerine, ajanlarına ve otomasyon iş akışlarına programatik olarak erişmek için API anahtarlarınızı yönetin.",
+    "generateTitle": "Yeni API Anahtarı Oluştur",
+    "namePlaceholder": "örn. CLI Runner, Production Agent",
+    "createButton": "Anahtar Oluştur",
+    "secretAlert": {
+      "title": "Gizli anahtarınızı şimdi kaydedin",
+      "description": "Lütfen bu anahtarı kopyalayıp güvenli bir yerde saklayın. Güvenliğiniz için bu pencere kapatıldıktan sonra anahtar tekrar görüntülenemez.",
+      "copy": "Kopyala",
+      "confirmSaved": "Gizli anahtarımı kaydettim"
+    },
+    "activeKeysTitle": "Aktif Anahtarlar",
+    "keyCountSingle": "{{count}} anahtar",
+    "keyCountPlural": "{{count}} anahtar",
+    "emptyTitle": "Henüz API anahtarı yok",
+    "emptyDescription": "API'yi kullanmaya başlamak için yukarıdan yeni bir anahtar oluşturun.",
+    "statusActive": "Aktif",
+    "statusInactive": "Devre Dışı",
+    "createdLabel": "Oluşturuldu",
+    "lastUsedLabel": "Son Kullanım",
+    "neverUsed": "Hiç",
+    "pauseAccess": "Erişimi duraklat",
+    "resumeAccess": "Erişimi sürdür",
+    "deleteKey": "Anahtarı sil"
+  },
+  "vmSecrets": {
+    "selectWorkspace": "VM gizli anahtarlarını yönetmek için bir çalışma alanı seçin.",
+    "title": "VM Gizli Anahtarları",
+    "subtitle": "{{workspace}} çalışma alanındaki Sanal Makinelere otomatik olarak enjekte edilen şifreli ortam değişkenleri.",
+    "loadingAriaLabel": "VM gizli anahtarları yükleniyor",
+    "readOnlyNotice": "VM gizli anahtarlarını yalnızca çalışma alanı sahipleri veya yöneticiler ekleyebilir, düzenleyebilir ya da silebilir.",
+    "searchPlaceholder": "Anahtar adı, açıklama veya VM'e göre ara...",
+    "updatedAt": "Güncellendi: {{date}}",
+    "footerNote": "Gizli anahtarlar veritabanında şifrelenerek saklanır ve kaydedildikten sonra bir daha düz metin olarak gösterilmez. VM ortam değişkenlerine, etkileşimli terminallere ve ajan kabuk komutlarına otomatik olarak aktarılır.",
+    "actions": {
+      "addSecret": "Anahtar ekle",
+      "importEnv": ".env içe aktar",
+      "edit": "Düzenle",
+      "delete": "Sil",
+      "confirmDelete": "Onayla",
+      "cancel": "İptal",
+      "save": "Kaydet",
+      "saving": "Kaydediliyor..."
+    },
+    "scope": {
+      "allVms": "Çalışma alanındaki tüm VM'ler",
+      "specificVm": "Belirli VM"
+    },
+    "filter": {
+      "all": "Tüm kapsamlar"
+    },
+    "form": {
+      "addTitle": "Yeni VM gizli anahtarı ekle",
+      "editTitle": "{{key}} düzenle",
+      "keyLabel": "Değişken adı",
+      "scopeLabel": "Kapsam",
+      "valueLabel": "Gizli değer",
+      "valuePlaceholderAdd": "Gizli değeri girin...",
+      "valuePlaceholderEdit": "Mevcut değeri korumak için boş bırakın",
+      "showValue": "Gizli değeri göster",
+      "hideValue": "Gizli değeri gizle",
+      "descriptionLabel": "Açıklama (isteğe bağlı)",
+      "descriptionPlaceholder": "örn. Veritabanı şifresi veya API token"
+    },
+    "importForm": {
+      "title": ".env içeriğinden toplu içe aktar",
+      "subtitle": "Aşağıya KEY=VALUE satırlarını yapıştırın. Seçilen kapsamdaki mevcut anahtarlar güncellenir.",
+      "submit": "İçe aktar",
+      "importing": "İçe aktarılıyor..."
+    },
+    "empty": {
+      "title": "Henüz VM gizli anahtarı yok",
+      "description": "API anahtarlarını, veritabanı URL'lerini ve kimlik bilgilerini güvenle saklayın; VM'leriniz ve ajanlarınız bunları ortam değişkeni olarak kullansın.",
+      "filtered": "Aramanız veya filtrenizle eşleşen gizli anahtar bulunamadı."
+    },
+    "toast": {
+      "createdTitle": "Gizli anahtar eklendi",
+      "updatedTitle": "Gizli anahtar güncellendi",
+      "savedDescription": "{{key}} şifrelenerek kaydedildi.",
+      "syncedDescription": "{{key}} kaydedildi ve çalışan {{count}} VM ile senkronize edildi.",
+      "importedTitle": "Gizli anahtarlar içe aktarıldı",
+      "importedDescription": "{{count}} gizli anahtar şifrelenerek kaydedildi.",
+      "deletedTitle": "Gizli anahtar silindi",
+      "deletedDescription": "{{key}} kaldırıldı."
+    },
+    "errors": {
+      "loadFailed": "VM gizli anahtarları yüklenemedi.",
+      "keyRequired": "Değişken adı zorunludur.",
+      "valueRequired": "Gizli değer zorunludur.",
+      "saveFailed": "VM gizli anahtarı kaydedilemedi.",
+      "importFailed": ".env gizli anahtarları içe aktarılamadı.",
+      "deleteFailed": "VM gizli anahtarı silinemedi."
+    }
+  }
+}

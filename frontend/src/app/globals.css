@@ -1,0 +1,866 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --app-header-height: 0px;
+    --app-sidebar-width: 310px;
+    --workspace-bar-height: 2.5rem;
+    --background: #f9fafb;
+    --foreground: #09090b;
+    --card: #ffffff;
+    --card-foreground: #09090b;
+    --popover: #ffffff;
+    --popover-foreground: #09090b;
+    --primary: #09090b;
+    --primary-foreground: #ffffff;
+    --secondary: #f1f5f9;
+    --secondary-foreground: #0f172a;
+    --muted: #f1f5f9;
+    --muted-foreground: #64748b;
+    --accent: #f1f5f9;
+    --accent-foreground: #0f172a;
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+    --border: #e2e8f0;
+    --input: #e2e8f0;
+    --ring: rgba(0, 0, 0, 0.16);
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: #050508;
+    --foreground: #f4f4f5;
+    --card: #0d0d12;
+    --card-foreground: #f4f4f5;
+    --popover: #121218;
+    --popover-foreground: #f4f4f5;
+    --primary: #f4f4f5;
+    --primary-foreground: #09090b;
+    --secondary: #18181b;
+    --secondary-foreground: #f4f4f5;
+    --muted: #18181b;
+    --muted-foreground: #92929d;
+    --accent: #18181b;
+    --accent-foreground: #f4f4f5;
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+    --border: rgba(255, 255, 255, 0.08);
+    --input: rgba(255, 255, 255, 0.12);
+    --ring: rgba(255, 255, 255, 0.18);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  *:focus-visible {
+    outline: 1px solid var(--ring);
+    outline-offset: 1px;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scrollbar-gutter: stable;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    min-height: 100dvh;
+    font-size: 0.9375rem;
+    /* clip (not hidden) so body is not a scroll container and position: sticky
+       keeps working against the page scroll; hidden is the fallback. */
+    overflow-x: hidden;
+    overflow-x: clip;
+  }
+
+  /* Radix injects a body margin-right equal to the scrollbar width. The root
+     already reserves that space with scrollbar-gutter: stable, so neutralize
+     the injected value with a more specific selector to avoid a horizontal
+     layout shift when selects and dialogs open. */
+  html body[data-scroll-locked] {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Workspace shell is full viewport height (100dvh); root gutter is not needed */
+  html:has(.app-shell--workspace) {
+    scrollbar-gutter: auto;
+  }
+}
+
+/* Application shell ------------------------------------------------------- */
+.app-shell {
+  position: relative;
+  min-height: 100dvh;
+  isolation: isolate;
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+.app-shell__viewport {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  width: 100%;
+  padding-right: 0;
+  padding-bottom: 0;
+  transition: padding-left 250ms ease-in-out;
+}
+
+.app-shell--page {
+  background-image: radial-gradient(
+    70rem 28rem at 50% -16rem,
+    rgb(99 102 241 / 0.08),
+    transparent 72%
+  );
+}
+
+.dark .app-shell--page {
+  background-image: radial-gradient(
+    70rem 30rem at 50% -17rem,
+    rgb(99 102 241 / 0.12),
+    transparent 74%
+  );
+}
+
+.app-shell--page .app-shell__viewport {
+  min-height: 100dvh;
+  padding-top: 0;
+}
+
+.app-shell--page-no-header .app-shell__viewport {
+  min-height: 100dvh;
+  padding-top: 0;
+}
+
+.app-shell--workspace {
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.app-shell--workspace .app-shell__viewport {
+  display: flex;
+  height: 100%;
+  min-height: 0;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.workspace-screen {
+  height: 100%;
+  min-height: 0;
+  background-image: linear-gradient(
+    180deg,
+    rgb(99 102 241 / 0.025),
+    transparent 9rem
+  );
+}
+
+.dark .workspace-screen {
+  background-image: linear-gradient(
+    180deg,
+    rgb(129 140 248 / 0.035),
+    transparent 10rem
+  );
+}
+
+@media (min-width: 768px) {
+  .app-shell__viewport--sidebar {
+    padding-left: var(--app-sidebar-width);
+  }
+}
+
+/* Animations */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+@keyframes slide-up-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slide-down-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes fade-in-up {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes chat-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes chat-enter-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.title-fade-in {
+  animation: chat-enter-fade 220ms ease-out;
+}
+
+.chat-enter {
+  animation: chat-enter 550ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Keep the composer's existing route movement on its outer wrapper. */
+.chat-enter--composer {
+  animation-name: chat-enter-fade;
+  animation-delay: 340ms;
+}
+
+[data-chat-composer][data-composer-handoff] .chat-enter--composer,
+[data-chat-composer="conversation"] .chat-enter--composer {
+  animation: none;
+}
+
+@keyframes workspace-right-panel-in {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.workspace-right-panel--entering {
+  animation: workspace-right-panel-in 260ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.workspace-right-panel--resizing {
+  animation: none !important;
+  transition: none !important;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.65;
+  }
+}
+@keyframes chunkFade {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.anim-slide-up-in {
+  animation: slide-up-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.anim-slide-down-in {
+  animation: slide-down-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.anim-fade-in-up {
+  animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.anim-chunk-fade {
+  animation: chunkFade 0.3s ease;
+}
+.anim-spin-slow {
+  animation: spinSlow 2.5s linear infinite;
+}
+
+/* Ambient Glow Animations */
+@keyframes ambientGlowEnter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.ambient-glow-enter {
+  animation: ambientGlowEnter 450ms ease-out;
+}
+
+/* Workspace Subpages (Issues, Pull Requests, etc.) */
+.workspace-page {
+  background-image: radial-gradient(
+    64rem 24rem at 50% -12rem,
+    rgb(99 102 241 / 0.06),
+    transparent 70%
+  );
+}
+
+.dark .workspace-page {
+  background-image: radial-gradient(
+    64rem 26rem at 50% -13rem,
+    rgb(99 102 241 / 0.10),
+    transparent 72%
+  );
+}
+
+@keyframes workspace-page-reveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.workspace-page-enter {
+  animation: workspace-page-reveal 550ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+.workspace-card-enter {
+  animation: workspace-page-reveal 450ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+@keyframes ambientBreath {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translate3d(0, -10px, 0) scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes ambientDriftA {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  33% {
+    transform: translate3d(24px, -16px, 0) rotate(7deg) scale(1.06);
+  }
+  66% {
+    transform: translate3d(-18px, 14px, 0) rotate(-6deg) scale(0.96);
+  }
+}
+
+@keyframes ambientDriftB {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  33% {
+    transform: translate3d(-24px, 14px, 0) rotate(-8deg) scale(1.05);
+  }
+  66% {
+    transform: translate3d(18px, -18px, 0) rotate(6deg) scale(0.95);
+  }
+}
+
+.anim-ambient-breath {
+  animation: ambientBreath 10s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.anim-ambient-drift-a {
+  animation: ambientDriftA 16s ease-in-out infinite;
+  will-change: transform;
+}
+
+.anim-ambient-drift-b {
+  animation: ambientDriftB 20s ease-in-out infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title-fade-in,
+  .chat-enter,
+  .anim-fade-in-up,
+  .anim-slide-up-in,
+  .anim-slide-down-in,
+  .anim-ambient-breath,
+  .anim-ambient-drift-a,
+  .anim-ambient-drift-b,
+  .ambient-glow-enter,
+  .workspace-page-enter,
+  .workspace-card-enter {
+    animation: none !important;
+  }
+}
+
+/* Custom Thin & Elegant Scrollbars --------------------------------------- */
+textarea::placeholder {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--muted-foreground) 24%, transparent) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: color-mix(in srgb, var(--muted-foreground) 24%, transparent);
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  transition: background-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: color-mix(in srgb, var(--muted-foreground) 45%, transparent);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: color-mix(in srgb, var(--muted-foreground) 65%, transparent);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Landing page ----------------------------------------------------------- */
+.landing-scroll {
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--muted-foreground) 22%, transparent) transparent;
+}
+
+.landing-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.landing-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.landing-scroll::-webkit-scrollbar-thumb {
+  background-color: color-mix(in srgb, var(--muted-foreground) 22%, transparent);
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  transition: background-color 0.2s ease;
+}
+
+.landing-scroll:hover::-webkit-scrollbar-thumb,
+.landing-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: color-mix(in srgb, var(--muted-foreground) 48%, transparent);
+}
+
+.landing-scroll::-webkit-scrollbar-thumb:active {
+  background-color: color-mix(in srgb, var(--muted-foreground) 70%, transparent);
+}
+
+/* Chat scroll container */
+#chat-scroll-container {
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--muted-foreground) 20%, transparent) transparent;
+  overflow-x: hidden;
+}
+
+/* Workspace subpage scroll containers (Issues, Pull Requests, Connectors) */
+.workspace-scroll {
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--muted-foreground) 20%, transparent) transparent;
+  overflow-x: hidden;
+}
+
+.workspace-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.workspace-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.workspace-scroll::-webkit-scrollbar-thumb {
+  background-color: color-mix(in srgb, var(--muted-foreground) 20%, transparent);
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  transition: background-color 0.2s ease;
+}
+
+.workspace-scroll:hover::-webkit-scrollbar-thumb,
+.workspace-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: color-mix(in srgb, var(--muted-foreground) 45%, transparent);
+}
+
+.workspace-scroll::-webkit-scrollbar-thumb:active {
+  background-color: color-mix(in srgb, var(--muted-foreground) 65%, transparent);
+}
+
+#chat-scroll-container::-webkit-scrollbar {
+  width: 5px;
+}
+
+#chat-scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#chat-scroll-container::-webkit-scrollbar-thumb {
+  background-color: color-mix(in srgb, var(--muted-foreground) 20%, transparent);
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  transition: background-color 0.2s ease;
+}
+
+#chat-scroll-container:hover::-webkit-scrollbar-thumb,
+#chat-scroll-container::-webkit-scrollbar-thumb:hover {
+  background-color: color-mix(in srgb, var(--muted-foreground) 45%, transparent);
+}
+
+#chat-scroll-container::-webkit-scrollbar-thumb:active {
+  background-color: color-mix(in srgb, var(--muted-foreground) 65%, transparent);
+}
+
+.landing-workspace {
+  box-shadow:
+    0 32px 80px rgb(15 23 42 / 0.28),
+    inset 0 1px 0 rgb(255 255 255 / 0.04);
+}
+
+/* Landing: background grid */
+.landing-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--foreground) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--foreground) 6%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 60% 55% at 50% 30%, black 25%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 55% at 50% 30%, black 25%, transparent 75%);
+}
+
+.landing-grid--dark {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.06) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 10%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 10%, transparent 75%);
+}
+
+/* Landing: 3D hero stage */
+.landing-stage {
+  perspective: 2200px;
+  perspective-origin: 50% 10%;
+}
+
+.landing-stage__plane {
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx, 16deg)) rotateY(var(--ry, 0deg));
+  transform-origin: 50% 60%;
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.landing-float {
+  transform: translateZ(var(--z, 80px));
+  transform-style: preserve-3d;
+}
+
+.landing-float__bob {
+  animation: landing-bob 7s ease-in-out infinite;
+}
+
+@keyframes landing-bob {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -10px, 0); }
+}
+
+.landing-floor {
+  position: absolute;
+  left: -25%;
+  right: -25%;
+  top: 72%;
+  height: 70%;
+  z-index: -1;
+  transform: rotateX(78deg);
+  transform-origin: 50% 0%;
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, #6366f1 22%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, #6366f1 22%, transparent) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 50% 70% at 50% 0%, black 10%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 50% 70% at 50% 0%, black 10%, transparent 70%);
+  pointer-events: none;
+}
+
+@media (max-width: 767px) {
+  .landing-stage__plane {
+    transform: rotateX(8deg);
+  }
+}
+
+/* Landing: isometric layer stack */
+.landing-layers {
+  position: relative;
+  display: flex;
+  height: 460px;
+  align-items: center;
+  justify-content: center;
+  perspective: 1800px;
+}
+
+.landing-layers__stack {
+  position: relative;
+  width: 320px;
+  height: 260px;
+  margin-top: 150px;
+  transform-style: preserve-3d;
+  transform: rotateX(58deg) rotateZ(-36deg);
+}
+
+.landing-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--card) 90%, transparent);
+  box-shadow:
+    0 30px 60px -20px rgb(15 23 42 / 0.35),
+    inset 0 1px 0 rgb(255 255 255 / 0.05);
+  transform: translateZ(calc(var(--i) * 80px));
+  transition:
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 400ms ease,
+    border-color 400ms ease;
+}
+
+.landing-layer__label {
+  position: absolute;
+  right: 14px;
+  top: 12px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: var(--background);
+  padding: 2px 8px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--muted-foreground);
+}
+
+.landing-layers:hover .landing-layer,
+.landing-layers__stack.is-focused .landing-layer {
+  transform: translateZ(calc(var(--i) * 110px));
+}
+
+.landing-layers__stack.is-focused .landing-layer {
+  opacity: 0.5;
+}
+
+.landing-layers__stack.is-focused .landing-layer.is-active {
+  opacity: 1;
+  border-color: rgb(99 102 241 / 0.55);
+  transform: translateZ(calc(var(--i) * 110px + 36px));
+}
+
+.landing-layer.is-active .landing-layer__label {
+  color: rgb(99 102 241);
+  border-color: rgb(99 102 241 / 0.4);
+}
+
+@media (max-width: 640px) {
+  .landing-layers {
+    height: 380px;
+  }
+
+  .landing-layers__stack {
+    width: 250px;
+    height: 210px;
+    margin-top: 120px;
+  }
+}
+
+/* Landing: connectors marquee */
+.landing-marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+}
+
+.landing-marquee__track {
+  display: flex;
+  width: max-content;
+  animation: landing-marquee 55s linear infinite;
+}
+
+.landing-marquee__track > * {
+  margin-right: 1rem;
+}
+
+.landing-marquee:hover .landing-marquee__track {
+  animation-play-state: paused;
+}
+
+@keyframes landing-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Landing: cards & scroll reveal */
+.landing-card {
+  transition:
+    transform 400ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 300ms ease;
+}
+
+.landing-card:hover {
+  transform: translateY(-3px);
+}
+
+.landing-reveal {
+  opacity: 0;
+  transition: opacity 700ms ease;
+}
+
+.landing-reveal.is-visible {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-float__bob,
+  .landing-marquee__track {
+    animation: none !important;
+  }
+
+  .landing-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .landing-stage__plane,
+  .landing-layer,
+  .landing-card {
+    transition: none;
+  }
+}
+
+/* Shared chrome for the four workspace tools. */
+.workspace-tool-header {
+  @apply relative z-10 shrink-0 border-b;
+  border-color: color-mix(in srgb, var(--border) 50%, transparent);
+  background-color: color-mix(in srgb, var(--muted) 20%, var(--background));
+}
+
+.workspace-tool-toolbar {
+  @apply flex h-10 min-w-0 shrink-0 items-center gap-1 px-2;
+}
+
+.workspace-tool-icon-button {
+  @apply inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-40;
+}
+
+.workspace-tool-field {
+  @apply flex h-7 min-w-0 items-center gap-2 rounded-md border bg-background px-2 text-xs shadow-none;
+  border-color: color-mix(in srgb, var(--border) 60%, transparent);
+}
+
+.workspace-tool-footer {
+  @apply min-h-7 shrink-0 border-t px-3 py-1.5 text-[10px] text-muted-foreground;
+  border-color: color-mix(in srgb, var(--border) 50%, transparent);
+  background-color: color-mix(in srgb, var(--muted) 20%, var(--background));
+}
+
+.workspace-tool-empty {
+  @apply relative flex min-h-full flex-col items-center justify-center px-6 py-10 text-center;
+}
+
+.workspace-tool-empty-icon {
+  @apply mb-5 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border text-muted-foreground;
+  border-color: color-mix(in srgb, var(--border) 70%, transparent);
+  background-color: color-mix(in srgb, var(--muted) 40%, var(--background));
+}
+
+.workspace-tool-empty-title {
+  @apply text-sm font-semibold tracking-tight text-foreground;
+}
+
+.workspace-tool-empty-description {
+  @apply mt-2 max-w-xs text-xs leading-5 text-muted-foreground;
+}
+
+/* Monaco editor widget overrides */
+.monaco-editor .overflowingContentWidgets {
+  position: fixed !important;
+  z-index: 10005 !important;
+}
+.monaco-editor .suggest-widget,
+.monaco-editor .monaco-hover,
+.monaco-editor .find-widget,
+.monaco-editor .context-view,
+.monaco-editor .parameter-hints-widget {
+  z-index: 10005 !important;
+  max-width: 90vw !important;
+}
+
+/* Terminal cursor visibility in light & dark themes */
+.xterm .xterm-cursor {
+  opacity: 1 !important;
+}
+
+:root:not(.dark) .xterm .xterm-cursor.xterm-cursor-block:not(.xterm-cursor-blink) {
+  background-color: #09090b !important;
+  color: #ffffff !important;
+}
+
+:root:not(.dark) .xterm .xterm-cursor.xterm-cursor-outline {
+  outline: 2px solid #09090b !important;
+  outline-offset: -2px !important;
+}
+
+:root:not(.dark) .xterm .xterm-rows.xterm-focus .xterm-cursor.xterm-cursor-blink.xterm-cursor-block {
+  animation-name: xterm-blink-block-light !important;
+}
+
+@keyframes xterm-blink-block-light {
+  0% {
+    background-color: #09090b;
+    color: #ffffff;
+  }
+  50% {
+    background-color: inherit;
+    color: #09090b;
+  }
+}
+
+.dark .xterm .xterm-cursor.xterm-cursor-block:not(.xterm-cursor-blink) {
+  background-color: #ffffff !important;
+  color: #050508 !important;
+}
+
+.dark .xterm .xterm-cursor.xterm-cursor-outline {
+  outline: 2px solid #ffffff !important;
+  outline-offset: -2px !important;
+}
+
+/* Ensure notifications/toasts always appear above all modals, overlays, and sidebars */
+[data-sonner-toaster] {
+  z-index: 999999999 !important;
+}

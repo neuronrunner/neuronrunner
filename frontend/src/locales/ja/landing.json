@@ -1,0 +1,1160 @@
+{
+  "home": {
+    "newConversation": "新しい会話",
+    "errors": {
+      "createConversationFailed": "会話の作成に失敗しました",
+      "messageFailedTitle": "送信エラー",
+      "messageFailedDescription": "メッセージを送信できませんでした。もう一度お試しください。"
+    },
+    "status": {
+      "vmAttached": "クラウドエージェント · VM接続済み",
+      "ready": "クラウドエージェント待機中"
+    },
+    "prompt": {
+      "codePlaceholder": "クラウドエージェントにコーディングタスクを指示...",
+      "chatPlaceholder": "クラウドエージェントに質問またはタスクを依頼...",
+      "codeMobilePlaceholder": "コーディングタスクを指示...",
+      "chatMobilePlaceholder": "質問またはタスクを依頼..."
+    },
+    "agentSelector": {
+      "ariaLabel": "Select cloud agent",
+      "title": "Cloud Agent",
+      "back": "Back",
+      "readyBadge": "Ready",
+      "connectedBadge": "Connected",
+      "oauthConnectBadge": "OAuth Connect",
+      "reconnect": "Reconnect OAuth",
+      "agents": {
+        "neuron": {
+          "name": "Neuron Agent",
+          "desc": "Built-in cloud agent with NeuronRunner models"
+        },
+        "claude": {
+          "name": "Claude Code",
+          "desc": "Claude Pro / Max subscription"
+        },
+        "codex": {
+          "name": "OpenAI Codex",
+          "desc": "ChatGPT Plus / Pro subscription"
+        },
+        "antigravity": {
+          "name": "Antigravity",
+          "desc": "Google Antigravity / Gemini OAuth"
+        }
+      },
+      "oauth": {
+        "title": "Connect {{agent}}",
+        "noWorkspace": "Select or sign in to a workspace first to connect a subscription.",
+        "adminOnly": "Only workspace owners or admins can connect OAuth subscriptions.",
+        "vmSyncTitle": "OAuth from Sandbox VM",
+        "claudeHint": "Run `claude setup-token` or `claude login` in your VM",
+        "codexHint": "Run `codex login` in your VM or paste ~/.codex/auth.json",
+        "syncButton": "Sync OAuth from VM",
+        "pasteLabel": "Or paste OAuth token / credentials",
+        "connectButton": "Connect & Select",
+        "connectedToast": "{{agent}} connected and selected",
+        "syncFailed": "Could not sync OAuth session from VM. Run login in your VM first or paste a token below.",
+        "saveFailed": "Invalid subscription token or credentials.",
+        "starting": "Opening OAuth login...",
+        "startFailed": "Could not start OAuth login.",
+        "completeFailed": "Invalid or expired authorization code.",
+        "pkceStepTitle": "1. Authorize in Claude tab",
+        "deviceStepTitle": "1. Authorize in OpenAI tab",
+        "openTab": "Open Tab",
+        "deviceCodeDesc": "Enter this one-time code in the opened browser tab. Connection completes automatically:",
+        "waitingAuth": "Waiting for authorization...",
+        "pkceCodeDesc": "After authorizing in the opened tab, paste the code shown there:",
+        "codePlaceholder": "Paste authorization code...",
+        "completeButton": "Complete OAuth",
+        "launchButton": "Open OAuth Login",
+        "showFallback": "Or paste token / sync from VM",
+        "hideFallback": "Hide manual / VM options",
+        "antigravityStepTitle": "1. Authorize in Google tab",
+        "antigravityCodeDesc": "After authorizing with Google, copy the authorization code shown on the Antigravity callback page and paste it here:",
+        "vmDisclaimer": "{{agent}} のセッションと認証情報は隔離された Cloud VM 内にのみ保持され、Neuron Runner のサーバーで読み取られたり保存されたりすることはありません。Neuron Runner はこのプロバイダーと提携していない独立したプラットフォームであり、プロバイダーの利用規約を遵守する責任はお客様のみが負います。",
+        "vmDisclaimerTerms": "利用規約",
+        "vmDialogTitle": "VM ターミナルで {{agent}} を接続",
+        "vmDialogSubtitle": "分離されたクラウド VM 内の公式 CLI から直接サインインします。生成されたログインリンクをクリックして認証してください。",
+        "linkReady": "ログインリンクの準備ができました — クリックしてブラウザで認証してください",
+        "verifyButton": "確認して接続",
+        "showManual": "またはトークン / 認証 JSON を手動で貼り付け",
+        "hideManual": "手動のトークン貼り付けを非表示",
+        "statusPreparing": "VM を準備しています...",
+        "statusNeedsVm": "稼働中の VM がありません",
+        "statusStartingVm": "クラウド VM を起動しています...",
+        "statusConnecting": "ターミナルに接続しています...",
+        "statusReady": "インタラクティブ — リンクをクリックするか、コードを直接貼り付けてください",
+        "statusError": "接続エラー",
+        "noVmTitle": "このワークスペースで実行中のクラウド VM はありません",
+        "noVmDesc": "{{minutes}} 分間の VM を起動すると、分離された環境で公式 CLI が実行され、ログインリンクが表示されます。",
+        "launchVmButton": "VM を起動して接続（{{minutes}} 分）",
+        "wakingVm": "{{name}} を起動しています — 準備ができるとターミナルが自動的に開きます...",
+        "checkingVm": "ワークスペースの VM を確認しています...",
+        "vmBootFailed": "仮想マシンを起動できませんでした。",
+        "vmBootTimeout": "仮想マシンの起動がタイムアウトしました。もう一度お試しください。",
+        "wsTimeout": "ターミナル接続がタイムアウトしました。「再試行」をクリックして再接続してください。",
+        "retryButton": "再試行"
+      }
+    }
+  },
+  "seo": {
+    "landing": {
+      "title": "Neuron Runner — 分離Linux VM＆ライブVNCを備えたクラウドAIエージェント",
+      "description": "すべてのプロジェクトに分離されたLinux VM、ライブVNCデスクトップ、ブラウザ、ターミナルを用意。タスクを任せるだけで、あなたのマシンに触れることなくクラウド上でコードを書き、実行し、出荷します。"
+    },
+    "pricing": {
+      "title": "料金プラン＆コンピュート",
+      "schemaName": "料金プラン — Neuron Runner",
+      "description": "自律型 AI エージェント向けの、透明性の高い秒単位課金のクラウドコンピュートとサブスクリプションプラン。専用 Linux VM と BYOS・BYOK に対応した Free、Plus（$10）、Pro（$25）の各プラン。",
+      "faq1Question": "自律型クラウドエージェントのコンピュート課金はどのように行われますか？",
+      "faq1Answer": "各プランには、LLM トークンと秒単位のクラウド VM 稼働時間（4 コア $0.16/時、6 コア $0.24/時、8 コア $0.32/時、停止中は $0.00/時）に使える月額 USD クォータが含まれます（Free $0.50、Plus $10、Pro $25）。Free と Plus は無料枠モデル 6 種、Pro はすべてのモデルをカバーします。Free と Plus のプレミアムモデルはウォレットから課金されます。",
+      "faq2Question": "自分のAPIキーを持ち込む（BYOK）ことはできますか？",
+      "faq2Answer": "はい！Freeを含むすべてのプランで、ワークスペース設定からAnthropic、OpenAI、DeepSeek、またはカスタムプロバイダーのAPIキーをプラットフォーム手数料0%で追加できます。"
+    }
+  },
+  "hero": {
+    "badge": "自律型クラウドエージェント · 専用Linux VM＆ライブVNC",
+    "titleLine1": "エージェントはクラウドで働く。",
+    "titleLine2": "自分専用のコンピュータで。",
+    "subtitle": "すべてのプロジェクトに分離されたLinux VM、ライブVNCデスクトップ、ブラウザ、ターミナルを用意。タスクを任せるだけで、あなたのマシンに触れることなくクラウド上でコードを書き、実行し、出荷します。",
+    "launchCta": "エージェントを起動",
+    "signInCta": "サインイン",
+    "chipsAriaLabel": "対応ワークフロー",
+    "chips": {
+      "autonomousAgent": "自律型エージェント",
+      "isolatedVm": "分離クラウドVM",
+      "liveVnc": "ライブVNCデスクトップ",
+      "gitAutoPr": "Git＆自動PR",
+      "byos": "自分のサブスクを持ち込む"
+    },
+    "discordCta": "ご質問がありますか？Discordでチームに相談する"
+  },
+  "connectors": {
+    "eyebrow": "普段使っているツールとシームレスに連携"
+  },
+  "workflow": {
+    "eyebrow": "エージェントの仕組み",
+    "title": "タスクを任せるだけ。エージェントがクラウドから出荷します。",
+    "description": "ローカル環境の構築も、依存関係の競合も、タブ間のコピペも不要。すべての工程がエージェント専用のクラウドマシン内で完結します。",
+    "steps": {
+      "assign": {
+        "label": "指示する",
+        "detail": "リポジトリを理解したエージェントに機能開発、バグ修正、GitHub Issueを任せます。"
+      },
+      "execute": {
+        "label": "実行する",
+        "detail": "エージェントがクラウドLinux VM内でコードを編集し、パッケージを導入してビルドします。"
+      },
+      "watchLive": {
+        "label": "ライブで見る",
+        "detail": "ライブVNCデスクトップ、ブラウザ、ターミナルからいつでも様子を見たり介入したりできます。"
+      },
+      "shipPr": {
+        "label": "PR を作成",
+        "detail": "クラウドサンドボックスで検証が完了すると、エージェントがコミットしてプルリクエストを作成します。"
+      }
+    }
+  },
+  "featuresSection": {
+    "eyebrow": "フルスタック・クラウドエージェント",
+    "title": "手と目、そして専用のクラウド環境を持つエージェント",
+    "description": "チャットだけのアシスタントとは異なり、リポジトリを読み、クラウドVMでコードを実行し、ライブVNCデスクトップでUIを確認しながら、MCP連携まで一気通貫でこなします。"
+  },
+  "features": {
+    "cards": {
+      "models": {
+        "eyebrow": "マルチモデル頭脳",
+        "title": "タスクの途中で最先端モデルを切り替え",
+        "description": "同じスレッド内で、計画には深い推論モデル、実装には高速なコーディングモデルを使い分けられます。任意のステップから分岐して別案を試したり、別モデルで再実行したりできます。",
+        "points": [
+          "推論＆コーディングモデル",
+          "分岐＆リトライ",
+          "自分のサブスクを持ち込む"
+        ]
+      },
+      "sandbox": {
+        "eyebrow": "クラウドVM＆ライブVNC",
+        "title": "すべてのエージェントに本物のコンピュータを",
+        "description": "コード片を出力するだけでなく、ライブターミナル、ブラウザ、対話型VNCデスクトップを備えた分離クラウドLinux VM内で実際に実行します。"
+      },
+      "git": {
+        "eyebrow": "自律Git＆PR",
+        "title": "プロンプトからプルリクエストまで",
+        "description": "リポジトリを接続すれば、ブランチ作成、ファイル編集、クラウドでのテスト実行、レビュー可能なプルリクエストの作成までエージェントが自動で行います。"
+      },
+      "connectors": {
+        "eyebrow": "連携機能",
+        "title": "お使いのツールをそのまま接続",
+        "description": "OAuth MCP 連携により、GitHub、Slack、Notion、データベースなど 60 以上のサービスへクラウドエージェントから安全にアクセスできます。"
+      },
+      "memory": {
+        "eyebrow": "永続メモリ",
+        "title": "あなたの開発スタイルを記憶するエージェント",
+        "description": "コーディング規約や技術スタックの好み、プロジェクトの文脈がセッションをまたいで保持されるため、毎回ゼロから説明する必要はありません。"
+      },
+      "team": {
+        "eyebrow": "チームワークスペース",
+        "title": "チーム全体でエージェントを展開",
+        "description": "ロールベースのアクセス制御により、クラウドプロジェクトやサンドボックスマシン、外部連携を組織内で安全に共有できます。"
+      },
+      "byos": {
+        "eyebrow": "Bring Your Own Subscription",
+        "title": "Claude、ChatGPT、Gemini のサブスクリプションをそのまま活用",
+        "description": "Claude Pro / Max、ChatGPT Plus / Pro、または Google Antigravity OAuth サブスクリプションをワンクリックで連携。LLM トークン課金なしで、公式コーディングエージェントをクラウド VM 上で実行できます。",
+        "points": [
+          "Claude Pro / Max",
+          "ChatGPT Plus / Pro",
+          "Google Antigravity",
+          "LLM トークン課金 $0"
+        ]
+      }
+    },
+    "visuals": {
+      "models": {
+        "searchPlaceholder": "モデルを検索...",
+        "reasoningModel": "推論モデル",
+        "reasoningTag": "思考 · 高",
+        "fastModel": "高速チャットモデル",
+        "fastTag": "低遅延",
+        "codingModel": "コーディング＆エージェントモデル",
+        "codingTag": "ツール利用",
+        "byokModel": "自分のプロバイダーキー",
+        "byokTag": "BYOK",
+        "userMessage": "両方のアプローチを比較して",
+        "thoughtDuration": "6秒間思考",
+        "assistantReply": "案Bのほうがスケーラブルです。理由は…",
+        "branchAction": "分岐",
+        "retryAction": "別のモデルで再試行"
+      },
+      "sandbox": {
+        "running": "稼働中",
+        "vcpu": "vCPU",
+        "ram": "RAM",
+        "disk": "ディスク",
+        "liveVnc": "ライブVNCデスクトップ",
+        "guiPort": ":5901 GUI",
+        "desktopAndBrowser": "Linuxデスクトップ＆ブラウザ",
+        "interactive": "対話型"
+      },
+      "git": {
+        "prTitle": "#42 ローンチページを追加",
+        "diffSummary": "+134 −12 · 3ファイル",
+        "ready": "準備完了",
+        "issueTitle": "Issue #18 · リサイズ時にチャートがちらつく"
+      },
+      "connectors": {
+        "badge": "MCPコネクタ"
+      },
+      "memory": {
+        "header": "記憶している好み",
+        "items": [
+          "TypeScriptを優先",
+          "Vite + Tailwindを使用",
+          "簡潔な回答を好む",
+          "プロジェクト: product-launch"
+        ]
+      },
+      "team": {
+        "roles": {
+          "owner": "オーナー",
+          "admin": "管理者",
+          "member": "メンバー"
+        },
+        "inviteByEmail": "+ メールで招待"
+      },
+      "byos": {
+        "selectorLabel": "クラウドエージェント",
+        "claudeName": "Claude Code",
+        "claudePlan": "Claude Pro / Max",
+        "codexName": "OpenAI Codex",
+        "codexPlan": "ChatGPT Plus / Pro",
+        "antigravityName": "Antigravity",
+        "antigravityPlan": "Google / Gemini OAuth",
+        "connectedBadge": "連携済み",
+        "oauthBadge": "OAuth",
+        "vmCardTitle": "クラウド VM CLI ランナー",
+        "vmCardDetail": "ワンクリック OAuth · VM から同期",
+        "zeroFeeLabel": "LLM 上乗せ $0.00",
+        "zeroFeeTitle": "LLM トークン追加料金なし",
+        "zeroFeeSubtitle": "お持ちのサブスクリプションで直接動作"
+      }
+    }
+  },
+  "architecture": {
+    "eyebrow": "クラウドエージェント・アーキテクチャ",
+    "title": "3 つのクラウドレイヤーが一体となって動作",
+    "description": "エージェントの頭脳、プロジェクトワークスペース、専用Linux VMがクラウド上で常に同期します。各層にホバーして動作を確認してください。",
+    "floatCards": {
+      "vmAttachedTitle": "クラウドエージェント · VM接続済み",
+      "vmAttachedSubtitle": "lightning-atlas · 4 vCPU",
+      "testsPassedTitle": "ターミナル 2 · 18件のテスト成功",
+      "vncTitle": "VNCデスクトップ上のエージェント",
+      "vncSubtitle": "lightning-atlas · :5901 GUI",
+      "prOpenedTitle": "エージェントがPR #42を作成"
+    },
+    "layers": {
+      "sandbox": {
+        "title": "クラウドサンドボックスVM＆VNC",
+        "eyebrow": "実行環境＆GUI",
+        "description": "プロジェクト専用のクラウドLinuxマシン。エージェントがターミナル、ブラウザ、対話型VNCデスクトップを実行します。"
+      },
+      "workspace": {
+        "title": "クラウドワークスペース",
+        "eyebrow": "ファイル＆Git",
+        "description": "リポジトリ、コードエディタ、Gitブランチ、プルリクエストがエージェントの作業に合わせてリアルタイムで同期されます。"
+      },
+      "conversation": {
+        "title": "自律型エージェント",
+        "eyebrow": "モデル＆メモリ",
+        "description": "最先端の推論モデルを搭載。タスクの計画、ファイル編集、クラウドコマンド実行を行い、あなたの好みも記憶します。"
+      }
+    },
+    "plates": {
+      "terminalLabel": "ターミナル 2",
+      "testsPassed": "✓ 18件のテストに合格 (1.42s)",
+      "vncLive": "VNC · :5901 ライブ",
+      "specs": "4 vCPU · 12 GB RAM",
+      "vmAttached": "VM接続済み",
+      "promptPlaceholder": "クラウドエージェントにコーディングタスクを指示...",
+      "modelSummary": "Kimi K3.1 Pro · 中"
+    }
+  },
+  "trust": {
+    "eyebrow": "本格的なエンジニアリングのために",
+    "title": "ローカルリスクゼロ、クラウドで完全制御",
+    "items": {
+      "isolated": {
+        "title": "100% クラウド分離",
+        "text": "すべてのエージェントはプロジェクト専用のクラウドVM内で実行されるため、未検証のコードや重いビルドがローカルPCに触れることはありません。"
+      },
+      "liveVnc": {
+        "title": "ライブVNC＆ブラウザ",
+        "text": "エージェントがLinux GUIやWebアプリを操作する様子をリアルタイムで視聴でき、ワンクリックで操作を引き継げます。"
+      },
+      "byok": {
+        "title": "自分のサブスクとキー",
+        "text": "Claude Pro / Max、ChatGPT Plus / Pro、Google Antigravity を OAuth 連携するか、独自のプロバイダー API キーを 0% マークアップで利用できます。"
+      },
+      "roles": {
+        "title": "ロール＆アクセス管理",
+        "text": "ワークスペースオーナーが、エージェントの起動権限やクラウドマシン・連携機能へのアクセスを細かく管理できます。"
+      }
+    }
+  },
+  "cta": {
+    "title": "数秒でクラウドエージェントを起動。",
+    "description": "リポジトリを接続し、最先端モデルを選ぶだけ。あとはエージェントが専用のクラウドマシンからビルド・テスト・出荷まで実行します。",
+    "launchButton": "クラウドエージェントを起動",
+    "pricingButton": "詳しい料金プランを見る",
+    "discordButton": "質問がありますか？Discordでファウンダーと直接チャット"
+  },
+  "footer": {
+    "pricing": "料金",
+    "integrations": "連携",
+    "docs": "ドキュメント",
+    "terms": "利用規約",
+    "privacy": "プライバシー"
+  },
+  "preview": {
+    "rootAriaLabel": "Neuron Runner ワークスペースのプレビュー",
+    "toolsGroupAriaLabel": "ワークスペースツール",
+    "mobileToolsGroupAriaLabel": "モバイルワークスペースツール",
+    "tools": {
+      "files": "ファイル",
+      "git": "Git",
+      "browser": "ブラウザ",
+      "desktop": "デスクトップ",
+      "terminal": "ターミナル"
+    },
+    "sidebar": {
+      "newChat": "新しいチャット",
+      "issues": "イシュー",
+      "pullRequests": "プルリクエスト",
+      "integrations": "連携",
+      "projectsHeading": "プロジェクト ({{count}})",
+      "noConversations": "まだ会話はありません",
+      "historyHeading": "履歴 ({{count}})",
+      "historyItems": [
+        "ライブ分析付きローンチページ",
+        "料金ページのコピー改善",
+        "認証ミドルウェアのリファクタリング",
+        "Chrome E2E ビジュアル確認",
+        "pgvector データベーススキーマ",
+        "本番用 Docker Compose 設定"
+      ],
+      "workspaceSummary": "{{owner}}のワークスペース · {{balance}}"
+    },
+    "chat": {
+      "newConversation": "新しい会話",
+      "vmAttached": "クラウドエージェント · VM接続済み",
+      "promptPlaceholder": "クラウドエージェントにコーディングタスクを指示...",
+      "reasoningLevel": "中",
+      "suggestions": [
+        {
+          "label": "技術スタックを分析",
+          "prompt": "ルートディレクトリを確認し、すべての設定ファイル（package.json、pyproject.tomlなど）を一覧表示して..."
+        },
+        {
+          "label": "エントリポイントを特定",
+          "prompt": "アプリケーションのメインエントリファイル（index.js、main.py、App.tsxなど）を特定し起動処理を追跡して..."
+        },
+        {
+          "label": "プロジェクト構造を確認",
+          "prompt": "/workspace/neuronrunner パスの詳細なディレクトリツリーを生成して主要モジュールを把握して..."
+        },
+        {
+          "label": "テストを実行",
+          "prompt": "指定のテストランナー設定を見つけて、テストスイートを実行するコマンドを実行して..."
+        },
+        {
+          "label": "環境変数を確認",
+          "prompt": "設定ファイル（.env、config.yamlなど）を特定し、必要な環境変数キーを一覧表示して..."
+        }
+      ]
+    },
+    "terminal": {
+      "tabTitle": "ターミナル {{number}}",
+      "passBadge": "PASS",
+      "testsPassed": "✓ 18件のテストに合格 (1.42s)"
+    },
+    "git": {
+      "changesCount": "{{count}}件の変更",
+      "changesHeading": "変更点",
+      "commitMessage": "ライブ分析ダッシュボード付きローンチページを追加",
+      "commitButton": "コミット"
+    },
+    "browser": {
+      "dashboardTitle": "ローンチダッシュボード",
+      "live": "ライブ",
+      "visitors": "訪問者",
+      "signups": "登録数",
+      "conversion": "CVR",
+      "chartTitle": "登録数 · 過去8日間"
+    },
+    "desktop": {
+      "windowTitle": "Chromium — E2Eランナー",
+      "checkTitle": "ローンチページのビジュアル確認",
+      "checksPassed": "4 / 4 合格",
+      "checkCanvas": "✓ チャート描画を確認",
+      "checkResponsive": "✓ レスポンシブ表示を確認",
+      "linuxGui": "Linux GUI"
+    },
+    "mobile": {
+      "title": "ライブ分析付きローンチページ",
+      "connectedMachineTitle": "接続マシン: lightning-atlas (稼働中)",
+      "toolsButton": "ツール",
+      "userPrompt": "ライブ分析付きのローンチページを作成し、テストを実行してPRを作成してください。",
+      "hideResponseDetails": "応答の詳細を隠す",
+      "showResponseDetails": "応答の詳細を表示",
+      "responseDetails": "応答の詳細",
+      "stepsCount": "{{count}}ステップ",
+      "steps": [
+        {
+          "title": "3ファイルを編集",
+          "detail": "src/app/page.tsx, src/lib/analytics.ts, src/components/chart.tsx"
+        },
+        {
+          "title": "ターミナル 2 · npm run test",
+          "detail": "root@neuronrunner:/workspace/neuronrunner · ✓ 18件のテストに合格"
+        },
+        {
+          "title": "ライブVNCデスクトップで確認済み",
+          "detail": "lightning-atlas · :5901 GUI · 4 / 4 ビジュアル確認に合格"
+        },
+        {
+          "title": "PR #42を作成",
+          "detail": "neuronrunner · feat/launch-page → main"
+        }
+      ],
+      "assistantSummary1": "<branch>feat/launch-page</branch> でローンチ分析ダッシュボードを構築し、ライブVNCデスクトップでレイアウトを検証して、<vm>lightning-atlas</vm> 上で全 <passed>18件のテストが合格</passed> したことを確認しました。",
+      "assistantSummary2": "プルリクエスト <pr>#42</pr> のレビュー準備が整いました。次はどのようなタスクを進めましょうか？",
+      "askPlaceholder": "何でも質問してください...",
+      "closeToolsAriaLabel": "ツールパネルを閉じる",
+      "vmFooterSpec": "lightning-atlas · 4 vCPU",
+      "backToChat": "チャットに戻る"
+    },
+    "vmDropdown": {
+      "machines": "マシン",
+      "activeCount": "{{count}} 稼働中",
+      "running": "稼働中",
+      "stopped": "停止中",
+      "cpu": "CPU",
+      "ram": "RAM"
+    }
+  },
+  "pricingPage": {
+    "hero": {
+      "badge": "予測可能なプラン · 透明なトークン単価 · 停止中VMは$0.00",
+      "titleLine1": "成長に合わせて拡張できるシンプルなプラン。",
+      "titleLine2": "透明性の高いトークン課金。",
+      "subtitle": "<s1>毎月 $0.50 分の無料 LLM・クラウド VM 利用</s1>で無料で始め、<s2>Plus（$10）または Pro（$25）</s2>にアップグレードすると、お持ちの Claude Code・Codex・Antigravity サブスクリプションで専用 Linux VM を利用できます。プラットフォーム手数料 0% で独自の API キーを持ち込むこともできます。Pro はクォータにすべてのモデルを含み、Free と Plus ではプレミアムモデルは従量課金です。"
+    },
+    "planLabels": {
+      "llmAllowance": "利用枠 (LLM + VM)",
+      "cloudSandboxVm": "クラウドサンドボックスVM"
+    },
+    "plans": {
+      "free": {
+        "name": "Free",
+        "period": "/ 月",
+        "badge": "ずっと無料",
+        "tagline": "高速な無料枠モデル、BYOK、入門用クラウドVMで自律コーディングを体験。",
+        "llmAllowance": "$0.50 / 月",
+        "vcpuQuota": "最大 2 vCPU時間 / 月",
+        "vcpuSubnote": "無料LLM＆4コアVMに対応 ($0.16/時)",
+        "highlights": [
+          "無料LLM 8種＋クラウドVM共通 <strong>月$0.50利用枠</strong>",
+          "<strong>4コア (6 GB RAM)</strong> LinuxサンドボックスVM利用可能",
+          "連続VMセッション最大 <strong>20分</strong>",
+          "<strong>ご自身のサブスクリプション（BYOS）</strong>または <strong>API キー（BYOK）</strong>を手数料 0% で持ち込めます"
+        ],
+        "ctaLabel": "無料で始める"
+      },
+      "plus": {
+        "name": "Plus",
+        "period": "/ 月",
+        "badge": "一番人気",
+        "tagline": "ご自身のコーディングエージェント向けの専用クラウド Linux VM: ご自身のサブスクリプション（BYOS）または API キーを持ち込めます。",
+        "llmAllowance": "$10.00 / 月",
+        "vcpuQuota": "最大 200 vCPU 時間 / 月",
+        "vcpuSubnote": "4/6/8 コア VM と、無料枠モデル向け $2 の LLM 利用枠を含みます",
+        "highlights": [
+          "クラウド VM（<strong>約 200 vCPU 時間</strong>）向けの<strong>月額 $10.00 クォータ</strong> + 無料枠モデル向けの <strong>$2 LLM 利用枠</strong>",
+          "<strong>ご自身の Claude Code・Codex・Antigravity サブスクリプション</strong>（BYOS）または API キー（BYOK）を持ち込めます",
+          "最大 <strong>4コア (12 GB RAM)</strong> VM + ライブVNCデスクトップ",
+          "<strong>60分セッション</strong>＆2つの永続VMスナップショット"
+        ],
+        "ctaLabel": "Plusにアップグレード"
+      },
+      "pro": {
+        "name": "Pro",
+        "period": "/ 月",
+        "badge": "4倍のパワー",
+        "tagline": "負荷の高いフルスタック開発向けに、VM 時間・スナップショットを増やし、最大 4 名まで利用できます。",
+        "llmAllowance": "$25.00 / 月",
+        "vcpuQuota": "最大 550 vCPU 時間 / 月",
+        "vcpuSubnote": "無料枠 LLM と 4/6/8 コア VM の共有クォータ",
+        "highlights": [
+          "クラウド VM（<strong>約 550 vCPU 時間</strong>）+ 無料枠 LLM 向けの<strong>月額 $25.00 共有クォータ</strong>",
+          "プレミアムモデルはプランのクォータではなく、<strong>ウォレット</strong>から従量課金されます",
+          "最大 <strong>4人のメンバー</strong> · 最大4台のクラウドVM",
+          "<strong>60分セッション</strong>＆10個の永続VMスナップショット"
+        ],
+        "ctaLabel": "Proにアップグレード"
+      },
+      "team": {
+        "name": "Team",
+        "period": "/ 月",
+        "badge": "チーム向け",
+        "tagline": "最大 20 メンバー & 20 台のクラウド VM を備えた専用チームワークスペース。",
+        "llmAllowance": "$200.00 / 月",
+        "vcpuQuota": "最大 400 vCPU時間 / 月",
+        "vcpuSubnote": "チーム共有16モデル＆VM ($0.16–$0.32/時)",
+        "highlights": [
+          "チーム共有 16モデル＋VM共通 <strong>月$200.00枠</strong>",
+          "クラウドVMはプールから消費（<strong>$0.16–$0.32/時</strong> · 停止時 $0.00）",
+          "最大 <strong>20人のメンバー</strong>＆ロール権限管理",
+          "最大 <strong>20台のクラウドVM</strong>＆20個の永続スナップショット",
+          "<strong>共有追加利用ウォレット</strong>＆チーム一括請求書"
+        ],
+        "ctaLabel": "Teamプランを始める"
+      }
+    },
+    "mechanics": {
+      "wallet": {
+        "title": "追加利用ウォレット（$10〜チャージ）",
+        "description": "まずプランのクォータが常に使われます。サブスクリプションでウォレットに現金は追加されません。クォータ超過、Free・Plus のプレミアムモデル、または BYOS/BYOK での単独従量課金クラウド VM コンピュート（$0.16–$0.32/時）にはチャージしてください（最低 <s1>$10.00</s1>、手数料 0%）。"
+      },
+      "byok": {
+        "title": "自分のAPIキーを持ち込む（手数料0%）",
+        "description": "Anthropic・OpenAI・DeepSeek・カスタムキーを <s1>$0.00 プラットフォーム上乗せなし</s1> で接続できます（プラン枠を消費しません；Freeプランの残高$0.00時は有料モデルにチャージまたは有料プランが必要です）。"
+      },
+      "byos": {
+        "title": "自分のサブスクリプションを持ち込む (BYOS)",
+        "description": "Claude Pro/Max、ChatGPT Plus/Pro、または Antigravity を <s1>LLM トークン料金 $0.00</s1> で接続。エージェントはプランの VM 時間または $10 からのコンピュート専用 Top-Up でクラウド VM 上で動作します。"
+      }
+    },
+    "breakdown": {
+      "eyebrow": "透明な内訳",
+      "title": "モデル単価・クラウドVM・プラン仕様を確認",
+      "tabs": {
+        "models": "AIモデル単価 ({{count}})",
+        "vms": "クラウドサンドボックスVM＆VNC",
+        "compare": "プラン比較"
+      }
+    },
+    "models": {
+      "filters": {
+        "all": "すべてのモデル ({{count}})",
+        "free": "Free枠対象 ({{count}})",
+        "paid": "プレミアム（{{count}}）"
+      },
+      "searchPlaceholder": "モデル名やプロバイダーを検索…",
+      "columns": {
+        "model": "モデル",
+        "context": "コンテキスト",
+        "planAccess": "利用可能プラン",
+        "input": "入力 / 1M",
+        "output": "出力 / 1M",
+        "cacheRead": "キャッシュ読込 / 1M"
+      },
+      "accessBadges": {
+        "free": "Free + 全プラン",
+        "paid": "Pro · またはウォレット"
+      },
+      "empty": "検索条件に一致するモデルはありません。"
+    },
+    "vms": {
+      "vcpuHrsUnit": "{{cpu}} vCPU時間",
+      "perActiveHour": "/ 稼働時間",
+      "overageRate": "プラン枠から消費 · 停止中 $0.00",
+      "cpuLabel": "CPU",
+      "cpuValue": "{{cpu}} vCPU",
+      "memoryLabel": "メモリ",
+      "memoryValue": "{{memory}} GB",
+      "nvmeLabel": "NVMe",
+      "nvmeValue": "{{disk}} GB",
+      "includedIn": "対象プラン",
+      "bestForLabel": "最適な用途:",
+      "standardTitle": "すべてのクラウドサンドボックスマシンに標準搭載",
+      "standardMeta": "秒単位計測 · 停止時は$0.00",
+      "tiers": {
+        "tier_1": {
+          "label": "4コア",
+          "badge": "スタンダード · tier_1",
+          "tagline": "日常の開発、スクリプト実行、軽量なWebプレビューに。",
+          "planAccess": "Free、Plus、Pro",
+          "highlights": [
+            "4コア (4 vCPU) 専用クラウドコンピュート",
+            "8 GB 高速DDRメモリ · 32 GB NVMeディスク",
+            "料金: $0.16 / 稼働時間（停止中 $0.00）",
+            "Plus: 最大 50 時間/月 · Pro: 最大 137 時間/月（含まれる vCPU 時間）"
+          ],
+          "bestFor": "フロントエンド、API、軽量スクリプト"
+        },
+        "tier_2": {
+          "label": "6コア",
+          "badge": "一番人気 · tier_2",
+          "tagline": "フルスタック開発、Dockerサービス、ライブVNCテストに。",
+          "planAccess": "Plus、Pro",
+          "highlights": [
+            "4コア (6 vCPU) マルチコアビルドエンジン",
+            "12 GB DDRメモリ · 32 GB NVMeディスク",
+            "料金: $0.24 / 稼働時間（停止中 $0.00）",
+            "Plus: 最大 33 時間/月 · Pro: 最大 92 時間/月（含まれる vCPU 時間）"
+          ],
+          "bestFor": "Next.js・Vite・Dockerのフルスタック構成"
+        },
+        "tier_3": {
+          "label": "8コア",
+          "badge": "パワー · tier_3",
+          "tagline": "重いコンパイル、大規模モノレポ、並列テストスイートに。",
+          "planAccess": "Plus、Pro",
+          "highlights": [
+            "8コア (8 vCPU) 高並列コンピュート",
+            "16 GB 大容量DDRメモリ · 64 GB NVMeディスク",
+            "料金: $0.32 / 稼働時間（停止中 $0.00）",
+            "Plus: 最大 25 時間/月 · Pro: 最大 69 時間/月（含まれる vCPU 時間）"
+          ],
+          "bestFor": "モノレポ、Rust/Goコンパイラ、E2Eテスト"
+        }
+      },
+      "includedCapabilities": [
+        {
+          "title": "Root Linux VM",
+          "description": "隔離されたクラウドマシン内で、パスワードなしsudo、Docker、apt、npm、pipなどを自由に利用可能。"
+        },
+        {
+          "title": "ライブVNCデスクトップ (:5901)",
+          "description": "本物のLinux GUIとChromiumブラウザを、追加ライセンス費用なしでワークスペースへ直接ストリーミング。"
+        },
+        {
+          "title": "即時ポートプレビュー",
+          "description": "開発サーバー（3000、5173、8000）をアプリ内のライブHTTPSリバースプロキシで即座にプレビュー。"
+        },
+        {
+          "title": "アイドル自動停止ガード",
+          "description": "2〜60分で設定可能な無操作タイマーにより、アイドル状態のVMを自動停止しコストを$0.00に抑えます。"
+        }
+      ]
+    },
+    "compare": {
+      "columns": {
+        "feature": "機能",
+        "free": "Free",
+        "plus": "Plus（$10）",
+        "pro": "Pro（$25）",
+        "team": "Team ($200)"
+      },
+      "footnote": "* Freeプランはアカウント認証後に4コアのクラウドVM（$0.50枠から $0.16/時）を利用可能になります。",
+      "rows": [
+        {
+          "feature": "月額料金",
+          "free": "$0 / 月",
+          "plus": "$10 / 月",
+          "pro": "$25 / 月",
+          "team": "$200 / 月"
+        },
+        {
+          "feature": "月間利用枠 (LLM + VM)",
+          "free": "$0.50 / 月",
+          "plus": "$10.00 / 月",
+          "pro": "$25.00 / 月",
+          "team": "$200.00 / 月"
+        },
+        {
+          "feature": "利用可能モデル",
+          "free": "8つの無料枠モデル",
+          "plus": "無料枠モデル 6 種（プレミアムはウォレット経由）",
+          "pro": "すべてのモデル（共有クォータ）",
+          "team": "全16の最先端モデル"
+        },
+        {
+          "feature": "クラウドVM単価（利用枠から）",
+          "free": "$0.16 / 時*",
+          "plus": "$0.16–$0.32 / 時",
+          "pro": "$0.16–$0.32 / 時",
+          "team": "$0.16–$0.32 / 時"
+        },
+        {
+          "feature": "含まれる VM コンピュート",
+          "free": "最大 1 時間 / 月",
+          "plus": "最大 200 vCPU 時間 / 月",
+          "pro": "最大 550 vCPU 時間 / 月",
+          "team": "最大 1,666 時間 / 月"
+        },
+        {
+          "feature": "最大VMハードウェア",
+          "free": "4コア · 6 GB RAM",
+          "plus": "4コア · 12 GB RAM",
+          "pro": "6コア · 16 GB RAM",
+          "team": "6コア · 16 GB RAM"
+        },
+        {
+          "feature": "最大クラウドVM数",
+          "free": "1台",
+          "plus": "1台",
+          "pro": "4台",
+          "team": "20台"
+        },
+        {
+          "feature": "ワークスペースメンバー",
+          "free": "1名",
+          "plus": "1名（チームなし）",
+          "pro": "最大4名",
+          "team": "最大20名"
+        },
+        {
+          "feature": "永続VMスナップショット",
+          "free": "—",
+          "plus": "2個",
+          "pro": "10個",
+          "team": "20個"
+        },
+        {
+          "feature": "1回の最大VMセッション時間",
+          "free": "20分",
+          "plus": "60分",
+          "pro": "60分",
+          "team": "60分"
+        },
+        {
+          "feature": "自分のキー持ち込み (BYOK)",
+          "free": "手数料0%",
+          "plus": "手数料0%",
+          "pro": "手数料0%",
+          "team": "手数料0%"
+        },
+        {
+          "feature": "追加利用チャージ",
+          "free": "最低 $10.00（手数料 0%）",
+          "plus": "最低 $10.00（手数料 0%）",
+          "pro": "最低 $10.00（手数料 0%）",
+          "team": "最低 $10.00（共有ウォレット、手数料 0%）"
+        },
+        {
+          "feature": "消費優先順と共有プール",
+          "free": "枠を優先 · 1名",
+          "plus": "枠を優先 · 1名",
+          "pro": "枠を優先 · 共有プール",
+          "team": "枠を優先 · 共有プール"
+        }
+      ]
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "よくある質問",
+      "description": "統合された月間利用枠、秒単位のVM料金、追加利用チャージについて知っておくべきすべての情報。",
+      "docsLink": "ドキュメントを読む",
+      "items": [
+        {
+          "question": "統合された月間利用枠はどのように機能しますか？",
+          "answer": "Plus（$10）と Pro（$25）には、クラウド VM 稼働時間と LLM トークンに使える月額 USD クォータが含まれます（Plus $10、Pro $25、Free は $0.50）。Pro はすべてのモデルをカバーし、Free と Plus は無料枠モデル 6 種をカバーしてプレミアムモデルはウォレットから課金します。"
+        },
+        {
+          "question": "クラウドサンドボックスVMはどのように課金されますか？",
+          "answer": "稼働中のVMは4コア $0.16/時、6コア $0.24/時、8コア $0.32/時の秒単位メーターで月間プラン枠からUSDで差し引かれます。停止中のVMは $0.00/時 です。"
+        },
+        {
+          "question": "FreeプランでクラウドサンドボックスVMを利用するにはどうすればよいですか？",
+          "answer": "Freeプランには無料モデルと4コアVM（$0.16/時）の両方に使える月$0.50枠が含まれます。設定からアカウント認証を完了するとVMを起動できます。"
+        },
+        {
+          "question": "プランの利用枠を超えた場合はどうなりますか？",
+          "answer": "月間プラン利用枠が常に優先して消費されます。サブスクリプションはウォレット残高を追加するのではなくプラン利用枠を解放し、プラン利用枠が残っている限りウォレット残高が$0.00でも稼働中のVMは停止しません。利用枠が0になると、超過分のみ追加利用ウォレット（最低$10.00チャージ）から差し引かれます。"
+        },
+        {
+          "question": "追加チャージの最低額が $10.00 なのはなぜですか？",
+          "answer": "最低チャージ額を $10.00 にすることで決済処理コストを抑え、お支払い時に追加手数料を請求せずに済みます。お支払い額の 100% が期限なしのワークスペース残高に直接付与されます。"
+        },
+        {
+          "question": "自分のAPIキー（BYOK）を引き続き使えますか？",
+          "answer": "はい。ワークスペース設定で Anthropic、OpenAI、DeepSeek、またはカスタムプロバイダーのキーを、プラットフォームの上乗せ 0% で追加できます。BYOK リクエストはプランの LLM 利用枠を消費しません。Free と Plus ではプレミアムモデルにウォレット残高が必要で、Pro ではクォータで賄われます。"
+        }
+      ]
+    },
+    "bottomCta": {
+      "title": "今日から無料で開始。成長に合わせてアップグレード。",
+      "description": "Free プランで毎月 $0.50 分の無料枠 LLM・クラウド VM を利用するか、Plus（$10）や Pro（$25）でご自身のエージェントサブスクリプションと専用 Linux VM を利用できます。",
+      "managePlan": "ワークスペースプランを管理",
+      "getStarted": "無料で始める",
+      "signIn": "サインイン"
+    },
+    "intervalToggle": {
+      "monthly": "月払い",
+      "yearly": "年払い",
+      "saveBadge": "2ヶ月分無料",
+      "perYear": "/ 年"
+    },
+    "specs": {
+      "labels": {
+        "quota": "月額クォータ",
+        "vcpu": "含まれる VM コンピュート",
+        "vm": "最大 VM サイズ",
+        "session": "セッション時間",
+        "snapshots": "スナップショット",
+        "members": "メンバー",
+        "llm": "LLM モデル",
+        "byo": "BYOS / BYOK"
+      },
+      "vcpuValue": "{{hours}} vCPU 時間",
+      "approxMinutes": "≈ {{cores}} コア VM で {{minutes}} 分",
+      "approxHours": "≈ {{cores}} コア VM で {{hours}} 時間",
+      "vmSize": "{{cores}} コア · {{ram}} GB RAM",
+      "minutes": "{{minutes}} 分",
+      "none": "なし",
+      "llm": {
+        "free": "無料枠モデル 6 種",
+        "plus": "無料枠 6 種 · 月 $2 まで",
+        "pro": "すべてのモデル · 共有プール"
+      },
+      "included": "含まれる",
+      "freeFootnote": "* Free プランで VM を使うには標準のアカウント認証が必要です。",
+      "limits": {
+        "title": "クォータを使い切るとどうなりますか？",
+        "p1": "クォータは請求サイクルごとにリセットされ、無制限ではありません。",
+        "p2": "VM とモデルを使い続けるにはウォレットにチャージするか、次のサイクルまでお待ちください。",
+        "p3": "Free と Plus ではプレミアムモデルはウォレットから課金されます。Pro ではクォータで賄われます。"
+      }
+    }
+  },
+  "pricingSection": {
+    "principles": {
+      "p1Eyebrow": "01 · 柔軟なプラン + ウォレット",
+      "p1Value": "$0 – $25",
+      "p1Unit": "/ 月または $10+ チャージ",
+      "p1Desc": "Free（月 $0.50 の LLM + VM クォータ）から始めて、Plus（$10）または Pro（月 $25）にアップグレードし、追加クレジットはいつでもチャージできます。",
+      "p1Footer": "✓ Free、Plus、Pro プラン",
+      "p2Eyebrow": "02 · 使った分だけ課金",
+      "p2Value": "精密計測",
+      "p2Unit": "秒＆トークン単位",
+      "p2Desc": "VM は稼働中のみ $0.16/時間〜で課金され、停止中は $0.00。トークンキャッシュによりプロンプト費用を最大約 80% 節約できます。",
+      "p2Footer": "秒単位 VM 計測 + コンテキストキャッシュ",
+      "p3Eyebrow": "03 · 予想外の請求ゼロ",
+      "p3Value": "$0.00",
+      "p3Unit": "残高下限（超過なし）",
+      "p3Desc": "残高が$0.00になると即座に実行を一時停止。超過請求や月末の想定外の請求はなく、PDF領収書も即時発行されます。",
+      "p3Footer": "VM・メンバーごとの詳細な利用明細"
+    },
+    "miniPlans": {
+      "popular": "人気",
+      "free": {
+        "name": "Free",
+        "period": "/月",
+        "quota": "月$0.50 無料枠 (LLM + VM)",
+        "vm": "4コア クラウドVM ($0.16/時)",
+        "note": "VM実行解放には標準アカウント認証が必要"
+      },
+      "plus": {
+        "name": "Plus",
+        "period": "/月",
+        "quota": "月額 $10.00 クォータ（VM + $2 の無料枠 LLM）",
+        "vm": "最大 8 コアの VM · 約 200 vCPU 時間",
+        "note": "BYOS/BYOK · クラウド VM 1 台 · 個人利用"
+      },
+      "pro": {
+        "name": "Pro",
+        "period": "/月",
+        "quota": "月額 $25.00 共有クォータ（VM + すべての LLM）",
+        "vm": "最大 8 コアの VM · 約 550 vCPU 時間",
+        "note": "最大 4 名 · BYOS/BYOK"
+      },
+      "team": {
+        "name": "Team",
+        "period": "/月",
+        "quota": "月$200.00 チーム共有枠",
+        "vm": "最大20 VM ($0.16–$0.32/時)",
+        "note": "最大20メンバー + 共有ウォレット"
+      },
+      "yearlyPeriod": "/年"
+    },
+    "nav": {
+      "eyebrow": "透明性の高い料金体系",
+      "title": "確認したい項目を選択してください",
+      "tabs": {
+        "compute": "サンドボックスVM＆VNC",
+        "tokens": "トークン＆BYOK",
+        "calculator": "料金シミュレーター",
+        "compare": "サブスクとの比較"
+      }
+    },
+    "compute": {
+      "perHour": "/ 時間",
+      "vcpuUnit": "{{cpu}} vCPU",
+      "ramUnit": "{{memory}} GB RAM",
+      "diskUnit": "{{disk}} GB ディスク",
+      "tierHighlightsLabel": "プランの主な特徴:",
+      "bestForLabel": "最適な用途: {{bestFor}}",
+      "tiers": {
+        "tier_1": {
+          "label": "4コア",
+          "tagline": "日常の開発と軽量Webプレビュー",
+          "badge": "スタンダード",
+          "perMinute": "$0.0027 / 分",
+          "highlights": [
+            "4コア (2 vCPU) コンピュートエンジン",
+            "6 GB DDR RAM • 32 GB NVMe ディスク",
+            "高速コールドスタート起動",
+            "軽量フロントエンド、API、スクリプト",
+            "時間あたりの消費: $0.16 / 時間"
+          ],
+          "bestFor": "フロントエンド、単一スクリプト、高速デバッグ",
+          "buttonText": "4コアで始める"
+        },
+        "tier_2": {
+          "label": "4コア",
+          "tagline": "フルスタック開発、ビルド＆テストスイート",
+          "badge": "一番人気",
+          "perMinute": "$0.0040 / 分",
+          "highlights": [
+            "4コア (4 vCPU) ビルドエンジン",
+            "12 GB 高速DDRメモリ • 32 GB NVMe ディスク",
+            "Next.js、Vite、バックエンド一式に対応",
+            "滑らかなライブVNCデスクトップ＆ブラウザ自動化",
+            "時間あたりの消費: $0.24 / 時間"
+          ],
+          "bestFor": "フルスタックアプリ、Docker、日々の開発",
+          "buttonText": "4コアを起動"
+        },
+        "tier_3": {
+          "label": "6コア",
+          "tagline": "重いコンパイル、モノレポ＆並列テスト",
+          "badge": "パワーティア",
+          "perMinute": "$0.0053 / 分",
+          "highlights": [
+            "6コア (6 vCPU) 高並列コンピュート",
+            "16 GB 大容量DDRメモリ • 64 GB NVMe ディスク",
+            "大規模モノレポ＆並列コンパイラ",
+            "複雑なマルチサービス＆DBテスト",
+            "時間あたりの消費: $0.32 / 時間"
+          ],
+          "bestFor": "大規模モノレポ、重いコンパイラ、大規模テスト",
+          "buttonText": "6コアを起動"
+        }
+      },
+      "standardEyebrow": "標準アーキテクチャ",
+      "standardTitle": "すべてのサンドボックスマシンに追加料金なしで標準装備",
+      "standardMeta": "設定不要 · プロジェクトに合わせて自動拡張",
+      "sharedCapabilities": [
+        {
+          "label": "Root Linux サンドボックス",
+          "desc": "シェルとパッケージ導入を完全に制御"
+        },
+        {
+          "label": "即時ポートフォワーディング",
+          "desc": "3000、8000、5173をアプリ内でプレビュー"
+        },
+        {
+          "label": "ライブVNCデスクトップ (:5901)",
+          "desc": "対話型ChromiumとLinux GUI"
+        },
+        {
+          "label": "ANSI WebSocket ターミナル",
+          "desc": "画面分割対応の永続セッション"
+        },
+        {
+          "label": "自動停止保護",
+          "desc": "2〜60分で設定可能なアイドルタイマー"
+        },
+        {
+          "label": "$0.00 アイドルポリシー",
+          "desc": "停止中はコンピュート料金ゼロ"
+        }
+      ],
+      "vncBannerTitle": "ライブVNCリモートデスクトップ (:5901)",
+      "vncBannerDesc": "GUIアプリやChromium自動化のために、本物のLinuxグラフィカル画面をブラウザへ直接ストリーミングします。",
+      "vncBannerCta": "サンドボックスVMで構築を始める"
+    },
+    "tokens": {
+      "eyebrow": "透明なトークン計測",
+      "title": "自動コンテキストキャッシュ割引付きのトークン従量課金",
+      "description": "すべてのリクエストで、入力・キャッシュ読込・出力トークンの固定単価スナップショットを記録します。プロンプトがコードベースの文脈を繰り返す場合、コンテキストキャッシュが自動的に請求額を削減します。",
+      "rows": [
+        {
+          "category": "標準入力トークン",
+          "rate": "モデルの原価単価（1Mトークンあたり）",
+          "description": "モデルへ送信されるプロンプト、指示、コード文脈、ツールスキーマ。",
+          "benefit": "プラットフォーム上乗せなしの原価請求。"
+        },
+        {
+          "category": "キャッシュ済みコンテキスト読込",
+          "rate": "通常入力より約75%〜80%安価",
+          "description": "繰り返される会話ターン、プロジェクト指示、永続システムプロンプト。",
+          "benefit": "自動キャッシュ検出により、複数ターンのチャットコストを大幅削減。"
+        },
+        {
+          "category": "出力＆推論トークン",
+          "rate": "モデルの原価単価（1Mトークンあたり）",
+          "description": "コード生成、差分フォーマット、思考プロセス、自律ツール呼び出し。",
+          "benefit": "生成トークン単位で計測；生成途中でいつでも中断可能。"
+        },
+        {
+          "category": "自分のキー持ち込み (BYOK)",
+          "rate": "プラットフォーム上乗せ $0.00",
+          "description": "Anthropic、OpenAI、DeepSeek、カスタムプロバイダーの自分のキーを使用。",
+          "benefit": "全プラットフォーム機能が100%無料；VMを起動した場合のみ実行料金が発生。"
+        },
+        {
+          "category": "OpenAI互換 API",
+          "rate": "同一の透明トークン単価",
+          "description": "ローカルスクリプトやCI/CDから /v1/chat/completions や /v1/responses を呼び出し。",
+          "benefit": "ワークスペースのクレジットプールに紐づく再利用可能なスコープ付きAPIキー。"
+        }
+      ],
+      "byokCardTitle": "自分のキー持ち込み (BYOK)",
+      "byokCardDesc": "設定画面から既存のOpenAI、Anthropic、DeepSeekなどのAPIキーを接続できます。自分のキーを使用する場合、モデルトークンはプロバイダーから直接請求され、<strong>プラットフォーム手数料は0%</strong>です。",
+      "apiCardTitle": "OpenAI互換エンドポイント",
+      "apiCardDesc": "あらゆるCLI、IDEプラグイン、スクリプトからNeuron Runnerワークスペースを利用できます。ワークスペースAPIキーを使い、OpenAI SDKのベースURLを <codeTag>/v1</codeTag> に向けるだけです。"
+    },
+    "calculator": {
+      "eyebrow": "利用料金シミュレーター",
+      "title": "コンピュート費用をシミュレーション",
+      "description": "実行時間スライダーを動かすかプリセットを選んで、週間・月間の予想コストを確認できます。",
+      "presetsLabel": "ワークフロープリセット",
+      "presetMeta": "週{{hours}}時間 · {{tier}}",
+      "presets": [
+        {
+          "name": "ライトコーダー",
+          "tag": "個人開発",
+          "description": "ちょっとしたスクリプト、素早いバグ修正、軽量Webプレビュー。"
+        },
+        {
+          "name": "フルスタック開発者",
+          "tag": "おすすめ",
+          "description": "毎日の機能開発、Next.js / Viteアプリ、ライブVNCテスト。"
+        },
+        {
+          "name": "大規模モノレポ",
+          "tag": "パワーユーザー",
+          "description": "複雑なマルチコンテナ構成、長時間コンパイル、高負荷作業。"
+        }
+      ],
+      "chooseTierLabel": "コンピュートティアを選択",
+      "tierRate": "${{rate}} / 時間",
+      "tierSpecs": "{{memory}}GB RAM • {{disk}}GB",
+      "runtimePerWeek": "1週間あたりのVM稼働時間",
+      "hoursPerWeekValue": "{{hours}} 時間 / 週",
+      "sliderTicks": {
+        "h1": "1時間",
+        "h15": "15時間",
+        "h30": "30時間",
+        "h45": "45時間",
+        "h60": "60時間"
+      },
+      "summaryEyebrow": "見積もりサマリー",
+      "summaryTitle": "予想コンピュート請求額",
+      "monthlySpendLabel": "月間VM予想支出",
+      "perMonth": "/ 月",
+      "weeklyBreakdown": "約 ${{weekly}} / 週 ({{tier}} で {{hours}} 時間)",
+      "topUp10Label": "$10.00 チャージした場合:",
+      "topUp20Label": "$20.00 チャージした場合:",
+      "approxHours": "約 {{hours}} 時間",
+      "idleTimerLabel": "自動停止アイドルタイマー:",
+      "idleTimerValue": "標準搭載（アイドル課金 $0）",
+      "footnote": "* モデルトークンは会話量に応じて別途課金されるか、BYOK利用時はプロバイダーから直接請求されます。",
+      "addCredits": "ワークスペースにクレジットを追加",
+      "getStarted10": "$10 で始める"
+    },
+    "compare": {
+      "columns": {
+        "feature": "機能",
+        "payAsYouGo": "Neuron Runner (従量制)",
+        "traditional": "一般的なAIコーディングサブスク"
+      },
+      "items": [
+        {
+          "feature": "月額プラン",
+          "payAsYouGo": "Free（$0）、Plus（$10）、Pro（月 $25）",
+          "traditional": "ユーザーあたり固定 $20 – $40/月のみ"
+        },
+        {
+          "feature": "モデル料金",
+          "payAsYouGo": "プロバイダー直接単価 (BYOK 手数料 0%)",
+          "traditional": "不透明なクレジット係数と上乗せ料金"
+        },
+        {
+          "feature": "クラウドLinux VM枠",
+          "payAsYouGo": "枠から $0.16–$0.32/時 · 停止中 $0.00",
+          "traditional": "24時間課金または永続Linux VMなし"
+        },
+        {
+          "feature": "超過利用保護",
+          "payAsYouGo": "月間利用枠 + $10以上の追加ウォレット",
+          "traditional": "強制ロックアウトや月末の予想外の高額請求"
+        },
+        {
+          "feature": "チームコラボレーション",
+          "payAsYouGo": "クラウド VM + すべての LLM 向けの月額 $25 Pro 共有クォータ（最大 4 名）",
+          "traditional": "共有VMプールなしの個人別制限"
+        },
+        {
+          "feature": "自分のキー持ち込み (BYOK)",
+          "payAsYouGo": "全プランで $0.00 プラットフォーム手数料対応",
+          "traditional": "禁止またはエンタープライズプラン限定"
+        }
+      ]
+    },
+    "faq": {
+      "eyebrow": "よくある質問",
+      "title": "お支払いに関して知っておきたいこと",
+      "items": [
+        {
+          "q": "Free、Plus、Pro プランの仕組みは？",
+          "a": "各プランには、LLM トークンとクラウド VM 稼働時間（$0.16–$0.32/時）に使える月額 USD クォータが含まれます（Free $0.50、Plus $10、Pro $25）。Pro はすべてのモデルをカバーし、Free と Plus ではプレミアムモデルはウォレットから課金されます。"
+        },
+        {
+          "q": "月間上限に達するとどうなりますか？",
+          "a": "常にプラン枠が先に使われ、枠が残る限り残高 $0.00 でもVMは稼働します。追加チャージ時（最低 $10.00）も超過分のみが差し引かれます。"
+        },
+        {
+          "q": "サンドボックスVMが停止している間も料金はかかりますか？",
+          "a": "いいえ。停止中のマシンは完全に $0.00/時 です。VM起動中のみ秒単位で計測されます。"
+        },
+        {
+          "q": "自分のAPIキー（BYOK）を使用できますか？",
+          "a": "はい。設定 > プロバイダーキーから上乗せ0%で追加できます。BYOKはプラン枠を消費しませんが、Freeプランで残高$0.00の場合は有料モデルに残高または有料プランが必要です。"
+        }
+      ]
+    }
+  }
+}

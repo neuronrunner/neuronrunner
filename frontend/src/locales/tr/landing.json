@@ -1,0 +1,1143 @@
+{
+  "home": {
+    "newConversation": "Yeni Sohbet",
+    "errors": {
+      "createConversationFailed": "Sohbet oluşturulamadı",
+      "messageFailedTitle": "Mesaj gönderilemedi",
+      "messageFailedDescription": "Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin."
+    },
+    "status": {
+      "vmAttached": "Bulut ajanı · VM bağlı",
+      "ready": "Bulut ajanı hazır"
+    },
+    "prompt": {
+      "codePlaceholder": "Bulut ajanınıza bir kodlama görevi verin...",
+      "chatPlaceholder": "Bulut ajanınıza sorun veya bir görev verin...",
+      "codeMobilePlaceholder": "Kodlama görevi verin...",
+      "chatMobilePlaceholder": "Sorun veya görev verin..."
+    },
+    "agentSelector": {
+      "ariaLabel": "Bulut ajanı seç",
+      "title": "Bulut Ajanı",
+      "back": "Geri",
+      "readyBadge": "Hazır",
+      "connectedBadge": "Bağlı",
+      "oauthConnectBadge": "VM'de Bağla",
+      "reconnect": "VM'de Yeniden Bağla",
+      "agents": {
+        "neuron": {
+          "name": "Neuron Agent",
+          "desc": "NeuronRunner modelleriyle dahili bulut ajanı"
+        },
+        "claude": {
+          "name": "Claude Code",
+          "desc": "Claude Pro / Max aboneliği"
+        },
+        "codex": {
+          "name": "OpenAI Codex",
+          "desc": "ChatGPT Plus / Pro aboneliği"
+        },
+        "antigravity": {
+          "name": "Antigravity",
+          "desc": "Google Antigravity / Gemini OAuth"
+        }
+      },
+      "oauth": {
+        "title": "{{agent}} Bağla",
+        "noWorkspace": "Abonelik bağlamak için önce bir çalışma alanı seçin veya giriş yapın.",
+        "adminOnly": "Yalnızca çalışma alanı sahipleri veya yöneticiler CLI aboneliği bağlayabilir.",
+        "vmDialogTitle": "{{agent}} bağlantısını VM terminalinde yapın",
+        "vmDialogSubtitle": "İzole Bulut VM'inizde resmi CLI üzerinden doğrudan giriş yapın. Yetkilendirmek için oluşturulan giriş bağlantısına tıklayın.",
+        "linkReady": "Giriş bağlantısı hazır — tarayıcınızda yetkilendirmek için tıklayın",
+        "pasteCodeLabel": "Yetkilendirme kodunu yapıştırın",
+        "pasteCodeHint": "Tarayıcıda yetkilendirdikten sonra sayfada görünen kodu kopyalayıp buraya yapıştırın.",
+        "pasteCodeSubmit": "Gönder",
+        "verifyButton": "Doğrula ve Bağla",
+        "showManual": "Veya token / auth JSON manuel yapıştırın",
+        "hideManual": "Manuel token alanını gizle",
+        "vmSyncTitle": "Sandbox VM'den OAuth",
+        "claudeHint": "VM'inizde `claude setup-token` veya `claude login` çalıştırın",
+        "codexHint": "VM'inizde `codex login` çalıştırın veya ~/.codex/auth.json yapıştırın",
+        "syncButton": "VM'den OAuth Senkronize Et",
+        "pasteLabel": "Veya OAuth token / kimlik bilgilerini yapıştırın",
+        "connectButton": "Bağla ve Seç",
+        "connectedToast": "{{agent}} bağlandı ve seçildi",
+        "syncFailed": "Henüz kimlik bilgisi algılanamadı. Yukarıdaki terminalde girişi tamamlayıp Doğrula ve Bağla'ya tıklayın.",
+        "saveFailed": "Geçersiz abonelik token'ı veya kimlik bilgileri.",
+        "starting": "VM terminali açılıyor...",
+        "startFailed": "VM terminal girişi başlatılamadı.",
+        "openTab": "Giriş Bağlantısını Aç",
+        "statusPreparing": "VM hazırlanıyor...",
+        "statusNeedsVm": "Aktif VM yok",
+        "statusStartingVm": "Bulut VM başlatılıyor...",
+        "statusConnecting": "Terminale bağlanılıyor...",
+        "statusReady": "Etkileşimli — bağlantılara tıklayın veya kodu yapıştırın",
+        "statusError": "Bağlantı hatası",
+        "noVmTitle": "Bu çalışma alanında çalışan bir Bulut VM yok",
+        "noVmDesc": "Resmi CLI'ın izole ortamınızda çalışıp giriş bağlantınızı oluşturabilmesi için {{minutes}} dakikalık bir VM başlatın.",
+        "launchVmButton": "VM Başlat ve Bağla ({{minutes}}d)",
+        "wakingVm": "{{name}} başlatılıyor — hazır olduğunda terminal otomatik açılacak...",
+        "checkingVm": "Çalışma alanı VM'i kontrol ediliyor...",
+        "vmBootFailed": "Sanal makine başlatılamadı.",
+        "vmBootTimeout": "Sanal makine başlatma zaman aşımına uğradı. Lütfen tekrar deneyin.",
+        "wsTimeout": "Terminal bağlantısı zaman aşımına uğradı. Yeniden bağlanmak için Tekrar Dene'ye tıklayın.",
+        "retryButton": "Tekrar Dene",
+        "vmDisclaimer": "{{agent}} oturumunuz ve kimlik bilgileriniz yalnızca izole Bulut VM'iniz içinde kalır; Neuron Runner sunucularında okunmaz veya saklanmaz. Neuron Runner bu sağlayıcıyla bağlantılı olmayan bağımsız bir platformdur; sağlayıcınızın abonelik koşullarına uymaktan yalnızca siz sorumlusunuz.",
+        "vmDisclaimerTerms": "Kullanım Koşulları"
+      }
+    }
+  },
+  "seo": {
+    "landing": {
+      "title": "Neuron Runner — İzole Linux VM ve Canlı VNC ile Bulut Yapay Zeka Ajanları",
+      "description": "Her proje izole bir Linux VM, canlı VNC masaüstü, tarayıcı ve terminal alır. Görevi ajanınıza bırakın — ajanınız bilgisayarınıza hiç dokunmadan bulutta kod yazar, çalıştırır ve teslim eder."
+    },
+    "pricing": {
+      "title": "Fiyatlandırma ve İşlem Gücü Planları",
+      "schemaName": "Fiyatlandırma — Neuron Runner",
+      "description": "Otonom yapay zeka ajanları için şeffaf saniye bazlı bulut işlem gücü ve abonelik planları. Özel Linux VM'ler, BYOS ve BYOK desteğiyle Free, Plus ($10) ve Pro ($25) katmanları.",
+      "faq1Question": "Otonom bulut ajanı işlem gücü faturalandırması nasıl çalışır?",
+      "faq1Answer": "Her plan, LLM token'larını ve saniye bazlı Bulut VM çalışma süresini kapsayan aylık bir USD kotası içerir ($0.50 Free, $10 Plus, $25 Pro; 4 çekirdek $0.16/sa, 6 çekirdek $0.24/sa, 8 çekirdek $0.32/sa; durdurulmuşken $0.00/sa). Free ve Plus 6 Ücretsiz Katman modelini, Pro tüm modelleri kapsar. Free ve Plus'ta premium modeller cüzdanınızdan ücretlendirilir.",
+      "faq2Question": "Kendi API anahtarlarımı (BYOK) getirebilir miyim?",
+      "faq2Answer": "Evet! Free dahil her planda, Çalışma Alanı Ayarları'ndan Anthropic, OpenAI, DeepSeek veya özel sağlayıcı API anahtarlarınızı %0 platform komisyonuyla ekleyebilirsiniz."
+    }
+  },
+  "hero": {
+    "badge": "Otonom bulut ajanları · Özel Linux VM ve Canlı VNC",
+    "titleLine1": "Ajanınız bulutta çalışır.",
+    "titleLine2": "Kendi bilgisayarıyla.",
+    "subtitle": "Her proje izole bir Linux VM, canlı VNC masaüstü, tarayıcı ve terminal alır. Görevi ajanınıza bırakın — ajanınız bilgisayarınıza hiç dokunmadan bulutta kod yazar, çalıştırır ve teslim eder.",
+    "launchCta": "Ajan başlat",
+    "signInCta": "Giriş yap",
+    "chipsAriaLabel": "Desteklenen iş akışları",
+    "chips": {
+      "autonomousAgent": "Otonom Ajan",
+      "isolatedVm": "İzole Bulut VM",
+      "liveVnc": "Canlı VNC Masaüstü",
+      "gitAutoPr": "Git ve Otomatik PR",
+      "byos": "Kendi Aboneliğini Getir"
+    },
+    "discordCta": "Soruların mı var? Discord'da ekibimizle konuş"
+  },
+  "connectors": {
+    "eyebrow": "Ajanınız halihazırda kullandığınız araçlara bağlanır"
+  },
+  "workflow": {
+    "eyebrow": "Ajan nasıl çalışır",
+    "title": "Görevi verin. Ajanınız buluttan teslim etsin.",
+    "description": "Yerel kurulum yok, bağımlılık çakışması yok, sekmeler arasında kopyala-yapıştır yok. Her adım ajanınızın özel bulut makinesinin içinde çalışır.",
+    "steps": {
+      "assign": {
+        "label": "Görev Verin",
+        "detail": "Reponuzu tanıyan bir ajana yeni bir özellik, hata veya GitHub issue'su verin."
+      },
+      "execute": {
+        "label": "Çalıştırın",
+        "detail": "Ajan bir bulut Linux VM içinde kodu düzenler, paketleri kurar ve projeyi derler."
+      },
+      "watchLive": {
+        "label": "Canlı İzleyin",
+        "detail": "Canlı VNC masaüstü, tarayıcı ve terminal üzerinden istediğiniz an izleyin veya müdahale edin."
+      },
+      "shipPr": {
+        "label": "PR Gönderin",
+        "detail": "Bulut sandbox içinde doğrulandıktan sonra ajan commit atar ve pull request açar."
+      }
+    }
+  },
+  "featuresSection": {
+    "eyebrow": "Uçtan uca bulut ajanı",
+    "title": "Elleri, gözleri ve kendi bulut ortamı olan bir ajan",
+    "description": "Yalnızca sohbet eden asistanların aksine ajanınız reponuzu okur, kodu bir bulut VM'de çalıştırır, arayüzü canlı VNC masaüstünde inceler ve MCP entegrasyonlarınızı kesintisiz bir döngüde kullanır."
+  },
+  "features": {
+    "cards": {
+      "models": {
+        "eyebrow": "Çoklu model ajan beyni",
+        "title": "Görevin ortasında modelleri değiştirin",
+        "description": "Aynı ajan akışında planlama için derin akıl yürütme modellerini, uygulama için hızlı kodlama modellerini çalıştırın. Alternatifleri keşfetmek için herhangi bir adımı dallandırın veya başka bir modelle yeniden deneyin.",
+        "points": [
+          "Akıl yürütme ve kodlama modelleri",
+          "Dallandır ve yeniden dene",
+          "Kendi aboneliğini getir"
+        ]
+      },
+      "sandbox": {
+        "eyebrow": "Bulut VM ve Canlı VNC",
+        "title": "Her ajan gerçek bir bilgisayara sahip olur",
+        "description": "Ajanınız sadece kod parçacıkları üretmekle kalmaz — bunları canlı terminal, tarayıcı ve etkileşimli VNC masaüstü içeren izole bir bulut Linux VM içinde çalıştırır."
+      },
+      "git": {
+        "eyebrow": "Otonom Git ve PR'lar",
+        "title": "Prompt'tan pull request'e",
+        "description": "Bir depo bağlayın ve ajanınızın bulutta branch oluşturmasına, dosyaları düzenlemesine, testleri çalıştırmasına ve incelemeye hazır pull request açmasına izin verin."
+      },
+      "connectors": {
+        "eyebrow": "Entegrasyonlar",
+        "title": "Kullandığınız araçları bağlayın",
+        "description": "OAuth MCP entegrasyonları aracılığıyla bulut ajanınıza GitHub, Slack, Notion, veritabanları ve 60+ servise güvenli erişim verin."
+      },
+      "memory": {
+        "eyebrow": "Kalıcı bellek",
+        "title": "Nasıl geliştirdiğinizi hatırlayan bir ajan",
+        "description": "Kodlama kuralları, teknoloji tercihleri ve proje bağlamı oturumlar arasında korunur; böylece ajanınız hiçbir zaman sıfırdan başlamaz."
+      },
+      "team": {
+        "eyebrow": "Ekip çalışma alanları",
+        "title": "Ekibinizle birlikte ajanlar çalıştırın",
+        "description": "Rol tabanlı erişim kontrolüyle bulut projelerini, sandbox makinelerini ve entegrasyonları ekibinizle paylaşın."
+      },
+      "byos": {
+        "eyebrow": "Kendi Aboneliğini Getir",
+        "title": "Claude, ChatGPT ve Gemini aboneliklerinizi kullanın",
+        "description": "Claude Pro / Max, ChatGPT Plus / Pro veya Google Antigravity OAuth aboneliğinizi tek tıkla bağlayın — resmi kodlama ajanlarını Bulut VM içinde sıfır LLM token ücretiyle çalıştırın.",
+        "points": [
+          "Claude Pro / Max",
+          "ChatGPT Plus / Pro",
+          "Google Antigravity",
+          "$0 LLM token ücreti"
+        ]
+      }
+    },
+    "visuals": {
+      "models": {
+        "searchPlaceholder": "Model ara...",
+        "reasoningModel": "Akıl yürütme modeli",
+        "reasoningTag": "Düşünme · Yüksek",
+        "fastModel": "Hızlı sohbet modeli",
+        "fastTag": "Düşük gecikme",
+        "codingModel": "Kodlama ve ajan modeli",
+        "codingTag": "Araç kullanımı",
+        "byokModel": "Sağlayıcı anahtarınız",
+        "byokTag": "BYOK",
+        "userMessage": "Her iki yaklaşımı karşılaştır",
+        "thoughtDuration": "6sn düşündü",
+        "assistantReply": "B seçeneği daha iyi ölçeklenir çünkü…",
+        "branchAction": "Dallandır",
+        "retryAction": "Başka modelle yeniden dene"
+      },
+      "sandbox": {
+        "running": "çalışıyor",
+        "vcpu": "vCPU",
+        "ram": "RAM",
+        "disk": "Disk",
+        "liveVnc": "Canlı VNC Masaüstü",
+        "guiPort": ":5901 GUI",
+        "desktopAndBrowser": "Linux masaüstü ve tarayıcı",
+        "interactive": "Etkileşimli"
+      },
+      "git": {
+        "prTitle": "#42 Lansman sayfasını ekle",
+        "diffSummary": "+134 −12 · 3 dosya",
+        "ready": "Hazır",
+        "issueTitle": "Issue #18 · Yeniden boyutlandırmada grafik titriyor"
+      },
+      "connectors": {
+        "badge": "MCP entegrasyonları"
+      },
+      "memory": {
+        "header": "Sizinle ilgili hatırlananlar",
+        "items": [
+          "TypeScript tercih ediyor",
+          "Vite + Tailwind kullanıyor",
+          "Yanıtları kısa tutuyor",
+          "Proje: product-launch"
+        ]
+      },
+      "team": {
+        "roles": {
+          "owner": "Sahip",
+          "admin": "Yönetici",
+          "member": "Üye"
+        },
+        "inviteByEmail": "+ E-posta ile davet et"
+      },
+      "byos": {
+        "selectorLabel": "Bulut Ajanı",
+        "claudeName": "Claude Code",
+        "claudePlan": "Claude Pro / Max",
+        "codexName": "OpenAI Codex",
+        "codexPlan": "ChatGPT Plus / Pro",
+        "antigravityName": "Antigravity",
+        "antigravityPlan": "Google / Gemini OAuth",
+        "connectedBadge": "Bağlı",
+        "oauthBadge": "OAuth",
+        "vmCardTitle": "Bulut VM CLI Çalıştırıcı",
+        "vmCardDetail": "Tek tıkla OAuth · VM'den senkronize et",
+        "zeroFeeLabel": "$0.00 LLM ek ücreti",
+        "zeroFeeTitle": "Sıfır LLM token ücreti",
+        "zeroFeeSubtitle": "Doğrudan mevcut aboneliğinizle çalışır"
+      }
+    }
+  },
+  "architecture": {
+    "eyebrow": "Bulut ajanı mimarisi",
+    "title": "Tek bir yapı gibi çalışan üç bulut katmanı",
+    "description": "Ajan beyni, proje çalışma alanınız ve özel bir Linux VM bulutta sürekli senkronize kalır. Ajanın nasıl çalıştığını görmek için bir katmanın üzerine gelin.",
+    "floatCards": {
+      "vmAttachedTitle": "Bulut ajanı · VM bağlı",
+      "vmAttachedSubtitle": "lightning-atlas · 4 vCPU",
+      "testsPassedTitle": "Terminal 2 · 18 test geçti",
+      "vncTitle": "VNC masaüstündeki ajan",
+      "vncSubtitle": "lightning-atlas · :5901 GUI",
+      "prOpenedTitle": "Ajan #42 numaralı PR'ı açtı"
+    },
+    "layers": {
+      "sandbox": {
+        "title": "Bulut Sandbox VM ve VNC",
+        "eyebrow": "Çalıştırma ve GUI",
+        "description": "Ajanın terminalleri, tarayıcıları ve etkileşimli VNC masaüstü oturumlarını çalıştırdığı proje bazlı özel bulut Linux makinesi."
+      },
+      "workspace": {
+        "title": "Bulut Çalışma Alanı",
+        "eyebrow": "Dosyalar ve Git",
+        "description": "Depolarınız, kod editörleriniz, Git branch'leriniz ve pull request'leriniz — ajan çalışırken gerçek zamanlı senkronize edilir."
+      },
+      "conversation": {
+        "title": "Otonom Ajan",
+        "eyebrow": "Modeller ve bellek",
+        "description": "En gelişmiş akıl yürütme modelleriyle güçlendirilmiştir. Ajan görevleri planlar, dosyaları düzenler, bulut komutları çalıştırır ve tercihlerinizi hatırlar."
+      }
+    },
+    "plates": {
+      "terminalLabel": "Terminal 2",
+      "testsPassed": "✓ 18 test geçti (1.42s)",
+      "vncLive": "VNC · :5901 canlı",
+      "specs": "4 vCPU · 12 GB RAM",
+      "vmAttached": "VM bağlı",
+      "promptPlaceholder": "Bulut ajanınıza bir kodlama görevi verin...",
+      "modelSummary": "Kimi K3.1 Pro · Orta"
+    }
+  },
+  "trust": {
+    "eyebrow": "Gerçek mühendislik için üretildi",
+    "title": "Sıfır yerel risk, tam bulut kontrolü",
+    "items": {
+      "isolated": {
+        "title": "%100 Bulut izoleli",
+        "text": "Her ajan proje için ayrılmış bir bulut VM içinde çalışır — güvenilmeyen kodlar ve ağır derlemeler bilgisayarınıza asla dokunmaz."
+      },
+      "liveVnc": {
+        "title": "Canlı VNC ve tarayıcı",
+        "text": "Ajanınızın tam Linux GUI oturumları ve canlı web uygulamalarıyla etkileşimini gerçek zamanlı izleyin veya tek tıkla kontrolü devralın."
+      },
+      "byok": {
+        "title": "Kendi aboneliğiniz ve anahtarlarınız",
+        "text": "Claude Pro / Max, ChatGPT Plus / Pro veya Google Antigravity'yi OAuth ile bağlayın — ya da %0 komisyonla kendi sağlayıcı API anahtarlarınızı kullanın."
+      },
+      "roles": {
+        "title": "Roller ve erişim",
+        "text": "Çalışma alanı sahipleri kimlerin ajan başlatabileceğine, bulut makinelerine erişebileceğine ve entegrasyonları yönetebileceğine karar verir."
+      }
+    }
+  },
+  "cta": {
+    "title": "Bulut ajanınızı saniyeler içinde başlatın.",
+    "description": "Bir depo bağlayın, bir model seçin ve ajanınızın kendi bulut makinesinden derleyip test etmesine ve teslim etmesine izin verin.",
+    "launchButton": "Bulut ajanınızı başlatın",
+    "pricingButton": "Detaylı fiyatlandırmayı gör",
+    "discordButton": "Soruların mı var? Discord'da kurucuyla doğrudan sohbet et"
+  },
+  "footer": {
+    "pricing": "Fiyatlandırma",
+    "integrations": "Entegrasyonlar",
+    "docs": "Dokümanlar",
+    "terms": "Koşullar",
+    "privacy": "Gizlilik"
+  },
+  "preview": {
+    "rootAriaLabel": "Neuron Runner çalışma alanı önizlemesi",
+    "toolsGroupAriaLabel": "Çalışma alanı araçları",
+    "mobileToolsGroupAriaLabel": "Mobil çalışma alanı araçları",
+    "tools": {
+      "files": "Dosyalar",
+      "git": "Git",
+      "browser": "Tarayıcı",
+      "desktop": "Masaüstü",
+      "terminal": "Terminal"
+    },
+    "sidebar": {
+      "newChat": "Yeni Sohbet",
+      "issues": "Issue'lar",
+      "pullRequests": "Pull Request'ler",
+      "integrations": "Entegrasyonlar",
+      "projectsHeading": "Projeler ({{count}})",
+      "noConversations": "Henüz sohbet yok",
+      "historyHeading": "Geçmiş ({{count}})",
+      "historyItems": [
+        "Canlı analizli lansman sayfası",
+        "Fiyatlandırma tablosu metinleri",
+        "Auth middleware refactor",
+        "Chrome E2E görsel kontrolü",
+        "Veritabanı pgvector şeması",
+        "Docker compose prod kurulumu"
+      ],
+      "workspaceSummary": "{{owner}} çalışma alanı · {{balance}}"
+    },
+    "chat": {
+      "newConversation": "Yeni sohbet",
+      "vmAttached": "Bulut ajanı · VM bağlı",
+      "promptPlaceholder": "Bulut ajanınıza bir kodlama görevi verin...",
+      "reasoningLevel": "Orta",
+      "suggestions": [
+        {
+          "label": "Teknoloji Yığınını Analiz Et",
+          "prompt": "Kök dizini incele ve tüm yapılandırma dosyalarını listele (ör. package.json, pyproject.toml)..."
+        },
+        {
+          "label": "Giriş Noktasını Belirle",
+          "prompt": "Ana uygulama giriş noktası dosyasını bul (ör. index.js, main.py, App.tsx) ve başlangıcı izle..."
+        },
+        {
+          "label": "Proje Yapısını İncele",
+          "prompt": "Temel modülleri haritalamak için /workspace/neuronrunner yolunun ayrıntılı dizin ağacını oluştur..."
+        },
+        {
+          "label": "Testleri Çalıştır",
+          "prompt": "Test runner yapılandırmasını bul ve test paketini çalıştırmak için ilgili komutu yürüt..."
+        },
+        {
+          "label": "Ortam Değişkenlerini Kontrol Et",
+          "prompt": "Yapılandırma dosyalarını (ör. .env, config.yaml) belirle ve gerekli anahtarları listele..."
+        }
+      ]
+    },
+    "terminal": {
+      "tabTitle": "Terminal {{number}}",
+      "passBadge": "PASS",
+      "testsPassed": "✓ 18 test geçti (1.42s)"
+    },
+    "git": {
+      "changesCount": "{{count}} değişiklik",
+      "changesHeading": "Değişiklikler",
+      "commitMessage": "Canlı analiz panosuyla lansman sayfası ekle",
+      "commitButton": "Commit"
+    },
+    "browser": {
+      "dashboardTitle": "Lansman panosu",
+      "live": "Canlı",
+      "visitors": "Ziyaretçi",
+      "signups": "Kayıt",
+      "conversion": "Dönüşüm",
+      "chartTitle": "Loglar · son 8 gün"
+    },
+    "desktop": {
+      "windowTitle": "Chromium — E2E Runner",
+      "checkTitle": "Lansman Sayfası Görsel Kontrolü",
+      "checksPassed": "4 / 4 geçti",
+      "checkCanvas": "✓ grafik canvas'ı çizildi",
+      "checkResponsive": "✓ responsive düzen",
+      "linuxGui": "Linux GUI"
+    },
+    "mobile": {
+      "title": "Canlı analizli lansman sayfası",
+      "connectedMachineTitle": "Bağlı makine: lightning-atlas (çalışıyor)",
+      "toolsButton": "Araçlar",
+      "userPrompt": "Canlı analizli lansman sayfasını oluştur, test paketini çalıştır ve bir PR aç.",
+      "hideResponseDetails": "Yanıt ayrıntılarını gizle",
+      "showResponseDetails": "Yanıt ayrıntılarını göster",
+      "responseDetails": "Yanıt ayrıntıları",
+      "stepsCount": "{{count}} adım",
+      "steps": [
+        {
+          "title": "3 dosya düzenlendi",
+          "detail": "src/app/page.tsx, src/lib/analytics.ts, src/components/chart.tsx"
+        },
+        {
+          "title": "Terminal 2 · npm run test",
+          "detail": "root@neuronrunner:/workspace/neuronrunner · ✓ 18 test geçti"
+        },
+        {
+          "title": "Canlı VNC masaüstünde doğrulandı",
+          "detail": "lightning-atlas · :5901 GUI · 4 / 4 görsel kontrol geçti"
+        },
+        {
+          "title": "PR #42 açıldı",
+          "detail": "neuronrunner · feat/launch-page → main"
+        }
+      ],
+      "assistantSummary1": "<branch>feat/launch-page</branch> branch'inde lansman analiz panosunu oluşturdum, düzeni canlı VNC masaüstünde doğruladım ve <vm>lightning-atlas</vm> üzerinde tüm <passed>18 testin geçtiğini</passed> onayladım.",
+      "assistantSummary2": "<pr>#42</pr> numaralı pull request incelemeye hazır — sırada neyi tamamlayalım?",
+      "askPlaceholder": "İstediğinizi sorun...",
+      "closeToolsAriaLabel": "Araçlar panelini kapat",
+      "vmFooterSpec": "lightning-atlas · 4 vCPU",
+      "backToChat": "Sohbete dön"
+    },
+    "vmDropdown": {
+      "machines": "Makineler",
+      "activeCount": "{{count}} aktif",
+      "running": "çalışıyor",
+      "stopped": "durdu",
+      "cpu": "CPU",
+      "ram": "RAM"
+    }
+  },
+  "pricingPage": {
+    "hero": {
+      "badge": "Öngörülebilir Planlar · Şeffaf Token Tarifeleri · Boşta $0.00 VM",
+      "titleLine1": "Sizinle birlikte büyüyen sade planlar.",
+      "titleLine2": "Şeffaf token fiyatlandırması.",
+      "subtitle": "<s1>Aylık $0.50 ücretsiz LLM ve Bulut VM kullanımıyla</s1> başlayın, kendi Claude Code, Codex veya Antigravity aboneliğinizle özel Linux VM'ler için <s2>Plus ($10) veya Pro ($25)</s2> planına geçin ya da %0 komisyonla kendi API anahtarlarınızı getirin. Pro, kotasında tüm modelleri içerir; Free ve Plus'ta premium modeller kullandıkça öde şeklindedir."
+    },
+    "planLabels": {
+      "llmAllowance": "Kullanım Kotası (LLM + VM)",
+      "cloudSandboxVm": "Bulut Sandbox VM"
+    },
+    "plans": {
+      "free": {
+        "name": "Free",
+        "period": "/ ay",
+        "badge": "Sonsuza Dek Ücretsiz",
+        "tagline": "Hızlı Ücretsiz Katman modelleri, BYOK ve başlangıç bulut VM'leriyle otonom kodlamayı keşfedin.",
+        "llmAllowance": "$0.50 / ay",
+        "vcpuQuota": "Maks. 2 vCPU-sa / ay",
+        "vcpuSubnote": "Ücretsiz LLM'ler ve 4 çekirdek VM ($0.16/sa)",
+        "highlights": [
+          "6 Ücretsiz LLM + Bulut VM için aylık <strong>$0.50 tek kota</strong>",
+          "<strong>4 çekirdek (8 GB RAM)</strong> Linux sandbox VM erişimi",
+          "<strong>5 dakikaya</strong> kadar otomatik durdurmalı VM oturumları",
+          "Kendi <strong>aboneliğinizi (BYOS)</strong> veya <strong>API anahtarlarınızı (BYOK)</strong> %0 komisyonla getirin"
+        ],
+        "ctaLabel": "Ücretsiz Başlayın"
+      },
+      "plus": {
+        "name": "Plus",
+        "period": "/ ay",
+        "badge": "En Popüler",
+        "tagline": "Kendi kodlama ajanlarınız için özel bulut Linux VM'ler: kendi aboneliğinizi (BYOS) veya API anahtarlarınızı getirin.",
+        "llmAllowance": "$10.00 / ay",
+        "vcpuQuota": "Maks. 200 vCPU-sa / ay",
+        "vcpuSubnote": "4/6/8 çekirdek VM'ler ve $2 Ücretsiz Katman LLM hakkı",
+        "highlights": [
+          "Bulut VM için aylık <strong>$10.00 kota</strong> (<strong>~200 vCPU-sa</strong>) + Ücretsiz Katman modelleri için <strong>$2 LLM hakkı</strong>",
+          "<strong>Kendi Claude Code, Codex veya Antigravity aboneliğinizi</strong> (BYOS) ya da API anahtarlarınızı (BYOK) getirin",
+          "<strong>8 çekirdeğe (16 GB RAM)</strong> kadar VM + canlı VNC masaüstü",
+          "<strong>60 dakikalık oturumlar</strong> ve kalıcı VM diski"
+        ],
+        "ctaLabel": "Plus'a Yükseltin"
+      },
+      "pro": {
+        "name": "Pro",
+        "period": "/ ay",
+        "badge": "4× Güç",
+        "tagline": "Yoğun full-stack mühendisliği için daha fazla VM saati, snapshot ve 4 üyeye kadar çalışma alanı.",
+        "llmAllowance": "$25.00 / ay",
+        "vcpuQuota": "Maks. 550 vCPU-sa / ay",
+        "vcpuSubnote": "Ücretsiz Katman LLM'ler ve 4/6/8 çekirdek VM'ler için ortak kota",
+        "highlights": [
+          "Bulut VM (<strong>~550 vCPU-sa</strong>) + Ücretsiz Katman LLM'ler için aylık <strong>$25.00 ortak kota</strong>",
+          "Premium modeller plan kotasından değil, <strong>cüzdanınızdan</strong> kullandıkça öde şeklinde düşer",
+          "<strong>4 çalışma alanı üyesine</strong> kadar · 1 ortak Bulut VM",
+          "<strong>60 dakikalık oturumlar</strong> ve kalıcı VM diski"
+        ],
+        "ctaLabel": "Pro'ya Yükseltin"
+      },
+      "team": {
+        "name": "Team",
+        "period": "/ ay",
+        "badge": "İş Birliği",
+        "tagline": "20 üyeye kadar ekipler için ortak işlem gücüyle özel iş birliği çalışma alanı.",
+        "llmAllowance": "$200.00 / ay",
+        "vcpuQuota": "Maks. 400 vCPU-sa / ay",
+        "vcpuSubnote": "16 model ve VM için ortak ekip kotası ($0.16–$0.32/sa)",
+        "highlights": [
+          "Ekip için 16 LLM + Bulut VM'de aylık <strong>$200.00 ortak kota</strong>",
+          "Bulut VM çalışması havuzdan düşer (<strong>$0.16–$0.32/sa</strong> · boşta $0.00)",
+          "<strong>20 çalışma alanı üyesine</strong> kadar ve rol izinleri",
+          "<strong>1 ortak Bulut VM</strong> (8 çekirdeğe kadar) ve kalıcı disk",
+          "<strong>Ortak ekstra kullanım cüzdanı</strong> ve tek ekip faturası"
+        ],
+        "ctaLabel": "Team Planını Başlatın"
+      }
+    },
+    "mechanics": {
+      "wallet": {
+        "title": "Ekstra Kullanım Cüzdanı ($10+ Yükleme)",
+        "description": "Önce her zaman plan kotanız kullanılır; abonelikler cüzdana nakit eklemez. Kota aşımı, Free ve Plus'taki premium modeller veya BYOS/BYOK ile bağımsız kullandıkça öde Bulut VM hesaplaması ($0.16–$0.32/sa) için bakiye yükleyin (min <s1>$10.00</s1>, %0 komisyon)."
+      },
+      "byok": {
+        "title": "Kendi Anahtarınızı Getirin (%0 Komisyon)",
+        "description": "Kendi Anthropic, OpenAI, DeepSeek veya özel anahtarlarınızı <s1>$0.00 platform farkıyla</s1> bağlayın (plan kotasını harcamaz; Free planda ücretli modeller için bakiye veya ücretli plan gerekir)."
+      },
+      "byos": {
+        "title": "Kendi Aboneliğini Getir (BYOS)",
+        "description": "Claude Pro/Max, ChatGPT Plus/Pro veya Antigravity aboneliğinizi <s1>$0.00 LLM token ücretiyle</s1> bağlayın. Ajanlar Bulut VM içinde plan VM kotanızla veya $10+ compute-only Top-Up bakiyesiyle çalışır."
+      }
+    },
+    "breakdown": {
+      "eyebrow": "Şeffaf Döküm",
+      "title": "Model tarifelerini, bulut VM'leri ve plan özelliklerini inceleyin",
+      "tabs": {
+        "models": "Yapay Zeka Model Tarifeleri ({{count}})",
+        "vms": "Bulut Sandbox VM ve VNC",
+        "compare": "Planları Karşılaştır"
+      }
+    },
+    "models": {
+      "filters": {
+        "all": "Tüm Modeller ({{count}})",
+        "free": "Ücretsiz Katmana Dahil ({{count}})",
+        "paid": "Premium ({{count}})"
+      },
+      "searchPlaceholder": "Model veya sağlayıcı ara…",
+      "columns": {
+        "model": "Model",
+        "context": "Bağlam",
+        "planAccess": "Plan Erişimi",
+        "input": "Girdi / 1M",
+        "output": "Çıktı / 1M",
+        "cacheRead": "Önbellek Okuma / 1M"
+      },
+      "accessBadges": {
+        "free": "Free + Tüm Planlar",
+        "paid": "Pro · veya cüzdan"
+      },
+      "empty": "Aramanızla eşleşen model bulunamadı."
+    },
+    "vms": {
+      "vcpuHrsUnit": "{{cpu}} vCPU-saat",
+      "perActiveHour": "/ aktif saat",
+      "overageRate": "Plan kotasından düşer · Durduğunda $0.00",
+      "cpuLabel": "CPU",
+      "cpuValue": "{{cpu}} vCPU",
+      "memoryLabel": "Bellek",
+      "memoryValue": "{{memory}} GB",
+      "nvmeLabel": "NVMe",
+      "nvmeValue": "{{disk}} GB",
+      "includedIn": "Dahil olduğu planlar",
+      "bestForLabel": "En uygun:",
+      "standardTitle": "Her bulut sandbox makinesinde standart",
+      "standardMeta": "Saniye bazlı sayaç · Durdurulduğunda $0.00",
+      "tiers": {
+        "tier_1": {
+          "label": "4 çekirdek",
+          "badge": "Standart · tier_1",
+          "tagline": "Günlük kodlama, script'ler ve hafif web önizlemeleri.",
+          "planAccess": "Free, Plus ve Pro",
+          "highlights": [
+            "4 çekirdekli (4 vCPU) özel bulut işlem gücü",
+            "8 GB DDR yüksek hızlı bellek · 32 GB NVMe disk",
+            "Tarife: $0.16 / aktif saat (durduğunda $0.00)",
+            "Plus: ayda 50 saate kadar · Pro: ayda 137 saate kadar (dahil vCPU-saat)"
+          ],
+          "bestFor": "Frontend uygulamalar, API'ler ve hızlı script'ler"
+        },
+        "tier_2": {
+          "label": "6 çekirdek",
+          "badge": "En Popüler · tier_2",
+          "tagline": "Full-stack geliştirme, Docker servisleri ve canlı VNC testleri.",
+          "planAccess": "Plus ve Pro",
+          "highlights": [
+            "6 çekirdekli (6 vCPU) çok çekirdekli derleme motoru",
+            "12 GB DDR bellek · 32 GB NVMe disk",
+            "Tarife: $0.24 / aktif saat (durduğunda $0.00)",
+            "Plus: ayda 33 saate kadar · Pro: ayda 92 saate kadar (dahil vCPU-saat)"
+          ],
+          "bestFor": "Full-stack Next.js, Vite ve Docker yığınları"
+        },
+        "tier_3": {
+          "label": "8 çekirdek",
+          "badge": "Güç · tier_3",
+          "tagline": "Ağır derlemeler, büyük monorepo'lar ve paralel test paketleri.",
+          "planAccess": "Plus ve Pro",
+          "highlights": [
+            "8 çekirdekli (8 vCPU) yüksek eşzamanlı işlem gücü",
+            "16 GB DDR geniş bellek havuzu · 64 GB NVMe disk",
+            "Tarife: $0.32 / aktif saat (durduğunda $0.00)",
+            "Plus: ayda 25 saate kadar · Pro: ayda 69 saate kadar (dahil vCPU-saat)"
+          ],
+          "bestFor": "Monorepo'lar, Rust/Go derleyicileri ve E2E testleri"
+        }
+      },
+      "includedCapabilities": [
+        {
+          "title": "Root Linux VM",
+          "description": "İzole bir bulut makinesinde şifresiz tam sudo, Docker, apt, npm, pip ve özel sistem paketleri."
+        },
+        {
+          "title": "Canlı VNC Masaüstü (:5901)",
+          "description": "Ek lisans ücreti olmadan gerçek bir Linux arayüzünü ve Chromium tarayıcısını doğrudan çalışma alanınıza aktarın."
+        },
+        {
+          "title": "Anlık Port Önizlemeleri",
+          "description": "Geliştirme sunucularını (3000, 5173, 8000) uygulama içinde canlı HTTPS ters proxy önizlemeleriyle açın."
+        },
+        {
+          "title": "Otomatik Durdurma Koruması",
+          "description": "2–60 dakika arası ayarlanabilen hareketsizlik zamanlayıcısı boşta kalan VM'leri otomatik durdurup maliyeti $0.00'a indirir."
+        }
+      ]
+    },
+    "compare": {
+      "columns": {
+        "feature": "Özellik",
+        "free": "Free",
+        "plus": "Plus ($10)",
+        "pro": "Pro ($25)",
+        "team": "Team ($200)"
+      },
+      "footnote": "* Free planında 4 çekirdekli Bulut Sandbox VM erişimi ($0.50 kotadan $0.16/sa), standart hesap doğrulamasından sonra açılır.",
+      "rows": [
+        {
+          "feature": "Aylık Fiyat",
+          "free": "$0 / ay",
+          "plus": "$10 / ay",
+          "pro": "$25 / ay",
+          "team": "$200 / ay"
+        },
+        {
+          "feature": "Aylık Kullanım Kotası (LLM + VM)",
+          "free": "$0.50 / ay",
+          "plus": "$10.00 / ay",
+          "pro": "$25.00 / ay",
+          "team": "$200.00 / ay"
+        },
+        {
+          "feature": "Erişilebilir Modeller",
+          "free": "6 Ücretsiz Model",
+          "plus": "6 Ücretsiz Model (premium cüzdandan)",
+          "pro": "Tüm modeller (ortak kota)",
+          "team": "Tüm 16 Model"
+        },
+        {
+          "feature": "Bulut VM Tarifesi (Kotadan)",
+          "free": "$0.16 / sa*",
+          "plus": "$0.16 – $0.32 / sa",
+          "pro": "$0.16 – $0.32 / sa",
+          "team": "$0.16 – $0.32 / sa"
+        },
+        {
+          "feature": "Dahil VM Hesaplama",
+          "free": "Maks. 2 vCPU-sa / ay",
+          "plus": "Maks. 200 vCPU-sa / ay",
+          "pro": "Maks. 550 vCPU-sa / ay",
+          "team": "Maks. 1,250 saat / ay"
+        },
+        {
+          "feature": "Maks. VM Donanım Katmanı",
+          "free": "4 çekirdek · 8 GB RAM",
+          "plus": "8 çekirdek · 16 GB RAM",
+          "pro": "8 çekirdek · 16 GB RAM",
+          "team": "8 çekirdek · 16 GB RAM"
+        },
+        {
+          "feature": "Maks. Bulut VM Sayısı",
+          "free": "1 VM",
+          "plus": "1 VM",
+          "pro": "1 VM",
+          "team": "1 VM"
+        },
+        {
+          "feature": "Çalışma Alanı Üyeleri",
+          "free": "1 üye",
+          "plus": "1 üye (ekip yok)",
+          "pro": "4 üyeye kadar",
+          "team": "20 üyeye kadar"
+        },
+        {
+          "feature": "Maks. VM Oturum Süresi",
+          "free": "5 dakika",
+          "plus": "60 dakika",
+          "pro": "60 dakika",
+          "team": "60 dakika"
+        },
+        {
+          "feature": "Kendi Anahtarını Getir (BYOK)",
+          "free": "%0 komisyon",
+          "plus": "%0 komisyon",
+          "pro": "%0 komisyon",
+          "team": "%0 komisyon"
+        },
+        {
+          "feature": "Ekstra Kullanım Yüklemeleri",
+          "free": "Min. $10.00 (%0 ücret)",
+          "plus": "Min. $10.00 (%0 ücret)",
+          "pro": "Min. $10.00 (%0 ücret)",
+          "team": "Min. $10.00 (ortak cüzdan, %0 ücret)"
+        },
+        {
+          "feature": "Kota Önceliği ve Havuz",
+          "free": "Önce kota · 1 üye",
+          "plus": "Önce kota · 1 üye",
+          "pro": "Önce kota · Ortak havuz",
+          "team": "Önce kota · Ortak havuz"
+        }
+      ]
+    },
+    "faq": {
+      "eyebrow": "SSS",
+      "title": "Sorular ve yanıtlar",
+      "description": "Tek aylık kullanım kotası, saniye bazlı VM tarifeleri ve ekstra yüklemeler hakkında bilmeniz gereken her şey.",
+      "docsLink": "Dokümantasyonu inceleyin",
+      "items": [
+        {
+          "question": "Tek aylık kullanım kotası nasıl çalışır?",
+          "answer": "Plus ($10) ve Pro ($25), Bulut VM çalışma süresi ve LLM token'ları için aylık bir USD kotası içerir ($10 Plus, $25 Pro; Free'de $0.50). Pro tüm modelleri kapsar; Free ve Plus 6 Ücretsiz Katman modelini kapsar ve premium modelleri cüzdanınızdan ücretlendirir."
+        },
+        {
+          "question": "Bulut Sandbox VM kullanımı nasıl ücretlendirilir?",
+          "answer": "Aktif VM'ler saniye bazlı ölçülür ve aylık plan kotanızdan 4 çekirdek (tier_1) için $0.16/saat, 6 çekirdek (tier_2) için $0.24/saat ve 8 çekirdek (tier_3) için $0.32/saat olarak USD cinsinden düşülür. Durdurulan VM'ler kesinlikle $0.00/saat tutar."
+        },
+        {
+          "question": "Free planda Bulut Sandbox VM'lere nasıl erişebilirim?",
+          "answer": "Free planı hem Ücretsiz Katman modelleri hem de 4 çekirdekli Bulut VM'ler ($0.16/saat) için aylık $0.50 kota içerir. Ayarlar bölümünden standart hesap doğrulamasını tamamlayarak VM başlatma özelliğini açabilirsiniz."
+        },
+        {
+          "question": "Plan kotamı aşarsam ne olur?",
+          "answer": "Aylık plan kotanız her zaman önce tüketilir; abonelikler cüzdana nakit eklemek yerine plan kotası tanımlar ve plan kotası kaldığı sürece cüzdan bakiyesi $0.00 olsa bile çalışan VM'ler açık kalır. Kota 0'a indiğinde yalnızca aşım tutarı ekstra kullanım cüzdanınızdan (min. $10.00 yükleme) düşülür."
+        },
+        {
+          "question": "Ekstra kullanım yüklemelerinde neden $10.00 alt limiti var?",
+          "answer": "$10.00 minimum yükleme alt limiti ödeme işlem maliyetlerini düşük tutarak sizden ekstra işlem ücreti almamızı önler. Ödediğiniz tutarın %100'ü doğrudan süresi dolmayan çalışma alanı bakiyenize eklenir."
+        },
+        {
+          "question": "Kendi API Anahtarlarımı (BYOK) yine de getirebilir miyim?",
+          "answer": "Evet! Çalışma Alanı Ayarları'ndan Anthropic, OpenAI, DeepSeek veya özel sağlayıcı anahtarlarınızı %0 platform komisyonuyla ekleyin. BYOK istekleri plan LLM hakkınızı tüketmez; Free ve Plus'ta premium modeller için cüzdan bakiyesi gerekir, Pro ise bunları kotasından karşılar."
+        }
+      ]
+    },
+    "bottomCta": {
+      "title": "Bugün ücretsiz başlayın. Ürettikçe yükseltin.",
+      "description": "Free planında aylık $0.50 Ücretsiz Katman LLM ve Bulut VM kullanımı alın ya da Plus ($10) ve Pro ($25) ile kendi ajan aboneliğinizle özel Linux VM'ler kullanın.",
+      "managePlan": "Çalışma Alanı Planını Yönet",
+      "getStarted": "Ücretsiz başlayın",
+      "signIn": "Giriş yap"
+    },
+    "intervalToggle": {
+      "monthly": "Aylık",
+      "yearly": "Yıllık",
+      "saveBadge": "2 ay bedava",
+      "perYear": "/ yıl"
+    },
+    "specs": {
+      "labels": {
+        "quota": "Aylık kota",
+        "vcpu": "Dahil VM hesaplama",
+        "vm": "Maks. VM boyutu",
+        "session": "Oturum süresi",
+        "snapshots": "Snapshot",
+        "members": "Üyeler",
+        "llm": "LLM modelleri",
+        "byo": "BYOS / BYOK"
+      },
+      "vcpuValue": "{{hours}} vCPU-sa",
+      "approxMinutes": "≈ {{cores}} çekirdekli VM'de {{minutes}} dk",
+      "approxHours": "≈ {{cores}} çekirdekli VM'de {{hours}} saat",
+      "vmSize": "{{cores}} çekirdek · {{ram}} GB RAM",
+      "minutes": "{{minutes}} dk",
+      "none": "Yok",
+      "llm": {
+        "free": "6 Ücretsiz Katman modeli",
+        "plus": "6 Ücretsiz Katman · $2/aya kadar",
+        "pro": "Tüm modeller · ortak havuz"
+      },
+      "included": "Dahil",
+      "freeFootnote": "* Free'de VM erişimi için standart hesap doğrulaması gerekir.",
+      "limits": {
+        "title": "Kotam bitince ne olur?",
+        "p1": "Kota her fatura döneminde sıfırlanır ve sınırsız değildir.",
+        "p2": "VM'lerin ve modellerin çalışmaya devam etmesi için cüzdanınıza bakiye yükleyin ya da bir sonraki dönemi bekleyin.",
+        "p3": "Free ve Plus'ta premium modeller cüzdanınızdan ücretlendirilir. Pro bunları kotasından karşılar."
+      }
+    }
+  },
+  "pricingSection": {
+    "principles": {
+      "p1Eyebrow": "01 · Esnek Planlar + Cüzdan",
+      "p1Value": "$0 – $25",
+      "p1Unit": "/ ay veya $10+ yükleme",
+      "p1Desc": "Free ile başlayın ($0.50/ay LLM + VM kotası), Plus ($10) veya Pro'ya ($25/ay) yükseltin ve istediğiniz zaman ek kredi yükleyin.",
+      "p1Footer": "✓ Free, Plus ve Pro planları",
+      "p2Eyebrow": "02 · Kaynak Başına Öde",
+      "p2Value": "Tam",
+      "p2Unit": "saniye ve token",
+      "p2Desc": "VM'ler yalnızca çalışırken $0.16/saatten başlar. Durdurulan VM'ler $0.00 tutar. Prompt önbellekleme ~%80'e varan tasarruf sağlar.",
+      "p2Footer": "Saniye bazlı VM sayacı + bağlam önbelleği",
+      "p3Eyebrow": "03 · Sıfır Sürpriz",
+      "p3Value": "$0.00",
+      "p3Unit": "kesin alt sınır",
+      "p3Desc": "Bakiye $0.00 olduğunda çalıştırma anında duraklar. Aşım borcu yok, sürpriz aylık fatura yok ve anında PDF makbuzlar.",
+      "p3Footer": "VM ve üye bazında ayrıntılı kullanım dökümü"
+    },
+    "miniPlans": {
+      "popular": "Popüler",
+      "free": {
+        "name": "Free",
+        "period": "/ay",
+        "quota": "$0.50/ay Ücretsiz Kota (LLM + VM)",
+        "vm": "4 çekirdek Bulut VM ($0.16/sa)",
+        "note": "VM çalışma süresini açmak için standart hesap doğrulaması"
+      },
+      "plus": {
+        "name": "Plus",
+        "period": "/ay",
+        "quota": "$10.00/ay Kota (VM + $2 Ücretsiz Katman LLM)",
+        "vm": "8 çekirdeğe kadar VM · ~200 vCPU-sa",
+        "note": "BYOS/BYOK · 1 Bulut VM · Tek kullanıcı"
+      },
+      "pro": {
+        "name": "Pro",
+        "period": "/ay",
+        "quota": "$25.00/ay Ortak Kota (VM + tüm LLM'ler)",
+        "vm": "8 çekirdeğe kadar VM · ~550 vCPU-sa",
+        "note": "4 üyeye kadar · BYOS/BYOK"
+      },
+      "team": {
+        "name": "Team",
+        "period": "/ay",
+        "quota": "$200.00/ay Ortak Ekip Kotası",
+        "vm": "20 VM'ye kadar ($0.16–$0.32/sa)",
+        "note": "20 ekip üyesine kadar + ortak cüzdan"
+      },
+      "yearlyPeriod": "/yıl"
+    },
+    "nav": {
+      "eyebrow": "Şeffaf Fiyatlandırma",
+      "title": "İncelemek istediğiniz bölümü seçin",
+      "tabs": {
+        "compute": "Sandbox VM'ler ve VNC",
+        "tokens": "Token'lar ve BYOK",
+        "calculator": "Maliyet Hesaplayıcı",
+        "compare": "vs Abonelikler"
+      }
+    },
+    "compute": {
+      "perHour": "/ saat",
+      "vcpuUnit": "{{cpu}} vCPU",
+      "ramUnit": "{{memory}} GB RAM",
+      "diskUnit": "{{disk}} GB Disk",
+      "tierHighlightsLabel": "Katman Öne Çıkanları:",
+      "bestForLabel": "En uygun: {{bestFor}}",
+      "tiers": {
+        "tier_1": {
+          "label": "8 çekirdek",
+          "tagline": "Günlük geliştirme ve hafif web önizlemeleri",
+          "badge": "Standart",
+          "perMinute": "$0.0027 / dk",
+          "highlights": [
+            "4 çekirdekli (2 vCPU) işlem motoru",
+            "6 GB DDR RAM • 32 GB NVMe disk",
+            "Hızlı cold-start başlatma",
+            "Hafif frontend uygulamalar, API'ler ve script'ler",
+            "Saatlik maliyet: saatte $0.16"
+          ],
+          "bestFor": "Frontend uygulamalar, tek dosya script'ler ve hızlı hata ayıklama",
+          "buttonText": "4 çekirdek ile başlayın"
+        },
+        "tier_2": {
+          "label": "8 çekirdek",
+          "tagline": "Full-stack geliştirme, derlemeler ve test paketleri",
+          "badge": "En Popüler",
+          "perMinute": "$0.0040 / dk",
+          "highlights": [
+            "4 çekirdekli (4 vCPU) derleme motoru",
+            "12 GB DDR yüksek hızlı bellek • 32 GB NVMe disk",
+            "Tam Next.js, Vite ve backend sunucu yığınları",
+            "Akıcı canlı VNC masaüstü ve tarayıcı otomasyonu",
+            "Saatlik maliyet: saatte $0.24"
+          ],
+          "bestFor": "Full-stack uygulamalar, Docker backend'ler ve günlük kodlama",
+          "buttonText": "4 çekirdek başlatın"
+        },
+        "tier_3": {
+          "label": "8 çekirdek",
+          "tagline": "Ağır derlemeler, monorepo'lar ve paralel testler",
+          "badge": "Güç Katmanı",
+          "perMinute": "$0.0053 / dk",
+          "highlights": [
+            "8 çekirdekli (8 vCPU) yüksek eşzamanlı işlem gücü",
+            "16 GB DDR geniş bellek havuzu • 64 GB NVMe disk",
+            "Ağır monorepo'lar ve paralel derleyiciler",
+            "Karmaşık çoklu servis ve veritabanı testleri",
+            "Saatlik maliyet: saatte $0.32"
+          ],
+          "bestFor": "Büyük monorepo'lar, ağır derleyiciler ve kapsamlı test paketleri",
+          "buttonText": "6 çekirdek başlatın"
+        }
+      },
+      "standardEyebrow": "Standart Mimari",
+      "standardTitle": "Ek ücret olmadan her sandbox makinesine dahil",
+      "standardMeta": "Sıfır kurulum · Projenizle birlikte otomatik ölçeklenir",
+      "sharedCapabilities": [
+        {
+          "label": "Root Linux Sandbox",
+          "desc": "Tam kabuk ve paket kurulum kontrolü"
+        },
+        {
+          "label": "Anlık Port Yönlendirme",
+          "desc": "3000, 8000, 5173 uygulama içi önizleme"
+        },
+        {
+          "label": "Canlı VNC Masaüstü (:5901)",
+          "desc": "Etkileşimli Chromium ve Linux GUI"
+        },
+        {
+          "label": "ANSI WebSocket Terminali",
+          "desc": "Bölünmüş panelli kalıcı oturumlar"
+        },
+        {
+          "label": "Otomatik Durdurma Koruması",
+          "desc": "2–60 dk ayarlanabilir boşta zamanlayıcı"
+        },
+        {
+          "label": "$0.00 Boşta Kalma Politikası",
+          "desc": "Durdurulduğunda sıfır işlem gücü ücreti"
+        }
+      ],
+      "vncBannerTitle": "Canlı VNC Uzak Masaüstü (:5901)",
+      "vncBannerDesc": "Tam GUI uygulamaları ve Chromium otomasyonu için gerçek bir Linux grafik ekranını doğrudan tarayıcınıza aktarın.",
+      "vncBannerCta": "Sandbox VM'lerle geliştirmeye başlayın"
+    },
+    "tokens": {
+      "eyebrow": "Şeffaf Token Ölçümü",
+      "title": "Otomatik bağlam önbelleği indirimleriyle token başına ödeyin",
+      "description": "Her istek girdi, önbellekten okuma ve çıktı token'ları için sabit bir fiyat anlık görüntüsü alır. Prompt'unuz kod tabanı bağlamını tekrarladığında önbellekleme faturanızı otomatik düşürür.",
+      "rows": [
+        {
+          "category": "Standart Girdi Token'ları",
+          "rate": "Tam model tarifesi (1M token başına)",
+          "description": "Modele gönderilen prompt'lar, talimatlar, kod tabanı bağlamı ve araç şemaları.",
+          "benefit": "Yapay platform kâr marjı olmadan doğrudan aktarım."
+        },
+        {
+          "category": "Önbellekli Bağlam Okumaları",
+          "rate": "Girdiden ~%75 ila %80 daha ucuz",
+          "description": "Tekrarlanan sohbet turları, proje talimatları ve kalıcı sistem prompt'ları.",
+          "benefit": "Otomatik önbellek algılama çok turlu sohbetlerde maliyeti ciddi oranda düşürür."
+        },
+        {
+          "category": "Çıktı ve Akıl Yürütme Token'ları",
+          "rate": "Tam model tarifesi (1M token başına)",
+          "description": "Kod üretimi, diff biçimlendirme, düşünme süreçleri ve otonom araç çağrıları.",
+          "benefit": "Üretilen token başına ölçülür; akış ortasında dilediğiniz an iptal edin."
+        },
+        {
+          "category": "Kendi Anahtarınızı Getirin (BYOK)",
+          "rate": "$0.00 platform farkı",
+          "description": "Kendi Anthropic, OpenAI, DeepSeek veya özel sağlayıcı anahtarlarınızı kullanın.",
+          "benefit": "Tüm platform özellikleri %100 ücretsizdir; yalnızca VM başlatırsanız süresini ödersiniz."
+        },
+        {
+          "category": "OpenAI Uyumlu API",
+          "rate": "Aynı şeffaf token tarifeleri",
+          "description": "Yerel script'lerinizden veya CI/CD'den /v1/chat/completions ve /v1/responses uç noktalarını çağırın.",
+          "benefit": "Çalışma alanı kredi havuzuna bağlı yeniden kullanılabilir kapsamlı API anahtarları."
+        }
+      ],
+      "byokCardTitle": "Kendi Anahtarınızı Getirin (BYOK)",
+      "byokCardDesc": "Ayarlar'da mevcut OpenAI, Anthropic, DeepSeek veya özel sağlayıcı API anahtarlarınızı bağlayın. Kendi anahtarlarınızı kullanırken model token'ları <strong>%0 platform ek ücretiyle</strong> doğrudan sağlayıcınız tarafından faturalandırılır.",
+      "apiCardTitle": "OpenAI Uyumlu Endpoint",
+      "apiCardDesc": "Neuron Runner çalışma alanınızı herhangi bir CLI, IDE eklentisi veya script'ten kullanın. Çalışma alanı API anahtarınızla OpenAI SDK base URL'sini <codeTag>/v1</codeTag> adresine yönlendirin."
+    },
+    "calculator": {
+      "eyebrow": "Kullanım Hesaplayıcısı",
+      "title": "İşlem gücü harcamanızı simüle edin",
+      "description": "Tahmini haftalık ve aylık maliyetleri görmek için çalışma süresini kaydırın veya hızlı bir iş akışı ön ayarı seçin.",
+      "presetsLabel": "İş Akışı Ön Ayarları",
+      "presetMeta": "{{hours}} sa/hf · {{tier}}",
+      "presets": [
+        {
+          "name": "Hafif Kodlama",
+          "tag": "Bireysel Geliştirici",
+          "description": "Ara sıra script'ler, hızlı hata düzeltmeleri ve hafif web önizlemeleri."
+        },
+        {
+          "name": "Full-Stack Geliştirme",
+          "tag": "Önerilen",
+          "description": "Günlük özellik geliştirme, Next.js / Vite uygulamaları ve canlı VNC testleri."
+        },
+        {
+          "name": "Yoğun Monorepo",
+          "tag": "İleri Düzey",
+          "description": "Karmaşık çoklu konteyner yığınları, uzun derlemeler ve ağır iş yükleri."
+        }
+      ],
+      "chooseTierLabel": "İşlem Gücü Katmanı Seçin",
+      "tierRate": "${{rate}} / sa",
+      "tierSpecs": "{{memory}}GB RAM • {{disk}}GB",
+      "runtimePerWeek": "Haftalık aktif VM çalışma süresi",
+      "hoursPerWeekValue": "{{hours}} saat / hafta",
+      "sliderTicks": {
+        "h1": "1 sa",
+        "h15": "15 sa",
+        "h30": "30 sa",
+        "h45": "45 sa",
+        "h60": "60 sa"
+      },
+      "summaryEyebrow": "Tahmini Özet",
+      "summaryTitle": "Öngörülen İşlem Gücü Faturası",
+      "monthlySpendLabel": "Tahmini Aylık VM Harcaması",
+      "perMonth": "/ ay",
+      "weeklyBreakdown": "~${{weekly}} / hafta ({{tier}} üzerinde {{hours}} sa)",
+      "topUp10Label": "$10.00 yükleme ile elde edecekleriniz:",
+      "topUp20Label": "$20.00 yükleme ile elde edecekleriniz:",
+      "approxHours": "~{{hours}} saat",
+      "idleTimerLabel": "Otomatik durdurma zamanlayıcısı:",
+      "idleTimerValue": "Dahil ($0 boşa harcama)",
+      "footnote": "* Model token'ları sohbet hacminize göre ayrı faturalandırılır veya BYOK kullanıyorsanız doğrudan sağlayıcınız tarafından faturalandırılır.",
+      "addCredits": "Çalışma Alanına Kredi Ekleyin",
+      "getStarted10": "$10 ile başlayın"
+    },
+    "compare": {
+      "columns": {
+        "feature": "Özellik",
+        "payAsYouGo": "Neuron Runner (Kullandığınız Kadar Ödeyin)",
+        "traditional": "Tipik Yapay Zeka Kodlama Aboneliği"
+      },
+      "items": [
+        {
+          "feature": "Aylık Planlar",
+          "payAsYouGo": "Free ($0), Plus ($10), Pro ($25/ay)",
+          "traditional": "Yalnızca kullanıcı başına sabit $20 – $40/ay"
+        },
+        {
+          "feature": "Model Fiyatlandırması",
+          "payAsYouGo": "Doğrudan sağlayıcı token tarifeleri (%0 BYOK ücreti)",
+          "traditional": "Belirsiz kredi çarpanları ve kâr marjları"
+        },
+        {
+          "feature": "Bulut Linux VM Kotası",
+          "payAsYouGo": "Kotadan $0.16–$0.32/sa düşer · durduğunda $0.00",
+          "traditional": "7/24 faturalandırma veya kalıcı Linux VM yok"
+        },
+        {
+          "feature": "Aşım Koruması",
+          "payAsYouGo": "Aylık kota + $10+ ekstra cüzdan",
+          "traditional": "Katı kilitlenmeler veya ay sonu sürpriz faturalar"
+        },
+        {
+          "feature": "Ekip İş Birliği",
+          "payAsYouGo": "Bulut VM + tüm LLM'ler için aylık $25 ortak Pro kotası (4 üyeye kadar)",
+          "traditional": "Ortak VM havuzu olmayan izole kullanıcı limitleri"
+        },
+        {
+          "feature": "Kendi Anahtarınızı Getirin (BYOK)",
+          "payAsYouGo": "Her katmanda $0.00 platform ücretiyle tam destek",
+          "traditional": "Yasaklı veya kurumsal planların arkasında kilitli"
+        }
+      ]
+    },
+    "faq": {
+      "eyebrow": "Sıkça Sorulan Sorular",
+      "title": "Faturalandırma hakkında bilmeniz gereken her şey",
+      "items": [
+        {
+          "q": "Free, Plus ve Pro planları nasıl çalışır?",
+          "a": "Her plan, LLM token'ları ve Bulut VM çalışma süresi ($0.16–$0.32/sa) için aylık bir USD kotası sağlar ($0.50 Free, $10 Plus, $25 Pro). Pro tüm modelleri kapsar; Free ve Plus'ta premium modeller cüzdanınızdan ücretlendirilir."
+        },
+        {
+          "q": "Aylık limite ulaştığımda ne olur?",
+          "a": "Plan kotanız her zaman önce kullanılır; kota kaldığı sürece cüzdan bakiyesi $0.00 olsa bile aktif VM'ler çalışmaya devam eder. Ekstra kullanım cüzdanınıza yükleme yaptığınızda (min. $10.00, %0 ücret) yalnızca kota aşımı bakiyenizden düşülür."
+        },
+        {
+          "q": "Sandbox VM'ler durdurulduğunda ödeme yapar mıyım?",
+          "a": "Hayır. Durdurulan makineler kesinlikle $0.00/saat tutar. İşlem gücü ölçümü yalnızca VM açıkken saniye bazlı çalışır ve kapatıldığı anda durur."
+        },
+        {
+          "q": "Kendi API anahtarlarımı (BYOK) getirebilir miyim?",
+          "a": "Evet. Ayarlar > Sağlayıcı Anahtarları bölümünden kendi Anthropic, OpenAI, DeepSeek veya özel sağlayıcı anahtarlarınızı %0 platform farkıyla ekleyebilirsiniz. BYOK plan kotasını tüketmez; Free planda $0.00 bakiyede ücretli modeller için bakiye veya ücretli plan gerekir."
+        }
+      ]
+    }
+  }
+}

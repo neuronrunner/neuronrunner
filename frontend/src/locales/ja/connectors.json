@@ -1,0 +1,340 @@
+{
+  "seo": {
+    "landingTitle": "統合 & MCP コネクタ",
+    "landingDescription": "自律型クラウド AI エージェントを GitHub、Slack、Notion、Linear、Postgres、Supabase、および数十の Model Context Protocol (MCP) サーバーに接続します。",
+    "workspaceTitle": "ワークスペース統合"
+  },
+  "categories": {
+    "all": "すべて",
+    "popular": "人気",
+    "newNoteworthy": "新着・注目",
+    "development": "開発",
+    "productivity": "生産性",
+    "communication": "コミュニケーション",
+    "dataAnalytics": "データ・分析",
+    "design": "デザイン",
+    "salesMarketing": "営業・マーケティング",
+    "research": "リサーチ",
+    "infrastructure": "インフラストラクチャ",
+    "finance": "財務・経理",
+    "custom": "カスタム"
+  },
+  "categoryDescriptions": {
+    "popular": "最も広く利用され、推奨されている MCP サーバーとアプリ。",
+    "newNoteworthy": "最新かつ注目の MCP サーバー、エージェントツール、連携機能。",
+    "development": "コード生成、Git ワークフロー、ターミナル、コンテナ、開発者向けインフラ。",
+    "productivity": "メモ作成、タスク管理、課題トラッキング、個人の情報整理。",
+    "communication": "チームチャット、メール、メッセージングチャンネル、通知。",
+    "dataAnalytics": "データベース、データウェアハウス、ベクトル検索、クエリ、BI ツール。",
+    "design": "デザインツール、キャンバスコラボレーション、画像編集、UI アセット。",
+    "salesMarketing": "顧客データ、アウトリーチ、マーケティング分析、CRM システム。",
+    "research": "ウェブスクレイピング、検索エンジン、論文アーカイブ、ナレッジ探索。",
+    "infrastructure": "クラウドホスティング、計算ランタイム、DNS、サーバーレスバックエンド。",
+    "finance": "請求プラットフォーム、決済ゲートウェイ、会計、財務レポート。"
+  },
+  "workspace": {
+    "ariaLabel": "連携",
+    "eyebrow": "ワークスペース / MCP 連携",
+    "title": "連携",
+    "subtitle": "プラグインや MCP サーバーを接続し、NeuronRunner がお使いのツールを横断して作業できるようにします。",
+    "openSidebar": "サイドバーを開く",
+    "addCustomConnector": "カスタムコネクタを追加",
+    "addCustomShort": "カスタム追加",
+    "backToExplore": "探索に戻る",
+    "categoryFallbackDescription": "{{category}} のすべてのコネクタと MCP サーバーを閲覧します。",
+    "searchAria": "コネクタを検索",
+    "searchPlaceholder": "コネクタを検索",
+    "searchCategoryAria": "{{category}} のコネクタを検索",
+    "searchCategoryPlaceholder": "{{category}} 内を検索...",
+    "clearSearch": "検索をクリア",
+    "sort": {
+      "ariaLabel": "コネクタを並べ替え",
+      "featured": "注目順",
+      "nameAsc": "名前: A–Z"
+    },
+    "tabs": {
+      "ariaLabel": "コネクタ表示切り替え",
+      "explore": "探索",
+      "connections": "接続済み"
+    },
+    "loadError": "接続を読み込めませんでした。{{error}}",
+    "tryAgain": "再試行",
+    "directoryAriaLabel": "コネクタディレクトリ",
+    "searchResults": "検索結果",
+    "allConnectors": "すべてのコネクタ",
+    "browseCategoryAria": "{{category}} のコネクタを閲覧",
+    "seeAll": "すべて表示 ({{count}})",
+    "showingCount": "{{total}} 件中 {{shown}} 件のアプリを表示中",
+    "showMore": "さらにコネクタを表示",
+    "footerCatalog": "{{count}} 件のアプリ & MCP サーバー · 更新日 {{date}}",
+    "mcpRegistry": "MCP Registry",
+    "connections": {
+      "ariaLabel": "保存済みの接続",
+      "loading": "接続を読み込んでいます…",
+      "emptyTitle": "最初の接続をここから始めましょう",
+      "emptySearchTitle": "接続が見つかりません",
+      "emptyDescription": "最初のアプリを接続して、チャットから活用しましょう。",
+      "emptySearchDescription": "「{{query}}」に一致する接続はありませんでした。",
+      "exploreCta": "コネクタを探す"
+    },
+    "empty": {
+      "noConnectorsTitle": "コネクタが見つかりません",
+      "noCategoryMatches": "{{category}} 内で「{{query}}」に一致するコネクタはありませんでした。",
+      "noCategoryItems": "{{category}} にはコネクタがありません。",
+      "noSearchDescription": "別のアプリを試すか、検索をクリアしてディレクトリを閲覧してください。"
+    },
+    "mcpConnectionsTitle": "MCP 接続"
+  },
+  "card": {
+    "configureAria": "{{name}} を設定",
+    "connected": "接続済み",
+    "configured": "設定済み",
+    "customDescription": "カスタム MCP 接続です。",
+    "providerSetup": "プロバイダー設定"
+  },
+  "dialog": {
+    "customTitle": "カスタムコネクタを追加",
+    "customDescription": "独自の MCP サーバーをワークスペースに追加します。",
+    "setupGuide": "セットアップガイド",
+    "authHeaderDescription": "任意。Bearer に続けてアクセストークンを指定してください。",
+    "providerSetup": {
+      "title": "プロバイダー側で設定する",
+      "description": "このアプリの公開 MCP 接続はまだ検証されていません。接続の詳細はプロバイダーをご確認いただくか、お持ちの MCP エンドポイントを追加してください。",
+      "visitProvider": "プロバイダーのサイトへ",
+      "addEndpoint": "MCP エンドポイントを追加"
+    },
+    "verified": {
+      "title": "接続を確認しました",
+      "descriptionOne": "エージェントが {{count}} 個のツールを利用できるようになりました。コネクタを使用する準備が整いました。",
+      "descriptionOther": "エージェントが {{count}} 個のツールを利用できるようになりました。コネクタを使用する準備が整いました。",
+      "done": "完了"
+    },
+    "fields": {
+      "name": "コネクタ名",
+      "namePlaceholder": "チームのツール",
+      "connectionMethod": "接続方法",
+      "serverUrl": "サーバー URL",
+      "httpProtocol": "HTTP プロトコル",
+      "workspaceSandbox": "ワークスペースサンドボックス",
+      "workspacePlaceholder": "ワークスペースを選択",
+      "noWorkspaces": "利用可能なワークスペースがありません",
+      "workspaceHint": "このワークスペースのサンドボックス内で実行され、ワークスペース内のチャットから利用できます。",
+      "serverCommand": "サーバーコマンド",
+      "serverCommandHint": "対応するランタイムがワークスペースサンドボックスにインストールされている必要があります。",
+      "authentication": "認証",
+      "required": "必須",
+      "keepSavedPlaceholder": "保存済みの認証情報を保持する場合は空欄にしてください",
+      "enterFieldPlaceholder": "{{name}} を入力"
+    },
+    "methods": {
+      "remote": "リモート · {{protocol}}{{suffix}}",
+      "local": "ローカル · {{runtime}}",
+      "remoteHttp": "リモート · HTTP",
+      "localStdio": "ローカル · stdio"
+    },
+    "auth": {
+      "oauth": "OAuth · アカウントを接続",
+      "token": "API トークン",
+      "none": "認証なし"
+    },
+    "oauth": {
+      "description": "プロバイダーでサインインし、このコネクタのアクセス範囲を選択してください。認可が完了するとこの画面に戻ります。",
+      "settings": "OAuth 設定",
+      "settingsHint": "プロバイダーが登録済みの OAuth アプリケーションを要求する場合のみ必要です。",
+      "clientId": "クライアント ID",
+      "clientSecret": "クライアントシークレット",
+      "redirectUrl": "リダイレクト URL"
+    },
+    "advanced": {
+      "headersSummary": "詳細ヘッダー",
+      "envSummary": "詳細環境変数",
+      "description": "文字列を値に持つ JSON オブジェクト形式で指定します。保存済みの認証情報を置き換える場合は、すべての値を入力してください。",
+      "ariaLabel": "詳細設定 JSON"
+    },
+    "security": {
+      "oauth": "アクセストークンとリフレッシュトークンはサーバー上で暗号化されます。いつでも接続を解除できます。",
+      "credentials": "認証情報はサーバー上で暗号化されます。"
+    },
+    "savedInactiveNotice": "設定を保存しました。検証が成功するまでコネクタは無効のままになります。",
+    "status": {
+      "completeInProvider": "プロバイダーのウィンドウで認可を完了してください。",
+      "startingSandbox": "ワークスペースサンドボックスでコネクタを起動しています。初回のパッケージインストールには最大2分かかる場合があります。"
+    },
+    "actions": {
+      "disconnect": "接続を解除",
+      "cancelAuth": "認可をキャンセル",
+      "waitingAuth": "認可を待機中…",
+      "verifying": "接続を検証中…",
+      "reconnectAccount": "アカウントを再接続",
+      "connectAccount": "アカウントを接続",
+      "saveAndVerify": "保存して検証",
+      "connect": "接続",
+      "signInToConnect": "サインインして接続"
+    },
+    "errors": {
+      "allowPopups": "アカウントを接続するにはポップアップを許可してください。",
+      "invalidJsonObject": "{\"API_KEY\": \"your-key\"} のような文字列値を持つ JSON オブジェクトを入力してください。",
+      "fieldRequired": "{{name}} は必須です。",
+      "urlPlaceholders": "サーバー URL 内のプレースホルダーをアカウント情報に置き換えてください。",
+      "commandPlaceholders": "接続する前にコマンド内のプレースホルダーを置き換えてください。",
+      "selectWorkspace": "このコネクタを実行するワークスペースサンドボックスを選択してください。",
+      "verificationFailed": "接続の検証に失敗しました。認証情報を確認して再試行してください。",
+      "invalidAdvancedJson": "詳細設定は有効な JSON である必要があります。"
+    },
+    "footerManage": "<link>連携</link>でツールを管理できます。",
+    "legacyLocal": {
+      "title": "ローカルコネクタはサポートされなくなりました",
+      "description": "この MCP サーバーはローカルの stdio コマンドを使用しています。新しいローカルコネクタは無効です。切断して、代わりにリモートの HTTP/SSE エンドポイントを接続してください。"
+    }
+  },
+  "oauth": {
+    "status": {
+      "pendingTitle": "アカウントを接続中…",
+      "connectedTitle": "アカウントを接続しました",
+      "errorTitle": "アカウントを接続できませんでした",
+      "pendingDescription": "認可を完了し、MCP 接続を検証しています。",
+      "connectedDescription": "このウィンドウを閉じてコネクタ一覧に戻ることができます。"
+    },
+    "backToConnectors": "統合に戻る",
+    "errors": {
+      "missingState": "認可状態が見つかりません。連携ページからやり直してください。",
+      "wrongTab": "この認可はこのブラウザタブで開始されたものではありません。連携ページからやり直してください。",
+      "unverified": "MCP 接続を検証できませんでした。連携ページからやり直してください。"
+    }
+  },
+  "landing": {
+    "hero": {
+      "pill": "Model Context Protocol & エコシステム",
+      "title": "連携",
+      "tagline": "<highlight>統合</highlight>で AI エージェントを強化。",
+      "subtitle": "暗号化された認証情報とワークスペース単位のアクセスで、データベース、ドキュメント、issue tracker、クラウドツールをエージェントに接続します。",
+      "browseCta": "統合を見る",
+      "more": "他 {{count}} 件"
+    },
+    "stats": {
+      "servers": "厳選された MCP サーバー",
+      "auth": "設定不要の認証",
+      "sandbox": "サンドボックス隔離",
+      "fee": "プラットフォーム手数料",
+      "install": "ローカルインストール"
+    },
+    "search": {
+      "placeholder": "名前、カテゴリ、説明で 37 以上のコネクタを検索...",
+      "sortLabel": "並び替え:"
+    },
+    "sort": {
+      "featured": "おすすめ",
+      "az": "名前: A–Z",
+      "za": "名前: Z–A"
+    },
+    "categories": {
+      "allWithCount": "すべて ({{count}})",
+      "recommendedWithCount": "おすすめ ({{count}})"
+    },
+    "catalog": {
+      "showing": "{{total}} 件中 <strong>{{shown}}</strong> 件のコネクタを表示",
+      "title": "厳選されたリモート統合",
+      "subtitle": "おすすめの開発者ツールを先頭に、残りのスタック向けの信頼できるリモートコネクタも用意しています。"
+    },
+    "empty": {
+      "title": "コネクタが見つかりません",
+      "description": "「{{query}}」に一致するコネクタはありません。別の名前やキーワードで検索してみてください。",
+      "reset": "フィルターをリセット"
+    },
+    "card": {
+      "byPublisher": "提供: {{publisher}}",
+      "featured": "注目",
+      "inspectDetails": "詳細を見る",
+      "remote": "リモート",
+      "endpoints": "{{count}} 個のリモートエンドポイント"
+    },
+    "howItWorks": {
+      "eyebrow": "安全でスケーラブルなアーキテクチャ",
+      "title": "Neuron Runner における MCP ツール実行の仕組み",
+      "subtitle": "3つのレイヤーがトークンを安全に保護しながら、最先端モデルに自律的な実行能力を与えます。",
+      "step1": {
+        "eyebrow": "01 / ストレージ",
+        "title": "暗号化された認証情報保管庫",
+        "description": "OAuth トークンと API キーは Fernet 暗号化で保存されます。検証済みのサーバー側 MCP リクエストにのみ付与され、ログに記録されたりモデルに公開されたりすることはありません。"
+      },
+      "step2": {
+        "eyebrow": "02 / 実行",
+        "title": "検証済みリモートゲートウェイ",
+        "description": "リモート MCP サーバーには、暗号化された認証情報とワークスペース単位の認可を備えた検証済み HTTPS ゲートウェイ経由でアクセスします。"
+      },
+      "step3": {
+        "eyebrow": "03 / ツール呼び出し",
+        "title": "自律的なモデル呼び出し",
+        "description": "推論モデルが利用可能なツールスキーマを自動的に認識します。エージェントはデータベースのクエリや API 仕様の取得を行い、完全な差分レビュー管理のもとで修正を適用します。"
+      }
+    },
+    "faq": {
+      "eyebrow": "連携に関する FAQ",
+      "title": "よくある質問",
+      "items": {
+        "q1": {
+          "question": "Model Context Protocol (MCP) とは何ですか？",
+          "answer": "Model Context Protocol (MCP) は、最先端の AI モデルがツール、データベース、API を安全で標準化された形式で検出・参照・呼び出しできるようにするオープン標準です。サービスごとにカスタム連携をハードコードする代わりに、MCP によって汎用的でプラグアンドプレイなツール呼び出しが実現します。"
+        },
+        "q2": {
+          "question": "Neuron Runner 内でコネクタはどのように安全に実行されますか？",
+          "answer": "Neuron Runner はリモート MCP セッションを HTTPS で検証し、プロキシします。認証情報はサーバー上で暗号化されたまま保持され、モデルやブラウザに公開されることはありません。内蔵ブラウザは分離されたワークスペースサンドボックス内で動作します。"
+        },
+        "q3": {
+          "question": "API トークンや OAuth 認証情報はどのように保護されますか？",
+          "answer": "OAuth トークンと API キーは Fernet 暗号化で保存されます。検証済みのサーバー側 MCP リクエストにのみ付与され、ログに記録されたりモデルに公開されたりすることはありません。"
+        },
+        "q4": {
+          "question": "独自のカスタムまたは社内のプライベート MCP サーバーを接続できますか？",
+          "answer": "はい。Integrations から任意のリモート HTTP/SSE MCP エンドポイントを追加できます。ローカルの stdio コマンドはサポートされなくなりました。"
+        },
+        "q5": {
+          "question": "コネクタの利用に追加料金はかかりますか？",
+          "answer": "いいえ。すべてのコネクタと MCP サーバーはプラットフォーム上乗せ料金なしで完全無料でご利用いただけます。サンドボックス Docker container が実際に稼働している間の標準的な秒単位のコンピュート料金のみが発生します。"
+        }
+      }
+    },
+    "cta": {
+      "title": "数秒でツールの接続を始めましょう。",
+      "subtitle": "ワークスペースを作成してお気に入りのサービスを連携し、完全なコンテキスト理解のもとでモデルにコード作成と検証を任せましょう。",
+      "primary": "無料ワークスペースを作成",
+      "secondary": "ドキュメントを読む"
+    },
+    "footer": {
+      "pricing": "料金",
+      "integrations": "連携",
+      "docs": "ドキュメント",
+      "terms": "利用規約",
+      "privacy": "プライバシー"
+    },
+    "preview": {
+      "publishedBy": "公開元: {{publisher}}",
+      "protocolTitle": "プロトコル & トランスポート",
+      "transportTypeLabel": "トランスポート種別:",
+      "transportStdio": "stdio (CLI ランタイム)",
+      "transportHttp": "SSE / HTTP ストリーム",
+      "sandboxLabel": "アクセス:",
+      "sandboxValue": "ワークスペース単位",
+      "websiteLabel": "Web サイト:",
+      "close": "閉じる",
+      "connectInWorkspace": "ワークスペースで接続",
+      "authLabel": "認証:"
+    },
+    "auth": {
+      "oauth": "OAuth 2.0",
+      "token": "API トークン",
+      "none": "認証なし",
+      "multi": "OAuth / トークン"
+    }
+  },
+  "errors": {
+    "unexpected": "予期しないエラーが発生しました。もう一度お試しください。",
+    "unreachable": "サーバーに接続できませんでした。接続を確認してもう一度お試しください。",
+    "serverUnavailable": "サーバーは一時的に利用できません。しばらくしてからもう一度お試しください。",
+    "serverError": "予期しないサーバーエラーが発生しました。しばらくしてからもう一度お試しください。",
+    "sessionExpired": "セッションの有効期限が切れました。再度サインインしてください。",
+    "forbidden": "この操作を実行する権限がありません。",
+    "notFound": "指定されたコネクタが見つかりませんでした。",
+    "invalidRequest": "無効なリクエストです。入力内容を確認してもう一度お試しください。"
+  }
+}

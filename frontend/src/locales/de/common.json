@@ -1,0 +1,62 @@
+{
+  "common": {
+    "save": "Änderungen speichern",
+    "saving": "Speichern...",
+    "saved": "Änderungen erfolgreich gespeichert",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "close": "Schließen",
+    "loading": "Wird geladen...",
+    "search": "Suchen",
+    "confirm": "Bestätigen",
+    "copy": "Kopieren",
+    "copied": "Kopiert",
+    "upload": "Hochladen",
+    "change": "Ändern",
+    "removePicture": "Bild entfernen"
+  },
+  "language": {
+    "label": "Sprache",
+    "description": "Wähle die Anzeigesprache für die Neuron-Runner-Oberfläche.",
+    "selectPlaceholder": "Sprache auswählen",
+    "updatedTitle": "Sprache aktualisiert",
+    "updatedDescription": "Oberflächensprache auf {{language}} geändert."
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "sections": {
+      "workspace": "Workspace",
+      "account": "Konto"
+    },
+    "tabs": {
+      "workspace": "Workspace",
+      "team": "Team",
+      "providerKeys": "Provider-Keys (BYOK)",
+      "billing": "Abrechnung",
+      "usage": "Nutzung",
+      "logs": "Logs",
+      "profile": "Profil",
+      "personalization": "Personalisierung",
+      "security": "Sicherheit",
+      "apiKeys": "API-Keys",
+      "vmSecrets": "VM-Secrets"
+    }
+  },
+  "nav": {
+    "docs": "Dokumentation",
+    "pricing": "Preise",
+    "connectors": "Connectors",
+    "signIn": "Anmelden",
+    "signUp": "Registrieren",
+    "signOut": "Abmelden",
+    "newChat": "Neuer Chat",
+    "projects": "Projekte"
+  },
+  "billingPrompt": {
+    "title": "Unzureichendes Guthaben",
+    "defaultDescription": "Dein Workspace-Guthaben beträgt $0. Lade Guthaben auf oder führe ein Upgrade durch, um fortzufahren.",
+    "hint": "Füge deinem Workspace-Wallet Guthaben hinzu oder wechsle in einen höheren Tarif mit monatlichem Inklusivkontingent.",
+    "action": "Tarif upgraden / Guthaben aufladen"
+  }
+}

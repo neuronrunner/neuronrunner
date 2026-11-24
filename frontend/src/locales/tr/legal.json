@@ -1,0 +1,352 @@
+{
+  "nav": {
+    "backToHome": "Neuron Runner'a Dön",
+    "termsOfService": "Kullanım Koşulları",
+    "privacyPolicy": "Gizlilik Politikası",
+    "onThisPage": "Bu sayfada",
+    "tocAriaLabel": "İçindekiler"
+  },
+  "footer": {
+    "pricing": "Fiyatlandırma",
+    "integrations": "Entegrasyonlar",
+    "docs": "Dokümanlar",
+    "terms": "Koşullar",
+    "privacy": "Gizlilik"
+  },
+  "terms": {
+    "seo": {
+      "title": "Kullanım Koşulları ve Kabul Edilebilir Kullanım Politikası",
+      "description": "Neuron Runner Kullanım Koşulları ve Kabul Edilebilir Kullanım Politikası. Genel olarak cinsel açıdan açık, yetişkin veya NSFW içeriklerin, CSAM, rızasız görüntülerin ve hukuka aykırı içeriklerin oluşturulması kesinlikle yasaktır."
+    },
+    "lastUpdated": "Son güncelleme: 12 Kasım 2026",
+    "title": "Kullanım Koşulları",
+    "intro": "Neuron Runner'a (\"Neuron Runner\", \"biz\", \"bizim\") hoş geldiniz. İşbu Kullanım Koşulları (\"Koşullar\"), neuronrunner.com adresindeki web sitemize, otonom kodlama çalışma alanımıza, bulut Linux sandbox sanal makinelerimize (\"VM\"), Model Context Protocol (\"MCP\") entegrasyonlarımıza, OpenAI uyumlu API'lerimize ve ilgili hizmetlerimize (topluca \"Hizmet\") erişiminizi ve kullanımınızı düzenler. Bir hesap oluşturarak, Hizmete erişerek veya Hizmeti kullanarak işbu Koşullar ve <privacyLink>Gizlilik Politikamız</privacyLink> ile bağlı olmayı kabul edersiniz.",
+    "toc": {
+      "eligibility": "1. Uygunluk ve Hesaplar",
+      "sandboxCompute": "2. Bulut Sandbox'lar ve VM'ler",
+      "acceptableUse": "3. Kabul Edilebilir Kullanım Politikası",
+      "billing": "4. Planlar, Kotalar ve Faturalandırma",
+      "byokMcp": "5. BYOK, MCP ve API Erişimi",
+      "ipOutputs": "6. Kod ve Yapay Zeka Çıktı Mülkiyeti",
+      "aiDisclaimers": "7. Yapay Zeka ve Çalıştırma Sorumluluk Reddi",
+      "termination": "8. Askıya Alma ve Fesih",
+      "warranties": "9. Garanti Reddi",
+      "liability": "10. Sorumluluk Sınırlaması",
+      "indemnification": "11. Tazminat ve Değişiklikler",
+      "contact": "12. İletişim"
+    },
+    "sections": {
+      "eligibility": {
+        "heading": "1. Uygunluk ve Hesap Kaydı",
+        "p1": "Hizmeti kullanabilmek için en az 18 yaşında (veya yargı bölgenizdeki yasal reşit olma yaşında, ya da doğrulanabilir ebeveyn veya yasal vasi izniyle en az 16 yaşında) olmanız gerekmektedir. İşbu Koşulları kabul ederek şunları beyan ve taahhüt edersiniz: (a) bu asgari yaş şartlarını karşılıyorsunuz; (b) daha önce Hizmetten askıya alınmadınız veya çıkarılmadınız; ve (c) Hizmete kaydınız ve kullanımınız yürürlükteki tüm yasalara, ihracat kontrollerine ve düzenlemelere uygundur.",
+        "p2": "Hizmetin çoğu özelliğine erişmek için geçerli bir e-posta adresi veya desteklenen bir OAuth sağlayıcısı (Google veya GitHub gibi) kullanarak bir hesap kaydetmeniz gerekir. Doğru ve eksiksiz bilgi sağlamayı ve bunu güncel tutmayı kabul edersiniz. Kimlik bilgilerinizin, API token'larınızın ve çalışma alanı davetiyelerinizin gizliliğini korumaktan ve hesabınız veya ekip çalışma alanınız altında gerçekleşen tüm etkinliklerden münhasıran siz sorumlusunuz."
+      },
+      "sandboxCompute": {
+        "heading": "2. Bulut Linux Sandbox'ları, VM'ler ve Snapshot'lar",
+        "intro": "Neuron Runner, yazılım geliştirme ve test için izole bulut Linux sanal makineleri, web terminalleri, canlı VNC masaüstü akışları ve port önizleme relay'leri sağlar. Bulut bilişim kaynaklarını kullanımınız, aktif abonelik planınızın katman sınırlarına tabidir:",
+        "items": {
+          "sessionDuration": {
+            "title": "Oturum Süresi ve Boşta Kalma Zaman Aşımları.",
+            "body": "Kesintisiz VM oturumları plana özgü maksimum sürelere tabidir (örneğin, uzatılmadığı veya snapshot alınmadığı sürece Free planda 20 dakikaya kadar ve ücretli planlarda 60 dakikaya kadar). Sonlandırılmış veya süresi dolmuş bir oturumdaki kaydedilmemiş geçici durum kurtarılamaz."
+          },
+          "persistentSnapshots": {
+            "title": "Kalıcı Snapshot'lar (Anlık Görüntüler).",
+            "body": "Ücretli planlar belirli bir kalıcı VM snapshot kotası içerir. Aboneliğinizi düşürür veya iptal ederseniz ya da hesabınız uzun süre hareketsiz kalırsa, makul bir bildirimden sonra mevcut planınızın depolama tahsisini aşan snapshot'ları temizleme veya silme hakkını saklı tutarız."
+          },
+          "fairUse": {
+            "title": "Kaynak Adil Kullanımı ve İzolasyon.",
+            "body": "Bir sandbox platform kararlılığını tehdit ederse veya Kabul Edilebilir Kullanım Politikamızı ihlal ederse ağ çıkışını, CPU'yu, disk G/Ç'yi veya açık önizleme portlarını kısıtlayabiliriz."
+          }
+        }
+      },
+      "acceptableUse": {
+        "heading": "3. Kabul Edilebilir Kullanım Politikası",
+        "intro": "Hizmeti, yapay zeka modellerini ve bulut VM'lerini yalnızca yasal yazılım geliştirme, araştırma ve üretkenlik amaçlarıyla kullanmayı kabul edersiniz. Genel olarak cinsel açıdan açık, yetişkin, pornografik veya NSFW (\"Not Safe For Work\") içerik oluşturmak, talep etmek, işlemek, barındırmak veya dağıtmak kesinlikle yasaktır. Şunları <not>yapmamayı</not> kabul edersiniz:",
+        "items": {
+          "nsfw": {
+            "title": "Cinsel Açıdan Açık, Yetişkin ve NSFW İçerik.",
+            "body": "Yalnızca aşırı veya yasa dışı alt kategorilerle sınırlı olmaksızın genel olarak herhangi bir cinsel açıdan açık, pornografik, yetişkin veya NSFW (\"Not Safe For Work\") içeriği oluşturmak, talep etmek, prompt girmek, yüklemek, işlemek, barındırmak, depolamak veya dağıtmak. Buna çıplaklık, erotizm, cinsel imalı veya açık medya, açık cinsel eylemler, yapay zeka tarafından üretilen cinsel açıdan açık metin, kod, görsel, ses veya video ya da yetişkin hizmetleri dahildir ancak bunlarla sınırlı değildir."
+          },
+          "harmful": {
+            "title": "Zararlı, İstismar Edici ve Yasa Dışı İçerik.",
+            "body": "Çocuk Cinsel İstismarı Materyali (CSAM) veya Çocukların Cinsel Sömürüsü ve İstismarı (CSAE), rızasız mahrem görüntüler (NCII), yasa dışı veya rızasız cinsel deepfake'ler, aşırı şiddet, vahşet, kendine zarar verme veya intiharı teşvik, nefret söylemi, taciz, siber saldırı araçları veya kitle imha silahlarına yönelik talimatlar oluşturmak, depolamak, yüklemek veya dağıtmak."
+          },
+          "cryptoMining": {
+            "title": "Kripto Para Madenciliği.",
+            "body": "Herhangi bir Neuron Runner sandbox'ı veya VM'si içinde kripto para madenciliği, proof-of-work hash hesaplaması veya blokzincir düğüm doğrulaması gerçekleştirmek."
+          },
+          "networkAbuse": {
+            "title": "Ağ Kötüye Kullanımı ve Siber Saldırılar.",
+            "body": "Üçüncü taraf hedeflere karşı hizmet reddi (DoS/DDoS) saldırıları, yetkisiz port taramaları, güvenlik açığı istismarı, komuta ve kontrol (C2) sunucuları, kimlik avı sayfaları, kötü amaçlı yazılım dağıtımı veya toplu istenmeyen mesajlar (spam) başlatmak için bulut VM'lerini veya önizleme URL'lerini kullanmak."
+          },
+          "sandboxEscape": {
+            "title": "Sandbox Kaçışı ve Altyapıya Müdahale.",
+            "body": "Konteyner/VM izolasyonunu aşmaya çalışmak, ana bilgisayar ağlarını veya meta veri hizmetlerini yoklamak ya da diğer kullanıcıların çalışma alanlarına, sandbox'larına veya hesaplarına yetkisiz erişim sağlamaya çalışmak."
+          },
+          "rateLimit": {
+            "title": "Hız Sınırı ve Kota Aşımı.",
+            "body": "Birden fazla ücretsiz hesap oluşturmak, kötüye kullanım amaçlı kayıtları otomatikleştirmek veya aylık kullanım haklarını, vCPU kotalarını ya da faturalandırma kontrollerini başka şekillerde aşmak."
+          }
+        },
+        "outro": "Neuron Runner, cinsel açıdan açık ve hukuka aykırı içeriklere karşı sıfır tolerans politikası uygular. Otomatik ve manuel içerik güvenliği kontrolleri uygularız ve içerik politikalarımız ile ödeme işlemcisi standartlarına uyumu sağlamak için prompt'ları, girdileri ve üretilen içerikleri inceleme hakkını saklı tutarız. Herhangi bir ihlal, geri ödeme yapılmaksızın hesabın derhal askıya alınmasına, VM'lerin sonlandırılmasına ve kalan bakiyelerin kaybedilmesine yol açacaktır."
+      },
+      "billing": {
+        "heading": "4. Abonelikler, Kullanım Hakları ve Faturalandırma",
+        "items": {
+          "plansRenewal": {
+            "title": "Abonelik Planları ve Yenileme.",
+            "body": "Ücretli planlar (Plus, Pro ve üye bazlı Team planları gibi) aylık veya yıllık döngüde peşin olarak faturalandırılır ve önceden iptal edilmediği sürece her faturalandırma döneminin sonunda otomatik olarak yenilenir."
+          },
+          "allowances": {
+            "title": "Aylık Kullanım Hakları.",
+            "body": "Her plan, aylık bir LLM kullanım hakkı ve aylık bir bulut bilişim kotası (vCPU-saat cinsinden ölçülür) içerir. Kullanılmayan aylık plan hakları ve dahil edilen vCPU-saatleri faturalandırma döngüsünün sonunda sona erer ve devretmez."
+          },
+          "teamWorkspaces": {
+            "title": "Ekip Çalışma Alanları.",
+            "body": "Team abonelikleri aktif üye başına faturalandırılır. Çalışma alanı yöneticileri üye atamalarından sorumludur; döngü ortasında üye eklemek kıstelyevm (oransal) ücretlendirmeye neden olabilir ve bilişim bütçeleri çalışma alanı genelinde ortak kullanılır."
+          },
+          "topUps": {
+            "title": "Ekstra Kullanım Yüklemeleri ve İşlem Ücretleri.",
+            "body": "Ücretli aboneler, dahil edilen kullanım haklarının ötesinde model veya VM çalıştırmaya devam etmek için ekstra kullanım cüzdanı yüklemelerini etkinleştirebilir. Yükleme işlemleri, açıklanan bir ödeme işleme ücretine tabi olabilir. Satın alınan kredilerin ve yükleme bakiyelerinin nakit değeri yoktur, devredilemez ve yürürlükteki yasaların gerektirdiği durumlar dışında iade edilemez."
+          },
+          "cancellations": {
+            "title": "İptaller ve Plan Değişiklikleri.",
+            "body": "Çalışma alanı faturalandırma ayarlarınızdan istediğiniz zaman aboneliğinizi iptal edebilir veya bir plan düşürme planlayabilirsiniz. İptaller ve plan düşürmeler mevcut ödenmiş faturalandırma döngüsünün sonunda yürürlüğe girer."
+          }
+        }
+      },
+      "byokMcp": {
+        "heading": "5. Kendi Anahtarını Getir (BYOK), MCP Entegrasyonları ve API Erişimi",
+        "intro": "Neuron Runner, kendi üçüncü taraf LLM sağlayıcısı API anahtarlarınızı (\"BYOK\") yapılandırmanıza, Model Context Protocol (\"MCP\") veya OAuth aracılığıyla harici araçları bağlamanıza ve OpenAI uyumlu <code>/v1</code> endpoint'lerimiz üzerinden modellere erişmenize olanak tanır:",
+        "items": {
+          "thirdPartyTerms": {
+            "title": "Üçüncü Taraf Koşulları ve Ücretleri.",
+            "body": "BYOK kullandığınızda veya harici MCP sunucularını (ör. GitHub, Linear, Slack, Notion veya özel HTTP/Stdio sunucuları) bağladığınızda, bu hizmetleri kullanımınız ilgili sağlayıcı ile yaptığınız ayrı sözleşmeye tabidir. Doğrudan BYOK sağlayıcınız tarafından faturalandırılan her türlü kullanım ücretinden yalnızca siz sorumlusunuz."
+          },
+          "vmCliSessions": {
+            "title": "VM İçi CLI Oturumları ve Üçüncü Taraf Abonelikleri.",
+            "body": "İzole Bulut VM'iniz içinde resmi bir üçüncü taraf komut satırı aracına (CLI) giriş yaptığınızda, kimlik doğrulama oturumunuz ve kimlik bilgileriniz yalnızca söz konusu VM içinde kalır; Neuron Runner tarafından okunmaz, çıkarılmaz veya merkezi sunucularda saklanmaz. Neuron Runner bağımsız bir bulut bilişim platformudur; Anthropic, OpenAI, Google veya başka bir model sağlayıcısı ile bağlantılı, sponsorlu ya da onaylı değildir. Sağlayıcınızın geçerli abonelik şartlarına, kabul edilebilir kullanım politikalarına ve kullanım sınırlarına uygunluğu doğrulamaktan ve bunlara uymaktan yalnızca siz sorumlusunuz; üçüncü taraf bir sağlayıcı tarafından uygulanan hesap askıya alma, hız sınırlaması veya erişim kısıtlamaları Neuron Runner'ın kontrolü ve sorumluluğu dışındadır."
+          },
+          "connectorSafety": {
+            "title": "Harici Entegrasyon Güvenliği.",
+            "body": "Neuron Runner, ajanlarınızın veya sandbox'larınızın çağırmasına izin verdiğiniz üçüncü taraf MCP sunucularının veya harici API'lerin kullanılabilirliği, doğruluğu, güvenliği veya veri işleme uygulamalarından sorumlu değildir."
+          }
+        }
+      },
+      "ipOutputs": {
+        "heading": "6. Fikri Mülkiyet, Müşteri Kodu ve Yapay Zeka Çıktıları",
+        "yourContent": {
+          "title": "Sizin İçeriğiniz.",
+          "body": "Sizinle Neuron Runner arasında, yürürlükteki yasaların izin verdiği azami ölçüde, çalışma alanlarınıza yüklediğiniz veya oluşturduğunuz kaynak kodu, dosyalar, prompt'lar, ortam değişkenleri ve depolar (\"Girdiler\") ile Hizmet tarafından sizin için üretilen kod, diff'ler ve yanıtlar (\"Çıktılar\") üzerindeki tüm hak, unvan ve mülkiyeti elinizde tutarsınız."
+        },
+        "limitedLicense": {
+          "title": "Sınırlı Hizmet Lisansı.",
+          "body": "Neuron Runner'a, yalnızca Hizmeti sizin ve yetkili çalışma alanı üyelerinizin kullanımına sunmak, güvence altına almak ve sürdürmek için gerekli olduğu ölçüde Girdilerinizi ve Çıktılarınızı barındırmak, sandbox'larda çalıştırmak, VM snapshot'ları oluşturmak, seçtiğiniz yapay zeka model sağlayıcılarına iletmek ve görüntülemek üzere dünya çapında, münhasır olmayan, telifsiz bir lisans verirsiniz."
+        },
+        "platformIp": {
+          "title": "Platform Fikri Mülkiyeti.",
+          "body": "Neuron Runner ve lisans verenleri; orkestrasyon yazılımımız, kullanıcı arayüzümüz, sandbox altyapımız, logolarımız ve dokümantasyonumuz dahil olmak üzere Hizmetin kendisi üzerindeki tüm hak, unvan ve menfaatlere sahiptir."
+        }
+      },
+      "aiDisclaimers": {
+        "heading": "7. Yapay Zeka ve Kod Çalıştırma Sorumluluk Reddi",
+        "body": "Büyük dil modelleri ve otonom kodlama ajanları olasılıksal sistemlerdir. Hizmet tarafından üretilen Çıktılar hatalar, güvenlik açıkları, yanlış ifadeler (\"halüsinasyonlar\"), yıkıcı kabuk komutları veya mevcut açık kaynaklı ya da üçüncü taraf kodlara benzer kod parçacıkları içerebilir. Tüm Çıktıları, kod değişikliklerini, pull request'leri ve terminal komutlarını üretime dağıtmadan veya izole bir sandbox dışında çalıştırmadan önce incelemekten, test etmekten ve doğrulamaktan yalnızca siz sorumlusunuz."
+      },
+      "termination": {
+        "heading": "8. Askıya Alma ve Fesih",
+        "body": "Aşağıdakileri makul bir şekilde belirlememiz halinde, önceden bildirimde bulunarak veya bulunmaksızın hesabınızı, aktif VM'lerinizi, önizleme URL'lerinizi veya API erişiminizi derhal askıya alma veya sonlandırma hakkını saklı tutarız: (a) işbu Koşulları veya Kabul Edilebilir Kullanım Politikamızı ihlal etmeniz (cinsel açıdan açık, yetişkin, NSFW veya hukuka aykırı içerik oluşturma, talep etme veya dağıtma dahil); (b) sandbox'ınızın altyapımız veya üçüncü taraflar için güvenlik, hukuki veya operasyonel bir risk oluşturması; veya (c) hesabınızda vadesi geçmiş, tahsil edilemeyen veya itiraz edilmiş ödeme yükümlülüklerinin bulunması."
+      },
+      "warranties": {
+        "heading": "9. Garanti Reddi",
+        "body": "HİZMET, BULUT SANDBOX'LARI VE TÜM YAPAY ZEKA ÇIKTILARI; TİCARİ ELVERİŞLİLİK, BELİRLİ BİR AMACA UYGUNLUK, MÜLKİYET, DOĞRULUK, KESİNTİSİZ ÇALIŞMA VE İHLAL ETMEME ZIMNİ GARANTİLERİ DAHİL ANCAK BUNLARLA SINIRLI OLMAMAK ÜZERE AÇIK VEYA ZIMNİ HİÇBİR GARANTİ OLMAKSIZIN \"OLDUĞU GİBİ\" VE \"MEVCUT OLDUĞU ŞEKİLDE\" SUNULMAKTADIR. NEURON RUNNER, HİZMETİN VEYA ÜRETİLEN KODUN HATASIZ, GÜVENLİ VEYA KESİNTİSİZ OLACAĞINI GARANTİ ETMEZ."
+      },
+      "liability": {
+        "heading": "10. Sorumluluk Sınırlaması",
+        "body": "YÜRÜRLÜKTEKİ YASALARIN İZİN VERDİĞİ AZAMİ ÖLÇÜDE, NEURON RUNNER, İŞTİRAKLERİ, YÖNETİCİLERİ, ÇALIŞANLARI VEYA TEDARİKÇİLERİ HİÇBİR DURUMDA HİZMETİ KULLANIMINIZDAN KAYNAKLANAN VEYA BUNUNLA BAĞLANTILI HİÇBİR DOLAYLI, ARIZİ, ÖZEL, SONUÇSAL VEYA CEZAİ ZARARDAN YA DA KÂR, GELİR, VERİ, SNAPSHOT VEYA İTİBAR KAYBINDAN SORUMLU OLMAYACAKTIR. HİZMETLE İLGİLİ TÜM TALEPLERE YÖNELİK TOPLAM SORUMLULUĞUMUZ, (A) TALEBE YOL AÇAN OLAYDAN ÖNCEKİ ON İKİ (12) AY İÇİNDE NEURON RUNNER'A ÖDEDİĞİNİZ TOPLAM TUTARDAN VEYA (B) YÜZ ABD DOLARINDAN ($100.00) HANGİSİ DAHA BÜYÜKSE ONU AŞMAYACAKTIR."
+      },
+      "indemnification": {
+        "heading": "11. Tazminat, Geçerli Hukuk ve Değişiklikler",
+        "indemnity": {
+          "title": "Tazminat.",
+          "body": "Girdilerinizden, bulut VM'lerini veya MCP entegrasyonlarını kullanımınızdan ya da işbu Koşulları veya yürürlükteki yasaları ihlal etmenizden kaynaklanan veya bunlarla bağlantılı tüm talep, yükümlülük, zarar, kayıp ve masraflara (makul avukatlık ücretleri dahil) karşı Neuron Runner'ı ve iştiraklerini savunmayı, tazmin etmeyi ve zarar görmemelerini sağlamayı kabul edersiniz."
+        },
+        "modifications": {
+          "title": "Koşullarda Değişiklikler.",
+          "body": "Yeni özellikleri, yasal gereklilikleri veya fiyatlandırma yapılarını yansıtmak için işbu Koşulları zaman zaman güncelleyebiliriz. Önemli değişiklikler yaptığımızda, bu sayfanın üst kısmındaki \"Son güncelleme\" tarihini güncelleriz. Değişiklikler yürürlüğe girdikten sonra Hizmeti kullanmaya devam etmeniz, revize edilmiş Koşulları kabul ettiğiniz anlamına gelir."
+        }
+      },
+      "contact": {
+        "heading": "12. Bize Ulaşın",
+        "body": "İşbu Koşullarla ilgili sorularınız, faturalandırma talepleriniz veya yasal bildirimleriniz varsa lütfen bizimle şu adresten iletişime geçin:"
+      }
+    }
+  },
+  "privacy": {
+    "seo": {
+      "title": "Gizlilik Politikası",
+      "description": "Veri toplama, bulut Linux sandbox'ları, yapay zeka model gizliliği, BYOK kimlik bilgileri ve kullanıcı haklarını kapsayan Neuron Runner Gizlilik Politikası."
+    },
+    "lastUpdated": "Son güncelleme: 11 Kasım 2026",
+    "title": "Gizlilik Politikası",
+    "intro": "Neuron Runner (\"Neuron Runner\", \"biz\", \"bizim\"), web sitemizi, otonom kodlama çalışma alanlarımızı, bulut Linux sandbox'larımızı ve API'lerimizi (topluca \"Hizmetler\") kullanan geliştiricilerin ve ekiplerin gizliliğine ve güvenliğine değer verir. İşbu Gizlilik Politikası, hangi bilgileri topladığımızı, kodunuzu, prompt'larınızı ve kimlik bilgilerinizi nasıl işlediğimizi ve sahip olduğunuz hakları açıklamaktadır. Lütfen ayrıca <termsLink>Kullanım Koşullarımızı</termsLink> da inceleyin.",
+    "toc": {
+      "informationCollected": "1. Topladığımız Bilgiler",
+      "howWeUse": "2. Bilgileri Nasıl Kullanıyoruz",
+      "aiPrivacy": "3. Yapay Zeka Gizliliği ve Eğitim",
+      "sandboxCredentials": "4. Sandbox, BYOK ve MCP Verileri",
+      "dataSharing": "5. Veri Paylaşımı ve Alt İşleyiciler",
+      "cookiesStorage": "6. Çerezler ve Yerel Depolama",
+      "retentionSecurity": "7. Veri Saklama ve Güvenlik",
+      "yourRights": "8. Haklarınız ve Tercihleriniz",
+      "childrenTransfers": "9. Yaş Sınırları ve Aktarımlar",
+      "contact": "10. Bize Ulaşın"
+    },
+    "sections": {
+      "informationCollected": {
+        "heading": "1. Topladığımız Bilgiler",
+        "directLabel": "Doğrudan bize sağladığınız bilgiler:",
+        "directItems": {
+          "account": {
+            "title": "Hesap ve Profil Verileri.",
+            "body": "Doğrudan kayıt olduğunuzda veya Google ya da GitHub OAuth aracılığıyla giriş yaptığınızda alınan kullanıcı adınız, e-posta adresiniz, şifre özetiniz (hash) ve profil bilgileriniz."
+          },
+          "workspaceContent": {
+            "title": "Prompt'lar, Kod ve Çalışma Alanı İçeriği.",
+            "body": "Projeleriniz ve bulut Linux VM sandbox'larınız içinde oluşturduğunuz veya işlediğiniz sohbet prompt'ları, dosyalar, depolar, terminal komutları ve yapay zeka çıktıları."
+          },
+          "credentials": {
+            "title": "Entegrasyon Kimlik Bilgileri (BYOK ve MCP).",
+            "body": "Yapılandırdığınız üçüncü taraf LLM API anahtarları (\"Bring Your Own Key\") ve harici Model Context Protocol (\"MCP\") araçlarını bağlamak için sağladığınız OAuth token'ları, header'lar veya ortam değişkenleri."
+          },
+          "billing": {
+            "title": "Faturalandırma ve İşlem Meta Verileri.",
+            "body": "Ücretli bir plana abone olduğunuzda veya ekstra kullanım cüzdanınıza yükleme yaptığınızda, ödeme işlemcimiz tam ödeme kartı bilgilerinizi toplar. Biz yalnızca kart markası, kartınızın son dört hanesi, son kullanma ay/yılı, fatura durumu ve fatura geçmişi gibi hassas olmayan faturalandırma meta verilerini saklarız."
+          },
+          "communications": {
+            "title": "İletişim.",
+            "body": "Müşteri desteğiyle iletişime geçtiğinizde veya çalışma alanı davetiyelerine yanıt verdiğinizde adınız, e-posta adresiniz ve mesaj içerikleriniz."
+          }
+        },
+        "autoLabel": "Otomatik olarak toplanan bilgiler:",
+        "autoItems": {
+          "telemetry": {
+            "title": "Kullanım ve Kota Telemetrisi.",
+            "body": "Faturalandırma ve hız sınırlaması için gereken çağrılan modeller, token sayıları, bulut VM çalışma süresi (vCPU-saat), snapshot sayıları ve MCP aracı yürütme zaman damgaları."
+          },
+          "deviceLog": {
+            "title": "Cihaz ve Log Bilgileri.",
+            "body": "Güvenlik, kimlik doğrulama ve kötüye kullanımı önleme amacıyla kullanılan IP adresi, IP'den çıkarılan yaklaşık coğrafi bölge, tarayıcı türü, işletim sistemi ve istek logları."
+          }
+        }
+      },
+      "howWeUse": {
+        "heading": "2. Bilgileri Nasıl Kullanıyoruz ve Hukuki Sebepler",
+        "intro": "Bilgilerinizi aşağıdaki amaçlarla işleriz (GDPR/KVKK kapsamında geçerli olduğu ölçüde sözleşmenin ifası, meşru ticari menfaatler, yasal uyumluluk veya açık rızanıza dayanarak):",
+        "items": {
+          "provisioning": "Kodlama çalışma alanlarınızı, bulut Linux sandbox'larınızı ve kalıcı VM snapshot'larınızı sağlamak ve işletmek.",
+          "routing": "Prompt'larınızı ve araç çağrılarınızı seçtiğiniz yapay zeka modellerine ve MCP entegrasyonlarına yönlendirmek.",
+          "billing": "LLM kullanım haklarını, vCPU-saat tüketimini hesaplamak ve abonelik veya yükleme ödemelerini işlemek için.",
+          "auth": "Oturumlarınızı doğrulamak, tek kullanımlık doğrulama kodları (OTP) göndermek ve ekip çalışma alanı davetiyelerini yönetmek.",
+          "abuse": "Dolandırıcılığı, yetkisiz sandbox kaçışlarını, kripto madenciliğini, ağ kötüye kullanımını ve güven ve güvenlik ihlallerini tespit etmek ve önlemek.",
+          "metrics": "Platform güvenilirliğini artırmak amacıyla toplulaştırılmış, kimliği belirlemeyen performans metrikleri (cold-start gecikmesi ve model iş hacmi gibi) oluşturmak."
+        }
+      },
+      "aiPrivacy": {
+        "heading": "3. Yapay Zeka Veri Gizliliği ve Model Eğitimi Politikası",
+        "calloutTitle": "Özel Çalışma Alanı Kodları Üzerinde Eğitim Yapılmaz:",
+        "calloutBody": "Neuron Runner, temel yapay zeka modellerini eğitmek veya ince ayar (fine-tuning) yapmak için özel kaynak kodunuzu, çalışma alanı dosyalarınızı, VM snapshot'larınızı, ortam değişkenlerinizi veya prompt'larınızı <not>kullanmaz</not>.",
+        "body": "Neuron Runner üzerinden bir model çalıştırdığınızda, prompt'unuz ve ilgili bağlam yalnızca talep edilen yanıtı üretmek amacıyla seçilen model sağlayıcısına (veya BYOK etkinleştirildiğinde doğrudan kendi API anahtarınız kullanılarak) iletilir. Kendi API anahtarınızı (BYOK) kullanırsanız, söz konusu sağlayıcı tarafından veri saklama ve işleme süreçleri, o sağlayıcı ile yaptığınız doğrudan sözleşmeye ve gizlilik ayarlarınıza tabidir."
+      },
+      "sandboxCredentials": {
+        "heading": "4. Bulut Sandbox'ları, BYOK Anahtarları ve MCP Kimlik Bilgileri",
+        "items": {
+          "encryption": {
+            "title": "Kimlik Bilgisi Şifrelemesi.",
+            "body": "Üçüncü taraf API anahtarları (BYOK), MCP sunucusu ortam değişkenleri, özel HTTP header'ları ve OAuth token'ları veritabanımızda saklanmadan önce sunucuda şifreli olarak (at rest) korunur ve yalnızca sizin adınıza istekler yürütülürken bellekte şifreleri çözülür."
+          },
+          "isolation": {
+            "title": "Sandbox İzolasyonu.",
+            "body": "Her bulut VM oturumu, özel token doğrulamalı terminal ve masaüstü önizleme kanallarına sahip izole edilmiş sanallaştırılmış bir ortamda çalışır."
+          }
+        }
+      },
+      "dataSharing": {
+        "heading": "5. Veri Paylaşımı ve Alt İşleyiciler",
+        "intro": "Kişisel bilgilerinizi veya kaynak kodunuzu üçüncü taraflara <notSell>satmayız</notSell> veya kiralamayız. Bilgileri yalnızca aşağıdaki durumlarda paylaşırız:",
+        "items": {
+          "infrastructure": {
+            "title": "Altyapı ve Bilişim Sağlayıcıları.",
+            "body": "Platformumuzu barındıran ve sandbox konteynerlerini çalıştıran bulut barındırma, veritabanı ve sanal makine altyapı sağlayıcıları."
+          },
+          "aiProviders": {
+            "title": "Yapay Zeka Model Sağlayıcıları.",
+            "body": "Başlattığınız model isteklerini yerine getirmek için kesinlikle gerekli olduğu ölçüde üst LLM sağlayıcıları."
+          },
+          "connectors": {
+            "title": "Kullanıcı Tarafından Yetkilendirilen Entegrasyonlar.",
+            "body": "Çalışma alanınıza açıkça bağladığınız üçüncü taraf MCP sunucuları veya OAuth hizmetleri (GitHub veya Google gibi)."
+          },
+          "paymentProcessors": {
+            "title": "Ödeme İşlemcileri.",
+            "body": "Abonelikleri, faturaları ve cüzdan yüklemelerini işlemek için güvenilir ödeme ağ geçitleri."
+          },
+          "teamAdmins": {
+            "title": "Ekip Çalışma Alanı Yöneticileri.",
+            "body": "Paylaşılan bir Team çalışma alanına katılırsanız, çalışma alanı sahibi/yöneticileri çalışma alanı üyeliklerini, ortak kredi tüketimini ve paylaşılan proje kaynaklarını görüntüleyebilir."
+          },
+          "legal": {
+            "title": "Yasal Uyum ve İşletme Devirleri.",
+            "body": "Yürürlükteki yasalara, geçerli hukuki süreçlere uymak gerektiğinde veya bir birleşme, devralma ya da varlık satışı ile bağlantılı olarak."
+          }
+        }
+      },
+      "cookiesStorage": {
+        "heading": "6. Çerezler ve Yerel Depolama",
+        "body": "Oturumunuzu açık tutmak (access ve refresh token'larını saklamak), aktif çalışma alanınızı ve seçili VM durumunu hatırlamak ve açık/koyu tema modu gibi arayüz tercihlerini korumak için kesinlikle gerekli tarayıcı depolamasını (<code>localStorage</code> ve oturum çerezleri) kullanırız. Üçüncü taraf siteler arası reklam çerezleri kullanmayız."
+      },
+      "retentionSecurity": {
+        "heading": "7. Veri Saklama ve Güvenlik",
+        "p1": "Hesap verilerinizi, sohbet geçmişinizi, çalışma alanı dosyalarınızı ve kalıcı VM snapshot'larınızı hesabınız aktif kaldığı sürece veya Hizmetleri sağlamak için gerektiği ölçüde saklarız. Snapshot'ı alınmayan geçici sandbox oturumları, VM oturumu sona erdiğinde otomatik olarak silinir.",
+        "p2": "Bir projeyi sildiğinizde, bir MCP entegrasyonunu iptal ettiğinizde, bir BYOK anahtarını kaldırdığınızda veya hesap silme talebinde bulunduğunuzda, ilişkili kimlik bilgilerini ve çalışma alanı çıktılarını aktif sistemlerden siler; yalnızca vergi, muhasebe, dolandırıcılığı önleme veya yasal uyumluluk için gerekli faturalandırma ve denetim loglarını saklarız."
+      },
+      "yourRights": {
+        "heading": "8. Gizlilik Haklarınız ve Tercihleriniz (GDPR, CCPA ve KVKK)",
+        "intro": "Bulunduğunuz konuma bağlı olarak, kişisel bilgilerinizle ilgili aşağıdaki haklara sahip olabilirsiniz:",
+        "items": {
+          "access": {
+            "title": "Erişim ve Taşınabilirlik.",
+            "body": "Hakkınızda tuttuğumuz kişisel verilerin bir kopyasını yapılandırılmış, makine tarafından okunabilir bir formatta talep etme."
+          },
+          "correction": {
+            "title": "Düzeltme.",
+            "body": "Hatalı hesap veya profil bilgilerini güncelleme veya düzeltme."
+          },
+          "deletion": {
+            "title": "Silme (\"Unutulma Hakkı\").",
+            "body": "Zorunlu yasal saklama gerekliliklerine tabi olmak kaydıyla hesabınızın, kişisel bilgilerinizin ve depolanan çalışma alanı verilerinizin silinmesini talep etme."
+          },
+          "objection": {
+            "title": "İtiraz, Kısıtlama ve Pazarlama İletişiminden Çıkma.",
+            "body": "Belirli işleme faaliyetlerine itiraz etme veya abonelikten çıkma bağlantısı aracılığıyla işlem dışı tanıtım e-postalarından dilediğiniz zaman ayrılma."
+          }
+        },
+        "contact": "Bu haklardan herhangi birini kullanmak için lütfen bize <emailLink>privacy@neuronrunner.com</emailLink> adresinden e-posta gönderin. Doğrulanabilir taleplere 30 gün içinde yanıt veririz."
+      },
+      "childrenTransfers": {
+        "heading": "9. Çocukların Gizliliği ve Uluslararası Veri Aktarımları",
+        "ageLimits": {
+          "title": "Yaş Sınırlamaları.",
+          "body": "Kullanım Koşullarımızla tutarlı olarak Hizmetlerimiz 18 yaş ve üzeri geliştiricilere (veya doğrulanabilir ebeveyn veya vasi izniyle en az 16 yaş) yöneliktir. 16 yaşın altındaki çocuklardan bilerek kişisel bilgi toplamıyoruz. 16 yaşın altındaki bir çocuğun bize kişisel veri sağladığını düşünüyorsanız lütfen <emailLink>privacy@neuronrunner.com</emailLink> adresiyle iletişime geçin; söz konusu verileri derhal sileceğiz."
+        },
+        "transfers": {
+          "title": "Uluslararası Aktarımlar.",
+          "body": "Bulut altyapımız ve alt işleyicilerimiz verileri Amerika Birleşik Devletleri, Avrupa Ekonomik Alanı ve diğer yargı bölgelerinde işleyebilir. Gerektiği durumlarda, sınır ötesi veri aktarımlarını korumak için Standart Sözleşme Maddeleri (SCCs) gibi uygun güvencelere dayanırız."
+        }
+      },
+      "contact": {
+        "heading": "10. Bize Ulaşın",
+        "body": "İşbu Gizlilik Politikası veya veri uygulamalarımız hakkında sorularınız, endişeleriniz veya talepleriniz varsa lütfen gizlilik ekibimizle iletişime geçin:"
+      }
+    }
+  }
+}

@@ -1,0 +1,745 @@
+{
+  "dialog": {
+    "description": "Manage your workspace, team, billing, preferences and security."
+  },
+  "modal": {
+    "closeAriaLabel": "Close settings"
+  },
+  "roles": {
+    "owner": "owner",
+    "admin": "admin",
+    "member": "member"
+  },
+  "workspaceSelector": {
+    "currentWorkspace": "Current workspace",
+    "ariaLabel": "Settings workspace",
+    "fallbackName": "Workspace",
+    "selectWorkspace": "Select workspace",
+    "switching": "Switching…",
+    "summarySingle": "{{role}} · {{count}} member",
+    "summaryPlural": "{{role}} · {{count}} members",
+    "chooseTeam": "Choose your team",
+    "workspaces": "Workspaces",
+    "noWorkspaces": "No workspaces available.",
+    "newWorkspace": "New workspace"
+  },
+  "store": {
+    "billingCustomerIdMissing": "Billing customer id missing.",
+    "paymentMethodUpdateTxMissing": "Payment method update transaction id is missing.",
+    "topUpTxMissing": "Top-up transaction id is missing.",
+    "checkoutUrlMissing": "Checkout URL missing"
+  },
+  "workspaceTab": {
+    "loadingAriaLabel": "Loading workspace settings",
+    "selectWorkspace": "Select or create a workspace to view its settings.",
+    "title": "Workspace Profile",
+    "subtitle": "Manage how your workspace details, identity, and avatar appear across the team.",
+    "picture": {
+      "title": "Workspace Picture",
+      "hint": "PNG, JPG, or GIF up to 10MB. Square aspect recommended.",
+      "permissionHint": "Only workspace owners and admins can update the workspace picture."
+    },
+    "fields": {
+      "name": {
+        "label": "Workspace Name",
+        "placeholder": "Workspace name"
+      },
+      "slug": {
+        "label": "Workspace Slug",
+        "hint": "Workspace slug used for routing and project identification."
+      }
+    },
+    "yourRole": "Your role:",
+    "saveChanges": "Save changes",
+    "toast": {
+      "pictureUpdatedTitle": "Workspace picture updated",
+      "pictureUpdatedDescription": "Your workspace logo has been updated successfully.",
+      "uploadFailedTitle": "Upload failed",
+      "pictureRemovedTitle": "Workspace picture removed",
+      "pictureRemovedDescription": "Your workspace picture has been removed.",
+      "removalFailedTitle": "Removal failed",
+      "updatedTitle": "Workspace updated",
+      "updatedDescription": "Workspace name has been saved."
+    },
+    "errors": {
+      "uploadFailed": "Failed to upload workspace picture.",
+      "removeFailed": "Failed to remove workspace picture.",
+      "updateFailed": "Workspace could not be updated."
+    }
+  },
+  "team": {
+    "title": "Team members",
+    "selectWorkspace": "Select or create a workspace to view its team.",
+    "subtitle": "Manage your shared team members and pending invitations for {{workspace}}.",
+    "inviteButton": "Invite member",
+    "individualPlan": {
+      "title": "Team features are not available on the {{plan}} plan.",
+      "freeDescription": "The Free plan is an individual plan supporting 1 member. Upgrade to Pro (up to 4 members) in the Billing tab to collaborate with teammates.",
+      "plusDescription": "The Plus plan ($10/mo) is an individual plan supporting 1 VM and 1 member. Upgrade to Pro (up to 4 members) in the Billing tab to collaborate with teammates."
+    },
+    "inviteForm": {
+      "title": "Invite a teammate",
+      "closeAriaLabel": "Close invite form",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "teammate@example.com",
+      "roleLabel": "Role",
+      "roleAriaLabel": "Invitation role",
+      "sending": "Sending…",
+      "send": "Send invite",
+      "adminHint": "Admins can invite people and manage team members.",
+      "memberHint": "Members can collaborate on chats and projects."
+    },
+    "roles": {
+      "member": "Member",
+      "admin": "Admin"
+    },
+    "removeAlert": {
+      "title": "Remove {{name}}?",
+      "description": "They will lose access to this workspace’s chats and projects.",
+      "removing": "Removing…",
+      "confirm": "Remove member"
+    },
+    "actions": {
+      "cancel": "Cancel"
+    },
+    "tabs": {
+      "ariaLabel": "Team lists",
+      "members": "Members",
+      "invitations": "Invitations"
+    },
+    "search": {
+      "membersAriaLabel": "Search members",
+      "invitationsAriaLabel": "Search invitations",
+      "membersPlaceholder": "Search by name or email",
+      "invitationsPlaceholder": "Search invitations",
+      "clearAriaLabel": "Clear search"
+    },
+    "members": {
+      "you": "You",
+      "actionsAriaLabel": "Actions for {{name}}",
+      "removeFromWorkspace": "Remove from workspace"
+    },
+    "invitations": {
+      "awaitingAcceptance": "Awaiting acceptance",
+      "cancelAriaLabel": "Cancel invitation for {{email}}"
+    },
+    "emptyMembers": {
+      "filteredTitle": "No matching teammates",
+      "defaultTitle": "Your team starts here",
+      "filteredDescription": "Try another name or email address.",
+      "defaultDescription": "Invite people to collaborate in this workspace."
+    },
+    "emptyInvitations": {
+      "filteredTitle": "No matching invitations",
+      "defaultTitle": "No pending invitations",
+      "filteredDescription": "Try another email address.",
+      "defaultDescription": "Invitations will appear here until your teammates accept."
+    },
+    "toast": {
+      "inviteSentTitle": "Invitation sent",
+      "inviteSentDescription": "{{email}} can join after accepting the email.",
+      "memberRemovedTitle": "Member removed",
+      "inviteCancelledTitle": "Invitation cancelled",
+      "inviteCancelledDescription": "Invitation for {{email}} has been cancelled."
+    }
+  },
+  "providerKeys": {
+    "selectWorkspace": "Select a workspace to manage provider keys.",
+    "noPermission": "Only workspace owners and admins can manage provider keys. Members can use configured providers and custom models.",
+    "title": "Bring your own key & Custom Models",
+    "subtitle": "Provider keys are encrypted and shared within {{workspace}}. Custom models added here appear directly in your Chat model selector with zero platform token markup.",
+    "providers": {
+      "custom": "Custom Endpoint (vLLM / Ollama)"
+    },
+    "tabs": {
+      "keys": "Provider Keys ({{count}})",
+      "models": "Custom Models ({{count}})"
+    },
+    "keyForm": {
+      "providerLabel": "Provider",
+      "providerPlaceholder": "Select provider",
+      "baseUrlLabel": "Base URL (OpenAI-compatible)",
+      "baseUrlPlaceholder": "e.g. http://localhost:11434/v1 or https://my-vllm.example.com/v1",
+      "apiKeyLabel": "API key",
+      "apiKeyOptionalSuffix": "(Optional if local/unauthenticated)",
+      "apiKeyPlaceholderCustom": "Paste API key (optional for Ollama)",
+      "apiKeyPlaceholder": "Paste your provider key",
+      "encryptionNote": "The full key is encrypted with Fernet and never shown again. Models configured for this provider will use it automatically.",
+      "saving": "Saving…",
+      "updateKey": "Update key",
+      "saveKey": "Save key"
+    },
+    "configuredKeysTitle": "Configured Provider Keys",
+    "noKeys": "No provider keys saved yet.",
+    "connected": "Connected",
+    "remove": "Remove",
+    "noKeysPrompt": {
+      "title": "No Provider Keys Configured",
+      "description": "To add a custom model, first add an API key (e.g. OpenRouter, Groq, OpenAI) or a Custom Endpoint in the Provider Keys tab.",
+      "cta": "Go to Provider Keys"
+    },
+    "addModelButton": "Add Custom Model",
+    "modelForm": {
+      "title": "Add Custom Model",
+      "cancel": "Cancel",
+      "selectKeyLabel": "Select Configured Provider Key",
+      "selectKeyPlaceholder": "Select configured provider key",
+      "routedThrough": "This model will be billed to and routed through your workspace's <strong>{{provider}}</strong> key.",
+      "displayNameLabel": "Display Name in Chat",
+      "displayNamePlaceholder": "e.g. Claude 3.7 Sonnet",
+      "externalIdLabel": "External Model ID (API Identifier)",
+      "externalIdPlaceholder": "e.g. anthropic/claude-3.7-sonnet",
+      "contextLengthLabel": "Context Length (Tokens)",
+      "reasoningLabel": "Reasoning / Thinking Model",
+      "toolsLabel": "Supports Function Calling",
+      "testing": "Testing…",
+      "testConnection": "Test Connection",
+      "saving": "Saving…",
+      "saveModel": "Save Model"
+    },
+    "activeModelsTitle": "Active Workspace Models",
+    "noModels": "No custom models added yet.",
+    "modelCard": {
+      "thinking": "Thinking",
+      "keyLabel": "Key: <strong>{{provider}}</strong> ({{maskedKey}})",
+      "providerLabel": "Provider: <strong>{{provider}}</strong>",
+      "context": "Context: {{count}}k",
+      "tools": "Tools: {{supported}}",
+      "yes": "Yes",
+      "no": "No",
+      "test": "Test"
+    },
+    "notices": {
+      "keySaved": "Provider key for {{provider}} saved securely.",
+      "keyRemoved": "Provider key for {{provider}} removed.",
+      "modelAdded": "Custom model '{{name}}' added successfully.",
+      "modelRemoved": "Model '{{name}}' removed."
+    },
+    "errors": {
+      "keySaveFailed": "Could not save this provider key. Check format and try again.",
+      "keyRemoveFailed": "Could not remove this provider key.",
+      "selectKeyFirst": "Please select a provider key first.",
+      "modelFieldsRequired": "Display Name and External Model ID are required.",
+      "modelSaveFailed": "Could not save custom model.",
+      "modelRemoveFailed": "Could not remove custom model.",
+      "enterExternalId": "Enter an External Model ID to test connection.",
+      "testFailed": "Connection test failed."
+    },
+    "byos": {
+      "title": "Subscriptions",
+      "subtitle": "Connect your Claude Pro / Max, ChatGPT Plus / Pro, or Google Antigravity subscription to run official CLI agents inside your Cloud VM with zero LLM token charges.",
+      "connect": "Connect",
+      "update": "Update",
+      "syncFromVm": "Sync from VM",
+      "disconnect": "Disconnect",
+      "claude": {
+        "name": "Claude Pro / Max (Claude Code)",
+        "hint": "Run 'claude setup-token' locally and paste the token, or run 'claude login' in your VM terminal and click Sync from VM.",
+        "placeholder": "Paste claude setup-token (sk-ant-oat01-…) or credentials JSON"
+      },
+      "openai": {
+        "name": "ChatGPT Plus / Pro (OpenAI Codex)",
+        "hint": "Paste your ~/.codex/auth.json content, or run 'codex login' inside your VM terminal and click Sync from VM.",
+        "placeholder": "Paste ~/.codex/auth.json or OAuth token"
+      },
+      "notices": {
+        "connected": "{{provider}} connected. BYOS models are now available in Chat.",
+        "syncedFromVm": "{{provider}} synced from your running Cloud VM."
+      },
+      "errors": {
+        "syncFailed": "Could not sync subscription credentials from the running VM."
+      },
+      "antigravity": {
+        "name": "Google Antigravity / Gemini OAuth",
+        "hint": "Paste your ~/.gemini/oauth_creds.json content, or connect Google OAuth directly from the Cloud Agent Selector.",
+        "placeholder": "Paste ~/.gemini/oauth_creds.json or OAuth credentials"
+      },
+      "computeNote": "BYOS charges $0.00 for LLM tokens. Execution runs inside your Cloud VM and uses your plan's VM quota or your Top-Up wallet balance ($0.16–$0.32/hr) — no NeuronRunner subscription required.",
+      "manageBilling": "Manage VM & Top-Up"
+    },
+    "auxiliary": {
+      "title": "Model for titles and memory",
+      "description": "Chat titles, reasoning summaries and memory run on this model with your workspace's key. Pick a cheap, fast one.",
+      "sameAsChat": "Same as the chat model",
+      "unusable": "This model's key was removed, so the chat model is used instead.",
+      "error": "Could not save the model. Try again."
+    }
+  },
+  "billing": {
+    "selectWorkspace": "Select a workspace to view billing.",
+    "title": "Workspace billing & plans",
+    "subtitle": "Subscriptions, unified usage quotas (LLM + Cloud VM), and extra-usage credits for {{workspace}}.",
+    "subscriptionPlans": "Subscription plans",
+    "currentPlanBadge": "Current: {{plan}}",
+    "freePlanName": "Free",
+    "perMemberMonth": "/member/mo",
+    "perMonth": "/mo",
+    "llmQuota": "${{amount}} quota (LLM + VM)",
+    "vcpuHours": "Up to {{hours}} vCPU-hrs",
+    "maxVmsSingle": "Max {{count}} VM",
+    "maxVmsPlural": "Max {{count}} VMs",
+    "upToSeats": "Up to {{count}} seats",
+    "activePlan": "Active plan",
+    "upgradeTo": "Upgrade to {{plan}}",
+    "walletBalance": "Extra-usage wallet balance",
+    "walletDescription": "Used for monthly quota overage, premium models on Free and Plus, and standalone Cloud VM compute for BYOS/BYOK ($0.16–$0.32/hr without a monthly plan). Never expires.",
+    "topUpLabel": "Add extra-usage credits (USD, min $10.00)",
+    "topUpButton": "Add ${{amount}}",
+    "topUpNetCredit": "Wallet credit (0% fee)",
+    "topUpProcessingFee": "Payment processing fee (3.9% + $0.40)",
+    "topUpTotalCharge": "Total charged at checkout",
+    "topUpNote": "Minimum top-up is $10.00. No extra processing fee is charged; 100% of what you pay is credited immediately to your balance.",
+    "invoiceNetAndFee": "Net ${{net}} + ${{fee}} fee",
+    "memberNotice": "Ask a workspace owner or admin to manage plans, add credits, or view invoices.",
+    "invoicesTitle": "Invoices",
+    "noInvoices": "No invoices yet.",
+    "paymentFallback": "Payment",
+    "viewInvoice": "View invoice",
+    "fallbackPlans": {
+      "free": {
+        "name": "Free",
+        "description": "$0.50/mo free-tier usage quota (LLMs + 4-core Cloud VMs at $0.16/hr)"
+      },
+      "plus": {
+        "name": "Plus",
+        "description": "$10.00/mo quota for Cloud VMs (~200 vCPU-hrs) + $2 Free-Tier LLM allowance · BYOS/BYOK · Max 1 VM (no team)"
+      },
+      "pro": {
+        "name": "Pro",
+        "description": "$25.00/mo pooled quota for Cloud VMs (~550 vCPU-hrs) + all LLM models · Up to 4 members"
+      },
+      "team": {
+        "name": "Team",
+        "description": "$200.00/mo pooled quota across all 16 models & Cloud VMs · Up to 20 members & 20 VMs"
+      }
+    },
+    "errors": {
+      "balanceLoad": "Workspace balance could not be loaded.",
+      "invoicesLoad": "Invoices could not be loaded.",
+      "updatePlan": "Could not update subscription plan.",
+      "checkoutOpen": "Checkout could not be opened. Please try again.",
+      "invoiceOpen": "Invoice could not be opened.",
+      "cancelPlan": "Could not schedule plan cancellation.",
+      "resumePlan": "Could not resume subscription."
+    },
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "yearlySaveBadge": "2 mo free",
+    "perYear": "/yr",
+    "perMemberYear": "/member/yr",
+    "seatsLabel": "Seats",
+    "cancelPlan": "Cancel plan",
+    "confirmCancel": "Confirm cancel",
+    "keepPlan": "Keep plan",
+    "cancelsOn": "Cancels on {{date}}",
+    "resumePlan": "Resume plan"
+  },
+  "usage": {
+    "selectWorkspace": "Select a workspace to view usage.",
+    "title": "Workspace usage",
+    "subtitle": "Usage across {{workspace}}, including all team members.",
+    "allTime": "All time",
+    "tryAgain": "Try again",
+    "loadingAriaLabel": "Loading usage",
+    "errors": {
+      "loadFailed": "Workspace usage could not be loaded."
+    },
+    "allowance": {
+      "title": "{{plan}} Plan · Usage Quota Windows (LLM + VM)",
+      "subtitle": "Monthly shared usage allowance (LLM & Cloud VM)",
+      "left": "${{amount}} left",
+      "monthlyCycle": "Monthly Cycle (100%)",
+      "vmQuota": "Cloud VM Usage (from shared quota): <strong>{{used}} / {{included}} vCPU-hours</strong> ({{remaining}} vCPU-hrs usable)",
+      "verifyForFreeVm": "Complete account verification in Settings to unlock Cloud VM launches on the Free plan"
+    },
+    "cards": {
+      "creditsUsed": "Workspace credits used",
+      "requests": "Requests",
+      "activeUsers": "Active users"
+    },
+    "tokens": {
+      "input": "Input",
+      "output": "Output",
+      "cacheReads": "Cache reads"
+    },
+    "byUser": {
+      "title": "Usage by user",
+      "subtitle": "Workspace credits charged to each user, including their compute usage.",
+      "columns": {
+        "user": "User",
+        "requests": "Requests",
+        "inputOutput": "Input / Output",
+        "workspaceCost": "Workspace cost"
+      },
+      "empty": "No user activity yet."
+    },
+    "byModel": {
+      "title": "Usage by model",
+      "columns": {
+        "model": "Model",
+        "requests": "Requests",
+        "cacheReads": "Cache reads",
+        "workspaceCost": "Workspace cost"
+      },
+      "deletedModel": "Deleted model",
+      "empty": "No model activity yet."
+    },
+    "vmSessions": {
+      "title": "VM compute sessions",
+      "subtitle": "Historical virtual machine runtime logs, preset tier specs, elapsed durations, and billed amounts.",
+      "sessions": "Sessions",
+      "billedRuntime": "Billed runtime",
+      "vmCost": "VM cost",
+      "columns": {
+        "instance": "Instance",
+        "tierSpecs": "Tier specs",
+        "elapsedBilled": "Elapsed / Billed",
+        "billedAmount": "Billed amount"
+      },
+      "statusRunning": "running",
+      "statusStopped": "stopped",
+      "tierSpecs": "{{tier}} · {{cpu}} vCPU / {{ram}} GB RAM",
+      "hourlyRate": "${{rate}}/hr",
+      "billedDuration": "Billed {{duration}}",
+      "empty": "No VM compute sessions recorded yet."
+    },
+    "footerNote": "Cache reads are included in input tokens and charged once at the model’s cache read rate. BYOK provider charges are paid directly to your provider."
+  },
+  "logs": {
+    "selectWorkspace": "Select a workspace to view request logs.",
+    "title": "Request logs",
+    "subtitle": "Who used {{workspace}}, when, and how much each request cost.",
+    "refreshAriaLabel": "Refresh logs",
+    "tryAgain": "Try again",
+    "loadingAriaLabel": "Loading request logs",
+    "errors": {
+      "loadFailed": "Request logs could not be loaded. Please try again."
+    },
+    "filters": {
+      "user": "User",
+      "userAriaLabel": "Log user",
+      "allUsers": "All users",
+      "status": "Status",
+      "statusAriaLabel": "Log status",
+      "allStatuses": "All statuses",
+      "fromUtc": "From (UTC)",
+      "toUtc": "To (UTC)",
+      "utcNote": "Times are shown in UTC.",
+      "reset": "Reset",
+      "apply": "Apply filters",
+      "invalidDates": "Start date must be before or equal to end date."
+    },
+    "statuses": {
+      "completed": "completed",
+      "processing": "processing",
+      "pending": "pending",
+      "failed": "failed",
+      "canceled": "canceled"
+    },
+    "table": {
+      "timeUtc": "Time (UTC)",
+      "user": "User",
+      "model": "Model",
+      "tokensInOut": "Tokens in / out",
+      "workspaceCost": "Workspace cost",
+      "status": "Status",
+      "requestTitle": "Request {{uuid}}",
+      "deletedModel": "Deleted model",
+      "platform": "Platform",
+      "cachedTokens": "{{count}} cached",
+      "byokModelCostTooltip": "Model cost billed directly by your provider",
+      "byokModelCost": "Model {{cost}}"
+    },
+    "empty": {
+      "title": "No requests found",
+      "filteredDescription": "Try changing your filters.",
+      "defaultDescription": "Requests will appear here when your team starts using this workspace."
+    },
+    "pagination": {
+      "summary": "{{start}}–{{end}} of {{total}} requests",
+      "zero": "0 requests",
+      "prevAriaLabel": "Previous logs page",
+      "pageOf": "Page {{page}} of {{pages}}",
+      "nextAriaLabel": "Next logs page"
+    },
+    "footerNote": "Workspace cost is the amount charged to workspace credits. BYOK model costs are paid directly to the provider; compute charges are included in Usage."
+  },
+  "profile": {
+    "loadingAriaLabel": "Loading profile",
+    "title": "Public Profile",
+    "subtitle": "Manage how your personal details and avatar appear across the workspace.",
+    "avatar": {
+      "title": "Profile Picture",
+      "hint": "PNG, JPG, or GIF up to 5MB. Square aspect recommended."
+    },
+    "fields": {
+      "username": {
+        "label": "Username",
+        "placeholder": "username"
+      },
+      "firstName": {
+        "label": "First Name",
+        "placeholder": "First name"
+      },
+      "lastName": {
+        "label": "Last Name",
+        "placeholder": "Last name"
+      },
+      "bio": {
+        "label": "Biography",
+        "placeholder": "Write a short bio about yourself…"
+      }
+    },
+    "toast": {
+      "updatedTitle": "Profile updated",
+      "updatedDescription": "Your profile changes have been saved.",
+      "errorTitle": "Error updating profile"
+    },
+    "errors": {
+      "notSignedIn": "You must be signed in to save your profile.",
+      "emptyUsername": "Username cannot be empty.",
+      "updateFailed": "Failed to update profile. Please try again."
+    }
+  },
+  "personalization": {
+    "title": "Personalization & Claude-Style Memory",
+    "memoryActive": "Memory Active",
+    "memoryPaused": "Memory Paused",
+    "subtitle": "Control your synthesized AI profile, personal facts, and shared workspace notes across sessions.",
+    "preferredName": {
+      "label": "Preferred Name",
+      "placeholder": "e.g. Kaan, Ada, Alex",
+      "hint": "How the assistant addresses you in personal conversations."
+    },
+    "autoMemory": {
+      "title": "Automatic Memory Extraction",
+      "description": "Learn durable preferences from chats and recall relevant facts automatically."
+    },
+    "privacyGuard": "<strong>Team Privacy Guard:</strong> Personal memories are automatically excluded from multi-member team workspaces.",
+    "recallEngine": "pgvector + lexical recall",
+    "categories": {
+      "identity": {
+        "label": "Identity",
+        "description": "Role, background & profile"
+      },
+      "preference": {
+        "label": "Preference",
+        "description": "Tone, language & coding style"
+      },
+      "workspace": {
+        "label": "Workspace",
+        "description": "Stack, tools & workflows"
+      },
+      "knowledge": {
+        "label": "Knowledge",
+        "description": "Domain facts & architecture"
+      },
+      "relationship": {
+        "label": "Relationship",
+        "description": "Team, collaborators & org"
+      }
+    },
+    "templates": {
+      "languageTone": {
+        "title": "Language & Tone",
+        "sample": "Explain concepts in Turkish, but keep code comments and commit messages in English."
+      },
+      "roleStack": {
+        "title": "Role & Stack",
+        "sample": "Full-stack engineer working primarily with TypeScript, React 19, Django, and PostgreSQL."
+      },
+      "codeStyle": {
+        "title": "Code Style",
+        "sample": "Prefer concise, strongly-typed functions with early returns and minimal boilerplate."
+      },
+      "architecture": {
+        "title": "Architecture",
+        "sample": "Production services run in Docker containers backed by Redis and PostgreSQL pgvector."
+      }
+    },
+    "importance": {
+      "core": "Core",
+      "standard": "Standard",
+      "low": "Low"
+    },
+    "markdown": {
+      "title": "# User Memory Profile",
+      "preferredName": "Preferred Name: {{name}}",
+      "general": "General"
+    },
+    "snapshot": {
+      "title": "Synthesized Memory Snapshot",
+      "coreCount": "{{count}} Core Priority",
+      "subtitle": "How NeuronRunner structures your context across categories",
+      "copied": "Copied",
+      "copyMarkdown": "Copy Markdown",
+      "factSingle": "{{count}} fact",
+      "factPlural": "{{count}} facts",
+      "moreInCategory": "+{{count}} more in {{category}}"
+    },
+    "tabs": {
+      "memories": "Personal Memories",
+      "notes": "Workspace Notes"
+    },
+    "actions": {
+      "addMemory": "Add Memory",
+      "addNote": "Add Note",
+      "clearAll": "Clear All",
+      "cancel": "Cancel",
+      "saving": "Saving…",
+      "save": "Save",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "quickTemplatesLabel": "Quick templates:",
+    "addForm": {
+      "newMemory": "New Personal Memory",
+      "newNote": "New Workspace Note",
+      "memoryPlaceholder": "e.g. Always respond in Turkish and use pytest for backend tests...",
+      "notePlaceholder": "e.g. Backend runs on Daphne ASGI port 8000 with PostgreSQL pgvector...",
+      "noCategory": "No Category",
+      "labelPlaceholder": "topic tag (optional)",
+      "priorityLabel": "Priority:"
+    },
+    "search": {
+      "memoriesPlaceholder": "Search memories by keyword, category, or #label...",
+      "notesPlaceholder": "Search workspace notes...",
+      "allCategory": "All ({{count}})"
+    },
+    "emptyMemories": {
+      "noneTitle": "No personal memories recorded yet",
+      "filteredTitle": "No memories match your filter",
+      "noneDescription": "Chat naturally with the assistant or click 'Add Memory' above to seed your preferences, tech stack, and communication style.",
+      "filteredDescription": "Try clearing the search query or switching the category filter."
+    },
+    "emptyNotes": {
+      "title": "No workspace notes recorded yet",
+      "description": "Workspace notes store environment facts, project conventions, and tool instructions that remain active even when personal memory is disabled."
+    },
+    "editForm": {
+      "memoryPlaceholder": "Memory content",
+      "notePlaceholder": "Workspace note content",
+      "labelPlaceholder": "Label (e.g. language)",
+      "priorityLabel": "Priority (1-10):"
+    },
+    "item": {
+      "importanceTitle": "Importance score: {{score}}/10",
+      "addedDate": "Added {{date}}",
+      "recalledDate": "Recalled {{date}}"
+    },
+    "deleteAllDialog": {
+      "title": "Clear all personal memories?",
+      "description": "This action will permanently remove all {{count}} stored personal facts and cannot be undone. Workspace notes will not be affected.",
+      "confirm": "Delete All"
+    }
+  },
+  "security": {
+    "title": "Security & Password",
+    "subtitle": "Manage your account credentials and authentication settings.",
+    "changePasswordTitle": "Change Password",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "passwordHint": "Minimum 8 characters recommended.",
+    "confirmPassword": "Confirm New Password",
+    "updatePassword": "Update Password",
+    "errors": {
+      "fillAllFields": "Please fill all password fields.",
+      "mismatch": "Passwords do not match."
+    }
+  },
+  "apiKeys": {
+    "title": "API Keys",
+    "subtitle": "Manage API keys to access NeuronRunner models, agents, and automation workflows programmatically.",
+    "generateTitle": "Generate New API Key",
+    "namePlaceholder": "e.g. CLI Runner, Production Agent",
+    "createButton": "Create Key",
+    "secretAlert": {
+      "title": "Save your secret key now",
+      "description": "Please copy this key and store it securely. For your security, this key cannot be displayed again after closing this prompt.",
+      "copy": "Copy",
+      "confirmSaved": "I have saved my secret key"
+    },
+    "activeKeysTitle": "Active Keys",
+    "keyCountSingle": "{{count}} key",
+    "keyCountPlural": "{{count}} keys",
+    "emptyTitle": "No API keys yet",
+    "emptyDescription": "Create a new key above to start using the API.",
+    "statusActive": "Active",
+    "statusInactive": "Inactive",
+    "createdLabel": "Created",
+    "lastUsedLabel": "Last Used",
+    "neverUsed": "Never",
+    "pauseAccess": "Pause access",
+    "resumeAccess": "Resume access",
+    "deleteKey": "Delete key"
+  },
+  "vmSecrets": {
+    "selectWorkspace": "Select a workspace to manage VM secrets.",
+    "title": "VM Secrets",
+    "subtitle": "Encrypted environment variables automatically injected into Virtual Machines in {{workspace}}.",
+    "loadingAriaLabel": "Loading VM secrets",
+    "readOnlyNotice": "Only workspace owners or admins can add, edit, or delete VM secrets.",
+    "searchPlaceholder": "Search secrets by key, description, or VM...",
+    "updatedAt": "Updated {{date}}",
+    "footerNote": "Secrets are encrypted at rest and never exposed in plaintext after saving. They are automatically injected into VM environment variables, interactive terminals, and agent shell commands.",
+    "actions": {
+      "addSecret": "Add secret",
+      "importEnv": "Import .env",
+      "edit": "Edit",
+      "delete": "Delete",
+      "confirmDelete": "Confirm",
+      "cancel": "Cancel",
+      "save": "Save secret",
+      "saving": "Saving..."
+    },
+    "scope": {
+      "allVms": "All VMs in workspace",
+      "specificVm": "Specific VM"
+    },
+    "filter": {
+      "all": "All scopes"
+    },
+    "form": {
+      "addTitle": "Add new VM secret",
+      "editTitle": "Edit {{key}}",
+      "keyLabel": "Variable name",
+      "scopeLabel": "Scope",
+      "valueLabel": "Secret value",
+      "valuePlaceholderAdd": "Enter secret value...",
+      "valuePlaceholderEdit": "Leave blank to keep existing value",
+      "showValue": "Show secret value",
+      "hideValue": "Hide secret value",
+      "descriptionLabel": "Description (optional)",
+      "descriptionPlaceholder": "e.g. Database password or API token"
+    },
+    "importForm": {
+      "title": "Bulk import from .env",
+      "subtitle": "Paste KEY=VALUE lines below. Existing keys in the selected scope will be updated.",
+      "submit": "Import secrets",
+      "importing": "Importing..."
+    },
+    "empty": {
+      "title": "No VM secrets yet",
+      "description": "Store API keys, database URLs, and credentials securely so your VMs and agents can use them as environment variables.",
+      "filtered": "No secrets match your current search or filter."
+    },
+    "toast": {
+      "createdTitle": "Secret added",
+      "updatedTitle": "Secret updated",
+      "savedDescription": "{{key}} has been encrypted and saved.",
+      "syncedDescription": "{{key}} saved and synced to {{count}} running VM(s).",
+      "importedTitle": "Secrets imported",
+      "importedDescription": "{{count}} secret(s) encrypted and saved.",
+      "deletedTitle": "Secret deleted",
+      "deletedDescription": "{{key}} has been removed."
+    },
+    "errors": {
+      "loadFailed": "Could not load VM secrets.",
+      "keyRequired": "Variable name is required.",
+      "valueRequired": "Secret value is required.",
+      "saveFailed": "Could not save VM secret.",
+      "importFailed": "Could not import .env secrets.",
+      "deleteFailed": "Could not delete VM secret."
+    }
+  }
+}

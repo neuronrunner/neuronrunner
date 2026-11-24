@@ -1,0 +1,340 @@
+{
+  "seo": {
+    "landingTitle": "Intégrations et connecteurs MCP",
+    "landingDescription": "Connectez votre agent IA cloud autonome à GitHub, Slack, Notion, Linear, Postgres, Supabase et des dizaines de serveurs Model Context Protocol (MCP).",
+    "workspaceTitle": "Intégrations de l’espace de travail"
+  },
+  "categories": {
+    "all": "Tous",
+    "popular": "Populaires",
+    "newNoteworthy": "Nouveautés et à découvrir",
+    "development": "Développement",
+    "productivity": "Productivité",
+    "communication": "Communication",
+    "dataAnalytics": "Données et analytique",
+    "design": "Design",
+    "salesMarketing": "Ventes et marketing",
+    "research": "Recherche",
+    "infrastructure": "Infrastructure",
+    "finance": "Finance",
+    "custom": "Personnalisé"
+  },
+  "categoryDescriptions": {
+    "popular": "Les serveurs MCP et applications les plus utilisés et recommandés.",
+    "newNoteworthy": "Les serveurs MCP, outils d’agents et intégrations récents et tendance.",
+    "development": "Génération de code, workflows Git, terminaux, conteneurs et infrastructure développeur.",
+    "productivity": "Prise de notes, gestion de tâches, suivi de tickets et organisation personnelle.",
+    "communication": "Messagerie d’équipe, e-mail, canaux de discussion et notifications.",
+    "dataAnalytics": "Bases de données, entrepôts de données, recherche vectorielle, requêtes et informatique décisionnelle.",
+    "design": "Outils de design, collaboration sur canevas, retouche d’images et ressources UI.",
+    "salesMarketing": "Données clients, prospection, analytique marketing et systèmes CRM.",
+    "research": "Extraction web, moteurs de recherche, archives d’articles et découverte de connaissances.",
+    "infrastructure": "Hébergement cloud, environnements d’exécution, DNS et backends serverless.",
+    "finance": "Plateformes de facturation, passerelles de paiement, comptabilité et reporting financier."
+  },
+  "workspace": {
+    "ariaLabel": "Intégrations",
+    "eyebrow": "Espace de travail / Intégrations MCP",
+    "title": "Intégrations",
+    "subtitle": "Connectez des plugins et des serveurs MCP pour permettre à NeuronRunner d’agir directement dans vos outils.",
+    "openSidebar": "Ouvrir la barre latérale",
+    "addCustomConnector": "Ajouter un connecteur personnalisé",
+    "addCustomShort": "Personnalisé",
+    "backToExplore": "Retour à Explorer",
+    "categoryFallbackDescription": "Parcourez tous les connecteurs et serveurs MCP de la catégorie {{category}}.",
+    "searchAria": "Rechercher des connecteurs",
+    "searchPlaceholder": "Rechercher des connecteurs",
+    "searchCategoryAria": "Rechercher des connecteurs {{category}}",
+    "searchCategoryPlaceholder": "Rechercher dans {{category}}...",
+    "clearSearch": "Effacer la recherche",
+    "sort": {
+      "ariaLabel": "Trier les connecteurs",
+      "featured": "En vedette d’abord",
+      "nameAsc": "Nom : A–Z"
+    },
+    "tabs": {
+      "ariaLabel": "Vues des connecteurs",
+      "explore": "Explorer",
+      "connections": "Mes connexions"
+    },
+    "loadError": "Impossible de charger vos connexions. {{error}}",
+    "tryAgain": "Réessayer",
+    "directoryAriaLabel": "Répertoire des connecteurs",
+    "searchResults": "Résultats de recherche",
+    "allConnectors": "Tous les connecteurs",
+    "browseCategoryAria": "Parcourir les connecteurs {{category}}",
+    "seeAll": "Tout voir ({{count}})",
+    "showingCount": "Affichage de {{shown}} sur {{total}} applications",
+    "showMore": "Afficher plus de connecteurs",
+    "footerCatalog": "{{count}} applications et serveurs MCP · Mis à jour le {{date}}",
+    "mcpRegistry": "Registre MCP",
+    "connections": {
+      "ariaLabel": "Connexions enregistrées",
+      "loading": "Chargement de vos connexions…",
+      "emptyTitle": "Votre prochaine connexion commence ici",
+      "emptySearchTitle": "Aucune connexion trouvée",
+      "emptyDescription": "Connectez votre première application pour l’intégrer à vos discussions.",
+      "emptySearchDescription": "Aucune connexion ne correspond à « {{query}} ».",
+      "exploreCta": "Explorer les connecteurs"
+    },
+    "empty": {
+      "noConnectorsTitle": "Aucun connecteur trouvé",
+      "noCategoryMatches": "Aucun connecteur dans {{category}} ne correspond à « {{query}} ».",
+      "noCategoryItems": "Il n’y a aucun connecteur dans {{category}}.",
+      "noSearchDescription": "Essayez une autre application ou effacez votre recherche pour explorer le répertoire."
+    },
+    "mcpConnectionsTitle": "Connexions MCP"
+  },
+  "card": {
+    "configureAria": "Configurer {{name}}",
+    "connected": "Connecté",
+    "configured": "Configuré",
+    "customDescription": "Votre connexion MCP personnalisée.",
+    "providerSetup": "Configuration chez le fournisseur"
+  },
+  "dialog": {
+    "customTitle": "Ajouter un connecteur personnalisé",
+    "customDescription": "Intégrez votre propre serveur MCP dans votre espace de travail.",
+    "setupGuide": "Guide de configuration",
+    "authHeaderDescription": "Facultatif. Utilisez Bearer suivi de votre jeton d’accès.",
+    "providerSetup": {
+      "title": "Configurer avec le fournisseur",
+      "description": "Aucune connexion MCP publique n’a encore été vérifiée pour cette application. Consultez le fournisseur pour obtenir les informations de connexion, ou ajoutez un point de terminaison MCP dont vous disposez déjà.",
+      "visitProvider": "Visiter le fournisseur",
+      "addEndpoint": "Ajouter un point de terminaison MCP"
+    },
+    "verified": {
+      "title": "Connexion vérifiée",
+      "descriptionOne": "{{count}} outil est disponible pour votre agent. Votre connecteur est prêt à être utilisé.",
+      "descriptionOther": "{{count}} outils sont disponibles pour votre agent. Votre connecteur est prêt à être utilisé.",
+      "done": "Terminé"
+    },
+    "fields": {
+      "name": "Nom du connecteur",
+      "namePlaceholder": "Outils de mon équipe",
+      "connectionMethod": "Méthode de connexion",
+      "serverUrl": "URL du serveur",
+      "httpProtocol": "Protocole HTTP",
+      "workspaceSandbox": "Sandbox de l’espace de travail",
+      "workspacePlaceholder": "Sélectionner un espace de travail",
+      "noWorkspaces": "Aucun espace de travail disponible",
+      "workspaceHint": "S’exécute dans le sandbox de cet espace de travail et reste disponible pour ses discussions.",
+      "serverCommand": "Commande du serveur",
+      "serverCommandHint": "L’environnement d’exécution correspondant doit être installé dans le sandbox de l’espace de travail.",
+      "authentication": "Authentification",
+      "required": "requis",
+      "keepSavedPlaceholder": "Laisser vide pour conserver les identifiants enregistrés",
+      "enterFieldPlaceholder": "Saisir {{name}}"
+    },
+    "methods": {
+      "remote": "Distant · {{protocol}}{{suffix}}",
+      "local": "Local · {{runtime}}",
+      "remoteHttp": "Distant · HTTP",
+      "localStdio": "Local · stdio"
+    },
+    "auth": {
+      "oauth": "OAuth · Connecter votre compte",
+      "token": "Jeton API",
+      "none": "Aucune authentification"
+    },
+    "oauth": {
+      "description": "Connectez-vous auprès du fournisseur et choisissez ce à quoi ce connecteur peut accéder. Vous reviendrez ici une fois l’autorisation terminée.",
+      "settings": "Paramètres OAuth",
+      "settingsHint": "Nécessaire uniquement lorsque le fournisseur exige une application OAuth enregistrée.",
+      "clientId": "Client ID",
+      "clientSecret": "Client secret",
+      "redirectUrl": "URL de redirection"
+    },
+    "advanced": {
+      "headersSummary": "En-têtes avancés",
+      "envSummary": "Variables d’environnement avancées",
+      "description": "Objet JSON avec des valeurs textuelles (chaînes). Renseignez toutes les valeurs lorsque vous remplacez des identifiants enregistrés.",
+      "ariaLabel": "JSON des paramètres avancés"
+    },
+    "security": {
+      "oauth": "Les jetons d’accès et de rafraîchissement sont chiffrés sur le serveur. Vous pouvez vous déconnecter à tout moment.",
+      "credentials": "Les identifiants sont chiffrés sur le serveur."
+    },
+    "savedInactiveNotice": "Configuration enregistrée. Le connecteur reste inactif jusqu’à ce que la vérification réussisse.",
+    "status": {
+      "completeInProvider": "Terminez l’autorisation dans la fenêtre du fournisseur.",
+      "startingSandbox": "Démarrage du connecteur dans le sandbox de votre espace de travail. La première installation des paquets peut prendre jusqu’à deux minutes."
+    },
+    "actions": {
+      "disconnect": "Déconnecter",
+      "cancelAuth": "Annuler l’autorisation",
+      "waitingAuth": "En attente d’autorisation…",
+      "verifying": "Vérification de la connexion…",
+      "reconnectAccount": "Reconnecter le compte",
+      "connectAccount": "Connecter le compte",
+      "saveAndVerify": "Enregistrer et vérifier",
+      "connect": "Connecter",
+      "signInToConnect": "Se connecter pour continuer"
+    },
+    "errors": {
+      "allowPopups": "Autorisez les fenêtres pop-up pour connecter votre compte.",
+      "invalidJsonObject": "Saisissez un objet JSON avec des valeurs textuelles, par exemple {\"API_KEY\": \"your-key\"}.",
+      "fieldRequired": "{{name}} est requis.",
+      "urlPlaceholders": "Remplacez les paramètres fictifs dans l’URL du serveur par les informations de votre compte.",
+      "commandPlaceholders": "Remplacez les paramètres fictifs dans la commande avant de vous connecter.",
+      "selectWorkspace": "Sélectionnez le sandbox de l’espace de travail où ce connecteur doit s’exécuter.",
+      "verificationFailed": "La vérification de la connexion a échoué. Vérifiez vos identifiants et réessayez.",
+      "invalidAdvancedJson": "Les paramètres avancés doivent être un JSON valide."
+    },
+    "footerManage": "Gérez vos outils dans <link>Intégrations</link>.",
+    "legacyLocal": {
+      "title": "Connecteur local plus pris en charge",
+      "description": "Ce serveur MCP utilise une commande stdio locale. Les nouveaux connecteurs locaux sont désactivés ; déconnectez-le et connectez plutôt un point de terminaison HTTP/SSE distant."
+    }
+  },
+  "oauth": {
+    "status": {
+      "pendingTitle": "Connexion de votre compte…",
+      "connectedTitle": "Compte connecté",
+      "errorTitle": "Impossible de connecter votre compte",
+      "pendingDescription": "Finalisation de l’autorisation et vérification de la connexion MCP.",
+      "connectedDescription": "Vous pouvez fermer cette fenêtre et revenir à vos connecteurs."
+    },
+    "backToConnectors": "Retour aux intégrations",
+    "errors": {
+      "missingState": "L’état d’autorisation est manquant. Recommencez depuis Intégrations.",
+      "wrongTab": "Cette autorisation n’a pas été lancée dans cet onglet du navigateur. Recommencez depuis Intégrations.",
+      "unverified": "La connexion MCP n’a pas pu être vérifiée. Recommencez depuis Intégrations."
+    }
+  },
+  "landing": {
+    "hero": {
+      "pill": "Model Context Protocol et écosystème",
+      "title": "Intégrations",
+      "tagline": "Boostez votre agent IA avec des <highlight>intégrations.</highlight>",
+      "subtitle": "Connectez votre agent aux bases de données, docs, issue trackers et outils cloud avec des identifiants chiffrés et un accès limité à l'espace de travail.",
+      "browseCta": "Parcourir les intégrations",
+      "more": "+{{count}} de plus"
+    },
+    "stats": {
+      "servers": "Serveurs MCP vérifiés",
+      "auth": "Auth prête à l'emploi",
+      "sandbox": "Isolé en Sandbox",
+      "fee": "Frais de plateforme",
+      "install": "Installations locales"
+    },
+    "search": {
+      "placeholder": "Rechercher parmi 37 connecteurs par nom, catégorie ou description...",
+      "sortLabel": "Trier :"
+    },
+    "sort": {
+      "featured": "Recommandé",
+      "az": "Nom : A–Z",
+      "za": "Nom : Z–A"
+    },
+    "categories": {
+      "allWithCount": "Tous ({{count}})",
+      "recommendedWithCount": "Recommandé ({{count}})"
+    },
+    "catalog": {
+      "showing": "Affichage de <strong>{{shown}}</strong> sur {{total}} connecteurs",
+      "title": "Intégrations distantes sélectionnées",
+      "subtitle": "Les outils de développement recommandés en premier, puis des connecteurs distants fiables pour le reste de votre stack."
+    },
+    "empty": {
+      "title": "Aucun connecteur trouvé",
+      "description": "Aucun connecteur ne correspond à « {{query}} ». Essayez de rechercher un autre nom ou mot-clé.",
+      "reset": "Réinitialiser les filtres"
+    },
+    "card": {
+      "byPublisher": "par {{publisher}}",
+      "featured": "En vedette",
+      "inspectDetails": "Voir les détails",
+      "remote": "Distant",
+      "endpoints": "{{count}} points de terminaison distants"
+    },
+    "howItWorks": {
+      "eyebrow": "Architecture sûre et évolutive",
+      "title": "Comment fonctionne l’exécution d’outils MCP dans Neuron Runner",
+      "subtitle": "Trois couches garantissent la sécurité de vos jetons tout en offrant des capacités autonomes aux modèles de pointe.",
+      "step1": {
+        "eyebrow": "01 / Stockage",
+        "title": "Coffre-fort d’identifiants chiffré",
+        "description": "Vos jetons OAuth et clés API sont chiffrés au repos avec la cryptographie Fernet. Ils sont ajoutés uniquement aux requêtes MCP serveur validées et ne sont jamais journalisés ni exposés au modèle."
+      },
+      "step2": {
+        "eyebrow": "02 / Exécution",
+        "title": "Passerelle distante validée",
+        "description": "Les serveurs MCP distants sont accessibles via une passerelle HTTPS validée, avec des identifiants chiffrés et une autorisation limitée à l'espace de travail."
+      },
+      "step3": {
+        "eyebrow": "03 / Appel d’outils",
+        "title": "Appels autonomes du modèle",
+        "description": "Les modèles de raisonnement découvrent automatiquement les schémas d’outils disponibles. L’agent interroge les bases de données, consulte les spécifications d’API et applique des correctifs avec un contrôle complet des diffs."
+      }
+    },
+    "faq": {
+      "eyebrow": "FAQ Intégrations",
+      "title": "Questions fréquentes",
+      "items": {
+        "q1": {
+          "question": "Qu’est-ce que le Model Context Protocol (MCP) ?",
+          "answer": "Le Model Context Protocol (MCP) est un standard ouvert qui permet aux modèles d’IA de pointe de découvrir, lire et appeler des outils, bases de données et APIs dans un format sécurisé et normalisé. Plutôt que de coder des intégrations personnalisées pour chaque service, MCP permet un appel d’outils universel prêt à l’emploi."
+        },
+        "q2": {
+          "question": "Comment les connecteurs s’exécutent-ils en toute sécurité dans Neuron Runner ?",
+          "answer": "Neuron Runner valide et relaie les sessions MCP distantes via HTTPS. Les identifiants restent chiffrés sur le serveur et ne sont jamais exposés au modèle ni au navigateur ; le navigateur intégré s'exécute dans le bac à sable isolé de votre espace de travail."
+        },
+        "q3": {
+          "question": "Comment mes jetons API et identifiants OAuth sont-ils protégés ?",
+          "answer": "Vos jetons OAuth et clés API sont chiffrés au repos avec la cryptographie Fernet. Ils sont ajoutés uniquement aux requêtes MCP serveur validées et ne sont jamais journalisés ni exposés au modèle."
+        },
+        "q4": {
+          "question": "Puis-je connecter mon propre serveur MCP personnalisé ou interne privé ?",
+          "answer": "Oui. Vous pouvez ajouter n'importe quel point de terminaison MCP HTTP/SSE distant depuis Integrations. Les commandes stdio locales ne sont plus prises en charge."
+        },
+        "q5": {
+          "question": "Neuron Runner facture-t-il des frais supplémentaires pour l’utilisation des connecteurs ?",
+          "answer": "Non. Tous les connecteurs et serveurs MCP sont entièrement gratuits, sans aucune marge plateforme. Vous ne payez que les tarifs de calcul standard à la seconde lorsque votre Docker container sandbox est activement en cours d’exécution."
+        }
+      }
+    },
+    "cta": {
+      "title": "Commencez à connecter vos outils en quelques secondes.",
+      "subtitle": "Créez un espace de travail, reliez vos services préférés et laissez vos modèles écrire et vérifier du code avec une compréhension complète du contexte.",
+      "primary": "Créer un espace de travail gratuit",
+      "secondary": "Lire la documentation"
+    },
+    "footer": {
+      "pricing": "Tarifs",
+      "integrations": "Intégrations",
+      "docs": "Documentation",
+      "terms": "Conditions",
+      "privacy": "Confidentialité"
+    },
+    "preview": {
+      "publishedBy": "Publié par {{publisher}}",
+      "protocolTitle": "Protocole et transport",
+      "transportTypeLabel": "Type de transport :",
+      "transportStdio": "stdio (runtime CLI)",
+      "transportHttp": "Flux SSE / HTTP",
+      "sandboxLabel": "Accès :",
+      "sandboxValue": "Limité à l’espace de travail",
+      "websiteLabel": "Site web :",
+      "close": "Fermer",
+      "connectInWorkspace": "Connecter dans l’espace de travail",
+      "authLabel": "Authentification :"
+    },
+    "auth": {
+      "oauth": "OAuth 2.0",
+      "token": "Jeton API",
+      "none": "Sans authentification",
+      "multi": "OAuth / jeton"
+    }
+  },
+  "errors": {
+    "unexpected": "Une erreur inattendue s’est produite. Veuillez réessayer.",
+    "unreachable": "Impossible de joindre le serveur. Vérifiez votre connexion et réessayez.",
+    "serverUnavailable": "Le serveur est temporairement indisponible. Veuillez réessayer plus tard.",
+    "serverError": "Une erreur serveur inattendue s’est produite. Veuillez réessayer plus tard.",
+    "sessionExpired": "Votre session a expiré. Veuillez vous reconnecter.",
+    "forbidden": "Vous n’avez pas l’autorisation d’effectuer cette action.",
+    "notFound": "Le connecteur demandé est introuvable.",
+    "invalidRequest": "Requête invalide. Vérifiez votre saisie et réessayez."
+  }
+}

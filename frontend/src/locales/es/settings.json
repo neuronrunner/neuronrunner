@@ -1,0 +1,738 @@
+{
+  "dialog": {
+    "description": "Gestiona tu espacio de trabajo, equipo, facturación, preferencias y seguridad."
+  },
+  "modal": {
+    "closeAriaLabel": "Cerrar configuración"
+  },
+  "roles": {
+    "owner": "propietario",
+    "admin": "administrador",
+    "member": "miembro"
+  },
+  "workspaceSelector": {
+    "currentWorkspace": "Espacio de trabajo actual",
+    "ariaLabel": "Espacio de trabajo en configuración",
+    "fallbackName": "Espacio de trabajo",
+    "selectWorkspace": "Seleccionar espacio de trabajo",
+    "switching": "Cambiando…",
+    "summarySingle": "{{role}} · {{count}} miembro",
+    "summaryPlural": "{{role}} · {{count}} miembros",
+    "chooseTeam": "Elige tu equipo",
+    "workspaces": "Espacios de trabajo",
+    "noWorkspaces": "No hay espacios de trabajo disponibles.",
+    "newWorkspace": "Nuevo espacio de trabajo"
+  },
+  "store": {
+    "billingCustomerIdMissing": "Falta el ID de cliente de facturación.",
+    "paymentMethodUpdateTxMissing": "Falta el ID de transacción para actualizar el método de pago.",
+    "topUpTxMissing": "Falta el ID de transacción de recarga.",
+    "checkoutUrlMissing": "Falta la URL de pago"
+  },
+  "workspaceTab": {
+    "loadingAriaLabel": "Cargando configuración del espacio de trabajo",
+    "selectWorkspace": "Selecciona o crea un espacio de trabajo para ver su configuración.",
+    "title": "Perfil del espacio de trabajo",
+    "subtitle": "Gestiona cómo se muestran los detalles, la identidad y el avatar de tu espacio de trabajo en todo el equipo.",
+    "picture": {
+      "title": "Imagen del espacio de trabajo",
+      "hint": "PNG, JPG o GIF de hasta 10MB. Se recomienda formato cuadrado.",
+      "permissionHint": "Solo los propietarios y administradores pueden actualizar la imagen del espacio de trabajo."
+    },
+    "fields": {
+      "name": {
+        "label": "Nombre del espacio de trabajo",
+        "placeholder": "Nombre del espacio de trabajo"
+      },
+      "slug": {
+        "label": "Slug del espacio de trabajo",
+        "hint": "Identificador utilizado para el enrutamiento y la identificación del proyecto."
+      }
+    },
+    "yourRole": "Tu rol:",
+    "saveChanges": "Guardar cambios",
+    "toast": {
+      "pictureUpdatedTitle": "Imagen del espacio de trabajo actualizada",
+      "pictureUpdatedDescription": "El logotipo de tu espacio de trabajo se ha actualizado correctamente.",
+      "uploadFailedTitle": "Error al subir",
+      "pictureRemovedTitle": "Imagen del espacio de trabajo eliminada",
+      "pictureRemovedDescription": "Se ha eliminado la imagen de tu espacio de trabajo.",
+      "removalFailedTitle": "Error al eliminar",
+      "updatedTitle": "Espacio de trabajo actualizado",
+      "updatedDescription": "Se ha guardado el nombre del espacio de trabajo."
+    },
+    "errors": {
+      "uploadFailed": "No se pudo subir la imagen del espacio de trabajo.",
+      "removeFailed": "No se pudo eliminar la imagen del espacio de trabajo.",
+      "updateFailed": "No se pudo actualizar el espacio de trabajo."
+    }
+  },
+  "team": {
+    "title": "Miembros del equipo",
+    "selectWorkspace": "Selecciona o crea un espacio de trabajo para ver su equipo.",
+    "subtitle": "Gestiona los miembros de tu equipo y las invitaciones pendientes para {{workspace}}.",
+    "inviteButton": "Invitar miembro",
+    "individualPlan": {
+      "title": "Las funciones de equipo no están disponibles en el plan {{plan}}.",
+      "freeDescription": "El plan Free es un plan individual que admite 1 miembro. Mejora a Pro (hasta 4 miembros) en la pestaña Facturación para colaborar con compañeros.",
+      "plusDescription": "El plan Plus ($10/mes) es un plan individual que admite 1 VM y 1 miembro. Mejora a Pro (hasta 4 miembros) en la pestaña Facturación para colaborar con compañeros."
+    },
+    "inviteForm": {
+      "title": "Invitar a un compañero",
+      "closeAriaLabel": "Cerrar formulario de invitación",
+      "emailLabel": "Correo electrónico",
+      "emailPlaceholder": "companero@ejemplo.com",
+      "roleLabel": "Rol",
+      "roleAriaLabel": "Rol de la invitación",
+      "sending": "Enviando…",
+      "send": "Enviar invitación",
+      "adminHint": "Los administradores pueden invitar personas y gestionar miembros del equipo.",
+      "memberHint": "Los miembros pueden colaborar en chats y proyectos."
+    },
+    "roles": {
+      "member": "Miembro",
+      "admin": "Administrador"
+    },
+    "removeAlert": {
+      "title": "¿Eliminar a {{name}}?",
+      "description": "Perderá el acceso a los chats y proyectos de este espacio de trabajo.",
+      "removing": "Eliminando…",
+      "confirm": "Eliminar miembro"
+    },
+    "actions": {
+      "cancel": "Cancelar"
+    },
+    "tabs": {
+      "ariaLabel": "Listas del equipo",
+      "members": "Miembros",
+      "invitations": "Invitaciones"
+    },
+    "search": {
+      "membersAriaLabel": "Buscar miembros",
+      "invitationsAriaLabel": "Buscar invitaciones",
+      "membersPlaceholder": "Buscar por nombre o correo",
+      "invitationsPlaceholder": "Buscar invitaciones",
+      "clearAriaLabel": "Limpiar búsqueda"
+    },
+    "members": {
+      "you": "Tú",
+      "actionsAriaLabel": "Acciones para {{name}}",
+      "removeFromWorkspace": "Eliminar del espacio de trabajo"
+    },
+    "invitations": {
+      "awaitingAcceptance": "Esperando aceptación",
+      "cancelAriaLabel": "Cancelar invitación para {{email}}"
+    },
+    "emptyMembers": {
+      "filteredTitle": "No hay compañeros que coincidan",
+      "defaultTitle": "Tu equipo empieza aquí",
+      "filteredDescription": "Prueba con otro nombre o correo electrónico.",
+      "defaultDescription": "Invita personas para colaborar en este espacio de trabajo."
+    },
+    "emptyInvitations": {
+      "filteredTitle": "No hay invitaciones que coincidan",
+      "defaultTitle": "No hay invitaciones pendientes",
+      "filteredDescription": "Prueba con otro correo electrónico.",
+      "defaultDescription": "Las invitaciones aparecerán aquí hasta que tus compañeros acepten."
+    },
+    "toast": {
+      "inviteSentTitle": "Invitación enviada",
+      "inviteSentDescription": "{{email}} podrá unirse tras aceptar el correo.",
+      "memberRemovedTitle": "Miembro eliminado",
+      "inviteCancelledTitle": "Invitación cancelada",
+      "inviteCancelledDescription": "Se ha cancelado la invitación para {{email}}."
+    }
+  },
+  "providerKeys": {
+    "selectWorkspace": "Selecciona un espacio de trabajo para gestionar las claves de proveedor.",
+    "noPermission": "Solo los propietarios y administradores pueden gestionar las claves de proveedor. Los miembros pueden usar proveedores configurados y modelos personalizados.",
+    "title": "Trae tu propia clave (BYOK) y Modelos personalizados",
+    "subtitle": "Las claves de proveedor se cifran y comparten dentro de {{workspace}}. Los modelos personalizados añadidos aquí aparecen directamente en tu selector de modelos del Chat sin margen de plataforma por token.",
+    "providers": {
+      "custom": "Endpoint personalizado (vLLM / Ollama)"
+    },
+    "tabs": {
+      "keys": "Claves de proveedor ({{count}})",
+      "models": "Modelos personalizados ({{count}})"
+    },
+    "keyForm": {
+      "providerLabel": "Proveedor",
+      "providerPlaceholder": "Seleccionar proveedor",
+      "baseUrlLabel": "URL base (compatible con OpenAI)",
+      "baseUrlPlaceholder": "p. ej. http://localhost:11434/v1 o https://my-vllm.example.com/v1",
+      "apiKeyLabel": "Clave API",
+      "apiKeyOptionalSuffix": "(Opcional si es local/sin autenticación)",
+      "apiKeyPlaceholderCustom": "Pega la clave API (opcional para Ollama)",
+      "apiKeyPlaceholder": "Pega tu clave de proveedor",
+      "encryptionNote": "La clave completa se cifra con Fernet y nunca se vuelve a mostrar. Los modelos configurados para este proveedor la usarán automáticamente.",
+      "saving": "Guardando…",
+      "updateKey": "Actualizar clave",
+      "saveKey": "Guardar clave"
+    },
+    "configuredKeysTitle": "Claves de proveedor configuradas",
+    "noKeys": "Aún no hay claves de proveedor guardadas.",
+    "connected": "Conectado",
+    "remove": "Eliminar",
+    "noKeysPrompt": {
+      "title": "No hay claves de proveedor configuradas",
+      "description": "Para añadir un modelo personalizado, primero añade una clave API (p. ej. OpenRouter, Groq, OpenAI) o un Endpoint personalizado en la pestaña Claves de proveedor.",
+      "cta": "Ir a Claves de proveedor"
+    },
+    "addModelButton": "Añadir modelo personalizado",
+    "modelForm": {
+      "title": "Añadir modelo personalizado",
+      "cancel": "Cancelar",
+      "selectKeyLabel": "Seleccionar clave de proveedor configurada",
+      "selectKeyPlaceholder": "Selecciona una clave de proveedor configurada",
+      "routedThrough": "Este modelo se facturará y enrutará a través de la clave de <strong>{{provider}}</strong> de tu espacio de trabajo.",
+      "displayNameLabel": "Nombre visible en el Chat",
+      "displayNamePlaceholder": "p. ej. Claude 3.7 Sonnet",
+      "externalIdLabel": "ID de modelo externo (Identificador API)",
+      "externalIdPlaceholder": "p. ej. anthropic/claude-3.7-sonnet",
+      "contextLengthLabel": "Longitud de contexto (Tokens)",
+      "reasoningLabel": "Modelo de razonamiento / pensamiento",
+      "toolsLabel": "Admite llamada a funciones",
+      "testing": "Probando…",
+      "testConnection": "Probar conexión",
+      "saving": "Guardando…",
+      "saveModel": "Guardar modelo"
+    },
+    "activeModelsTitle": "Modelos activos del espacio de trabajo",
+    "noModels": "Aún no se han añadido modelos personalizados.",
+    "modelCard": {
+      "thinking": "Pensamiento",
+      "keyLabel": "Clave: <strong>{{provider}}</strong> ({{maskedKey}})",
+      "providerLabel": "Proveedor: <strong>{{provider}}</strong>",
+      "context": "Contexto: {{count}}k",
+      "tools": "Herramientas: {{supported}}",
+      "yes": "Sí",
+      "no": "No",
+      "test": "Probar"
+    },
+    "notices": {
+      "keySaved": "La clave de proveedor para {{provider}} se ha guardado de forma segura.",
+      "keyRemoved": "Se ha eliminado la clave de proveedor para {{provider}}.",
+      "modelAdded": "Modelo personalizado '{{name}}' añadido correctamente.",
+      "modelRemoved": "Modelo '{{name}}' eliminado."
+    },
+    "errors": {
+      "keySaveFailed": "No se pudo guardar esta clave de proveedor. Verifica el formato e inténtalo de nuevo.",
+      "keyRemoveFailed": "No se pudo eliminar esta clave de proveedor.",
+      "selectKeyFirst": "Selecciona primero una clave de proveedor.",
+      "modelFieldsRequired": "El nombre visible y el ID de modelo externo son obligatorios.",
+      "modelSaveFailed": "No se pudo guardar el modelo personalizado.",
+      "modelRemoveFailed": "No se pudo eliminar el modelo personalizado.",
+      "enterExternalId": "Introduce un ID de modelo externo para probar la conexión.",
+      "testFailed": "Error en la prueba de conexión."
+    },
+    "byos": {
+      "title": "Suscripciones (BYOS)",
+      "subtitle": "Conecta tu suscripción de Claude Pro / Max, ChatGPT Plus / Pro o Google Antigravity para ejecutar agentes CLI oficiales dentro de tu VM en la nube sin cargos por tokens LLM.",
+      "connect": "Conectar",
+      "update": "Actualizar",
+      "syncFromVm": "Sincronizar desde VM",
+      "disconnect": "Desconectar",
+      "claude": {
+        "name": "Claude Pro / Max (Claude Code)",
+        "hint": "Ejecuta 'claude setup-token' y pega el token, o inicia sesión con 'claude login' en el terminal de la VM y pulsa Sincronizar desde VM.",
+        "placeholder": "Pega claude setup-token (sk-ant-oat01-…) o JSON de credenciales"
+      },
+      "openai": {
+        "name": "ChatGPT Plus / Pro (OpenAI Codex)",
+        "hint": "Pega el contenido de ~/.codex/auth.json, o ejecuta 'codex login' en tu VM y pulsa Sincronizar desde VM.",
+        "placeholder": "Pega ~/.codex/auth.json o token OAuth"
+      },
+      "notices": {
+        "connected": "{{provider}} conectado. Los modelos BYOS ya están disponibles en el chat.",
+        "syncedFromVm": "{{provider}} sincronizado desde tu Cloud VM activa."
+      },
+      "errors": {
+        "syncFailed": "No se pudieron leer las credenciales de suscripción desde la VM."
+      },
+      "antigravity": {
+        "name": "Google Antigravity / Gemini OAuth",
+        "hint": "Paste your ~/.gemini/oauth_creds.json content, or connect Google OAuth directly from the Cloud Agent Selector.",
+        "placeholder": "Paste ~/.gemini/oauth_creds.json or OAuth credentials"
+      },
+      "computeNote": "BYOS cobra $0.00 por tokens LLM. Los agentes se ejecutan dentro de tu VM en la nube usando la cuota de VM de tu plan o tu saldo Top-Up ($0.16–$0.32/h) — sin necesidad de suscripción mensual.",
+      "manageBilling": "Gestionar VM y Saldo"
+    }
+  },
+  "billing": {
+    "selectWorkspace": "Selecciona un espacio de trabajo para ver la facturación.",
+    "title": "Facturación y planes del espacio de trabajo",
+    "subtitle": "Suscripciones, cuotas unificadas (LLM + Cloud VM) y créditos adicionales para {{workspace}}.",
+    "subscriptionPlans": "Planes de suscripción",
+    "currentPlanBadge": "Actual: {{plan}}",
+    "freePlanName": "Free",
+    "perMemberMonth": "/miembro/mes",
+    "perMonth": "/mes",
+    "llmQuota": "${{amount}} cuota (LLM + VM)",
+    "vcpuHours": "Hasta {{hours}} h de vCPU",
+    "maxVmsSingle": "Máx. {{count}} VM",
+    "maxVmsPlural": "Máx. {{count}} VMs",
+    "upToSeats": "Hasta {{count}} puestos",
+    "activePlan": "Plan activo",
+    "upgradeTo": "Mejorar a {{plan}}",
+    "walletBalance": "Saldo de monedero de uso adicional",
+    "walletDescription": "Se usa para excedentes de la cuota mensual, modelos premium en Free y Plus y cómputo de VM en la nube independiente para BYOS/BYOK ($0,16–$0,32/h sin plan mensual). Nunca caduca.",
+    "topUpLabel": "Añadir créditos de uso adicional (USD, mín. $10.00)",
+    "topUpButton": "Añadir ${{amount}}",
+    "topUpNote": "La recarga mínima es de $10.00. No se cobra ninguna comisión adicional de procesamiento; el 100 % de lo que pagas se acredita de inmediato en tu saldo.",
+    "memberNotice": "Pide a un propietario o administrador del espacio de trabajo que gestione los planes, añada créditos o vea las facturas.",
+    "invoicesTitle": "Facturas",
+    "noInvoices": "Aún no hay facturas.",
+    "paymentFallback": "Pago",
+    "viewInvoice": "Ver factura",
+    "fallbackPlans": {
+      "free": {
+        "name": "Free",
+        "description": "$0.50/mes de cuota gratuita (LLMs + VMs 4 núcleos a $0.16/h)"
+      },
+      "plus": {
+        "name": "Plus",
+        "description": "$10,00/mes de cuota para VM en la nube (~200 vCPU-h) + $2 de LLM del plan gratuito · BYOS/BYOK · Máx. 1 VM (sin equipo)"
+      },
+      "pro": {
+        "name": "Pro",
+        "description": "$25,00/mes de cuota compartida para VM en la nube (~550 vCPU-h) + todos los modelos LLM · Hasta 4 miembros"
+      },
+      "team": {
+        "name": "Team",
+        "description": "$200.00/mes compartidos para 16 modelos y Cloud VMs · Hasta 20 miembros y 20 VMs"
+      }
+    },
+    "errors": {
+      "balanceLoad": "No se pudo cargar el saldo del espacio de trabajo.",
+      "invoicesLoad": "No se pudieron cargar las facturas.",
+      "updatePlan": "No se pudo actualizar el plan de suscripción.",
+      "checkoutOpen": "No se pudo abrir la pasarela de pago. Inténtalo de nuevo.",
+      "invoiceOpen": "No se pudo abrir la factura.",
+      "cancelPlan": "No se pudo programar la cancelación del plan.",
+      "resumePlan": "No se pudo reanudar la suscripción."
+    },
+    "topUpNetCredit": "Crédito en el monedero (0% comisión)",
+    "topUpProcessingFee": "Comisión de procesamiento (3.9% + $0.40)",
+    "topUpTotalCharge": "Total a cobrar en el pago",
+    "invoiceNetAndFee": "Neto ${{net}} + ${{fee}} comisión",
+    "monthly": "Mensual",
+    "yearly": "Anual",
+    "yearlySaveBadge": "2 meses gratis",
+    "perYear": "/año",
+    "perMemberYear": "/miembro/año",
+    "seatsLabel": "Puestos",
+    "cancelPlan": "Cancelar plan",
+    "confirmCancel": "Confirmar cancelación",
+    "keepPlan": "Mantener plan",
+    "cancelsOn": "Se cancela el {{date}}",
+    "resumePlan": "Reanudar plan"
+  },
+  "usage": {
+    "selectWorkspace": "Selecciona un espacio de trabajo para ver el uso.",
+    "title": "Uso del espacio de trabajo",
+    "subtitle": "Uso en {{workspace}}, incluyendo a todos los miembros del equipo.",
+    "allTime": "Todo el tiempo",
+    "tryAgain": "Intentar de nuevo",
+    "loadingAriaLabel": "Cargando uso",
+    "errors": {
+      "loadFailed": "No se pudo cargar el uso del espacio de trabajo."
+    },
+    "allowance": {
+      "title": "Plan {{plan}} · Ventanas de cuota (LLM + VM)",
+      "subtitle": "Asignación mensual compartida de uso (LLM y VM en la nube)",
+      "left": "${{amount}} restante",
+      "monthlyCycle": "Ciclo mensual (100%)",
+      "vmQuota": "Uso de Cloud VM (de cuota compartida): <strong>{{used}} / {{included}} horas de vCPU</strong> ({{remaining}} h disponibles)",
+      "verifyForFreeVm": "Completa la verificación de cuenta en Configuración para desbloquear Cloud VMs en el plan Free"
+    },
+    "cards": {
+      "creditsUsed": "Créditos del espacio de trabajo usados",
+      "requests": "Solicitudes",
+      "activeUsers": "Usuarios activos"
+    },
+    "tokens": {
+      "input": "Entrada",
+      "output": "Salida",
+      "cacheReads": "Lecturas de caché"
+    },
+    "byUser": {
+      "title": "Uso por usuario",
+      "subtitle": "Créditos del espacio de trabajo cobrados a cada usuario, incluido su uso de cómputo.",
+      "columns": {
+        "user": "Usuario",
+        "requests": "Solicitudes",
+        "inputOutput": "Entrada / Salida",
+        "workspaceCost": "Costo del espacio de trabajo"
+      },
+      "empty": "Aún no hay actividad de usuarios."
+    },
+    "byModel": {
+      "title": "Uso por modelo",
+      "columns": {
+        "model": "Modelo",
+        "requests": "Solicitudes",
+        "cacheReads": "Lecturas de caché",
+        "workspaceCost": "Costo del espacio de trabajo"
+      },
+      "deletedModel": "Modelo eliminado",
+      "empty": "Aún no hay actividad de modelos."
+    },
+    "vmSessions": {
+      "title": "Sesiones de cómputo VM",
+      "subtitle": "Logs históricos de ejecución de máquinas virtuales, especificaciones del nivel, duración y montos facturados.",
+      "sessions": "Sesiones",
+      "billedRuntime": "Tiempo facturado",
+      "vmCost": "Costo de VM",
+      "columns": {
+        "instance": "Instancia",
+        "tierSpecs": "Especificaciones",
+        "elapsedBilled": "Transcurrido / Facturado",
+        "billedAmount": "Monto facturado"
+      },
+      "statusRunning": "en ejecución",
+      "statusStopped": "detenida",
+      "tierSpecs": "{{tier}} · {{cpu}} vCPU / {{ram}} GB RAM",
+      "hourlyRate": "${{rate}}/h",
+      "billedDuration": "Facturado {{duration}}",
+      "empty": "Aún no se han registrado sesiones de cómputo VM."
+    },
+    "footerNote": "Las lecturas de caché se incluyen en los tokens de entrada y se cobran una vez según la tarifa de lectura de caché del modelo. Los cargos de proveedores BYOK se pagan directamente a tu proveedor."
+  },
+  "logs": {
+    "selectWorkspace": "Selecciona un espacio de trabajo para ver los logs de solicitudes.",
+    "title": "Logs de solicitudes",
+    "subtitle": "Quién usó {{workspace}}, cuándo y cuánto costó cada solicitud.",
+    "refreshAriaLabel": "Actualizar logs",
+    "tryAgain": "Intentar de nuevo",
+    "loadingAriaLabel": "Cargando logs de solicitudes",
+    "errors": {
+      "loadFailed": "No se pudieron cargar los logs de solicitudes. Inténtalo de nuevo."
+    },
+    "filters": {
+      "user": "Usuario",
+      "userAriaLabel": "Usuario del log",
+      "allUsers": "Todos los usuarios",
+      "status": "Estado",
+      "statusAriaLabel": "Estado del log",
+      "allStatuses": "Todos los estados",
+      "fromUtc": "Desde (UTC)",
+      "toUtc": "Hasta (UTC)",
+      "utcNote": "Las horas se muestran en UTC.",
+      "reset": "Restablecer",
+      "apply": "Aplicar filtros",
+      "invalidDates": "La fecha de inicio debe ser anterior o igual a la fecha de fin."
+    },
+    "statuses": {
+      "completed": "completado",
+      "processing": "procesando",
+      "pending": "pendiente",
+      "failed": "fallido",
+      "canceled": "cancelado"
+    },
+    "table": {
+      "timeUtc": "Hora (UTC)",
+      "user": "Usuario",
+      "model": "Modelo",
+      "tokensInOut": "Tokens entrada / salida",
+      "workspaceCost": "Costo del espacio de trabajo",
+      "status": "Estado",
+      "requestTitle": "Solicitud {{uuid}}",
+      "deletedModel": "Modelo eliminado",
+      "platform": "Plataforma",
+      "cachedTokens": "{{count}} en caché",
+      "byokModelCostTooltip": "Costo del modelo facturado directamente por tu proveedor",
+      "byokModelCost": "Modelo {{cost}}"
+    },
+    "empty": {
+      "title": "No se encontraron solicitudes",
+      "filteredDescription": "Prueba cambiando tus filtros.",
+      "defaultDescription": "Las solicitudes aparecerán aquí cuando tu equipo empiece a usar este espacio de trabajo."
+    },
+    "pagination": {
+      "summary": "{{start}}–{{end}} de {{total}} solicitudes",
+      "zero": "0 solicitudes",
+      "prevAriaLabel": "Página anterior de logs",
+      "pageOf": "Página {{page}} de {{pages}}",
+      "nextAriaLabel": "Página siguiente de logs"
+    },
+    "footerNote": "El costo del espacio de trabajo es el importe cargado a los créditos del espacio de trabajo. Los costos de modelos BYOK se pagan directamente al proveedor; los cargos de cómputo están incluidos en Uso."
+  },
+  "profile": {
+    "loadingAriaLabel": "Cargando perfil",
+    "title": "Perfil público",
+    "subtitle": "Gestiona cómo aparecen tus datos personales y tu avatar en todo el espacio de trabajo.",
+    "avatar": {
+      "title": "Foto de perfil",
+      "hint": "PNG, JPG o GIF de hasta 5MB. Se recomienda formato cuadrado."
+    },
+    "fields": {
+      "username": {
+        "label": "Nombre de usuario",
+        "placeholder": "nombre de usuario"
+      },
+      "firstName": {
+        "label": "Nombre",
+        "placeholder": "Nombre"
+      },
+      "lastName": {
+        "label": "Apellido",
+        "placeholder": "Apellido"
+      },
+      "bio": {
+        "label": "Biografía",
+        "placeholder": "Escribe una breve biografía sobre ti…"
+      }
+    },
+    "toast": {
+      "updatedTitle": "Perfil actualizado",
+      "updatedDescription": "Se han guardado los cambios de tu perfil.",
+      "errorTitle": "Error al actualizar el perfil"
+    },
+    "errors": {
+      "notSignedIn": "Debes iniciar sesión para guardar tu perfil.",
+      "emptyUsername": "El nombre de usuario no puede estar vacío.",
+      "updateFailed": "No se pudo actualizar el perfil. Inténtalo de nuevo."
+    }
+  },
+  "personalization": {
+    "title": "Personalización y Memoria estilo Claude",
+    "memoryActive": "Memoria activa",
+    "memoryPaused": "Memoria en pausa",
+    "subtitle": "Controla tu perfil de IA sintetizado, datos personales y notas compartidas del espacio de trabajo entre sesiones.",
+    "preferredName": {
+      "label": "Nombre preferido",
+      "placeholder": "p. ej. Kaan, Ada, Alex",
+      "hint": "Cómo se dirige el asistente a ti en conversaciones personales."
+    },
+    "autoMemory": {
+      "title": "Extracción automática de memoria",
+      "description": "Aprende preferencias duraderas de los chats y recuerda datos relevantes automáticamente."
+    },
+    "privacyGuard": "<strong>Protección de privacidad del equipo:</strong> Los recuerdos personales se excluyen automáticamente de los espacios de trabajo con varios miembros.",
+    "recallEngine": "pgvector + recuperación léxica",
+    "categories": {
+      "identity": {
+        "label": "Identidad",
+        "description": "Rol, experiencia y perfil"
+      },
+      "preference": {
+        "label": "Preferencia",
+        "description": "Tono, idioma y estilo de código"
+      },
+      "workspace": {
+        "label": "Espacio de trabajo",
+        "description": "Stack, herramientas y flujos"
+      },
+      "knowledge": {
+        "label": "Conocimiento",
+        "description": "Datos del dominio y arquitectura"
+      },
+      "relationship": {
+        "label": "Relación",
+        "description": "Equipo, colaboradores y organización"
+      }
+    },
+    "templates": {
+      "languageTone": {
+        "title": "Idioma y tono",
+        "sample": "Explica los conceptos en español, pero mantén los comentarios de código y mensajes de commit en inglés."
+      },
+      "roleStack": {
+        "title": "Rol y Stack",
+        "sample": "Ingeniero full-stack trabajando principalmente con TypeScript, React 19, Django y PostgreSQL."
+      },
+      "codeStyle": {
+        "title": "Estilo de código",
+        "sample": "Prefiere funciones concisas y fuertemente tipadas con retornos tempranos y código repetitivo mínimo."
+      },
+      "architecture": {
+        "title": "Arquitectura",
+        "sample": "Los servicios de producción se ejecutan en contenedores Docker respaldados por Redis y PostgreSQL pgvector."
+      }
+    },
+    "importance": {
+      "core": "Esencial",
+      "standard": "Estándar",
+      "low": "Baja"
+    },
+    "markdown": {
+      "title": "# Perfil de memoria del usuario",
+      "preferredName": "Nombre preferido: {{name}}",
+      "general": "General"
+    },
+    "snapshot": {
+      "title": "Resumen de memoria sintetizado",
+      "coreCount": "{{count}} de prioridad esencial",
+      "subtitle": "Cómo NeuronRunner estructura tu contexto por categorías",
+      "copied": "Copiado",
+      "copyMarkdown": "Copiar Markdown",
+      "factSingle": "{{count}} dato",
+      "factPlural": "{{count}} datos",
+      "moreInCategory": "+{{count}} más en {{category}}"
+    },
+    "tabs": {
+      "memories": "Recuerdos personales",
+      "notes": "Notas del espacio de trabajo"
+    },
+    "actions": {
+      "addMemory": "Añadir recuerdo",
+      "addNote": "Añadir nota",
+      "clearAll": "Borrar todo",
+      "cancel": "Cancelar",
+      "saving": "Guardando…",
+      "save": "Guardar",
+      "edit": "Editar",
+      "delete": "Eliminar"
+    },
+    "quickTemplatesLabel": "Plantillas rápidas:",
+    "addForm": {
+      "newMemory": "Nuevo recuerdo personal",
+      "newNote": "Nueva nota del espacio de trabajo",
+      "memoryPlaceholder": "p. ej. Responde siempre en español y usa pytest para pruebas de backend...",
+      "notePlaceholder": "p. ej. El backend se ejecuta en Daphne ASGI puerto 8000 con PostgreSQL pgvector...",
+      "noCategory": "Sin categoría",
+      "labelPlaceholder": "etiqueta de tema (opcional)",
+      "priorityLabel": "Prioridad:"
+    },
+    "search": {
+      "memoriesPlaceholder": "Buscar recuerdos por palabra clave, categoría o #etiqueta...",
+      "notesPlaceholder": "Buscar notas del espacio de trabajo...",
+      "allCategory": "Todos ({{count}})"
+    },
+    "emptyMemories": {
+      "noneTitle": "Aún no hay recuerdos personales registrados",
+      "filteredTitle": "Ningún recuerdo coincide con tu filtro",
+      "noneDescription": "Chatea con naturalidad con el asistente o haz clic en 'Añadir recuerdo' arriba para registrar tus preferencias, stack tecnológico y estilo de comunicación.",
+      "filteredDescription": "Prueba limpiando la búsqueda o cambiando el filtro de categoría."
+    },
+    "emptyNotes": {
+      "title": "Aún no hay notas del espacio de trabajo registradas",
+      "description": "Las notas del espacio de trabajo almacenan datos del entorno, convenciones del proyecto e instrucciones de herramientas que permanecen activas incluso cuando la memoria personal está desactivada."
+    },
+    "editForm": {
+      "memoryPlaceholder": "Contenido del recuerdo",
+      "notePlaceholder": "Contenido de la nota del espacio de trabajo",
+      "labelPlaceholder": "Etiqueta (p. ej. idioma)",
+      "priorityLabel": "Prioridad (1-10):"
+    },
+    "item": {
+      "importanceTitle": "Puntuación de importancia: {{score}}/10",
+      "addedDate": "Añadido {{date}}",
+      "recalledDate": "Recordado {{date}}"
+    },
+    "deleteAllDialog": {
+      "title": "¿Borrar todos los recuerdos personales?",
+      "description": "Esta acción eliminará permanentemente los {{count}} datos personales almacenados y no se puede deshacer. Las notas del espacio de trabajo no se verán afectadas.",
+      "confirm": "Eliminar todo"
+    }
+  },
+  "security": {
+    "title": "Seguridad y Contraseña",
+    "subtitle": "Gestiona las credenciales de tu cuenta y la configuración de autenticación.",
+    "changePasswordTitle": "Cambiar contraseña",
+    "currentPassword": "Contraseña actual",
+    "newPassword": "Nueva contraseña",
+    "passwordHint": "Se recomienda un mínimo de 8 caracteres.",
+    "confirmPassword": "Confirmar nueva contraseña",
+    "updatePassword": "Actualizar contraseña",
+    "errors": {
+      "fillAllFields": "Rellena todos los campos de contraseña.",
+      "mismatch": "Las contraseñas no coinciden."
+    }
+  },
+  "apiKeys": {
+    "title": "Claves API",
+    "subtitle": "Gestiona claves API para acceder programáticamente a los modelos, agentes y flujos de automatización de NeuronRunner.",
+    "generateTitle": "Generar nueva clave API",
+    "namePlaceholder": "p. ej. CLI Runner, Agente de producción",
+    "createButton": "Crear clave",
+    "secretAlert": {
+      "title": "Guarda tu clave secreta ahora",
+      "description": "Copia esta clave y guárdala en un lugar seguro. Por tu seguridad, no podrá mostrarse de nuevo después de cerrar este aviso.",
+      "copy": "Copiar",
+      "confirmSaved": "He guardado mi clave secreta"
+    },
+    "activeKeysTitle": "Claves activas",
+    "keyCountSingle": "{{count}} clave",
+    "keyCountPlural": "{{count}} claves",
+    "emptyTitle": "Aún no hay claves API",
+    "emptyDescription": "Crea una nueva clave arriba para empezar a usar la API.",
+    "statusActive": "Activa",
+    "statusInactive": "Inactiva",
+    "createdLabel": "Creada",
+    "lastUsedLabel": "Último uso",
+    "neverUsed": "Nunca",
+    "pauseAccess": "Pausar acceso",
+    "resumeAccess": "Reanudar acceso",
+    "deleteKey": "Eliminar clave"
+  },
+  "vmSecrets": {
+    "selectWorkspace": "Selecciona un espacio de trabajo para gestionar los secretos de VM.",
+    "title": "Secretos de VM",
+    "subtitle": "Variables de entorno cifradas que se inyectan automáticamente en las máquinas virtuales de {{workspace}}.",
+    "loadingAriaLabel": "Cargando secretos de VM",
+    "readOnlyNotice": "Solo los propietarios o administradores del espacio de trabajo pueden añadir, editar o eliminar secretos de VM.",
+    "searchPlaceholder": "Busca secretos por clave, descripción o VM...",
+    "updatedAt": "Actualizado {{date}}",
+    "footerNote": "Los secretos se cifran en reposo y nunca se muestran en texto plano tras guardarse. Se inyectan automáticamente en las variables de entorno de la VM, los terminales interactivos y los comandos de shell del agente.",
+    "actions": {
+      "addSecret": "Añadir secreto",
+      "importEnv": "Importar .env",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "confirmDelete": "Confirmar",
+      "cancel": "Cancelar",
+      "save": "Guardar secreto",
+      "saving": "Guardando..."
+    },
+    "scope": {
+      "allVms": "Todas las VM del espacio de trabajo",
+      "specificVm": "VM específica"
+    },
+    "filter": {
+      "all": "Todos los ámbitos"
+    },
+    "form": {
+      "addTitle": "Añadir nuevo secreto de VM",
+      "editTitle": "Editar {{key}}",
+      "keyLabel": "Nombre de la variable",
+      "scopeLabel": "Ámbito",
+      "valueLabel": "Valor del secreto",
+      "valuePlaceholderAdd": "Introduce el valor del secreto...",
+      "valuePlaceholderEdit": "Déjalo en blanco para conservar el valor actual",
+      "showValue": "Mostrar el valor del secreto",
+      "hideValue": "Ocultar el valor del secreto",
+      "descriptionLabel": "Descripción (opcional)",
+      "descriptionPlaceholder": "p. ej., contraseña de base de datos o token de API"
+    },
+    "importForm": {
+      "title": "Importación masiva desde .env",
+      "subtitle": "Pega líneas CLAVE=VALOR a continuación. Las claves existentes en el ámbito seleccionado se actualizarán.",
+      "submit": "Importar secretos",
+      "importing": "Importando..."
+    },
+    "empty": {
+      "title": "Aún no hay secretos de VM",
+      "description": "Guarda de forma segura claves de API, URL de bases de datos y credenciales para que tus VM y agentes las usen como variables de entorno.",
+      "filtered": "Ningún secreto coincide con tu búsqueda o filtro actual."
+    },
+    "toast": {
+      "createdTitle": "Secreto añadido",
+      "updatedTitle": "Secreto actualizado",
+      "savedDescription": "{{key}} se ha cifrado y guardado.",
+      "syncedDescription": "{{key}} guardado y sincronizado con {{count}} VM en ejecución.",
+      "importedTitle": "Secretos importados",
+      "importedDescription": "{{count}} secreto(s) cifrado(s) y guardado(s).",
+      "deletedTitle": "Secreto eliminado",
+      "deletedDescription": "{{key}} se ha eliminado."
+    },
+    "errors": {
+      "loadFailed": "No se pudieron cargar los secretos de VM.",
+      "keyRequired": "El nombre de la variable es obligatorio.",
+      "valueRequired": "El valor del secreto es obligatorio.",
+      "saveFailed": "No se pudo guardar el secreto de VM.",
+      "importFailed": "No se pudieron importar los secretos del .env.",
+      "deleteFailed": "No se pudo eliminar el secreto de VM."
+    }
+  }
+}

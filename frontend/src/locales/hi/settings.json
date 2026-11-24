@@ -1,0 +1,738 @@
+{
+  "dialog": {
+    "description": "अपना वर्कस्पेस, टीम, बिलिंग, प्रेफ़रेंसेज़ और सिक्योरिटी मैनेज करें।"
+  },
+  "modal": {
+    "closeAriaLabel": "सेटिंग्स बंद करें"
+  },
+  "roles": {
+    "owner": "ओनर",
+    "admin": "एडमिन",
+    "member": "मेंबर"
+  },
+  "workspaceSelector": {
+    "currentWorkspace": "मौजूदा वर्कस्पेस",
+    "ariaLabel": "सेटिंग्स वर्कस्पेस",
+    "fallbackName": "वर्कस्पेस",
+    "selectWorkspace": "वर्कस्पेस चुनें",
+    "switching": "स्विच हो रहा है…",
+    "summarySingle": "{{role}} · {{count}} मेंबर",
+    "summaryPlural": "{{role}} · {{count}} मेंबर्स",
+    "chooseTeam": "अपनी टीम चुनें",
+    "workspaces": "वर्कस्पेस",
+    "noWorkspaces": "कोई वर्कस्पेस उपलब्ध नहीं है।",
+    "newWorkspace": "नया वर्कस्पेस"
+  },
+  "store": {
+    "billingCustomerIdMissing": "बिलिंग कस्टमर ID उपलब्ध नहीं है।",
+    "paymentMethodUpdateTxMissing": "पेमेंट मेथड अपडेट ट्रांज़ैक्शन ID उपलब्ध नहीं है।",
+    "topUpTxMissing": "टॉप-अप ट्रांज़ैक्शन ID उपलब्ध नहीं है।",
+    "checkoutUrlMissing": "चेकआउट URL उपलब्ध नहीं है"
+  },
+  "workspaceTab": {
+    "loadingAriaLabel": "वर्कस्पेस सेटिंग्स लोड हो रही हैं",
+    "selectWorkspace": "इसकी सेटिंग्स देखने के लिए कोई वर्कस्पेस चुनें या बनाएं।",
+    "title": "वर्कस्पेस प्रोफ़ाइल",
+    "subtitle": "मैनेज करें कि आपके वर्कस्पेस की डिटेल्स, पहचान और अवतार पूरी टीम को कैसे दिखते हैं।",
+    "picture": {
+      "title": "वर्कस्पेस पिक्चर",
+      "hint": "10MB तक PNG, JPG या GIF। स्क्वेयर रेशियो की सलाह दी जाती है।",
+      "permissionHint": "केवल वर्कस्पेस ओनर्स और एडमिन्स ही वर्कस्पेस पिक्चर अपडेट कर सकते हैं।"
+    },
+    "fields": {
+      "name": {
+        "label": "वर्कस्पेस का नाम",
+        "placeholder": "वर्कस्पेस का नाम"
+      },
+      "slug": {
+        "label": "वर्कस्पेस स्लग",
+        "hint": "राउटिंग और प्रोजेक्ट पहचान के लिए इस्तेमाल होने वाला वर्कस्पेस स्लग।"
+      }
+    },
+    "yourRole": "आपका रोल:",
+    "saveChanges": "बदलाव सेव करें",
+    "toast": {
+      "pictureUpdatedTitle": "वर्कस्पेस पिक्चर अपडेट हो गई",
+      "pictureUpdatedDescription": "आपका वर्कस्पेस लोगो सफलतापूर्वक अपडेट हो गया है।",
+      "uploadFailedTitle": "अपलोड फ़ेल हो गया",
+      "pictureRemovedTitle": "वर्कस्पेस पिक्चर हटाई गई",
+      "pictureRemovedDescription": "आपकी वर्कस्पेस पिक्चर हटा दी गई है।",
+      "removalFailedTitle": "हटाया नहीं जा सका",
+      "updatedTitle": "वर्कस्पेस अपडेट हो गया",
+      "updatedDescription": "वर्कस्पेस का नाम सेव हो गया है।"
+    },
+    "errors": {
+      "uploadFailed": "वर्कस्पेस पिक्चर अपलोड नहीं हो सकी।",
+      "removeFailed": "वर्कस्पेस पिक्चर हटाई नहीं जा सकी।",
+      "updateFailed": "वर्कस्पेस अपडेट नहीं हो सका।"
+    }
+  },
+  "team": {
+    "title": "टीम मेंबर्स",
+    "selectWorkspace": "इसकी टीम देखने के लिए कोई वर्कस्पेस चुनें या बनाएं।",
+    "subtitle": "{{workspace}} के लिए अपने शेयर्ड टीम मेंबर्स और पेंडिंग इनविटेशन्स मैनेज करें।",
+    "inviteButton": "मेंबर इनवाइट करें",
+    "individualPlan": {
+      "title": "{{plan}} प्लान में टीम फ़ीचर्स उपलब्ध नहीं हैं।",
+      "freeDescription": "Free एक इंडिविजुअल प्लान है जो 1 मेंबर सपोर्ट करता है। टीममेट्स के साथ काम करने के लिए बिलिंग टैब में Pro (4 मेंबर्स तक) में अपग्रेड करें।",
+      "plusDescription": "Plus प्लान ($10/माह) एक इंडिविजुअल प्लान है जो 1 VM और 1 मेंबर सपोर्ट करता है। टीममेट्स के साथ काम करने के लिए बिलिंग टैब में Pro (4 मेंबर्स तक) में अपग्रेड करें।"
+    },
+    "inviteForm": {
+      "title": "किसी टीममेट को इनवाइट करें",
+      "closeAriaLabel": "इनवाइट फ़ॉर्म बंद करें",
+      "emailLabel": "ईमेल एड्रेस",
+      "emailPlaceholder": "teammate@example.com",
+      "roleLabel": "रोल",
+      "roleAriaLabel": "इनविटेशन रोल",
+      "sending": "भेजा जा रहा है…",
+      "send": "इनवाइट भेजें",
+      "adminHint": "एडमिन्स लोगों को इनवाइट कर सकते हैं और टीम मेंबर्स को मैनेज कर सकते हैं।",
+      "memberHint": "मेंबर्स चैट्स और प्रोजेक्ट्स पर साथ काम कर सकते हैं।"
+    },
+    "roles": {
+      "member": "मेंबर",
+      "admin": "एडमिन"
+    },
+    "removeAlert": {
+      "title": "{{name}} को हटाएं?",
+      "description": "वे इस वर्कस्पेस की चैट्स और प्रोजेक्ट्स का एक्सेस खो देंगे।",
+      "removing": "हटाया जा रहा है…",
+      "confirm": "मेंबर हटाएं"
+    },
+    "actions": {
+      "cancel": "कैंसिल करें"
+    },
+    "tabs": {
+      "ariaLabel": "टीम लिस्ट्स",
+      "members": "मेंबर्स",
+      "invitations": "इनविटेशन्स"
+    },
+    "search": {
+      "membersAriaLabel": "मेंबर्स सर्च करें",
+      "invitationsAriaLabel": "इनविटेशन्स सर्च करें",
+      "membersPlaceholder": "नाम या ईमेल से सर्च करें",
+      "invitationsPlaceholder": "इनविटेशन्स सर्च करें",
+      "clearAriaLabel": "सर्च क्लियर करें"
+    },
+    "members": {
+      "you": "आप",
+      "actionsAriaLabel": "{{name}} के लिए ऐक्शन्स",
+      "removeFromWorkspace": "वर्कस्पेस से हटाएं"
+    },
+    "invitations": {
+      "awaitingAcceptance": "स्वीकृति का इंतज़ार है",
+      "cancelAriaLabel": "{{email}} के लिए इनविटेशन कैंसिल करें"
+    },
+    "emptyMembers": {
+      "filteredTitle": "कोई मैचिंग टीममेट नहीं मिला",
+      "defaultTitle": "आपकी टीम यहाँ से शुरू होती है",
+      "filteredDescription": "कोई दूसरा नाम या ईमेल एड्रेस आज़माएं।",
+      "defaultDescription": "इस वर्कस्पेस में साथ काम करने के लिए लोगों को इनवाइट करें।"
+    },
+    "emptyInvitations": {
+      "filteredTitle": "कोई मैचिंग इनविटेशन नहीं मिला",
+      "defaultTitle": "कोई पेंडिंग इनविटेशन नहीं",
+      "filteredDescription": "कोई दूसरा ईमेल एड्रेस आज़माएं।",
+      "defaultDescription": "जब तक आपके टीममेट्स स्वीकार नहीं करते, इनविटेशन्स यहाँ दिखेंगे।"
+    },
+    "toast": {
+      "inviteSentTitle": "इनविटेशन भेजा गया",
+      "inviteSentDescription": "ईमेल स्वीकार करने के बाद {{email}} जॉइन कर सकते हैं।",
+      "memberRemovedTitle": "मेंबर हटाया गया",
+      "inviteCancelledTitle": "इनविटेशन कैंसिल किया गया",
+      "inviteCancelledDescription": "{{email}} के लिए इनविटेशन कैंसिल कर दिया गया है।"
+    }
+  },
+  "providerKeys": {
+    "selectWorkspace": "Provider Keys मैनेज करने के लिए एक वर्कस्पेस चुनें।",
+    "noPermission": "केवल वर्कस्पेस ओनर्स और एडमिन्स ही Provider Keys मैनेज कर सकते हैं। मेंबर्स कॉन्फ़िगर्ड प्रोवाइडर्स और कस्टम मॉडल्स का इस्तेमाल कर सकते हैं।",
+    "title": "Bring Your Own Key (BYOK) और कस्टम मॉडल्स",
+    "subtitle": "Provider Keys एन्क्रिप्टेड रहती हैं और {{workspace}} में शेयर की जाती हैं। यहाँ जोड़े गए कस्टम मॉडल्स बिना किसी प्लेटफ़ॉर्म टोकन मार्कअप के सीधे आपके चैट मॉडल सिलेक्टर में दिखते हैं।",
+    "providers": {
+      "custom": "कस्टम एंडपॉइंट (vLLM / Ollama)"
+    },
+    "tabs": {
+      "keys": "Provider Keys ({{count}})",
+      "models": "कस्टम मॉडल्स ({{count}})"
+    },
+    "keyForm": {
+      "providerLabel": "प्रोवाइडर",
+      "providerPlaceholder": "प्रोवाइडर चुनें",
+      "baseUrlLabel": "Base URL (OpenAI-compatible)",
+      "baseUrlPlaceholder": "जैसे http://localhost:11434/v1 या https://my-vllm.example.com/v1",
+      "apiKeyLabel": "API Key",
+      "apiKeyOptionalSuffix": "(लोकल/बिना ऑथेंटिकेशन के वैकल्पिक)",
+      "apiKeyPlaceholderCustom": "API Key पेस्ट करें (Ollama के लिए वैकल्पिक)",
+      "apiKeyPlaceholder": "अपनी प्रोवाइडर Key पेस्ट करें",
+      "encryptionNote": "पूरी Key Fernet से एन्क्रिप्ट की जाती है और दोबारा नहीं दिखाई जाती। इस प्रोवाइडर के लिए कॉन्फ़िगर किए गए मॉडल्स इसे अपने आप इस्तेमाल करेंगे।",
+      "saving": "सेव हो रहा है…",
+      "updateKey": "Key अपडेट करें",
+      "saveKey": "Key सेव करें"
+    },
+    "configuredKeysTitle": "कॉन्फ़िगर्ड Provider Keys",
+    "noKeys": "अभी तक कोई Provider Key सेव नहीं की गई है।",
+    "connected": "कनेक्टेड",
+    "remove": "हटाएं",
+    "noKeysPrompt": {
+      "title": "कोई Provider Key कॉन्फ़िगर नहीं है",
+      "description": "कस्टम मॉडल जोड़ने के लिए, पहले Provider Keys टैब में एक API Key (जैसे OpenRouter, Groq, OpenAI) या कस्टम एंडपॉइंट जोड़ें।",
+      "cta": "Provider Keys पर जाएं"
+    },
+    "addModelButton": "कस्टम मॉडल जोड़ें",
+    "modelForm": {
+      "title": "कस्टम मॉडल जोड़ें",
+      "cancel": "कैंसिल करें",
+      "selectKeyLabel": "कॉन्फ़िगर्ड Provider Key चुनें",
+      "selectKeyPlaceholder": "कॉन्फ़िगर्ड Provider Key चुनें",
+      "routedThrough": "यह मॉडल आपके वर्कस्पेस की <strong>{{provider}}</strong> Key के ज़रिए बिल और रूट किया जाएगा।",
+      "displayNameLabel": "चैट में डिस्प्ले नाम",
+      "displayNamePlaceholder": "जैसे Claude 3.7 Sonnet",
+      "externalIdLabel": "External Model ID (API Identifier)",
+      "externalIdPlaceholder": "जैसे anthropic/claude-3.7-sonnet",
+      "contextLengthLabel": "कॉन्टेक्स्ट लेंथ (टोकन)",
+      "reasoningLabel": "रीज़निंग / थिंकिंग मॉडल",
+      "toolsLabel": "फ़ंक्शन कॉलिंग सपोर्ट करता है",
+      "testing": "टेस्ट हो रहा है…",
+      "testConnection": "कनेक्शन टेस्ट करें",
+      "saving": "सेव हो रहा है…",
+      "saveModel": "मॉडल सेव करें"
+    },
+    "activeModelsTitle": "एक्टिव वर्कस्पेस मॉडल्स",
+    "noModels": "अभी तक कोई कस्टम मॉडल नहीं जोड़ा गया है।",
+    "modelCard": {
+      "thinking": "थिंकिंग",
+      "keyLabel": "Key: <strong>{{provider}}</strong> ({{maskedKey}})",
+      "providerLabel": "प्रोवाइडर: <strong>{{provider}}</strong>",
+      "context": "कॉन्टेक्स्ट: {{count}}k",
+      "tools": "टूल्स: {{supported}}",
+      "yes": "हाँ",
+      "no": "नहीं",
+      "test": "टेस्ट"
+    },
+    "notices": {
+      "keySaved": "{{provider}} की Provider Key सुरक्षित रूप से सेव हो गई।",
+      "keyRemoved": "{{provider}} की Provider Key हटा दी गई।",
+      "modelAdded": "कस्टम मॉडल '{{name}}' सफलतापूर्वक जुड़ गया।",
+      "modelRemoved": "मॉडल '{{name}}' हटा दिया गया।"
+    },
+    "errors": {
+      "keySaveFailed": "यह Provider Key सेव नहीं हो सकी। फ़ॉर्मेट चेक करें और फिर से कोशिश करें।",
+      "keyRemoveFailed": "यह Provider Key हटाई नहीं जा सकी।",
+      "selectKeyFirst": "कृपया पहले एक Provider Key चुनें।",
+      "modelFieldsRequired": "डिस्प्ले नाम और External Model ID दोनों ज़रूरी हैं।",
+      "modelSaveFailed": "कस्टम मॉडल सेव नहीं हो सका।",
+      "modelRemoveFailed": "कस्टम मॉडल हटाया नहीं जा सका।",
+      "enterExternalId": "कनेक्शन टेस्ट करने के लिए External Model ID डालें।",
+      "testFailed": "कनेक्शन टेस्ट फ़ेल हो गया।"
+    },
+    "byos": {
+      "title": "सब्सक्रिप्शन (BYOS)",
+      "subtitle": "शून्य LLM टोकन शुल्क के साथ अपने Cloud VM के अंदर आधिकारिक CLI एजेंट चलाने के लिए अपना Claude Pro / Max, ChatGPT Plus / Pro या Google Antigravity सब्सक्रिप्शन कनेक्ट करें।",
+      "connect": "कनेक्ट करें",
+      "update": "अपडेट करें",
+      "syncFromVm": "VM से सिंक करें",
+      "disconnect": "डिस्कनेक्ट करें",
+      "claude": {
+        "name": "Claude Pro / Max (Claude Code)",
+        "hint": "स्थानीय रूप से 'claude setup-token' चलाकर टोकन पेस्ट करें, या VM टर्मिनल में 'claude login' चलाकर VM से सिंक करें पर क्लिक करें।",
+        "placeholder": "claude setup-token (sk-ant-oat01-…) या क्रेडेंशियल JSON पेस्ट करें"
+      },
+      "openai": {
+        "name": "ChatGPT Plus / Pro (OpenAI Codex)",
+        "hint": "अपना ~/.codex/auth.json पेस्ट करें, या VM टर्मिनल में 'codex login' चलाकर VM से सिंक करें पर क्लिक करें।",
+        "placeholder": "~/.codex/auth.json या OAuth टोकन पेस्ट करें"
+      },
+      "notices": {
+        "connected": "{{provider}} कनेक्ट हो गया। BYOS मॉडल अब चैट में उपलब्ध हैं।",
+        "syncedFromVm": "{{provider}} आपके सक्रिय Cloud VM से सिंक हो गया।"
+      },
+      "errors": {
+        "syncFailed": "चल रहे VM से सब्सक्रिप्शन क्रेडेंशियल सिंक नहीं हो सके।"
+      },
+      "antigravity": {
+        "name": "Google Antigravity / Gemini OAuth",
+        "hint": "Paste your ~/.gemini/oauth_creds.json content, or connect Google OAuth directly from the Cloud Agent Selector.",
+        "placeholder": "Paste ~/.gemini/oauth_creds.json or OAuth credentials"
+      },
+      "computeNote": "BYOS में LLM टोकन शुल्क $0.00 है। एजेंट आपके Cloud VM में चलते हैं और आपके प्लान के VM कोटा या Top-Up वॉलेट बैलेंस ($0.16–$0.32/घंटा) का उपयोग करते हैं — मासिक प्लान की आवश्यकता नहीं।",
+      "manageBilling": "VM और टॉप-अप प्रबंधित करें"
+    }
+  },
+  "billing": {
+    "selectWorkspace": "बिलिंग देखने के लिए एक वर्कस्पेस चुनें।",
+    "title": "वर्कस्पेस बिलिंग और प्लान्स",
+    "subtitle": "{{workspace}} के लिए सब्सक्रिप्शन, एकीकृत उपयोग कोटा (LLM + क्लाउड VM) और अतिरिक्त क्रेडिट।",
+    "subscriptionPlans": "सब्सक्रिप्शन प्लान्स",
+    "currentPlanBadge": "मौजूदा: {{plan}}",
+    "freePlanName": "Free",
+    "perMemberMonth": "/मेंबर/माह",
+    "perMonth": "/माह",
+    "llmQuota": "${{amount}} कोटा (LLM + VM)",
+    "vcpuHours": "अधिकतम {{hours}} vCPU-घंटे",
+    "maxVmsSingle": "अधिकतम {{count}} VM",
+    "maxVmsPlural": "अधिकतम {{count}} VMs",
+    "upToSeats": "{{count}} सीट्स तक",
+    "activePlan": "एक्टिव प्लान",
+    "upgradeTo": "{{plan}} में अपग्रेड करें",
+    "walletBalance": "एक्स्ट्रा-यूज़ेज वॉलेट बैलेंस",
+    "walletDescription": "मासिक कोटा ओवरेज, Free और Plus में प्रीमियम मॉडल और बिना मासिक प्लान के BYOS/BYOK के लिए स्टैंडअलोन क्लाउड VM कंप्यूट ($0.16–$0.32/घंटा) के लिए इस्तेमाल होता है। कभी एक्सपायर नहीं होता।",
+    "topUpLabel": "एक्स्ट्रा-यूज़ेज क्रेडिट्स जोड़ें (USD, न्यूनतम $10.00)",
+    "topUpButton": "${{amount}} जोड़ें",
+    "topUpNote": "न्यूनतम टॉप-अप $10.00 है। कोई अतिरिक्त प्रोसेसिंग शुल्क नहीं लिया जाता; आपके द्वारा भुगतान की गई 100% राशि तुरंत बैलेंस में क्रेडिट होती है।",
+    "memberNotice": "प्लान्स मैनेज करने, क्रेडिट्स जोड़ने या इनवॉइस देखने के लिए वर्कस्पेस ओनर या एडमिन से कहें।",
+    "invoicesTitle": "इनवॉइस",
+    "noInvoices": "अभी तक कोई इनवॉइस नहीं है।",
+    "paymentFallback": "पेमेंट",
+    "viewInvoice": "इनवॉइस देखें",
+    "fallbackPlans": {
+      "free": {
+        "name": "Free",
+        "description": "$0.50/माह फ़्री कोटा (LLMs + $0.16/घं 4-कोर क्लाउड VMs)"
+      },
+      "plus": {
+        "name": "Plus",
+        "description": "क्लाउड VM (~200 vCPU-घंटे) के लिए $10.00/माह कोटा + $2 फ्री-टियर LLM अलाउंस · BYOS/BYOK · अधिकतम 1 VM (टीम नहीं)"
+      },
+      "pro": {
+        "name": "Pro",
+        "description": "क्लाउड VM (~550 vCPU-घंटे) + सभी LLM मॉडल के लिए $25.00/माह साझा कोटा · 4 मेंबर तक"
+      },
+      "team": {
+        "name": "Team",
+        "description": "सभी 16 मॉडल्स व क्लाउड VM पर $200.00/माह पूल कोटा · 20 मेंबर व 20 VMs तक"
+      }
+    },
+    "errors": {
+      "balanceLoad": "वर्कस्पेस बैलेंस लोड नहीं हो सका।",
+      "invoicesLoad": "इनवॉइस लोड नहीं हो सके।",
+      "updatePlan": "सब्सक्रिप्शन प्लान अपडेट नहीं हो सका।",
+      "checkoutOpen": "चेकआउट नहीं खुल सका। कृपया फिर से कोशिश करें।",
+      "invoiceOpen": "इनवॉइस नहीं खुल सका।",
+      "cancelPlan": "प्लान रद्द करने का शेड्यूल नहीं हो सका।",
+      "resumePlan": "सदस्यता फिर से शुरू नहीं हो सकी।"
+    },
+    "topUpNetCredit": "वॉलेट क्रेडिट (0% शुल्क)",
+    "topUpProcessingFee": "पेमेंट प्रोसेसिंग शुल्क (3.9% + $0.40)",
+    "topUpTotalCharge": "चेकआउट पर कुल शुल्क",
+    "invoiceNetAndFee": "नेट ${{net}} + ${{fee}} शुल्क",
+    "monthly": "मासिक",
+    "yearly": "वार्षिक",
+    "yearlySaveBadge": "2 माह मुफ़्त",
+    "perYear": "/वर्ष",
+    "perMemberYear": "/मेंबर/वर्ष",
+    "seatsLabel": "सीटें",
+    "cancelPlan": "प्लान रद्द करें",
+    "confirmCancel": "रद्द करने की पुष्टि करें",
+    "keepPlan": "प्लान रखें",
+    "cancelsOn": "{{date}} को रद्द होगा",
+    "resumePlan": "प्लान फिर से शुरू करें"
+  },
+  "usage": {
+    "selectWorkspace": "यूज़ेज देखने के लिए एक वर्कस्पेस चुनें।",
+    "title": "वर्कस्पेस यूज़ेज",
+    "subtitle": "सभी टीम मेंबर्स सहित {{workspace}} का कुल यूज़ेज।",
+    "allTime": "ऑल टाइम",
+    "tryAgain": "फिर से कोशिश करें",
+    "loadingAriaLabel": "यूज़ेज लोड हो रहा है",
+    "errors": {
+      "loadFailed": "वर्कस्पेस यूज़ेज लोड नहीं हो सका।"
+    },
+    "allowance": {
+      "title": "{{plan}} प्लान · उपयोग कोटा विंडोज़ (LLM + VM)",
+      "subtitle": "मासिक साझा उपयोग कोटा (LLM और Cloud VM)",
+      "left": "${{amount}} बाकी",
+      "monthlyCycle": "मंथली साइकिल (100%)",
+      "vmQuota": "क्लाउड VM उपयोग (साझा कोटा से): <strong>{{used}} / {{included}} vCPU-घंटे</strong> ({{remaining}} vCPU-घंटे उपलब्ध)",
+      "verifyForFreeVm": "Free प्लान में क्लाउड VM शुरू करने के लिए सेटिंग्स में खाता सत्यापन पूरा करें"
+    },
+    "cards": {
+      "creditsUsed": "इस्तेमाल किए गए वर्कस्पेस क्रेडिट्स",
+      "requests": "रिक्वेस्ट्स",
+      "activeUsers": "एक्टिव यूज़र्स"
+    },
+    "tokens": {
+      "input": "इनपुट",
+      "output": "आउटपुट",
+      "cacheReads": "कैश रीड्स"
+    },
+    "byUser": {
+      "title": "यूज़र के हिसाब से यूज़ेज",
+      "subtitle": "हर यूज़र का वर्कस्पेस क्रेडिट खर्च, जिसमें उनका कंप्यूट यूज़ेज भी शामिल है।",
+      "columns": {
+        "user": "यूज़र",
+        "requests": "रिक्वेस्ट्स",
+        "inputOutput": "इनपुट / आउटपुट",
+        "workspaceCost": "वर्कस्पेस कॉस्ट"
+      },
+      "empty": "अभी तक कोई यूज़र एक्टिविटी नहीं है।"
+    },
+    "byModel": {
+      "title": "मॉडल के हिसाब से यूज़ेज",
+      "columns": {
+        "model": "मॉडल",
+        "requests": "रिक्वेस्ट्स",
+        "cacheReads": "कैश रीड्स",
+        "workspaceCost": "वर्कस्पेस कॉस्ट"
+      },
+      "deletedModel": "डिलीट किया गया मॉडल",
+      "empty": "अभी तक कोई मॉडल एक्टिविटी नहीं है।"
+    },
+    "vmSessions": {
+      "title": "VM कंप्यूट सेशन्स",
+      "subtitle": "पिछले वर्चुअल मशीन रनटाइम लॉग्स, प्रीसेट टियर स्पेक्स, कुल समय और बिल की गई राशि।",
+      "sessions": "सेशन्स",
+      "billedRuntime": "बिल किया गया रनटाइम",
+      "vmCost": "VM कॉस्ट",
+      "columns": {
+        "instance": "इंस्टेंस",
+        "tierSpecs": "टियर स्पेक्स",
+        "elapsedBilled": "बीता समय / बिल किया गया",
+        "billedAmount": "बिल की गई राशि"
+      },
+      "statusRunning": "चल रहा है",
+      "statusStopped": "रुका हुआ",
+      "tierSpecs": "{{tier}} · {{cpu}} vCPU / {{ram}} GB RAM",
+      "hourlyRate": "${{rate}}/घंटा",
+      "billedDuration": "बिल किया गया {{duration}}",
+      "empty": "अभी तक कोई VM कंप्यूट सेशन रिकॉर्ड नहीं हुआ है।"
+    },
+    "footerNote": "कैश रीड्स इनपुट टोकन में शामिल होते हैं और मॉडल के कैश रीड रेट पर एक बार चार्ज होते हैं। BYOK प्रोवाइडर चार्ज सीधे आपके प्रोवाइडर को दिए जाते हैं।"
+  },
+  "logs": {
+    "selectWorkspace": "रिक्वेस्ट लॉग्स देखने के लिए एक वर्कस्पेस चुनें।",
+    "title": "रिक्वेस्ट लॉग्स",
+    "subtitle": "{{workspace}} का इस्तेमाल किसने, कब किया और हर रिक्वेस्ट की कॉस्ट कितनी थी।",
+    "refreshAriaLabel": "लॉग्स रिफ़्रेश करें",
+    "tryAgain": "फिर से कोशिश करें",
+    "loadingAriaLabel": "रिक्वेस्ट लॉग्स लोड हो रहे हैं",
+    "errors": {
+      "loadFailed": "रिक्वेस्ट लॉग्स लोड नहीं हो सके। कृपया फिर से कोशिश करें।"
+    },
+    "filters": {
+      "user": "यूज़र",
+      "userAriaLabel": "लॉग यूज़र",
+      "allUsers": "सभी यूज़र्स",
+      "status": "स्टेटस",
+      "statusAriaLabel": "लॉग स्टेटस",
+      "allStatuses": "सभी स्टेटस",
+      "fromUtc": "से (UTC)",
+      "toUtc": "तक (UTC)",
+      "utcNote": "समय UTC में दिखाए गए हैं।",
+      "reset": "रीसेट करें",
+      "apply": "फ़िल्टर लागू करें",
+      "invalidDates": "शुरुआती तारीख़ अंतिम तारीख़ से पहले या बराबर होनी चाहिए।"
+    },
+    "statuses": {
+      "completed": "पूरा हुआ",
+      "processing": "प्रोसेसिंग",
+      "pending": "पेंडिंग",
+      "failed": "फ़ेल",
+      "canceled": "कैंसिल"
+    },
+    "table": {
+      "timeUtc": "समय (UTC)",
+      "user": "यूज़र",
+      "model": "मॉडल",
+      "tokensInOut": "टोकन इन / आउट",
+      "workspaceCost": "वर्कस्पेस कॉस्ट",
+      "status": "स्टेटस",
+      "requestTitle": "रिक्वेस्ट {{uuid}}",
+      "deletedModel": "डिलीट किया गया मॉडल",
+      "platform": "प्लेटफ़ॉर्म",
+      "cachedTokens": "{{count}} कैश्ड",
+      "byokModelCostTooltip": "मॉडल कॉस्ट सीधे आपके प्रोवाइडर द्वारा बिल की जाती है",
+      "byokModelCost": "मॉडल {{cost}}"
+    },
+    "empty": {
+      "title": "कोई रिक्वेस्ट नहीं मिली",
+      "filteredDescription": "अपने फ़िल्टर बदलकर देखें।",
+      "defaultDescription": "जब आपकी टीम इस वर्कस्पेस का इस्तेमाल शुरू करेगी, तो रिक्वेस्ट्स यहाँ दिखेंगी।"
+    },
+    "pagination": {
+      "summary": "{{total}} में से {{start}}–{{end}} रिक्वेस्ट्स",
+      "zero": "0 रिक्वेस्ट्स",
+      "prevAriaLabel": "पिछला लॉग्स पेज",
+      "pageOf": "पेज {{page}} / {{pages}}",
+      "nextAriaLabel": "अगला लॉग्स पेज"
+    },
+    "footerNote": "वर्कस्पेस कॉस्ट वर्कस्पेस क्रेडिट्स से काटी गई राशि है। BYOK मॉडल कॉस्ट सीधे प्रोवाइडर को दी जाती है; कंप्यूट चार्ज यूज़ेज में शामिल हैं।"
+  },
+  "profile": {
+    "loadingAriaLabel": "प्रोफ़ाइल लोड हो रही है",
+    "title": "पब्लिक प्रोफ़ाइल",
+    "subtitle": "मैनेज करें कि आपकी पर्सनल डिटेल्स और अवतार पूरे वर्कस्पेस में कैसे दिखते हैं।",
+    "avatar": {
+      "title": "प्रोफ़ाइल पिक्चर",
+      "hint": "5MB तक PNG, JPG या GIF। स्क्वेयर रेशियो की सलाह दी जाती है।"
+    },
+    "fields": {
+      "username": {
+        "label": "यूज़रनेम",
+        "placeholder": "यूज़रनेम"
+      },
+      "firstName": {
+        "label": "पहला नाम",
+        "placeholder": "पहला नाम"
+      },
+      "lastName": {
+        "label": "अंतिम नाम",
+        "placeholder": "अंतिम नाम"
+      },
+      "bio": {
+        "label": "बायो",
+        "placeholder": "अपने बारे में छोटा सा बायो लिखें…"
+      }
+    },
+    "toast": {
+      "updatedTitle": "प्रोफ़ाइल अपडेट हो गई",
+      "updatedDescription": "आपके प्रोफ़ाइल बदलाव सेव हो गए हैं।",
+      "errorTitle": "प्रोफ़ाइल अपडेट करने में एरर"
+    },
+    "errors": {
+      "notSignedIn": "अपनी प्रोफ़ाइल सेव करने के लिए आपका साइन इन होना ज़रूरी है।",
+      "emptyUsername": "यूज़रनेम खाली नहीं हो सकता।",
+      "updateFailed": "प्रोफ़ाइल अपडेट नहीं हो सकी। कृपया फिर से कोशिश करें।"
+    }
+  },
+  "personalization": {
+    "title": "पर्सनलाइज़ेशन और Claude-स्टाइल मेमोरी",
+    "memoryActive": "मेमोरी एक्टिव है",
+    "memoryPaused": "मेमोरी पॉज़ है",
+    "subtitle": "सभी सेशन्स में अपनी सिंथेसाइज़्ड AI प्रोफ़ाइल, पर्सनल फ़ैक्ट्स और शेयर्ड वर्कस्पेस नोट्स कंट्रोल करें।",
+    "preferredName": {
+      "label": "पसंदीदा नाम",
+      "placeholder": "जैसे Kaan, Ada, Alex",
+      "hint": "पर्सनल चैट्स में असिस्टेंट आपको किस नाम से संबोधित करे।"
+    },
+    "autoMemory": {
+      "title": "ऑटोमैटिक मेमोरी एक्सट्रैक्शन",
+      "description": "चैट्स से स्थायी प्रेफ़रेंसेज़ सीखें और ज़रूरी फ़ैक्ट्स अपने आप याद रखें।"
+    },
+    "privacyGuard": "<strong>टीम प्राइवेसी गार्ड:</strong> मल्टी-मेंबर टीम वर्कस्पेस से पर्सनल मेमोरी अपने आप बाहर रखी जाती हैं।",
+    "recallEngine": "pgvector + लेक्सिकल रिकॉल",
+    "categories": {
+      "identity": {
+        "label": "पहचान",
+        "description": "रोल, बैकग्राउंड और प्रोफ़ाइल"
+      },
+      "preference": {
+        "label": "प्रेफ़रेंस",
+        "description": "टोन, भाषा और कोडिंग स्टाइल"
+      },
+      "workspace": {
+        "label": "वर्कस्पेस",
+        "description": "स्टैक, टूल्स और वर्कफ़्लो"
+      },
+      "knowledge": {
+        "label": "नॉलेज",
+        "description": "डोमेन फ़ैक्ट्स और आर्किटेक्चर"
+      },
+      "relationship": {
+        "label": "रिलेशनशिप",
+        "description": "टीम, कोलैबोरेटर्स और ऑर्गनाइज़ेशन"
+      }
+    },
+    "templates": {
+      "languageTone": {
+        "title": "भाषा और टोन",
+        "sample": "कॉन्सेप्ट्स को हिंदी में समझाएं, लेकिन कोड कमेंट्स और कमिट मैसेज इंग्लिश में रखें।"
+      },
+      "roleStack": {
+        "title": "रोल और स्टैक",
+        "sample": "मुख्य रूप से TypeScript, React 19, Django और PostgreSQL पर काम करने वाला फुल-स्टैक इंजीनियर।"
+      },
+      "codeStyle": {
+        "title": "कोड स्टाइल",
+        "sample": "अर्ली रिटर्न और कम से कम बॉयलरप्लेट के साथ छोटे, स्ट्रॉन्गली-टाइप्ड फ़ंक्शन्स पसंद हैं।"
+      },
+      "architecture": {
+        "title": "आर्किटेक्चर",
+        "sample": "प्रोडक्शन सर्विसेज़ Redis और PostgreSQL pgvector के साथ Docker कंटेनर्स में चलती हैं।"
+      }
+    },
+    "importance": {
+      "core": "कोर",
+      "standard": "स्टैंडर्ड",
+      "low": "लो"
+    },
+    "markdown": {
+      "title": "# User Memory Profile",
+      "preferredName": "पसंदीदा नाम: {{name}}",
+      "general": "सामान्य"
+    },
+    "snapshot": {
+      "title": "सिंथेसाइज़्ड मेमोरी स्नैपशॉट",
+      "coreCount": "{{count}} कोर प्रायोरिटी",
+      "subtitle": "NeuronRunner कैटेगरीज़ में आपके कॉन्टेक्स्ट को कैसे स्ट्रक्चर करता है",
+      "copied": "कॉपी हो गया",
+      "copyMarkdown": "Markdown कॉपी करें",
+      "factSingle": "{{count}} फ़ैक्ट",
+      "factPlural": "{{count}} फ़ैक्ट्स",
+      "moreInCategory": "{{category}} में +{{count}} और"
+    },
+    "tabs": {
+      "memories": "पर्सनल मेमोरी",
+      "notes": "वर्कस्पेस नोट्स"
+    },
+    "actions": {
+      "addMemory": "मेमोरी जोड़ें",
+      "addNote": "नोट जोड़ें",
+      "clearAll": "सभी क्लियर करें",
+      "cancel": "कैंसिल करें",
+      "saving": "सेव हो रहा है…",
+      "save": "सेव करें",
+      "edit": "एडिट करें",
+      "delete": "डिलीट करें"
+    },
+    "quickTemplatesLabel": "क्विक टेम्पलेट्स:",
+    "addForm": {
+      "newMemory": "नई पर्सनल मेमोरी",
+      "newNote": "नया वर्कस्पेस नोट",
+      "memoryPlaceholder": "जैसे हमेशा हिंदी में जवाब दें और बैकएंड टेस्टिंग के लिए pytest इस्तेमाल करें...",
+      "notePlaceholder": "जैसे बैकएंड PostgreSQL pgvector के साथ पोर्ट 8000 पर Daphne ASGI पर चलता है...",
+      "noCategory": "कोई कैटेगरी नहीं",
+      "labelPlaceholder": "टॉपिक टैग (वैकल्पिक)",
+      "priorityLabel": "प्रायोरिटी:"
+    },
+    "search": {
+      "memoriesPlaceholder": "कीवर्ड, कैटेगरी या #टैग से मेमोरी सर्च करें...",
+      "notesPlaceholder": "वर्कस्पेस नोट्स सर्च करें...",
+      "allCategory": "सभी ({{count}})"
+    },
+    "emptyMemories": {
+      "noneTitle": "अभी तक कोई पर्सनल मेमोरी रिकॉर्ड नहीं हुई है",
+      "filteredTitle": "आपके फ़िल्टर से कोई मेमोरी मैच नहीं हुई",
+      "noneDescription": "असिस्टेंट से स्वाभाविक रूप से चैट करें या अपनी प्रेफ़रेंसेज़, टेक स्टैक और कम्युनिकेशन स्टाइल जोड़ने के लिए ऊपर 'मेमोरी जोड़ें' पर क्लिक करें।",
+      "filteredDescription": "सर्च क्वेरी क्लियर करने या कैटेगरी फ़िल्टर बदलने की कोशिश करें।"
+    },
+    "emptyNotes": {
+      "title": "अभी तक कोई वर्कस्पेस नोट रिकॉर्ड नहीं हुआ है",
+      "description": "वर्कस्पेस नोट्स एनवायरनमेंट फ़ैक्ट्स, प्रोजेक्ट कन्वेंशन्स और टूल इंस्ट्रक्शन्स सेव रखते हैं, जो पर्सनल मेमोरी बंद होने पर भी एक्टिव रहते हैं।"
+    },
+    "editForm": {
+      "memoryPlaceholder": "मेमोरी कंटेंट",
+      "notePlaceholder": "वर्कस्पेस नोट कंटेंट",
+      "labelPlaceholder": "लेबल (जैसे language)",
+      "priorityLabel": "प्रायोरिटी (1-10):"
+    },
+    "item": {
+      "importanceTitle": "इम्पोर्टेंस स्कोर: {{score}}/10",
+      "addedDate": "जोड़ा गया {{date}}",
+      "recalledDate": "रिकॉल किया गया {{date}}"
+    },
+    "deleteAllDialog": {
+      "title": "सभी पर्सनल मेमोरी क्लियर करें?",
+      "description": "यह ऐक्शन सभी {{count}} सेव किए गए पर्सनल फ़ैक्ट्स को हमेशा के लिए हटा देगा और इसे वापस नहीं लाया जा सकता। वर्कस्पेस नोट्स पर कोई असर नहीं होगा।",
+      "confirm": "सभी डिलीट करें"
+    }
+  },
+  "security": {
+    "title": "सिक्योरिटी और पासवर्ड",
+    "subtitle": "अपने अकाउंट के क्रेडेंशियल्स और ऑथेंटिकेशन सेटिंग्स मैनेज करें।",
+    "changePasswordTitle": "पासवर्ड बदलें",
+    "currentPassword": "मौजूदा पासवर्ड",
+    "newPassword": "नया पासवर्ड",
+    "passwordHint": "कम से कम 8 कैरेक्टर की सलाह दी जाती है।",
+    "confirmPassword": "नया पासवर्ड कन्फ़र्म करें",
+    "updatePassword": "पासवर्ड अपडेट करें",
+    "errors": {
+      "fillAllFields": "कृपया सभी पासवर्ड फ़ील्ड्स भरें।",
+      "mismatch": "पासवर्ड मेल नहीं खाते।"
+    }
+  },
+  "apiKeys": {
+    "title": "API Keys",
+    "subtitle": "NeuronRunner मॉडल्स, एजेंट्स और ऑटोमेशन वर्कफ़्लो को प्रोग्रामेटिकली एक्सेस करने के लिए API Keys मैनेज करें।",
+    "generateTitle": "नई API Key जनरेट करें",
+    "namePlaceholder": "जैसे CLI Runner, Production Agent",
+    "createButton": "Key बनाएं",
+    "secretAlert": {
+      "title": "अपनी सीक्रेट Key अभी सेव करें",
+      "description": "कृपया इस Key को कॉपी करें और सुरक्षित जगह रखें। आपकी सिक्योरिटी के लिए, यह प्रॉम्प्ट बंद होने के बाद यह Key दोबारा नहीं दिखाई जाएगी।",
+      "copy": "कॉपी करें",
+      "confirmSaved": "मैंने अपनी सीक्रेट Key सेव कर ली है"
+    },
+    "activeKeysTitle": "एक्टिव Keys",
+    "keyCountSingle": "{{count}} Key",
+    "keyCountPlural": "{{count}} Keys",
+    "emptyTitle": "अभी तक कोई API Key नहीं है",
+    "emptyDescription": "API का इस्तेमाल शुरू करने के लिए ऊपर एक नई Key बनाएं।",
+    "statusActive": "एक्टिव",
+    "statusInactive": "इनएक्टिव",
+    "createdLabel": "बनाई गई",
+    "lastUsedLabel": "अंतिम इस्तेमाल",
+    "neverUsed": "कभी नहीं",
+    "pauseAccess": "एक्सेस पॉज़ करें",
+    "resumeAccess": "एक्सेस फिर शुरू करें",
+    "deleteKey": "Key डिलीट करें"
+  },
+  "vmSecrets": {
+    "selectWorkspace": "VM सीक्रेट्स मैनेज करने के लिए कोई वर्कस्पेस चुनें।",
+    "title": "VM सीक्रेट्स",
+    "subtitle": "एन्क्रिप्टेड एनवायरनमेंट वेरिएबल्स जो {{workspace}} की वर्चुअल मशीनों में अपने आप इंजेक्ट होते हैं।",
+    "loadingAriaLabel": "VM सीक्रेट्स लोड हो रहे हैं",
+    "readOnlyNotice": "सिर्फ़ वर्कस्पेस ओनर या एडमिन ही VM सीक्रेट्स जोड़, एडिट या डिलीट कर सकते हैं।",
+    "searchPlaceholder": "की, विवरण या VM से सीक्रेट्स खोजें...",
+    "updatedAt": "अपडेट किया गया {{date}}",
+    "footerNote": "सीक्रेट्स एट-रेस्ट एन्क्रिप्टेड रहते हैं और सेव होने के बाद कभी प्लेनटेक्स्ट में नहीं दिखते। ये VM के एनवायरनमेंट वेरिएबल्स, इंटरैक्टिव टर्मिनल और एजेंट शेल कमांड में अपने आप इंजेक्ट होते हैं।",
+    "actions": {
+      "addSecret": "सीक्रेट जोड़ें",
+      "importEnv": ".env इंपोर्ट करें",
+      "edit": "एडिट करें",
+      "delete": "डिलीट करें",
+      "confirmDelete": "कन्फ़र्म करें",
+      "cancel": "रद्द करें",
+      "save": "सीक्रेट सेव करें",
+      "saving": "सेव हो रहा है..."
+    },
+    "scope": {
+      "allVms": "वर्कस्पेस के सभी VM",
+      "specificVm": "कोई विशिष्ट VM"
+    },
+    "filter": {
+      "all": "सभी स्कोप"
+    },
+    "form": {
+      "addTitle": "नया VM सीक्रेट जोड़ें",
+      "editTitle": "{{key}} एडिट करें",
+      "keyLabel": "वेरिएबल का नाम",
+      "scopeLabel": "स्कोप",
+      "valueLabel": "सीक्रेट वैल्यू",
+      "valuePlaceholderAdd": "सीक्रेट वैल्यू डालें...",
+      "valuePlaceholderEdit": "मौजूदा वैल्यू रखने के लिए खाली छोड़ें",
+      "showValue": "सीक्रेट वैल्यू दिखाएँ",
+      "hideValue": "सीक्रेट वैल्यू छिपाएँ",
+      "descriptionLabel": "विवरण (वैकल्पिक)",
+      "descriptionPlaceholder": "जैसे डेटाबेस पासवर्ड या API टोकन"
+    },
+    "importForm": {
+      "title": ".env से बल्क इंपोर्ट",
+      "subtitle": "नीचे KEY=VALUE लाइनें पेस्ट करें। चुने गए स्कोप की मौजूदा की अपडेट हो जाएँगी।",
+      "submit": "सीक्रेट्स इंपोर्ट करें",
+      "importing": "इंपोर्ट हो रहा है..."
+    },
+    "empty": {
+      "title": "अभी कोई VM सीक्रेट नहीं",
+      "description": "API की, डेटाबेस URL और क्रेडेंशियल्स सुरक्षित रखें ताकि आपके VM और एजेंट उन्हें एनवायरनमेंट वेरिएबल्स की तरह इस्तेमाल कर सकें।",
+      "filtered": "कोई सीक्रेट आपकी मौजूदा खोज या फ़िल्टर से मेल नहीं खाता।"
+    },
+    "toast": {
+      "createdTitle": "सीक्रेट जुड़ गया",
+      "updatedTitle": "सीक्रेट अपडेट हो गया",
+      "savedDescription": "{{key}} एन्क्रिप्ट होकर सेव हो गया है।",
+      "syncedDescription": "{{key}} सेव हुआ और {{count}} चल रहे VM से सिंक हुआ।",
+      "importedTitle": "सीक्रेट्स इंपोर्ट हो गए",
+      "importedDescription": "{{count}} सीक्रेट एन्क्रिप्ट होकर सेव हुए।",
+      "deletedTitle": "सीक्रेट डिलीट हो गया",
+      "deletedDescription": "{{key}} हटा दिया गया है।"
+    },
+    "errors": {
+      "loadFailed": "VM सीक्रेट्स लोड नहीं हो सके।",
+      "keyRequired": "वेरिएबल का नाम ज़रूरी है।",
+      "valueRequired": "सीक्रेट वैल्यू ज़रूरी है।",
+      "saveFailed": "VM सीक्रेट सेव नहीं हो सका।",
+      "importFailed": ".env सीक्रेट्स इंपोर्ट नहीं हो सके।",
+      "deleteFailed": "VM सीक्रेट डिलीट नहीं हो सका।"
+    }
+  }
+}

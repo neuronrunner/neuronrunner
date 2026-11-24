@@ -1,0 +1,9 @@
+[tool.pyrefly]
+python-interpreter-path = ".venv/bin/python"
+search-path = ["backend", "."]
+extra-search-paths = ["backend"]
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+extraPaths = ["backend"]

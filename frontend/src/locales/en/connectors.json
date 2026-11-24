@@ -1,0 +1,340 @@
+{
+  "seo": {
+    "landingTitle": "Integrations & MCP Connectors",
+    "landingDescription": "Connect your autonomous cloud AI agent to GitHub, Slack, Notion, Linear, Postgres, Supabase, and dozens of Model Context Protocol (MCP) servers.",
+    "workspaceTitle": "Workspace Integrations"
+  },
+  "categories": {
+    "all": "All",
+    "popular": "Popular",
+    "newNoteworthy": "New & Noteworthy",
+    "development": "Development",
+    "productivity": "Productivity",
+    "communication": "Communication",
+    "dataAnalytics": "Data & analytics",
+    "design": "Design",
+    "salesMarketing": "Sales & marketing",
+    "research": "Research",
+    "infrastructure": "Infrastructure",
+    "finance": "Finance",
+    "custom": "Custom"
+  },
+  "categoryDescriptions": {
+    "popular": "The most widely used and recommended MCP servers and apps.",
+    "newNoteworthy": "Fresh and trending MCP servers, agent tools, and integrations.",
+    "development": "Code generation, git workflows, terminals, containers, and developer infrastructure.",
+    "productivity": "Note-taking, task management, issue tracking, and personal organization.",
+    "communication": "Team chat, email, messaging channels, and notifications.",
+    "dataAnalytics": "Databases, warehouses, vector search, queries, and business intelligence.",
+    "design": "Design tools, canvas collaboration, image editing, and UI assets.",
+    "salesMarketing": "Customer data, outreach, marketing analytics, and CRM systems.",
+    "research": "Web scraping, search engines, paper archives, and knowledge discovery.",
+    "infrastructure": "Cloud hosting, compute runtimes, DNS, and serverless backends.",
+    "finance": "Billing platforms, payment gateways, accounting, and financial reporting."
+  },
+  "workspace": {
+    "ariaLabel": "Integrations",
+    "eyebrow": "Workspace / MCP Integrations",
+    "title": "Integrations",
+    "subtitle": "Connect plugins and MCP servers to let NeuronRunner work across your tools.",
+    "openSidebar": "Open sidebar",
+    "addCustomConnector": "Add custom connector",
+    "addCustomShort": "Add custom",
+    "backToExplore": "Back to Explore",
+    "categoryFallbackDescription": "Browse all {{category}} connectors and MCP servers.",
+    "searchAria": "Search connectors",
+    "searchPlaceholder": "Search connectors",
+    "searchCategoryAria": "Search {{category}} connectors",
+    "searchCategoryPlaceholder": "Search in {{category}}...",
+    "clearSearch": "Clear search",
+    "sort": {
+      "ariaLabel": "Sort connectors",
+      "featured": "Featured first",
+      "nameAsc": "Name: A–Z"
+    },
+    "tabs": {
+      "ariaLabel": "Connector views",
+      "explore": "Explore",
+      "connections": "My connections"
+    },
+    "loadError": "Couldn’t load your connections. {{error}}",
+    "tryAgain": "Try again",
+    "directoryAriaLabel": "Connector directory",
+    "searchResults": "Search results",
+    "allConnectors": "All connectors",
+    "browseCategoryAria": "Browse {{category}} connectors",
+    "seeAll": "See all ({{count}})",
+    "showingCount": "Showing {{shown}} of {{total}} apps",
+    "showMore": "Show more connectors",
+    "footerCatalog": "{{count}} apps & MCP servers · Updated {{date}}",
+    "mcpRegistry": "MCP Registry",
+    "connections": {
+      "ariaLabel": "Saved connections",
+      "loading": "Loading your connections…",
+      "emptyTitle": "Your next connection starts here",
+      "emptySearchTitle": "No connections found",
+      "emptyDescription": "Connect your first app to bring it into the conversation.",
+      "emptySearchDescription": "No connections matched \"{{query}}\".",
+      "exploreCta": "Explore connectors"
+    },
+    "empty": {
+      "noConnectorsTitle": "No connectors found",
+      "noCategoryMatches": "No connectors in {{category}} matched \"{{query}}\".",
+      "noCategoryItems": "There are no connectors in {{category}}.",
+      "noSearchDescription": "Try another app or clear your search to explore the directory."
+    },
+    "mcpConnectionsTitle": "MCP connections"
+  },
+  "card": {
+    "configureAria": "Configure {{name}}",
+    "connected": "Connected",
+    "configured": "Configured",
+    "customDescription": "Your custom MCP connection.",
+    "providerSetup": "Provider setup"
+  },
+  "dialog": {
+    "customTitle": "Add a custom connector",
+    "customDescription": "Bring your own MCP server into your workspace.",
+    "setupGuide": "Setup guide",
+    "authHeaderDescription": "Optional. Use Bearer followed by your access token.",
+    "providerSetup": {
+      "title": "Set up with the provider",
+      "description": "A public MCP connection for this app has not been verified yet. Visit the provider for connection details, or add an MCP endpoint you already have.",
+      "visitProvider": "Visit provider",
+      "addEndpoint": "Add MCP endpoint"
+    },
+    "verified": {
+      "title": "Connection verified",
+      "descriptionOne": "{{count}} tool is available to your agent. Your connector is ready to use.",
+      "descriptionOther": "{{count}} tools are available to your agent. Your connector is ready to use.",
+      "done": "Done"
+    },
+    "fields": {
+      "name": "Connector name",
+      "namePlaceholder": "My team’s tools",
+      "connectionMethod": "Connection method",
+      "serverUrl": "Server URL",
+      "httpProtocol": "HTTP protocol",
+      "workspaceSandbox": "Workspace sandbox",
+      "workspacePlaceholder": "Select a workspace",
+      "noWorkspaces": "No workspaces available",
+      "workspaceHint": "Runs inside this workspace’s sandbox and is available to chats in this workspace.",
+      "serverCommand": "Server command",
+      "serverCommandHint": "The matching runtime must be installed in the workspace sandbox.",
+      "authentication": "Authentication",
+      "required": "required",
+      "keepSavedPlaceholder": "Leave blank to keep saved credentials",
+      "enterFieldPlaceholder": "Enter {{name}}"
+    },
+    "methods": {
+      "remote": "Remote · {{protocol}}{{suffix}}",
+      "local": "Local · {{runtime}}",
+      "remoteHttp": "Remote · HTTP",
+      "localStdio": "Local · stdio"
+    },
+    "auth": {
+      "oauth": "OAuth · Connect your account",
+      "token": "API token",
+      "none": "No authentication"
+    },
+    "oauth": {
+      "description": "Sign in with the provider and choose what this connector can access. You’ll return here when authorization is complete.",
+      "settings": "OAuth settings",
+      "settingsHint": "Only needed when the provider requires a registered OAuth application.",
+      "clientId": "Client ID",
+      "clientSecret": "Client secret",
+      "redirectUrl": "Redirect URL"
+    },
+    "advanced": {
+      "headersSummary": "Advanced headers",
+      "envSummary": "Advanced environment variables",
+      "description": "JSON object with string values. Enter every value when replacing saved credentials.",
+      "ariaLabel": "Advanced settings JSON"
+    },
+    "security": {
+      "oauth": "Access and refresh tokens are encrypted on the server. You can disconnect at any time.",
+      "credentials": "Credentials are encrypted on the server."
+    },
+    "savedInactiveNotice": "Configuration saved. The connector stays inactive until verification succeeds.",
+    "status": {
+      "completeInProvider": "Complete authorization in the provider window.",
+      "startingSandbox": "Starting the connector in your workspace sandbox. First-time package installation can take up to two minutes."
+    },
+    "actions": {
+      "disconnect": "Disconnect",
+      "cancelAuth": "Cancel authorization",
+      "waitingAuth": "Waiting for authorization…",
+      "verifying": "Verifying connection…",
+      "reconnectAccount": "Reconnect account",
+      "connectAccount": "Connect account",
+      "saveAndVerify": "Save & verify",
+      "connect": "Connect",
+      "signInToConnect": "Sign in to connect"
+    },
+    "errors": {
+      "allowPopups": "Allow pop-ups to connect your account.",
+      "invalidJsonObject": "Enter a JSON object with string values, such as {\"API_KEY\": \"your-key\"}.",
+      "fieldRequired": "{{name}} is required.",
+      "urlPlaceholders": "Replace the placeholders in the server URL with your account details.",
+      "commandPlaceholders": "Replace the placeholders in the command before connecting.",
+      "selectWorkspace": "Select the workspace sandbox where this connector should run.",
+      "verificationFailed": "Connection verification failed. Check your credentials and try again.",
+      "invalidAdvancedJson": "The advanced settings must be valid JSON."
+    },
+    "footerManage": "Manage your tools in <link>Integrations</link>.",
+    "legacyLocal": {
+      "title": "Local connector no longer supported",
+      "description": "This MCP server uses a local stdio command. New local connectors are disabled; disconnect it and connect a remote HTTP/SSE endpoint instead."
+    }
+  },
+  "oauth": {
+    "status": {
+      "pendingTitle": "Connecting your account…",
+      "connectedTitle": "Account connected",
+      "errorTitle": "Couldn’t connect your account",
+      "pendingDescription": "Completing authorization and verifying the MCP connection.",
+      "connectedDescription": "You can close this window and return to your connectors."
+    },
+    "backToConnectors": "Back to integrations",
+    "errors": {
+      "missingState": "Authorization state is missing. Start again from Integrations.",
+      "wrongTab": "This authorization was not started in this browser tab. Start again from Integrations.",
+      "unverified": "The MCP connection could not be verified. Start again from Integrations."
+    }
+  },
+  "landing": {
+    "hero": {
+      "pill": "Model Context Protocol & Ecosystem",
+      "title": "Integrations",
+      "tagline": "Supercharge your AI agent with <highlight>integrations.</highlight>",
+      "subtitle": "Connect your agent to databases, docs, issue trackers, and cloud tools with encrypted credentials and workspace-scoped access.",
+      "browseCta": "Browse integrations",
+      "more": "+{{count}} more"
+    },
+    "stats": {
+      "servers": "Vetted MCP Servers",
+      "auth": "Zero-config Auth",
+      "sandbox": "Sandbox Isolated",
+      "fee": "Platform Fee",
+      "install": "Local installs"
+    },
+    "search": {
+      "placeholder": "Search 37 connectors by name, category, or description...",
+      "sortLabel": "Sort:"
+    },
+    "sort": {
+      "featured": "Recommended",
+      "az": "Name: A–Z",
+      "za": "Name: Z–A"
+    },
+    "categories": {
+      "allWithCount": "All ({{count}})",
+      "recommendedWithCount": "Recommended ({{count}})"
+    },
+    "catalog": {
+      "showing": "Showing <strong>{{shown}}</strong> of {{total}} connectors",
+      "title": "Curated remote integrations",
+      "subtitle": "Recommended developer tools first, plus trusted remote connectors for the rest of your stack."
+    },
+    "empty": {
+      "title": "No connectors found",
+      "description": "No matching connector for \"{{query}}\". Try searching for another name or keyword.",
+      "reset": "Reset filters"
+    },
+    "card": {
+      "byPublisher": "by {{publisher}}",
+      "featured": "Featured",
+      "inspectDetails": "Inspect details",
+      "remote": "Remote",
+      "endpoints": "{{count}} remote endpoints"
+    },
+    "howItWorks": {
+      "eyebrow": "Safe & Scalable Architecture",
+      "title": "How MCP tool execution works in Neuron Runner",
+      "subtitle": "Three layers ensure your tokens stay secure while giving frontier models autonomous capabilities.",
+      "step1": {
+        "eyebrow": "01 / Storage",
+        "title": "Encrypted Credential Vault",
+        "description": "Your OAuth tokens and API keys are encrypted at rest with Fernet cryptography. They are attached only to validated server-side MCP requests and never logged or exposed to the model."
+      },
+      "step2": {
+        "eyebrow": "02 / Execution",
+        "title": "Validated Remote Gateway",
+        "description": "Remote MCP servers are reached through a validated HTTPS gateway with encrypted credentials and workspace-scoped authorization."
+      },
+      "step3": {
+        "eyebrow": "03 / Tool Calling",
+        "title": "Autonomous Model Calling",
+        "description": "Reasoning models discover available tool schemas automatically. The agent queries databases, pulls API specs, and applies fixes with full diff review controls."
+      }
+    },
+    "faq": {
+      "eyebrow": "Integrations FAQ",
+      "title": "Frequently Asked Questions",
+      "items": {
+        "q1": {
+          "question": "What is the Model Context Protocol (MCP)?",
+          "answer": "Model Context Protocol (MCP) is an open standard that allows frontier AI models to discover, read, and invoke tools, databases, and APIs in a secure, standardized format. Rather than hardcoding custom integrations for every service, MCP enables universal plug-and-play tool calling."
+        },
+        "q2": {
+          "question": "How do connectors run safely inside Neuron Runner?",
+          "answer": "Neuron Runner validates and proxies remote MCP sessions over HTTPS. Credentials stay encrypted on the server and are never exposed to the model or browser; the built-in browser runs inside your isolated workspace sandbox."
+        },
+        "q3": {
+          "question": "How are my API tokens and OAuth credentials secured?",
+          "answer": "Your OAuth tokens and API keys are encrypted at rest with Fernet cryptography. They are attached only to validated server-side MCP requests and never logged or exposed to the model."
+        },
+        "q4": {
+          "question": "Can I connect my own custom or private internal MCP server?",
+          "answer": "Yes. You can add any remote HTTP/SSE MCP endpoint from Integrations. Local stdio commands are no longer supported."
+        },
+        "q5": {
+          "question": "Does Neuron Runner charge extra fees for using connectors?",
+          "answer": "No. All connectors and MCP servers are completely free to use with zero platform markup. You only pay standard per-second compute rates when your sandbox Docker container is actively executing."
+        }
+      }
+    },
+    "cta": {
+      "title": "Start connecting your tools in seconds.",
+      "subtitle": "Create a workspace, link your favorite services, and let your models write and verify code with full contextual awareness.",
+      "primary": "Create free workspace",
+      "secondary": "Read documentation"
+    },
+    "footer": {
+      "pricing": "Pricing",
+      "integrations": "Integrations",
+      "docs": "Docs",
+      "terms": "Terms",
+      "privacy": "Privacy"
+    },
+    "preview": {
+      "publishedBy": "Published by {{publisher}}",
+      "protocolTitle": "Protocol & Transport",
+      "transportTypeLabel": "Transport type:",
+      "transportStdio": "stdio (CLI runtime)",
+      "transportHttp": "SSE / HTTP Stream",
+      "sandboxLabel": "Access:",
+      "sandboxValue": "Workspace-scoped",
+      "websiteLabel": "Website:",
+      "close": "Close",
+      "connectInWorkspace": "Connect in Workspace",
+      "authLabel": "Authentication:"
+    },
+    "auth": {
+      "oauth": "OAuth 2.0",
+      "token": "API token",
+      "none": "No auth",
+      "multi": "OAuth / token"
+    }
+  },
+  "errors": {
+    "unexpected": "An unexpected error occurred. Please try again.",
+    "unreachable": "We couldn't reach the server. Check your connection and try again.",
+    "serverUnavailable": "The server is temporarily unavailable. Please try again later.",
+    "serverError": "An unexpected server error occurred. Please try again later.",
+    "sessionExpired": "Your session has expired. Please sign in again.",
+    "forbidden": "You do not have permission to perform this action.",
+    "notFound": "The requested connector was not found.",
+    "invalidRequest": "Invalid request. Please check your inputs and try again."
+  }
+}

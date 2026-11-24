@@ -1,0 +1,29 @@
+# Isolated local sandbox image used by NeuronRunner workspaces.
+# Build once before starting NeuronRunner:
+#   docker build -f Dockerfile.sandbox -t neuronrunner-sandbox:latest .
+FROM python:3.11-slim
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    bash \
+    build-essential \
+    ca-certificates \
+    curl \
+    git \
+    jq \
+    nodejs \
+    npm \
+    openssh-client \
+    procps \
+    ripgrep \
+    unzip \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /workspace /var/lib/neuronrunner
+
+WORKDIR /workspace
+
+CMD ["sleep", "infinity"]

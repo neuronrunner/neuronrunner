@@ -1,0 +1,738 @@
+{
+  "dialog": {
+    "description": "Gérez votre espace de travail, votre équipe, la facturation, vos préférences et la sécurité."
+  },
+  "modal": {
+    "closeAriaLabel": "Fermer les paramètres"
+  },
+  "roles": {
+    "owner": "propriétaire",
+    "admin": "administrateur",
+    "member": "membre"
+  },
+  "workspaceSelector": {
+    "currentWorkspace": "Espace de travail actuel",
+    "ariaLabel": "Espace de travail des paramètres",
+    "fallbackName": "Espace de travail",
+    "selectWorkspace": "Sélectionner un espace de travail",
+    "switching": "Changement…",
+    "summarySingle": "{{role}} · {{count}} membre",
+    "summaryPlural": "{{role}} · {{count}} membres",
+    "chooseTeam": "Choisissez votre équipe",
+    "workspaces": "Espaces de travail",
+    "noWorkspaces": "Aucun espace de travail disponible.",
+    "newWorkspace": "Nouvel espace de travail"
+  },
+  "store": {
+    "billingCustomerIdMissing": "Identifiant client de facturation manquant.",
+    "paymentMethodUpdateTxMissing": "Identifiant de transaction de mise à jour du moyen de paiement manquant.",
+    "topUpTxMissing": "Identifiant de transaction de rechargement manquant.",
+    "checkoutUrlMissing": "URL de paiement manquante"
+  },
+  "workspaceTab": {
+    "loadingAriaLabel": "Chargement des paramètres de l'espace de travail",
+    "selectWorkspace": "Sélectionnez ou créez un espace de travail pour afficher ses paramètres.",
+    "title": "Profil de l'espace de travail",
+    "subtitle": "Gérez l'apparence des informations, de l'identité et de l'avatar de votre espace de travail auprès de l'équipe.",
+    "picture": {
+      "title": "Image de l'espace de travail",
+      "hint": "PNG, JPG ou GIF jusqu'à 10 Mo. Format carré recommandé.",
+      "permissionHint": "Seuls les propriétaires et administrateurs de l'espace de travail peuvent modifier l'image."
+    },
+    "fields": {
+      "name": {
+        "label": "Nom de l'espace de travail",
+        "placeholder": "Nom de l'espace de travail"
+      },
+      "slug": {
+        "label": "Slug de l'espace de travail",
+        "hint": "Identifiant unique utilisé pour le routage et l'identification de l'espace de travail."
+      }
+    },
+    "yourRole": "Votre rôle :",
+    "saveChanges": "Enregistrer les modifications",
+    "toast": {
+      "pictureUpdatedTitle": "Image de l'espace de travail mise à jour",
+      "pictureUpdatedDescription": "Le logo de votre espace de travail a été mis à jour avec succès.",
+      "uploadFailedTitle": "Échec de l'envoi",
+      "pictureRemovedTitle": "Image de l'espace de travail supprimée",
+      "pictureRemovedDescription": "L'image de votre espace de travail a été supprimée.",
+      "removalFailedTitle": "Échec de la suppression",
+      "updatedTitle": "Espace de travail mis à jour",
+      "updatedDescription": "Le nom de l'espace de travail a été enregistré."
+    },
+    "errors": {
+      "uploadFailed": "Échec de l'envoi de l'image de l'espace de travail.",
+      "removeFailed": "Échec de la suppression de l'image de l'espace de travail.",
+      "updateFailed": "Impossible de mettre à jour l'espace de travail."
+    }
+  },
+  "team": {
+    "title": "Membres de l'équipe",
+    "selectWorkspace": "Sélectionnez ou créez un espace de travail pour voir son équipe.",
+    "subtitle": "Gérez les membres de votre équipe et les invitations en attente pour {{workspace}}.",
+    "inviteButton": "Inviter un membre",
+    "individualPlan": {
+      "title": "Les fonctionnalités d'équipe ne sont pas disponibles avec le forfait {{plan}}.",
+      "freeDescription": "Le forfait Free est un forfait individuel prenant en charge 1 membre. Passez à Pro (jusqu'à 4 membres) dans l'onglet Facturation pour collaborer avec vos coéquipiers.",
+      "plusDescription": "Le forfait Plus (10 $/mois) est un forfait individuel prenant en charge 1 VM et 1 membre. Passez à Pro (jusqu'à 4 membres) dans l'onglet Facturation pour collaborer avec vos coéquipiers."
+    },
+    "inviteForm": {
+      "title": "Inviter un coéquipier",
+      "closeAriaLabel": "Fermer le formulaire d'invitation",
+      "emailLabel": "Adresse e-mail",
+      "emailPlaceholder": "collegue@exemple.com",
+      "roleLabel": "Rôle",
+      "roleAriaLabel": "Rôle de l'invitation",
+      "sending": "Envoi…",
+      "send": "Envoyer l'invitation",
+      "adminHint": "Les administrateurs peuvent inviter des personnes et gérer les membres de l'équipe.",
+      "memberHint": "Les membres peuvent collaborer sur les discussions et les projets."
+    },
+    "roles": {
+      "member": "Membre",
+      "admin": "Administrateur"
+    },
+    "removeAlert": {
+      "title": "Retirer {{name}} ?",
+      "description": "Cette personne perdra l'accès aux discussions et projets de cet espace de travail.",
+      "removing": "Suppression…",
+      "confirm": "Retirer le membre"
+    },
+    "actions": {
+      "cancel": "Annuler"
+    },
+    "tabs": {
+      "ariaLabel": "Listes d'équipe",
+      "members": "Membres",
+      "invitations": "Invitations"
+    },
+    "search": {
+      "membersAriaLabel": "Rechercher des membres",
+      "invitationsAriaLabel": "Rechercher des invitations",
+      "membersPlaceholder": "Rechercher par nom ou e-mail",
+      "invitationsPlaceholder": "Rechercher des invitations",
+      "clearAriaLabel": "Effacer la recherche"
+    },
+    "members": {
+      "you": "Vous",
+      "actionsAriaLabel": "Actions pour {{name}}",
+      "removeFromWorkspace": "Retirer de l'espace de travail"
+    },
+    "invitations": {
+      "awaitingAcceptance": "En attente d'acceptation",
+      "cancelAriaLabel": "Annuler l'invitation pour {{email}}"
+    },
+    "emptyMembers": {
+      "filteredTitle": "Aucun coéquipier correspondant",
+      "defaultTitle": "Votre équipe commence ici",
+      "filteredDescription": "Essayez un autre nom ou une autre adresse e-mail.",
+      "defaultDescription": "Invitez des personnes à collaborer dans cet espace de travail."
+    },
+    "emptyInvitations": {
+      "filteredTitle": "Aucune invitation correspondante",
+      "defaultTitle": "Aucune invitation en attente",
+      "filteredDescription": "Essayez une autre adresse e-mail.",
+      "defaultDescription": "Les invitations apparaîtront ici jusqu'à ce que vos coéquipiers les acceptent."
+    },
+    "toast": {
+      "inviteSentTitle": "Invitation envoyée",
+      "inviteSentDescription": "{{email}} pourra rejoindre l'espace après avoir accepté l'invitation.",
+      "memberRemovedTitle": "Membre retiré",
+      "inviteCancelledTitle": "Invitation annulée",
+      "inviteCancelledDescription": "L'invitation pour {{email}} a été annulée."
+    }
+  },
+  "providerKeys": {
+    "selectWorkspace": "Sélectionnez un espace de travail pour gérer les clés fournisseur.",
+    "noPermission": "Seuls les propriétaires et administrateurs peuvent gérer les clés fournisseur. Les membres peuvent utiliser les fournisseurs configurés et les modèles personnalisés.",
+    "title": "Apportez votre propre clé (BYOK) et modèles personnalisés",
+    "subtitle": "Les clés fournisseur sont chiffrées et partagées au sein de {{workspace}}. Les modèles personnalisés ajoutés ici apparaissent directement dans le sélecteur de modèles du chat, sans marge plateforme sur les tokens.",
+    "providers": {
+      "custom": "Point de terminaison personnalisé (vLLM / Ollama)"
+    },
+    "tabs": {
+      "keys": "Clés fournisseur ({{count}})",
+      "models": "Modèles personnalisés ({{count}})"
+    },
+    "keyForm": {
+      "providerLabel": "Fournisseur",
+      "providerPlaceholder": "Sélectionner un fournisseur",
+      "baseUrlLabel": "URL de base (compatible OpenAI)",
+      "baseUrlPlaceholder": "ex. http://localhost:11434/v1 ou https://my-vllm.example.com/v1",
+      "apiKeyLabel": "Clé API",
+      "apiKeyOptionalSuffix": "(Facultatif si local/sans authentification)",
+      "apiKeyPlaceholderCustom": "Collez la clé API (facultatif pour Ollama)",
+      "apiKeyPlaceholder": "Collez votre clé fournisseur",
+      "encryptionNote": "La clé complète est chiffrée avec Fernet et ne sera plus affichée. Les modèles configurés pour ce fournisseur l'utiliseront automatiquement.",
+      "saving": "Enregistrement…",
+      "updateKey": "Mettre à jour la clé",
+      "saveKey": "Enregistrer la clé"
+    },
+    "configuredKeysTitle": "Clés fournisseur configurées",
+    "noKeys": "Aucune clé fournisseur enregistrée pour le moment.",
+    "connected": "Connecté",
+    "remove": "Supprimer",
+    "noKeysPrompt": {
+      "title": "Aucune clé fournisseur configurée",
+      "description": "Pour ajouter un modèle personnalisé, ajoutez d'abord une clé API (ex. OpenRouter, Groq, OpenAI) ou un point de terminaison personnalisé dans l'onglet Clés fournisseur.",
+      "cta": "Accéder aux Clés fournisseur"
+    },
+    "addModelButton": "Ajouter un modèle personnalisé",
+    "modelForm": {
+      "title": "Ajouter un modèle personnalisé",
+      "cancel": "Annuler",
+      "selectKeyLabel": "Sélectionner une clé fournisseur configurée",
+      "selectKeyPlaceholder": "Sélectionner une clé fournisseur configurée",
+      "routedThrough": "Ce modèle sera facturé et routé via la clé <strong>{{provider}}</strong> de votre espace de travail.",
+      "displayNameLabel": "Nom affiché dans le chat",
+      "displayNamePlaceholder": "ex. Claude 3.7 Sonnet",
+      "externalIdLabel": "ID de modèle externe (Identifiant API)",
+      "externalIdPlaceholder": "ex. anthropic/claude-3.7-sonnet",
+      "contextLengthLabel": "Longueur de contexte (Tokens)",
+      "reasoningLabel": "Modèle de raisonnement / réflexion",
+      "toolsLabel": "Prend en charge l'appel de fonctions",
+      "testing": "Test en cours…",
+      "testConnection": "Tester la connexion",
+      "saving": "Enregistrement…",
+      "saveModel": "Enregistrer le modèle"
+    },
+    "activeModelsTitle": "Modèles actifs de l'espace de travail",
+    "noModels": "Aucun modèle personnalisé ajouté pour le moment.",
+    "modelCard": {
+      "thinking": "Réflexion",
+      "keyLabel": "Clé : <strong>{{provider}}</strong> ({{maskedKey}})",
+      "providerLabel": "Fournisseur : <strong>{{provider}}</strong>",
+      "context": "Contexte : {{count}}k",
+      "tools": "Outils : {{supported}}",
+      "yes": "Oui",
+      "no": "Non",
+      "test": "Tester"
+    },
+    "notices": {
+      "keySaved": "La clé fournisseur pour {{provider}} a été enregistrée en toute sécurité.",
+      "keyRemoved": "La clé fournisseur pour {{provider}} a été supprimée.",
+      "modelAdded": "Le modèle personnalisé « {{name}} » a été ajouté avec succès.",
+      "modelRemoved": "Le modèle « {{name}} » a été supprimé."
+    },
+    "errors": {
+      "keySaveFailed": "Impossible d'enregistrer cette clé fournisseur. Vérifiez le format et réessayez.",
+      "keyRemoveFailed": "Impossible de supprimer cette clé fournisseur.",
+      "selectKeyFirst": "Veuillez d'abord sélectionner une clé fournisseur.",
+      "modelFieldsRequired": "Le nom affiché et l'ID de modèle externe sont requis.",
+      "modelSaveFailed": "Impossible d'enregistrer le modèle personnalisé.",
+      "modelRemoveFailed": "Impossible de supprimer le modèle personnalisé.",
+      "enterExternalId": "Saisissez un ID de modèle externe pour tester la connexion.",
+      "testFailed": "Le test de connexion a échoué."
+    },
+    "byos": {
+      "title": "Abonnements (BYOS)",
+      "subtitle": "Connectez votre abonnement Claude Pro / Max, ChatGPT Plus / Pro ou Google Antigravity pour exécuter les agents CLI officiels dans votre VM Cloud sans frais de jetons LLM.",
+      "connect": "Connecter",
+      "update": "Mettre à jour",
+      "syncFromVm": "Synchroniser depuis la VM",
+      "disconnect": "Déconnecter",
+      "claude": {
+        "name": "Claude Pro / Max (Claude Code)",
+        "hint": "Exécutez 'claude setup-token' et collez le jeton, ou lancez 'claude login' dans le terminal de la VM puis cliquez sur Synchroniser depuis la VM.",
+        "placeholder": "Collez claude setup-token (sk-ant-oat01-…) ou le JSON d’identifiants"
+      },
+      "openai": {
+        "name": "ChatGPT Plus / Pro (OpenAI Codex)",
+        "hint": "Collez votre ~/.codex/auth.json, ou exécutez 'codex login' dans votre VM puis cliquez sur Synchroniser depuis la VM.",
+        "placeholder": "Collez ~/.codex/auth.json ou un jeton OAuth"
+      },
+      "notices": {
+        "connected": "{{provider}} connecté. Les modèles BYOS sont désormais disponibles dans le chat.",
+        "syncedFromVm": "{{provider}} synchronisé depuis votre VM Cloud active."
+      },
+      "errors": {
+        "syncFailed": "Impossible de récupérer les identifiants depuis la VM en cours d’exécution."
+      },
+      "antigravity": {
+        "name": "Google Antigravity / Gemini OAuth",
+        "hint": "Paste your ~/.gemini/oauth_creds.json content, or connect Google OAuth directly from the Cloud Agent Selector.",
+        "placeholder": "Paste ~/.gemini/oauth_creds.json or OAuth credentials"
+      },
+      "computeNote": "BYOS facture 0,00 $ pour les jetons LLM. L'exécution se fait dans votre VM Cloud via le quota VM de votre forfait ou votre solde Top-Up (0,16 $–0,32 $/h) — aucun abonnement mensuel requis.",
+      "manageBilling": "Gérer VM et Solde"
+    }
+  },
+  "billing": {
+    "selectWorkspace": "Sélectionnez un espace de travail pour afficher la facturation.",
+    "title": "Facturation et forfaits de l'espace de travail",
+    "subtitle": "Abonnements, crédits unifiés (LLM + VM Cloud) et recharges supplémentaires pour {{workspace}}.",
+    "subscriptionPlans": "Forfaits d'abonnement",
+    "currentPlanBadge": "Actuel : {{plan}}",
+    "freePlanName": "Free",
+    "perMemberMonth": "/membre/mois",
+    "perMonth": "/mois",
+    "llmQuota": "{{amount}} $ crédit (LLM + VM)",
+    "vcpuHours": "Jusqu'à {{hours}} h vCPU",
+    "maxVmsSingle": "Max {{count}} VM",
+    "maxVmsPlural": "Max {{count}} VMs",
+    "upToSeats": "Jusqu'à {{count}} postes",
+    "activePlan": "Forfait actif",
+    "upgradeTo": "Passer à {{plan}}",
+    "walletBalance": "Solde du portefeuille d'utilisation supplémentaire",
+    "walletDescription": "Utilisé pour les dépassements du quota mensuel, les modèles premium sur Free et Plus et le calcul de VM cloud autonome pour BYOS/BYOK (0,16–0,32 $/h sans forfait mensuel). N'expire jamais.",
+    "topUpLabel": "Ajouter des crédits d'utilisation supplémentaire (USD, min. 10,00 $)",
+    "topUpButton": "Ajouter {{amount}} $",
+    "topUpNote": "Le rechargement minimum est de 10,00 $. Aucuns frais de traitement supplémentaires ne sont facturés ; 100 % du montant payé est crédité immédiatement sur votre solde.",
+    "memberNotice": "Demandez à un propriétaire ou administrateur de l'espace de travail de gérer les forfaits, d'ajouter des crédits ou de consulter les factures.",
+    "invoicesTitle": "Factures",
+    "noInvoices": "Aucune facture pour le moment.",
+    "paymentFallback": "Paiement",
+    "viewInvoice": "Voir la facture",
+    "fallbackPlans": {
+      "free": {
+        "name": "Free",
+        "description": "0,50 $/mois gratuit (LLMs + VMs 4 cœurs à 0,16 $/h)"
+      },
+      "plus": {
+        "name": "Plus",
+        "description": "Quota de 10,00 $/mois pour les VM cloud (~200 vCPU-h) + 2 $ de LLM du niveau gratuit · BYOS/BYOK · 1 VM max. (pas d'équipe)"
+      },
+      "pro": {
+        "name": "Pro",
+        "description": "Quota partagé de 25,00 $/mois pour les VM cloud (~550 vCPU-h) + tous les modèles LLM · Jusqu'à 4 membres"
+      },
+      "team": {
+        "name": "Team",
+        "description": "200,00 $/mois partagés sur 16 modèles & VMs · Jusqu'à 20 membres et 20 VMs"
+      }
+    },
+    "errors": {
+      "balanceLoad": "Impossible de charger le solde de l'espace de travail.",
+      "invoicesLoad": "Impossible de charger les factures.",
+      "updatePlan": "Impossible de mettre à jour le forfait d'abonnement.",
+      "checkoutOpen": "Impossible d'ouvrir le paiement. Veuillez réessayer.",
+      "invoiceOpen": "Impossible d'ouvrir la facture.",
+      "cancelPlan": "Impossible de planifier l'annulation de l'offre.",
+      "resumePlan": "Impossible de reprendre l'abonnement."
+    },
+    "topUpNetCredit": "Crédit portefeuille (0 % de frais)",
+    "topUpProcessingFee": "Frais de traitement (3,9 % + 0,40 $)",
+    "topUpTotalCharge": "Total facturé au paiement",
+    "invoiceNetAndFee": "Net {{net}} $ + {{fee}} $ de frais",
+    "monthly": "Mensuel",
+    "yearly": "Annuel",
+    "yearlySaveBadge": "2 mois offerts",
+    "perYear": "/an",
+    "perMemberYear": "/membre/an",
+    "seatsLabel": "Postes",
+    "cancelPlan": "Annuler l'offre",
+    "confirmCancel": "Confirmer l'annulation",
+    "keepPlan": "Conserver l'offre",
+    "cancelsOn": "Se termine le {{date}}",
+    "resumePlan": "Reprendre l'offre"
+  },
+  "usage": {
+    "selectWorkspace": "Sélectionnez un espace de travail pour consulter l'utilisation.",
+    "title": "Utilisation de l'espace de travail",
+    "subtitle": "Utilisation sur {{workspace}}, tous membres de l'équipe confondus.",
+    "allTime": "Depuis le début",
+    "tryAgain": "Réessayer",
+    "loadingAriaLabel": "Chargement de l'utilisation",
+    "errors": {
+      "loadFailed": "Impossible de charger l'utilisation de l'espace de travail."
+    },
+    "allowance": {
+      "title": "Forfait {{plan}} · Fenêtres de crédit (LLM + VM)",
+      "subtitle": "Allocation d'utilisation mensuelle partagée (LLM et VM cloud)",
+      "left": "{{amount}} $ restant",
+      "monthlyCycle": "Cycle mensuel (100 %)",
+      "vmQuota": "Usage VM Cloud (sur crédit partagé) : <strong>{{used}} / {{included}} heures vCPU</strong> ({{remaining}} h utilisables)",
+      "verifyForFreeVm": "Complétez la vérification du compte dans Paramètres pour activer les VMs Cloud sur le forfait Free"
+    },
+    "cards": {
+      "creditsUsed": "Crédits de l'espace de travail utilisés",
+      "requests": "Requêtes",
+      "activeUsers": "Utilisateurs actifs"
+    },
+    "tokens": {
+      "input": "Entrée",
+      "output": "Sortie",
+      "cacheReads": "Lectures du cache"
+    },
+    "byUser": {
+      "title": "Utilisation par utilisateur",
+      "subtitle": "Crédits de l'espace de travail facturés à chaque utilisateur, calcul inclus.",
+      "columns": {
+        "user": "Utilisateur",
+        "requests": "Requêtes",
+        "inputOutput": "Entrée / Sortie",
+        "workspaceCost": "Coût espace de travail"
+      },
+      "empty": "Aucune activité utilisateur pour le moment."
+    },
+    "byModel": {
+      "title": "Utilisation par modèle",
+      "columns": {
+        "model": "Modèle",
+        "requests": "Requêtes",
+        "cacheReads": "Lectures du cache",
+        "workspaceCost": "Coût espace de travail"
+      },
+      "deletedModel": "Modèle supprimé",
+      "empty": "Aucune activité de modèle pour le moment."
+    },
+    "vmSessions": {
+      "title": "Sessions de calcul VM",
+      "subtitle": "Historique d'exécution des machines virtuelles, caractéristiques des niveaux, durées écoulées et montants facturés.",
+      "sessions": "Sessions",
+      "billedRuntime": "Durée facturée",
+      "vmCost": "Coût VM",
+      "columns": {
+        "instance": "Instance",
+        "tierSpecs": "Caractéristiques",
+        "elapsedBilled": "Écoulé / Facturé",
+        "billedAmount": "Montant facturé"
+      },
+      "statusRunning": "en cours",
+      "statusStopped": "arrêtée",
+      "tierSpecs": "{{tier}} · {{cpu}} vCPU / {{ram}} Go RAM",
+      "hourlyRate": "{{rate}} $/h",
+      "billedDuration": "Facturé {{duration}}",
+      "empty": "Aucune session de calcul VM enregistrée pour le moment."
+    },
+    "footerNote": "Les lectures du cache sont incluses dans les tokens d'entrée et facturées une seule fois au tarif de lecture du cache du modèle. Les frais des fournisseurs BYOK sont payés directement à votre fournisseur."
+  },
+  "logs": {
+    "selectWorkspace": "Sélectionnez un espace de travail pour consulter les logs de requêtes.",
+    "title": "Logs de requêtes",
+    "subtitle": "Qui a utilisé {{workspace}}, quand, et combien chaque requête a coûté.",
+    "refreshAriaLabel": "Actualiser les logs",
+    "tryAgain": "Réessayer",
+    "loadingAriaLabel": "Chargement des logs de requêtes",
+    "errors": {
+      "loadFailed": "Impossible de charger les logs de requêtes. Veuillez réessayer."
+    },
+    "filters": {
+      "user": "Utilisateur",
+      "userAriaLabel": "Utilisateur du log",
+      "allUsers": "Tous les utilisateurs",
+      "status": "Statut",
+      "statusAriaLabel": "Statut du log",
+      "allStatuses": "Tous les statuts",
+      "fromUtc": "Du (UTC)",
+      "toUtc": "Au (UTC)",
+      "utcNote": "Les heures sont affichées en UTC.",
+      "reset": "Réinitialiser",
+      "apply": "Appliquer les filtres",
+      "invalidDates": "La date de début doit être antérieure ou égale à la date de fin."
+    },
+    "statuses": {
+      "completed": "terminée",
+      "processing": "en cours",
+      "pending": "en attente",
+      "failed": "échouée",
+      "canceled": "annulée"
+    },
+    "table": {
+      "timeUtc": "Heure (UTC)",
+      "user": "Utilisateur",
+      "model": "Modèle",
+      "tokensInOut": "Tokens entrée / sortie",
+      "workspaceCost": "Coût espace de travail",
+      "status": "Statut",
+      "requestTitle": "Requête {{uuid}}",
+      "deletedModel": "Modèle supprimé",
+      "platform": "Plateforme",
+      "cachedTokens": "{{count}} en cache",
+      "byokModelCostTooltip": "Coût du modèle facturé directement par votre fournisseur",
+      "byokModelCost": "Modèle {{cost}}"
+    },
+    "empty": {
+      "title": "Aucune requête trouvée",
+      "filteredDescription": "Essayez de modifier vos filtres.",
+      "defaultDescription": "Les requêtes apparaîtront ici lorsque votre équipe commencera à utiliser cet espace de travail."
+    },
+    "pagination": {
+      "summary": "{{start}}–{{end}} sur {{total}} requêtes",
+      "zero": "0 requête",
+      "prevAriaLabel": "Page précédente des logs",
+      "pageOf": "Page {{page}} sur {{pages}}",
+      "nextAriaLabel": "Page suivante des logs"
+    },
+    "footerNote": "Le coût de l'espace de travail est le montant prélevé sur les crédits de l'espace de travail. Les coûts des modèles BYOK sont payés directement au fournisseur ; les frais de calcul sont inclus dans Utilisation."
+  },
+  "profile": {
+    "loadingAriaLabel": "Chargement du profil",
+    "title": "Profil public",
+    "subtitle": "Gérez l'apparence de vos informations personnelles et de votre avatar dans l'espace de travail.",
+    "avatar": {
+      "title": "Photo de profil",
+      "hint": "PNG, JPG ou GIF jusqu'à 5 Mo. Format carré recommandé."
+    },
+    "fields": {
+      "username": {
+        "label": "Nom d'utilisateur",
+        "placeholder": "nom d'utilisateur"
+      },
+      "firstName": {
+        "label": "Prénom",
+        "placeholder": "Prénom"
+      },
+      "lastName": {
+        "label": "Nom",
+        "placeholder": "Nom"
+      },
+      "bio": {
+        "label": "Biographie",
+        "placeholder": "Écrivez une courte bio à propos de vous…"
+      }
+    },
+    "toast": {
+      "updatedTitle": "Profil mis à jour",
+      "updatedDescription": "Vos modifications de profil ont été enregistrées.",
+      "errorTitle": "Erreur lors de la mise à jour du profil"
+    },
+    "errors": {
+      "notSignedIn": "Vous devez être connecté pour enregistrer votre profil.",
+      "emptyUsername": "Le nom d'utilisateur ne peut pas être vide.",
+      "updateFailed": "Échec de la mise à jour du profil. Veuillez réessayer."
+    }
+  },
+  "personalization": {
+    "title": "Personnalisation et mémoire façon Claude",
+    "memoryActive": "Mémoire active",
+    "memoryPaused": "Mémoire en pause",
+    "subtitle": "Contrôlez votre profil IA synthétisé, vos informations personnelles et les notes partagées de l'espace de travail d'une session à l'autre.",
+    "preferredName": {
+      "label": "Nom préféré",
+      "placeholder": "ex. Kaan, Ada, Alex",
+      "hint": "La façon dont l'assistant s'adresse à vous dans les discussions personnelles."
+    },
+    "autoMemory": {
+      "title": "Extraction automatique de la mémoire",
+      "description": "Apprend vos préférences durables à partir des discussions et rappelle automatiquement les éléments pertinents."
+    },
+    "privacyGuard": "<strong>Protection de confidentialité d'équipe :</strong> Les mémoires personnelles sont automatiquement exclues des espaces de travail multi-membres.",
+    "recallEngine": "pgvector + rappel lexical",
+    "categories": {
+      "identity": {
+        "label": "Identité",
+        "description": "Rôle, parcours et profil"
+      },
+      "preference": {
+        "label": "Préférence",
+        "description": "Ton, langue et style de code"
+      },
+      "workspace": {
+        "label": "Espace de travail",
+        "description": "Stack, outils et workflows"
+      },
+      "knowledge": {
+        "label": "Connaissances",
+        "description": "Faits métier et architecture"
+      },
+      "relationship": {
+        "label": "Relation",
+        "description": "Équipe, collaborateurs et organisation"
+      }
+    },
+    "templates": {
+      "languageTone": {
+        "title": "Langue et ton",
+        "sample": "Expliquez les concepts en français, mais gardez les commentaires de code et les messages de commit en anglais."
+      },
+      "roleStack": {
+        "title": "Rôle et stack",
+        "sample": "Ingénieur full-stack travaillant principalement avec TypeScript, React 19, Django et PostgreSQL."
+      },
+      "codeStyle": {
+        "title": "Style de code",
+        "sample": "Privilégiez des fonctions concises et fortement typées avec des retours anticipés et un minimum de boilerplate."
+      },
+      "architecture": {
+        "title": "Architecture",
+        "sample": "Les services de production fonctionnent dans des conteneurs Docker soutenus par Redis et PostgreSQL pgvector."
+      }
+    },
+    "importance": {
+      "core": "Essentiel",
+      "standard": "Standard",
+      "low": "Faible"
+    },
+    "markdown": {
+      "title": "# Profil mémoire utilisateur",
+      "preferredName": "Nom préféré : {{name}}",
+      "general": "Général"
+    },
+    "snapshot": {
+      "title": "Aperçu de la mémoire synthétisée",
+      "coreCount": "{{count}} priorité essentielle",
+      "subtitle": "Comment NeuronRunner structure votre contexte par catégories",
+      "copied": "Copié",
+      "copyMarkdown": "Copier en Markdown",
+      "factSingle": "{{count}} élément",
+      "factPlural": "{{count}} éléments",
+      "moreInCategory": "+{{count}} de plus dans {{category}}"
+    },
+    "tabs": {
+      "memories": "Mémoires personnelles",
+      "notes": "Notes de l'espace de travail"
+    },
+    "actions": {
+      "addMemory": "Ajouter une mémoire",
+      "addNote": "Ajouter une note",
+      "clearAll": "Tout effacer",
+      "cancel": "Annuler",
+      "saving": "Enregistrement…",
+      "save": "Enregistrer",
+      "edit": "Modifier",
+      "delete": "Supprimer"
+    },
+    "quickTemplatesLabel": "Modèles rapides :",
+    "addForm": {
+      "newMemory": "Nouvelle mémoire personnelle",
+      "newNote": "Nouvelle note d'espace de travail",
+      "memoryPlaceholder": "ex. Répondez toujours en français et utilisez pytest pour les tests backend...",
+      "notePlaceholder": "ex. Le backend tourne sur Daphne ASGI port 8000 avec PostgreSQL pgvector...",
+      "noCategory": "Aucune catégorie",
+      "labelPlaceholder": "étiquette de sujet (facultatif)",
+      "priorityLabel": "Priorité :"
+    },
+    "search": {
+      "memoriesPlaceholder": "Rechercher des mémoires par mot-clé, catégorie ou #étiquette...",
+      "notesPlaceholder": "Rechercher des notes de l'espace de travail...",
+      "allCategory": "Tout ({{count}})"
+    },
+    "emptyMemories": {
+      "noneTitle": "Aucune mémoire personnelle enregistrée pour le moment",
+      "filteredTitle": "Aucune mémoire ne correspond à votre filtre",
+      "noneDescription": "Discutez naturellement avec l'assistant ou cliquez sur « Ajouter une mémoire » ci-dessus pour enregistrer vos préférences, votre stack technique et votre style de communication.",
+      "filteredDescription": "Essayez d'effacer la recherche ou de changer le filtre de catégorie."
+    },
+    "emptyNotes": {
+      "title": "Aucune note d'espace de travail enregistrée pour le moment",
+      "description": "Les notes de l'espace de travail conservent les informations d'environnement, les conventions du projet et les instructions d'outils qui restent actives même lorsque la mémoire personnelle est désactivée."
+    },
+    "editForm": {
+      "memoryPlaceholder": "Contenu de la mémoire",
+      "notePlaceholder": "Contenu de la note d'espace de travail",
+      "labelPlaceholder": "Étiquette (ex. langue)",
+      "priorityLabel": "Priorité (1-10) :"
+    },
+    "item": {
+      "importanceTitle": "Score d'importance : {{score}}/10",
+      "addedDate": "Ajouté le {{date}}",
+      "recalledDate": "Rappelé le {{date}}"
+    },
+    "deleteAllDialog": {
+      "title": "Effacer toutes les mémoires personnelles ?",
+      "description": "Cette action supprimera définitivement les {{count}} éléments personnels enregistrés et est irréversible. Les notes de l'espace de travail ne seront pas affectées.",
+      "confirm": "Tout supprimer"
+    }
+  },
+  "security": {
+    "title": "Sécurité et mot de passe",
+    "subtitle": "Gérez les identifiants de votre compte et les paramètres d'authentification.",
+    "changePasswordTitle": "Changer le mot de passe",
+    "currentPassword": "Mot de passe actuel",
+    "newPassword": "Nouveau mot de passe",
+    "passwordHint": "Un minimum de 8 caractères est recommandé.",
+    "confirmPassword": "Confirmer le nouveau mot de passe",
+    "updatePassword": "Mettre à jour le mot de passe",
+    "errors": {
+      "fillAllFields": "Veuillez remplir tous les champs de mot de passe.",
+      "mismatch": "Les mots de passe ne correspondent pas."
+    }
+  },
+  "apiKeys": {
+    "title": "Clés API",
+    "subtitle": "Gérez vos clés API pour accéder par programmation aux modèles, agents et workflows d'automatisation NeuronRunner.",
+    "generateTitle": "Générer une nouvelle clé API",
+    "namePlaceholder": "ex. CLI Runner, Agent de production",
+    "createButton": "Créer une clé",
+    "secretAlert": {
+      "title": "Enregistrez votre clé secrète maintenant",
+      "description": "Veuillez copier cette clé et la conserver en lieu sûr. Pour votre sécurité, elle ne pourra plus être affichée une fois cette fenêtre fermée.",
+      "copy": "Copier",
+      "confirmSaved": "J'ai enregistré ma clé secrète"
+    },
+    "activeKeysTitle": "Clés actives",
+    "keyCountSingle": "{{count}} clé",
+    "keyCountPlural": "{{count}} clés",
+    "emptyTitle": "Aucune clé API pour le moment",
+    "emptyDescription": "Créez une nouvelle clé ci-dessus pour commencer à utiliser l'API.",
+    "statusActive": "Active",
+    "statusInactive": "Inactive",
+    "createdLabel": "Créée",
+    "lastUsedLabel": "Dernière utilisation",
+    "neverUsed": "Jamais",
+    "pauseAccess": "Suspendre l'accès",
+    "resumeAccess": "Rétablir l'accès",
+    "deleteKey": "Supprimer la clé"
+  },
+  "vmSecrets": {
+    "selectWorkspace": "Sélectionnez un espace de travail pour gérer les secrets de VM.",
+    "title": "Secrets de VM",
+    "subtitle": "Variables d'environnement chiffrées injectées automatiquement dans les machines virtuelles de {{workspace}}.",
+    "loadingAriaLabel": "Chargement des secrets de VM",
+    "readOnlyNotice": "Seuls les propriétaires ou administrateurs de l'espace de travail peuvent ajouter, modifier ou supprimer des secrets de VM.",
+    "searchPlaceholder": "Rechercher des secrets par clé, description ou VM...",
+    "updatedAt": "Mis à jour {{date}}",
+    "footerNote": "Les secrets sont chiffrés au repos et ne sont jamais exposés en clair après l'enregistrement. Ils sont injectés automatiquement dans les variables d'environnement des VM, les terminaux interactifs et les commandes shell des agents.",
+    "actions": {
+      "addSecret": "Ajouter un secret",
+      "importEnv": "Importer un .env",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "confirmDelete": "Confirmer",
+      "cancel": "Annuler",
+      "save": "Enregistrer le secret",
+      "saving": "Enregistrement..."
+    },
+    "scope": {
+      "allVms": "Toutes les VM de l'espace de travail",
+      "specificVm": "VM spécifique"
+    },
+    "filter": {
+      "all": "Toutes les portées"
+    },
+    "form": {
+      "addTitle": "Ajouter un nouveau secret de VM",
+      "editTitle": "Modifier {{key}}",
+      "keyLabel": "Nom de la variable",
+      "scopeLabel": "Portée",
+      "valueLabel": "Valeur du secret",
+      "valuePlaceholderAdd": "Saisissez la valeur du secret...",
+      "valuePlaceholderEdit": "Laissez vide pour conserver la valeur existante",
+      "showValue": "Afficher la valeur du secret",
+      "hideValue": "Masquer la valeur du secret",
+      "descriptionLabel": "Description (facultatif)",
+      "descriptionPlaceholder": "p. ex. mot de passe de base de données ou token d'API"
+    },
+    "importForm": {
+      "title": "Import en masse depuis un .env",
+      "subtitle": "Collez ci-dessous des lignes CLÉ=VALEUR. Les clés existantes de la portée sélectionnée seront mises à jour.",
+      "submit": "Importer les secrets",
+      "importing": "Importation..."
+    },
+    "empty": {
+      "title": "Aucun secret de VM pour l'instant",
+      "description": "Stockez en toute sécurité vos clés d'API, URL de bases de données et identifiants pour que vos VM et agents puissent les utiliser comme variables d'environnement.",
+      "filtered": "Aucun secret ne correspond à votre recherche ou filtre actuel."
+    },
+    "toast": {
+      "createdTitle": "Secret ajouté",
+      "updatedTitle": "Secret mis à jour",
+      "savedDescription": "{{key}} a été chiffré et enregistré.",
+      "syncedDescription": "{{key}} enregistré et synchronisé avec {{count}} VM en cours d'exécution.",
+      "importedTitle": "Secrets importés",
+      "importedDescription": "{{count}} secret(s) chiffré(s) et enregistré(s).",
+      "deletedTitle": "Secret supprimé",
+      "deletedDescription": "{{key}} a été supprimé."
+    },
+    "errors": {
+      "loadFailed": "Impossible de charger les secrets de VM.",
+      "keyRequired": "Le nom de la variable est obligatoire.",
+      "valueRequired": "La valeur du secret est obligatoire.",
+      "saveFailed": "Impossible d'enregistrer le secret de VM.",
+      "importFailed": "Impossible d'importer les secrets du .env.",
+      "deleteFailed": "Impossible de supprimer le secret de VM."
+    }
+  }
+}
