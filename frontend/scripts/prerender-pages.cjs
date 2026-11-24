@@ -84,6 +84,16 @@ function loadTsModule(filename) {
         },
       };
     }
+    if (id === "@cloud") {
+      const isCloud = Boolean(process.env.CLOUD_FRONTEND_DIR);
+      return {
+        __esModule: true,
+        default: {
+          edition: isCloud ? "cloud" : "oss",
+          routes: isCloud ? [{ path: "/pricing" }] : [],
+        },
+      };
+    }
     if (id.endsWith(".css")) {
       return {};
     }

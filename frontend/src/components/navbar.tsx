@@ -17,6 +17,7 @@ import { LanguageSwitcher } from "@/components/language-switcher";
 import { env } from "@/lib/env";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
+import frontendExtension from "@cloud";
 
 export interface NavbarProps {
   current_page?: "home" | "pricing";
@@ -78,7 +79,9 @@ const Navbar = (_props?: NavbarProps) => {
       pathname.startsWith("/issues")
     );
 
+  const hasPricingRoute = frontendExtension.routes.some((r) => r.path === "/pricing");
   const navLinks = [
+    ...(hasPricingRoute ? [{ to: "/pricing", label: t("navbar.links.pricing") }] : []),
     { to: "/integrations", label: t("navbar.links.integrations") },
     ...(env.ENABLE_DOCS ? [{ to: "/docs", label: t("navbar.links.docs") }] : []),
   ];

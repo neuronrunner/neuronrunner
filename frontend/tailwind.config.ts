@@ -1,8 +1,13 @@
+import path from "node:path";
 import type { Config } from "tailwindcss";
 
 function withOpacity(variableName: string) {
   return `color-mix(in srgb, var(${variableName}) calc(<alpha-value> * 100%), transparent)`;
 }
+
+const cloudFrontendDir = process.env.CLOUD_FRONTEND_DIR
+  ? path.resolve(process.env.CLOUD_FRONTEND_DIR)
+  : null;
 
 const config: Config = {
   darkMode: ["class"],
@@ -10,6 +15,8 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/extensions/**/*.{js,ts,jsx,tsx,mdx}",
+    ...(cloudFrontendDir ? [`${cloudFrontendDir}/**/*.{js,ts,jsx,tsx,mdx}`] : []),
   ],
   theme: {
     extend: {

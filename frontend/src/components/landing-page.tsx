@@ -3,6 +3,7 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import frontendExtension from "@cloud";
 import useSigninStore from "@/stores/signin";
 import useSignupStore from "@/stores/signup";
 import {
@@ -369,6 +370,9 @@ const LandingPage = () => {
               </div>
             </Link>
             <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+              {frontendExtension.routes.some((r) => r.path === "/pricing") && (
+                <Link to="/pricing" className="hover:text-foreground">{t("footer.pricing")}</Link>
+              )}
               <Link to="/integrations" className="hover:text-foreground">{t("footer.integrations")}</Link>
               {env.ENABLE_DOCS && <Link to="/docs" className="hover:text-foreground">{t("footer.docs")}</Link>}
               <Link to="/terms-of-service" className="hover:text-foreground">{t("footer.terms")}</Link>
