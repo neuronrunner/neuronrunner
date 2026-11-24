@@ -502,8 +502,8 @@ function PreviewSidebar({ selectedVmName }: { selectedVmName: string }) {
         <div className="flex items-center gap-2 min-w-0">
           <NeuronLogo size={20} className="text-foreground shrink-0" />
           <div className={cn(MONO, "truncate text-[12px] tracking-tight text-foreground")}>
-            <span className="font-bold">Neuron</span>{" "}
-            <span className="font-light text-muted-foreground">Runner</span>
+            <span className="font-bold">neuron</span>
+            <span className="font-light text-muted-foreground">_runner</span>
           </div>
         </div>
         <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-border/60 text-muted-foreground">

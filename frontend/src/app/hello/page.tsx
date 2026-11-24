@@ -7,14 +7,21 @@ import type { IconType } from "react-icons";
 import {
   LuArrowLeft,
   LuArrowRight,
+  LuArrowUpRight,
+  LuCheck,
   LuCircleCheck,
+  LuEye,
+  LuEyeOff,
   LuKeyRound,
+  LuLock,
   LuRoute,
   LuSearch,
   LuServer,
+  LuShieldCheck,
   LuSparkles,
-  LuZap,
+  LuTerminal,
   LuWaves,
+  LuZap,
 } from "react-icons/lu";
 import { SiGooglegemini, SiOpenai } from "react-icons/si";
 import { AntigravityBrandLogo, ClaudeBrandLogo, OpenAICodexBrandLogo } from "@/components/brand-logos";
@@ -39,15 +46,73 @@ interface ProviderOption {
   icon: IconType;
   keyUrl?: string;
   placeholder: string;
+  featured?: boolean;
+  iconSurface: string;
+  hoverBorder: string;
+  hoverGlow: string;
 }
 
 const KEY_PROVIDERS: ProviderOption[] = [
-  { id: "openrouter", name: "OpenRouter", icon: LuRoute, keyUrl: "https://openrouter.ai/keys", placeholder: "sk-or-v1-…" },
-  { id: "openai", name: "OpenAI", icon: SiOpenai, keyUrl: "https://platform.openai.com/api-keys", placeholder: "sk-…" },
-  { id: "google", name: "Google Gemini", icon: SiGooglegemini, keyUrl: "https://aistudio.google.com/apikey", placeholder: "AIza…" },
-  { id: "deepseek", name: "DeepSeek", icon: LuWaves, keyUrl: "https://platform.deepseek.com/api_keys", placeholder: "sk-…" },
-  { id: "groq", name: "Groq", icon: LuZap, keyUrl: "https://console.groq.com/keys", placeholder: "gsk_…" },
-  { id: "custom", name: "", icon: LuServer, placeholder: "" },
+  {
+    id: "openrouter",
+    name: "OpenRouter",
+    icon: LuRoute,
+    keyUrl: "https://openrouter.ai/keys",
+    placeholder: "sk-or-v1-…",
+    featured: true,
+    iconSurface: "border-indigo-500/30 bg-indigo-500/[0.12] text-indigo-500 dark:text-indigo-300",
+    hoverBorder: "hover:border-indigo-400/70 dark:hover:border-indigo-400/60",
+    hoverGlow: "from-indigo-500/[0.14] via-violet-500/[0.04] to-transparent",
+  },
+  {
+    id: "openai",
+    name: "OpenAI",
+    icon: SiOpenai,
+    keyUrl: "https://platform.openai.com/api-keys",
+    placeholder: "sk-…",
+    iconSurface: "border-emerald-500/25 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
+    hoverBorder: "hover:border-emerald-500/45",
+    hoverGlow: "from-emerald-500/[0.10] via-emerald-500/[0.02] to-transparent",
+  },
+  {
+    id: "google",
+    name: "Google Gemini",
+    icon: SiGooglegemini,
+    keyUrl: "https://aistudio.google.com/apikey",
+    placeholder: "AIza…",
+    iconSurface: "border-sky-500/25 bg-sky-500/10 text-sky-600 dark:text-sky-400",
+    hoverBorder: "hover:border-sky-500/45",
+    hoverGlow: "from-sky-500/[0.10] via-blue-500/[0.02] to-transparent",
+  },
+  {
+    id: "deepseek",
+    name: "DeepSeek",
+    icon: LuWaves,
+    keyUrl: "https://platform.deepseek.com/api_keys",
+    placeholder: "sk-…",
+    iconSurface: "border-blue-500/25 bg-blue-500/10 text-blue-600 dark:text-blue-400",
+    hoverBorder: "hover:border-blue-500/45",
+    hoverGlow: "from-blue-500/[0.10] via-indigo-500/[0.02] to-transparent",
+  },
+  {
+    id: "groq",
+    name: "Groq",
+    icon: LuZap,
+    keyUrl: "https://console.groq.com/keys",
+    placeholder: "gsk_…",
+    iconSurface: "border-amber-500/25 bg-amber-500/10 text-amber-600 dark:text-amber-400",
+    hoverBorder: "hover:border-amber-500/45",
+    hoverGlow: "from-amber-500/[0.10] via-orange-500/[0.02] to-transparent",
+  },
+  {
+    id: "custom",
+    name: "",
+    icon: LuServer,
+    placeholder: "",
+    iconSurface: "border-violet-500/25 bg-violet-500/10 text-violet-600 dark:text-violet-400",
+    hoverBorder: "hover:border-violet-500/45",
+    hoverGlow: "from-violet-500/[0.10] via-fuchsia-500/[0.02] to-transparent",
+  },
 ];
 
 const SUBSCRIPTIONS: {
@@ -55,10 +120,37 @@ const SUBSCRIPTIONS: {
   name: string;
   descKey: `hello.subscriptions.${"claude" | "codex" | "antigravity"}`;
   Logo: typeof ClaudeBrandLogo;
+  hoverBorder: string;
+  hoverGlow: string;
+  logoSurface: string;
 }[] = [
-  { id: "anthropic_sub", name: "Claude Code", descKey: "hello.subscriptions.claude", Logo: ClaudeBrandLogo },
-  { id: "openai_sub", name: "OpenAI Codex", descKey: "hello.subscriptions.codex", Logo: OpenAICodexBrandLogo },
-  { id: "antigravity_sub", name: "Antigravity", descKey: "hello.subscriptions.antigravity", Logo: AntigravityBrandLogo },
+  {
+    id: "anthropic_sub",
+    name: "Claude Code",
+    descKey: "hello.subscriptions.claude",
+    Logo: ClaudeBrandLogo,
+    hoverBorder: "hover:border-[#D97757]/55",
+    hoverGlow: "from-[#D97757]/[0.12] via-[#D97757]/[0.02] to-transparent",
+    logoSurface: "border-[#D97757]/25 bg-[#D97757]/[0.08]",
+  },
+  {
+    id: "openai_sub",
+    name: "OpenAI Codex",
+    descKey: "hello.subscriptions.codex",
+    Logo: OpenAICodexBrandLogo,
+    hoverBorder: "hover:border-foreground/30",
+    hoverGlow: "from-foreground/[0.07] via-foreground/[0.02] to-transparent",
+    logoSurface: "border-border/80 bg-muted/60",
+  },
+  {
+    id: "antigravity_sub",
+    name: "Antigravity",
+    descKey: "hello.subscriptions.antigravity",
+    Logo: AntigravityBrandLogo,
+    hoverBorder: "hover:border-sky-500/50",
+    hoverGlow: "from-sky-500/[0.11] via-indigo-500/[0.03] to-transparent",
+    logoSurface: "border-sky-500/25 bg-sky-500/[0.08]",
+  },
 ];
 
 interface RemoteModel {
@@ -75,6 +167,12 @@ interface RemoteModel {
 }
 
 type Step = "choose" | "key" | "models";
+
+const STEP_INDEX: Record<Step, number> = {
+  choose: 0,
+  key: 1,
+  models: 2,
+};
 
 const formatPrice = (price: number) => (price < 0.1 ? price.toFixed(3) : price.toFixed(2));
 
@@ -116,6 +214,7 @@ export default function HelloPage() {
   const [step, setStep] = useState<Step>("choose");
   const [provider, setProvider] = useState<ProviderOption | null>(null);
   const [apiKey, setApiKey] = useState("");
+  const [showKey, setShowKey] = useState(false);
   const [baseUrl, setBaseUrl] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
@@ -163,6 +262,7 @@ export default function HelloPage() {
   const pickProvider = (option: ProviderOption) => {
     setProvider(option);
     setApiKey("");
+    setShowKey(false);
     setBaseUrl("");
     setError("");
     setStep("key");
@@ -250,11 +350,12 @@ export default function HelloPage() {
 
   const catalogReady = (setupStatus?.usable_model_count ?? 0) > 0;
   const providerName = provider ? (provider.id === "custom" ? t("hello.providers.custom") : provider.name) : "";
+  const activeStepIndex = STEP_INDEX[step];
 
   const body = (() => {
     if (!workspaceUuid || (!setupStatus && setupLoading)) {
       return (
-        <div className="flex justify-center py-16">
+        <div className="flex justify-center py-20">
           <LoadingDots />
         </div>
       );
@@ -262,10 +363,14 @@ export default function HelloPage() {
 
     if (setupStatus && !setupStatus.can_manage && needsLlmSetup(setupStatus)) {
       return (
-        <div className="rounded-2xl border border-border/70 bg-card/60 p-6 text-center">
-          <LuKeyRound className="mx-auto h-6 w-6 text-indigo-400" />
-          <h2 className="mt-3 text-base font-semibold">{t("hello.member.title")}</h2>
-          <p className="mt-2 text-sm text-muted-foreground">{t("hello.member.description", { workspace: workspaceName })}</p>
+        <div className="mx-auto max-w-lg rounded-2xl border border-border/75 bg-gradient-to-b from-card/95 to-card/75 p-8 text-center shadow-xl shadow-black/5 backdrop-blur-md dark:shadow-black/40">
+          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl border border-indigo-500/25 bg-indigo-500/10 text-indigo-500 dark:text-indigo-400">
+            <LuKeyRound className="h-5 w-5" />
+          </div>
+          <h2 className="mt-4 text-lg font-semibold tracking-tight">{t("hello.member.title")}</h2>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+            {t("hello.member.description", { workspace: workspaceName })}
+          </p>
         </div>
       );
     }
@@ -273,178 +378,109 @@ export default function HelloPage() {
     if (step === "key" && provider) {
       const Icon = provider.icon;
       return (
-        <div className="space-y-5 rounded-2xl border border-border/70 bg-card/60 p-6">
-          <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-400">
-              <Icon className="h-5 w-5" />
-            </span>
-            <div>
-              <h2 className="text-base font-semibold">{t("hello.key.title", { provider: providerName })}</h2>
-              <p className="text-xs text-muted-foreground">{t("hello.key.stored")}</p>
-            </div>
-          </div>
-
-          {provider.id === "custom" && (
-            <label className="block space-y-1.5">
-              <span className="text-xs font-medium">{t("hello.key.baseUrl")}</span>
-              <Input
-                value={baseUrl}
-                onChange={(e) => setBaseUrl(e.target.value)}
-                placeholder="https://my-server.example.com/v1"
-                autoFocus
-              />
-            </label>
-          )}
-
-          <label className="block space-y-1.5">
-            <span className="text-xs font-medium">
-              {provider.id === "custom" ? t("hello.key.apiKeyOptional") : t("hello.key.apiKey")}
-            </span>
-            <Input
-              type="password"
-              value={apiKey}
-              onChange={(e) => setApiKey(e.target.value)}
-              placeholder={provider.placeholder}
-              autoComplete="off"
-              autoFocus={provider.id !== "custom"}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" && !busy) void connectKey();
-              }}
+        <div className="mx-auto max-w-xl overflow-hidden rounded-2xl border border-border/75 bg-gradient-to-b from-card/95 to-card/75 shadow-2xl shadow-black/5 backdrop-blur-md ring-1 ring-inset ring-white/[0.04] dark:shadow-black/50">
+          <div className="relative border-b border-border/60 px-6 py-5 sm:px-7">
+            <div
+              aria-hidden="true"
+              className={cn("pointer-events-none absolute inset-0 bg-gradient-to-br opacity-80", provider.hoverGlow)}
             />
-          </label>
-
-          {provider.keyUrl && (
-            <a
-              href={provider.keyUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1 text-xs font-medium text-indigo-500 hover:underline dark:text-indigo-400"
-            >
-              {t("hello.key.getKey", { provider: provider.name })}
-              <LuArrowRight className="h-3 w-3" />
-            </a>
-          )}
-
-          {error && <p className="rounded-lg bg-red-500/10 px-3 py-2 text-sm text-red-500 dark:text-red-400">{error}</p>}
-
-          <div className="flex items-center justify-between gap-3 pt-1">
-            <Button variant="ghost" onClick={() => setStep("choose")} disabled={busy}>
-              <LuArrowLeft className="mr-1.5 h-4 w-4" />
-              {t("hello.back")}
-            </Button>
-            <Button
-              onClick={() => void connectKey()}
-              loading={busy}
-              disabled={busy || (provider.id === "custom" ? !baseUrl.trim() : apiKey.trim().length < 12)}
-            >
-              {t("hello.key.connect")}
-            </Button>
-          </div>
-        </div>
-      );
-    }
-
-    if (step === "models" && provider) {
-      return (
-        <div className="space-y-4 rounded-2xl border border-border/70 bg-card/60 p-6">
-          <div className="flex items-start gap-3">
-            <LuCircleCheck className="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" />
-            <div>
-              <h2 className="text-base font-semibold">{t("hello.models.title", { provider: providerName })}</h2>
-              <p className="text-sm text-muted-foreground">
-                {catalogReady
-                  ? t("hello.models.descriptionWithCatalog", { count: setupStatus?.usable_model_count ?? 0 })
-                  : t("hello.models.description")}
-              </p>
+            <div className="relative flex items-center gap-3.5">
+              <span
+                className={cn(
+                  "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border shadow-xs",
+                  provider.iconSurface
+                )}
+              >
+                <Icon className="h-5 w-5" />
+              </span>
+              <div className="min-w-0">
+                <h2 className="text-base font-semibold tracking-tight sm:text-lg">
+                  {t("hello.key.title", { provider: providerName })}
+                </h2>
+                <p className="mt-0.5 flex items-center gap-1.5 text-xs text-muted-foreground">
+                  <LuShieldCheck className="h-3.5 w-3.5 shrink-0 text-emerald-500" />
+                  <span>{t("hello.key.stored")}</span>
+                </p>
+              </div>
             </div>
           </div>
 
-          {remoteModels.length > 0 ? (
-            <>
-              <div className="flex flex-col gap-2 sm:flex-row">
-                <div className="relative flex-1">
-                  <LuSearch className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                  <Input
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    placeholder={t("hello.models.search", { count: remoteModels.length })}
-                    className="pl-9"
-                  />
-                </div>
-                {freeCount > 0 && (
-                  <button
-                    type="button"
-                    aria-pressed={freeOnly}
-                    onClick={() => setFreeOnly((v) => !v)}
-                    className={cn(
-                      "inline-flex shrink-0 items-center justify-center gap-1.5 rounded-lg border px-3 py-2 text-xs font-medium transition-colors",
-                      freeOnly
-                        ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-600 dark:text-emerald-300"
-                        : "border-border/70 text-muted-foreground hover:text-foreground"
-                    )}
-                  >
-                    {t("hello.models.freeOnly", { count: freeCount })}
-                  </button>
-                )}
+          <div className="space-y-5 p-6 sm:p-7">
+            {provider.id === "custom" && (
+              <label className="block space-y-2">
+                <span className="text-xs font-medium text-foreground/90">{t("hello.key.baseUrl")}</span>
+                <Input
+                  value={baseUrl}
+                  onChange={(e) => setBaseUrl(e.target.value)}
+                  placeholder="https://my-server.example.com/v1"
+                  className="h-11 rounded-xl border-border/80 bg-background/70 font-mono text-sm"
+                  autoFocus
+                />
+              </label>
+            )}
+
+            <label className="block space-y-2">
+              <span className="text-xs font-medium text-foreground/90">
+                {provider.id === "custom" ? t("hello.key.apiKeyOptional") : t("hello.key.apiKey")}
+              </span>
+              <div className="relative">
+                <Input
+                  type={showKey ? "text" : "password"}
+                  value={apiKey}
+                  onChange={(e) => setApiKey(e.target.value)}
+                  placeholder={provider.placeholder}
+                  className="h-11 rounded-xl border-border/80 bg-background/70 pr-10 font-mono text-sm"
+                  autoComplete="off"
+                  autoFocus={provider.id !== "custom"}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && !busy) void connectKey();
+                  }}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowKey((prev) => !prev)}
+                  tabIndex={-1}
+                  aria-label={showKey ? "Hide API key" : "Show API key"}
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 rounded-lg p-1.5 text-muted-foreground transition-colors hover:bg-muted/70 hover:text-foreground"
+                >
+                  {showKey ? <LuEyeOff className="h-4 w-4" /> : <LuEye className="h-4 w-4" />}
+                </button>
               </div>
-              {freeCount > 0 && <p className="text-xs text-muted-foreground">{t("hello.models.freeHint")}</p>}
-              <ul className="max-h-80 divide-y divide-border/60 overflow-y-auto rounded-xl border border-border/70">
-                {filteredModels.slice(0, 200).map((model) => {
-                  const checked = selected.includes(model.id);
-                  return (
-                    <li key={model.id}>
-                      <label className={cn("flex cursor-pointer items-center gap-3 px-3 py-2.5 text-sm hover:bg-muted/50", checked && "bg-indigo-500/5")}>
-                        <Checkbox checked={checked} onCheckedChange={() => toggleModel(model.id)} />
-                        <span className="min-w-0 flex-1">
-                          <span className="flex items-center gap-1.5">
-                            <span className="truncate font-medium">{model.name}</span>
-                            {model.is_free && (
-                              <span className="shrink-0 rounded-full bg-emerald-500/10 px-1.5 py-0.5 text-[10px] font-medium text-emerald-600 dark:text-emerald-300">
-                                {t("hello.models.free")}
-                              </span>
-                            )}
-                          </span>
-                          <span className="block truncate font-mono text-[11px] text-muted-foreground">{model.id}</span>
-                        </span>
-                        <span className="shrink-0 text-right font-mono text-[11px] leading-tight text-muted-foreground">
-                          {!model.is_free && model.prompt_price !== null && model.completion_price !== null && (
-                            <span className="block">
-                              ${formatPrice(model.prompt_price)} / ${formatPrice(model.completion_price)}
-                            </span>
-                          )}
-                          {model.context_length ? <span className="block">{Math.round(model.context_length / 1000)}K</span> : null}
-                        </span>
-                      </label>
-                    </li>
-                  );
-                })}
-                {filteredModels.length === 0 && (
-                  <li className="px-3 py-6 text-center text-sm text-muted-foreground">{t("hello.models.noMatch")}</li>
-                )}
-              </ul>
-            </>
-          ) : (
-            <p className="rounded-xl border border-dashed border-border/70 px-3 py-6 text-center text-sm text-muted-foreground">
-              {t("hello.models.empty")}
-            </p>
-          )}
+            </label>
 
-          {remoteModels.some((m) => m.prompt_price !== null) && (
-            <p className="text-[11px] text-muted-foreground">{t("hello.models.priceHint")}</p>
-          )}
+            {provider.keyUrl && (
+              <div>
+                <a
+                  href={provider.keyUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-indigo-500/20 bg-indigo-500/[0.06] px-3 py-1.5 text-xs font-medium text-indigo-600 transition-colors hover:border-indigo-500/40 hover:bg-indigo-500/10 dark:text-indigo-300"
+                >
+                  {t("hello.key.getKey", { provider: provider.name })}
+                  <LuArrowUpRight className="h-3.5 w-3.5" />
+                </a>
+              </div>
+            )}
 
-          {error && <p className="rounded-lg bg-red-500/10 px-3 py-2 text-sm text-red-500 dark:text-red-400">{error}</p>}
+            {error && (
+              <p className="rounded-xl border border-red-500/25 bg-red-500/10 px-3.5 py-2.5 text-sm text-red-600 dark:text-red-400">
+                {error}
+              </p>
+            )}
 
-          <div className="flex items-center justify-between gap-3">
-            <span className="text-xs text-muted-foreground">{t("hello.models.selected", { count: selected.length })}</span>
-            <div className="flex gap-2">
-              {catalogReady && selected.length === 0 && (
-                <Button variant="outline" onClick={() => void finish()} disabled={busy}>
-                  {t("hello.models.skip")}
-                </Button>
-              )}
-              <Button onClick={() => void addModelsAndStart()} loading={busy} disabled={busy || selected.length === 0}>
-                {t("hello.models.start")}
+            <div className="flex items-center justify-between gap-3 border-t border-border/60 pt-5">
+              <Button variant="ghost" className="rounded-xl" onClick={() => setStep("choose")} disabled={busy}>
+                <LuArrowLeft className="mr-1.5 h-4 w-4" />
+                {t("hello.back")}
+              </Button>
+              <Button
+                className="rounded-xl px-5 shadow-sm"
+                onClick={() => void connectKey()}
+                loading={busy}
+                disabled={busy || (provider.id === "custom" ? !baseUrl.trim() : apiKey.trim().length < 12)}
+              >
+                {t("hello.key.connect")}
+                <LuArrowRight className="ml-1.5 h-4 w-4" />
               </Button>
             </div>
           </div>
@@ -452,68 +488,311 @@ export default function HelloPage() {
       );
     }
 
-    return (
-      <div className="space-y-8">
-        <section className="space-y-3">
-          <div>
-            <h2 className="text-sm font-semibold">{t("hello.choose.apiKeyTitle")}</h2>
-            <p className="text-xs text-muted-foreground">{t("hello.choose.apiKeyDescription")}</p>
+    if (step === "models" && provider) {
+      return (
+        <div className="mx-auto max-w-2xl overflow-hidden rounded-2xl border border-border/75 bg-gradient-to-b from-card/95 to-card/75 shadow-2xl shadow-black/5 backdrop-blur-md ring-1 ring-inset ring-white/[0.04] dark:shadow-black/50">
+          <div className="border-b border-border/60 bg-emerald-500/[0.04] px-6 py-5 sm:px-7">
+            <div className="flex items-start gap-3.5">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-emerald-500/30 bg-emerald-500/[0.12] text-emerald-500 dark:text-emerald-400">
+                <LuCircleCheck className="h-5 w-5" />
+              </span>
+              <div className="min-w-0">
+                <h2 className="text-base font-semibold tracking-tight sm:text-lg">
+                  {t("hello.models.title", { provider: providerName })}
+                </h2>
+                <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">
+                  {catalogReady
+                    ? t("hello.models.descriptionWithCatalog", { count: setupStatus?.usable_model_count ?? 0 })
+                    : t("hello.models.description")}
+                </p>
+              </div>
+            </div>
           </div>
-          <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
-            {KEY_PROVIDERS.map((option) => {
-              const Icon = option.icon;
-              const connected = setupStatus?.configured_providers.includes(option.id);
+
+          <div className="space-y-4 p-6 sm:p-7">
+            {remoteModels.length > 0 ? (
+              <>
+                <div className="flex flex-col gap-2.5 sm:flex-row">
+                  <div className="relative flex-1">
+                    <LuSearch className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                    <Input
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
+                      placeholder={t("hello.models.search", { count: remoteModels.length })}
+                      className="h-10 rounded-xl border-border/80 bg-background/70 pl-10 text-sm"
+                    />
+                  </div>
+                  {freeCount > 0 && (
+                    <button
+                      type="button"
+                      aria-pressed={freeOnly}
+                      onClick={() => setFreeOnly((v) => !v)}
+                      className={cn(
+                        "inline-flex h-10 shrink-0 items-center justify-center gap-1.5 rounded-xl border px-3.5 text-xs font-medium transition-all",
+                        freeOnly
+                          ? "border-emerald-500/50 bg-emerald-500/[0.12] text-emerald-600 shadow-xs dark:text-emerald-300"
+                          : "border-border/80 bg-background/50 text-muted-foreground hover:border-border hover:text-foreground"
+                      )}
+                    >
+                      {freeOnly && <LuCheck className="h-3.5 w-3.5" />}
+                      {t("hello.models.freeOnly", { count: freeCount })}
+                    </button>
+                  )}
+                </div>
+
+                {freeCount > 0 && <p className="text-xs text-muted-foreground">{t("hello.models.freeHint")}</p>}
+
+                <ul className="max-h-80 divide-y divide-border/50 overflow-y-auto rounded-xl border border-border/75 bg-background/50">
+                  {filteredModels.slice(0, 200).map((model) => {
+                    const checked = selected.includes(model.id);
+                    return (
+                      <li key={model.id}>
+                        <label
+                          className={cn(
+                            "flex cursor-pointer items-center gap-3 px-3.5 py-3 text-sm transition-colors hover:bg-muted/45",
+                            checked && "bg-indigo-500/[0.08] hover:bg-indigo-500/[0.11]"
+                          )}
+                        >
+                          <Checkbox checked={checked} onCheckedChange={() => toggleModel(model.id)} />
+                          <span className="min-w-0 flex-1">
+                            <span className="flex items-center gap-2">
+                              <span className="truncate font-medium text-foreground">{model.name}</span>
+                              {model.is_free && (
+                                <span className="shrink-0 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold text-emerald-600 dark:text-emerald-300">
+                                  {t("hello.models.free")}
+                                </span>
+                              )}
+                            </span>
+                            <span className="mt-0.5 block truncate font-mono text-[11px] text-muted-foreground">
+                              {model.id}
+                            </span>
+                          </span>
+                          <span className="flex shrink-0 flex-col items-end gap-0.5 text-right font-mono text-[11px] tabular-nums leading-tight text-muted-foreground">
+                            {!model.is_free && model.prompt_price !== null && model.completion_price !== null && (
+                              <span className="text-foreground/80">
+                                ${formatPrice(model.prompt_price)} / ${formatPrice(model.completion_price)}
+                              </span>
+                            )}
+                            {model.context_length ? (
+                              <span className="rounded bg-muted/70 px-1.5 py-0.5 text-[10px] text-muted-foreground">
+                                {Math.round(model.context_length / 1000)}K
+                              </span>
+                            ) : null}
+                          </span>
+                        </label>
+                      </li>
+                    );
+                  })}
+                  {filteredModels.length === 0 && (
+                    <li className="px-4 py-8 text-center text-sm text-muted-foreground">{t("hello.models.noMatch")}</li>
+                  )}
+                </ul>
+              </>
+            ) : (
+              <p className="rounded-xl border border-dashed border-border/80 bg-background/40 px-4 py-8 text-center text-sm text-muted-foreground">
+                {t("hello.models.empty")}
+              </p>
+            )}
+
+            {remoteModels.some((m) => m.prompt_price !== null) && (
+              <p className="text-[11px] leading-relaxed text-muted-foreground">{t("hello.models.priceHint")}</p>
+            )}
+
+            {error && (
+              <p className="rounded-xl border border-red-500/25 bg-red-500/10 px-3.5 py-2.5 text-sm text-red-600 dark:text-red-400">
+                {error}
+              </p>
+            )}
+
+            <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border/60 pt-4">
+              <span className="inline-flex items-center rounded-full border border-border/70 bg-muted/40 px-2.5 py-1 font-mono text-[11px] text-muted-foreground">
+                {t("hello.models.selected", { count: selected.length })}
+              </span>
+              <div className="flex items-center gap-2">
+                {catalogReady && selected.length === 0 && (
+                  <Button variant="outline" className="rounded-xl" onClick={() => void finish()} disabled={busy}>
+                    {t("hello.models.skip")}
+                  </Button>
+                )}
+                <Button
+                  className="rounded-xl px-5 shadow-sm"
+                  onClick={() => void addModelsAndStart()}
+                  loading={busy}
+                  disabled={busy || selected.length === 0}
+                >
+                  {t("hello.models.start")}
+                  <LuArrowRight className="ml-1.5 h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div className="space-y-6">
+        {/* Subscription CLI providers */}
+        <section className="space-y-3">
+          <div className="flex items-start gap-3">
+            <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-cyan-500/25 bg-cyan-500/10 text-cyan-600 dark:text-cyan-400">
+              <LuTerminal className="h-4 w-4" />
+            </span>
+            <div className="min-w-0">
+              <h2 className="text-[15px] font-semibold tracking-tight text-foreground">
+                {t("hello.choose.subscriptionTitle")}
+              </h2>
+              <p className="mt-0.5 text-xs text-muted-foreground">
+                {t("hello.choose.subscriptionDescription")}
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+            {SUBSCRIPTIONS.map(({ id, name, descKey, Logo, hoverBorder, hoverGlow, logoSurface }) => {
+              const connected = setupStatus?.configured_providers.includes(id);
               return (
                 <button
-                  key={option.id}
+                  key={id}
                   type="button"
-                  onClick={() => pickProvider(option)}
-                  className="group relative flex items-start gap-3 rounded-xl border border-border/70 bg-card/60 p-3.5 text-left transition-colors hover:border-indigo-500/50 hover:bg-card"
+                  onClick={() => setByosProvider(id)}
+                  className={cn(
+                    "group relative flex items-center gap-3 overflow-hidden rounded-2xl border p-3.5 text-left transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/50",
+                    connected
+                      ? "border-emerald-500/35 bg-gradient-to-b from-emerald-500/[0.06] via-card/95 to-card/75 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] hover:border-emerald-500/55"
+                      : "border-border/75 bg-gradient-to-b from-card/90 to-card/60 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] hover:bg-card/95 hover:shadow-lg hover:shadow-black/10 dark:hover:shadow-black/40",
+                    hoverBorder
+                  )}
                 >
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-muted text-foreground group-hover:bg-indigo-500/10 group-hover:text-indigo-400">
-                    <Icon className="h-[18px] w-[18px]" />
+                  <span
+                    aria-hidden="true"
+                    className={cn(
+                      "pointer-events-none absolute inset-0 bg-gradient-to-br opacity-0 transition-opacity duration-300 group-hover:opacity-100",
+                      hoverGlow
+                    )}
+                  />
+
+                  <span
+                    className={cn(
+                      "relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border transition-transform duration-200 group-hover:scale-105",
+                      logoSurface
+                    )}
+                  >
+                    <Logo className="h-5 w-5" />
                   </span>
-                  <span className="min-w-0">
-                    <span className="flex items-center gap-1.5 text-sm font-semibold">
-                      {option.id === "custom" ? t("hello.providers.custom") : option.name}
-                      {option.id === "openrouter" && (
-                        <span className="rounded-full bg-indigo-500/10 px-1.5 py-0.5 text-[10px] font-medium text-indigo-500 dark:text-indigo-300">
-                          {t("hello.recommended")}
-                        </span>
+
+                  <span className="relative min-w-0 flex-1">
+                    <span className="flex items-center gap-2">
+                      <span className="truncate text-[14px] font-semibold tracking-tight text-foreground">{name}</span>
+                      {connected && (
+                        <span
+                          title={t("hello.connected")}
+                          className="h-2 w-2 shrink-0 rounded-full bg-emerald-500"
+                        />
                       )}
                     </span>
-                    <span className="mt-0.5 block text-xs leading-snug text-muted-foreground">
-                      {connected ? t("hello.connected") : t(`hello.providerDescriptions.${option.id}`)}
-                    </span>
+                    <span className="mt-0.5 block truncate text-xs text-muted-foreground">{t(descKey)}</span>
                   </span>
+
+                  <LuArrowRight className="relative h-4 w-4 shrink-0 text-muted-foreground/50 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-foreground" />
                 </button>
               );
             })}
           </div>
         </section>
 
+        {/* Hairline divider */}
+        <div
+          aria-hidden="true"
+          className="h-px w-full bg-gradient-to-r from-transparent via-border/90 to-transparent"
+        />
+
+        {/* API key providers */}
         <section className="space-y-3">
-          <div>
-            <h2 className="text-sm font-semibold">{t("hello.choose.subscriptionTitle")}</h2>
-            <p className="text-xs text-muted-foreground">{t("hello.choose.subscriptionDescription")}</p>
+          <div className="flex items-start gap-3">
+            <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-indigo-500/25 bg-indigo-500/10 text-indigo-500 dark:text-indigo-400">
+              <LuKeyRound className="h-4 w-4" />
+            </span>
+            <div className="min-w-0">
+              <h2 className="text-[15px] font-semibold tracking-tight text-foreground">
+                {t("hello.choose.apiKeyTitle")}
+              </h2>
+              <p className="mt-0.5 flex items-center gap-1.5 text-xs text-muted-foreground">
+                <LuLock className="h-3 w-3 shrink-0 opacity-70" />
+                <span>{t("hello.choose.apiKeyDescription")}</span>
+              </p>
+            </div>
           </div>
-          <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-3">
-            {SUBSCRIPTIONS.map(({ id, name, descKey, Logo }) => (
-              <button
-                key={id}
-                type="button"
-                onClick={() => setByosProvider(id)}
-                className="group flex items-center gap-3 rounded-xl border border-border/70 bg-card/60 p-3.5 text-left transition-colors hover:border-indigo-500/50 hover:bg-card"
-              >
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-muted">
-                  <Logo className="h-5 w-5" />
-                </span>
-                <span className="min-w-0">
-                  <span className="block text-sm font-semibold">{name}</span>
-                  <span className="block text-xs text-muted-foreground">{t(descKey)}</span>
-                </span>
-              </button>
-            ))}
+
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {KEY_PROVIDERS.map((option) => {
+              const Icon = option.icon;
+              const connected = setupStatus?.configured_providers.includes(option.id);
+              const isFeatured = Boolean(option.featured && !connected);
+
+              return (
+                <button
+                  key={option.id}
+                  type="button"
+                  onClick={() => pickProvider(option)}
+                  className={cn(
+                    "group relative flex flex-col overflow-hidden rounded-2xl border p-3.5 text-left transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/50 sm:p-4",
+                    isFeatured
+                      ? "border-indigo-500/40 bg-gradient-to-b from-indigo-500/[0.08] via-card/95 to-card/75 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_12px_30px_-18px_rgba(99,102,241,0.45)] ring-1 ring-indigo-500/15 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_18px_36px_-18px_rgba(99,102,241,0.55)]"
+                      : connected
+                        ? "border-emerald-500/35 bg-gradient-to-b from-emerald-500/[0.06] via-card/95 to-card/75 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] hover:border-emerald-500/55 hover:shadow-lg hover:shadow-emerald-500/10"
+                        : "border-border/75 bg-gradient-to-b from-card/90 to-card/60 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] hover:bg-card/95 hover:shadow-lg hover:shadow-black/10 dark:hover:shadow-black/40",
+                    option.hoverBorder
+                  )}
+                >
+                  {/* Subtle top-left hover wash */}
+                  <span
+                    aria-hidden="true"
+                    className={cn(
+                      "pointer-events-none absolute inset-0 bg-gradient-to-br opacity-0 transition-opacity duration-300 group-hover:opacity-100",
+                      option.hoverGlow
+                    )}
+                  />
+
+                  {/* Top row: Icon tile + Badge / Hover arrow */}
+                  <div className="relative flex w-full items-center justify-between gap-2">
+                    <span
+                      className={cn(
+                        "flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border transition-transform duration-200 group-hover:scale-105",
+                        option.iconSurface
+                      )}
+                    >
+                      <Icon className="h-[18px] w-[18px]" />
+                    </span>
+
+                    <div className="flex items-center gap-1.5">
+                      {connected ? (
+                        <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/[0.12] px-2 py-0.5 text-[10px] font-semibold tracking-wide text-emerald-600 dark:text-emerald-300">
+                          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                          {t("hello.connected")}
+                        </span>
+                      ) : option.featured ? (
+                        <span className="inline-flex items-center rounded-full border border-indigo-500/35 bg-indigo-500/15 px-2.5 py-0.5 text-[10px] font-semibold tracking-wide text-indigo-600 dark:text-indigo-300">
+                          {t("hello.recommended")}
+                        </span>
+                      ) : null}
+
+                      <LuArrowUpRight className="h-4 w-4 text-muted-foreground/50 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-foreground" />
+                    </div>
+                  </div>
+
+                  {/* Body: Name + Description */}
+                  <div className="relative mt-3">
+                    <span className="block text-[14.5px] font-semibold tracking-tight text-foreground">
+                      {option.id === "custom" ? t("hello.providers.custom") : option.name}
+                    </span>
+                    <span className="mt-1 block text-xs leading-relaxed text-muted-foreground">
+                      {t(`hello.providerDescriptions.${option.id}`)}
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </section>
       </div>
@@ -521,26 +800,75 @@ export default function HelloPage() {
   })();
 
   return (
-    <main className="mx-auto flex min-h-[calc(100dvh-var(--app-header-height,0px))] w-full max-w-3xl flex-col justify-center px-4 py-12 text-foreground">
-      <header className="mb-8 text-center">
-        <span className="inline-flex items-center gap-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3 py-1 text-xs font-medium text-indigo-500 dark:text-indigo-300">
-          <LuSparkles className="h-3.5 w-3.5" />
-          {t("hello.badge")}
-        </span>
-        <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">{t("hello.title")}</h1>
-        <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">{t("hello.subtitle")}</p>
-      </header>
+    <div className="relative isolate flex min-h-[calc(100dvh-var(--app-header-height,0px))] w-full flex-col justify-center overflow-hidden px-4 pb-10 pt-20 text-foreground sm:px-6 sm:pb-12 sm:pt-24">
+      {/* Ambient architectural backdrop matching NeuronRunner's visual language */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[640px] bg-[radial-gradient(ellipse_55%_44%_at_50%_-6%,rgba(99,102,241,0.16),transparent_70%),radial-gradient(ellipse_38%_30%_at_78%_14%,rgba(34,211,238,0.09),transparent_68%)]"
+      />
+      <div
+        aria-hidden="true"
+        className="landing-grid pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px] opacity-60 dark:opacity-85"
+      />
 
-      {body}
+      <div className="mx-auto w-full max-w-4xl">
+        <header className={cn("text-center", step === "choose" ? "mb-7 sm:mb-8" : "mb-6 sm:mb-7")}>
+          <span className="anim-fade-in-up inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/[0.09] px-3.5 py-1 font-mono text-[11px] font-medium tracking-wide text-indigo-600 shadow-[0_0_24px_-8px_rgba(99,102,241,0.6)] backdrop-blur-sm dark:text-indigo-300">
+            <LuSparkles className="h-3.5 w-3.5" />
+            {t("hello.badge")}
+          </span>
 
-      {step === "choose" && catalogReady && (
-        <div className="mt-6 text-center">
-          <Button variant="ghost" onClick={() => void finish()}>
-            {t("hello.continue")}
-            <LuArrowRight className="ml-1.5 h-4 w-4" />
-          </Button>
+          <h1
+            className="anim-fade-in-up mt-3 text-balance bg-gradient-to-b from-foreground via-foreground to-foreground/75 bg-clip-text pb-0.5 text-3xl font-semibold tracking-[-0.035em] text-transparent sm:text-[2.75rem] sm:leading-[1.08]"
+            style={{ animationDelay: "0.05s" }}
+          >
+            {t("hello.title")}
+          </h1>
+
+          <p
+            className="anim-fade-in-up mx-auto mt-2.5 max-w-2xl text-balance text-sm leading-relaxed text-muted-foreground sm:text-[15px] sm:leading-6"
+            style={{ animationDelay: "0.1s" }}
+          >
+            {t("hello.subtitle")}
+          </p>
+
+          {/* Subtle progress indicator during multi-step API key onboarding */}
+          {step !== "choose" && (
+            <div className="mt-5 flex items-center justify-center gap-2" aria-hidden="true">
+              {[0, 1, 2].map((idx) => (
+                <span
+                  key={idx}
+                  className={cn(
+                    "h-1.5 rounded-full transition-all duration-300",
+                    idx === activeStepIndex
+                      ? "w-8 bg-indigo-500 shadow-[0_0_12px_rgba(99,102,241,0.6)]"
+                      : idx < activeStepIndex
+                        ? "w-4 bg-emerald-500/80"
+                        : "w-4 bg-border/80"
+                  )}
+                />
+              ))}
+            </div>
+          )}
+        </header>
+
+        <div className="anim-fade-in-up" style={{ animationDelay: "0.14s" }}>
+          {body}
         </div>
-      )}
+
+        {step === "choose" && catalogReady && (
+          <div className="mt-6 text-center">
+            <Button
+              variant="ghost"
+              className="group rounded-xl border border-border/70 bg-card/50 px-5 text-sm font-medium backdrop-blur-sm hover:border-border hover:bg-card"
+              onClick={() => void finish()}
+            >
+              {t("hello.continue")}
+              <LuArrowRight className="ml-1.5 h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+            </Button>
+          </div>
+        )}
+      </div>
 
       <VmConnectTerminalDialog
         open={Boolean(byosProvider)}
@@ -554,6 +882,6 @@ export default function HelloPage() {
           await finish();
         }}
       />
-    </main>
+    </div>
   );
 }

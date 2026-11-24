@@ -795,9 +795,9 @@
     "back": "Back",
     "continue": "Continue to chat",
     "choose": {
-      "apiKeyTitle": "Use an API key",
+      "apiKeyTitle": "Or use an API key",
       "apiKeyDescription": "Stored encrypted for this workspace and used only for its requests.",
-      "subscriptionTitle": "Or use a subscription",
+      "subscriptionTitle": "Use a subscription",
       "subscriptionDescription": "Sign in with the official CLI inside your workspace sandbox. Tokens stay in the sandbox."
     },
     "providers": {
