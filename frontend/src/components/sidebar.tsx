@@ -644,9 +644,9 @@ const Sidebar = ({ hideOverlay = false, offsetTop = 0 }: SidebarProps) => {
             className="flex items-center gap-2.5 font-mono text-base tracking-[-0.02em] text-foreground transition-opacity hover:opacity-90"
           >
             <NeuronLogo size={28} className="text-foreground shrink-0" />
-            <span className="flex items-baseline gap-[1ch]">
-              <span className="font-bold">Neuron</span>{" "}
-              <span className="font-light text-muted-foreground">Runner</span>
+            <span className="flex items-baseline">
+              <span className="font-bold">neuron</span>
+              <span className="font-light text-muted-foreground">_runner</span>
             </span>
           </Link>
           <button

@@ -795,9 +795,9 @@
     "back": "Geri",
     "continue": "Sohbete devam et",
     "choose": {
-      "apiKeyTitle": "API anahtarı kullan",
+      "apiKeyTitle": "Ya da bir API anahtarı kullan",
       "apiKeyDescription": "Bu çalışma alanı için şifreli saklanır ve yalnızca onun istekleri için kullanılır.",
-      "subscriptionTitle": "Ya da bir abonelik kullan",
+      "subscriptionTitle": "Bir abonelik kullan",
       "subscriptionDescription": "Resmi CLI ile çalışma alanı sandbox'ında giriş yap. Token'lar sandbox içinde kalır."
     },
     "providers": {

@@ -125,9 +125,9 @@ const Navbar = (_props?: NavbarProps) => {
           className="group flex min-w-0 items-center gap-2.5 justify-self-start transition-opacity hover:opacity-90"
         >
           <NeuronLogo size={32} className="text-foreground transition-transform duration-200 group-hover:scale-105 sm:h-9 sm:w-9" />
-          <div className="hidden items-baseline gap-[1ch] font-mono text-base tracking-tight text-foreground min-[380px]:flex sm:text-lg">
-            <span className="font-bold">Neuron</span>{" "}
-            <span className="font-light text-muted-foreground">Runner</span>
+          <div className="hidden items-baseline font-mono text-base tracking-tight text-foreground min-[380px]:flex sm:text-lg">
+            <span className="font-bold">neuron</span>
+            <span className="font-light text-muted-foreground">_runner</span>
           </div>
         </Link>
 

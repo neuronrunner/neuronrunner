@@ -522,8 +522,8 @@ export default function ConnectorsLandingPage() {
             <Link to="/" className="group flex items-center gap-3 transition-opacity hover:opacity-90">
               <NeuronLogo size={32} className="text-foreground transition-transform duration-200 group-hover:scale-105" />
               <div className="font-mono text-base tracking-tight text-foreground">
-                <span className="font-bold">Neuron</span>{" "}
-                <span className="font-light text-muted-foreground">Runner</span>
+                <span className="font-bold">neuron</span>
+                <span className="font-light text-muted-foreground">_runner</span>
               </div>
             </Link>
             <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
