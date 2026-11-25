@@ -71,7 +71,7 @@ function loadTs(relPath) {
       return {
         usePathname: () => currentPathname,
         useRouter: () => ({ push: () => {}, replace: () => {}, back: () => {} }),
-        isKnownRoute: (p) => ["/", "/new", "/chat", "/pricing", "/integrations", "/docs"].includes(p) || p.startsWith("/chat/"),
+        isKnownRoute: (p) => ["/", "/new", "/chat", "/pricing", "/integrations", "/docs", "/hello"].includes(p) || p.startsWith("/chat/"),
       };
     }
     if (id === "@/lib/utils") return { cn: (...args) => args.filter(Boolean).join(" ") };
@@ -224,4 +224,27 @@ test("Navbar Go to Chat link points to /new when logged in on marketing pages", 
   );
 
   assert.match(html, /href="\/new"/);
+});
+
+test("Navbar on /hello hides top nav links, Go to Chat, and Settings, and shows only Sign out", () => {
+  authState.user = { uuid: "u-1", username: "dev" };
+  authState.token = "valid-token";
+  currentPathname = "/hello";
+
+  const html = renderToStaticMarkup(
+    React.createElement(
+      MemoryRouter,
+      { initialEntries: ["/hello"] },
+      React.createElement(Navbar)
+    )
+  );
+
+  assert.doesNotMatch(html, /href="\/pricing"/);
+  assert.doesNotMatch(html, /href="\/integrations"/);
+  assert.doesNotMatch(html, /href="\/docs"/);
+  assert.doesNotMatch(html, /href="\/new"/);
+  assert.doesNotMatch(html, /navbar\.actions\.goToChat/);
+  assert.doesNotMatch(html, /navbar\.actions\.settings/);
+  assert.match(html, /sidebarAvatar\.signOut/);
+  assert.match(html, /data-stub="LanguageSwitcher"/);
 });

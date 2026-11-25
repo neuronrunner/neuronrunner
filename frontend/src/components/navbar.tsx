@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import SigninDialog from "./signin-dialog";
 import SignupDialog from "./signup-dialog";
 import NeuronLogo from "@/components/neuron-logo";
-import { LuMenu, LuX } from "react-icons/lu";
-import { usePathname, isKnownRoute } from "@/lib/navigation";
+import { LuLogOut, LuMenu, LuX } from "react-icons/lu";
+import { usePathname, useRouter, isKnownRoute } from "@/lib/navigation";
 import useAuthStore from "@/stores/auth";
 import useNavbarStore from "@/stores/navbar";
 import useSigninStore from "@/stores/signin";
@@ -27,6 +27,7 @@ const Navbar = (_props?: NavbarProps) => {
   const { t } = useTranslation("auth");
   const auth = useAuthStore();
   const pathname = usePathname();
+  const router = useRouter();
   const openSignin = useSigninStore((s) => s.setOpen);
   const openSignup = useSignupStore((s) => s.setOpen);
 
@@ -67,8 +68,16 @@ const Navbar = (_props?: NavbarProps) => {
   const isLoggedIn = Boolean(auth.user && auth.token);
   const isChatPage = pathname === "/new" || pathname.startsWith("/chat");
   const isIntegrationsPage = pathname.startsWith("/integrations");
+  const isHelloPage = pathname === "/hello" || pathname.startsWith("/hello/");
   const isNotFound = useNavbarStore((state) => state.isNotFound);
   const is404 = isNotFound || !isKnownRoute(pathname);
+
+  const handleSignOut = () => {
+    setMobileOpen(false);
+    auth.signOut();
+    useNavbarStore.getState().setIsOpen(false);
+    router.push("/");
+  };
 
   const isWorkspaceRoute =
     isLoggedIn && (
@@ -132,46 +141,64 @@ const Navbar = (_props?: NavbarProps) => {
         </Link>
 
         {/* Desktop section links, exactly centered between logo and actions */}
-        <nav
-          aria-label={t("navbar.menu.label")}
-          className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 whitespace-nowrap text-sm text-muted-foreground xl:flex"
-        >
-          {navLinks.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              aria-current={isActive(link.to) ? "page" : undefined}
-              className={cn(
-                "rounded-lg px-3 py-1.5 transition-colors hover:bg-muted/60 hover:text-foreground",
-                isActive(link.to) && "bg-muted/60 font-medium text-foreground"
-              )}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+        {!isHelloPage && (
+          <nav
+            aria-label={t("navbar.menu.label")}
+            className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 whitespace-nowrap text-sm text-muted-foreground xl:flex"
+          >
+            {navLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                aria-current={isActive(link.to) ? "page" : undefined}
+                className={cn(
+                  "rounded-lg px-3 py-1.5 transition-colors hover:bg-muted/60 hover:text-foreground",
+                  isActive(link.to) && "bg-muted/60 font-medium text-foreground"
+                )}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+        )}
 
         {/* Actions */}
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2.5">
-          <LanguageSwitcher className="hidden h-8 w-[130px] shrink-0 rounded-lg border-border/80 bg-background/80 px-2.5 text-xs sm:flex sm:w-[130px]" />
+          <LanguageSwitcher
+            className={cn(
+              "h-8 shrink-0 rounded-lg border-border/80 bg-background/80 px-2.5 text-xs",
+              isHelloPage ? "flex w-[115px] sm:w-[130px]" : "hidden w-[130px] sm:flex sm:w-[130px]"
+            )}
+          />
           {isLoggedIn ? (
-            <>
-              <Link
-                to="/new"
-                className="shrink-0 whitespace-nowrap rounded-lg bg-foreground px-3 py-1.5 text-xs font-semibold text-background shadow-xs transition-transform hover:-translate-y-0.5 sm:px-3.5 sm:text-sm"
+            isHelloPage ? (
+              <button
+                type="button"
+                onClick={handleSignOut}
+                className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-lg border border-border/80 bg-background/80 px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-muted/70 sm:text-sm"
               >
-                {t("navbar.actions.goToChat")}
-              </Link>
-              {auth.user && (
-                <button
-                  type="button"
-                  onClick={() => useWorkspacesStore.getState().setWorkspaceSettingsDialogOpen(true, "workspace")}
-                  className="hidden shrink-0 whitespace-nowrap rounded-lg border border-border/80 bg-background/80 px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-muted/70 sm:inline-flex sm:text-sm"
+                <LuLogOut className="h-3.5 w-3.5" />
+                {t("sidebarAvatar.signOut")}
+              </button>
+            ) : (
+              <>
+                <Link
+                  to="/new"
+                  className="shrink-0 whitespace-nowrap rounded-lg bg-foreground px-3 py-1.5 text-xs font-semibold text-background shadow-xs transition-transform hover:-translate-y-0.5 sm:px-3.5 sm:text-sm"
                 >
-                  {t("navbar.actions.settings", { defaultValue: "Settings" })}
-                </button>
-              )}
-            </>
+                  {t("navbar.actions.goToChat")}
+                </Link>
+                {auth.user && (
+                  <button
+                    type="button"
+                    onClick={() => useWorkspacesStore.getState().setWorkspaceSettingsDialogOpen(true, "workspace")}
+                    className="hidden shrink-0 whitespace-nowrap rounded-lg border border-border/80 bg-background/80 px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-muted/70 sm:inline-flex sm:text-sm"
+                  >
+                    {t("navbar.actions.settings", { defaultValue: "Settings" })}
+                  </button>
+                )}
+              </>
+            )
           ) : (
             <>
               <button
@@ -193,22 +220,24 @@ const Navbar = (_props?: NavbarProps) => {
           <SigninDialog hideTrigger />
           <SignupDialog hideTrigger />
 
-          <div className="relative xl:hidden">
-            <button
-              type="button"
-              onClick={() => setMobileOpen((open) => !open)}
-              aria-expanded={mobileOpen}
-              aria-controls="mobile-nav"
-              aria-label={mobileOpen ? t("navbar.menu.close") : t("navbar.menu.open")}
-              className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border/70 bg-background/70 text-foreground transition-colors hover:bg-muted/70 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-            >
-              {mobileOpen ? <LuX className="h-4 w-4" /> : <LuMenu className="h-4 w-4" />}
-            </button>
-          </div>
+          {!isHelloPage && (
+            <div className="relative xl:hidden">
+              <button
+                type="button"
+                onClick={() => setMobileOpen((open) => !open)}
+                aria-expanded={mobileOpen}
+                aria-controls="mobile-nav"
+                aria-label={mobileOpen ? t("navbar.menu.close") : t("navbar.menu.open")}
+                className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border/70 bg-background/70 text-foreground transition-colors hover:bg-muted/70 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+              >
+                {mobileOpen ? <LuX className="h-4 w-4" /> : <LuMenu className="h-4 w-4" />}
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
-      {mobileOpen && (
+      {!isHelloPage && mobileOpen && (
         <>
           <button
             type="button"
