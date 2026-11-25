@@ -107,7 +107,7 @@
       "schemaName": "Preise — Neuron Runner",
       "description": "Transparente sekundengenaue Cloud-Rechenleistung und Abonnementpläne für autonome KI-Agenten. Free, Plus ($10) und Pro ($25) mit dedizierten Linux-VMs sowie BYOS- und BYOK-Unterstützung.",
       "faq1Question": "Wie funktioniert die Compute-Abrechnung für autonome Cloud-Agenten?",
-      "faq1Answer": "Jeder Plan enthält ein monatliches USD-Kontingent ($0,50 Free, $10 Plus, $25 Pro) für LLM-Tokens und sekundengenaue Cloud-VM-Laufzeit ($0,16/Std. 4 Kerne, $0,24/Std. 6 Kerne, $0,32/Std. 8 Kerne; $0,00/Std. bei gestoppter VM). Free und Plus decken die 6 Free-Tier-Modelle ab, Pro alle Modelle. Premium-Modelle bei Free und Plus werden von deinem Wallet abgerechnet.",
+      "faq1Answer": "Jeder Plan enthält ein monatliches USD-Compute-Kontingent ($0.50 Free, $10 Plus, $25 Pro) für sekundengenaue Cloud-VM-Laufzeit ($0.16/Std. 4-Core, $0.24/Std. 6-Core, $0.32/Std. 8-Core; $0.00/Std. im Stopp-Zustand). Nutze dein eigenes KI-Abo (BYOS) oder eigene API-Keys (BYOK) mit 0 % Plattformaufschlag.",
       "faq2Question": "Kann ich meine eigenen API-Keys (BYOK) mitbringen?",
       "faq2Answer": "Ja! In jedem Tarif — einschließlich Free — kannst du in den Workspace-Einstellungen eigene API-Keys für Anthropic, OpenAI, DeepSeek oder benutzerdefinierte Anbieter ohne Plattformgebühr (0 %) hinterlegen."
     }
@@ -484,10 +484,10 @@
   },
   "pricingPage": {
     "hero": {
-      "badge": "Planbare Tarife · Transparente Token-Preise · 0,00 $ für gestoppte VMs",
-      "titleLine1": "Einfache Pläne, die mit dir wachsen.",
-      "titleLine2": "Transparente Token-Preise.",
-      "subtitle": "Starte kostenlos mit <s1>$0,50/Monat an kostenloser LLM- und Cloud-VM-Nutzung</s1>, wechsle zu <s2>Plus ($10) oder Pro ($25)</s2> für dedizierte Linux-VMs mit deinem eigenen Claude-Code-, Codex- oder Antigravity-Abo – oder bring deine eigenen API-Schlüssel mit 0 % Plattformgebühr mit. Pro enthält alle Modelle im Kontingent; bei Free und Plus werden Premium-Modelle nach Verbrauch abgerechnet."
+      "badge": "Planbare VM-Tarife · Sekundengenaue Abrechnung · $0.00 im Leerlauf",
+      "titleLine1": "Einfache VM-Pläne, die mit dir wachsen.",
+      "titleLine2": "Bring deine eigene KI mit.",
+      "subtitle": "Starte kostenlos mit <s1>$0.50/Monat Cloud-VM-Compute</s1>, upgrade auf <s2>Plus ($10) oder Pro ($25)</s2> für dedizierte Linux-VMs mit deinem eigenen Claude Code-, Codex- oder Antigravity-Abo oder verbinde eigene API-Keys ohne Plattformaufschlag."
     },
     "planLabels": {
       "llmAllowance": "Nutzungskontingent (LLM + VM)",
@@ -498,7 +498,7 @@
         "name": "Free",
         "period": "/ Monat",
         "badge": "Dauerhaft kostenlos",
-        "tagline": "Entdecke autonomes Coding mit schnellen Free-Tier-Modellen, BYOK und Starter-Cloud-VMs.",
+        "tagline": "Entdecke autonomes Coding mit Starter-Cloud-Linux-VMs, BYOS und BYOK.",
         "llmAllowance": "0,50 $ / Monat",
         "vcpuQuota": "Bis 2 vCPU-Std / Mon",
         "vcpuSubnote": "Für Free-LLMs & 4-Core-VM (0,16 $/Std)",
@@ -563,11 +563,11 @@
     "mechanics": {
       "wallet": {
         "title": "Extra-Nutzungs-Wallet (ab 10 $ Aufladung)",
-        "description": "Dein Plankontingent wird immer zuerst verbraucht; Abonnements fügen kein Bargeld zum Wallet hinzu. Lade auf (min. <s1>$10,00</s1>, 0 % Gebühr) für Kontingentüberschreitung, Premium-Modelle bei Free und Plus oder eigenständige Cloud-VM-Rechenzeit nach Verbrauch ($0,16–$0,32/Std.) mit BYOS/BYOK."
+        "description": "Dein Plan-VM-Kontingent wird immer zuerst genutzt; Abos fügen kein Guthaben hinzu. Lade ab <s1>$10.00</s1> (0 % Gebühr) für zusätzliche Cloud-VM-Laufzeit ($0.16–$0.32/Std.) auf."
       },
       "byok": {
         "title": "Bring Your Own Key (0 % Gebühr)",
-        "description": "Verbinde eigene Anthropic-, OpenAI-, DeepSeek- oder benutzerdefinierte Keys mit <s1>0,00 $ Plattformaufschlag</s1> (verbraucht kein Plankontingent; Bezahlmodelle im Free-Tarif erfordern Guthaben oder ein Bezahlabo)."
+        "description": "Verbinde eigene OpenRouter-, OpenAI-, Gemini-, DeepSeek-, Groq- oder Custom-API-Keys mit <s1>$0.00 Plattformaufschlag</s1> — Tokens zahlst du direkt an deinen Anbieter."
       },
       "byos": {
         "title": "Eigenes Abo mitbringen (BYOS)",
@@ -576,33 +576,11 @@
     },
     "breakdown": {
       "eyebrow": "Transparente Aufschlüsselung",
-      "title": "Modellpreise, Cloud-VMs & Tarif-Details entdecken",
+      "title": "Cloud-VMs & Plan-Details im Überblick",
       "tabs": {
-        "models": "KI-Modellpreise ({{count}})",
         "vms": "Cloud-Sandbox-VMs & VNC",
         "compare": "Tarife vergleichen"
       }
-    },
-    "models": {
-      "filters": {
-        "all": "Alle Modelle ({{count}})",
-        "free": "Im Free-Tarif ({{count}})",
-        "paid": "Premium ({{count}})"
-      },
-      "searchPlaceholder": "Modell oder Anbieter suchen…",
-      "columns": {
-        "model": "Modell",
-        "context": "Kontext",
-        "planAccess": "Tarifzugriff",
-        "input": "Input / 1M",
-        "output": "Output / 1M",
-        "cacheRead": "Cache-Read / 1M"
-      },
-      "accessBadges": {
-        "free": "Free + Alle Tarife",
-        "paid": "Pro · oder Wallet"
-      },
-      "empty": "Keine Modelle entsprechen deiner Suche."
     },
     "vms": {
       "vcpuHrsUnit": "{{cpu}} vCPU-Std",
@@ -696,18 +674,11 @@
           "team": "200 $ / Mon"
         },
         {
-          "feature": "Monatliches Budget (LLM + VM)",
+          "feature": "Monatliches VM-Kontingent",
           "free": "0,50 $ / Mon",
           "plus": "$10,00 / Monat",
           "pro": "$25,00 / Monat",
           "team": "200,00 $ / Mon"
-        },
-        {
-          "feature": "Verfügbare Modelle",
-          "free": "6 Free-Tier-Modelle",
-          "plus": "6 Free-Tier-Modelle (Premium über Wallet)",
-          "pro": "Alle Modelle (gemeinsames Kontingent)",
-          "team": "Alle 16 Frontier-Modelle"
         },
         {
           "feature": "Cloud-VM-Tarif (vom Budget)",
@@ -784,38 +755,38 @@
     "faq": {
       "eyebrow": "FAQ",
       "title": "Fragen & Antworten",
-      "description": "Alles, was du über einheitliche Monatskontingente, sekundengenaue VM-Tarife und Aufladungen für zusätzliche Nutzung wissen musst.",
+      "description": "Alles über monatliche VM-Kontingente, sekundengenaue VM-Tarife und Guthaben-Aufladungen.",
       "docsLink": "Dokumentation lesen",
       "items": [
         {
-          "question": "Wie funktioniert das einheitliche monatliche Nutzungskontingent?",
-          "answer": "Plus ($10) und Pro ($25) enthalten ein monatliches USD-Kontingent ($10 Plus, $25 Pro; Free hat $0,50) für Cloud-VM-Laufzeit und LLM-Tokens. Pro deckt alle Modelle ab; Free und Plus decken die 6 Free-Tier-Modelle ab und rechnen Premium-Modelle über dein Wallet ab."
+          "question": "Wie funktioniert das monatliche VM-Kontingent?",
+          "answer": "Plus ($10) und Pro ($25) enthalten ein monatliches USD-Kontingent ($10 Plus, $25 Pro; Free $0.50) ausschließlich für Cloud-VM-Laufzeit. Deine eigene KI verbindest du per BYOS oder BYOK ohne Plattformaufschlag."
         },
         {
-          "question": "Wie werden Cloud-Sandbox-VMs abgerechnet?",
-          "answer": "Laufende VMs belasten sekundengenau Ihr einheitliches Monatsbudget mit 0,16 $/Std (4-Core), 0,24 $/Std (6-Core) oder 0,32 $/Std (8-Core). Gestoppte VMs kosten 0,00 $/Std."
+          "question": "Wie wird die Laufzeit von Cloud-Sandbox-VMs abgerechnet?",
+          "answer": "Aktive VMs werden sekundengenau vom monatlichen Kontingent abgebucht: $0.16/Std. (4-Core), $0.24/Std. (6-Core) und $0.32/Std. (8-Core). Gestoppte VMs kosten $0.00/Std."
         },
         {
-          "question": "Wie greife ich im Free-Tarif auf Cloud-Sandbox-VMs zu?",
-          "answer": "Der Free-Tarif bietet 0,50 $/Mon für Free-Tier-Modelle und 4-Core-Cloud-VMs (0,16 $/Std). Schließe einfach die Kontoverifizierung in den Einstellungen ab."
+          "question": "Wie erhalte ich Cloud-Sandbox-VMs im Free-Tarif?",
+          "answer": "Der Free-Tarif enthält $0.50/Monat VM-Kontingent für 4-Core-Cloud-VMs ($0.16/Std.). Schließe die Standard-Kontoverifizierung in den Einstellungen ab, um VMs zu starten."
         },
         {
-          "question": "Was passiert bei Überschreitung des Tarifbudgets?",
-          "answer": "Dein monatliches Plankontingent wird immer zuerst verbraucht — Abonnements schalten Plankontingente frei, statt Wallet-Guthaben hinzuzufügen, und laufende VMs bleiben auch bei 0,00 $ Wallet-Guthaben online, solange Plankontingent vorhanden ist. Sobald das Kontingent 0 erreicht, werden Überschreitungen von deinem Extra-Nutzungs-Wallet (mind. 10,00 $ Aufladung) abgebucht."
+          "question": "Was passiert, wenn mein Plan-Kontingent aufgebraucht ist?",
+          "answer": "Dein Plan-Kontingent wird immer zuerst verbraucht. Ist es bei 0, wird zusätzliche VM-Laufzeit über dein Guthaben (ab $10.00 Aufladung) abgerechnet."
         },
         {
-          "question": "Warum gibt es ein Minimum von 10,00 $ für Extra-Aufladungen?",
-          "answer": "Ein Mindestbetrag von 10,00 $ hält die Zahlungsabwicklung schlank, sodass wir beim Aufladen keine zusätzliche Checkout-Gebühr verlangen müssen. 100 % des gezahlten Betrags werden deinem Guthaben gutgeschrieben und verfallen nie."
+          "question": "Warum gilt ein Mindestbetrag von $10.00 für Aufladungen?",
+          "answer": "Der Mindestbetrag hält die Zahlungsgebühren niedrig, sodass wir keinen Aufschlag berechnen. 100 % deiner Zahlung landen als nicht verfallendes Guthaben in deinem Workspace."
         },
         {
-          "question": "Kann ich weiterhin meine eigenen API-Keys (BYOK) nutzen?",
-          "answer": "Ja! Füge Anthropic-, OpenAI-, DeepSeek- oder eigene Anbieter-Schlüssel in den Workspace-Einstellungen ohne Plattformaufschlag (0 %) hinzu. BYOK-Anfragen verbrauchen nie das LLM-Guthaben deines Plans; bei Free und Plus brauchen Premium-Modelle Wallet-Guthaben, Pro deckt sie aus dem Kontingent ab."
+          "question": "Wie verbinde ich meine eigene KI (BYOS / BYOK)?",
+          "answer": "Melde dich in der Sandbox-VM mit Claude Pro/Max, ChatGPT Plus/Pro oder Antigravity an oder hinterlege OpenRouter-, OpenAI-, Gemini-, DeepSeek-, Groq- oder Custom-API-Keys in den Workspace-Einstellungen mit 0 % Aufschlag."
         }
       ]
     },
     "bottomCta": {
       "title": "Heute kostenlos starten. Bei Bedarf upgraden.",
-      "description": "Hol dir $0,50/Monat an Free-Tier-LLM- und Cloud-VM-Nutzung im Free-Plan oder dedizierte Linux-VMs mit deinem eigenen Agent-Abo bei Plus ($10) und Pro ($25).",
+      "description": "Starte mit $0.50/Monat Cloud-VM-Compute im Free-Tarif oder upgrade auf Plus ($10) und Pro ($25) für dedizierte Linux-VMs mit deinem eigenen KI-Abo oder API-Keys.",
       "managePlan": "Workspace-Tarif verwalten",
       "getStarted": "Kostenlos starten",
       "signIn": "Anmelden"
@@ -828,13 +799,12 @@
     },
     "specs": {
       "labels": {
-        "quota": "Monatskontingent",
+        "quota": "Monatliches VM-Kontingent",
         "vcpu": "Enthaltene VM-Rechenzeit",
         "vm": "Max. VM-Größe",
         "session": "Sitzungsdauer",
         "snapshots": "Snapshots",
         "members": "Mitglieder",
-        "llm": "LLM-Modelle",
         "byo": "BYOS / BYOK"
       },
       "vcpuValue": "{{hours}} vCPU-Std.",
@@ -843,18 +813,13 @@
       "vmSize": "{{cores}} Kerne · {{ram}} GB RAM",
       "minutes": "{{minutes}} Min.",
       "none": "Keine",
-      "llm": {
-        "free": "6 Free-Tier-Modelle",
-        "plus": "6 Free-Tier · bis zu $2/Monat",
-        "pro": "Alle Modelle · gemeinsamer Pool"
-      },
       "included": "Enthalten",
       "freeFootnote": "* VM-Zugriff im Free-Plan erfordert die Standard-Kontoverifizierung.",
       "limits": {
         "title": "Was passiert, wenn mein Kontingent aufgebraucht ist?",
         "p1": "Das Kontingent wird mit jedem Abrechnungszeitraum zurückgesetzt und ist nicht unbegrenzt.",
-        "p2": "Lade dein Wallet auf, damit VMs und Modelle weiterlaufen, oder warte auf den nächsten Zeitraum.",
-        "p3": "Bei Free und Plus werden Premium-Modelle von deinem Wallet abgerechnet. Pro deckt sie aus dem Kontingent ab."
+        "p2": "Lade dein Guthaben auf, damit VMs weiterlaufen, oder warte auf den nächsten Abrechnungszeitraum.",
+        "p3": "Gestoppte VMs kosten $0.00/Std., und eigene KI-Abos oder API-Keys laufen immer mit 0 % Plattformaufschlag."
       }
     }
   },

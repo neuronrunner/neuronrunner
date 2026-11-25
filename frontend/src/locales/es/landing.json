@@ -107,7 +107,7 @@
       "schemaName": "Precios — Neuron Runner",
       "description": "Cómputo en la nube con facturación por segundo y planes de suscripción transparentes para agentes de IA autónomos. Niveles Free, Plus ($10) y Pro ($25) con VM Linux dedicadas y soporte BYOS y BYOK.",
       "faq1Question": "¿Cómo funciona la facturación de cómputo para agentes autónomos en la nube?",
-      "faq1Answer": "Cada plan incluye una cuota mensual en USD ($0,50 Free, $10 Plus, $25 Pro) para tokens de LLM y ejecución de VM en la nube por segundo ($0,16/h 4 núcleos, $0,24/h 6 núcleos, $0,32/h 8 núcleos; $0,00/h en pausa). Free y Plus cubren los 6 modelos del plan gratuito; Pro cubre todos los modelos. Los modelos premium en Free y Plus se cobran de tu monedero.",
+      "faq1Answer": "Cada plan incluye una cuota mensual de cómputo en USD ($0.50 Free, $10 Plus, $25 Pro) para uso por segundo de Cloud VMs ($0.16/h 4 núcleos, $0.24/h 6 núcleos, $0.32/h 8 núcleos; $0.00/h detenidas). Conecta tu propia suscripción de IA (BYOS) o claves API (BYOK) con 0% de margen.",
       "faq2Question": "¿Puedo traer mis propias claves API (BYOK)?",
       "faq2Answer": "¡Sí! En todos los planes, incluido Free, puedes añadir tus propias claves API de Anthropic, OpenAI, DeepSeek o proveedores personalizados en Configuración del espacio de trabajo con 0% de recargo de plataforma."
     }
@@ -484,10 +484,10 @@
   },
   "pricingPage": {
     "hero": {
-      "badge": "Planes predecibles · Tarifas de tokens transparentes · VMs inactivas a $0.00",
-      "titleLine1": "Planes simples que escalan contigo.",
-      "titleLine2": "Precios de tokens transparentes.",
-      "subtitle": "Empieza gratis con <s1>$0,50/mes de uso gratuito de LLM y VM en la nube</s1>, pasa a <s2>Plus ($10) o Pro ($25)</s2> para tener VM Linux dedicadas con tu propia suscripción de Claude Code, Codex o Antigravity, o trae tus propias claves de API con 0 % de comisión de plataforma. Pro incluye todos los modelos en su cuota; en Free y Plus, los modelos premium se pagan por uso."
+      "badge": "Planes de VM Predecibles · Cobro por Segundo · $0.00 VMs Inactivas",
+      "titleLine1": "Planes de VM simples que escalan contigo.",
+      "titleLine2": "Trae tu propia IA.",
+      "subtitle": "Empieza gratis con <s1>$0.50/mes de cómputo en Cloud VM</s1>, mejora a <s2>Plus ($10) o Pro ($25)</s2> para VMs Linux dedicadas con tu suscripción de Claude Code, Codex o Antigravity, o conecta tus propias claves API con 0% de comisión."
     },
     "planLabels": {
       "llmAllowance": "Cuota de uso (LLM + VM)",
@@ -498,7 +498,7 @@
         "name": "Free",
         "period": "/ mes",
         "badge": "Gratis para siempre",
-        "tagline": "Explora la programación autónoma con modelos rápidos del nivel gratuito, BYOK y VMs iniciales.",
+        "tagline": "Explora la programación autónoma con VMs Linux iniciales en la nube, BYOS y BYOK.",
         "llmAllowance": "$0.50 / mes",
         "vcpuQuota": "Hasta 2 vCPU-h / mes",
         "vcpuSubnote": "Cubre LLMs Free y VM de 4 núcleos ($0.16/h)",
@@ -563,11 +563,11 @@
     "mechanics": {
       "wallet": {
         "title": "Monedero de uso extra (recarga desde $10)",
-        "description": "Primero se usa siempre la cuota de tu plan; las suscripciones no añaden efectivo al monedero. Recarga (mín. <s1>$10,00</s1>, 0 % de comisión) para excedentes de cuota, modelos premium en Free y Plus o cómputo de VM en la nube de pago por uso ($0,16–$0,32/h) con BYOS/BYOK."
+        "description": "Tu cuota de VM del plan se usa siempre primero; las suscripciones no añaden saldo al monedero. Recarga (mín. <s1>$10.00</s1>, 0% comisión) para cómputo extra de Cloud VM ($0.16–$0.32/h)."
       },
       "byok": {
         "title": "Trae tu propia clave (0% comisión)",
-        "description": "Conecta tus claves de Anthropic, OpenAI, DeepSeek o personalizadas con <s1>$0.00 de recargo</s1> (no consume cuota del plan; los modelos de pago en Free requieren saldo o plan de pago)."
+        "description": "Conecta tus claves de OpenRouter, OpenAI, Gemini, DeepSeek, Groq o endpoints propios con <s1>$0.00 de recargo</s1> — solo pagas los tokens directamente a tu proveedor."
       },
       "byos": {
         "title": "Trae Tu Propia Suscripción (BYOS)",
@@ -576,33 +576,11 @@
     },
     "breakdown": {
       "eyebrow": "Desglose transparente",
-      "title": "Explora tarifas de modelos, VMs en la nube y especificaciones",
+      "title": "Explora VMs en la nube y especificaciones",
       "tabs": {
-        "models": "Tarifas de modelos IA ({{count}})",
         "vms": "VMs Sandbox y VNC",
         "compare": "Comparar planes"
       }
-    },
-    "models": {
-      "filters": {
-        "all": "Todos los modelos ({{count}})",
-        "free": "Incluidos en Free ({{count}})",
-        "paid": "Premium ({{count}})"
-      },
-      "searchPlaceholder": "Buscar modelo o proveedor…",
-      "columns": {
-        "model": "Modelo",
-        "context": "Contexto",
-        "planAccess": "Acceso por plan",
-        "input": "Entrada / 1M",
-        "output": "Salida / 1M",
-        "cacheRead": "Lectura caché / 1M"
-      },
-      "accessBadges": {
-        "free": "Free + Todos los planes",
-        "paid": "Pro · o monedero"
-      },
-      "empty": "Ningún modelo coincide con tu búsqueda."
     },
     "vms": {
       "vcpuHrsUnit": "{{cpu}} vCPU-h",
@@ -696,18 +674,11 @@
           "team": "$200 / mes"
         },
         {
-          "feature": "Cuota mensual de uso (LLM + VM)",
+          "feature": "Cuota Mensual de VM",
           "free": "$0.50 / mes",
           "plus": "$10,00 / mes",
           "pro": "$25,00 / mes",
           "team": "$200.00 / mes"
-        },
-        {
-          "feature": "Modelos accesibles",
-          "free": "6 modelos gratuitos",
-          "plus": "6 modelos del plan gratuito (premium vía monedero)",
-          "pro": "Todos los modelos (cuota compartida)",
-          "team": "Los 16 modelos de frontera"
         },
         {
           "feature": "Tarifa Cloud VM (de cuota)",
@@ -777,38 +748,38 @@
     "faq": {
       "eyebrow": "Preguntas frecuentes",
       "title": "Preguntas y respuestas",
-      "description": "Todo lo que necesitas saber sobre las cuotas mensuales unificadas, las tarifas de VM por segundo y las recargas de uso adicional.",
+      "description": "Todo lo que necesitas saber sobre cuotas mensuales de VM, tarifas por segundo y recargas extra.",
       "docsLink": "Leer la documentación",
       "items": [
         {
-          "question": "¿Cómo funciona la cuota mensual unificada?",
-          "answer": "Plus ($10) y Pro ($25) incluyen una cuota mensual en USD ($10 Plus, $25 Pro; Free tiene $0,50) para ejecución de VM en la nube y tokens de LLM. Pro cubre todos los modelos; Free y Plus cubren los 6 modelos del plan gratuito y cobran los premium de tu monedero."
+          "question": "¿Cómo funciona la cuota mensual de VM?",
+          "answer": "Plus ($10) y Pro ($25) incluyen una cuota mensual en USD ($10 Plus, $25 Pro; Free $0.50) dedicada exclusivamente al tiempo de ejecución de Cloud VMs. Conecta tu propia suscripción (BYOS) o claves API (BYOK) sin recargo."
         },
         {
-          "question": "¿Cómo se cobra el tiempo de ejecución de las VMs en la nube?",
-          "answer": "Las VMs activas descuentan por segundo de tu cuota mensual unificada a $0.16/h (4 núcleos), $0.24/h (6 núcleos) y $0.32/h (8 núcleos). Las VMs detenidas cuestan $0.00/h."
+          "question": "¿Cómo se factura el tiempo de ejecución de las Cloud Sandbox VMs?",
+          "answer": "Las VMs activas se descuentan por segundo de tu cuota mensual a $0.16/h (4 núcleos), $0.24/h (6 núcleos) y $0.32/h (8 núcleos). Las VMs detenidas cuestan $0.00/h."
         },
         {
-          "question": "¿Cómo accedo a las VMs Sandbox en la nube en el plan Free?",
-          "answer": "El plan Free ofrece $0.50/mes válidos para modelos gratuitos y VMs de 4 núcleos ($0.16/h). Completa la verificación de cuenta en Configuración para desbloquear VMs."
+          "question": "¿Cómo accedo a Cloud Sandbox VMs en el plan Free?",
+          "answer": "El plan Free incluye $0.50/mes de cuota para Cloud VMs de 4 núcleos ($0.16/h). Completa la verificación estándar de cuenta en Ajustes para desbloquear el inicio de VMs."
         },
         {
           "question": "¿Qué ocurre si supero la cuota de mi plan?",
-          "answer": "Tu cuota mensual del plan siempre se consume primero: las suscripciones desbloquean cuotas del plan en lugar de añadir saldo en efectivo, y las VMs activas siguen funcionando con $0.00 de saldo mientras quede cuota del plan. Cuando la cuota llega a 0, el excedente se deduce de tu monedero de uso adicional (recarga mín. $10.00)."
+          "answer": "Tu cuota mensual se consume siempre primero. Al llegar a 0, el uso adicional de VM se descuenta de tu monedero de uso extra (recarga mínima de $10.00)."
         },
         {
-          "question": "¿Por qué hay un mínimo de $10.00 en las recargas de uso extra?",
-          "answer": "Un mínimo de $10.00 mantiene bajos los costos de procesamiento de pagos para no tener que cobrarte comisiones adicionales al pagar. El 100% de lo que pagas se acredita directamente en tu saldo sin vencimiento."
+          "question": "¿Por qué hay un mínimo de $10.00 en las recargas?",
+          "answer": "El mínimo de $10.00 mantiene bajas las comisiones de pago para no cobrarte cargos extra. El 100% se acredita a tu saldo sin vencimiento."
         },
         {
-          "question": "¿Puedo seguir trayendo mis propias claves API (BYOK)?",
-          "answer": "¡Sí! Añade claves de Anthropic, OpenAI, DeepSeek o de proveedores personalizados en Ajustes del espacio de trabajo con 0 % de recargo de plataforma. Las solicitudes BYOK nunca consumen la asignación de LLM de tu plan; en Free y Plus los modelos premium requieren fondos en el monedero, mientras que Pro los cubre con su cuota."
+          "question": "¿Cómo conecto mi propia IA (BYOS / BYOK)?",
+          "answer": "Inicia sesión con Claude Pro/Max, ChatGPT Plus/Pro o Antigravity dentro de tu sandbox VM, o añade tus claves de OpenRouter, OpenAI, Gemini, DeepSeek, Groq o proveedor personalizado en Ajustes con 0% de margen."
         }
       ]
     },
     "bottomCta": {
       "title": "Empieza gratis hoy. Escala conforme lanzas.",
-      "description": "Obtén $0,50/mes de uso gratuito de LLM y VM en la nube en el plan Free, o VM Linux dedicadas con tu propia suscripción de agente en Plus ($10) y Pro ($25).",
+      "description": "Obtén $0.50/mes de Cloud VM en el plan Free o pasa a Plus ($10) y Pro ($25) para VMs Linux dedicadas con tu propia suscripción de IA o claves API.",
       "managePlan": "Gestionar plan del espacio",
       "getStarted": "Comenzar gratis",
       "signIn": "Iniciar sesión"
@@ -821,13 +792,12 @@
     },
     "specs": {
       "labels": {
-        "quota": "Cuota mensual",
+        "quota": "Cuota mensual de VM",
         "vcpu": "Cómputo de VM incluido",
         "vm": "Tamaño máx. de VM",
         "session": "Duración de sesión",
         "snapshots": "Snapshots",
         "members": "Miembros",
-        "llm": "Modelos LLM",
         "byo": "BYOS / BYOK"
       },
       "vcpuValue": "{{hours}} vCPU-h",
@@ -836,18 +806,13 @@
       "vmSize": "{{cores}} núcleos · {{ram}} GB de RAM",
       "minutes": "{{minutes}} min",
       "none": "Ninguno",
-      "llm": {
-        "free": "6 modelos del plan gratuito",
-        "plus": "6 del plan gratuito · hasta $2/mes",
-        "pro": "Todos los modelos · bolsa compartida"
-      },
       "included": "Incluido",
       "freeFootnote": "* El acceso a VM en Free requiere la verificación estándar de la cuenta.",
       "limits": {
         "title": "¿Qué pasa cuando se agota mi cuota?",
         "p1": "La cuota se reinicia en cada ciclo de facturación y no es ilimitada.",
-        "p2": "Recarga tu monedero para que las VM y los modelos sigan funcionando, o espera al próximo ciclo.",
-        "p3": "En Free y Plus, los modelos premium se cobran de tu monedero. Pro los cubre con su cuota."
+        "p2": "Recarga tu monedero para seguir usando tus VMs o espera al siguiente ciclo de facturación.",
+        "p3": "Las VMs detenidas cuestan $0.00/h y tus suscripciones o claves API siempre corren con 0% de comisión."
       }
     }
   },

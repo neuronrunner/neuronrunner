@@ -107,7 +107,7 @@
       "schemaName": "定价 — Neuron Runner",
       "description": "面向自主 AI Agent 的透明按秒计费云算力与订阅方案。Free、Plus（$10）和 Pro（$25）层级，提供专属 Linux 虚拟机，并支持 BYOS 与 BYOK。",
       "faq1Question": "自主云端智能体的算力如何计费？",
-      "faq1Answer": "每个方案都包含每月美元额度（Free $0.50、Plus $10、Pro $25），可用于 LLM Token 与按秒计费的云虚拟机运行时间（4 核 $0.16/小时，6 核 $0.24/小时，8 核 $0.32/小时；停止时 $0.00/小时）。Free 和 Plus 涵盖 6 个免费层模型，Pro 涵盖所有模型。Free 和 Plus 中的高级模型从您的钱包扣费。",
+      "faq1Answer": "每个方案均包含按秒计费的 Cloud VM 每月美元算力额度（Free $0.50、Plus $10、Pro $25；4核 $0.16/小时、6核 $0.24/小时、8核 $0.32/小时，停止时 $0.00/小时）。您可以 0% 平台加价连接自有 AI 订阅（BYOS）或 API 密钥（BYOK）。",
       "faq2Question": "我可以使用自己的 API 密钥（BYOK）吗？",
       "faq2Answer": "可以！在包括 Free 在内的所有方案中，您都可以在工作区设置中添加自己的 Anthropic、OpenAI、DeepSeek 或自定义提供商 API 密钥，享受 0% 平台加价。"
     }
@@ -484,10 +484,10 @@
   },
   "pricingPage": {
     "hero": {
-      "badge": "可预测方案 · 透明 Token 费率 · 空闲虚拟机 $0.00",
-      "titleLine1": "随您成长的简洁方案。",
-      "titleLine2": "透明的 Token 定价。",
-      "subtitle": "免费开始，每月享 <s1>$0.50 的免费 LLM 与云虚拟机用量</s1>；升级到 <s2>Plus（$10）或 Pro（$25）</s2>，即可结合您自己的 Claude Code、Codex 或 Antigravity 订阅使用专属 Linux 虚拟机，也可以自带 API 密钥，平台费用 0%。Pro 的额度包含所有模型；Free 和 Plus 的高级模型按用量计费。"
+      "badge": "透明 VM 方案 · 按秒计费 · 停止时 $0.00",
+      "titleLine1": "随你扩展的简洁 VM 方案。",
+      "titleLine2": "自带你的 AI。",
+      "subtitle": "免费获赠 <s1>$0.50/月 Cloud VM 算力</s1>，升级至 <s2>Plus ($10) 或 Pro ($25)</s2> 即可使用专属 Linux VM 运行你自己的 Claude Code、Codex 或 Antigravity 订阅，或 0% 平台费用连接自有 API 密钥。"
     },
     "planLabels": {
       "llmAllowance": "使用额度 (LLM + VM)",
@@ -498,7 +498,7 @@
         "name": "Free",
         "period": "/ 月",
         "badge": "永久免费",
-        "tagline": "使用高速免费版模型、BYOK 与入门级云端虚拟机体验自主编程。",
+        "tagline": "使用入门级云端 Linux VM、BYOS 和 BYOK 体验自主编程。",
         "llmAllowance": "$0.50 / 月",
         "vcpuQuota": "每月最高 2 vCPU 小时",
         "vcpuSubnote": "覆盖免费 LLM 与 4 核 VM ($0.16/时)",
@@ -563,11 +563,11 @@
     "mechanics": {
       "wallet": {
         "title": "额外用量钱包（$10 起充）",
-        "description": "始终优先使用您的方案额度；订阅不会向钱包添加现金。如需额度超出部分、Free 和 Plus 中的高级模型，或搭配 BYOS/BYOK 的独立按量云虚拟机算力（$0.16–$0.32/小时），请充值（最低 <s1>$10.00</s1>，0% 手续费）。"
+        "description": "始终优先消耗方案内的 VM 额度；订阅不会向钱包充值。需要更多 Cloud VM 运行时长（$0.16–$0.32/小时）时可随时充值（最低 <s1>$10.00</s1>，0% 手续费）。"
       },
       "byok": {
         "title": "自带密钥（0% 手续费）",
-        "description": "连接您自己的 Anthropic、OpenAI、DeepSeek 或自定义密钥，享受 <s1>$0.00 平台加价</s1>（不消耗方案额度；Free 方案使用付费模型需钱包有余额或升级付费方案）。"
+        "description": "以 <s1>$0.00 平台加价</s1> 连接 OpenRouter、OpenAI、Gemini、DeepSeek、Groq 或自定义 API 密钥 — Token 费用直接支付给你的服务商。"
       },
       "byos": {
         "title": "自带订阅 (BYOS)",
@@ -576,33 +576,11 @@
     },
     "breakdown": {
       "eyebrow": "透明明细",
-      "title": "查看模型费率、云端虚拟机与方案规格",
+      "title": "探索云端 VM 与方案规格",
       "tabs": {
-        "models": "AI 模型费率 ({{count}})",
         "vms": "云端沙箱虚拟机与 VNC",
         "compare": "方案对比"
       }
-    },
-    "models": {
-      "filters": {
-        "all": "全部模型 ({{count}})",
-        "free": "免费版可用 ({{count}})",
-        "paid": "高级（{{count}}）"
-      },
-      "searchPlaceholder": "搜索模型或提供商…",
-      "columns": {
-        "model": "模型",
-        "context": "上下文",
-        "planAccess": "方案权限",
-        "input": "输入 / 1M",
-        "output": "输出 / 1M",
-        "cacheRead": "缓存读取 / 1M"
-      },
-      "accessBadges": {
-        "free": "Free + 全部方案",
-        "paid": "Pro · 或钱包"
-      },
-      "empty": "没有匹配您搜索条件的模型。"
     },
     "vms": {
       "vcpuHrsUnit": "{{cpu}} vCPU 小时",
@@ -696,18 +674,11 @@
           "team": "$200 / 月"
         },
         {
-          "feature": "月度使用额度 (LLM + VM)",
+          "feature": "每月 VM 额度",
           "free": "$0.50 / 月",
           "plus": "$10.00 / 月",
           "pro": "$25.00 / 月",
           "team": "$200.00 / 月"
-        },
-        {
-          "feature": "可用模型",
-          "free": "6 个免费版模型",
-          "plus": "6 个免费层模型（高级模型通过钱包）",
-          "pro": "所有模型（共享额度）",
-          "team": "全部 16 个前沿模型"
         },
         {
           "feature": "云端 VM 费率（从额度扣除）",
@@ -777,38 +748,38 @@
     "faq": {
       "eyebrow": "常见问题",
       "title": "问题与解答",
-      "description": "关于统一月度用量配额、按秒计费虚拟机费率及额外用量充值的一切说明。",
+      "description": "关于每月 VM 算力额度、按秒计费标准以及额外充值的全部说明。",
       "docsLink": "阅读文档",
       "items": [
         {
-          "question": "统一月度用量配额是如何运作的？",
-          "answer": "Plus（$10）和 Pro（$25）包含每月美元额度（Plus $10、Pro $25；Free 为 $0.50），可用于云虚拟机运行时间和 LLM Token。Pro 涵盖所有模型；Free 和 Plus 涵盖 6 个免费层模型，高级模型从您的钱包扣费。"
+          "question": "每月 VM 额度如何运作？",
+          "answer": "Plus ($10) 和 Pro ($25) 包含专用于 Cloud VM 运行时长的每月美元额度（Plus $10、Pro $25；Free 为 $0.50）。你可以 0% 平台加价连接自己的 AI 订阅（BYOS）或 API 密钥（BYOK）。"
         },
         {
-          "question": "云端沙箱虚拟机如何计费？",
-          "answer": "运行中的虚拟机按秒计费，并直接从月度方案额度扣除美元：4 核（tier_1）$0.16/时、6 核（tier_2）$0.24/时、8 核（tier_3）$0.32/时。停止时费用严格为 $0.00/时。"
+          "question": "Cloud Sandbox VM 的运行时间如何计费？",
+          "answer": "运行中的 VM 按秒从每月方案额度中扣费：4核 $0.16/小时、6核 $0.24/小时、8核 $0.32/小时。停止的 VM 严格为 $0.00/小时。"
         },
         {
-          "question": "如何在 Free 方案中使用云端沙箱虚拟机？",
-          "answer": "Free 方案提供每月 $0.50 额度，可用于免费版模型与 4 核云端虚拟机（$0.16/时）。在设置中完成账户验证即可启用虚拟机。"
+          "question": "如何在 Free 方案中使用 Cloud Sandbox VM？",
+          "answer": "Free 方案包含可用于 4核 Cloud VM（$0.16/小时）的 $0.50/月额度。在设置中完成标准账户验证即可启动 VM。"
         },
         {
-          "question": "如果超出方案额度会怎样？",
-          "answer": "系统始终优先消耗您的月度方案配额——订阅解锁的是方案配额而非向钱包充现金，只要方案配额仍有剩余，即使钱包余额为 $0.00，运行中的虚拟机也会保持在线。配额归零后，仅超额部分从您的额外用量钱包（最低充值 $10.00）扣除。"
+          "question": "超出方案额度后会怎样？",
+          "answer": "始终优先使用每月方案额度。额度归零后，超出的 VM 运行费用会从额外用量钱包扣除（最低充值 $10.00）。"
         },
         {
-          "question": "为什么额外用量充值有 $10.00 的最低门槛？",
-          "answer": "$10.00 的最低充值门槛有助于控制支付通道成本，从而免除您结账时的任何额外手续费。您支付的 100% 金额都将直接计入永久有效的工作区余额。"
+          "question": "为什么额外充值最低为 $10.00？",
+          "answer": "$10.00 起充可降低支付通道成本，让我们无需收取任何额外手续费。你支付的 100% 金额将直接计入永不过期的余额。"
         },
         {
-          "question": "我还可以继续自带 API 密钥（BYOK）吗？",
-          "answer": "可以！您可以在工作区设置中添加 Anthropic、OpenAI、DeepSeek 或自定义服务商的密钥，平台加价 0%。BYOK 请求不会消耗方案的 LLM 额度；在 Free 和 Plus 中，高级模型需要钱包有余额，而 Pro 用其额度涵盖。"
+          "question": "如何连接我自己的 AI（BYOS / BYOK）？",
+          "answer": "在沙箱 VM 内登录 Claude Pro/Max、ChatGPT Plus/Pro 或 Antigravity，或在工作区设置中添加 OpenRouter、OpenAI、Gemini、DeepSeek、Groq 或自定义 API 密钥，平台 0% 加价，我们绝不收取 Token 费用。"
         }
       ]
     },
     "bottomCta": {
       "title": "今天免费开始，随交付进度随时升级。",
-      "description": "在 Free 方案中每月获得 $0.50 的免费层 LLM 与云虚拟机用量，或在 Plus（$10）和 Pro（$25）中结合您自己的 Agent 订阅使用专属 Linux 虚拟机。",
+      "description": "免费领取 $0.50/月 Cloud VM 算力，或升级至 Plus ($10) 与 Pro ($25)，搭配你的自有 AI 订阅或 API 密钥使用专属 Linux VM。",
       "managePlan": "管理工作区方案",
       "getStarted": "免费开始使用",
       "signIn": "登录"
@@ -821,13 +792,12 @@
     },
     "specs": {
       "labels": {
-        "quota": "每月额度",
+        "quota": "每月 VM 额度",
         "vcpu": "包含的虚拟机算力",
         "vm": "最大虚拟机规格",
         "session": "会话时长",
         "snapshots": "快照",
         "members": "成员",
-        "llm": "LLM 模型",
         "byo": "BYOS / BYOK"
       },
       "vcpuValue": "{{hours}} vCPU 小时",
@@ -836,18 +806,13 @@
       "vmSize": "{{cores}} 核 · {{ram}} GB 内存",
       "minutes": "{{minutes}} 分钟",
       "none": "无",
-      "llm": {
-        "free": "6 个免费层模型",
-        "plus": "6 个免费层 · 最多 $2/月",
-        "pro": "所有模型 · 共享额度"
-      },
       "included": "已包含",
       "freeFootnote": "* Free 方案使用虚拟机需要完成标准账号验证。",
       "limits": {
         "title": "额度用完后会怎样？",
         "p1": "额度会在每个账单周期重置，并非无限。",
-        "p2": "为钱包充值即可让虚拟机和模型继续运行，或等待下一个周期。",
-        "p3": "在 Free 和 Plus 中，高级模型从您的钱包扣费。Pro 用其额度涵盖。"
+        "p2": "为钱包充值以继续运行 VM，或等待下一个计费周期重置。",
+        "p3": "停止的 VM 费用为 $0.00/小时，你的自有 AI 订阅或 API 密钥始终以 0% 平台加价运行。"
       }
     }
   },
