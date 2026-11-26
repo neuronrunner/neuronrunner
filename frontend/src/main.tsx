@@ -7,3 +7,4 @@ import "./app/globals.css";
 import App from "./App";
 
 createRoot(document.getElementById("root")!).render(<BrowserRouter><App /></BrowserRouter>);
+document.documentElement.removeAttribute("data-hide-prerender");

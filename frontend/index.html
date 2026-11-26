@@ -9,6 +9,38 @@
     <meta name="author" content="Neuron Runner" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="theme-color" content="#050508" />
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          var dark = t === "dark" || ((!t || t === "system") && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+          if (dark) document.documentElement.classList.add("dark");
+          var p = window.location.pathname.replace(/\/+$/, "") || "/";
+          var authed = !!(localStorage.getItem("token") && localStorage.getItem("user"));
+          if (
+            (authed && p === "/") ||
+            p === "/new" ||
+            p === "/chat" ||
+            p.indexOf("/chat/") === 0 ||
+            p === "/environments" ||
+            p.indexOf("/environments/") === 0 ||
+            p === "/projects" ||
+            p.indexOf("/projects/") === 0 ||
+            p === "/issues" ||
+            p.indexOf("/issues/") === 0 ||
+            p === "/pull-requests" ||
+            p.indexOf("/pull-requests/") === 0 ||
+            p === "/hello"
+          ) {
+            document.documentElement.setAttribute("data-hide-prerender", "1");
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <style>
+      html[data-hide-prerender="1"] #root { visibility: hidden; }
+      html.dark { background-color: #09090b; color-scheme: dark; }
+    </style>
 
     <!-- Canonical -->
     <link rel="canonical" href="https://neuronrunner.com/" />
