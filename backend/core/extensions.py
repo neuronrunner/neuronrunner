@@ -74,6 +74,7 @@ class RuntimeHooks:
 
     providers: dict[str, Any] = field(default_factory=dict)
     is_remote_runtime_id: Callable[[str | None], bool] = lambda object_id: False
+    has_running_runtime: Callable[[Any], bool] | None = None
     connect_runtime: Callable[..., Any] | None = None
     create_remote_runtime: Callable[..., Any] | None = None
     is_missing_runtime_error: Callable[..., bool] = lambda exc, object_id=None: False

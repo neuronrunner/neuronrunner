@@ -1,11 +1,38 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import type { TFunction } from "i18next";
 import { Link } from "react-router-dom";
 import { useParams, useRouter } from "@/lib/navigation";
-import { LuArrowLeft, LuArrowUpRight, LuCheck, LuEllipsis, LuFileText, LuFolderCode, LuFolderOpen, LuLoader, LuMessageSquare, LuNotebookPen, LuPencil, LuPin, LuPlus, LuSearch, LuServer, LuTrash2, LuX } from "react-icons/lu";
+import {
+  LuArrowLeft,
+  LuArrowUpRight,
+  LuCheck,
+  LuCircleAlert,
+  LuCircleCheck,
+  LuEllipsis,
+  LuEraser,
+  LuFileText,
+  LuFolderCode,
+  LuFolderOpen,
+  LuGitBranch,
+  LuKeyRound,
+  LuLoader,
+  LuLoaderCircle,
+  LuMessageSquare,
+  LuNotebookPen,
+  LuPencil,
+  LuPin,
+  LuPlay,
+  LuPlus,
+  LuSearch,
+  LuSparkles,
+  LuTerminal,
+  LuTrash2,
+  LuUpload,
+  LuX,
+} from "react-icons/lu";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
@@ -14,7 +41,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { toaster } from "@/components/ui/toaster";
 import { authedAxios, API_BASE } from "@/lib/axios";
+import { ENVIRONMENT_PRESETS, formatBytesCompact } from "@/lib/environment-presets";
 import { cn } from "@/lib/utils";
+import EditProjectDialog from "@/components/projects/edit-project-dialog";
 import useAuthStore from "@/stores/auth";
 import useChatStore from "@/stores/chat";
 import useSandboxProjectsStore from "@/stores/sandbox-projects";
@@ -29,9 +58,27 @@ interface ProjectNote {
   created_at: string;
 }
 
+interface EnvSecretItem {
+  uuid: string;
+  key: string;
+  masked_value: string;
+  description: string;
+  scope?: "workspace" | "environment";
+  overridden?: boolean;
+}
+
 function errorText(error: unknown, fallback: string) {
-  const response = error as { response?: { data?: { error?: string; detail?: string } }; message?: string };
-  return response?.response?.data?.error || response?.response?.data?.detail || response?.message || fallback;
+  const response = error as { response?: { data?: Record<string, unknown> | string }; message?: string };
+  const data = response?.response?.data;
+  if (typeof data === "string" && data.trim()) return data;
+  if (data && typeof data === "object") {
+    for (const key of ["key", "value", "content", "error", "detail"]) {
+      const val = data[key];
+      if (Array.isArray(val) && val.length > 0) return String(val[0]);
+      if (typeof val === "string" && val.trim()) return val;
+    }
+  }
+  return response?.message || fallback;
 }
 
 function relativeTime(value: string | undefined, t: TFunction<"workspace">, locale: string) {
@@ -72,19 +119,36 @@ export default function ProjectDetailClient() {
     || (loaded?.scope === scope ? loaded.project : null);
   const projectUuid = project?.uuid;
   const activeProjectRef = useRef(projectUuid);
-  const vmName: string | null = null;
 
   const [instructions, setInstructions] = useState("");
   const [savingInstructions, setSavingInstructions] = useState(false);
   const [instructionsError, setInstructionsError] = useState("");
-  const [renameOpen, setRenameOpen] = useState(false);
-  const [newName, setNewName] = useState("");
-  const [newDescription, setNewDescription] = useState("");
-  const [savingRename, setSavingRename] = useState(false);
-  const [renameError, setRenameError] = useState("");
+  const [settingsOpen, setSettingsOpen] = useState(false);
   const [removeOpen, setRemoveOpen] = useState(false);
   const [removing, setRemoving] = useState(false);
   const [removeError, setRemoveError] = useState("");
+
+  // Scripts & Cache inline tab state
+  const [defaultBranch, setDefaultBranch] = useState("");
+  const [workingSubdir, setWorkingSubdir] = useState("");
+  const [setupScript, setSetupScript] = useState("");
+  const [maintenanceScript, setMaintenanceScript] = useState("");
+  const [savingScripts, setSavingScripts] = useState(false);
+  const [runningSetup, setRunningSetup] = useState(false);
+  const [clearingCache, setClearingCache] = useState(false);
+  const [scriptsError, setScriptsError] = useState("");
+
+  // Secrets inline tab state
+  const [secrets, setSecrets] = useState<EnvSecretItem[]>([]);
+  const [inheritedSecrets, setInheritedSecrets] = useState<EnvSecretItem[]>([]);
+  const [canManageSecrets, setCanManageSecrets] = useState(true);
+  const [secretsLoading, setSecretsLoading] = useState(false);
+  const [newSecretKey, setNewSecretKey] = useState("");
+  const [newSecretValue, setNewSecretValue] = useState("");
+  const [showBulkSecrets, setShowBulkSecrets] = useState(false);
+  const [bulkSecretsText, setBulkSecretsText] = useState("");
+  const [secretBusy, setSecretBusy] = useState(false);
+  const [secretError, setSecretError] = useState("");
 
   const [notes, setNotes] = useState<ProjectNote[]>([]);
   const [notesLoading, setNotesLoading] = useState(false);
@@ -101,7 +165,7 @@ export default function ProjectDetailClient() {
     setNewNote("");
     setNotes([]);
     setNotesError("");
-    setRenameOpen(false);
+    setSettingsOpen(false);
     setRemoveOpen(false);
   }, [projectUuid]);
 
@@ -109,6 +173,38 @@ export default function ProjectDetailClient() {
     setInstructions(project?.usage_guide || "");
     setInstructionsError("");
   }, [projectUuid, project?.usage_guide]);
+
+  useEffect(() => {
+    setDefaultBranch(project?.default_branch || "main");
+    setWorkingSubdir(project?.working_subdir || "");
+    setSetupScript(project?.setup_script || "");
+    setMaintenanceScript(project?.maintenance_script || "");
+    setScriptsError("");
+  }, [projectUuid, project?.default_branch, project?.working_subdir, project?.setup_script, project?.maintenance_script]);
+
+  const fetchSecrets = useCallback(async () => {
+    if (!workspaceUuid || !projectUuid) return;
+    setSecretsLoading(true);
+    setSecretError("");
+    try {
+      const { data } = await authedAxios.get(`${API_BASE}/sandbox/workspaces/${workspaceUuid}/vm-secrets/`, {
+        params: { sandbox_uuid: projectUuid },
+      });
+      setSecrets(Array.isArray(data?.secrets) ? data.secrets : []);
+      setInheritedSecrets(Array.isArray(data?.inherited_secrets) ? data.inherited_secrets : []);
+      setCanManageSecrets(data?.can_manage !== false);
+    } catch (err) {
+      setSecretError(errorText(err, "Could not load environment secrets."));
+    } finally {
+      setSecretsLoading(false);
+    }
+  }, [workspaceUuid, projectUuid]);
+
+  useEffect(() => {
+    if (tab === "secrets") {
+      void fetchSecrets();
+    }
+  }, [tab, fetchSecrets]);
 
   useEffect(() => {
     if (!token || !workspaceUuid) return;
@@ -229,18 +325,127 @@ export default function ProjectDetailClient() {
     finally { setSavingInstructions(false); }
   };
 
-  const saveRename = async () => {
-    if (!project || !newName.trim() || savingRename) return;
-    setSavingRename(true);
-    setRenameError("");
+  const scriptsChanged =
+    defaultBranch !== (project?.default_branch || "main") ||
+    workingSubdir !== (project?.working_subdir || "") ||
+    setupScript !== (project?.setup_script || "") ||
+    maintenanceScript !== (project?.maintenance_script || "");
+
+  const saveScripts = async () => {
+    if (!project || savingScripts) return null;
+    setSavingScripts(true);
+    setScriptsError("");
     try {
-      const updated = await updateSandbox(project.uuid, { display_name: newName.trim(), description: newDescription.trim() });
-      if (!updated) throw new Error(useSandboxProjectsStore.getState().errorMessage || t("projectDetail.errors.projectUpdateFailed"));
+      const updated = await updateSandbox(project.uuid, {
+        default_branch: defaultBranch.trim() || "main",
+        working_subdir: workingSubdir.trim().replace(/^\/+|\/+$/g, ""),
+        setup_script: setupScript.trim(),
+        maintenance_script: maintenanceScript.trim(),
+      });
+      if (!updated) throw new Error(useSandboxProjectsStore.getState().errorMessage || t("projects.edit.updateFailed"));
       setLoaded({ scope, project: updated });
-      setRenameOpen(false);
-      toaster.create({ title: t("projectDetail.toasts.projectUpdated"), type: "success" });
-    } catch (error) { setRenameError(errorText(error, t("projectDetail.errors.projectUpdateFailed"))); }
-    finally { setSavingRename(false); }
+      toaster.create({ title: t("projects.edit.toastUpdated"), type: "success" });
+      return updated;
+    } catch (error) {
+      setScriptsError(errorText(error, t("projects.edit.updateFailed")));
+      return null;
+    } finally {
+      setSavingScripts(false);
+    }
+  };
+
+  const handleRunSetup = async () => {
+    if (!project || runningSetup) return;
+    setRunningSetup(true);
+    setScriptsError("");
+    try {
+      if (scriptsChanged) {
+        const saved = await saveScripts();
+        if (!saved) return;
+      }
+      const res = await useSandboxProjectsStore.getState().runEnvironmentSetup(project.uuid, { force: true });
+      if (res.environment) setLoaded({ scope, project: res.environment });
+      if (res.ready) {
+        toaster.create({ title: t("projects.edit.setupSucceeded", "Environment setup completed"), type: "success" });
+      } else {
+        setScriptsError(res.error || t("projects.edit.setupFailed", "Environment setup failed."));
+      }
+    } finally {
+      setRunningSetup(false);
+    }
+  };
+
+  const handleClearCache = async () => {
+    if (!project || clearingCache) return;
+    setClearingCache(true);
+    setScriptsError("");
+    try {
+      const res = await useSandboxProjectsStore.getState().clearEnvironmentDepsCache(project.uuid);
+      if (res.environment) setLoaded({ scope, project: res.environment });
+      if (res.cleared) {
+        toaster.create({ title: t("projects.edit.cacheCleared", "Dependency cache cleared"), type: "success" });
+      } else {
+        setScriptsError(res.error || t("projects.edit.cacheClearFailed", "Could not clear dependency cache."));
+      }
+    } finally {
+      setClearingCache(false);
+    }
+  };
+
+  const handleAddSecret = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!workspaceUuid || !project || !newSecretKey.trim() || !newSecretValue || secretBusy) return;
+    setSecretBusy(true);
+    setSecretError("");
+    try {
+      await authedAxios.post(`${API_BASE}/sandbox/workspaces/${workspaceUuid}/vm-secrets/`, {
+        key: newSecretKey.trim(),
+        value: newSecretValue,
+        sandbox_uuid: project.uuid,
+      });
+      setNewSecretKey("");
+      setNewSecretValue("");
+      await fetchSecrets();
+      toaster.create({ title: t("projects.edit.secretSaved", "Secret saved"), type: "success" });
+    } catch (err) {
+      setSecretError(errorText(err, "Could not save secret."));
+    } finally {
+      setSecretBusy(false);
+    }
+  };
+
+  const handleBulkImportSecrets = async () => {
+    if (!workspaceUuid || !project || !bulkSecretsText.trim() || secretBusy) return;
+    setSecretBusy(true);
+    setSecretError("");
+    try {
+      await authedAxios.post(`${API_BASE}/sandbox/workspaces/${workspaceUuid}/vm-secrets/bulk-import/`, {
+        content: bulkSecretsText,
+        sandbox_uuid: project.uuid,
+      });
+      setBulkSecretsText("");
+      setShowBulkSecrets(false);
+      await fetchSecrets();
+      toaster.create({ title: t("projects.edit.secretsImported", "Secrets imported"), type: "success" });
+    } catch (err) {
+      setSecretError(errorText(err, "Could not import secrets."));
+    } finally {
+      setSecretBusy(false);
+    }
+  };
+
+  const handleDeleteSecret = async (secretUuid: string) => {
+    if (!workspaceUuid || secretBusy) return;
+    setSecretBusy(true);
+    setSecretError("");
+    try {
+      await authedAxios.delete(`${API_BASE}/sandbox/workspaces/${workspaceUuid}/vm-secrets/${secretUuid}/`);
+      await fetchSecrets();
+    } catch (err) {
+      setSecretError(errorText(err, "Could not delete secret."));
+    } finally {
+      setSecretBusy(false);
+    }
   };
 
   const removeProject = async () => {
@@ -316,17 +521,30 @@ export default function ProjectDetailClient() {
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2.5">
               <h1 className="break-words text-2xl font-semibold tracking-tight">{project.display_name}</h1>
-              {vmName && (
-                <span
-                  title={t("projectDetail.machineTitle", { name: vmName })}
-                  className="inline-flex items-center gap-1.5 rounded-md border border-border bg-muted/70 px-2 py-0.5 font-mono text-xs text-muted-foreground"
-                >
-                  <LuServer className="h-3 w-3" />
-                  {vmName}
+              {project.setup_status === "ready" && (
+                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/15 px-2 py-0.5 text-[11px] font-medium text-emerald-600 dark:text-emerald-400">
+                  <LuCircleCheck className="h-3 w-3" />{t("projects.edit.statusReady", "Ready")}
+                </span>
+              )}
+              {project.setup_status === "running" && (
+                <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/15 px-2 py-0.5 text-[11px] font-medium text-amber-600 dark:text-amber-400">
+                  <LuLoaderCircle className="h-3 w-3 animate-spin" />{t("projects.edit.statusRunning", "Running")}
+                </span>
+              )}
+              {project.setup_status === "failed" && (
+                <span className="inline-flex items-center gap-1 rounded-full bg-destructive/15 px-2 py-0.5 text-[11px] font-medium text-destructive">
+                  <LuCircleAlert className="h-3 w-3" />{t("projects.edit.statusFailed", "Failed")}
                 </span>
               )}
             </div>
-            <p className="mt-1.5 break-all font-mono text-[11px] leading-relaxed text-muted-foreground">{project.filesystem_path || `/workspace/${project.slug}`}</p>
+            <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[11px] leading-relaxed text-muted-foreground">
+              <span className="break-all">{project.repo_full_name || project.filesystem_path || `/workspace/${project.slug}`}</span>
+              {project.default_branch && (
+                <span className="inline-flex items-center gap-1 rounded bg-muted px-1.5 py-0.5 text-[10px]">
+                  <LuGitBranch className="h-3 w-3" />{project.default_branch}
+                </span>
+              )}
+            </div>
             {project.description && <p className="mt-3 max-w-xl whitespace-pre-wrap break-words text-sm leading-relaxed text-muted-foreground">{project.description}</p>}
           </div>
         </div>
@@ -346,8 +564,8 @@ export default function ProjectDetailClient() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem onSelect={() => { setNewName(project.display_name); setNewDescription(project.description || ""); setRenameError(""); setRenameOpen(true); }}>
-                <LuPencil />{t("projectDetail.editProject")}</DropdownMenuItem>
+              <DropdownMenuItem onSelect={() => setSettingsOpen(true)}>
+                <LuPencil />{t("projects.edit.title")}</DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem className="text-destructive focus:text-destructive" onSelect={() => { setRemoveError(""); setRemoveOpen(true); }}>
                 <LuTrash2 />{t("projectDetail.removeProject")}</DropdownMenuItem>
@@ -357,9 +575,15 @@ export default function ProjectDetailClient() {
       </header>
 
       <Tabs value={tab} onValueChange={setTab}>
-        <TabsList aria-label={t("projectDetail.sectionsAria")} className="mb-6 flex h-auto w-full justify-start gap-1 rounded-none border-b border-border bg-transparent p-0">
+        <TabsList aria-label={t("projectDetail.sectionsAria")} className="mb-6 flex h-auto w-full justify-start gap-1 overflow-x-auto rounded-none border-b border-border bg-transparent p-0">
           <TabsTrigger value="chats" className={tabClass}>
             <LuMessageSquare className="hidden h-3.5 w-3.5 sm:block" />{t("projectDetail.tabs.chats")}<span className="rounded-md bg-muted px-1.5 py-0.5 text-[10px] tabular-nums text-muted-foreground">{chats.length}</span>
+          </TabsTrigger>
+          <TabsTrigger value="scripts" className={tabClass}>
+            <LuTerminal className="hidden h-3.5 w-3.5 sm:block" />{t("projects.edit.tabScripts", "Scripts & Cache")}
+          </TabsTrigger>
+          <TabsTrigger value="secrets" className={tabClass}>
+            <LuKeyRound className="hidden h-3.5 w-3.5 sm:block" />{t("projects.edit.tabSecrets", "Secrets")}{(secrets.length || project.secret_count || 0) > 0 && <span className="rounded-md bg-muted px-1.5 py-0.5 text-[10px] tabular-nums text-muted-foreground">{secrets.length || project.secret_count}</span>}
           </TabsTrigger>
           <TabsTrigger value="instructions" className={tabClass}>
             <LuFileText className="hidden h-3.5 w-3.5 sm:block" />{t("projectDetail.tabs.instructions")}</TabsTrigger>
@@ -404,6 +628,213 @@ export default function ProjectDetailClient() {
           {ownChatRequest && hasMore && <div className="mt-5 flex justify-center">
             <Button variant="ghost" size="sm" loading={isLoadingMore} onClick={() => void fetchConversations(true, project.uuid)}>{t("projectDetail.chats.loadMore")}</Button>
           </div>}
+        </TabsContent>
+
+        <TabsContent value="scripts" className="mt-0 max-w-3xl space-y-5">
+          <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-muted/20 px-4 py-3 text-xs">
+            <div className="space-y-0.5">
+              <p className="font-medium text-foreground">{t("projects.edit.stateSummaryTitle", "Snapshot & dependency cache")}</p>
+              <p className="text-[11px] text-muted-foreground">
+                {project.state_saved_at
+                  ? `${t("projects.edit.stateSaved", "State saved")}: ${formatBytesCompact(project.state_size_bytes)}`
+                  : t("projects.edit.noStateYet", "No uncommitted state archived yet")}
+                {project.deps_lock_hash ? ` · cache #${project.deps_lock_hash.slice(0, 8)}` : ""}
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              <Button type="button" size="sm" variant="outline" className="h-8 gap-1.5 text-xs" disabled={clearingCache || runningSetup} onClick={() => void handleClearCache()}>
+                {clearingCache ? <LuLoaderCircle className="h-3.5 w-3.5 animate-spin" /> : <LuEraser className="h-3.5 w-3.5" />}
+                {t("projects.edit.clearCache", "Clear cache")}
+              </Button>
+              <Button type="button" size="sm" className="h-8 gap-1.5 text-xs" disabled={runningSetup || savingScripts} onClick={() => void handleRunSetup()}>
+                {runningSetup ? <LuLoaderCircle className="h-3.5 w-3.5 animate-spin" /> : <LuPlay className="h-3.5 w-3.5" />}
+                {t("projects.edit.runSetup", "Run setup")}
+              </Button>
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <span className="flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
+              <LuSparkles className="h-3 w-3" />{t("projects.create.presetsLabel", "Quick stack presets")}
+            </span>
+            <div className="flex flex-wrap gap-1.5">
+              {ENVIRONMENT_PRESETS.map((preset) => (
+                <button
+                  key={preset.id}
+                  type="button"
+                  onClick={() => {
+                    setSetupScript(preset.setupScript);
+                    setMaintenanceScript(preset.maintenanceScript);
+                  }}
+                  className="rounded-md border border-border/80 bg-background px-2.5 py-1 text-xs font-medium hover:border-violet-500/50 hover:bg-violet-500/5 transition-colors"
+                >
+                  {preset.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="space-y-1.5">
+              <label htmlFor="env-page-branch" className="text-xs font-medium">{t("projects.create.defaultBranchLabel", "Default branch")}</label>
+              <Input id="env-page-branch" className="font-mono text-xs" value={defaultBranch} onChange={(e) => setDefaultBranch(e.target.value)} disabled={savingScripts} />
+            </div>
+            <div className="space-y-1.5">
+              <label htmlFor="env-page-subdir" className="text-xs font-medium">{t("projects.create.workingSubdirLabel", "Working subdirectory")}</label>
+              <Input id="env-page-subdir" className="font-mono text-xs" placeholder="e.g. apps/web" value={workingSubdir} onChange={(e) => setWorkingSubdir(e.target.value)} disabled={savingScripts} />
+            </div>
+          </div>
+
+          <div className="space-y-1.5">
+            <label htmlFor="env-page-setup" className="text-xs font-medium">{t("projects.create.setupScriptLabel", "Setup script")}</label>
+            <Textarea id="env-page-setup" rows={3} className="font-mono text-xs" placeholder="npm ci || uv sync" value={setupScript} onChange={(e) => setSetupScript(e.target.value)} disabled={savingScripts} />
+            <p className="text-[11px] text-muted-foreground">{t("projects.create.setupScriptHelp", "Runs once when the environment boots fresh or lockfiles change.")}</p>
+          </div>
+
+          <div className="space-y-1.5">
+            <label htmlFor="env-page-maint" className="text-xs font-medium">{t("projects.create.maintenanceScriptLabel", "Maintenance script")}</label>
+            <Textarea id="env-page-maint" rows={2} className="font-mono text-xs" placeholder="npm ci --prefer-offline || true" value={maintenanceScript} onChange={(e) => setMaintenanceScript(e.target.value)} disabled={savingScripts} />
+          </div>
+
+          {scriptsError && (
+            <div role="alert" className="rounded-lg border border-destructive/20 bg-destructive/5 p-3 text-xs text-destructive">{scriptsError}</div>
+          )}
+
+          <div className="flex justify-end gap-2">
+            {scriptsChanged && (
+              <Button variant="ghost" size="sm" disabled={savingScripts} onClick={() => {
+                setDefaultBranch(project.default_branch || "main");
+                setWorkingSubdir(project.working_subdir || "");
+                setSetupScript(project.setup_script || "");
+                setMaintenanceScript(project.maintenance_script || "");
+              }}>
+                {t("projectDetail.instructions.discard")}
+              </Button>
+            )}
+            <Button size="sm" disabled={!scriptsChanged || savingScripts} loading={savingScripts} onClick={() => void saveScripts()}>
+              <LuCheck />{t("common.save")}
+            </Button>
+          </div>
+
+          {project.setup_last_log && (
+            <div className="space-y-1.5">
+              <span className="block text-xs font-medium">{t("projects.edit.lastSetupLog", "Last setup log")}</span>
+              <pre className="max-h-56 overflow-auto rounded-lg border bg-muted/40 p-3 font-mono text-[11px] leading-relaxed text-foreground whitespace-pre-wrap break-words">
+                {project.setup_last_log}
+              </pre>
+            </div>
+          )}
+        </TabsContent>
+
+        <TabsContent value="secrets" className="mt-0 max-w-3xl space-y-5">
+          {canManageSecrets && (
+            <div className="space-y-3 rounded-xl border border-border bg-muted/20 p-4">
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-xs font-medium">{t("projects.edit.addSecretTitle", "Add environment secret")}</span>
+                <Button type="button" size="sm" variant="ghost" className="h-7 gap-1.5 text-xs" onClick={() => setShowBulkSecrets((prev) => !prev)}>
+                  <LuUpload className="h-3.5 w-3.5" />
+                  {showBulkSecrets ? t("projects.edit.singleMode", "Single key") : t("projects.edit.bulkPaste", "Paste .env")}
+                </Button>
+              </div>
+              {showBulkSecrets ? (
+                <div className="space-y-2">
+                  <Textarea rows={4} className="font-mono text-xs" placeholder={"API_KEY=...\nDATABASE_URL=..."} value={bulkSecretsText} disabled={secretBusy} onChange={(e) => setBulkSecretsText(e.target.value)} />
+                  <div className="flex justify-end">
+                    <Button type="button" size="sm" disabled={!bulkSecretsText.trim() || secretBusy} onClick={() => void handleBulkImportSecrets()}>
+                      {secretBusy && <LuLoaderCircle className="mr-1.5 h-3.5 w-3.5 animate-spin" />}
+                      {t("projects.edit.importEnv", "Import .env")}
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <form autoComplete="off" onSubmit={(e) => void handleAddSecret(e)} className="grid grid-cols-1 gap-2 sm:grid-cols-[1fr_1fr_auto]">
+                  <Input
+                    name="env-secret-key"
+                    autoComplete="off"
+                    data-1p-ignore
+                    data-lpignore="true"
+                    spellCheck={false}
+                    className="font-mono text-xs"
+                    placeholder="KEY_NAME"
+                    value={newSecretKey}
+                    disabled={secretBusy}
+                    onChange={(e) => setNewSecretKey(e.target.value.toUpperCase())}
+                  />
+                  <Input
+                    name="env-secret-value"
+                    type="password"
+                    autoComplete="new-password"
+                    data-1p-ignore
+                    data-lpignore="true"
+                    className="font-mono text-xs"
+                    placeholder={t("projects.edit.secretValuePlaceholder", "Secret value")}
+                    value={newSecretValue}
+                    disabled={secretBusy}
+                    onChange={(e) => setNewSecretValue(e.target.value)}
+                  />
+                  <Button type="submit" size="sm" className="gap-1" disabled={!newSecretKey.trim() || !newSecretValue || secretBusy}>
+                    <LuPlus className="h-3.5 w-3.5" />{t("projects.edit.addSecret", "Add")}
+                  </Button>
+                </form>
+              )}
+            </div>
+          )}
+
+          {secretError && (
+            <div role="alert" className="rounded-lg border border-destructive/20 bg-destructive/5 p-3 text-xs text-destructive">{secretError}</div>
+          )}
+
+          <div className="space-y-2">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              {t("projects.edit.envSecretsHeading", "Environment secrets")} ({secrets.length})
+            </h3>
+            {secretsLoading ? (
+              <div className="flex justify-center py-8"><LuLoaderCircle className="h-4 w-4 animate-spin text-muted-foreground" /></div>
+            ) : secrets.length === 0 ? (
+              <p className="rounded-xl border border-dashed py-8 text-center text-xs text-muted-foreground">
+                {t("projects.edit.noEnvSecrets", "No environment-specific secrets yet.")}
+              </p>
+            ) : (
+              <div className="divide-y rounded-xl border">
+                {secrets.map((item) => (
+                  <div key={item.uuid} className="flex items-center justify-between gap-2 px-3.5 py-2.5 text-xs">
+                    <div className="min-w-0">
+                      <p className="truncate font-mono font-medium">{item.key}</p>
+                      <p className="truncate font-mono text-[11px] text-muted-foreground">{item.masked_value}</p>
+                    </div>
+                    {canManageSecrets && (
+                      <button type="button" disabled={secretBusy} aria-label={`Delete ${item.key}`} onClick={() => void handleDeleteSecret(item.uuid)} className="rounded-md p-1.5 text-muted-foreground hover:bg-destructive/10 hover:text-destructive">
+                        <LuTrash2 className="h-3.5 w-3.5" />
+                      </button>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {inheritedSecrets.length > 0 && (
+            <div className="space-y-2">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                {t("projects.edit.inheritedSecretsHeading", "Inherited from workspace")} ({inheritedSecrets.length})
+              </h3>
+              <div className="divide-y rounded-xl border bg-muted/15">
+                {inheritedSecrets.map((item) => (
+                  <div key={item.uuid} className="flex items-center justify-between gap-2 px-3.5 py-2.5 text-xs">
+                    <div className="min-w-0">
+                      <p className={cn("truncate font-mono font-medium", item.overridden && "line-through text-muted-foreground")}>{item.key}</p>
+                      <p className="truncate font-mono text-[11px] text-muted-foreground">{item.masked_value}</p>
+                    </div>
+                    {item.overridden && (
+                      <span className="shrink-0 rounded bg-amber-500/15 px-1.5 py-0.5 text-[10px] font-medium text-amber-600 dark:text-amber-400">
+                        {t("projects.edit.overriddenBadge", "Overridden")}
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </TabsContent>
 
         <TabsContent value="instructions" className="mt-0 max-w-3xl">
@@ -510,27 +941,7 @@ export default function ProjectDetailClient() {
         </TabsContent>
       </Tabs>
 
-      <Dialog open={renameOpen} onOpenChange={(open) => { if (!savingRename) setRenameOpen(open); }}>
-        <DialogContent className="w-[calc(100%-2rem)] rounded-xl" onEscapeKeyDown={(event) => { if (savingRename) event.preventDefault(); }} onInteractOutside={(event) => { if (savingRename) event.preventDefault(); }}>
-          <DialogHeader>
-            <DialogTitle>{t("projectDetail.editDialog.title")}</DialogTitle>
-            <DialogDescription>{t("projectDetail.editDialog.description")}</DialogDescription>
-          </DialogHeader>
-          <form onSubmit={(event) => { event.preventDefault(); void saveRename(); }} className="space-y-4">
-            <div>
-              <label htmlFor="project-name" className="mb-2 block text-xs font-medium">{t("projectDetail.editDialog.nameLabel")}</label>
-              <Input id="project-name" value={newName} onChange={(event) => setNewName(event.target.value)} disabled={savingRename} />
-            </div>
-            <div>
-              <label htmlFor="project-description" className="mb-2 block text-xs font-medium">{t("projectDetail.editDialog.descriptionLabel")}</label>
-              <Textarea id="project-description" value={newDescription} onChange={(event) => setNewDescription(event.target.value)} disabled={savingRename} rows={3} />
-            </div>{renameError && <p role="alert" className="text-xs text-destructive">{renameError}</p>}<DialogFooter>
-              <Button type="button" variant="ghost" disabled={savingRename} onClick={() => setRenameOpen(false)}>{t("common.cancel")}</Button>
-              <Button type="submit" disabled={!newName.trim()} loading={savingRename}>{t("common.saveChanges")}</Button>
-            </DialogFooter>
-          </form>
-        </DialogContent>
-      </Dialog>
+      <EditProjectDialog project={settingsOpen ? project : null} onOpenChange={(open) => setSettingsOpen(open)} />
       <Dialog open={removeOpen} onOpenChange={(open) => { if (!removing) setRemoveOpen(open); }}>
         <DialogContent className="w-[calc(100%-2rem)] rounded-xl" onEscapeKeyDown={(event) => { if (removing) event.preventDefault(); }} onInteractOutside={(event) => { if (removing) event.preventDefault(); }}>
           <DialogHeader>

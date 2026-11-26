@@ -36,7 +36,6 @@ import {
   LuGitPullRequest,
   LuPlug,
   LuPin,
-  LuServer,
   LuLoader as LuLoader2,
 } from "react-icons/lu";
 import { useRouter, usePathname } from "@/lib/navigation";
@@ -56,6 +55,7 @@ import ManageWorkspaceMembersDialog from "@/components/workspace/manage-members-
 import WorkspaceSandboxSettingsDialog from "@/components/workspace/sandbox-settings-dialog";
 import CreateProjectDialog from "@/components/projects/create-project-dialog";
 import EditProjectDialog from "@/components/projects/edit-project-dialog";
+import { setupStatusDotClass } from "@/lib/environment-presets";
 import RemoveProjectDialog from "@/components/projects/remove-project-dialog";
 import useWorkspacesStore from "@/stores/workspaces";
 import frontendExtension from "@cloud";
@@ -524,7 +524,7 @@ const Sidebar = ({ hideOverlay = false, offsetTop = 0 }: SidebarProps) => {
   const handleProjectHeaderClick = useCallback(async (project: IProject) => {
     await pickSandbox(project.uuid);
     await fetchConversations(false, project.uuid);
-    router.push(`/projects/${project.slug}`);
+    router.push(`/environments/${project.slug}`);
     closeSidebarOnMobile();
   }, [pickSandbox, fetchConversations, router, closeSidebarOnMobile]);
 
@@ -763,16 +763,17 @@ const Sidebar = ({ hideOverlay = false, offsetTop = 0 }: SidebarProps) => {
                     const convIds = projectConversationMap[p.uuid] || [];
                     const projectConvs = (cachedProjectConversations[p.uuid] || conversations).filter((c) => convIds.includes(c.uuid));
                     const isDirectProjectRoute =
+                      pathname === `/environments/${p.slug}` ||
+                      pathname === `/environments/${p.uuid}` ||
+                      pathname.startsWith(`/environments/${p.slug}/`) ||
+                      pathname.startsWith(`/environments/${p.uuid}/`) ||
                       pathname === `/projects/${p.slug}` ||
-                      pathname === `/projects/${p.uuid}` ||
-                      pathname.startsWith(`/projects/${p.slug}/`) ||
-                      pathname.startsWith(`/projects/${p.uuid}/`);
+                      pathname === `/projects/${p.uuid}`;
                     const hasActiveChildConversation =
                       !isFileActive &&
                       isChatRoute &&
                       Boolean(conversationId && convIds.includes(conversationId));
                     const isProjectActive = isDirectProjectRoute || (!isExpanded && hasActiveChildConversation);
-                    const vmName = frontendExtension.runtimeBridge.resolveProjectRuntimeLabel(p);
                     return (
                       <div key={p.uuid} className="rounded-lg overflow-hidden">
                         <div
@@ -797,15 +798,14 @@ const Sidebar = ({ hideOverlay = false, offsetTop = 0 }: SidebarProps) => {
                             />
                           </button>
                           <LuFolderCode className={cn("h-4 w-4 shrink-0", isProjectActive ? "text-primary" : "text-muted-foreground")} />
-                          <span className="flex-1 min-w-0 truncate font-medium">{p.display_name}</span>
-                          {vmName && (
+                          <span className="flex-1 min-w-0 truncate font-medium" title={p.repo_full_name || p.filesystem_path}>
+                            {p.display_name}
+                          </span>
+                          {setupStatusDotClass(p.setup_status) && (
                             <span
-                              title={t("sidebar.machineTooltip", { name: vmName })}
-                              className="inline-flex max-w-[150px] shrink-0 items-center gap-1 rounded px-1.5 py-0.5 font-mono text-xs leading-none bg-muted/80 text-muted-foreground border border-border/50 truncate transition-transform duration-200 ease-out translate-x-[30px] group-hover/project:translate-x-0 group-has-[[data-state=open]]/project:translate-x-0"
-                            >
-                              <LuServer className="h-3 w-3 shrink-0" />
-                              <span className="truncate">{vmName}</span>
-                            </span>
+                              title={p.setup_status}
+                              className={cn("h-1.5 w-1.5 shrink-0 rounded-full", setupStatusDotClass(p.setup_status))}
+                            />
                           )}
                           <div className="opacity-0 translate-x-1 pointer-events-none group-hover/project:opacity-100 group-hover/project:translate-x-0 group-hover/project:pointer-events-auto group-has-[[data-state=open]]/project:opacity-100 group-has-[[data-state=open]]/project:translate-x-0 group-has-[[data-state=open]]/project:pointer-events-auto [&:has([data-state=open])]:opacity-100 [&:has([data-state=open])]:translate-x-0 [&:has([data-state=open])]:pointer-events-auto transition-all duration-200 ease-out shrink-0">
                             <DropdownMenu>

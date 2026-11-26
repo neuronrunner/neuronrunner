@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation, useParams } from "react-router-dom";
 import { Provider } from "@/app/provider";
 import { LoadingDots } from "@/components/loading-dots";
 import { env } from "@/lib/env";
@@ -103,6 +103,11 @@ function ChatWorkspaceRoute() {
   return <ChatWorkspace />;
 }
 
+function LegacyProjectRedirect() {
+  const { slug = "" } = useParams<{ slug: string }>();
+  return <Navigate to={slug ? `/environments/${encodeURIComponent(slug)}` : "/new"} replace />;
+}
+
 export default function App() {
   const { t } = useTranslation("workspace");
   const ExtensionNavigationEffects = frontendExtension.NavigationEffects;
@@ -118,8 +123,10 @@ export default function App() {
             <Route path="/chat/:uuid" element={null} />
           </Route>
           <Route path="/chat" element={<Navigate to="/new" replace />} />
+          <Route path="/environments" element={<Navigate to="/new" replace />} />
+          <Route path="/environments/:slug" element={<Project />} />
           <Route path="/projects" element={<Navigate to="/new" replace />} />
-          <Route path="/projects/:slug" element={<Project />} />
+          <Route path="/projects/:slug" element={<LegacyProjectRedirect />} />
           <Route path="/workspaces/invitations" element={<WorkspaceInvitations />} />
           <Route path="/hello" element={<Hello />} />
           <Route path="/workspaces/*" element={<LegacyWorkspaceRedirect />} />

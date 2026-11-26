@@ -6,6 +6,7 @@ export interface GithubRepository {
   clone_url: string;
   private: boolean;
   description?: string | null;
+  default_branch?: string | null;
 }
 export interface GithubAccess {
   connected: boolean;

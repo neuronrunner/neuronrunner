@@ -526,11 +526,54 @@ class SandboxSessionManager:
         """Refresh the workspace file tree cache."""
         self._sync_file_tree_to_db(project)
 
+    @staticmethod
+    def _needs_environment_bootstrap(project: "Sandbox") -> bool:
+        return (
+            isinstance(project, Sandbox)
+            and getattr(project, "filesystem_path", "") != "/workspace"
+            and bool(
+                getattr(project, "repo_url", "")
+                or getattr(project, "repo_full_name", "")
+                or getattr(project, "setup_script", "")
+                or getattr(project, "state_saved_at", None)
+            )
+        )
+
+    def ensure_project_bootstrapped(self, project: "Sandbox", sandbox, *, user=None, force: bool = False) -> None:
+        if not self._needs_environment_bootstrap(project):
+            return
+        boot_key = (
+            getattr(sandbox, "object_id", None) or getattr(sandbox, "container_name", None) or id(sandbox),
+            str(project.uuid),
+        )
+        bootstrapped = getattr(self, "_bootstrapped_envs", None)
+        if bootstrapped is None:
+            bootstrapped = set()
+            self._bootstrapped_envs = bootstrapped
+        if force:
+            bootstrapped.discard(boot_key)
+        if boot_key in bootstrapped:
+            return
+        try:
+            from sandbox.services.environment_bootstrap import ensure_environment_ready
+            result = ensure_environment_ready(project, sandbox, user=user)
+            if result.get("ready", True):
+                bootstrapped.add(boot_key)
+        except Exception as exc:  # noqa: BLE001
+            logger.warning("Environment bootstrap failed for %s: %s", project.uuid, exc)
+
     def _sync_file_tree_to_db(self, project: "Sandbox") -> None:
         """Scan the workspace directory and refresh the file cache."""
         from sandbox.services.volume_tools import list_tree
 
         tree = list_tree(project)
+        if not tree and self._needs_environment_bootstrap(project):
+            try:
+                sandbox = self.get_or_create(project)
+                self.ensure_project_bootstrapped(project, sandbox, force=True)
+                tree = list_tree(project)
+            except Exception as exc:  # noqa: BLE001
+                logger.warning("Environment bootstrap before file sync failed for %s: %s", project.uuid, exc)
         new_files_list = []
         for f in tree:
             modified_at = dt.fromtimestamp(f.get("mtime", time.time()), tz=dt_timezone.utc).isoformat()
@@ -560,6 +603,9 @@ class SandboxSessionManager:
         started_at = time.monotonic()
         sandbox = self.get_or_create(project, runtime=runtime)
 
+        is_real_env = isinstance(project, Sandbox) and getattr(project, "filesystem_path", "") != "/workspace"
+        self.ensure_project_bootstrapped(project, sandbox)
+
         try:
             tools_file = Path(__file__).resolve().parent / "file_tools.py"
             if tools_file.exists():
@@ -577,11 +623,34 @@ class SandboxSessionManager:
         except Exception:
             pass
 
-        ws_root = workspace_root or project.filesystem_path or f"/workspace/{project.slug}"
+        if workspace_root:
+            ws_root = workspace_root
+        elif is_real_env:
+            from sandbox.services.environment_bootstrap import environment_working_path
+            ws_root = environment_working_path(project)
+        else:
+            ws_root = project.filesystem_path or f"/workspace/{project.slug}"
+
+        env_secrets_b64 = ""
+        if is_real_env and getattr(project, "workspace_id", None):
+            try:
+                from sandbox.services.vm_secrets import resolve_workspace_secrets
+                env_secrets = resolve_workspace_secrets(project.workspace, sandbox=project)
+                if env_secrets:
+                    env_secrets_b64 = base64.b64encode(json.dumps(env_secrets).encode("utf-8")).decode("ascii")
+            except Exception:  # noqa: BLE001
+                env_secrets_b64 = ""
+        env_inject = (
+            f"os.environ.update({{str(k): str(v) for k, v in json.loads(base64.b64decode('{env_secrets_b64}').decode('utf-8')).items()}}); "
+            if env_secrets_b64
+            else ""
+        )
+
         args_b64 = base64.b64encode(json.dumps(arguments).encode()).decode()
         py_code = (
             "import sys, json, base64, os; "
             "sys.path.insert(0, '/var/lib/neuronrunner'); "
+            f"{env_inject}"
             f"os.environ['WORKSPACE_ROOT'] = {json.dumps(ws_root)}; "
             "from file_tools import dispatch_file_tool; "
             f"args = json.loads(base64.b64decode('{args_b64}').decode()); "
@@ -592,6 +661,7 @@ class SandboxSessionManager:
             py_code = (
                 "import sys, json, base64, os; "
                 "sys.path.insert(0, '/var/lib/neuronrunner'); "
+                f"{env_inject}"
                 f"os.environ['WORKSPACE_ROOT'] = {json.dumps(ws_root)}; "
                 "from file_tools import shell_exec; "
                 f"args = json.loads(base64.b64decode('{args_b64}').decode()); "

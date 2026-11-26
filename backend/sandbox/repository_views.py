@@ -16,9 +16,101 @@ from social_django.models import UserSocialAuth
 from .services import conversation_worktree
 from .services.repository_browser import read_repository
 from .services.repository_reader import RepositoryUnavailable
-from .views import _get_accessible_project, _has_running_vm, _no_vm_response
+from .views import _get_accessible_project, _has_live_runtime, _has_running_vm, _no_vm_response
 
 logger = logging.getLogger(__name__)
+
+
+def _db_environment_repositories(workspace) -> list[dict]:
+    """Return repo-backed Environments from DB so Issues/PRs work even while the VM is offline."""
+    if not workspace:
+        return []
+    from .models import Sandbox
+    items = (
+        Sandbox.objects.filter(workspace=workspace)
+        .exclude(filesystem_path="/workspace")
+        .exclude(repo_full_name="", repo_url="")
+        .order_by("-is_favorite", "display_name")
+    )
+    repos = []
+    for env in items:
+        gh = (env.repo_full_name or "").strip() or None
+        repos.append({
+            "path": env.filesystem_path,
+            "name": env.display_name or env.slug,
+            "github_repository": gh,
+            "remote_url": (env.repo_url or "").strip() or None,
+        })
+    return repos
+
+
+def _db_github_repo_for_path(workspace, req_path: str) -> str | None:
+    """Resolve owner/repo from DB Environments when the workspace VM is stopped or repo isn't cloned yet."""
+    if not workspace:
+        return None
+    from .models import Sandbox
+    cleaned = (req_path or "").rstrip("/")
+    qs = Sandbox.objects.filter(workspace=workspace).exclude(repo_full_name="")
+    if cleaned and cleaned != "/workspace":
+        match = qs.filter(filesystem_path=cleaned).first()
+        if match:
+            return match.repo_full_name.strip()
+    first = qs.order_by("-is_favorite", "-updated_at").first()
+    return first.repo_full_name.strip() if first else None
+
+
+def _db_environment_status(workspace, req_path: str, user) -> dict | None:
+    """Return a RepositoryStatus-compatible payload from DB + GitHub branches when the VM is offline."""
+    if not workspace:
+        return None
+    from .models import Sandbox
+    cleaned = (req_path or "").rstrip("/")
+    qs = Sandbox.objects.filter(workspace=workspace).exclude(filesystem_path="/workspace")
+    env = qs.filter(filesystem_path=cleaned).first() if cleaned and cleaned != "/workspace" else None
+    if env is None:
+        return None
+    default_branch = (env.default_branch or "main").strip() or "main"
+    gh_repo = (env.repo_full_name or "").strip() or None
+    branches: list[dict] = []
+    if gh_repo and "/" in gh_repo:
+        headers = {"Accept": "application/vnd.github+json"}
+        token = _get_user_github_token(user) if user else None
+        if token:
+            headers["Authorization"] = f"Bearer {token}"
+        try:
+            resp = requests.get(
+                f"https://api.github.com/repos/{gh_repo}/branches",
+                headers=headers,
+                params={"per_page": 100},
+                timeout=6,
+                allow_redirects=False,
+            )
+            if resp.status_code == 200:
+                for item in resp.json():
+                    name = (item.get("name") or "").strip()
+                    if name:
+                        branches.append({"name": name, "remote": name != default_branch})
+        except (requests.RequestException, ValueError, TypeError):
+            pass
+    if not any(b["name"] == default_branch for b in branches):
+        branches.insert(0, {"name": default_branch, "remote": False})
+    return {
+        "path": env.filesystem_path,
+        "name": env.display_name or env.slug,
+        "github_repository": gh_repo,
+        "remote_url": (env.repo_url or "").strip() or None,
+        "branch": default_branch,
+        "branches": branches,
+        "head_commit": "",
+        "upstream": None,
+        "ahead": 0,
+        "behind": 0,
+        "files": [],
+        "history": [],
+        "history_has_next": False,
+        "history_next_offset": None,
+        "total_commits": 0,
+    }
 
 
 class RepositoryReadView(APIView):
@@ -27,6 +119,7 @@ class RepositoryReadView(APIView):
 
     def get(self, request, sandbox_uuid):
         project = _get_accessible_project(request.user, sandbox_uuid)
+        req_path = request.query_params.get("path", "/workspace")
         if request.query_params.get("wake") == "1" and getattr(project, "workspace", None):
             from .views import _bind_workspace_runtime_vm, _resolve_and_wake_vm
 
@@ -40,11 +133,30 @@ class RepositoryReadView(APIView):
                     _bind_workspace_runtime_vm(project, vm)
             except (RuntimeError, TimeoutError) as exc:
                 return Response({"error": str(exc)}, status=503)
-        if not _has_running_vm(project):
+        if not _has_live_runtime(project):
+            if self.operation == "list":
+                return Response({"repositories": _db_environment_repositories(getattr(project, "workspace", None))})
+            if self.operation == "status":
+                fallback = _db_environment_status(getattr(project, "workspace", None), req_path, request.user)
+                if fallback is not None:
+                    return Response(fallback)
             return _no_vm_response()
         try:
-            return Response(read_repository(project, self.operation, request.query_params.get("path", "/workspace"), request.query_params.get("file", ""), data={"mode": request.query_params.get("mode", "all"), "offset": request.query_params.get("offset", "0"), "head": request.query_params.get("head", "")}))
+            payload = read_repository(project, self.operation, req_path, request.query_params.get("file", ""), data={"mode": request.query_params.get("mode", "all"), "offset": request.query_params.get("offset", "0"), "head": request.query_params.get("head", "")})
+            if self.operation == "list" and isinstance(payload, dict):
+                live = list(payload.get("repositories") or [])
+                seen = {item.get("path") for item in live if isinstance(item, dict)}
+                for env_repo in _db_environment_repositories(getattr(project, "workspace", None)):
+                    if env_repo["path"] not in seen:
+                        live.append(env_repo)
+                        seen.add(env_repo["path"])
+                payload = {**payload, "repositories": live}
+            return Response(payload)
         except RepositoryUnavailable as error:
+            if self.operation == "status":
+                fallback = _db_environment_status(getattr(project, "workspace", None), req_path, request.user)
+                if fallback is not None:
+                    return Response(fallback)
             return Response({"error": str(error), "code": error.code}, status=404)
         except (ValueError, OSError, subprocess.TimeoutExpired):
             return Response({"error": "Git could not read this repository or file. Refresh and try again."}, status=400)
@@ -189,21 +301,31 @@ class RepositoryUnstageView(RepositoryWriteView):
 
 def _get_github_repo_context(user, sandbox_uuid, request):
     project = _get_accessible_project(user, sandbox_uuid)
-    if not _has_running_vm(project):
-        return None, None, _no_vm_response()
     req_path = request.query_params.get("path")
     if not req_path and hasattr(request, "data") and isinstance(request.data, dict):
         req_path = request.data.get("path")
     req_path = req_path or "/workspace"
-    try:
-        repository = read_repository(project, "status", req_path)
-    except RepositoryUnavailable as error:
-        return None, None, Response({"error": str(error), "code": error.code}, status=404)
-    except (ValueError, OSError, subprocess.TimeoutExpired):
-        return None, None, Response({"error": "Choose a Git repository in this workspace."}, status=400)
-    except Exception:
-        return None, None, Response({"error": "The workspace is temporarily unavailable."}, status=503)
-    repo = repository.get("github_repository")
+    repo = None
+    if _has_live_runtime(project):
+        try:
+            repository = read_repository(project, "status", req_path)
+            repo = repository.get("github_repository")
+        except RepositoryUnavailable:
+            repo = _db_github_repo_for_path(getattr(project, "workspace", None), req_path)
+            if not repo:
+                return None, None, Response({"error": "Repository unavailable.", "code": RepositoryUnavailable.code}, status=404)
+        except (ValueError, OSError, subprocess.TimeoutExpired):
+            repo = _db_github_repo_for_path(getattr(project, "workspace", None), req_path)
+            if not repo:
+                return None, None, Response({"error": "Choose a Git repository in this workspace."}, status=400)
+        except Exception:
+            repo = _db_github_repo_for_path(getattr(project, "workspace", None), req_path)
+            if not repo:
+                return None, None, Response({"error": "The workspace is temporarily unavailable."}, status=503)
+    else:
+        repo = _db_github_repo_for_path(getattr(project, "workspace", None), req_path)
+        if not repo:
+            return None, None, _no_vm_response()
     if not repo:
         return None, None, None
     token = _get_user_github_token(user)
@@ -742,17 +864,28 @@ class RepositoryIssuesView(APIView):
 
     def get(self, request, sandbox_uuid):
         project = _get_accessible_project(request.user, sandbox_uuid)
-        if not _has_running_vm(project):
-            return _no_vm_response()
-        try:
-            repository = read_repository(project, "status", request.query_params.get("path", "/workspace"))
-        except RepositoryUnavailable as error:
-            return Response({"error": str(error), "code": error.code}, status=404)
-        except (ValueError, OSError, subprocess.TimeoutExpired):
-            return Response({"error": "Choose a Git repository in this workspace."}, status=400)
-        except Exception:
-            return Response({"error": "The workspace is temporarily unavailable."}, status=503)
-        repo = repository["github_repository"]
+        req_path = request.query_params.get("path", "/workspace")
+        repo = None
+        if _has_live_runtime(project):
+            try:
+                repository = read_repository(project, "status", req_path)
+                repo = repository["github_repository"]
+            except RepositoryUnavailable as error:
+                repo = _db_github_repo_for_path(getattr(project, "workspace", None), req_path)
+                if not repo:
+                    return Response({"error": str(error), "code": error.code}, status=404)
+            except (ValueError, OSError, subprocess.TimeoutExpired):
+                repo = _db_github_repo_for_path(getattr(project, "workspace", None), req_path)
+                if not repo:
+                    return Response({"error": "Choose a Git repository in this workspace."}, status=400)
+            except Exception:
+                repo = _db_github_repo_for_path(getattr(project, "workspace", None), req_path)
+                if not repo:
+                    return Response({"error": "The workspace is temporarily unavailable."}, status=503)
+        else:
+            repo = _db_github_repo_for_path(getattr(project, "workspace", None), req_path)
+            if not repo:
+                return _no_vm_response()
         if not repo:
             return Response({"repository": None, "issues": [], "has_next": False})
         state = request.query_params.get("state", "open")

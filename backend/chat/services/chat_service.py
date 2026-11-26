@@ -538,7 +538,8 @@ class ChatService:
         from sandbox.services.sandbox_service import SandboxBootstrapService
         project = SandboxBootstrapService.conversation_project(self.conversation)
         if project:
-            root = project.filesystem_path or f"/workspace/{project.slug}"
+            from sandbox.services.environment_bootstrap import environment_working_path
+            root = environment_working_path(project)
             tool_guide += f"\nConversation project directory (default cwd and relative file root): {json.dumps(root)}. Use this real absolute path consistently.\n"
 
         from chat.services.memory_service import memory_available
@@ -1836,6 +1837,22 @@ class ChatService:
                 diff_res = SandboxGitService.get_diff(project, workspace_path=active_worktree_path(self.conversation, project))
                 if diff_res and diff_res.get("has_changes"):
                     file_diff_data = diff_res
+                if (tool_calls or file_diff_data) and getattr(project, "filesystem_path", "") != "/workspace":
+                    def _bg_checkpoint(_proj=project):
+                        try:
+                            from sandbox.services.environment_bootstrap import save_environment_state
+                            from sandbox.services.sandbox_session import get_sandbox_manager
+                            mgr = get_sandbox_manager()
+                            # Only checkpoint if a runtime is already active for this project/workspace
+                            if _proj.sandbox_object_id or (
+                                _proj.workspace_id
+                                and _proj.workspace.projects.filter(filesystem_path="/workspace").exclude(sandbox_object_id="").exists()
+                            ):
+                                runtime = mgr.get_or_create(_proj)
+                                save_environment_state(_proj, runtime)
+                        except Exception:  # noqa: BLE001
+                            pass
+                    Thread(target=_bg_checkpoint, name="nr-env-checkpoint", daemon=True).start()
         except Exception as diff_err:
             logger.warning("Failed to compute git diff on completion: %s", diff_err)
 

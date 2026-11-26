@@ -372,7 +372,7 @@
       "issues": "Issues",
       "pullRequests": "Pull Requests",
       "integrations": "集成",
-      "projectsHeading": "项目 ({{count}})",
+      "projectsHeading": "环境 ({{count}})",
       "noConversations": "暂无对话",
       "historyHeading": "历史记录 ({{count}})",
       "historyItems": [
@@ -709,11 +709,11 @@
           "team": "1 台"
         },
         {
-          "feature": "持久化存储",
-          "free": "5 GB",
-          "plus": "50 GB",
-          "pro": "100 GB",
-          "team": "100 GB"
+          "feature": "环境",
+          "free": "无限制",
+          "plus": "无限制",
+          "pro": "无限制",
+          "team": "无限制"
         },
         {
           "feature": "工作区成员",
@@ -798,7 +798,8 @@
         "snapshots": "快照",
         "members": "成员",
         "byo": "BYOS / BYOK",
-        "storage": "存储空间"
+        "storage": "存储空间",
+        "environments": "环境"
       },
       "vcpuValue": "{{hours}} vCPU 小时",
       "approxMinutes": "≈ Small 虚拟机 {{minutes}} 分钟",
@@ -813,7 +814,8 @@
         "p1": "额度会在每个账单周期重置，并非无限。",
         "p2": "为钱包充值以继续运行 VM，或等待下一个计费周期重置。",
         "p3": "停止的 VM 费用为 $0.00/小时，你的自有 AI 订阅或 API 密钥始终以 0% 平台加价运行。"
-      }
+      },
+      "unlimited": "无限制"
     }
   },
   "pricingSection": {

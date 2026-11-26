@@ -1,60 +1,46 @@
 ---
 title: Cloud VMs
-description: How cloud VMs start and stop, what is kept between sessions and what is not.
+description: How cloud VMs start and stop, how ephemeral NVMe and compressed state persistence work, and what is kept between sessions.
 ---
 
 > [!NOTE]
 > This page describes the hosted Neuron Runner Cloud. Self-hosted installs use Docker sandboxes with a persistent volume instead, see [Sandboxes](../02-self-hosting/02-sandbox.md).
 
-On Neuron Runner Cloud every workspace can run in its own isolated Linux machine with a terminal and a desktop. The machine starts when you use it and closes on its own when you stop.
+On Neuron Runner Cloud every workspace runs in an isolated Linux machine with a terminal and a desktop. The machine starts when you use it and closes on its own when you stop.
 
 ## Stopping and starting
 
-A VM closes about 30 seconds after you stop using it, meaning no terminal or desktop tab is open and no agent is running. There is no stop button and no setting for it. The next time you open the terminal or desktop or run an agent, the VM starts again by itself, which usually takes a few seconds. Compute is only billed while the VM is running.
+A VM closes about 30 seconds after you stop using it, meaning no terminal or desktop tab is open and no agent is running. The next time you open the terminal or desktop or run an agent, the VM restores from a memory snapshot in seconds. Compute is only billed while the VM is running — stopped VMs cost `$0.00`.
 
-A VM also stops on its own after the maximum run time of 24 hours. Your files are kept and it starts again when you use it.
+A VM also stops on its own after the maximum run time of 24 hours. Before shutdown, active environments are checkpointed automatically so you can pick up right where you left off.
 
-## What is kept
+## Local NVMe disk & persistence
 
-Each VM has its own folder of the workspace volume:
+`/workspace` runs directly on the container's **fast local ephemeral NVMe disk** so installs, builds, and git operations run at full local speed. Instead of enforcing per-plan disk caps or cold-storage locks, Neuron Runner Cloud persists only what matters in a hidden workspace store (`/var/lib/nr-store`):
 
-- **`/workspace`**, where your projects live. It is kept for as long as the VM exists. Deleting the VM or the workspace deletes it.
-- **Agent and tool settings in the home directory:** the sign-in files and settings of Claude Code, Codex and Gemini (`~/.claude`, `~/.codex`, `~/.gemini`), `~/.claude.json`, global npm packages (`~/.npm-global`), SSH keys (`~/.ssh`), `~/.gitconfig` and the shell history.
-- **Agent sign-ins** are also stored encrypted in Neuron Runner's database and written back into every new VM, so your agents stay signed in. Disconnecting an agent or deleting the workspace removes that stored copy.
+- **Environment state checkpoints (`state/<env>.tar.zst`):** Unpushed commits (git bundle), uncommitted diffs, and untracked source files are archived automatically after agent turns and on container shutdown. See [Environments](./06-environments.md) for the exact size guardrails (**50 MB** per untracked file, **1 GB** total state cap).
+- **Derived dependency caches (`deps/` & `deps-dir/`):** `node_modules`, `.venv`, `venv`, and `vendor` are cached per lockfile hash (≤ 300 MB as fast `tar.zst` archives extracted to local NVMe; > 300 MB as symlinked directories; capped at **5 GB** per environment) and automatically pruned after **7 days** of inactivity.
+- **Agent and tool settings in the home directory:** Sign-in files and settings for Claude Code, Codex, and Gemini (`~/.claude`, `~/.codex`, `~/.gemini`), `~/.claude.json`, global npm packages (`~/.npm-global`), SSH keys (`~/.ssh`), `~/.gitconfig`, and shell history.
+- **Agent sign-ins & encrypted secrets:** Stored encrypted in Neuron Runner's database and injected into every new VM and environment run.
 
-## Storage limit
+## Shared read-only package cache
 
-Each VM's folder has a storage limit that depends on your plan (by default 5 GB on Free, 20 GB on Plus, 50 GB on Pro and 100 GB on Team). The machine menu shows how much you use.
-
-- At 80% you see a warning.
-- If the folder goes over the limit, the VM **closes automatically** and cannot be started again until you are back under it. A message tells you so.
-- **Nothing is deleted for you.** Open the file manager and delete files yourself. It works while the VM is closed, without starting it, and also lets you download files first. Other changes (creating, saving and renaming files) are paused until you are under the limit. As soon as the space is freed the VM starts again when you use it.
-
-The limit counts everything in the VM's folder, including the saved home folders such as `~/.npm-global`.
-
-## Cold storage
-
-A VM that stays closed for **7 days** has its files packed into a single compressed archive in separate, cheaper storage, and removed from the fast workspace volume. The machine menu shows that it is archived.
-
-- Nothing is lost: the archive is uploaded and verified before anything is removed.
-- The next time you use the VM, your files are **restored first**, then the VM starts. Expect a little extra time: roughly 5 seconds for a 250 MB workspace and about 20 seconds per GB.
-- Once restored, the archive is deleted and your files live on the fast volume again, so the week starts over.
-- Deleting the VM or the workspace deletes its archive too.
+Public packages from npm, PyPI (`pip` / `uv`), and Go are served through a local read-only cache proxy (`127.0.0.1:4873`). Frequently used public tarballs and wheels are served directly from a shared read-only cache without re-downloading from the public internet.
 
 ## What is not kept
 
-Everything else on the machine starts fresh every time:
+Everything else on the machine starts fresh on every new boot:
 
-- Software you installed outside the folders above (for example with `apt` or `pip install --user`). Keep dependencies in your project (a virtual environment or `node_modules` inside `/workspace`).
-- Desktop settings, browser profiles and caches.
-- Running processes, open terminals and in-memory state. They end when the VM closes.
-- Workspace secrets are stored encrypted by Neuron Runner and injected again each time the VM starts.
+- System packages installed outside the persisted paths (for example with `apt`). Put project setup commands in your Environment's **Setup script** instead.
+- Large temporary binaries, datasets, or model weights exceeding the state guardrails (**> 50 MB** per untracked file or **> 1 GB** total uncommitted state).
+- Desktop settings, browser profiles, and temporary caches.
+- Running processes, open terminals, and in-memory state. They end when the VM closes.
 
 > [!WARNING]
-> Push your work to Git regularly. Files are only as safe as the VM that holds them: deleting the VM deletes its `/workspace`.
+> Treat Git (GitHub / GitLab) as your source of truth and push your work regularly. State checkpoints protect uncommitted source code between sessions, not large binary assets or datasets.
 
 ## Limits of the cloud VM
 
-- **No Docker.** VMs run in a sandboxed environment that does not support running containers.
-- **Interruptions.** To keep costs low the machine can occasionally be restarted by the cloud provider. Your files are not affected, but open terminals and running processes end, just as when the VM closes.
+- **No Docker.** VMs run in a sandboxed environment that does not support running nested containers.
+- **Interruptions.** To keep costs low the machine can occasionally be restarted by the cloud provider. Active environments are checkpointed on exit, and open terminals/processes end as on a normal stop.
 - **Network access** from the VM is not restricted.

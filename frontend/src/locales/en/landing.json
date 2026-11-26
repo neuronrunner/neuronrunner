@@ -362,7 +362,7 @@
       "issues": "Issues",
       "pullRequests": "Pull Requests",
       "integrations": "Integrations",
-      "projectsHeading": "Projects ({{count}})",
+      "projectsHeading": "Environments ({{count}})",
       "noConversations": "No conversations yet",
       "historyHeading": "History ({{count}})",
       "historyItems": [
@@ -699,11 +699,11 @@
           "team": "1 VM"
         },
         {
-          "feature": "Persistent Storage",
-          "free": "5 GB",
-          "plus": "50 GB",
-          "pro": "100 GB",
-          "team": "100 GB"
+          "feature": "Environments",
+          "free": "Unlimited",
+          "plus": "Unlimited",
+          "pro": "Unlimited",
+          "team": "Unlimited"
         },
         {
           "feature": "Workspace Members",
@@ -788,7 +788,8 @@
         "snapshots": "Snapshots",
         "members": "Members",
         "byo": "BYOS / BYOK",
-        "storage": "Storage"
+        "storage": "Storage",
+        "environments": "Environments"
       },
       "vcpuValue": "{{hours}} vCPU-hrs",
       "approxMinutes": "≈ {{minutes}} min on a Small VM",
@@ -803,7 +804,8 @@
         "p1": "The quota resets every billing cycle and is not unlimited.",
         "p2": "Top up your wallet to keep VMs running, or wait for the next billing cycle.",
         "p3": "Stopped VMs cost $0.00/hr, and your own AI subscriptions or API keys always run at 0% platform markup."
-      }
+      },
+      "unlimited": "Unlimited"
     }
   },
   "pricingSection": {

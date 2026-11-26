@@ -372,7 +372,7 @@
       "issues": "イシュー",
       "pullRequests": "プルリクエスト",
       "integrations": "連携",
-      "projectsHeading": "プロジェクト ({{count}})",
+      "projectsHeading": "環境 ({{count}})",
       "noConversations": "まだ会話はありません",
       "historyHeading": "履歴 ({{count}})",
       "historyItems": [
@@ -709,11 +709,11 @@
           "team": "20台"
         },
         {
-          "feature": "永続ストレージ",
-          "free": "5 GB",
-          "plus": "50 GB",
-          "pro": "100 GB",
-          "team": "100 GB"
+          "feature": "環境",
+          "free": "無制限",
+          "plus": "無制限",
+          "pro": "無制限",
+          "team": "無制限"
         },
         {
           "feature": "ワークスペースメンバー",
@@ -805,7 +805,8 @@
         "snapshots": "スナップショット",
         "members": "メンバー",
         "byo": "BYOS / BYOK",
-        "storage": "ストレージ"
+        "storage": "ストレージ",
+        "environments": "環境"
       },
       "vcpuValue": "{{hours}} vCPU 時間",
       "approxMinutes": "≈ Small VMで{{minutes}}分",
@@ -820,7 +821,8 @@
         "p1": "クォータは請求サイクルごとにリセットされ、無制限ではありません。",
         "p2": "VMを継続利用するにはウォレットへチャージするか、次の請求サイクルをお待ちください。",
         "p3": "停止中のVMは$0.00/時。ご自身のAIサブスクリプションやAPIキーは常に手数料0%で動作します。"
-      }
+      },
+      "unlimited": "無制限"
     }
   },
   "pricingSection": {

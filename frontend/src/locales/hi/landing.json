@@ -372,7 +372,7 @@
       "issues": "Issues",
       "pullRequests": "Pull Requests",
       "integrations": "इंटीग्रेशन्स",
-      "projectsHeading": "प्रोजेक्ट्स ({{count}})",
+      "projectsHeading": "एनवायरनमेंट्स ({{count}})",
       "noConversations": "अभी तक कोई चैट नहीं",
       "historyHeading": "हिस्ट्री ({{count}})",
       "historyItems": [
@@ -709,11 +709,11 @@
           "team": "20 VMs"
         },
         {
-          "feature": "स्थायी स्टोरेज",
-          "free": "5 GB",
-          "plus": "50 GB",
-          "pro": "100 GB",
-          "team": "100 GB"
+          "feature": "एनवायरनमेंट्स",
+          "free": "असीमित",
+          "plus": "असीमित",
+          "pro": "असीमित",
+          "team": "असीमित"
         },
         {
           "feature": "वर्कस्पेस मेंबर्स",
@@ -805,7 +805,8 @@
         "snapshots": "स्नैपशॉट",
         "members": "मेंबर",
         "byo": "BYOS / BYOK",
-        "storage": "स्टोरेज"
+        "storage": "स्टोरेज",
+        "environments": "एनवायरनमेंट्स"
       },
       "vcpuValue": "{{hours}} vCPU-घंटे",
       "approxMinutes": "≈ Small VM पर {{minutes}} मिनट",
@@ -820,7 +821,8 @@
         "p1": "कोटा हर बिलिंग साइकिल में रीसेट होता है और असीमित नहीं है।",
         "p2": "VM चलाते रहने के लिए वॉलेट टॉप-अप करें या अगले बिलिंग चक्र की प्रतीक्षा करें।",
         "p3": "बंद VM $0.00/घं हैं, और आपके अपने AI सब्सक्रिप्शन या API कुंजियाँ हमेशा 0% प्लेटफ़ॉर्म शुल्क पर चलती हैं।"
-      }
+      },
+      "unlimited": "असीमित"
     }
   },
   "pricingSection": {

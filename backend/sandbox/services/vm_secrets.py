@@ -105,16 +105,23 @@ def mask_secret(last4: str) -> str:
     return "••••••••"
 
 
-def resolve_workspace_secrets(workspace) -> dict[str, str]:
-    """Resolve effective encrypted secrets for a workspace."""
+def resolve_workspace_secrets(workspace, sandbox=None) -> dict[str, str]:
+    """Resolve effective encrypted secrets for a workspace, optionally overlaid with environment secrets."""
     if not workspace:
         return {}
     resolved: dict[str, str] = {}
-    for item in WorkspaceVMSecret.objects.filter(workspace=workspace).order_by("key"):
+    for item in WorkspaceVMSecret.objects.filter(workspace=workspace, sandbox__isnull=True).order_by("key"):
         if item.key in RESERVED_ENV_KEYS:
             continue
         with suppress(ValueError):
             resolved[item.key] = decrypt_secret(item.encrypted_value)
+    if sandbox is not None:
+        sandbox_id = getattr(sandbox, "pk", sandbox)
+        for item in WorkspaceVMSecret.objects.filter(workspace=workspace, sandbox_id=sandbox_id).order_by("key"):
+            if item.key in RESERVED_ENV_KEYS:
+                continue
+            with suppress(ValueError):
+                resolved[item.key] = decrypt_secret(item.encrypted_value)
     return resolved
 
 

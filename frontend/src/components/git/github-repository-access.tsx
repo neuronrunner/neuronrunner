@@ -5,12 +5,13 @@ import { useTranslation } from "react-i18next";
 import { LuCheck, LuGithub, LuLoaderCircle, LuLock, LuRefreshCw } from "react-icons/lu";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { GITHUB_ACCOUNTS_EVENT, connectGithubAccount, githubRepositories, type GithubAccess } from "@/lib/github-connection";
+import { GITHUB_ACCOUNTS_EVENT, connectGithubAccount, githubRepositories, type GithubAccess, type GithubRepository } from "@/lib/github-connection";
 
 interface Props {
   uuid?: string;
   disabled?: boolean;
   onSelect: (url: string) => void;
+  onSelectRepo?: (repo: GithubRepository) => void;
   value?: string;
   onConnectingChange?: (connecting: boolean) => void;
 }
@@ -19,7 +20,7 @@ function errorMessage(error: unknown, fallback: string) {
   return (error as { response?: { data?: { error?: string } } })?.response?.data?.error || (error instanceof Error ? error.message : fallback);
 }
 
-export default function GithubRepositoryAccess({ uuid, disabled, onSelect, value, onConnectingChange }: Props) {
+export default function GithubRepositoryAccess({ uuid, disabled, onSelect, onSelectRepo, value, onConnectingChange }: Props) {
   const { t } = useTranslation("git");
   const [access, setAccess] = useState<GithubAccess | null>(null);
   const [loading, setLoading] = useState(true);
@@ -89,7 +90,7 @@ export default function GithubRepositoryAccess({ uuid, disabled, onSelect, value
     {expanded && access?.connected && <div className="space-y-2 border-t pt-3">
       <Input aria-label={t("githubAccess.searchAriaLabel")} placeholder={t("githubAccess.searchPlaceholder")} value={query} disabled={disabled || connecting} onChange={event => setQuery(event.target.value)} className="h-8 text-xs" />
       <div aria-label={t("githubAccess.listAriaLabel")} className="max-h-40 space-y-1 overflow-y-auto">
-        {repos.map(repo => <button key={repo.full_name} type="button" disabled={disabled || connecting} onClick={() => { onSelect(repo.clone_url); }} aria-pressed={value === repo.clone_url} className={`flex w-full min-w-0 items-center gap-2 rounded-md px-2 py-2 text-left text-xs hover:bg-muted disabled:opacity-50 ${value === repo.clone_url ? "bg-violet-500/10" : ""}`}><LuGithub className="h-3.5 w-3.5 shrink-0 text-muted-foreground" /><span className="min-w-0 flex-1"><span className="block truncate font-medium" title={repo.full_name}>{repo.full_name}</span>{repo.description && <span className="mt-0.5 block truncate text-[10px] text-muted-foreground">{repo.description}</span>}</span>{value === repo.clone_url && <LuCheck className="h-3.5 w-3.5 shrink-0 text-violet-500" />}{repo.private && <span className="flex shrink-0 items-center gap-1 text-[10px] text-muted-foreground"><LuLock className="h-3 w-3" />{t("githubAccess.privateBadge")}</span>}</button>)}
+        {repos.map(repo => <button key={repo.full_name} type="button" disabled={disabled || connecting} onClick={() => { onSelect(repo.clone_url); onSelectRepo?.(repo); }} aria-pressed={value === repo.clone_url} className={`flex w-full min-w-0 items-center gap-2 rounded-md px-2 py-2 text-left text-xs hover:bg-muted disabled:opacity-50 ${value === repo.clone_url ? "bg-violet-500/10" : ""}`}><LuGithub className="h-3.5 w-3.5 shrink-0 text-muted-foreground" /><span className="min-w-0 flex-1"><span className="block truncate font-medium" title={repo.full_name}>{repo.full_name}</span>{repo.description && <span className="mt-0.5 block truncate text-[10px] text-muted-foreground">{repo.description}</span>}</span>{value === repo.clone_url && <LuCheck className="h-3.5 w-3.5 shrink-0 text-violet-500" />}{repo.private && <span className="flex shrink-0 items-center gap-1 text-[10px] text-muted-foreground"><LuLock className="h-3 w-3" />{t("githubAccess.privateBadge")}</span>}</button>)}
         {!repos.length && !loading && <p className="py-2 text-xs text-muted-foreground">{query ? t("githubAccess.noMatchingRepos") : t("githubAccess.noReposAvailable")}</p>}
       </div>
       {access.has_next && <Button type="button" size="sm" variant="ghost" disabled={disabled || connecting || loading} onClick={() => setPage(value => value + 1)}>{loading ? t("githubAccess.loading") : t("githubAccess.loadMore")}</Button>}

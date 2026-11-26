@@ -68,8 +68,18 @@ def _get_accessible_project(user, project_uuid):
 
 
 def _has_running_vm(project) -> bool:
-    """In self-hosted Docker mode, containers start on demand for any workspace."""
+    """In self-hosted Docker and Cloud on-demand modes, explicit actions wake the runtime when needed."""
     return bool(project and getattr(project, "workspace_id", None))
+
+
+def _has_live_runtime(project) -> bool:
+    """Return True only when a runtime is already running (never wakes a stopped Cloud VM)."""
+    if not project or not getattr(project, "workspace_id", None):
+        return False
+    from core.extensions import registry as ext_registry
+    if ext_registry.runtime.has_running_runtime is not None:
+        return bool(ext_registry.runtime.has_running_runtime(project))
+    return True
 
 
 def _no_vm_response():
@@ -505,7 +515,11 @@ class SandboxListCreateView(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        queryset = _accessible_projects(self.request.user).exclude(filesystem_path="/workspace")
+        queryset = (
+            _accessible_projects(self.request.user)
+            .exclude(filesystem_path="/workspace")
+            .prefetch_related("conversations", "secrets")
+        )
         workspace_uuid = self.request.query_params.get("workspace_uuid")
         if workspace_uuid:
             queryset = queryset.filter(workspace_id=workspace_uuid)
@@ -520,21 +534,41 @@ class SandboxListCreateView(generics.ListCreateAPIView):
             workspace = get_object_or_404(_accessible_workspaces(self.request.user), uuid=workspace_uuid)
         else:
             workspace = SandboxBootstrapService.ensure_personal_workspace(self.request.user)
+        raw_slug = (serializer.validated_data.get("slug") or "").strip()
+        raw_display = (serializer.validated_data.get("display_name") or "").strip()
+        repo_full_name = (serializer.validated_data.get("repo_full_name") or "").strip()
+        repo_url = (serializer.validated_data.get("repo_url") or "").strip()
+        if not repo_url and repo_full_name and "/" in repo_full_name:
+            repo_url = f"https://github.com/{repo_full_name.strip('/')}.git"
+        if not raw_display and repo_full_name:
+            raw_display = repo_full_name.rstrip("/").split("/")[-1][:120]
+        if not raw_slug:
+            slug_base = slugify(raw_display or "environment")[:50] or "environment"
+            candidate = slug_base
+            suffix = 1
+            while workspace.projects.filter(slug=candidate).exists():
+                candidate = f"{slug_base}-{suffix}"
+                suffix += 1
+            raw_slug = candidate
         try:
             filesystem_path = _normalize_project_path(
-                serializer.validated_data.get("filesystem_path") or f"/workspace/{serializer.validated_data['slug']}"
+                serializer.validated_data.get("filesystem_path") or f"/workspace/{raw_slug}"
             )
         except ValueError as exc:
             raise ApiValidationError({"filesystem_path": str(exc)}) from exc
         if workspace.projects.filter(filesystem_path=filesystem_path).exists():
-            raise ApiValidationError({"filesystem_path": "This filesystem path is already a project."})
+            raise ApiValidationError({"filesystem_path": "This filesystem path is already an environment."})
 
         shared = SandboxBootstrapService.ensure_workspace_sandbox(workspace)
 
         values = {
             "user": self.request.user,
             "workspace": workspace,
+            "slug": raw_slug,
+            "display_name": raw_display or raw_slug,
             "filesystem_path": filesystem_path,
+            "repo_full_name": repo_full_name,
+            "repo_url": repo_url,
             "sandbox_gpu": "CPU",
             "sandbox_cpu": shared.sandbox_cpu,
             "sandbox_memory": shared.sandbox_memory,
@@ -543,21 +577,28 @@ class SandboxListCreateView(generics.ListCreateAPIView):
             "terminal_url": shared.terminal_url,
             "terminal_token": shared.terminal_token,
         }
-        project = Sandbox(**{**serializer.validated_data, **values})
-        try:
-            initialize_project_repository(project)
-        except GitInitializationError as exc:
-            logger.exception("Failed to initialize project repository")
-            raise APIException(str(exc)) from exc
-        values.update(
-            sandbox_object_id=project.sandbox_object_id,
-            terminal_url=project.terminal_url,
-            terminal_token=project.terminal_token,
+        lazy_flag = self.request.data.get("lazy")
+        is_lazy = (
+            str(lazy_flag).strip().lower() in ("1", "true", "yes")
+            if lazy_flag is not None
+            else bool(repo_full_name or repo_url)
         )
+        project = Sandbox(**{**serializer.validated_data, **values})
+        if not is_lazy:
+            try:
+                initialize_project_repository(project)
+            except GitInitializationError as exc:
+                logger.exception("Failed to initialize project repository")
+                raise APIException(str(exc)) from exc
+            values.update(
+                sandbox_object_id=project.sandbox_object_id,
+                terminal_url=project.terminal_url,
+                terminal_token=project.terminal_token,
+            )
         with transaction.atomic():
             Workspace.objects.select_for_update().get(pk=workspace.pk)
             if workspace.projects.filter(filesystem_path=filesystem_path).exists():
-                raise ApiValidationError({"filesystem_path": "This filesystem path is already a project."})
+                raise ApiValidationError({"filesystem_path": "This filesystem path is already an environment."})
             created_project = serializer.save(**values)
 
         _init_project_suggestions_on_create(created_project)
@@ -591,7 +632,11 @@ class SandboxDetailView(generics.RetrieveUpdateDestroyAPIView):
         return obj
 
     def perform_update(self, serializer):
+        prev_setup = serializer.instance.setup_script
         project = serializer.save()
+        if "setup_script" in serializer.validated_data and project.setup_script != prev_setup:
+            project.setup_status = Sandbox.SETUP_STATUS_IDLE
+            project.save(update_fields=["setup_status", "updated_at"])
         if "conversation" in serializer.validated_data and project.conversation_id:
             project.conversations.add(project.conversation_id)
         remove_conversation = self.request.data.get("remove_conversation")
@@ -624,6 +669,58 @@ class SandboxDetailView(generics.RetrieveUpdateDestroyAPIView):
             project.terminal_token = ""
 
 
+class SandboxRunSetupView(APIView):
+    """Manually trigger repository bootstrap and setup_script for an Environment."""
+
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request, sandbox_uuid):
+        from sandbox.services.environment_bootstrap import ensure_environment_ready
+        from sandbox.services.sandbox_session import get_sandbox_manager
+
+        project = _get_accessible_project(request.user, sandbox_uuid)
+        force = str(request.data.get("force", "true")).strip().lower() not in ("0", "false", "no")
+        try:
+            runtime = get_sandbox_manager().get_or_create(project)
+            result = ensure_environment_ready(project, runtime, user=request.user, force_setup=force)
+        except Exception as exc:
+            logger.exception("Failed to run setup for environment %s", project.uuid)
+            return Response({"error": str(exc)}, status=503)
+        project.refresh_from_db()
+        return Response({
+            **result,
+            "environment": SandboxSerializer(project, context={"request": request}).data,
+        }, status=200 if result.get("ready") else 422)
+
+
+class SandboxClearDepsCacheView(APIView):
+    """Clear cached dependency archives/directories for an Environment."""
+
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request, sandbox_uuid):
+        from sandbox.services.environment_bootstrap import clear_environment_deps_cache
+        from sandbox.services.sandbox_session import get_sandbox_manager
+
+        project = _get_accessible_project(request.user, sandbox_uuid)
+        runtime = None
+        has_active_runtime = bool(project.sandbox_object_id) or (
+            project.workspace_id
+            and project.workspace.projects.filter(filesystem_path="/workspace").exclude(sandbox_object_id="").exists()
+        )
+        if has_active_runtime:
+            try:
+                runtime = get_sandbox_manager().get_or_create(project)
+            except Exception:
+                runtime = None
+        result = clear_environment_deps_cache(project, runtime=runtime)
+        project.refresh_from_db()
+        return Response({
+            **result,
+            "environment": SandboxSerializer(project, context={"request": request}).data,
+        })
+
+
 # ─── Sandbox Files ──────────────────────────────────────────────────────────────
 
 class SandboxFileListCreateView(APIView):
@@ -634,18 +731,18 @@ class SandboxFileListCreateView(APIView):
         if not _has_running_vm(project):
             return _no_vm_response()
 
-        from sandbox.services.sandbox_session import get_sandbox_manager
-        sandbox_manager = get_sandbox_manager()
+        if _has_live_runtime(project):
+            from sandbox.services.sandbox_session import get_sandbox_manager
+            sandbox_manager = get_sandbox_manager()
 
-        # Refresh from the selected workspace filesystem. VM disk access starts
-        # a stopped VM so terminal-created files appear in the same tree.
-        try:
-            sandbox_manager._sync_file_tree_to_db(project)
-        except Exception as e:
-            logger.warning("Failed to sync file tree for sandbox %s: %s", project.uuid, e)
-            return Response({"error": "Workspace storage is unavailable. Please retry."}, status=503)
+            # Refresh from the live workspace filesystem when a runtime is already running.
+            try:
+                sandbox_manager._sync_file_tree_to_db(project)
+            except Exception as e:
+                logger.warning("Failed to sync file tree for sandbox %s: %s", project.uuid, e)
+                return Response({"error": "Workspace storage is unavailable. Please retry."}, status=503)
 
-        # Return files from cache
+        # Return files from cache (empty list when VM is stopped, without waking it)
         from utils.cache import get_sandbox_files
         res = get_sandbox_files(str(project.uuid)) or []
 
@@ -1232,7 +1329,7 @@ class SandboxAgentToolsView(APIView):
         items = (
             _accessible_projects(request.user).filter(workspace=workspace)
             .exclude(filesystem_path="/workspace")
-            .prefetch_related("conversations").order_by("-updated_at")
+            .prefetch_related("conversations", "secrets").order_by("-updated_at")
         )
 
         idle_limits = getattr(settings, "SANDBOX_IDLE_TIMEOUT_LIMITS", {}).get(
@@ -1310,6 +1407,15 @@ class SandboxAgentToolsView(APIView):
             else:
                 return Response({"error": "Could not allocate a unique slug."}, status=400)
 
+            repo_full_name = (data.get("repo_full_name") or "").strip()
+            repo_url = (data.get("repo_url") or "").strip()
+            default_branch = (data.get("default_branch") or "main").strip() or "main"
+            working_subdir = (data.get("working_subdir") or "").strip().strip("/")
+            setup_script = data.get("setup_script") or ""
+            maintenance_script = data.get("maintenance_script") or ""
+            usage_guide = data.get("usage_guide") or ""
+            lazy = bool(data.get("lazy")) or bool(repo_full_name or repo_url) or data.get("source") == "github"
+
             sandbox = Sandbox(
                 user=request.user,
                 workspace=workspace,
@@ -1317,6 +1423,13 @@ class SandboxAgentToolsView(APIView):
                 display_name=display_name,
                 description=data.get("description", ""),
                 filesystem_path=filesystem_path,
+                repo_full_name=repo_full_name,
+                repo_url=repo_url,
+                default_branch=default_branch,
+                working_subdir=working_subdir,
+                setup_script=setup_script,
+                maintenance_script=maintenance_script,
+                usage_guide=usage_guide,
                 sandbox_gpu="CPU",
                 sandbox_cpu=sandbox_cpu,
                 sandbox_memory=sandbox_memory,
@@ -1328,30 +1441,31 @@ class SandboxAgentToolsView(APIView):
                 sandbox_last_active_at=timezone.now(),
                 is_favorite=False,
             )
-            try:
-                source = data.get("source")
-                if source in ("new", "existing"):
-                    from sandbox.services.repository_browser import read_repository
-                    read_repository(shared, "initialize", filesystem_path, data={"source": source})
-                    if shared:
-                        shared.refresh_from_db()
-                        sandbox.sandbox_object_id = shared.sandbox_object_id
-                        sandbox.terminal_url = shared.terminal_url
-                        sandbox.terminal_token = shared.terminal_token
-                elif source is not None:
-                    return Response({"error": "Choose a valid project source."}, status=400)
-                else:
-                    initialize_project_repository(sandbox)
-            except ValueError as exc:
-                return Response({"error": str(exc)}, status=400)
-            except GitInitializationError as exc:
-                logger.exception("Failed to initialize project repository")
-                return Response({"error": str(exc)}, status=500)
-            except RuntimeError as exc:
-                if "virtual machine" in str(exc).lower():
-                    return _no_vm_response()
-                logger.exception("Failed to initialize project runtime")
-                return Response({"error": str(exc)}, status=503)
+            if not lazy:
+                try:
+                    source = data.get("source")
+                    if source in ("new", "existing"):
+                        from sandbox.services.repository_browser import read_repository
+                        read_repository(shared, "initialize", filesystem_path, data={"source": source})
+                        if shared:
+                            shared.refresh_from_db()
+                            sandbox.sandbox_object_id = shared.sandbox_object_id
+                            sandbox.terminal_url = shared.terminal_url
+                            sandbox.terminal_token = shared.terminal_token
+                    elif source is not None:
+                        return Response({"error": "Choose a valid project source."}, status=400)
+                    else:
+                        initialize_project_repository(sandbox)
+                except ValueError as exc:
+                    return Response({"error": str(exc)}, status=400)
+                except GitInitializationError as exc:
+                    logger.exception("Failed to initialize project repository")
+                    return Response({"error": str(exc)}, status=500)
+                except RuntimeError as exc:
+                    if "virtual machine" in str(exc).lower():
+                        return _no_vm_response()
+                    logger.exception("Failed to initialize project runtime")
+                    return Response({"error": str(exc)}, status=503)
             with transaction.atomic():
                 Workspace.objects.select_for_update().get(pk=workspace.pk)
                 if Sandbox.objects.filter(workspace=workspace, filesystem_path=filesystem_path).exists():
@@ -1461,7 +1575,7 @@ class SandboxGithubReposView(APIView):
                 elif response.status_code in (403, 429):
                     message = "GitHub denied access or its request limit was reached. Reconnect or try again later."
                 return Response({"error": message}, status=502)
-            repos = [{"name": r.get("name"), "full_name": r.get("full_name"), "clone_url": r.get("clone_url"), "private": bool(r.get("private")), "description": r.get("description")} for r in response.json()]
+            repos = [{"name": r.get("name"), "full_name": r.get("full_name"), "clone_url": r.get("clone_url"), "private": bool(r.get("private")), "description": r.get("description"), "default_branch": r.get("default_branch") or "main"} for r in response.json()]
             scope = response.headers.get("X-OAuth-Scopes", (connection.extra_data or {}).get("scope"))
             private_access = None if scope is None else "repo" in str(scope).replace(",", " ").split()
             if any(repo["private"] for repo in repos):

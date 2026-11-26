@@ -140,6 +140,10 @@ class TerminalConsumer(AsyncWebsocketConsumer):
             await self._runtime_failure("Sandbox runtime unavailable.")
             return
 
+        await database_sync_to_async(
+            self.manager.ensure_project_bootstrapped, thread_sensitive=False
+        )(self.project, self.sandbox)
+
         project_path = self.project.filesystem_path or f"/workspace/{self.project.slug}"
         try:
             master_fd, slave_fd = pty.openpty()

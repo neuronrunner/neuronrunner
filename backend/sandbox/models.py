@@ -192,7 +192,18 @@ class WorkspaceInvitation(models.Model):
 
 
 class Sandbox(models.Model):
-    """A project inside the workspace's shared container filesystem."""
+    """A repo-backed Environment (project) inside a workspace."""
+
+    SETUP_STATUS_IDLE = "idle"
+    SETUP_STATUS_RUNNING = "running"
+    SETUP_STATUS_READY = "ready"
+    SETUP_STATUS_FAILED = "failed"
+    SETUP_STATUS_CHOICES = (
+        (SETUP_STATUS_IDLE, "Idle"),
+        (SETUP_STATUS_RUNNING, "Running"),
+        (SETUP_STATUS_READY, "Ready"),
+        (SETUP_STATUS_FAILED, "Failed"),
+    )
 
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(
@@ -249,8 +260,54 @@ class Sandbox(models.Model):
     usage_guide = models.TextField(
         blank=True,
         default="",
-        help_text="Instructions for the agent on how to use this sandbox workspace.",
+        help_text="Instructions for the agent on how to use this environment.",
     )
+    # Environment blueprint fields (repo binding, setup/maintenance scripts, state/deps metadata)
+    repo_full_name = models.CharField(
+        max_length=200,
+        blank=True,
+        default="",
+        help_text="Connected GitHub repository in owner/repo format.",
+    )
+    repo_url = models.CharField(
+        max_length=512,
+        blank=True,
+        default="",
+        help_text="Git clone URL when linked to a repository.",
+    )
+    default_branch = models.CharField(
+        max_length=120,
+        blank=True,
+        default="",
+        help_text="Default Git branch checked out for this environment.",
+    )
+    working_subdir = models.CharField(
+        max_length=255,
+        blank=True,
+        default="",
+        help_text="Optional relative subdirectory inside the repository (for monorepos).",
+    )
+    setup_script = models.TextField(
+        blank=True,
+        default="",
+        help_text="Shell script run once after cloning or when dependencies change.",
+    )
+    maintenance_script = models.TextField(
+        blank=True,
+        default="",
+        help_text="Shell script run when a new conversation worktree is created.",
+    )
+    setup_status = models.CharField(
+        max_length=16,
+        choices=SETUP_STATUS_CHOICES,
+        default=SETUP_STATUS_IDLE,
+    )
+    setup_last_run_at = models.DateTimeField(null=True, blank=True)
+    setup_last_log = models.TextField(blank=True, default="")
+    state_saved_at = models.DateTimeField(null=True, blank=True)
+    state_size_bytes = models.BigIntegerField(default=0)
+    deps_lock_hash = models.CharField(max_length=64, blank=True, default="")
+
     suggestions = models.JSONField(
         default=list,
         blank=True,
@@ -410,13 +467,21 @@ class SandboxAuditLog(models.Model):
 
 
 class WorkspaceVMSecret(models.Model):
-    """Encrypted environment secrets injected into workspace sandbox containers."""
+    """Encrypted environment secrets injected into workspace or environment runtimes."""
 
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     workspace = models.ForeignKey(
         Workspace,
         on_delete=models.CASCADE,
         related_name="vm_secrets",
+    )
+    sandbox = models.ForeignKey(
+        Sandbox,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="secrets",
+        help_text="When set, this secret is scoped to a single Environment and overrides workspace-level secrets.",
     )
     key = models.CharField(max_length=128)
     encrypted_value = models.TextField(editable=False, default="")
@@ -437,9 +502,16 @@ class WorkspaceVMSecret(models.Model):
         constraints = [
             models.UniqueConstraint(
                 fields=["workspace", "key"],
-                name="unique_workspace_secret_key",
+                condition=models.Q(sandbox__isnull=True),
+                name="unique_workspace_global_secret_key",
+            ),
+            models.UniqueConstraint(
+                fields=["workspace", "sandbox", "key"],
+                condition=models.Q(sandbox__isnull=False),
+                name="unique_environment_secret_key",
             ),
         ]
 
     def __str__(self) -> str:
-        return f"{self.workspace_id}:{self.key}"
+        scope = f"{self.workspace_id}/{self.sandbox_id}" if self.sandbox_id else str(self.workspace_id)
+        return f"{scope}:{self.key}"
