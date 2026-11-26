@@ -68,6 +68,7 @@ function load(filename) {
     if (id === "./vms") return { __esModule: true, default: { getState: () => ({ selectedVMUuid: null }) } };
     if (id === "./search-models") return load(path.resolve(__dirname, "../src/stores/search-models.ts"));
     if (id === "./recent-models") return load(path.resolve(__dirname, "../src/stores/recent-models.ts"));
+    if (id === "@/stores/chat-branch") return { useChatBranchStore: { getState: () => ({ pending: null, setPending() {} }) } };
     if (id === "@cloud") return load(path.resolve(__dirname, "../src/extensions/noop/index.ts"));
     if (id.startsWith("@/components/chat/")) {
       return load(path.resolve(__dirname, "../src/components/chat/", id.split("/").at(-1) + ".ts"));
