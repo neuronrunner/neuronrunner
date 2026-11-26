@@ -13,7 +13,6 @@ import {
   LuLoader,
   LuPlay,
   LuRefreshCw,
-  LuSend,
   LuServer,
   LuShieldCheck,
   LuTerminal,
@@ -137,10 +136,10 @@ export default function VmConnectTerminalDialog({
 
   // Forward an authorization code pasted in the dialog to the CLI's stdin.
   // Text and Enter are sent separately so TUI prompts treat Enter as a keypress, not part of a paste.
-  const submitPastedCode = useCallback(() => {
+  const submitPastedCode = useCallback((): boolean => {
     const code = pasteCode.trim();
     const ws = wsRef.current;
-    if (!code || ws?.readyState !== WebSocket.OPEN) return;
+    if (!code || ws?.readyState !== WebSocket.OPEN) return false;
     ws.send(JSON.stringify({ type: "input", data: code }));
     window.setTimeout(() => {
       if (ws.readyState === WebSocket.OPEN) {
@@ -148,6 +147,7 @@ export default function VmConnectTerminalDialog({
       }
     }, 150);
     setPasteCode("");
+    return true;
   }, [pasteCode]);
 
   const cleanupConnection = useCallback(() => {
@@ -210,6 +210,29 @@ export default function VmConnectTerminalDialog({
     },
     [cleanupConnection, onConnected, onOpenChange, provider, t, workspaceUuid]
   );
+
+  const handleVerifyAndConnect = useCallback(async () => {
+    if (provider === "anthropic_sub" && pasteCode.trim()) {
+      const sent = submitPastedCode();
+      if (sent) {
+        setIsSyncing(true);
+        setErrorText(null);
+        try {
+          for (let attempt = 0; attempt < 10; attempt++) {
+            await new Promise((resolve) => window.setTimeout(resolve, 1000));
+            if (syncedRef.current) return;
+            await syncFromVm(true);
+            if (syncedRef.current) return;
+          }
+          await syncFromVm(false);
+        } finally {
+          setIsSyncing(false);
+        }
+        return;
+      }
+    }
+    await syncFromVm(false);
+  }, [pasteCode, provider, submitPastedCode, syncFromVm]);
 
   useEffect(() => {
     if (!open || !provider || !workspaceUuid) {
@@ -820,7 +843,7 @@ export default function VmConnectTerminalDialog({
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              submitPastedCode();
+              void handleVerifyAndConnect();
             }}
             className="space-y-1.5 rounded-xl border border-border/70 bg-muted/30 px-3.5 py-2.5"
           >
@@ -834,27 +857,16 @@ export default function VmConnectTerminalDialog({
                 defaultValue: "After authorizing in your browser, copy the code shown on the page and paste it here.",
               })}
             </p>
-            <div className="flex items-center gap-2">
-              <Input
-                id="vm-login-paste-code"
-                value={pasteCode}
-                onChange={(e) => setPasteCode(e.target.value)}
-                disabled={status !== "ready"}
-                autoComplete="off"
-                spellCheck={false}
-                placeholder="code#state"
-                className="h-8 flex-1 font-mono text-xs"
-              />
-              <Button
-                type="submit"
-                size="sm"
-                disabled={status !== "ready" || !pasteCode.trim()}
-                className="h-8 gap-1.5 text-xs"
-              >
-                <LuSend className="h-3.5 w-3.5" />
-                {t("home.agentSelector.oauth.pasteCodeSubmit", { defaultValue: "Send" })}
-              </Button>
-            </div>
+            <Input
+              id="vm-login-paste-code"
+              value={pasteCode}
+              onChange={(e) => setPasteCode(e.target.value)}
+              disabled={status !== "ready" || isSyncing}
+              autoComplete="off"
+              spellCheck={false}
+              placeholder="code#state"
+              className="h-8 w-full font-mono text-xs"
+            />
           </form>
         )}
 
@@ -884,7 +896,7 @@ export default function VmConnectTerminalDialog({
             {t("home.agentSelector.oauth.vmDisclaimer", {
               agent: meta.name,
               defaultValue:
-                "Your {{agent}} sign-in files are stored encrypted in Neuron Runner's database so your Cloud VMs stay signed in, and are also kept in your VM's storage. Disconnecting {{agent}} or deleting your workspace removes the stored copy. Neuron Runner is an independent platform not affiliated with this provider; you are solely responsible for complying with your provider's subscription terms.",
+                "Your {{agent}} sign-in is stored encrypted so your Cloud VMs stay connected and removed when you disconnect. Neuron Runner is not affiliated with this provider; you are responsible for following their terms.",
             })}{" "}
             <a
               href="/terms-of-service#byok-mcp"
@@ -902,7 +914,7 @@ export default function VmConnectTerminalDialog({
             type="button"
             size="sm"
             disabled={isSyncing || status === "preparing" || status === "starting_vm" || status === "needs_vm"}
-            onClick={() => void syncFromVm(false)}
+            onClick={() => void handleVerifyAndConnect()}
             className="gap-1.5 text-xs"
           >
             {isSyncing ? <LuLoader className="h-3.5 w-3.5 animate-spin" /> : <LuRefreshCw className="h-3.5 w-3.5" />}
