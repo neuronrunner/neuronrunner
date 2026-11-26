@@ -82,7 +82,7 @@
         "vmBootTimeout": "Sanal makine başlatma zaman aşımına uğradı. Lütfen tekrar deneyin.",
         "wsTimeout": "Terminal bağlantısı zaman aşımına uğradı. Yeniden bağlanmak için Tekrar Dene'ye tıklayın.",
         "retryButton": "Tekrar Dene",
-        "vmDisclaimer": "{{agent}} oturum dosyalarınız, Bulut VM'leriniz oturum açık kalsın diye Neuron Runner'ın veritabanında şifrelenmiş olarak saklanır ve ayrıca VM'inizin depolama alanında tutulur. {{agent}} bağlantısını kaldırırsanız ya da çalışma alanınızı silerseniz saklanan kopya silinir. Neuron Runner bu sağlayıcıyla bağlantılı olmayan bağımsız bir platformdur; sağlayıcınızın abonelik koşullarına uymaktan yalnızca siz sorumlusunuz.",
+        "vmDisclaimer": "{{agent}} oturumunuz Bulut VM'lerinizin bağlı kalması için şifrelenerek saklanır ve bağlantıyı kestiğinizde silinir. Neuron Runner bu sağlayıcıyla ilişkili değildir; koşullarına uymak sizin sorumluluğunuzdadır.",
         "vmDisclaimerTerms": "Kullanım Koşulları"
       }
     }

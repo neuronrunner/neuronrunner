@@ -71,7 +71,7 @@
         "hideFallback": "Hide manual / VM options",
         "antigravityStepTitle": "1. Authorize in Google tab",
         "antigravityCodeDesc": "After authorizing with Google, copy the authorization code shown on the Antigravity callback page and paste it here:",
-        "vmDisclaimer": "{{agent}} のサインインファイルは、Cloud VM のサインイン状態を保つため、Neuron Runner のデータベースに暗号化して保存され、VM のストレージにも保管されます。{{agent}} の接続を解除するかワークスペースを削除すると、保存されたコピーは削除されます。Neuron Runner はこのプロバイダーと提携していない独立したプラットフォームであり、プロバイダーの利用規約を遵守する責任はお客様のみが負います。",
+        "vmDisclaimer": "{{agent}}のサインイン情報はCloud VMの接続維持のため暗号化して保存され、切断時に削除されます。Neuron Runnerは提供元とは無関係であり、利用規約の遵守はご自身の責任となります。",
         "vmDisclaimerTerms": "利用規約",
         "vmDialogTitle": "VM ターミナルで {{agent}} を接続",
         "vmDialogSubtitle": "分離されたクラウド VM 内の公式 CLI から直接サインインします。生成されたログインリンクをクリックして認証してください。",

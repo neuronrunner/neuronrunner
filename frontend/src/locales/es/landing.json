@@ -71,7 +71,7 @@
         "hideFallback": "Hide manual / VM options",
         "antigravityStepTitle": "1. Authorize in Google tab",
         "antigravityCodeDesc": "After authorizing with Google, copy the authorization code shown on the Antigravity callback page and paste it here:",
-        "vmDisclaimer": "Los archivos de inicio de sesión de {{agent}} se almacenan cifrados en la base de datos de Neuron Runner para que tus Cloud VM sigan con la sesión iniciada, y también se guardan en el almacenamiento de tu VM. Si desconectas {{agent}} o eliminas tu espacio de trabajo, se elimina la copia almacenada. Neuron Runner es una plataforma independiente no afiliada a este proveedor; eres el único responsable de cumplir con los términos de suscripción de tu proveedor.",
+        "vmDisclaimer": "Tu sesión de {{agent}} se guarda cifrada para mantener conectadas tus Cloud VMs y se elimina al desconectar. Neuron Runner es independiente; eres responsable de cumplir los términos del proveedor.",
         "vmDisclaimerTerms": "Términos de Servicio",
         "vmDialogTitle": "Conecta {{agent}} en el terminal de tu VM",
         "vmDialogSubtitle": "Inicia sesión directamente con la CLI oficial dentro de tu VM en la nube aislada. Haz clic en el enlace de inicio de sesión generado para autorizar.",

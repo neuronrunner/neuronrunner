@@ -82,7 +82,7 @@
         "vmBootTimeout": "Virtual machine startup timed out. Please try again.",
         "wsTimeout": "Terminal connection timed out. Click Retry to reconnect.",
         "retryButton": "Retry",
-        "vmDisclaimer": "Your {{agent}} sign-in files are stored encrypted in Neuron Runner's database so your Cloud VMs stay signed in, and are also kept in your VM's storage. Disconnecting {{agent}} or deleting your workspace removes the stored copy. Neuron Runner is an independent platform not affiliated with this provider; you are solely responsible for complying with your provider's subscription terms.",
+        "vmDisclaimer": "Your {{agent}} sign-in is stored encrypted so your Cloud VMs stay connected and removed when you disconnect. Neuron Runner is not affiliated with this provider; you are responsible for following their terms.",
         "vmDisclaimerTerms": "Terms of Service"
       }
     }

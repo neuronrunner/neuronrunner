@@ -71,7 +71,7 @@
         "hideFallback": "Hide manual / VM options",
         "antigravityStepTitle": "1. Authorize in Google tab",
         "antigravityCodeDesc": "After authorizing with Google, copy the authorization code shown on the Antigravity callback page and paste it here:",
-        "vmDisclaimer": "आपकी {{agent}} साइन-इन फ़ाइलें Neuron Runner के डेटाबेस में एन्क्रिप्टेड रूप में संग्रहीत की जाती हैं ताकि आपके Cloud VM साइन-इन रहें, और वे आपके VM के स्टोरेज में भी रखी जाती हैं। {{agent}} को डिस्कनेक्ट करने या अपना वर्कस्पेस हटाने पर संग्रहीत प्रति हटा दी जाती है। Neuron Runner एक स्वतंत्र प्लेटफ़ॉर्म है जो इस प्रदाता से संबद्ध नहीं है; अपने प्रदाता की सदस्यता शर्तों का पालन करने के लिए केवल आप ज़िम्मेदार हैं।",
+        "vmDisclaimer": "आपका {{agent}} साइन-इन एन्क्रिप्टेड रूप से सहेजा जाता है ताकि आपके Cloud VM जुड़े रहें, और डिस्कनेक्ट करने पर हटा दिया जाता है। Neuron Runner इस प्रदाता से संबद्ध नहीं है; उनकी शर्तों का पालन आपकी ज़िम्मेदारी है।",
         "vmDisclaimerTerms": "सेवा की शर्तें",
         "vmDialogTitle": "अपने VM टर्मिनल में {{agent}} कनेक्ट करें",
         "vmDialogSubtitle": "अपने आइसोलेटेड क्लाउड VM में आधिकारिक CLI से सीधे साइन इन करें। ऑथराइज़ करने के लिए जनरेट हुए लॉगिन लिंक पर क्लिक करें।",

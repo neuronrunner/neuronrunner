@@ -71,7 +71,7 @@
         "hideFallback": "Hide manual / VM options",
         "antigravityStepTitle": "1. Authorize in Google tab",
         "antigravityCodeDesc": "After authorizing with Google, copy the authorization code shown on the Antigravity callback page and paste it here:",
-        "vmDisclaimer": "您的 {{agent}} 登录文件会加密存储在 Neuron Runner 的数据库中，以便您的 Cloud VM 保持登录状态，同时也保存在您 VM 的存储中。断开 {{agent}} 或删除您的工作区会删除已存储的副本。Neuron Runner 是与该提供商无关联的独立平台；您需自行全权负责遵守提供商的订阅条款。",
+        "vmDisclaimer": "您的 {{agent}} 登录信息会加密保存以保持云端 VM 连接，并在断开时删除。Neuron Runner 与该提供商无关，您需自行遵守其服务条款。",
         "vmDisclaimerTerms": "服务条款",
         "vmDialogTitle": "在虚拟机终端中连接 {{agent}}",
         "vmDialogSubtitle": "直接在隔离的云虚拟机内使用官方 CLI 登录。点击生成的登录链接进行授权。",
