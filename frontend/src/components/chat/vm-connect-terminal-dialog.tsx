@@ -212,7 +212,7 @@ export default function VmConnectTerminalDialog({
   );
 
   const handleVerifyAndConnect = useCallback(async () => {
-    if (provider === "anthropic_sub" && pasteCode.trim()) {
+    if (pasteCode.trim()) {
       const sent = submitPastedCode();
       if (sent) {
         setIsSyncing(true);
@@ -232,7 +232,7 @@ export default function VmConnectTerminalDialog({
       }
     }
     await syncFromVm(false);
-  }, [pasteCode, provider, submitPastedCode, syncFromVm]);
+  }, [pasteCode, submitPastedCode, syncFromVm]);
 
   useEffect(() => {
     if (!open || !provider || !workspaceUuid) {
@@ -839,7 +839,7 @@ export default function VmConnectTerminalDialog({
           )}
         </div>
 
-        {provider === "anthropic_sub" && (
+        {status !== "needs_vm" && (
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -864,7 +864,7 @@ export default function VmConnectTerminalDialog({
               disabled={status !== "ready" || isSyncing}
               autoComplete="off"
               spellCheck={false}
-              placeholder="code#state"
+              placeholder={provider === "anthropic_sub" ? "code#state" : "code / callback URL"}
               className="h-8 w-full font-mono text-xs"
             />
           </form>
