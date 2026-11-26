@@ -31,6 +31,8 @@ export function isKnownRoute(pathname: string): boolean {
     p === "/new" ||
     p === "/chat" ||
     p.startsWith("/chat/") ||
+    p === "/environments" ||
+    p.startsWith("/environments/") ||
     p === "/projects" ||
     p.startsWith("/projects/") ||
     p === "/workspaces" ||

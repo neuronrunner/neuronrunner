@@ -372,7 +372,7 @@
       "issues": "Issues",
       "pullRequests": "Pull Requests",
       "integrations": "Integrações",
-      "projectsHeading": "Projetos ({{count}})",
+      "projectsHeading": "Ambientes ({{count}})",
       "noConversations": "Nenhuma conversa ainda",
       "historyHeading": "Histórico ({{count}})",
       "historyItems": [
@@ -709,11 +709,11 @@
           "team": "1 VM"
         },
         {
-          "feature": "Armazenamento persistente",
-          "free": "5 GB",
-          "plus": "50 GB",
-          "pro": "100 GB",
-          "team": "100 GB"
+          "feature": "Ambientes",
+          "free": "Ilimitado",
+          "plus": "Ilimitado",
+          "pro": "Ilimitado",
+          "team": "Ilimitado"
         },
         {
           "feature": "Membros do workspace",
@@ -798,7 +798,8 @@
         "snapshots": "Snapshots",
         "members": "Membros",
         "byo": "BYOS / BYOK",
-        "storage": "Armazenamento"
+        "storage": "Armazenamento",
+        "environments": "Ambientes"
       },
       "vcpuValue": "{{hours}} vCPU-h",
       "approxMinutes": "≈ {{minutes}} min em uma VM Small",
@@ -813,7 +814,8 @@
         "p1": "A cota é renovada a cada ciclo de faturamento e não é ilimitada.",
         "p2": "Recarregue sua carteira para manter as VMs rodando ou aguarde o próximo ciclo de cobrança.",
         "p3": "VMs paradas custam $0.00/h e suas assinaturas ou chaves de API sempre rodam com 0% de taxa."
-      }
+      },
+      "unlimited": "Ilimitado"
     }
   },
   "pricingSection": {

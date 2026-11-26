@@ -17,6 +17,19 @@ export interface IProject {
   vm_uuid?: string | null;
   vm_name?: string | null;
   filesystem_path: string;
+  repo_full_name?: string;
+  repo_url?: string;
+  default_branch?: string;
+  working_subdir?: string;
+  setup_script?: string;
+  maintenance_script?: string;
+  setup_status?: "idle" | "running" | "ready" | "failed";
+  setup_last_run_at?: string | null;
+  setup_last_log?: string;
+  state_saved_at?: string | null;
+  state_size_bytes?: number | null;
+  deps_lock_hash?: string;
+  secret_count?: number;
   usage_guide?: string;
   conversation?: string | null;
   conversation_ids?: string[];
@@ -152,13 +165,27 @@ interface SandboxState {
     workspace_uuid?: string;
     vm_uuid?: string;
     filesystem_path: string;
-    source?: "new" | "existing";
+    repo_full_name?: string;
+    repo_url?: string;
+    default_branch?: string;
+    working_subdir?: string;
+    setup_script?: string;
+    maintenance_script?: string;
+    usage_guide?: string;
+    lazy?: boolean;
+    source?: "new" | "existing" | "github";
   }) => Promise<IProject | null>;
   updateSandbox: (
     sandboxUuid: string,
     payload: Partial<{
       display_name: string;
       description: string;
+      repo_full_name: string;
+      repo_url: string;
+      default_branch: string;
+      working_subdir: string;
+      setup_script: string;
+      maintenance_script: string;
       sandbox_gpu: string;
       sandbox_cpu: number;
       sandbox_memory: number;
@@ -169,6 +196,13 @@ interface SandboxState {
       is_favorite: boolean;
     }>
   ) => Promise<IProject | null>;
+  runEnvironmentSetup: (
+    sandboxUuid: string,
+    options?: { force?: boolean }
+  ) => Promise<{ ready: boolean; log?: string; error?: string; environment?: IProject }>;
+  clearEnvironmentDepsCache: (
+    sandboxUuid: string
+  ) => Promise<{ cleared: boolean; error?: string; environment?: IProject }>;
   deleteSandbox: (sandboxUuid: string) => Promise<boolean>;
   
   fetchFiles: (sandboxUuid: string, parentPath?: string) => Promise<void>;
@@ -430,7 +464,7 @@ const useSandboxProjectsStore = create<SandboxState>()(
         },
         isLoading: false,
       }));
-      if (data?.uuid) {
+      if (data?.uuid && !payload.lazy && !payload.repo_url && !payload.repo_full_name) {
         await get().fetchFiles(data.uuid);
       }
       return data;
@@ -503,6 +537,63 @@ const useSandboxProjectsStore = create<SandboxState>()(
         isLoading: false,
       });
       return null;
+    }
+  },
+
+  runEnvironmentSetup: async (sandboxUuid, options) => {
+    set((state) => ({
+      sandboxes: state.sandboxes.map((sb) => (sb.uuid === sandboxUuid ? { ...sb, setup_status: "running" } : sb)),
+      currentSandbox:
+        state.currentSandbox?.uuid === sandboxUuid
+          ? { ...state.currentSandbox, setup_status: "running" }
+          : state.currentSandbox,
+    }));
+    try {
+      const { data } = await authedAxios.post(`${API_BASE}/sandbox/sandboxes/${sandboxUuid}/run-setup/`, {
+        force: options?.force ?? true,
+      });
+      const envObj: IProject | undefined = data?.environment;
+      if (envObj) {
+        set((state) => ({
+          sandboxes: state.sandboxes.map((sb) => (sb.uuid === sandboxUuid ? envObj : sb)),
+          currentSandbox: state.currentSandbox?.uuid === sandboxUuid ? envObj : state.currentSandbox,
+        }));
+      }
+      return { ready: Boolean(data?.ready), log: data?.log, error: data?.error, environment: envObj };
+    } catch (err: any) {
+      const errData = err?.response?.data;
+      const envObj: IProject | undefined = errData?.environment;
+      if (envObj) {
+        set((state) => ({
+          sandboxes: state.sandboxes.map((sb) => (sb.uuid === sandboxUuid ? envObj : sb)),
+          currentSandbox: state.currentSandbox?.uuid === sandboxUuid ? envObj : state.currentSandbox,
+        }));
+      }
+      return {
+        ready: false,
+        log: errData?.log,
+        error: errData?.error || err?.message || "Setup failed.",
+        environment: envObj,
+      };
+    }
+  },
+
+  clearEnvironmentDepsCache: async (sandboxUuid) => {
+    try {
+      const { data } = await authedAxios.post(`${API_BASE}/sandbox/sandboxes/${sandboxUuid}/clear-deps-cache/`);
+      const envObj: IProject | undefined = data?.environment;
+      if (envObj) {
+        set((state) => ({
+          sandboxes: state.sandboxes.map((sb) => (sb.uuid === sandboxUuid ? envObj : sb)),
+          currentSandbox: state.currentSandbox?.uuid === sandboxUuid ? envObj : state.currentSandbox,
+        }));
+      }
+      return { cleared: true, environment: envObj };
+    } catch (err: any) {
+      return {
+        cleared: false,
+        error: err?.response?.data?.error || err?.message || "Failed to clear dependency cache.",
+      };
     }
   },
 

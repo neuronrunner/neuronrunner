@@ -83,6 +83,7 @@ const Navbar = (_props?: NavbarProps) => {
     isLoggedIn && (
       isIntegrationsPage ||
       isChatPage ||
+      pathname.startsWith("/environments/") ||
       pathname.startsWith("/projects/") ||
       pathname.startsWith("/pull-requests") ||
       pathname.startsWith("/issues")

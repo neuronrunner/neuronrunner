@@ -362,7 +362,7 @@
       "issues": "Issue'lar",
       "pullRequests": "Pull Request'ler",
       "integrations": "Entegrasyonlar",
-      "projectsHeading": "Projeler ({{count}})",
+      "projectsHeading": "Ortamlar ({{count}})",
       "noConversations": "Henüz sohbet yok",
       "historyHeading": "Geçmiş ({{count}})",
       "historyItems": [
@@ -699,11 +699,11 @@
           "team": "1 VM"
         },
         {
-          "feature": "Kalıcı Depolama",
-          "free": "5 GB",
-          "plus": "50 GB",
-          "pro": "100 GB",
-          "team": "100 GB"
+          "feature": "Ortamlar",
+          "free": "Sınırsız",
+          "plus": "Sınırsız",
+          "pro": "Sınırsız",
+          "team": "Sınırsız"
         },
         {
           "feature": "Çalışma Alanı Üyeleri",
@@ -788,7 +788,8 @@
         "snapshots": "Snapshot",
         "members": "Üyeler",
         "byo": "BYOS / BYOK",
-        "storage": "Depolama"
+        "storage": "Depolama",
+        "environments": "Ortamlar"
       },
       "vcpuValue": "{{hours}} vCPU-sa",
       "approxMinutes": "≈ Small VM'de {{minutes}} dk",
@@ -803,7 +804,8 @@
         "p1": "Kota her fatura döneminde sıfırlanır ve sınırsız değildir.",
         "p2": "VM'lerin çalışmaya devam etmesi için cüzdanınıza bakiye yükleyin ya da bir sonraki fatura dönemini bekleyin.",
         "p3": "Durdurulan VM'ler $0.00/saat tutar; kendi yapay zekâ abonelikleriniz veya API anahtarlarınız her zaman %0 platform farkıyla çalışır."
-      }
+      },
+      "unlimited": "Sınırsız"
     }
   },
   "pricingSection": {

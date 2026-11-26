@@ -372,7 +372,7 @@
       "issues": "Issues",
       "pullRequests": "Pull Requests",
       "integrations": "Integrationen",
-      "projectsHeading": "Projekte ({{count}})",
+      "projectsHeading": "Umgebungen ({{count}})",
       "noConversations": "Noch keine Chats",
       "historyHeading": "Verlauf ({{count}})",
       "historyItems": [
@@ -709,11 +709,11 @@
           "team": "20 VMs"
         },
         {
-          "feature": "Persistenter Speicher",
-          "free": "5 GB",
-          "plus": "50 GB",
-          "pro": "100 GB",
-          "team": "100 GB"
+          "feature": "Umgebungen",
+          "free": "Unbegrenzt",
+          "plus": "Unbegrenzt",
+          "pro": "Unbegrenzt",
+          "team": "Unbegrenzt"
         },
         {
           "feature": "Workspace-Mitglieder",
@@ -805,7 +805,8 @@
         "snapshots": "Snapshots",
         "members": "Mitglieder",
         "byo": "BYOS / BYOK",
-        "storage": "Speicher"
+        "storage": "Speicher",
+        "environments": "Umgebungen"
       },
       "vcpuValue": "{{hours}} vCPU-Std.",
       "approxMinutes": "≈ {{minutes}} Min. auf einer Small-VM",
@@ -820,7 +821,8 @@
         "p1": "Das Kontingent wird mit jedem Abrechnungszeitraum zurückgesetzt und ist nicht unbegrenzt.",
         "p2": "Lade dein Guthaben auf, damit VMs weiterlaufen, oder warte auf den nächsten Abrechnungszeitraum.",
         "p3": "Gestoppte VMs kosten $0.00/Std., und eigene KI-Abos oder API-Keys laufen immer mit 0 % Plattformaufschlag."
-      }
+      },
+      "unlimited": "Unbegrenzt"
     }
   },
   "pricingSection": {

@@ -316,6 +316,7 @@ export const WorkspaceTabContainer: React.FC<Props> = ({ children }) => {
     isPullRequestsRoute ||
     isIssuesRoute ||
     isIntegrationsRoute ||
+    pathname.startsWith("/environments/") ||
     pathname.startsWith("/projects/");
 
   if (!isLoggedIn || is404 || !isWorkspace) {

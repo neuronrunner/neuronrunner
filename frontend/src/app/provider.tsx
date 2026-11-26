@@ -129,9 +129,10 @@ export const Provider = (props: { children: React.ReactNode }) => {
       pathname?.startsWith("/pull-requests") ||
       pathname?.startsWith("/issues") ||
       pathname?.startsWith("/integrations") ||
+      pathname?.startsWith("/environments/") ||
       pathname?.startsWith("/projects/")
     );
-  const isProjectDetailRoute = pathname?.startsWith("/projects/");
+  const isProjectDetailRoute = pathname?.startsWith("/environments/") || pathname?.startsWith("/projects/");
   const showLeftSidebar = isLoggedIn && isOpen && isWorkspaceRoute;
   const shellMode: AppShellMode = isWorkspaceRoute
     ? "workspace"

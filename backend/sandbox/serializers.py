@@ -170,10 +170,14 @@ class SandboxSerializer(serializers.ModelSerializer):
     conversation_ids = serializers.SerializerMethodField()
     workspace_uuid = serializers.UUIDField(source="workspace_id", read_only=True)
     vm_uuid = serializers.SerializerMethodField()
+    secret_count = serializers.SerializerMethodField()
 
     def get_vm_uuid(self, obj):
         from core.extensions import registry as ext_registry
         return ext_registry.runtime.get_project_runtime_uuid(obj)
+
+    def get_secret_count(self, obj):
+        return len(obj.secrets.all())
 
     def get_conversation_ids(self, obj):
         ids = [conversation.uuid for conversation in obj.conversations.all()]
@@ -192,6 +196,19 @@ class SandboxSerializer(serializers.ModelSerializer):
             "vm_uuid",
             "filesystem_path",
             "usage_guide",
+            "repo_full_name",
+            "repo_url",
+            "default_branch",
+            "working_subdir",
+            "setup_script",
+            "maintenance_script",
+            "setup_status",
+            "setup_last_run_at",
+            "setup_last_log",
+            "state_saved_at",
+            "state_size_bytes",
+            "deps_lock_hash",
+            "secret_count",
             "conversation",
             "conversation_ids",
             "sandbox_gpu",
@@ -206,10 +223,22 @@ class SandboxSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
         )
+        extra_kwargs = {
+            "slug": {"required": False},
+            "display_name": {"required": False},
+            "filesystem_path": {"required": False},
+        }
         read_only_fields = (
             "uuid",
             "suggestions",
             "conversation_ids",
+            "secret_count",
+            "setup_status",
+            "setup_last_run_at",
+            "setup_last_log",
+            "state_saved_at",
+            "state_size_bytes",
+            "deps_lock_hash",
             "sandbox_gpu",
             "sandbox_object_id",
             "sandbox_last_active_at",
@@ -219,10 +248,23 @@ class SandboxSerializer(serializers.ModelSerializer):
             "updated_at",
         )
 
+    def validate_working_subdir(self, value):
+        from pathlib import PurePosixPath
+
+        raw = (value or "").strip().strip("/")
+        if not raw:
+            return ""
+        path = PurePosixPath(raw)
+        if ".." in path.parts or raw.startswith("/"):
+            raise serializers.ValidationError("working_subdir must be a relative path inside the repository.")
+        return "/".join(part for part in path.parts if part not in ("", "."))
+
     def validate_filesystem_path(self, value):
         from pathlib import PurePosixPath
 
         raw = (value or "").strip()
+        if not raw:
+            return ""
         path = PurePosixPath(raw)
         if not raw.startswith("/workspace/") or ".." in path.parts:
             raise serializers.ValidationError("Path must be inside /workspace.")
@@ -237,7 +279,7 @@ class SandboxSerializer(serializers.ModelSerializer):
         if self.instance:
             queryset = queryset.exclude(pk=self.instance.pk)
         if queryset.exists():
-            raise serializers.ValidationError("This filesystem path is already a project.")
+            raise serializers.ValidationError("This filesystem path is already an environment.")
         return normalized
 
 

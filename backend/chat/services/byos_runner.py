@@ -40,6 +40,8 @@ reasoning_effort = str(payload.get('reasoning_effort') or '').strip().lower()
 cwd = payload.get('cwd') or '/workspace'
 Path(cwd).mkdir(parents=True, exist_ok=True)
 env = os.environ.copy()
+for k, v in (payload.get('env_vars') or {}).items():
+    env[str(k)] = str(v)
 env['PATH'] = '/root/.local/bin:/usr/local/bin:/usr/bin:/bin:/root/.npm-global/bin:' + env.get('PATH', '')
 env['DISPLAY'] = ':1'
 env['WORKSPACE_ROOT'] = cwd
@@ -792,9 +794,23 @@ def stream_byos_cli(
         chat_service.current_request.user,
     )
 
+    from sandbox.services.environment_bootstrap import (
+        ensure_environment_ready,
+        environment_working_path,
+        save_environment_state,
+    )
+    from sandbox.services.vm_secrets import resolve_workspace_secrets
+
+    if project and getattr(project, 'filesystem_path', '') != '/workspace':
+        with suppress(Exception):
+            ensure_environment_ready(project, runtime, user=chat_service.current_request.user)
+
     has_desktop_mcp = False
 
-    cwd = getattr(project, 'filesystem_path', None) or '/workspace'
+    from sandbox.services.conversation_worktree import active_worktree_path
+    worktree_cwd = active_worktree_path(chat_service.conversation, project) if project else None
+    cwd = worktree_cwd or (environment_working_path(project) if project else '/workspace')
+    env_vars = resolve_workspace_secrets(chat_service.current_request.workspace, sandbox=project)
     prompt = build_byos_prompt(
         chat_service.messages,
         system_prompt=getattr(chat_service, 'system_prompt', None),
@@ -811,6 +827,7 @@ def stream_byos_cli(
         'prompt': prompt,
         'reasoning_effort': reasoning_effort,
         'cwd': cwd,
+        'env_vars': env_vars,
     }
     runner_arg = _encode_runner_arg(runtime, payload, str(chat_service.current_request.uuid))
 
@@ -1012,6 +1029,11 @@ def stream_byos_cli(
                 input_tokens=chat_service._billed_input_tokens + input_tokens,
                 output_tokens=chat_service._billed_output_tokens + output_tokens,
             )
+        if project and getattr(project, 'filesystem_path', '') != '/workspace':
+            def _bg_checkpoint():
+                with suppress(Exception):
+                    save_environment_state(project, runtime)
+            Thread(target=_bg_checkpoint, name='nr-env-checkpoint', daemon=True).start()
 
     if thinking_start is not None and thinking_duration_ms is None:
         thinking_duration_ms = (time.monotonic() - thinking_start) * 1000

@@ -50,6 +50,15 @@ def attach_branch(project, conversation, branch: str, create: bool = False, fetc
     folder; any other branch gets a private worktree.
     """
     repository = project_repository_path(project)
+    if getattr(project, "repo_url", "") or getattr(project, "repo_full_name", ""):
+        try:
+            from sandbox.services.environment_bootstrap import ensure_environment_ready
+            from sandbox.services.sandbox_session import get_sandbox_manager
+
+            runtime = get_sandbox_manager().get_or_create(project)
+            ensure_environment_ready(project, runtime)
+        except Exception:  # noqa: BLE001
+            pass
     current = read_repository(project, "status", repository)
     if branch == current.get("branch") and not create:
         if conversation.worktree_path:
@@ -60,6 +69,15 @@ def attach_branch(project, conversation, branch: str, create: bool = False, fetc
         data["token"] = token
     status = read_repository(project, "worktree_attach", repository, data=data)
     _save(conversation, data["worktree_path"])
+    if getattr(project, "maintenance_script", ""):
+        try:
+            from sandbox.services.environment_bootstrap import run_maintenance_script
+            from sandbox.services.sandbox_session import get_sandbox_manager
+
+            runtime = get_sandbox_manager().get_or_create(project)
+            run_maintenance_script(project, runtime, data["worktree_path"])
+        except Exception:  # noqa: BLE001
+            pass
     return {**status, "worktree_path": data["worktree_path"]}
 
 

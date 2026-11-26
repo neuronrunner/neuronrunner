@@ -144,7 +144,7 @@ export default function DocsClient() {
   const editUrl = `${DOCS_REPO_URL}/edit/main/docs/${article.sourcePath}`;
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground pb-24">
+    <div className="relative min-h-screen bg-background text-foreground">
       <SEO
         title={t("seo.title", { title: article.title })}
         description={article.description}
@@ -247,12 +247,12 @@ export default function DocsClient() {
           {/* 1. LEFT COLUMN: Sticky Navigation Sidebar                */}
           {/* ======================================================== */}
           <aside className="sticky top-20 hidden lg:block w-64 xl:w-72 shrink-0 self-start">
-            <div className="space-y-6 pb-6">
+            <div className="flex max-h-[calc(100vh-5.5rem)] flex-col gap-4">
               {/* Search Trigger Button */}
               <button
                 type="button"
                 onClick={() => setSearchOpen(true)}
-                className="group flex w-full items-center justify-between rounded-xl border border-border/80 bg-card/60 px-3 py-2 text-xs text-muted-foreground shadow-xs transition-all hover:border-indigo-500/50 hover:bg-card hover:text-foreground"
+                className="group flex w-full shrink-0 items-center justify-between rounded-xl border border-border/80 bg-card/60 px-3 py-2 text-xs text-muted-foreground shadow-xs transition-all hover:border-indigo-500/50 hover:bg-card hover:text-foreground"
               >
                 <div className="flex items-center gap-2">
                   <LuSearch className="h-3.5 w-3.5 text-indigo-400 transition-transform group-hover:scale-110" />
@@ -266,11 +266,11 @@ export default function DocsClient() {
               </button>
 
               {/* Navigation Categories */}
-              <nav className="max-h-[calc(100vh-140px)] overflow-y-auto space-y-6 pr-2 scrollbar-thin">
+              <nav className="min-h-0 flex-1 overflow-y-auto space-y-4 pr-2 pb-6 scrollbar-thin">
                 {docCategories.map((cat) => {
                   const IconComp = categoryIcon(cat.icon);
                   return (
-                    <div key={cat.id} className="space-y-2">
+                    <div key={cat.id} className="space-y-1.5">
                       <div className="flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-foreground/90">
                         <IconComp className="h-3.5 w-3.5 text-indigo-400 shrink-0" />
                         <span>{cat.title}</span>
@@ -318,7 +318,7 @@ export default function DocsClient() {
           {/* ======================================================== */}
           {/* 2. MIDDLE COLUMN: Article Content                        */}
           {/* ======================================================== */}
-          <main className="flex-1 min-w-0 max-w-4xl space-y-8">
+          <main className="flex-1 min-w-0 max-w-4xl space-y-8 pb-24">
             {/* Breadcrumb Navigation */}
             <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
               <Link to="/docs" className="transition-colors hover:text-foreground">
