@@ -49,7 +49,23 @@ env['WORKSPACE_ROOT'] = cwd
 # --dangerously-skip-permissions under root unless IS_SANDBOX is set.
 env['IS_SANDBOX'] = '1'
 mcp_server_path = '/var/lib/neuronrunner/byos_mcp_server.py'
-has_mcp = Path(mcp_server_path).is_file()
+mcp_server_source = payload.get('mcp_server_source') or ''
+mcp_bridge_url = str(payload.get('mcp_bridge_url') or '').strip()
+mcp_bridge_token = str(payload.get('mcp_bridge_token') or '').strip()
+if mcp_server_source and mcp_bridge_url and mcp_bridge_token:
+    try:
+        mcp_path_obj = Path(mcp_server_path)
+        mcp_path_obj.parent.mkdir(parents=True, exist_ok=True)
+        if not mcp_path_obj.is_file() or mcp_path_obj.read_text(encoding='utf-8') != mcp_server_source:
+            mcp_path_obj.write_text(mcp_server_source, encoding='utf-8')
+            mcp_path_obj.chmod(0o755)
+    except OSError:
+        pass
+mcp_env = {'WORKSPACE_ROOT': cwd, 'DISPLAY': ':1'}
+if mcp_bridge_url and mcp_bridge_token:
+    mcp_env['NR_MCP_BRIDGE_URL'] = mcp_bridge_url
+    mcp_env['NR_MCP_BRIDGE_TOKEN'] = mcp_bridge_token
+has_mcp = Path(mcp_server_path).is_file() and bool(mcp_bridge_url and mcp_bridge_token)
 temp_mcp_cfg_path = None
 
 def ensure_cli(binary, pkg):
@@ -115,7 +131,7 @@ if provider == 'anthropic_sub':
                     'neuronrunner': {
                         'command': 'python3',
                         'args': [mcp_server_path],
-                        'env': {'WORKSPACE_ROOT': cwd, 'DISPLAY': ':1'},
+                        'env': mcp_env,
                     }
                 }
             }),
@@ -146,6 +162,8 @@ elif provider == 'openai_sub':
             '-c', f'mcp_servers.neuronrunner.args={json.dumps([mcp_server_path])}',
             '-c', f'mcp_servers.neuronrunner.env.WORKSPACE_ROOT={json.dumps(cwd)}',
             '-c', 'mcp_servers.neuronrunner.env.DISPLAY=":1"',
+            '-c', f'mcp_servers.neuronrunner.env.NR_MCP_BRIDGE_URL={json.dumps(mcp_bridge_url)}',
+            '-c', f'mcp_servers.neuronrunner.env.NR_MCP_BRIDGE_TOKEN={json.dumps(mcp_bridge_token)}',
         ])
     if reasoning_effort and reasoning_effort != 'none' and re.fullmatch(r'[a-z]+', reasoning_effort):
         cmd.extend(['-c', f'model_reasoning_effort={reasoning_effort}'])
@@ -199,6 +217,8 @@ elif provider == 'antigravity_sub':
                         agy_bin, 'mcp', 'add',
                         '--env', f'WORKSPACE_ROOT={cwd}',
                         '--env', 'DISPLAY=:1',
+                        '--env', f'NR_MCP_BRIDGE_URL={mcp_bridge_url}',
+                        '--env', f'NR_MCP_BRIDGE_TOKEN={mcp_bridge_token}',
                         'neuronrunner',
                         'python3', mcp_server_path,
                     ],
@@ -238,7 +258,7 @@ elif provider == 'antigravity_sub':
                     mcp_servers['neuronrunner'] = {
                         'command': 'python3',
                         'args': [mcp_server_path],
-                        'env': {'WORKSPACE_ROOT': cwd, 'DISPLAY': ':1'},
+                        'env': mcp_env,
                     }
                     settings_data['mcpServers'] = mcp_servers
                     settings_file.write_text(json.dumps(settings_data, indent=2), encoding='utf-8')
@@ -311,12 +331,14 @@ def build_byos_prompt(
     parts.append(f"Workspace directory: {cwd}")
     if has_desktop_mcp:
         parts.append(
-            "Desktop environment:\n"
-            "You have access to the `desktop` tool (via MCP) to control the live Linux desktop "
-            "(DISPLAY :1, with virtual speaker nr_speaker). When the user asks you to open the desktop, "
-            "use a GUI/browser on the desktop, take a screenshot, or interact with GUI apps, call the "
-            "`desktop` tool immediately—calling it automatically starts the desktop if needed and opens "
-            "the live Desktop panel in the user's UI so they can watch in real time."
+            "NeuronRunner workspace tools (via `neuronrunner` MCP server):\n"
+            "You have access to the `desktop` tool (via MCP) along with NeuronRunner's built-in tools and connected workspace integrations:\n"
+            "- `browser`: Open a URL or localhost dev server port in the live Browser panel so the user can view/interact with it.\n"
+            "- `desktop`: Control the live Linux desktop (DISPLAY :1) — calling it starts the desktop and opens the Desktop panel automatically.\n"
+            "- `display_image`: Render an image file from the workspace inline inside your chat response.\n"
+            "- `image_search`: Search for images on the web.\n"
+            "- `memory_*`, `note_*`, `session_search`: Read/save persistent workspace memories, notes, and search past chat sessions.\n"
+            "- Any connected workspace MCP integrations (e.g. GitHub, Slack, Notion, Linear, Postgres) are also exposed through this MCP server."
         )
 
     if len(turns) > 1:
@@ -371,17 +393,32 @@ def _usage_event(usage: dict | None) -> dict | None:
 
 
 def _normalize_byos_tool_name(name: str) -> str:
-    if name in (
-        'desktop',
-        'mcp__neuronrunner__desktop',
-        'neuronrunner__desktop',
-        'mcp_neuronrunner_desktop',
-        'neuronrunner_desktop',
-        'neuronrunner:desktop',
-        'neuronrunner/desktop',
+    raw = str(name or '').strip()
+    for prefix in (
+        'mcp__neuronrunner__',
+        'neuronrunner__',
+        'mcp_neuronrunner_',
+        'neuronrunner_',
+        'neuronrunner:',
+        'neuronrunner/',
     ):
-        return 'desktop'
-    return name
+        if raw.startswith(prefix):
+            return raw[len(prefix):]
+    return raw
+
+
+def _parse_byos_tool_result(text: str, is_error: bool = False) -> dict:
+    stripped = (text or '').strip()
+    if stripped.startswith('{') and stripped.endswith('}'):
+        try:
+            parsed = json.loads(stripped)
+            if isinstance(parsed, dict):
+                if is_error and 'is_error' not in parsed:
+                    parsed['is_error'] = True
+                return parsed
+        except (ValueError, TypeError):
+            pass
+    return {'output': text, 'is_error': bool(is_error)}
 
 
 def _normalize_codex_tool_item(item: dict) -> tuple[str, dict, dict]:
@@ -487,14 +524,12 @@ def _normalize_anthropic_event(event: dict) -> list[dict]:
         for block in msg.get('content') or []:
             if not isinstance(block, dict) or block.get('type') != 'tool_result':
                 continue
+            raw_text = _extract_claude_text_blocks(block.get('content'))
             out.append({
                 'kind': 'tool_result',
                 'id': block.get('tool_use_id') or '',
                 'name': _normalize_byos_tool_name(block.get('tool_name') or ''),
-                'result': {
-                    'output': _extract_claude_text_blocks(block.get('content')),
-                    'is_error': bool(block.get('is_error')),
-                },
+                'result': _parse_byos_tool_result(raw_text, bool(block.get('is_error'))),
             })
         return out
 
@@ -805,12 +840,29 @@ def stream_byos_cli(
         with suppress(Exception):
             ensure_environment_ready(project, runtime, user=chat_service.current_request.user)
 
-    has_desktop_mcp = False
+    from chat.services.byos_mcp_bridge import (
+        BYOS_MCP_SERVER_SCRIPT,
+        issue_byos_mcp_token,
+        resolve_byos_mcp_bridge_url,
+    )
 
     from sandbox.services.conversation_worktree import active_worktree_path
     worktree_cwd = active_worktree_path(chat_service.conversation, project) if project else None
     cwd = worktree_cwd or (environment_working_path(project) if project else '/workspace')
     env_vars = resolve_workspace_secrets(chat_service.current_request.workspace, sandbox=project)
+
+    mcp_bridge_url = resolve_byos_mcp_bridge_url()
+    mcp_bridge_token = ''
+    if mcp_bridge_url and getattr(chat_service, 'conversation', None) is not None:
+        mcp_bridge_token = issue_byos_mcp_token(
+            user=chat_service.current_request.user,
+            conversation=chat_service.conversation,
+            project=project,
+            workspace=chat_service.current_request.workspace,
+            cwd=cwd,
+        )
+    has_desktop_mcp = bool(mcp_bridge_url and mcp_bridge_token)
+
     prompt = build_byos_prompt(
         chat_service.messages,
         system_prompt=getattr(chat_service, 'system_prompt', None),
@@ -828,6 +880,9 @@ def stream_byos_cli(
         'reasoning_effort': reasoning_effort,
         'cwd': cwd,
         'env_vars': env_vars,
+        'mcp_server_source': BYOS_MCP_SERVER_SCRIPT if has_desktop_mcp else '',
+        'mcp_bridge_url': mcp_bridge_url if has_desktop_mcp else '',
+        'mcp_bridge_token': mcp_bridge_token if has_desktop_mcp else '',
     }
     runner_arg = _encode_runner_arg(runtime, payload, str(chat_service.current_request.uuid))
 

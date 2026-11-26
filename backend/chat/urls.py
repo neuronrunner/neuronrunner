@@ -24,6 +24,7 @@ urlpatterns = [
     path('tools/note/list/', views.note_list, name='tool_note_list'),
     path('tools/execute/', views.execute_tool, name='tool_execute'),
     path('tools/execute/stream/', views.execute_tool_stream, name='tool_execute_stream'),
+    path('tools/byos-mcp/', views.byos_mcp_bridge, name='tool_byos_mcp_bridge'),
     # Legacy memory endpoints (keep for backward compat)
     path('memories/', views.list_memories, name='list_memories'),
     path('memories/all/', views.delete_all_memories, name='delete_all_memories'),

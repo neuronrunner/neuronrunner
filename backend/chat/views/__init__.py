@@ -1,4 +1,5 @@
 from .attachments import download_attachment
+from .byos_mcp import byos_mcp_bridge
 from .conversations import (
     delete_conversation,
     get_chat,
@@ -45,5 +46,6 @@ __all__ = [
     'note_add', 'note_replace', 'note_remove', 'note_list',
     'execute_tool',
     'execute_tool_stream',
+    'byos_mcp_bridge',
     'stateful_openai_chat_completions',
 ]
