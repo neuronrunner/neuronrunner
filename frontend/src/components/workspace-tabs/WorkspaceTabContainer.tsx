@@ -166,7 +166,7 @@ export const WorkspaceTabContainer: React.FC<Props> = ({ children }) => {
   const user = useAuthStore((state) => state.user);
   const token = useAuthStore((state) => state.token);
   const isLoggedIn = Boolean(user && token);
-  const showWorkspaceHeader = isLoggedIn && (isChatRoute || Boolean(primaryFileTab));
+  const showWorkspaceHeader = isLoggedIn && ((isChatRoute && !isNewChatScreen) || Boolean(primaryFileTab));
   const ActiveIcon = viewIcon(rightPanelTab);
   const [panelEntered, setPanelEntered] = React.useState(false);
   const lastTerminalId = React.useRef<string | null>(null);
@@ -327,6 +327,17 @@ export const WorkspaceTabContainer: React.FC<Props> = ({ children }) => {
   return (
     <div ref={containerRef} className="workspace-screen relative flex h-full min-h-0 w-full flex-1 overflow-hidden bg-background select-text">
       <div className="relative min-w-0 flex-1 overflow-hidden">
+        {isNewChatScreen && !isSidebarOpen && (
+          <button
+            type="button"
+            aria-label={t("tabContainer.openSidebarAria")}
+            title={t("tabContainer.openSidebarTitle")}
+            onClick={toggleSidebar}
+            className="absolute left-3 top-2.5 z-40 inline-flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted/70 hover:text-foreground"
+          >
+            <LuPanelLeftOpen className="h-5 w-5" />
+          </button>
+        )}
         {showWorkspaceHeader && (
           <WorkspacePageHeader
             className="absolute inset-x-0 top-0 z-40"

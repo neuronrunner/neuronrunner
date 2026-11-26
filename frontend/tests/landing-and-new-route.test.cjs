@@ -205,7 +205,7 @@ test("authenticated user on /new gets workspace shell and workspace header bar",
 
   assert.match(html, /app-shell--workspace/);
   assert.match(html, /workspace-screen/);
-  assert.match(html, /tabContainer\.newConversation/);
+  assert.doesNotMatch(html, /tabContainer\.newConversation/);
   assert.doesNotMatch(html, /workspace-header-toolbar/);
   assert.match(html, /data-testid="new-chat-body"/);
 });
