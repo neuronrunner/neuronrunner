@@ -25,6 +25,8 @@ import { toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
 import { COMPUTE_TIERS, coresToVcpu, vcpuToCores } from "@/lib/compute";
 import { droppedUploadFiles, selectedUploadFiles, uploadDestination, UploadSelection } from "@/lib/file-upload";
+import { repositoryRequest, type RepositoryChange, type RepositoryStatus } from "@/lib/repository-api";
+import { useRepositoryChanges } from "@/hooks/use-repository-status";
 import FileOperationProgress, { FileOperation } from "./file-operation-progress";
 import useSandboxProjectsStore from "@/stores/sandbox-projects";
 import useChatStore from "@/stores/chat";
@@ -37,6 +39,53 @@ const GitCloneProgress = lazyView(() => import("@/components/git/git-clone-progr
 const ROOT = "/workspace";
 const parentPath = (path: string) => path.slice(0, path.lastIndexOf("/")) || ROOT;
 const entryName = (path: string) => path.split("/").pop() || path;
+
+type GitFileStatus = RepositoryChange["status"];
+
+const GIT_STATUS_PRIORITY: Record<GitFileStatus, number> = {
+  untracked: 1,
+  added: 1,
+  renamed: 2,
+  modified: 3,
+  deleted: 4,
+  conflict: 5,
+};
+
+const GIT_STATUS_BADGE: Record<GitFileStatus, string> = {
+  modified: "M",
+  added: "A",
+  deleted: "D",
+  renamed: "R",
+  untracked: "U",
+  conflict: "!",
+};
+
+const GIT_STATUS_TEXT: Record<GitFileStatus, string> = {
+  modified: "text-amber-600 dark:text-amber-400",
+  added: "text-emerald-600 dark:text-emerald-400",
+  untracked: "text-emerald-600 dark:text-emerald-400",
+  renamed: "text-sky-600 dark:text-sky-400",
+  deleted: "text-rose-600 dark:text-rose-400 line-through",
+  conflict: "text-rose-600 dark:text-rose-400",
+};
+
+const GIT_STATUS_FOLDER_TEXT: Record<GitFileStatus, string> = {
+  modified: "text-amber-600 dark:text-amber-400",
+  added: "text-emerald-600 dark:text-emerald-400",
+  untracked: "text-emerald-600 dark:text-emerald-400",
+  renamed: "text-sky-600 dark:text-sky-400",
+  deleted: "text-rose-600 dark:text-rose-400",
+  conflict: "text-rose-600 dark:text-rose-400",
+};
+
+const GIT_STATUS_DOT: Record<GitFileStatus, string> = {
+  modified: "bg-amber-500",
+  added: "bg-emerald-500",
+  untracked: "bg-emerald-500",
+  renamed: "bg-sky-500",
+  deleted: "bg-rose-500",
+  conflict: "bg-rose-500",
+};
 
 function fileIcon(file: IProjectFile, expanded = false) {
   const className = "h-4 w-4 shrink-0";
@@ -89,6 +138,9 @@ export const FileSystemExplorer: React.FC = () => {
   const [memory, setMemory] = useState(8192);
   const [operation, setOperation] = useState<FileOperation | null>(null);
   const [uploadEntries, setUploadEntries] = useState<IProjectFile[]>([]);
+  const [gitChangesByRepo, setGitChangesByRepo] = useState<Record<string, RepositoryChange[]>>({});
+  const repoRevisions = useRepositoryChanges((state) => state.revisions);
+  const isChatStreaming = useChatStore((state) => state.isStreaming);
   const reducedMotion = useReducedMotion();
   const operationLock = useRef(false);
   const operationVersion = useRef(0);
@@ -111,6 +163,7 @@ export const FileSystemExplorer: React.FC = () => {
     setEntryDialog(null);
     setCloneOpen(false);
     setSettingsOpen(false);
+    setGitChangesByRepo({});
   }, [sandboxId]);
 
   useEffect(() => {
@@ -149,6 +202,78 @@ export const FileSystemExplorer: React.FC = () => {
     }
     return map;
   }, [files, uploadEntries, sandboxId, activeRoot]);
+
+  const gitRepoPaths = useMemo(() => {
+    if (!sandboxId) return [] as string[];
+    if (activeRoot !== ROOT) return [activeRoot];
+    const detected = new Set<string>();
+    for (const path of entries.keys()) {
+      if (path.endsWith("/.git")) {
+        const repoRoot = parentPath(path);
+        if (repoRoot === ROOT || parentPath(repoRoot) === ROOT) {
+          detected.add(repoRoot);
+        }
+      }
+    }
+    return Array.from(detected);
+  }, [sandboxId, activeRoot, entries]);
+
+  const gitRepoRevisionKey = useMemo(
+    () => gitRepoPaths.map((p) => `${p}:${repoRevisions[`${sandboxId}:${p}`] || 0}`).join("|"),
+    [gitRepoPaths, repoRevisions, sandboxId]
+  );
+
+  useEffect(() => {
+    if (!sandboxId || gitRepoPaths.length === 0) {
+      setGitChangesByRepo({});
+      return;
+    }
+    const controller = new AbortController();
+    Promise.all(
+      gitRepoPaths.map(async (repoPath) => {
+        try {
+          const status = await repositoryRequest<RepositoryStatus>(sandboxId, "git/repository", { path: repoPath }, controller.signal);
+          return [repoPath, status.files || []] as const;
+        } catch {
+          return [repoPath, [] as RepositoryChange[]] as const;
+        }
+      })
+    ).then((results) => {
+      if (controller.signal.aborted) return;
+      const next: Record<string, RepositoryChange[]> = {};
+      for (const [repoPath, changes] of results) {
+        if (changes.length > 0) next[repoPath] = changes;
+      }
+      setGitChangesByRepo(next);
+    });
+    return () => controller.abort();
+  }, [sandboxId, gitRepoPaths, gitRepoRevisionKey, files, isChatStreaming]);
+
+  const { fileGitStatus, folderGitStatus, totalGitChanges } = useMemo(() => {
+    const fileMap = new Map<string, GitFileStatus>();
+    const folderMap = new Map<string, GitFileStatus>();
+    for (const [repoPath, changes] of Object.entries(gitChangesByRepo)) {
+      const base = repoPath.replace(/\/+$/, "");
+      for (const change of changes) {
+        const rel = (change.path || "").replace(/^\/+/, "");
+        if (!rel) continue;
+        const fullPath = `${base}/${rel}`;
+        const prevFile = fileMap.get(fullPath);
+        if (!prevFile || GIT_STATUS_PRIORITY[change.status] >= GIT_STATUS_PRIORITY[prevFile]) {
+          fileMap.set(fullPath, change.status);
+        }
+        let ancestor = parentPath(fullPath);
+        while (ancestor && ancestor !== activeRoot && ancestor.startsWith(`${activeRoot}/`)) {
+          const prevFolder = folderMap.get(ancestor);
+          if (!prevFolder || GIT_STATUS_PRIORITY[change.status] > GIT_STATUS_PRIORITY[prevFolder]) {
+            folderMap.set(ancestor, change.status);
+          }
+          ancestor = parentPath(ancestor);
+        }
+      }
+    }
+    return { fileGitStatus: fileMap, folderGitStatus: folderMap, totalGitChanges: fileMap.size };
+  }, [gitChangesByRepo, activeRoot]);
 
   const pendingPaths = useMemo(() => {
     const existing = new Set(files.map(file => file.path));
@@ -415,9 +540,19 @@ export const FileSystemExplorer: React.FC = () => {
       onDragLeave={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setDragging(false); }}
       onDrop={(event) => { event.preventDefault(); setDragging(false); if (sandboxId && !busy && !operationLock.current) void upload(droppedUploadFiles(event.dataTransfer)); }}>
       <div className="workspace-tool-header workspace-tool-toolbar justify-between">
-        <span className="min-w-0 truncate px-2 text-xs font-medium text-muted-foreground" title={activeRoot}>
-          {currentSandbox?.workspace_uuid === workspaceUuid ? currentSandbox.display_name : t("explorer.title")}
-        </span>
+        <div className="flex min-w-0 items-center gap-1.5 px-2">
+          <span className="min-w-0 truncate text-xs font-medium text-muted-foreground" title={activeRoot}>
+            {currentSandbox?.workspace_uuid === workspaceUuid ? currentSandbox.display_name : t("explorer.title")}
+          </span>
+          {totalGitChanges > 0 && (
+            <span
+              title={`${totalGitChanges} git ${totalGitChanges === 1 ? "change" : "changes"}`}
+              className="inline-flex h-4 shrink-0 items-center rounded-full bg-amber-500/15 px-1.5 font-mono text-[10px] font-semibold text-amber-600 dark:text-amber-400"
+            >
+              {totalGitChanges}
+            </span>
+          )}
+        </div>
         <div className="flex items-center gap-0.5">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -460,17 +595,33 @@ export const FileSystemExplorer: React.FC = () => {
         {rows.map(({ file, depth }) => {
           const affected = affectedPaths.has(file.path);
           const pending = pendingPaths.has(file.path);
+          const gitStatus = file.is_directory ? folderGitStatus.get(file.path) : fileGitStatus.get(file.path);
           return (
           <motion.div key={file.path} initial={{ opacity: 0, height: 0 }} animate={{ opacity: affected && operation?.kind === "delete" ? 0.45 : 1, height: 28 }} exit={{ opacity: 0, height: 0 }} transition={{ duration: reducedMotion ? 0 : 0.2 }}
             aria-busy={affected || undefined} role="treeitem" aria-level={depth + 1} aria-selected={selectedPath === file.path} aria-expanded={file.is_directory ? expanded.has(file.path) || !!query.trim() : undefined}
             onClick={() => { if (affected && (pending || operation?.kind === "delete")) return; setSelectedPath(file.path); treeRef.current?.focus(); if (file.is_directory) toggleFolder(file.path); else openFileTab(file, undefined, undefined, { preview: true }); }}
             onDoubleClick={() => { if (!file.is_directory) openFileTab(file, undefined, undefined, { preview: false }); }}
             className={cn("group flex h-7 overflow-hidden cursor-pointer items-center gap-1.5 pr-1 text-[13px]", selectedPath === file.path ? "bg-sky-500/15 text-foreground ring-1 ring-inset ring-sky-500/35" : "hover:bg-muted/60")}
-            style={{ paddingLeft: 8 + depth * 16 }} title={file.path}>
+            style={{ paddingLeft: 8 + depth * 16 }} title={gitStatus ? `${file.path} (${gitStatus})` : file.path}>
             <span className="flex w-3.5 shrink-0 justify-center">{file.is_directory && (expanded.has(file.path) || query.trim() ? <LuChevronDown className="h-3.5 w-3.5" /> : <LuChevronRight className="h-3.5 w-3.5" />)}</span>
             {fileIcon(file, expanded.has(file.path))}
-            <span className="min-w-0 flex-1 truncate">{entryName(file.path)}</span>
+            <span className={cn("min-w-0 flex-1 truncate", gitStatus && (file.is_directory ? GIT_STATUS_FOLDER_TEXT[gitStatus] : GIT_STATUS_TEXT[gitStatus]))}>{entryName(file.path)}</span>
             {affected && <LuLoaderCircle aria-label={operation?.kind === "delete" ? t("explorer.deletingAriaLabel") : t("explorer.uploadingAriaLabel")} className="mr-1 h-3.5 w-3.5 shrink-0 animate-spin text-sky-500 motion-reduce:animate-none" />}
+            {!affected && gitStatus && (
+              file.is_directory ? (
+                <span
+                  aria-label={gitStatus}
+                  className={cn("mr-0.5 h-1.5 w-1.5 shrink-0 rounded-full", GIT_STATUS_DOT[gitStatus])}
+                />
+              ) : (
+                <span
+                  aria-label={gitStatus}
+                  className={cn("mr-0.5 shrink-0 font-mono text-[11px] font-semibold", GIT_STATUS_FOLDER_TEXT[gitStatus])}
+                >
+                  {GIT_STATUS_BADGE[gitStatus]}
+                </span>
+              )
+            )}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button type="button" aria-label={t("explorer.actionsFor", { name: entryName(file.path) })} disabled={busy} onClick={(event) => { event.stopPropagation(); setSelectedPath(file.path); }} className="rounded p-1 opacity-0 hover:bg-muted focus:opacity-100 group-hover:opacity-100 group-focus-within:opacity-100"><LuEllipsis className="h-3.5 w-3.5" /></button>
