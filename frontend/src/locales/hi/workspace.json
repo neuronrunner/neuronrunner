@@ -591,6 +591,8 @@
       "useBranch": "{{branch}} का इस्तेमाल करें",
       "selectProject": "प्रोजेक्ट चुनें",
       "branchChangesApply": "ब्रांच बदलाव पूरे वर्कस्पेस में इस प्रोजेक्ट पर लागू होते हैं।",
+      "branchPerChat": "ब्रांच का चयन केवल इसी चैट पर लागू होता है। अन्य चैट अपनी ब्रांच पर बनी रहती हैं।",
+      "branchLockedWhileRunning": "एजेंट के इस चैट में काम करते समय ब्रांच नहीं बदली जा सकती।",
       "findOrCreateAria": "प्रोजेक्ट ब्रांच खोजें या बनाएं",
       "findOrCreatePlaceholder": "ब्रांच खोजें या बनाएं…",
       "refreshBranches": "ब्रांचेज़ रिफ़्रेश करें",
@@ -653,7 +655,9 @@
       "starting": "शुरू हो रहा है…",
       "planLimitReached": "प्लान लिमिट पूरी हो गई",
       "restoreAndStart": "रीस्टोर और स्टार्ट करें",
-      "createAndStart": "बनाएं और स्टार्ट करें"
+      "createAndStart": "बनाएं और स्टार्ट करें",
+      "includedRateShort": "कोटा में ${{rate}}/मिनट",
+      "afterRateShort": "बाद में ${{rate}}/मिनट"
     },
     "edit": {
       "emptyNameError": "मशीन का नाम खाली नहीं हो सकता।",

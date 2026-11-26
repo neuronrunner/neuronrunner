@@ -591,6 +591,8 @@
       "useBranch": "Usar {{branch}}",
       "selectProject": "Selecionar projeto",
       "branchChangesApply": "As alterações de branch se aplicam a este projeto em todo o espaço de trabalho.",
+      "branchPerChat": "A troca de branch vale apenas para este chat. Os outros chats mantêm a própria branch.",
+      "branchLockedWhileRunning": "Não é possível trocar de branch enquanto o agente trabalha neste chat.",
       "findOrCreateAria": "Encontrar ou criar branch do projeto",
       "findOrCreatePlaceholder": "Encontrar ou criar branch…",
       "refreshBranches": "Atualizar branches",
@@ -653,7 +655,9 @@
       "starting": "Iniciando…",
       "planLimitReached": "Limite do Plano Atingido",
       "restoreAndStart": "Restaurar e Iniciar",
-      "createAndStart": "Criar e Iniciar"
+      "createAndStart": "Criar e Iniciar",
+      "includedRateShort": "${{rate}}/min incl.",
+      "afterRateShort": "${{rate}}/min depois"
     },
     "edit": {
       "emptyNameError": "O nome da máquina não pode estar vazio.",

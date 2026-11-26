@@ -5,6 +5,7 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import useSidebarStore from "./sidebar";
 import useSandboxProjectsStore from "./sandbox-projects";
+import { useChatBranchStore } from "@/stores/chat-branch";
 import useWorkspaceTabsStore from "./workspace-tabs";
 import frontendExtension from "@cloud";
 import { DEFAULT_PLATFORM_MODELS } from "@/lib/default-models";
@@ -1047,6 +1048,9 @@ const useChatStore = create<ChatState>()(
         const currentConversationId = conversationId ?? get().conversationId;
         const sandboxState = useSandboxProjectsStore.getState();
         const activeProjectId = sandboxState.currentSandbox?.uuid || sandboxState.workspaceSandbox?.uuid;
+        // A branch picked before this chat existed becomes the chat's own checkout with its first message.
+        const chosenBranch = useChatBranchStore.getState().pending;
+        let branchForRequest = chosenBranch && chosenBranch.project === activeProjectId ? chosenBranch : null;
         const linkToActiveProject = (conversationUuid?: string | null) => {
           if (activeProjectId && conversationUuid) {
             useSandboxProjectsStore
@@ -1260,6 +1264,7 @@ const useChatStore = create<ChatState>()(
           const payload: any = {
             parent_message_id: parentIdToUse,
             project_uuid: activeProjectId,
+            ...(branchForRequest ? { branch: branchForRequest.branch, branch_create: branchForRequest.create } : {}),
             model: modelToUse,
             conversation: currentConversationId || undefined,
             input: actualTrimmed,
@@ -1731,6 +1736,11 @@ const useChatStore = create<ChatState>()(
 
               const metadata = (chunk as any).neuronrunner_metadata;
               if (metadata) {
+                if (branchForRequest && metadata.conversation_id) {
+                  // The server accepted the branch; the chat now owns its checkout.
+                  useChatBranchStore.getState().setPending(null);
+                  branchForRequest = null;
+                }
                 if (metadata.conversation_id && !currentConversationId && returnedConversationId !== metadata.conversation_id) {
                   const oldId = returnedConversationId || effectiveConvId;
                   returnedConversationId = metadata.conversation_id;
@@ -2426,6 +2436,7 @@ const useChatStore = create<ChatState>()(
         });
       },
       reset: () => {
+        useChatBranchStore.getState().setPending(null);
         const state = get();
         let updatedCache = state.conversationCache;
         if (state.conversationId && state.messages.length > 0) {

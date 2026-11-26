@@ -591,6 +591,8 @@
       "useBranch": "{{branch}} branch'ini kullan",
       "selectProject": "Proje seçin",
       "branchChangesApply": "Branch değişiklikleri çalışma alanı genelinde bu projeye uygulanır.",
+      "branchPerChat": "Branch seçimi yalnızca bu sohbet için geçerlidir. Diğer sohbetler kendi branch'inde çalışmaya devam eder.",
+      "branchLockedWhileRunning": "Agent bu sohbette çalışırken branch değiştirilemez.",
       "findOrCreateAria": "Proje branch'i bul veya oluştur",
       "findOrCreatePlaceholder": "Branch bul veya oluştur…",
       "refreshBranches": "Branch'leri yenile",
@@ -653,7 +655,9 @@
       "starting": "Başlatılıyor…",
       "planLimitReached": "Plan Sınırına Ulaşıldı",
       "restoreAndStart": "Geri Yükle ve Başlat",
-      "createAndStart": "Oluştur ve Başlat"
+      "createAndStart": "Oluştur ve Başlat",
+      "includedRateShort": "kota içi ${{rate}}/dk",
+      "afterRateShort": "sonra ${{rate}}/dk"
     },
     "edit": {
       "emptyNameError": "Makine adı boş olamaz.",

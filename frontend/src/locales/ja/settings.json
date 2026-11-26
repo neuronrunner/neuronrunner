@@ -254,7 +254,7 @@
         "hint": "Paste your ~/.gemini/oauth_creds.json content, or connect Google OAuth directly from the Cloud Agent Selector.",
         "placeholder": "Paste ~/.gemini/oauth_creds.json or OAuth credentials"
       },
-      "computeNote": "BYOS の LLM トークン料金は $0.00 です。エージェントはクラウド VM 内で実行され、プランの VM クォータまたは Top-Up ウォレット残高（$0.16–$0.32/時）を使用します（月額プラン不要）。",
+      "computeNote": "BYOSのLLMトークン料金は$0.00です。実行はCloud VM内で行われ、まずプランのVM枠、次にチャージ残高（$0.006–$0.024/分）が使われます。",
       "manageBilling": "VM・残高を管理"
     }
   },
@@ -275,7 +275,7 @@
     "activePlan": "現在のプラン",
     "upgradeTo": "{{plan}} にアップグレード",
     "walletBalance": "追加利用ウォレット残高",
-    "walletDescription": "月額クォータの超過分、Free・Plus のプレミアムモデル、月額プランなしでの BYOS/BYOK 向け単独クラウド VM コンピュート（$0.16–$0.32/時）に使用されます。有効期限はありません。",
+    "walletDescription": "月間プラン枠を超えた利用（Cloud VM $0.006–$0.024/分）とプレミアムモデルに使用されます。有効期限はありません。",
     "topUpLabel": "追加利用クレジットを購入（USD、最低 $10.00）",
     "topUpButton": "${{amount}} を追加",
     "topUpNote": "最低チャージ額は $10.00 です。追加の決済手数料はかからず、お支払い額の 100% が即座に残高へ付与されます。",
@@ -287,19 +287,19 @@
     "fallbackPlans": {
       "free": {
         "name": "Free",
-        "description": "月$0.50 無料枠（無料LLM＋$0.16/時 4コアVM）"
+        "description": "月$0.50のCloud VM枠（Small 2 vCPU · 8 GB、$0.004/分）"
       },
       "plus": {
         "name": "Plus",
-        "description": "クラウド VM（約 200 vCPU 時間）向け月額 $10.00 クォータ + $2 の無料枠 LLM 利用枠 · BYOS/BYOK · VM 最大 1 台（チーム機能なし）"
+        "description": "月$10.00のCloud VM枠（約84 vCPU時間）· Small・Large・Ultra · BYOS/BYOK · VM最大1台"
       },
       "pro": {
         "name": "Pro",
-        "description": "クラウド VM（約 550 vCPU 時間）+ すべての LLM モデル向け月額 $25.00 共有クォータ · 最大 4 名"
+        "description": "月$25.00のCloud VM枠（約209 vCPU時間）· Small・Large・Ultra · 最大4メンバー"
       },
       "team": {
         "name": "Team",
-        "description": "全16モデル＋クラウドVM共通 月$200.00共有枠 · 最大20名＆20 VM"
+        "description": "月$160.00のCloud VM枠（約1,334 vCPU時間）· 最大20メンバー"
       }
     },
     "errors": {

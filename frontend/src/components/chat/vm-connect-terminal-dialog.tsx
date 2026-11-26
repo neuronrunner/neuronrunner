@@ -13,7 +13,6 @@ import {
   LuLoader,
   LuPlay,
   LuRefreshCw,
-  LuSend,
   LuServer,
   LuShieldCheck,
   LuTerminal,
@@ -116,6 +115,8 @@ export default function VmConnectTerminalDialog({
   const outputBufferRef = useRef("");
   const commandDispatchedRef = useRef(false);
   const syncedRef = useRef(false);
+  // The 3 s poll must never overlap itself: slow responses used to trigger several "connected" toasts.
+  const syncInFlightRef = useRef(false);
   const tRef = useRef(t);
   tRef.current = t;
   const fetchVMsRef = useRef(fetchVMs);
@@ -135,10 +136,10 @@ export default function VmConnectTerminalDialog({
 
   // Forward an authorization code pasted in the dialog to the CLI's stdin.
   // Text and Enter are sent separately so TUI prompts treat Enter as a keypress, not part of a paste.
-  const submitPastedCode = useCallback(() => {
+  const submitPastedCode = useCallback((): boolean => {
     const code = pasteCode.trim();
     const ws = wsRef.current;
-    if (!code || ws?.readyState !== WebSocket.OPEN) return;
+    if (!code || ws?.readyState !== WebSocket.OPEN) return false;
     ws.send(JSON.stringify({ type: "input", data: code }));
     window.setTimeout(() => {
       if (ws.readyState === WebSocket.OPEN) {
@@ -146,6 +147,7 @@ export default function VmConnectTerminalDialog({
       }
     }, 150);
     setPasteCode("");
+    return true;
   }, [pasteCode]);
 
   const cleanupConnection = useCallback(() => {
@@ -173,7 +175,8 @@ export default function VmConnectTerminalDialog({
 
   const syncFromVm = useCallback(
     async (silent: boolean) => {
-      if (!workspaceUuid || !provider || syncedRef.current) return;
+      if (!workspaceUuid || !provider || syncedRef.current || syncInFlightRef.current) return;
+      syncInFlightRef.current = true;
       if (!silent) {
         setIsSyncing(true);
         setErrorText(null);
@@ -185,8 +188,8 @@ export default function VmConnectTerminalDialog({
         });
         syncedRef.current = true;
         cleanupConnection();
-        await onConnected(provider);
         onOpenChange(false);
+        await onConnected(provider);
       } catch (err) {
         if (!silent) {
           setErrorText(
@@ -199,6 +202,7 @@ export default function VmConnectTerminalDialog({
           );
         }
       } finally {
+        syncInFlightRef.current = false;
         if (!silent) {
           setIsSyncing(false);
         }
@@ -206,6 +210,29 @@ export default function VmConnectTerminalDialog({
     },
     [cleanupConnection, onConnected, onOpenChange, provider, t, workspaceUuid]
   );
+
+  const handleVerifyAndConnect = useCallback(async () => {
+    if (pasteCode.trim()) {
+      const sent = submitPastedCode();
+      if (sent) {
+        setIsSyncing(true);
+        setErrorText(null);
+        try {
+          for (let attempt = 0; attempt < 10; attempt++) {
+            await new Promise((resolve) => window.setTimeout(resolve, 1000));
+            if (syncedRef.current) return;
+            await syncFromVm(true);
+            if (syncedRef.current) return;
+          }
+          await syncFromVm(false);
+        } finally {
+          setIsSyncing(false);
+        }
+        return;
+      }
+    }
+    await syncFromVm(false);
+  }, [pasteCode, submitPastedCode, syncFromVm]);
 
   useEffect(() => {
     if (!open || !provider || !workspaceUuid) {
@@ -234,8 +261,9 @@ export default function VmConnectTerminalDialog({
       const cleaned = chunkText.replace(ANSI_ESCAPE_RE, "").replace(/\r\n/g, "\n").replace(/\r/g, "");
       outputBufferRef.current = (outputBufferRef.current + cleaned).slice(-12000);
 
-      // Rejoin only soft-wrapped terminal lines (near terminal width) so short natural line breaks
-      // like `...state=XYZ\nPaste code here` never corrupt the end of an OAuth URL.
+      // Rejoin only wrapped terminal lines (previous line near terminal width) whose continuation is a
+      // single whitespace-free token, so a natural line break like `...state=XYZ\nPaste code here if
+      // prompted >` never glues the next line's first word onto an OAuth URL.
       const wrapThreshold = Math.max(60, (termRef.current?.cols || 80) - 2);
       const rawLines = outputBufferRef.current.split("\n");
       const joinedLines: string[] = [];
@@ -243,7 +271,7 @@ export default function VmConnectTerminalDialog({
         if (
           joinedLines.length > 0 &&
           joinedLines[joinedLines.length - 1].length >= wrapThreshold &&
-          /^\S/.test(line)
+          /^\S+\s*$/.test(line)
         ) {
           joinedLines[joinedLines.length - 1] += line;
         } else {
@@ -811,11 +839,11 @@ export default function VmConnectTerminalDialog({
           )}
         </div>
 
-        {provider === "anthropic_sub" && (
+        {status !== "needs_vm" && (
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              submitPastedCode();
+              void handleVerifyAndConnect();
             }}
             className="space-y-1.5 rounded-xl border border-border/70 bg-muted/30 px-3.5 py-2.5"
           >
@@ -829,27 +857,16 @@ export default function VmConnectTerminalDialog({
                 defaultValue: "After authorizing in your browser, copy the code shown on the page and paste it here.",
               })}
             </p>
-            <div className="flex items-center gap-2">
-              <Input
-                id="vm-login-paste-code"
-                value={pasteCode}
-                onChange={(e) => setPasteCode(e.target.value)}
-                disabled={status !== "ready"}
-                autoComplete="off"
-                spellCheck={false}
-                placeholder="code#state"
-                className="h-8 flex-1 font-mono text-xs"
-              />
-              <Button
-                type="submit"
-                size="sm"
-                disabled={status !== "ready" || !pasteCode.trim()}
-                className="h-8 gap-1.5 text-xs"
-              >
-                <LuSend className="h-3.5 w-3.5" />
-                {t("home.agentSelector.oauth.pasteCodeSubmit", { defaultValue: "Send" })}
-              </Button>
-            </div>
+            <Input
+              id="vm-login-paste-code"
+              value={pasteCode}
+              onChange={(e) => setPasteCode(e.target.value)}
+              disabled={status !== "ready" || isSyncing}
+              autoComplete="off"
+              spellCheck={false}
+              placeholder={provider === "anthropic_sub" ? "code#state" : "code"}
+              className="h-8 w-full font-mono text-xs"
+            />
           </form>
         )}
 
@@ -879,7 +896,7 @@ export default function VmConnectTerminalDialog({
             {t("home.agentSelector.oauth.vmDisclaimer", {
               agent: meta.name,
               defaultValue:
-                "Your {{agent}} session and credentials stay inside your isolated Cloud VM and are never read or stored on Neuron Runner servers. Neuron Runner is an independent platform not affiliated with this provider; you are solely responsible for complying with your provider's subscription terms.",
+                "Your {{agent}} sign-in is stored encrypted so your Cloud VMs stay connected and removed when you disconnect. Neuron Runner is not affiliated with this provider; you are responsible for following their terms.",
             })}{" "}
             <a
               href="/terms-of-service#byok-mcp"
@@ -897,7 +914,7 @@ export default function VmConnectTerminalDialog({
             type="button"
             size="sm"
             disabled={isSyncing || status === "preparing" || status === "starting_vm" || status === "needs_vm"}
-            onClick={() => void syncFromVm(false)}
+            onClick={() => void handleVerifyAndConnect()}
             className="gap-1.5 text-xs"
           >
             {isSyncing ? <LuLoader className="h-3.5 w-3.5 animate-spin" /> : <LuRefreshCw className="h-3.5 w-3.5" />}

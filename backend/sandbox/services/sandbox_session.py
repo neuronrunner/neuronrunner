@@ -555,7 +555,7 @@ class SandboxSessionManager:
             raise
         self._clear_workspace_runtime(handle.project)
 
-    def execute_tool(self, project: "Sandbox", tool_name: str, arguments: dict, on_output=None, runtime: str | None = None) -> dict:
+    def execute_tool(self, project: "Sandbox", tool_name: str, arguments: dict, on_output=None, runtime: str | None = None, workspace_root: str | None = None) -> dict:
         """Execute a file or shell tool inside the workspace's Docker container."""
         started_at = time.monotonic()
         sandbox = self.get_or_create(project, runtime=runtime)
@@ -577,7 +577,7 @@ class SandboxSessionManager:
         except Exception:
             pass
 
-        ws_root = project.filesystem_path or f"/workspace/{project.slug}"
+        ws_root = workspace_root or project.filesystem_path or f"/workspace/{project.slug}"
         args_b64 = base64.b64encode(json.dumps(arguments).encode()).decode()
         py_code = (
             "import sys, json, base64, os; "

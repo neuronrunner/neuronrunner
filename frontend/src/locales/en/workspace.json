@@ -591,6 +591,8 @@
       "useBranch": "Use {{branch}}",
       "selectProject": "Select project",
       "branchChangesApply": "Branch changes apply to this project across the workspace.",
+      "branchPerChat": "Branch changes apply to this chat only. Other chats keep their own branch.",
+      "branchLockedWhileRunning": "Branch can't change while the agent is working in this chat.",
       "findOrCreateAria": "Find or create project branch",
       "findOrCreatePlaceholder": "Find or create branch…",
       "refreshBranches": "Refresh branches",
@@ -653,7 +655,9 @@
       "starting": "Starting…",
       "planLimitReached": "Plan Limit Reached",
       "restoreAndStart": "Restore & Start",
-      "createAndStart": "Create & Start"
+      "createAndStart": "Create & Start",
+      "includedRateShort": "${{rate}}/min incl.",
+      "afterRateShort": "${{rate}}/min after"
     },
     "edit": {
       "emptyNameError": "Machine name cannot be empty.",

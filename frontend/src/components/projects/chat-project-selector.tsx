@@ -10,6 +10,7 @@ import RemoveProjectDialog from "./remove-project-dialog";
 import useSandboxProjectsStore, { type IProject } from "@/stores/sandbox-projects";
 import useWorkspacesStore from "@/stores/workspaces";
 import useChatStore from "@/stores/chat";
+import { useChatBranchStore } from "@/stores/chat-branch";
 
 export default function ChatProjectSelector() {
   const { t } = useTranslation("workspace");
@@ -35,6 +36,8 @@ export default function ChatProjectSelector() {
   const select = (project: IProject | null) => {
     const active = useWorkspacesStore.getState();
     if (workspaceUuid !== (active.currentWorkspace?.uuid || active.currentWorkspaceUuid)) return;
+    const chosen = useChatBranchStore.getState().pending;
+    if (chosen && chosen.project !== project?.uuid) useChatBranchStore.getState().setPending(null);
     useSandboxProjectsStore.setState({ currentSandbox: project });
     if (project) void useSandboxProjectsStore.getState().pickSandbox(project.uuid);
     useChatStore.getState().setChatMode(project ? "code" : "chat");

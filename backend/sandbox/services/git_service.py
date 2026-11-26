@@ -102,8 +102,10 @@ class SandboxGitService:
         return b"".join(chunks).decode("utf-8", errors="replace"), truncated
 
     @staticmethod
-    def get_workspace_dir(project: Any) -> Path:
-        """Return the local root directory for this sandbox project."""
+    def get_workspace_dir(project: Any, workspace_path: str | None = None) -> Path:
+        """Return the local root directory for this sandbox project, or for a chat's private worktree."""
+        if workspace_path:
+            return get_shared_workspace_root(project) / workspace_path.removeprefix("/workspace/").strip("/")
         return get_shared_workspace_root(project) / get_project_relative_path(project)
 
     @classmethod
@@ -112,9 +114,12 @@ class SandboxGitService:
         return (ws_dir / ".git").is_dir()
 
     @classmethod
-    def ensure_git_repo(cls, project: Any) -> bool:
+    def ensure_git_repo(cls, project: Any, workspace_path: str | None = None) -> bool:
         """Initialize a git repository in the sandbox directory if it doesn't already exist."""
-        ws_dir = cls.get_workspace_dir(project)
+        ws_dir = cls.get_workspace_dir(project, workspace_path)
+        if workspace_path:
+            # A worktree's .git is a file pointing at the project repository; never initialize one here.
+            return (ws_dir / ".git").exists()
         if (ws_dir / ".git").is_dir():
             cls._write_git_excludes(ws_dir)
             return True
@@ -156,11 +161,11 @@ class SandboxGitService:
             return False
 
     @classmethod
-    def create_checkpoint(cls, project: Any, label: str = "Turn checkpoint") -> str | None:
+    def create_checkpoint(cls, project: Any, label: str = "Turn checkpoint", workspace_path: str | None = None) -> str | None:
         """Create a git commit checkpoint so changes can be tracked or undone."""
-        if not cls.ensure_git_repo(project):
+        if not cls.ensure_git_repo(project, workspace_path):
             return None
-        ws_dir = cls.get_workspace_dir(project)
+        ws_dir = cls.get_workspace_dir(project, workspace_path)
         try:
             subprocess.run(["git", "add", "-A"], cwd=str(ws_dir), check=True, capture_output=True, text=True)
             subprocess.run(
@@ -185,9 +190,9 @@ class SandboxGitService:
             return None
 
     @classmethod
-    def get_diff(cls, project: Any, base_commit: str | None = None) -> dict:
+    def get_diff(cls, project: Any, base_commit: str | None = None, workspace_path: str | None = None) -> dict:
         """Compute the git diff of changes made in the sandbox workspace."""
-        if not cls.ensure_git_repo(project):
+        if not cls.ensure_git_repo(project, workspace_path):
             return {
                 "has_changes": False,
                 "files": [],
@@ -197,7 +202,7 @@ class SandboxGitService:
                 "truncated": False,
             }
 
-        ws_dir = cls.get_workspace_dir(project)
+        ws_dir = cls.get_workspace_dir(project, workspace_path)
 
         try:
             exclude = cls._exclude_pathspecs()
@@ -346,15 +351,15 @@ class SandboxGitService:
             }
 
     @classmethod
-    def undo_changes(cls, project: Any, target_commit: str | None = None) -> dict:
+    def undo_changes(cls, project: Any, target_commit: str | None = None, workspace_path: str | None = None) -> dict:
         """
         Revert all uncommitted file changes in the workspace using git,
         or reset hard to a specific commit checkpoint.
         """
-        if not cls.ensure_git_repo(project):
+        if not cls.ensure_git_repo(project, workspace_path):
             return {"success": False, "error": "Git is not available in this workspace"}
 
-        ws_dir = cls.get_workspace_dir(project)
+        ws_dir = cls.get_workspace_dir(project, workspace_path)
 
         try:
             if target_commit:

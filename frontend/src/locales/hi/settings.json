@@ -254,7 +254,7 @@
         "hint": "Paste your ~/.gemini/oauth_creds.json content, or connect Google OAuth directly from the Cloud Agent Selector.",
         "placeholder": "Paste ~/.gemini/oauth_creds.json or OAuth credentials"
       },
-      "computeNote": "BYOS में LLM टोकन शुल्क $0.00 है। एजेंट आपके Cloud VM में चलते हैं और आपके प्लान के VM कोटा या Top-Up वॉलेट बैलेंस ($0.16–$0.32/घंटा) का उपयोग करते हैं — मासिक प्लान की आवश्यकता नहीं।",
+      "computeNote": "BYOS में LLM टोकन का शुल्क $0.00 है। निष्पादन आपके Cloud VM में होता है: पहले प्लान कोटा, फिर टॉप-अप वॉलेट ($0.006–$0.024/मिनट)।",
       "manageBilling": "VM और टॉप-अप प्रबंधित करें"
     }
   },
@@ -275,7 +275,7 @@
     "activePlan": "एक्टिव प्लान",
     "upgradeTo": "{{plan}} में अपग्रेड करें",
     "walletBalance": "एक्स्ट्रा-यूज़ेज वॉलेट बैलेंस",
-    "walletDescription": "मासिक कोटा ओवरेज, Free और Plus में प्रीमियम मॉडल और बिना मासिक प्लान के BYOS/BYOK के लिए स्टैंडअलोन क्लाउड VM कंप्यूट ($0.16–$0.32/घंटा) के लिए इस्तेमाल होता है। कभी एक्सपायर नहीं होता।",
+    "walletDescription": "मासिक कोटा से अधिक उपयोग (Cloud VM $0.006–$0.024/मिनट) और प्रीमियम मॉडल के लिए। कभी समाप्त नहीं होता।",
     "topUpLabel": "एक्स्ट्रा-यूज़ेज क्रेडिट्स जोड़ें (USD, न्यूनतम $10.00)",
     "topUpButton": "${{amount}} जोड़ें",
     "topUpNote": "न्यूनतम टॉप-अप $10.00 है। कोई अतिरिक्त प्रोसेसिंग शुल्क नहीं लिया जाता; आपके द्वारा भुगतान की गई 100% राशि तुरंत बैलेंस में क्रेडिट होती है।",
@@ -287,19 +287,19 @@
     "fallbackPlans": {
       "free": {
         "name": "Free",
-        "description": "$0.50/माह फ़्री कोटा (LLMs + $0.16/घं 4-कोर क्लाउड VMs)"
+        "description": "$0.50/माह Cloud VM कोटा (Small 2 vCPU · 8 GB, $0.004/मिनट)"
       },
       "plus": {
         "name": "Plus",
-        "description": "क्लाउड VM (~200 vCPU-घंटे) के लिए $10.00/माह कोटा + $2 फ्री-टियर LLM अलाउंस · BYOS/BYOK · अधिकतम 1 VM (टीम नहीं)"
+        "description": "$10.00/माह Cloud VM कोटा (~84 vCPU-घंटे) · Small, Large और Ultra · BYOS/BYOK · अधिकतम 1 VM"
       },
       "pro": {
         "name": "Pro",
-        "description": "क्लाउड VM (~550 vCPU-घंटे) + सभी LLM मॉडल के लिए $25.00/माह साझा कोटा · 4 मेंबर तक"
+        "description": "$25.00/माह Cloud VM कोटा (~209 vCPU-घंटे) · Small, Large और Ultra · 4 सदस्यों तक"
       },
       "team": {
         "name": "Team",
-        "description": "सभी 16 मॉडल्स व क्लाउड VM पर $200.00/माह पूल कोटा · 20 मेंबर व 20 VMs तक"
+        "description": "$160.00/माह Cloud VM कोटा (~1,334 vCPU-घंटे) · 20 सदस्यों तक"
       }
     },
     "errors": {

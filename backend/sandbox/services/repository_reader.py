@@ -12,7 +12,8 @@ import re
 import subprocess
 import sys
 
-SKIP_DIRS = {".git", "node_modules", ".venv", "venv", "__pycache__", ".next", "vendor"}
+SKIP_DIRS = {".git", ".worktrees", "node_modules", ".venv", "venv", "__pycache__", ".next", "vendor"}
+WORKTREE_PATH = re.compile(r"/workspace/\.worktrees/[0-9a-f]{32}-[0-9a-f]{8}")
 
 
 class RepositoryUnavailable(ValueError):
@@ -49,12 +50,12 @@ def is_repository(path: Path, root: Path) -> bool:
     return git_dir.is_dir() and git_dir.is_relative_to(root.resolve())
 
 
-def git(path: Path, *args: str, required: bool = False) -> str:
+def git(path: Path, *args: str, required: bool = False, timeout: int = 20) -> str:
     try:
         result = subprocess.run(
             ["git", "--literal-pathspecs", "-c", f"safe.directory={path}", *args], cwd=path,
             env={**os.environ, "LC_ALL": "C", "GIT_OPTIONAL_LOCKS": "0", "GIT_TERMINAL_PROMPT": "0"},
-            capture_output=True, text=True, errors="replace", timeout=20,
+            capture_output=True, text=True, errors="replace", timeout=timeout,
         )
     except FileNotFoundError:
         if not path.is_dir():
@@ -64,8 +65,8 @@ def git(path: Path, *args: str, required: bool = False) -> str:
         message = result.stderr.strip()
         if "would be overwritten" in message or "local changes" in message:
             raise ValueError("Commit your changes before switching branches; Git would overwrite them.")
-        if "already checked out" in message:
-            raise ValueError("This branch is already checked out in another worktree.")
+        if "already checked out" in message or "already used by worktree" in message:
+            raise ValueError("This branch is already checked out by another chat or the project folder. Choose a different branch or create a new one.")
         if "Permission denied" in message:
             raise ValueError("The workspace runtime cannot write to this repository. Check its file permissions.")
         if ".lock" in message and "File exists" in message:
@@ -144,6 +145,114 @@ def read_history(path: Path, data: dict | None = None) -> dict:
             total_commits = len(history)
     has_next = len(history) > 20
     return {"history": history[:20], "has_next": has_next, "next_offset": offset + 20 if has_next else None, "head_commit": head, "total_commits": total_commits}
+
+
+def switch_branch(path: Path, data: dict) -> None:
+    branch = data.get("branch")
+    if not isinstance(branch, str) or not branch or len(branch) > 250:
+        raise ValueError("Choose a valid branch name.")
+    git(path, "check-ref-format", "--branch", branch, required=True)
+    current_branch = git(path, "symbolic-ref", "HEAD").strip().removeprefix("refs/heads/")
+    if not data.get("create") and current_branch == branch:
+        return
+    local = branch_names(path)
+    if data.get("create") is True:
+        if current_branch == branch:
+            return
+        if branch in local:
+            git(path, "switch", "--no-guess", branch, required=True)
+        else:
+            git(path, "switch", "-c", branch, required=True)
+        return
+    fetch_remote_branch(path, data, local)
+    remote = branch_names(path, remote=True)
+    if branch in local:
+        git(path, "switch", "--no-guess", branch, required=True)
+    elif branch in remote and "/" in branch:
+        local_name = branch.partition("/")[2]
+        if local_name in local:
+            check_tracking(path, local_name, branch)
+            git(path, "switch", "--no-guess", local_name, required=True)
+        else:
+            git(path, "switch", "--track", branch, required=True)
+    elif data.get("fetch") is True and f"origin/{branch}" in remote and "/" not in branch:
+        git(path, "switch", "--track", f"origin/{branch}", required=True)
+    else:
+        raise ValueError("This branch no longer exists. Refresh the branch list.")
+
+
+def fetch_remote_branch(path: Path, data: dict, local: list[str]) -> None:
+    branch = data["branch"]
+    if data.get("fetch") is True and branch not in local:
+        clean_remote = branch.partition("/")[2] if branch.startswith("origin/") else branch
+        git(path, *git_auth_args(data.get("token")), "fetch", "--quiet", "origin", f"{clean_remote}:refs/remotes/origin/{clean_remote}")
+
+
+def check_tracking(path: Path, local_name: str, remote_branch: str) -> None:
+    upstream = git(path, "for-each-ref", "--format=%(upstream)", f"refs/heads/{local_name}").strip()
+    if upstream != f"refs/remotes/{remote_branch}":
+        raise ValueError("A local branch with this name already exists and tracks a different branch. Choose the local branch or create a different name.")
+
+
+def worktree_location(root: Path, data: dict) -> Path:
+    location = data.get("worktree_path")
+    if not isinstance(location, str) or not WORKTREE_PATH.fullmatch(location):
+        raise ValueError("Choose a valid agent workspace location.")
+    return directory(root, location)
+
+
+def attach_worktree(root: Path, repository: Path, data: dict) -> str:
+    """Give one chat its own checkout of a branch so parallel agents never share a working tree."""
+    branch = data.get("branch")
+    if not isinstance(branch, str) or not branch or len(branch) > 250:
+        raise ValueError("Choose a valid branch name.")
+    git(repository, "check-ref-format", "--branch", branch, required=True)
+    worktree = worktree_location(root, data)
+    location = data["worktree_path"]
+    if is_repository(worktree, root):
+        switch_branch(worktree, data)
+        return location
+    if worktree.exists():
+        raise ValueError("The agent workspace folder is in the way. Remove it and try again.")
+    exclude = Path(git(repository, "rev-parse", "--path-format=absolute", "--git-path", "info/exclude").strip())
+    if exclude.parent.is_dir() and ".worktrees/" not in (exclude.read_text(errors="replace").splitlines() if exclude.exists() else []):
+        with exclude.open("a") as stream:
+            stream.write(".worktrees/\n")
+    worktree.parent.mkdir(parents=True, exist_ok=True)
+    git(repository, "worktree", "prune")
+    local = branch_names(repository)
+    if branch in local:
+        git(repository, "worktree", "add", str(worktree), branch, required=True, timeout=120)
+    elif data.get("create") is True:
+        git(repository, "worktree", "add", "-b", branch, str(worktree), required=True, timeout=120)
+    else:
+        fetch_remote_branch(repository, data, local)
+        remote = branch_names(repository, remote=True)
+        if branch in remote and "/" in branch:
+            local_name = branch.partition("/")[2]
+            if local_name in local:
+                check_tracking(repository, local_name, branch)
+                git(repository, "worktree", "add", str(worktree), local_name, required=True, timeout=120)
+            else:
+                git(repository, "worktree", "add", "--track", "-b", local_name, str(worktree), branch, required=True, timeout=120)
+        elif data.get("fetch") is True and f"origin/{branch}" in remote and "/" not in branch:
+            git(repository, "worktree", "add", "--track", "-b", branch, str(worktree), f"origin/{branch}", required=True, timeout=120)
+        else:
+            raise ValueError("This branch no longer exists. Refresh the branch list.")
+    return location
+
+
+def detach_worktree(root: Path, repository: Path, data: dict) -> None:
+    """Remove a chat's checkout. Git refuses when it holds uncommitted work, so nothing is lost."""
+    worktree = worktree_location(root, data)
+    if not worktree.exists():
+        git(repository, "worktree", "prune")
+        return
+    if not is_repository(worktree, root):
+        raise ValueError("The agent workspace folder is not a Git checkout.")
+    if git(worktree, "status", "--porcelain=v1", "--untracked-files=all").strip():
+        raise ValueError("This chat's branch checkout has uncommitted changes. Commit or discard them first.")
+    git(repository, "worktree", "remove", str(worktree), required=True)
 
 
 def read(root: Path, operation: str, workspace_path: str = "/workspace", file: str = "", data: dict | None = None) -> dict:
@@ -238,42 +347,13 @@ def read(root: Path, operation: str, workspace_path: str = "/workspace", file: s
         git(path, "-c", f"user.name={author}", "-c", f"user.email={email}", "commit", "-m", message.strip(), required=True)
         return read(root, "status", workspace_path)
     if operation == "switch":
-        data = data or {}
-        branch = data.get("branch")
-        if not isinstance(branch, str) or not branch or len(branch) > 250:
-            raise ValueError("Choose a valid branch name.")
-        git(path, "check-ref-format", "--branch", branch, required=True)
-        current_branch = git(path, "symbolic-ref", "HEAD").strip().removeprefix("refs/heads/")
-        if not data.get("create") and current_branch == branch:
-            return read(root, "status", workspace_path)
-        local = branch_names(path)
-        if data.get("create") is True:
-            if current_branch == branch:
-                return read(root, "status", workspace_path)
-            if branch in local:
-                git(path, "switch", "--no-guess", branch, required=True)
-            else:
-                git(path, "switch", "-c", branch, required=True)
-        else:
-            if data.get("fetch") is True and branch not in local:
-                clean_remote = branch.partition("/")[2] if branch.startswith("origin/") else branch
-                git(path, *git_auth_args(data.get("token")), "fetch", "--quiet", "origin", f"{clean_remote}:refs/remotes/origin/{clean_remote}")
-            remote = branch_names(path, remote=True)
-            if branch in local:
-                git(path, "switch", "--no-guess", branch, required=True)
-            elif branch in remote and "/" in branch:
-                local_name = branch.partition("/")[2]
-                if local_name in local:
-                    upstream = git(path, "for-each-ref", "--format=%(upstream)", f"refs/heads/{local_name}").strip()
-                    if upstream != f"refs/remotes/{branch}":
-                        raise ValueError("A local branch with this name already exists and tracks a different branch. Choose the local branch or create a different name.")
-                    git(path, "switch", "--no-guess", local_name, required=True)
-                else:
-                    git(path, "switch", "--track", branch, required=True)
-            elif data.get("fetch") is True and f"origin/{branch}" in remote and "/" not in branch:
-                git(path, "switch", "--track", f"origin/{branch}", required=True)
-            else:
-                raise ValueError("This branch no longer exists. Refresh the branch list.")
+        switch_branch(path, data or {})
+        return read(root, "status", workspace_path)
+    if operation == "worktree_attach":
+        worktree = attach_worktree(root, path, data or {})
+        return read(root, "status", worktree)
+    if operation == "worktree_detach":
+        detach_worktree(root, path, data or {})
         return read(root, "status", workspace_path)
     if operation == "push":
         data = data or {}

@@ -82,7 +82,7 @@
         "vmBootTimeout": "Sanal makine başlatma zaman aşımına uğradı. Lütfen tekrar deneyin.",
         "wsTimeout": "Terminal bağlantısı zaman aşımına uğradı. Yeniden bağlanmak için Tekrar Dene'ye tıklayın.",
         "retryButton": "Tekrar Dene",
-        "vmDisclaimer": "{{agent}} oturumunuz ve kimlik bilgileriniz yalnızca izole Bulut VM'iniz içinde kalır; Neuron Runner sunucularında okunmaz veya saklanmaz. Neuron Runner bu sağlayıcıyla bağlantılı olmayan bağımsız bir platformdur; sağlayıcınızın abonelik koşullarına uymaktan yalnızca siz sorumlusunuz.",
+        "vmDisclaimer": "{{agent}} oturumunuz Bulut VM'lerinizin bağlı kalması için şifrelenerek saklanır ve bağlantıyı kestiğinizde silinir. Neuron Runner bu sağlayıcıyla ilişkili değildir; koşullarına uymak sizin sorumluluğunuzdadır.",
         "vmDisclaimerTerms": "Kullanım Koşulları"
       }
     }
@@ -97,13 +97,13 @@
       "schemaName": "Fiyatlandırma — Neuron Runner",
       "description": "Otonom yapay zeka ajanları için şeffaf saniye bazlı bulut işlem gücü ve abonelik planları. Özel Linux VM'ler, BYOS ve BYOK desteğiyle Free, Plus ($10) ve Pro ($25) katmanları.",
       "faq1Question": "Otonom bulut ajanı işlem gücü faturalandırması nasıl çalışır?",
-      "faq1Answer": "Her plan, saniye bazlı Bulut VM çalışma süresi için aylık bir USD işlem gücü kotası içerir ($0.50 Free, $10 Plus, $25 Pro; 4 çekirdek $0.16/sa, 6 çekirdek $0.24/sa, 8 çekirdek $0.32/sa; durdurulmuşken $0.00/sa). Kendi yapay zekâ aboneliğinizi (BYOS) veya API anahtarlarınızı (BYOK) %0 platform farkıyla bağlarsınız.",
+      "faq1Answer": "Her plan, saniye bazlı adanmış Bulut VM'ler için aylık USD işlem gücü kotası içerir ($0.50 Free, $10 Plus, $25 Pro): kota içi Small $0.004/dk, Large $0.008/dk, Ultra $0.016/dk; kota sonrası 1.5×; durdurulmuşken $0.00. Kendi yapay zekâ aboneliğinizi (BYOS) veya API anahtarlarınızı (BYOK) %0 platform farkıyla bağlayın.",
       "faq2Question": "Kendi API anahtarlarımı (BYOK) getirebilir miyim?",
       "faq2Answer": "Evet! Free dahil her planda, Çalışma Alanı Ayarları'ndan Anthropic, OpenAI, DeepSeek veya özel sağlayıcı API anahtarlarınızı %0 platform komisyonuyla ekleyebilirsiniz."
     }
   },
   "hero": {
-    "badge": "Otonom bulut ajanları · Özel Linux VM ve Canlı VNC",
+    "badge": "Açık kaynaklı bulut ajanları · Özel Linux VM ve Canlı VNC",
     "titleLine1": "Ajanınız bulutta çalışır.",
     "titleLine2": "Kendi bilgisayarıyla.",
     "subtitle": "Her proje izole bir Linux VM, canlı VNC masaüstü, tarayıcı ve terminal alır. Görevi ajanınıza bırakın — ajanınız bilgisayarınıza hiç dokunmadan bulutta kod yazar, çalıştırır ve teslim eder.",
@@ -117,7 +117,8 @@
       "gitAutoPr": "Git ve Otomatik PR",
       "byos": "Kendi Aboneliğini Getir"
     },
-    "discordCta": "Soruların mı var? Discord'da ekibimizle konuş"
+    "discordCta": "Soruların mı var? Discord'da ekibimizle konuş",
+    "starOnGithub": "GitHub'ta Yıldızla"
   },
   "connectors": {
     "eyebrow": "Ajanınız halihazırda kullandığınız araçlara bağlanır"
@@ -490,12 +491,11 @@
         "badge": "Sonsuza Dek Ücretsiz",
         "tagline": "Başlangıç bulut Linux VM'leri, BYOS ve BYOK ile otonom kodlamayı keşfedin.",
         "llmAllowance": "$0.50 / ay",
-        "vcpuQuota": "Maks. 2 vCPU-sa / ay",
-        "vcpuSubnote": "Ücretsiz LLM'ler ve 4 çekirdek VM ($0.16/sa)",
+        "vcpuQuota": "Aylık 4 vCPU-saate kadar",
+        "vcpuSubnote": "Small VM'yi kapsar ($0.004/dk)",
         "highlights": [
           "6 Ücretsiz LLM + Bulut VM için aylık <strong>$0.50 tek kota</strong>",
           "<strong>4 çekirdek (8 GB RAM)</strong> Linux sandbox VM erişimi",
-          "<strong>5 dakikaya</strong> kadar otomatik durdurmalı VM oturumları",
           "Kendi <strong>aboneliğinizi (BYOS)</strong> veya <strong>API anahtarlarınızı (BYOK)</strong> %0 komisyonla getirin"
         ],
         "ctaLabel": "Ücretsiz Başlayın"
@@ -506,13 +506,12 @@
         "badge": "En Popüler",
         "tagline": "Kendi kodlama ajanlarınız için özel bulut Linux VM'ler: kendi aboneliğinizi (BYOS) veya API anahtarlarınızı getirin.",
         "llmAllowance": "$10.00 / ay",
-        "vcpuQuota": "Maks. 200 vCPU-sa / ay",
-        "vcpuSubnote": "4/6/8 çekirdek VM'ler ve $2 Ücretsiz Katman LLM hakkı",
+        "vcpuQuota": "Aylık 84 vCPU-saate kadar",
+        "vcpuSubnote": "Small, Large ve Ultra VM'leri kapsar",
         "highlights": [
           "Bulut VM için aylık <strong>$10.00 kota</strong> (<strong>~200 vCPU-sa</strong>) + Ücretsiz Katman modelleri için <strong>$2 LLM hakkı</strong>",
           "<strong>Kendi Claude Code, Codex veya Antigravity aboneliğinizi</strong> (BYOS) ya da API anahtarlarınızı (BYOK) getirin",
-          "<strong>8 çekirdeğe (16 GB RAM)</strong> kadar VM + canlı VNC masaüstü",
-          "<strong>60 dakikalık oturumlar</strong> ve kalıcı VM diski"
+          "<strong>8 çekirdeğe (16 GB RAM)</strong> kadar VM + canlı VNC masaüstü"
         ],
         "ctaLabel": "Plus'a Yükseltin"
       },
@@ -522,13 +521,12 @@
         "badge": "4× Güç",
         "tagline": "Yoğun full-stack mühendisliği için daha fazla VM saati, snapshot ve 4 üyeye kadar çalışma alanı.",
         "llmAllowance": "$25.00 / ay",
-        "vcpuQuota": "Maks. 550 vCPU-sa / ay",
-        "vcpuSubnote": "Ücretsiz Katman LLM'ler ve 4/6/8 çekirdek VM'ler için ortak kota",
+        "vcpuQuota": "Aylık 209 vCPU-saate kadar",
+        "vcpuSubnote": "Small, Large ve Ultra VM'leri kapsar",
         "highlights": [
           "Bulut VM (<strong>~550 vCPU-sa</strong>) + Ücretsiz Katman LLM'ler için aylık <strong>$25.00 ortak kota</strong>",
           "Premium modeller plan kotasından değil, <strong>cüzdanınızdan</strong> kullandıkça öde şeklinde düşer",
-          "<strong>4 çalışma alanı üyesine</strong> kadar · 1 ortak Bulut VM",
-          "<strong>60 dakikalık oturumlar</strong> ve kalıcı VM diski"
+          "<strong>4 çalışma alanı üyesine</strong> kadar · 1 ortak Bulut VM"
         ],
         "ctaLabel": "Pro'ya Yükseltin"
       },
@@ -538,8 +536,8 @@
         "badge": "İş Birliği",
         "tagline": "20 üyeye kadar ekipler için ortak işlem gücüyle özel iş birliği çalışma alanı.",
         "llmAllowance": "$200.00 / ay",
-        "vcpuQuota": "Maks. 400 vCPU-sa / ay",
-        "vcpuSubnote": "16 model ve VM için ortak ekip kotası ($0.16–$0.32/sa)",
+        "vcpuQuota": "Aylık 1,334 vCPU-saate kadar",
+        "vcpuSubnote": "Small, Large ve Ultra VM'leri kapsar",
         "highlights": [
           "Ekip için 16 LLM + Bulut VM'de aylık <strong>$200.00 ortak kota</strong>",
           "Bulut VM çalışması havuzdan düşer (<strong>$0.16–$0.32/sa</strong> · boşta $0.00)",
@@ -553,7 +551,7 @@
     "mechanics": {
       "wallet": {
         "title": "Ekstra Kullanım Cüzdanı ($10+ Yükleme)",
-        "description": "Önce her zaman plan VM kotanız kullanılır; abonelikler cüzdana nakit eklemez. Ekstra Bulut VM çalışma süresi ($0.16–$0.32/sa) gerektiğinde cüzdanınıza bakiye yükleyin (min <s1>$10.00</s1>, %0 komisyon)."
+        "description": "Önce her zaman plan VM kotanız kullanılır; abonelikler cüzdana nakit eklemez. Ek Bulut VM süresi için kota sonrası tarifeyle ($0.006–$0.024/dk) cüzdanınıza bakiye yükleyin (min <s1>$10.00</s1>, %0 komisyon)."
       },
       "byok": {
         "title": "Kendi Anahtarınızı Getirin (%0 Komisyon)",
@@ -575,56 +573,54 @@
     "vms": {
       "vcpuHrsUnit": "{{cpu}} vCPU-saat",
       "perActiveHour": "/ aktif saat",
-      "overageRate": "Plan kotasından düşer · Durduğunda $0.00",
+      "overageRate": "Önce plan kotası · durunca $0.00",
       "cpuLabel": "CPU",
       "cpuValue": "{{cpu}} vCPU",
       "memoryLabel": "Bellek",
       "memoryValue": "{{memory}} GB",
-      "nvmeLabel": "NVMe",
-      "nvmeValue": "{{disk}} GB",
       "includedIn": "Dahil olduğu planlar",
       "bestForLabel": "En uygun:",
       "standardTitle": "Her bulut sandbox makinesinde standart",
       "standardMeta": "Saniye bazlı sayaç · Durdurulduğunda $0.00",
       "tiers": {
         "tier_1": {
-          "label": "4 çekirdek",
-          "badge": "Standart · tier_1",
-          "tagline": "Günlük kodlama, script'ler ve hafif web önizlemeleri.",
+          "label": "Small",
+          "badge": "Standart · SMALL",
+          "tagline": "Günlük kodlama, ajanlar, scriptler ve hafif web önizlemeleri.",
           "planAccess": "Free, Plus ve Pro",
           "highlights": [
-            "4 çekirdekli (4 vCPU) özel bulut işlem gücü",
-            "8 GB DDR yüksek hızlı bellek · 32 GB NVMe disk",
-            "Tarife: $0.16 / aktif saat (durduğunda $0.00)",
-            "Plus: ayda 50 saate kadar · Pro: ayda 137 saate kadar (dahil vCPU-saat)"
+            "2 adanmış vCPU (performance sınıfı, kısıtlanmaz)",
+            "8 GB bellek · Kalıcı çalışma alanı hacmi (plana göre)",
+            "Kota içi $0.004/dk · kota sonrası $0.006/dk",
+            "Plus: ~41 sa/ay · Pro: ~104 sa/ay plan kotasından"
           ],
-          "bestFor": "Frontend uygulamalar, API'ler ve hızlı script'ler"
+          "bestFor": "Kodlama ajanları, API'ler ve hızlı scriptler"
         },
         "tier_2": {
-          "label": "6 çekirdek",
-          "badge": "En Popüler · tier_2",
+          "label": "Large",
+          "badge": "En Popüler · LARGE",
           "tagline": "Full-stack geliştirme, Docker servisleri ve canlı VNC testleri.",
           "planAccess": "Plus ve Pro",
           "highlights": [
-            "6 çekirdekli (6 vCPU) çok çekirdekli derleme motoru",
-            "12 GB DDR bellek · 32 GB NVMe disk",
-            "Tarife: $0.24 / aktif saat (durduğunda $0.00)",
-            "Plus: ayda 33 saate kadar · Pro: ayda 92 saate kadar (dahil vCPU-saat)"
+            "4 adanmış vCPU (performance sınıfı, kısıtlanmaz)",
+            "16 GB bellek · Kalıcı çalışma alanı hacmi (plana göre)",
+            "Kota içi $0.008/dk · kota sonrası $0.012/dk",
+            "Plus: ~20 sa/ay · Pro: ~52 sa/ay plan kotasından"
           ],
           "bestFor": "Full-stack Next.js, Vite ve Docker yığınları"
         },
         "tier_3": {
-          "label": "8 çekirdek",
-          "badge": "Güç · tier_3",
-          "tagline": "Ağır derlemeler, büyük monorepo'lar ve paralel test paketleri.",
+          "label": "Ultra",
+          "badge": "Güç · ULTRA",
+          "tagline": "Ağır derlemeler, büyük monorepolar ve paralel test paketleri.",
           "planAccess": "Plus ve Pro",
           "highlights": [
-            "8 çekirdekli (8 vCPU) yüksek eşzamanlı işlem gücü",
-            "16 GB DDR geniş bellek havuzu · 64 GB NVMe disk",
-            "Tarife: $0.32 / aktif saat (durduğunda $0.00)",
-            "Plus: ayda 25 saate kadar · Pro: ayda 69 saate kadar (dahil vCPU-saat)"
+            "8 adanmış vCPU (performance sınıfı, kısıtlanmaz)",
+            "32 GB bellek · Kalıcı çalışma alanı hacmi (plana göre)",
+            "Kota içi $0.016/dk · kota sonrası $0.024/dk",
+            "Plus: ~10 sa/ay · Pro: ~26 sa/ay plan kotasından"
           ],
-          "bestFor": "Monorepo'lar, Rust/Go derleyicileri ve E2E testleri"
+          "bestFor": "Monorepolar, Rust/Go derleyicileri ve E2E testleri"
         }
       },
       "includedCapabilities": [
@@ -644,7 +640,11 @@
           "title": "Otomatik Durdurma Koruması",
           "description": "2–60 dakika arası ayarlanabilen hareketsizlik zamanlayıcısı boşta kalan VM'leri otomatik durdurup maliyeti $0.00'a indirir."
         }
-      ]
+      ],
+      "perMinIncluded": "/ dk kota içi",
+      "afterRatePill": "sonra ${{rate}}/dk",
+      "hourlyEquiv": "kota içi ${{included}}/sa · sonra ${{after}}/sa",
+      "stoppedFree": "durunca $0"
     },
     "compare": {
       "columns": {
@@ -654,7 +654,7 @@
         "pro": "Pro ($25)",
         "team": "Team ($200)"
       },
-      "footnote": "* Free planında 4 çekirdekli Bulut Sandbox VM erişimi ($0.50 kotadan $0.16/sa), standart hesap doğrulamasından sonra açılır.",
+      "footnote": "* Free plan, standart hesap doğrulamasından sonra Small Bulut VM'lerini (2 vCPU · 8 GB, $0.50 kotadan $0.004/dk) açar. Kota bitince VM'ler cüzdandan 1.5× ücretlendirilir (Small için $0.006/dk).",
       "rows": [
         {
           "feature": "Aylık Fiyat",
@@ -672,24 +672,24 @@
         },
         {
           "feature": "Bulut VM Tarifesi (Kotadan)",
-          "free": "$0.16 / sa*",
-          "plus": "$0.16 – $0.32 / sa",
-          "pro": "$0.16 – $0.32 / sa",
-          "team": "$0.16 – $0.32 / sa"
+          "free": "$0.004 / dk*",
+          "plus": "$0.004 – $0.016 / dk",
+          "pro": "$0.004 – $0.016 / dk",
+          "team": "$0.004 – $0.016 / dk"
         },
         {
           "feature": "Dahil VM Hesaplama",
-          "free": "Maks. 2 vCPU-sa / ay",
-          "plus": "Maks. 200 vCPU-sa / ay",
-          "pro": "Maks. 550 vCPU-sa / ay",
-          "team": "Maks. 1,250 saat / ay"
+          "free": "Aylık 4 vCPU-saate kadar",
+          "plus": "Aylık 84 vCPU-saate kadar",
+          "pro": "Aylık 209 vCPU-saate kadar",
+          "team": "Aylık 1,334 vCPU-saate kadar"
         },
         {
           "feature": "Maks. VM Donanım Katmanı",
-          "free": "4 çekirdek · 8 GB RAM",
-          "plus": "8 çekirdek · 16 GB RAM",
-          "pro": "8 çekirdek · 16 GB RAM",
-          "team": "8 çekirdek · 16 GB RAM"
+          "free": "Small · 2 vCPU · 8 GB",
+          "plus": "Ultra · 8 vCPU · 32 GB",
+          "pro": "Ultra · 8 vCPU · 32 GB",
+          "team": "Ultra · 8 vCPU · 32 GB"
         },
         {
           "feature": "Maks. Bulut VM Sayısı",
@@ -699,18 +699,18 @@
           "team": "1 VM"
         },
         {
+          "feature": "Kalıcı Depolama",
+          "free": "5 GB",
+          "plus": "50 GB",
+          "pro": "100 GB",
+          "team": "100 GB"
+        },
+        {
           "feature": "Çalışma Alanı Üyeleri",
           "free": "1 üye",
           "plus": "1 üye (ekip yok)",
           "pro": "4 üyeye kadar",
           "team": "20 üyeye kadar"
-        },
-        {
-          "feature": "Maks. VM Oturum Süresi",
-          "free": "5 dakika",
-          "plus": "60 dakika",
-          "pro": "60 dakika",
-          "team": "60 dakika"
         },
         {
           "feature": "Kendi Anahtarını Getir (BYOK)",
@@ -747,11 +747,11 @@
         },
         {
           "question": "Bulut Sandbox VM kullanımı nasıl ücretlendirilir?",
-          "answer": "Aktif VM'ler saniye bazlı ölçülür ve aylık plan kotanızdan 4 çekirdek (tier_1) için $0.16/saat, 6 çekirdek (tier_2) için $0.24/saat ve 8 çekirdek (tier_3) için $0.32/saat olarak USD cinsinden düşülür. Durdurulan VM'ler kesinlikle $0.00/saat tutar."
+          "answer": "Aktif VM'ler saniye bazında ölçülür. Kullanım önce aylık plan kotanızdan kota içi tarifeyle düşülür — Small $0.004/dk ($0.24/sa), Large $0.008/dk ($0.48/sa), Ultra $0.016/dk ($0.96/sa). Kota bitince ek süre cüzdanınızdan 1.5× ücretlendirilir: $0.006, $0.012 ve $0.024/dk. Durdurulan VM'ler $0.00 tutar."
         },
         {
           "question": "Free planda Bulut Sandbox VM'lere nasıl erişebilirim?",
-          "answer": "Free planı 4 çekirdekli Bulut VM'ler ($0.16/saat) için aylık $0.50 işlem gücü kotası içerir. Ayarlar bölümünden standart hesap doğrulamasını tamamlayarak VM başlatma özelliğini açabilirsiniz."
+          "answer": "Free plan aylık $0.50 işlem gücü kotası içerir — Small VM'de (2 vCPU · 8 GB RAM) yaklaşık 2 saat. Ayarlar bölümünden standart hesap doğrulamasını (Google/GitHub veya telefon) tamamlayarak VM başlatmayı açabilirsiniz."
         },
         {
           "question": "Plan kotamı aşarsam ne olur?",
@@ -785,15 +785,15 @@
         "quota": "Aylık VM kotası",
         "vcpu": "Dahil VM hesaplama",
         "vm": "Maks. VM boyutu",
-        "session": "Oturum süresi",
         "snapshots": "Snapshot",
         "members": "Üyeler",
-        "byo": "BYOS / BYOK"
+        "byo": "BYOS / BYOK",
+        "storage": "Depolama"
       },
       "vcpuValue": "{{hours}} vCPU-sa",
-      "approxMinutes": "≈ {{cores}} çekirdekli VM'de {{minutes}} dk",
-      "approxHours": "≈ {{cores}} çekirdekli VM'de {{hours}} saat",
-      "vmSize": "{{cores}} çekirdek · {{ram}} GB RAM",
+      "approxMinutes": "≈ Small VM'de {{minutes}} dk",
+      "approxHours": "≈ Small VM'de {{hours}} saat",
+      "vmSize": "{{cores}} vCPU · {{ram}} GB RAM",
       "minutes": "{{minutes}} dk",
       "none": "Yok",
       "included": "Dahil",
@@ -1103,6 +1103,26 @@
           "a": "Evet. Ayarlar > Sağlayıcı Anahtarları bölümünden kendi Anthropic, OpenAI, DeepSeek veya özel sağlayıcı anahtarlarınızı %0 platform farkıyla ekleyebilirsiniz. BYOK plan kotasını tüketmez; Free planda $0.00 bakiyede ücretli modeller için bakiye veya ücretli plan gerekir."
         }
       ]
+    }
+  },
+  "openSource": {
+    "eyebrow": "Açık kaynak",
+    "title": "Tamamen açık kaynak. İstediğiniz yerde çalıştırın.",
+    "description": "Her satır kodu inceleyin, kendi altyapınızda Docker ile barındırın veya yönetilen bulutumuzda anında başlatın. Kara kutu yok, satıcı bağımlılığı yok.",
+    "docsCta": "Kendi sunucunuza kurulum",
+    "items": {
+      "transparent": {
+        "title": "Tüm kaynak kod GitHub'da",
+        "text": "Ajan çalışma zamanını, sandbox orkestrasyonunu ve web arayüzünü tamamen açık şekilde inceleyin."
+      },
+      "selfHost": {
+        "title": "Docker ile kendi sunucunuzda çalıştırın",
+        "text": "Neuron Runner'ı kendi sunucunuza veya bilgisayarınıza kendi API anahtarlarınızla ve tam veri kontrolüyle kurun."
+      },
+      "community": {
+        "title": "Topluluk odaklı geliştirme",
+        "text": "Issue açın, yeni entegrasyonlar ve özellikler ekleyin, yol haritasını ekiple birlikte şekillendirin."
+      }
     }
   }
 }

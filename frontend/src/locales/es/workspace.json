@@ -591,6 +591,8 @@
       "useBranch": "Usar {{branch}}",
       "selectProject": "Seleccionar proyecto",
       "branchChangesApply": "Los cambios de rama se aplican a este proyecto en todo el espacio de trabajo.",
+      "branchPerChat": "El cambio de rama solo se aplica a este chat. Los demás chats mantienen su propia rama.",
+      "branchLockedWhileRunning": "No se puede cambiar de rama mientras el agente trabaja en este chat.",
       "findOrCreateAria": "Buscar o crear rama del proyecto",
       "findOrCreatePlaceholder": "Buscar o crear rama…",
       "refreshBranches": "Actualizar ramas",
@@ -653,7 +655,9 @@
       "starting": "Iniciando…",
       "planLimitReached": "Límite del plan alcanzado",
       "restoreAndStart": "Restaurar e iniciar",
-      "createAndStart": "Crear e iniciar"
+      "createAndStart": "Crear e iniciar",
+      "includedRateShort": "${{rate}}/min incl.",
+      "afterRateShort": "${{rate}}/min después"
     },
     "edit": {
       "emptyNameError": "El nombre de la máquina no puede estar vacío.",

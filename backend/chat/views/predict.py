@@ -248,6 +248,11 @@ def _setup_conversation(request) -> tuple:
                 project.conversation = conversation
                 project.save(update_fields=['conversation', 'updated_at'])
             ext_registry.runtime.attach_request_runtime(request, workspace, project)
+            branch = request.data.get('branch')
+            if isinstance(branch, str) and branch.strip():
+                # The chat works on its own branch checkout; other chats on this VM keep theirs.
+                from sandbox.services.conversation_worktree import attach_branch
+                attach_branch(project, conversation, branch.strip(), create=request.data.get('branch_create') is True)
 
     parent_message_id = request.data.get('parent_message_id') or request.data.get('parent')
     parent_message = _resolve_parent_message(conversation, parent_message_id)

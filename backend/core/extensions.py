@@ -84,6 +84,13 @@ class RuntimeHooks:
     sync_secrets_to_runtimes: Callable[..., int | None] | None = None
     resolve_secret_target: Callable[..., Any] = lambda workspace, target_id: None
     create_direct_terminal: Callable[..., Any] | None = None
+    # (project, runtime_name, auth_payload, origin) -> connection | None. Blocking; the terminal consumer
+    # runs it in a thread. A connection exposes ``descriptor()``, ``consume(challenge)`` and ``claims``.
+    # Returning None falls back to the local Docker terminal; raising ValueError reports its message.
+    open_direct_terminal: Callable[..., Any] | None = None
+    # (project, action, path, new_path, data) -> result dict | None. Called before a workspace file operation wakes
+    # the runtime; a result is returned to the caller instead, None continues as usual.
+    workspace_disk_override: Callable[..., Any] | None = None
     create_port_preview: Callable[..., dict[str, Any] | None] | None = None
     close_port_preview: Callable[..., dict[str, Any] | None] | None = None
     list_preview_ports: Callable[..., list[int] | None] | None = None

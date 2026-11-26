@@ -30,6 +30,12 @@ def operation(project, action, path='/workspace', new_path=None, data=None):
         raise ValueError('The workspace root cannot be deleted or renamed')
     if action == 'rename' and not request['new_path']:
         raise ValueError('The workspace root cannot be replaced')
+    from core.extensions import registry as ext_registry
+    if ext_registry.runtime.workspace_disk_override is not None:
+        # An extension may serve the operation without a running runtime (for example a closed VM over its quota).
+        handled = ext_registry.runtime.workspace_disk_override(project, action, path, new_path, data)
+        if handled is not None:
+            return handled
     runtime = get_sandbox_manager().get_or_create(project)
     code = Path(__file__).with_name('workspace_disk_guest.py').read_text()
     kwargs = {'stdin': data} if data is not None else {}

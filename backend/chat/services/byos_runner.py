@@ -310,7 +310,7 @@ def build_byos_prompt(
     if has_desktop_mcp:
         parts.append(
             "Desktop environment:\n"
-            "You have access to the `desktop` tool (via MCP) to control the live KDE Linux desktop "
+            "You have access to the `desktop` tool (via MCP) to control the live Linux desktop "
             "(DISPLAY :1, with virtual speaker nr_speaker). When the user asks you to open the desktop, "
             "use a GUI/browser on the desktop, take a screenshot, or interact with GUI apps, call the "
             "`desktop` tool immediately—calling it automatically starts the desktop if needed and opens "

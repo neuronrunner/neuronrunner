@@ -572,7 +572,7 @@ def directory_create(path: str) -> dict:
     }
 
 
-# ─── Desktop Control (KDE Plasma on DISPLAY :1 + PulseAudio nr_speaker) ───────
+# ─── Desktop Control (Linux desktop on DISPLAY :1 + PulseAudio nr_speaker) ───────
 
 DESKTOP_STATE_DIR = Path("/var/lib/neuronrunner")
 DESKTOP_SUPERVISOR_PATH = DESKTOP_STATE_DIR / "neuronrunner_desktop.py"
@@ -719,7 +719,7 @@ def desktop_control(
     include_screenshot: bool | None = None,
     **kwargs,
 ) -> dict:
-    """Control the live KDE desktop on DISPLAY :1 and return visual feedback."""
+    """Control the live Linux desktop on DISPLAY :1 and return visual feedback."""
     import json
     import shlex
     import signal

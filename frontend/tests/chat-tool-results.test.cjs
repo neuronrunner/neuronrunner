@@ -29,6 +29,7 @@ function load(filename) {
     if (id === './vms') return { __esModule: true, default: { getState: () => ({ selectedVMUuid: null }) } };
     if (id === './search-models') return { __esModule: true, default: { getState: () => ({ models: [] }) } };
     if (id === './recent-models') return { __esModule: true, default: { getState: () => ({ recentModels: [] }) } };
+    if (id === '@/stores/chat-branch') return { useChatBranchStore: { getState: () => ({ pending: null, setPending() {} }) } };
     if (id === '@/lib/reasoning') return load(path.resolve(__dirname, '../src/lib/reasoning.ts'));
     if (id === '@cloud') return load(path.resolve(__dirname, '../src/extensions/noop/index.ts'));
     if (id.startsWith('@/components/chat/')) return load(path.resolve(__dirname, '../src/components/chat/', id.split('/').at(-1) + '.ts'));

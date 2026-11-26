@@ -524,6 +524,10 @@ export const WorkspaceTabContainer: React.FC<Props> = ({ children }) => {
                 { type: "files", label: t("common.files"), Icon: LuFolderOpen, onClick: openFiles },
                 { type: "git", label: t("common.git"), Icon: LuGitBranch, onClick: () => openGitTab() },
                 { type: "browser", label: t("common.browser"), Icon: LuGlobe, onClick: () => openBrowserTab() },
+                // Edition tools (the Cloud desktop) stay reachable while the panel is open, same as in the toolbar.
+                ...frontendExtension.getWorkspaceToolbarActions({ openDesktopTab }).map((action) => ({
+                  type: action.id, label: t(action.labelKey as any) as string, Icon: action.icon, onClick: action.onClick,
+                })),
                 { type: "terminal", label: t("common.terminal"), Icon: LuTerminal, onClick: openTerminal },
               ].map(({ type, label, Icon, onClick }) => (
                 <button

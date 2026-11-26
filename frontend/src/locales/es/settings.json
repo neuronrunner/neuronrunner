@@ -254,7 +254,7 @@
         "hint": "Paste your ~/.gemini/oauth_creds.json content, or connect Google OAuth directly from the Cloud Agent Selector.",
         "placeholder": "Paste ~/.gemini/oauth_creds.json or OAuth credentials"
       },
-      "computeNote": "BYOS cobra $0.00 por tokens LLM. Los agentes se ejecutan dentro de tu VM en la nube usando la cuota de VM de tu plan o tu saldo Top-Up ($0.16–$0.32/h) — sin necesidad de suscripción mensual.",
+      "computeNote": "BYOS cobra $0.00 por tokens LLM. La ejecución corre en tu Cloud VM y usa primero la cuota del plan y luego tu monedero ($0.006–$0.024/min).",
       "manageBilling": "Gestionar VM y Saldo"
     }
   },
@@ -275,7 +275,7 @@
     "activePlan": "Plan activo",
     "upgradeTo": "Mejorar a {{plan}}",
     "walletBalance": "Saldo de monedero de uso adicional",
-    "walletDescription": "Se usa para excedentes de la cuota mensual, modelos premium en Free y Plus y cómputo de VM en la nube independiente para BYOS/BYOK ($0,16–$0,32/h sin plan mensual). Nunca caduca.",
+    "walletDescription": "Para uso por encima de la cuota mensual (Cloud VMs a $0.006–$0.024/min) y modelos premium. No caduca.",
     "topUpLabel": "Añadir créditos de uso adicional (USD, mín. $10.00)",
     "topUpButton": "Añadir ${{amount}}",
     "topUpNote": "La recarga mínima es de $10.00. No se cobra ninguna comisión adicional de procesamiento; el 100 % de lo que pagas se acredita de inmediato en tu saldo.",
@@ -287,19 +287,19 @@
     "fallbackPlans": {
       "free": {
         "name": "Free",
-        "description": "$0.50/mes de cuota gratuita (LLMs + VMs 4 núcleos a $0.16/h)"
+        "description": "Cuota de Cloud VM de $0.50/mes (Small 2 vCPU · 8 GB a $0.004/min)"
       },
       "plus": {
         "name": "Plus",
-        "description": "$10,00/mes de cuota para VM en la nube (~200 vCPU-h) + $2 de LLM del plan gratuito · BYOS/BYOK · Máx. 1 VM (sin equipo)"
+        "description": "Cuota de Cloud VM de $10.00/mes (~84 vCPU-h) · Small, Large y Ultra · BYOS/BYOK · Máx. 1 VM"
       },
       "pro": {
         "name": "Pro",
-        "description": "$25,00/mes de cuota compartida para VM en la nube (~550 vCPU-h) + todos los modelos LLM · Hasta 4 miembros"
+        "description": "Cuota de Cloud VM de $25.00/mes (~209 vCPU-h) · Small, Large y Ultra · Hasta 4 miembros"
       },
       "team": {
         "name": "Team",
-        "description": "$200.00/mes compartidos para 16 modelos y Cloud VMs · Hasta 20 miembros y 20 VMs"
+        "description": "Cuota de Cloud VM de $160.00/mes (~1.334 vCPU-h) · Hasta 20 miembros"
       }
     },
     "errors": {

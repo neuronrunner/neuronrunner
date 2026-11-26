@@ -259,11 +259,16 @@ def get_chat(request, conversation_id):
 
     message_list.sort(key=lambda x: x["created_at"])
 
+    from sandbox.services.conversation_worktree import active_worktree_path
+    from sandbox.services.sandbox_service import SandboxBootstrapService
+
+    worktree_path = active_worktree_path(conversation, SandboxBootstrapService.conversation_project(conversation)) or ""
     return Response({
         "conversation": {
             "uuid": str(conversation.uuid),
             "title": conversation.title,
             "created_at": conversation.created_at,
+            "worktree_path": worktree_path,
             "messages": message_list,
             "active_request": active_request_data,
         }
@@ -432,8 +437,9 @@ def undo_message(request, message_uuid, conversation_id=None):
             sandbox = conversation.workspaces.first() or conversation.sandboxes.first()
             if sandbox:
                 from sandbox.services.git_service import SandboxGitService
+                from sandbox.services.conversation_worktree import active_worktree_path
                 try:
-                    SandboxGitService.undo_changes(sandbox)
+                    SandboxGitService.undo_changes(sandbox, workspace_path=active_worktree_path(conversation, sandbox))
                 except Exception as e:
                     logger.warning("Failed to undo git changes for sandbox %s: %s", sandbox.pk, e)
 

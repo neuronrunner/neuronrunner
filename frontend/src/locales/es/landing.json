@@ -71,7 +71,7 @@
         "hideFallback": "Hide manual / VM options",
         "antigravityStepTitle": "1. Authorize in Google tab",
         "antigravityCodeDesc": "After authorizing with Google, copy the authorization code shown on the Antigravity callback page and paste it here:",
-        "vmDisclaimer": "Tu sesión de {{agent}} y tus credenciales permanecen dentro de tu Cloud VM aislada y nunca se leen ni almacenan en los servidores de Neuron Runner. Neuron Runner es una plataforma independiente no afiliada a este proveedor; eres el único responsable de cumplir con los términos de suscripción de tu proveedor.",
+        "vmDisclaimer": "Tu sesión de {{agent}} se guarda cifrada para mantener conectadas tus Cloud VMs y se elimina al desconectar. Neuron Runner es independiente; eres responsable de cumplir los términos del proveedor.",
         "vmDisclaimerTerms": "Términos de Servicio",
         "vmDialogTitle": "Conecta {{agent}} en el terminal de tu VM",
         "vmDialogSubtitle": "Inicia sesión directamente con la CLI oficial dentro de tu VM en la nube aislada. Haz clic en el enlace de inicio de sesión generado para autorizar.",
@@ -107,13 +107,13 @@
       "schemaName": "Precios — Neuron Runner",
       "description": "Cómputo en la nube con facturación por segundo y planes de suscripción transparentes para agentes de IA autónomos. Niveles Free, Plus ($10) y Pro ($25) con VM Linux dedicadas y soporte BYOS y BYOK.",
       "faq1Question": "¿Cómo funciona la facturación de cómputo para agentes autónomos en la nube?",
-      "faq1Answer": "Cada plan incluye una cuota mensual de cómputo en USD ($0.50 Free, $10 Plus, $25 Pro) para uso por segundo de Cloud VMs ($0.16/h 4 núcleos, $0.24/h 6 núcleos, $0.32/h 8 núcleos; $0.00/h detenidas). Conecta tu propia suscripción de IA (BYOS) o claves API (BYOK) con 0% de margen.",
+      "faq1Answer": "Cada plan incluye una cuota mensual en USD ($0.50 Free, $10 Plus, $25 Pro) para Cloud VMs dedicadas por segundo: Small $0.004/min, Large $0.008/min, Ultra $0.016/min incluidos; 1.5× después; $0.00 detenidas. Conecta tu suscripción de IA (BYOS) o claves API (BYOK) con 0% de margen.",
       "faq2Question": "¿Puedo traer mis propias claves API (BYOK)?",
       "faq2Answer": "¡Sí! En todos los planes, incluido Free, puedes añadir tus propias claves API de Anthropic, OpenAI, DeepSeek o proveedores personalizados en Configuración del espacio de trabajo con 0% de recargo de plataforma."
     }
   },
   "hero": {
-    "badge": "Agentes autónomos en la nube · VM Linux dedicada y VNC en vivo",
+    "badge": "Agentes en la nube de código abierto · VM Linux dedicada y VNC en vivo",
     "titleLine1": "Tu agente trabaja en la nube.",
     "titleLine2": "Con su propia computadora.",
     "subtitle": "Cada proyecto recibe una VM Linux aislada, escritorio VNC en vivo, navegador y terminal. Delega una tarea: tu agente escribe, ejecuta y publica código en la nube sin tocar tu equipo.",
@@ -127,7 +127,8 @@
       "gitAutoPr": "Git y Auto-PR",
       "byos": "Trae tu propia suscripción"
     },
-    "discordCta": "¿Tienes preguntas? Habla con nuestro equipo en Discord"
+    "discordCta": "¿Tienes preguntas? Habla con nuestro equipo en Discord",
+    "starOnGithub": "Destacar en GitHub"
   },
   "connectors": {
     "eyebrow": "Tu agente se conecta con las herramientas que ya usas"
@@ -500,12 +501,11 @@
         "badge": "Gratis para siempre",
         "tagline": "Explora la programación autónoma con VMs Linux iniciales en la nube, BYOS y BYOK.",
         "llmAllowance": "$0.50 / mes",
-        "vcpuQuota": "Hasta 2 vCPU-h / mes",
-        "vcpuSubnote": "Cubre LLMs Free y VM de 4 núcleos ($0.16/h)",
+        "vcpuQuota": "Hasta 4 vCPU-h / mes",
+        "vcpuSubnote": "Cubre una VM Small ($0.004/min)",
         "highlights": [
           "<strong>$0.50/mes de cuota única</strong> para 6 LLMs Free + VMs",
           "Acceso a VMs Linux sandbox de <strong>4 núcleos (8 GB RAM)</strong>",
-          "Sesiones con apagado automático de hasta <strong>5 minutos</strong>",
           "Trae tu <strong>propia suscripción (BYOS)</strong> o tus <strong>claves de API (BYOK)</strong> con 0 % de comisión"
         ],
         "ctaLabel": "Comenzar gratis"
@@ -516,13 +516,12 @@
         "badge": "Más popular",
         "tagline": "VM Linux dedicadas en la nube para tus propios agentes de código: trae tu propia suscripción (BYOS) o tus claves de API.",
         "llmAllowance": "$10,00 / mes",
-        "vcpuQuota": "Hasta 200 vCPU-h / mes",
-        "vcpuSubnote": "Cubre VM de 4/6/8 núcleos y $2 de LLM para modelos del plan gratuito",
+        "vcpuQuota": "Hasta 84 vCPU-h / mes",
+        "vcpuSubnote": "Cubre VMs Small, Large y Ultra",
         "highlights": [
           "<strong>$10,00/mes de cuota</strong> para VM en la nube (<strong>~200 vCPU-h</strong>) + <strong>$2 de LLM</strong> para modelos del plan gratuito",
           "Trae tu <strong>propia suscripción de Claude Code, Codex o Antigravity</strong> (BYOS) o tus claves de API (BYOK)",
-          "VMs de hasta <strong>8 núcleos (16 GB RAM)</strong> + escritorio VNC en vivo",
-          "<strong>Sesiones de 60 minutos</strong> y disco de VM persistente"
+          "VMs de hasta <strong>8 núcleos (16 GB RAM)</strong> + escritorio VNC en vivo"
         ],
         "ctaLabel": "Actualizar a Plus"
       },
@@ -532,13 +531,12 @@
         "badge": "4× Potencia",
         "tagline": "Más horas de VM, snapshots y hasta 4 miembros para ingeniería full-stack intensiva.",
         "llmAllowance": "$25,00 / mes",
-        "vcpuQuota": "Hasta 550 vCPU-h / mes",
-        "vcpuSubnote": "Cuota compartida para LLM del plan gratuito y VM de 4/6/8 núcleos",
+        "vcpuQuota": "Hasta 209 vCPU-h / mes",
+        "vcpuSubnote": "Cubre VMs Small, Large y Ultra",
         "highlights": [
           "<strong>$25,00/mes de cuota compartida</strong> para VM en la nube (<strong>~550 vCPU-h</strong>) + LLM del plan gratuito",
           "Los modelos premium se cobran de tu <strong>monedero</strong> (pago por uso), nunca de la cuota del plan",
-          "Hasta <strong>4 miembros</strong> en el espacio · 1 VM compartida",
-          "<strong>Sesiones de 60 minutos</strong> y disco de VM persistente"
+          "Hasta <strong>4 miembros</strong> en el espacio · 1 VM compartida"
         ],
         "ctaLabel": "Actualizar a Pro"
       },
@@ -548,8 +546,8 @@
         "badge": "Colaborativo",
         "tagline": "Espacio de trabajo colaborativo dedicado para equipos con hasta 20 puestos y cómputo en la nube compartido.",
         "llmAllowance": "$200.00 / mes",
-        "vcpuQuota": "Hasta 400 vCPU-h / mes",
-        "vcpuSubnote": "Fondo de equipo para 16 LLMs y VMs ($0.16–$0.32/h)",
+        "vcpuQuota": "Hasta 1,334 vCPU-h / mes",
+        "vcpuSubnote": "Cubre VMs Small, Large y Ultra",
         "highlights": [
           "<strong>$200.00/mes compartido</strong> para 16 LLMs + VMs",
           "VMs deducen del fondo (<strong>$0.16–$0.32/h</strong> · $0.00 detenida)",
@@ -563,7 +561,7 @@
     "mechanics": {
       "wallet": {
         "title": "Monedero de uso extra (recarga desde $10)",
-        "description": "Tu cuota de VM del plan se usa siempre primero; las suscripciones no añaden saldo al monedero. Recarga (mín. <s1>$10.00</s1>, 0% comisión) para cómputo extra de Cloud VM ($0.16–$0.32/h)."
+        "description": "Tu cuota de VM del plan se usa siempre primero; las suscripciones no añaden saldo. Recarga (mín. <s1>$10.00</s1>, 0% comisión) para tiempo extra de Cloud VM a la tarifa posterior ($0.006–$0.024/min)."
       },
       "byok": {
         "title": "Trae tu propia clave (0% comisión)",
@@ -585,54 +583,52 @@
     "vms": {
       "vcpuHrsUnit": "{{cpu}} vCPU-h",
       "perActiveHour": "/ h activa",
-      "overageRate": "De cuota del plan · $0.00 parada",
+      "overageRate": "Primero la cuota del plan · $0.00 detenida",
       "cpuLabel": "CPU",
       "cpuValue": "{{cpu}} vCPU",
       "memoryLabel": "Memoria",
       "memoryValue": "{{memory}} GB",
-      "nvmeLabel": "NVMe",
-      "nvmeValue": "{{disk}} GB",
       "includedIn": "Incluido en",
       "bestForLabel": "Ideal para:",
       "standardTitle": "Estándar en cada máquina sandbox en la nube",
       "standardMeta": "Medición por segundo · $0.00 cuando está detenida",
       "tiers": {
         "tier_1": {
-          "label": "4 núcleos",
-          "badge": "Estándar · tier_1",
-          "tagline": "Programación diaria, scripts y vistas previas web ligeras.",
+          "label": "Small",
+          "badge": "Estándar · SMALL",
+          "tagline": "Programación diaria, agentes, scripts y vistas previas web ligeras.",
           "planAccess": "Free, Plus y Pro",
           "highlights": [
-            "Cómputo dedicado en la nube de 8 núcleos (8 vCPU)",
-            "8 GB DDR de alta velocidad · Disco NVMe de 32 GB",
-            "Tarifa: $0.16 / h activa ($0.00 detenida)",
-            "Plus: hasta 50 h/mes · Pro: hasta 137 h/mes (vCPU-horas incluidas)"
+            "2 vCPU dedicadas (clase performance, sin throttling)",
+            "8 GB de memoria · Volumen persistente del espacio (según plan)",
+            "$0.004/min incluido · $0.006/min después",
+            "Plus: ~41 h/mes · Pro: ~104 h/mes de la cuota"
           ],
-          "bestFor": "Apps frontend, APIs y scripts rápidos"
+          "bestFor": "Agentes de código, APIs y scripts rápidos"
         },
         "tier_2": {
-          "label": "6 núcleos",
-          "badge": "Más popular · tier_2",
+          "label": "Large",
+          "badge": "Más popular · LARGE",
           "tagline": "Desarrollo full-stack, servicios Docker y pruebas VNC en vivo.",
           "planAccess": "Plus y Pro",
           "highlights": [
-            "Motor de compilación multinúcleo de 8 núcleos (8 vCPU)",
-            "12 GB de memoria DDR · Disco NVMe de 32 GB",
-            "Tarifa: $0.24 / h activa ($0.00 detenida)",
-            "Plus: hasta 33 h/mes · Pro: hasta 92 h/mes (vCPU-horas incluidas)"
+            "4 vCPU dedicadas (clase performance, sin throttling)",
+            "16 GB de memoria · Volumen persistente del espacio (según plan)",
+            "$0.008/min incluido · $0.012/min después",
+            "Plus: ~20 h/mes · Pro: ~52 h/mes de la cuota"
           ],
-          "bestFor": "Stacks full-stack Next.js, Vite y Docker"
+          "bestFor": "Next.js, Vite y Docker full-stack"
         },
         "tier_3": {
-          "label": "8 núcleos",
-          "badge": "Potencia · tier_3",
-          "tagline": "Compilación pesada, monorepos grandes y suites de pruebas paralelas.",
+          "label": "Ultra",
+          "badge": "Potencia · ULTRA",
+          "tagline": "Compilaciones pesadas, monorepos grandes y suites de pruebas paralelas.",
           "planAccess": "Plus y Pro",
           "highlights": [
-            "Cómputo de alta concurrencia de 8 núcleos (8 vCPU)",
-            "16 GB DDR de gran memoria · Disco NVMe de 64 GB",
-            "Tarifa: $0.32 / h activa ($0.00 detenida)",
-            "Plus: hasta 25 h/mes · Pro: hasta 69 h/mes (vCPU-horas incluidas)"
+            "8 vCPU dedicadas (clase performance, sin throttling)",
+            "32 GB de memoria · Volumen persistente del espacio (según plan)",
+            "$0.016/min incluido · $0.024/min después",
+            "Plus: ~10 h/mes · Pro: ~26 h/mes de la cuota"
           ],
           "bestFor": "Monorepos, compiladores Rust/Go y suites E2E"
         }
@@ -654,7 +650,11 @@
           "title": "Apagado automático por inactividad",
           "description": "Temporizador configurable de 2 a 60 minutos que detiene las VMs inactivas para reducir tu costo a $0.00."
         }
-      ]
+      ],
+      "perMinIncluded": "/ min incluido",
+      "afterRatePill": "después ${{rate}}/min",
+      "hourlyEquiv": "${{included}}/h incl. · ${{after}}/h después",
+      "stoppedFree": "$0 detenida"
     },
     "compare": {
       "columns": {
@@ -664,7 +664,7 @@
         "pro": "Pro ($25)",
         "team": "Team ($200)"
       },
-      "footnote": "* El plan Free desbloquea VMs Cloud de 4 núcleos ($0.16/h desde la cuota de $0.50) tras verificar la cuenta.",
+      "footnote": "* El plan Free desbloquea Cloud VMs Small (2 vCPU · 8 GB, $0.004/min de la cuota de $0.50) tras la verificación estándar. Al agotarse la cuota, se cobra del monedero a 1.5× ($0.006/min Small).",
       "rows": [
         {
           "feature": "Precio mensual",
@@ -682,24 +682,24 @@
         },
         {
           "feature": "Tarifa Cloud VM (de cuota)",
-          "free": "$0.16 / h*",
-          "plus": "$0.16 – $0.32 / h",
-          "pro": "$0.16 – $0.32 / h",
-          "team": "$0.16 – $0.32 / h"
+          "free": "$0.004 / min*",
+          "plus": "$0.004 – $0.016 / min",
+          "pro": "$0.004 – $0.016 / min",
+          "team": "$0.004 – $0.016 / min"
         },
         {
           "feature": "Cómputo de VM incluido",
-          "free": "Hasta 1 h / mes",
-          "plus": "Hasta 200 vCPU-h / mes",
-          "pro": "Hasta 550 vCPU-h / mes",
-          "team": "Hasta 1,250 h / mes"
+          "free": "Hasta 4 vCPU-h / mes",
+          "plus": "Hasta 84 vCPU-h / mes",
+          "pro": "Hasta 209 vCPU-h / mes",
+          "team": "Hasta 1,334 vCPU-h / mes"
         },
         {
           "feature": "Nivel máx. de hardware de VM",
-          "free": "4 núcleos · 8 GB RAM",
-          "plus": "8 núcleos · 16 GB RAM",
-          "pro": "8 núcleos · 16 GB RAM",
-          "team": "8 núcleos · 16 GB RAM"
+          "free": "Small · 2 vCPU · 8 GB",
+          "plus": "Ultra · 8 vCPU · 32 GB",
+          "pro": "Ultra · 8 vCPU · 32 GB",
+          "team": "Ultra · 8 vCPU · 32 GB"
         },
         {
           "feature": "Máx. de VMs en la nube",
@@ -709,18 +709,18 @@
           "team": "1 VM"
         },
         {
+          "feature": "Almacenamiento persistente",
+          "free": "5 GB",
+          "plus": "50 GB",
+          "pro": "100 GB",
+          "team": "100 GB"
+        },
+        {
           "feature": "Miembros del espacio",
           "free": "1 miembro",
           "plus": "1 miembro (sin equipo)",
           "pro": "Hasta 4 miembros",
           "team": "Hasta 20 miembros"
-        },
-        {
-          "feature": "Duración máx. de sesión de VM",
-          "free": "5 minutos",
-          "plus": "60 minutos",
-          "pro": "60 minutos",
-          "team": "60 minutos"
         },
         {
           "feature": "Trae tu propia clave (BYOK)",
@@ -757,11 +757,11 @@
         },
         {
           "question": "¿Cómo se factura el tiempo de ejecución de las Cloud Sandbox VMs?",
-          "answer": "Las VMs activas se descuentan por segundo de tu cuota mensual a $0.16/h (4 núcleos), $0.24/h (6 núcleos) y $0.32/h (8 núcleos). Las VMs detenidas cuestan $0.00/h."
+          "answer": "Las VMs activas se miden por segundo. Primero se usa tu cuota mensual a la tarifa incluida — Small $0.004/min ($0.24/h), Large $0.008/min ($0.48/h), Ultra $0.016/min ($0.96/h). Agotada la cuota, el tiempo extra se cobra del monedero a 1.5×: $0.006, $0.012 y $0.024/min. Las VMs detenidas cuestan $0.00."
         },
         {
           "question": "¿Cómo accedo a Cloud Sandbox VMs en el plan Free?",
-          "answer": "El plan Free incluye $0.50/mes de cuota para Cloud VMs de 4 núcleos ($0.16/h). Completa la verificación estándar de cuenta en Ajustes para desbloquear el inicio de VMs."
+          "answer": "El plan Free incluye $0.50/mes de cuota — unas 2 horas en una VM Small (2 vCPU · 8 GB RAM). Completa la verificación estándar en Ajustes para desbloquear las VMs."
         },
         {
           "question": "¿Qué ocurre si supero la cuota de mi plan?",
@@ -795,15 +795,15 @@
         "quota": "Cuota mensual de VM",
         "vcpu": "Cómputo de VM incluido",
         "vm": "Tamaño máx. de VM",
-        "session": "Duración de sesión",
         "snapshots": "Snapshots",
         "members": "Miembros",
-        "byo": "BYOS / BYOK"
+        "byo": "BYOS / BYOK",
+        "storage": "Almacenamiento"
       },
       "vcpuValue": "{{hours}} vCPU-h",
-      "approxMinutes": "≈ {{minutes}} min en una VM de {{cores}} núcleos",
-      "approxHours": "≈ {{hours}} h en una VM de {{cores}} núcleos",
-      "vmSize": "{{cores}} núcleos · {{ram}} GB de RAM",
+      "approxMinutes": "≈ {{minutes}} min en una VM Small",
+      "approxHours": "≈ {{hours}} h en una VM Small",
+      "vmSize": "{{cores}} vCPU · {{ram}} GB RAM",
       "minutes": "{{minutes}} min",
       "none": "Ninguno",
       "included": "Incluido",
@@ -1113,6 +1113,26 @@
           "a": "Sí. En Configuración > Claves de proveedor puedes añadir tus claves con 0% de recargo. BYOK no usa la cuota del plan; en Free con saldo $0.00, los modelos de pago requieren saldo o plan de pago."
         }
       ]
+    }
+  },
+  "openSource": {
+    "eyebrow": "Código abierto",
+    "title": "Construido en abierto. Ejecútalo donde quieras.",
+    "description": "Inspecciona cada línea de código, autoalójalo en tu propia infraestructura o lánzalo al instante en nuestra nube gestionada. Sin cajas negras ni dependencia de proveedor.",
+    "docsCta": "Guía de autoalojamiento",
+    "items": {
+      "transparent": {
+        "title": "Código completo en GitHub",
+        "text": "Audita el entorno de ejecución del agente, la orquestación del sandbox y la interfaz web de forma totalmente abierta."
+      },
+      "selfHost": {
+        "title": "Autoalojamiento con Docker",
+        "text": "Despliega Neuron Runner en tu propio servidor o equipo con tus propias claves API y control total de tus datos."
+      },
+      "community": {
+        "title": "Impulsado por la comunidad",
+        "text": "Abre issues, aporta conectores y funciones y da forma a la hoja de ruta junto al equipo."
+      }
     }
   }
 }

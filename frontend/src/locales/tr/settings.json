@@ -254,7 +254,7 @@
         "hint": "~/.gemini/oauth_creds.json içeriğini yapıştırın veya Cloud Ajan Seçiciden tek tıkla Google OAuth bağlayın.",
         "placeholder": "~/.gemini/oauth_creds.json veya OAuth kimlik bilgilerini yapıştırın"
       },
-      "computeNote": "BYOS modellerinde LLM token ücreti $0.00'dır. Ajanlar Bulut VM içinde çalıştığı için plan VM kotanızı veya Top-Up cüzdan bakiyenizi ($0.16–$0.32/sa) kullanır — aylık NeuronRunner aboneliği gerekmez.",
+      "computeNote": "BYOS'ta LLM token ücreti $0.00'dır. Çalışma Bulut VM'nizde gerçekleşir; önce plan VM kotanız, ardından yükleme cüzdanınız ($0.006–$0.024/dk) kullanılır.",
       "manageBilling": "VM ve Bakiye Yönetimi"
     },
     "auxiliary": {
@@ -282,7 +282,7 @@
     "activePlan": "Aktif plan",
     "upgradeTo": "{{plan}} planına geç",
     "walletBalance": "Ekstra kullanım cüzdan bakiyesi",
-    "walletDescription": "Aylık kota aşımı, Free ve Plus'taki premium modeller ve aylık plan olmadan BYOS/BYOK için bağımsız Bulut VM hesaplaması ($0.16–$0.32/sa) için kullanılır. Hiç sona ermez.",
+    "walletDescription": "Aylık plan kotasını aşan kullanım (Bulut VM'ler $0.006–$0.024/dk) ve premium modeller için kullanılır. Süresi dolmaz.",
     "topUpLabel": "Ekstra kullanım kredisi ekle (USD, min. $10.00)",
     "topUpButton": "${{amount}} ekle",
     "topUpNetCredit": "Cüzdan bakiyesi (%0 işlem ücreti)",
@@ -298,19 +298,19 @@
     "fallbackPlans": {
       "free": {
         "name": "Free",
-        "description": "Aylık $0.50 ücretsiz katman kotası (LLM + $0.16/sa 4 çekirdek VM)"
+        "description": "Aylık $0.50 Bulut VM kotası (Small 2 vCPU · 8 GB, $0.004/dk)"
       },
       "plus": {
         "name": "Plus",
-        "description": "Bulut VM için aylık $10.00 kota (~200 vCPU-sa) + $2 Ücretsiz Katman LLM hakkı · BYOS/BYOK · Maks. 1 VM (ekip yok)"
+        "description": "Aylık $10.00 Bulut VM kotası (~84 vCPU-saat) · Small, Large ve Ultra · BYOS/BYOK · Maks. 1 VM (ekip yok)"
       },
       "pro": {
         "name": "Pro",
-        "description": "Bulut VM (~550 vCPU-sa) + tüm LLM modelleri için aylık $25.00 ortak kota · En fazla 4 üye"
+        "description": "Aylık $25.00 Bulut VM kotası (~209 vCPU-saat) · Small, Large ve Ultra · 4 üyeye kadar"
       },
       "team": {
         "name": "Team",
-        "description": "Tüm 16 model + Bulut VM için aylık $200.00 ortak kota · En fazla 20 üye ve 20 VM"
+        "description": "Aylık $160.00 Bulut VM kotası (~1.334 vCPU-saat) · 20 üyeye kadar"
       }
     },
     "errors": {

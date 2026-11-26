@@ -30,6 +30,7 @@ from .repository_views import (
     RepositoryStatusView,
     RepositorySwitchView,
     RepositoryUnstageView,
+    RepositoryWorktreeView,
     RepositoryWriteView,
 )
 from .views import (
@@ -116,6 +117,7 @@ urlpatterns = [
     path("sandboxes/<uuid:sandbox_uuid>/git/history/", RepositoryHistoryView.as_view(), name="workspace-git-history"),
     path("sandboxes/<uuid:sandbox_uuid>/git/commit/", RepositoryWriteView.as_view(), name="workspace-git-commit"),
     path("sandboxes/<uuid:sandbox_uuid>/git/switch/", RepositorySwitchView.as_view(), name="workspace-git-switch"),
+    path("sandboxes/<uuid:sandbox_uuid>/git/worktree/", RepositoryWorktreeView.as_view(), name="workspace-git-worktree"),
     path("sandboxes/<uuid:sandbox_uuid>/git/push/", RepositoryPushView.as_view(), name="workspace-git-push"),
     path("sandboxes/<uuid:sandbox_uuid>/git/stage/", RepositoryStageView.as_view(), name="workspace-git-stage"),
     path("sandboxes/<uuid:sandbox_uuid>/git/unstage/", RepositoryUnstageView.as_view(), name="workspace-git-unstage"),
