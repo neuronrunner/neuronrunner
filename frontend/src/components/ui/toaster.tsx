@@ -5,6 +5,17 @@ import { createPortal } from "react-dom";
 import { toast as sonnerToast, Toaster as SonnerToaster } from "sonner";
 import { useTheme } from "next-themes";
 
+const TOAST_DURATION_MS = 2500;
+
+const scheduleAutoDismiss = (id: string | number) => {
+  if (typeof window !== "undefined") {
+    window.setTimeout(() => {
+      sonnerToast.dismiss(id);
+    }, TOAST_DURATION_MS + 100);
+  }
+  return id;
+};
+
 type ToastArg = string | {
   title?: React.ReactNode;
   description?: React.ReactNode;
@@ -15,7 +26,7 @@ type ToastArg = string | {
 const extractToastParams = (
   msgOrOpts: ToastArg,
   desc?: string
-): [string, { description?: string; duration?: number } | undefined] => {
+): [string, { description?: string; duration: number }] => {
   if (typeof msgOrOpts === "object" && msgOrOpts !== null) {
     const title = msgOrOpts.title
       ? String(msgOrOpts.title)
@@ -26,9 +37,9 @@ const extractToastParams = (
       msgOrOpts.title && msgOrOpts.description
         ? String(msgOrOpts.description)
         : undefined;
-    return [title, { description, duration: msgOrOpts.duration }];
+    return [title, { description, duration: TOAST_DURATION_MS }];
   }
-  return [String(msgOrOpts ?? ""), desc ? { description: desc } : undefined];
+  return [String(msgOrOpts ?? ""), { description: desc, duration: TOAST_DURATION_MS }];
 };
 
 export const toaster = {
@@ -41,35 +52,36 @@ export const toaster = {
     const desc = options.description ? String(options.description) : undefined;
     const title = options.title ? String(options.title) : (desc || "");
     const actualDesc = options.title ? desc : undefined;
+    const opts = { description: actualDesc, duration: TOAST_DURATION_MS };
     if (options.type === "error") {
-      return sonnerToast.error(title, { description: actualDesc, duration: options.duration });
+      return scheduleAutoDismiss(sonnerToast.error(title, opts));
     }
     if (options.type === "success") {
-      return sonnerToast.success(title, { description: actualDesc, duration: options.duration });
+      return scheduleAutoDismiss(sonnerToast.success(title, opts));
     }
     if (options.type === "info") {
-      return sonnerToast.info(title, { description: actualDesc, duration: options.duration });
+      return scheduleAutoDismiss(sonnerToast.info(title, opts));
     }
     if (options.type === "warning") {
-      return sonnerToast.warning(title, { description: actualDesc, duration: options.duration });
+      return scheduleAutoDismiss(sonnerToast.warning(title, opts));
     }
-    return sonnerToast(title, { description: actualDesc, duration: options.duration });
+    return scheduleAutoDismiss(sonnerToast(title, opts));
   },
   success: (msg: ToastArg, desc?: string) => {
     const [title, opts] = extractToastParams(msg, desc);
-    return sonnerToast.success(title, opts);
+    return scheduleAutoDismiss(sonnerToast.success(title, opts));
   },
   error: (msg: ToastArg, desc?: string) => {
     const [title, opts] = extractToastParams(msg, desc);
-    return sonnerToast.error(title, opts);
+    return scheduleAutoDismiss(sonnerToast.error(title, opts));
   },
   info: (msg: ToastArg, desc?: string) => {
     const [title, opts] = extractToastParams(msg, desc);
-    return sonnerToast.info(title, opts);
+    return scheduleAutoDismiss(sonnerToast.info(title, opts));
   },
   warning: (msg: ToastArg, desc?: string) => {
     const [title, opts] = extractToastParams(msg, desc);
-    return sonnerToast.warning(title, opts);
+    return scheduleAutoDismiss(sonnerToast.warning(title, opts));
   },
   dismiss: (id?: string | number) => sonnerToast.dismiss(id),
 };
@@ -91,8 +103,8 @@ export const Toaster = (props: React.ComponentProps<typeof SonnerToaster>) => {
   return createPortal(
     <SonnerToaster
       position="bottom-right"
-      closeButton
-      duration={4000}
+      closeButton={false}
+      duration={TOAST_DURATION_MS}
       theme={(resolvedTheme as "light" | "dark" | "system") || "dark"}
       className="toaster group"
       style={
@@ -102,6 +114,7 @@ export const Toaster = (props: React.ComponentProps<typeof SonnerToaster>) => {
         } as React.CSSProperties
       }
       toastOptions={{
+        duration: TOAST_DURATION_MS,
         style: {
           background: "var(--popover)",
           color: "var(--popover-foreground)",
