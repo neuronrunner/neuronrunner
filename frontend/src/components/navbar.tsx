@@ -11,7 +11,6 @@ import useAuthStore from "@/stores/auth";
 import useNavbarStore from "@/stores/navbar";
 import useSigninStore from "@/stores/signin";
 import useSignupStore from "@/stores/signup";
-import useWorkspacesStore from "@/stores/workspaces";
 import Sidebar from "@/components/sidebar";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { env } from "@/lib/env";
@@ -182,23 +181,12 @@ const Navbar = (_props?: NavbarProps) => {
                 {t("sidebarAvatar.signOut")}
               </button>
             ) : (
-              <>
-                <Link
-                  to="/new"
-                  className="shrink-0 whitespace-nowrap rounded-lg bg-foreground px-3 py-1.5 text-xs font-semibold text-background shadow-xs transition-transform hover:-translate-y-0.5 sm:px-3.5 sm:text-sm"
-                >
-                  {t("navbar.actions.goToChat")}
-                </Link>
-                {auth.user && (
-                  <button
-                    type="button"
-                    onClick={() => useWorkspacesStore.getState().setWorkspaceSettingsDialogOpen(true, "workspace")}
-                    className="hidden shrink-0 whitespace-nowrap rounded-lg border border-border/80 bg-background/80 px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-muted/70 sm:inline-flex sm:text-sm"
-                  >
-                    {t("navbar.actions.settings", { defaultValue: "Settings" })}
-                  </button>
-                )}
-              </>
+              <Link
+                to="/new"
+                className="shrink-0 whitespace-nowrap rounded-lg bg-foreground px-3 py-1.5 text-xs font-semibold text-background shadow-xs transition-transform hover:-translate-y-0.5 sm:px-3.5 sm:text-sm"
+              >
+                {t("navbar.actions.goToChat")}
+              </Link>
             )
           ) : (
             <>
@@ -279,18 +267,6 @@ const Navbar = (_props?: NavbarProps) => {
                   className="inline-flex h-10 w-full items-center justify-center rounded-lg border border-border/80 bg-background/80 text-sm font-medium text-foreground transition-colors hover:bg-muted/70 sm:hidden"
                 >
                   {t("navbar.actions.signIn")}
-                </button>
-              )}
-              {isLoggedIn && auth.user && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setMobileOpen(false);
-                    useWorkspacesStore.getState().setWorkspaceSettingsDialogOpen(true, "workspace");
-                  }}
-                  className="inline-flex h-10 w-full items-center justify-center rounded-lg border border-border/80 bg-background/80 text-sm font-medium text-foreground transition-colors hover:bg-muted/70 sm:hidden"
-                >
-                  {t("navbar.actions.settings", { defaultValue: "Settings" })}
                 </button>
               )}
             </div>
