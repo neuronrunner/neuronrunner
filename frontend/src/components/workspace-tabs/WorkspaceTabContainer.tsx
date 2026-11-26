@@ -160,8 +160,9 @@ export const WorkspaceTabContainer: React.FC<Props> = ({ children }) => {
     activePrimaryTab && !["chat", "files", "terminal", "git", "browser", "desktop"].includes(activePrimaryTab.type)
   );
   const primaryFileTab = isPanelRoute && isFileTab ? activePrimaryTab : undefined;
+  const isNewChatScreen = isChatRoute && !hasActiveConversation && !primaryFileTab;
   const panelOpen = Boolean(isSplit && rightPanelTab && rightPanelTab.type !== "chat");
-  const showPanel = isPanelRoute && panelOpen;
+  const showPanel = isPanelRoute && !isNewChatScreen && panelOpen;
   const user = useAuthStore((state) => state.user);
   const token = useAuthStore((state) => state.token);
   const isLoggedIn = Boolean(user && token);
@@ -330,7 +331,7 @@ export const WorkspaceTabContainer: React.FC<Props> = ({ children }) => {
           <WorkspacePageHeader
             className="absolute inset-x-0 top-0 z-40"
             actions={
-              isChatRoute && !hasActiveConversation && !primaryFileTab
+              isNewChatScreen
                 ? undefined
                 : <WorkspaceHeaderToolbar animate={isChatRoute && !primaryFileTab} />
             }
