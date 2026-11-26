@@ -188,8 +188,8 @@ export default function VmConnectTerminalDialog({
         });
         syncedRef.current = true;
         cleanupConnection();
-        await onConnected(provider);
         onOpenChange(false);
+        await onConnected(provider);
       } catch (err) {
         if (!silent) {
           setErrorText(

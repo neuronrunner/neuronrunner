@@ -91,6 +91,8 @@ export const Toaster = (props: React.ComponentProps<typeof SonnerToaster>) => {
   return createPortal(
     <SonnerToaster
       position="bottom-right"
+      closeButton
+      duration={4000}
       theme={(resolvedTheme as "light" | "dark" | "system") || "dark"}
       className="toaster group"
       style={

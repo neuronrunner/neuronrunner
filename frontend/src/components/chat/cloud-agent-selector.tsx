@@ -303,6 +303,7 @@ export default function CloudAgentSelector({ vmAttached = false }: CloudAgentSel
           defaultValue: "{{agent}} connected and selected",
         }),
         type: "success",
+        duration: 3500,
       });
     },
     [activateAgentModel, fetchProviderKeys, t]
