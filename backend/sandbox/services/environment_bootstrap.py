@@ -165,6 +165,20 @@ if auth_url and not git_dir.exists():
             sys.exit(proc.returncode)
         if clean_url and clean_url != auth_url:
             subprocess.run(["git", "-C", str(root), "remote", "set-url", "origin", clean_url], capture_output=True)
+        if (root / ".gitmodules").is_file():
+            sub_prefix = ["git", "-C", str(root)]
+            if auth_url and "@" in auth_url and "github.com/" in auth_url:
+                auth_host = auth_url.split("github.com/", 1)[0] + "github.com/"
+                sub_prefix += ["-c", f"url.{auth_host}.insteadOf=https://github.com/"]
+            sub_proc = subprocess.run(
+                sub_prefix + ["submodule", "update", "--init", "--recursive", "--depth", "1"],
+                capture_output=True, text=True, timeout=180,
+            )
+            if sub_proc.returncode != 0:
+                subprocess.run(
+                    sub_prefix + ["submodule", "update", "--init", "--recursive"],
+                    capture_output=True, text=True, timeout=180,
+                )
         result["cloned"] = True
 
 root.mkdir(parents=True, exist_ok=True)
