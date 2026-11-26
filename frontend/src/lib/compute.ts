@@ -16,7 +16,7 @@ export const formatVcpu = (cores?: number | null, fallbackCores = 0.5): string =
   `${coresToVcpu(cores, fallbackCores)} vCPU`;
 
 /** Selectable CPU sizes in vCPU (stored as vcpu / 2 physical cores). */
-export const VCPU_OPTIONS = [4, 6, 8];
+export const VCPU_OPTIONS = [2, 4, 8];
 
 export type VMTierId = "tier_1" | "tier_2" | "tier_3";
 
@@ -28,16 +28,52 @@ export interface ComputeTierPreset {
   memory_gb: number;
   disk_gb: number;
   hourly_rate: string;
+  overage_hourly_rate: string;
+  per_minute_rate: string;
+  overage_per_minute_rate: string;
 }
 
 /**
- * Coupled, fixed compute preset tiers.
+ * Coupled, fixed compute preset tiers (dedicated Fly.io performance-cpu).
  * Independent CPU and RAM configuration is disallowed.
  */
 export const COMPUTE_TIERS: readonly ComputeTierPreset[] = [
-  { id: "tier_1", label: "4-core", cpu: 4, memory_mb: 8192, memory_gb: 8, disk_gb: 32, hourly_rate: "0.16" },
-  { id: "tier_2", label: "6-core", cpu: 6, memory_mb: 12288, memory_gb: 12, disk_gb: 32, hourly_rate: "0.24" },
-  { id: "tier_3", label: "8-core", cpu: 8, memory_mb: 16384, memory_gb: 16, disk_gb: 64, hourly_rate: "0.32" },
+  {
+    id: "tier_1",
+    label: "Small",
+    cpu: 2,
+    memory_mb: 8192,
+    memory_gb: 8,
+    disk_gb: 32,
+    hourly_rate: "0.24",
+    overage_hourly_rate: "0.36",
+    per_minute_rate: "0.004",
+    overage_per_minute_rate: "0.006",
+  },
+  {
+    id: "tier_2",
+    label: "Large",
+    cpu: 4,
+    memory_mb: 16384,
+    memory_gb: 16,
+    disk_gb: 64,
+    hourly_rate: "0.48",
+    overage_hourly_rate: "0.72",
+    per_minute_rate: "0.008",
+    overage_per_minute_rate: "0.012",
+  },
+  {
+    id: "tier_3",
+    label: "Ultra",
+    cpu: 8,
+    memory_mb: 32768,
+    memory_gb: 32,
+    disk_gb: 128,
+    hourly_rate: "0.96",
+    overage_hourly_rate: "1.44",
+    per_minute_rate: "0.016",
+    overage_per_minute_rate: "0.024",
+  },
 ] as const;
 
 export const VM_DURATION_MIN_MINUTES = 2;

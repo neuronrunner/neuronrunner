@@ -767,3 +767,137 @@ class RepositoryBrowserTests(TestCase):
         with patch("sandbox.repository_views.requests.get", return_value=pr_item_response):
             pr_res = self.get("github/issues/16")
         self.assertEqual(pr_res.status_code, 404)
+
+
+    def _chat(self):
+        from chat.models import Conversation
+        conversation = Conversation.objects.create(user=self.user, workspace=self.workspace)
+        self.project.conversations.add(conversation)
+        return conversation
+
+    def _chat_branch(self, conversation, branch, create=False, method="post", path="/workspace/cloned repo"):
+        # The branch picker talks to the workspace Files sandbox and names the repository by path.
+        url = f"{self.url}/git/worktree/"
+        payload = {"conversation_id": str(conversation.uuid), "path": path, "branch": branch, "create": create}
+        if method == "get":
+            return self.client.get(url, payload)
+        return getattr(self.client, method)(url, payload, format="json")
+
+    def _start_project_with_commit(self):
+        self.project = Sandbox.objects.create(
+            user=self.user, workspace=self.workspace, slug="cloned-repo", display_name="Cloned repo", filesystem_path="/workspace/cloned repo",
+        )
+        (self.repo / "base.txt").write_text("base\n")
+        self.commit()
+        return self.git("branch", "--show-current").strip()
+
+    def test_each_chat_gets_its_own_branch_checkout(self):
+        original = self._start_project_with_commit()
+        first, second = self._chat(), self._chat()
+        a = self._chat_branch(first, "feature-a", create=True)
+        b = self._chat_branch(second, "feature-b", create=True)
+        self.assertEqual((a.status_code, b.status_code), (200, 200), (a.data, b.data))
+        self.assertEqual((a.data["branch"], b.data["branch"]), ("feature-a", "feature-b"))
+        self.assertNotEqual(a.data["worktree_path"], b.data["worktree_path"])
+        first.refresh_from_db()
+        second.refresh_from_db()
+        self.assertEqual(first.worktree_path, a.data["worktree_path"])
+        # Work in one chat never appears in the other chat or the project folder.
+        folder_a = self.root / first.worktree_path.removeprefix("/workspace/")
+        folder_b = self.root / second.worktree_path.removeprefix("/workspace/")
+        (folder_a / "only-a.txt").write_text("a\n")
+        self.assertFalse((folder_b / "only-a.txt").exists())
+        self.assertFalse((self.repo / "only-a.txt").exists())
+        self.assertEqual(self.git("branch", "--show-current").strip(), original)
+        # Switching branches in one chat leaves the other chat's checkout untouched.
+        self.git("branch", "feature-c")
+        subprocess.run(["git", "switch", "feature-c"], cwd=folder_a, check=True, capture_output=True)
+        self.assertEqual(subprocess.run(["git", "branch", "--show-current"], cwd=folder_b, capture_output=True, text=True).stdout.strip(), "feature-b")
+
+    def test_two_chats_cannot_share_one_branch(self):
+        self._start_project_with_commit()
+        first, second = self._chat(), self._chat()
+        self.assertEqual(self._chat_branch(first, "shared", create=True).status_code, 200)
+        clash = self._chat_branch(second, "shared")
+        self.assertEqual(clash.status_code, 400)
+        self.assertIn("already checked out", clash.data["error"])
+        second.refresh_from_db()
+        self.assertEqual(second.worktree_path, "")
+
+    def test_choosing_the_project_branch_keeps_chat_on_project_folder(self):
+        original = self._start_project_with_commit()
+        chat = self._chat()
+        self.assertEqual(self._chat_branch(chat, "feature", create=True).status_code, 200)
+        back = self._chat_branch(chat, original)
+        self.assertEqual(back.status_code, 200, back.data)
+        self.assertEqual(back.data["worktree_path"], "")
+        chat.refresh_from_db()
+        self.assertEqual(chat.worktree_path, "")
+        self.assertEqual(self.git("worktree", "list", "--porcelain").count("worktree "), 1)
+
+    def test_leaving_a_branch_refuses_to_drop_unsaved_work(self):
+        self._start_project_with_commit()
+        chat = self._chat()
+        attached = self._chat_branch(chat, "feature", create=True)
+        folder = self.root / attached.data["worktree_path"].removeprefix("/workspace/")
+        (folder / "wip.txt").write_text("unsaved\n")
+        refused = self._chat_branch(chat, "", method="delete")
+        self.assertEqual(refused.status_code, 400)
+        self.assertIn("uncommitted", refused.data["error"])
+        self.assertTrue((folder / "wip.txt").exists())
+        (folder / "wip.txt").unlink()
+        released = self._chat_branch(chat, "", method="delete")
+        self.assertEqual(released.status_code, 200, released.data)
+        self.assertFalse(folder.exists())
+        chat.refresh_from_db()
+        self.assertEqual(chat.worktree_path, "")
+
+    def test_chat_checkouts_are_not_listed_as_projects(self):
+        self._start_project_with_commit()
+        self.assertEqual(self._chat_branch(self._chat(), "feature", create=True).status_code, 200)
+        listed = self.get("git/repositories").json()["repositories"]
+        self.assertEqual([item["path"] for item in listed], ["/workspace/cloned repo"])
+
+    def test_branch_requires_a_chat_linked_to_the_project(self):
+        from chat.models import Conversation
+        self._start_project_with_commit()
+        loose = Conversation.objects.create(user=self.user, workspace=self.workspace)
+        self.assertEqual(self._chat_branch(loose, "feature", create=True).status_code, 404)
+        other = get_user_model().objects.create_user(username="worktree-outsider")
+        self.client.force_authenticate(other)
+        self.assertEqual(self._chat_branch(self._chat(), "feature", create=True).status_code, 404)
+
+    def test_agent_tools_run_in_the_chat_checkout_and_ignore_model_supplied_roots(self):
+        from chat.builtin_tools import execute_builtin_tool_stream
+        self._start_project_with_commit()
+        chat = self._chat()
+        attached = self._chat_branch(chat, "feature", create=True)
+        chat.refresh_from_db()
+        manager = MagicMock()
+        manager.execute_tool.return_value = {"ok": True}
+        with patch("sandbox.services.sandbox_session.get_sandbox_manager", return_value=manager):
+            list(execute_builtin_tool_stream(self.user, "file_read", {"path": "base.txt", "_workspace_root": "/workspace/evil"}, conversation=chat, stream_output=False))
+        self.assertEqual(manager.execute_tool.call_args.kwargs["workspace_root"], attached.data["worktree_path"])
+        plain = self._chat()
+        manager.reset_mock()
+        with patch("sandbox.services.sandbox_session.get_sandbox_manager", return_value=manager):
+            list(execute_builtin_tool_stream(self.user, "file_read", {"path": "base.txt", "_workspace_root": "/workspace/evil"}, conversation=plain, stream_output=False))
+        self.assertNotIn("workspace_root", manager.execute_tool.call_args.kwargs)
+
+    def test_chat_reports_the_checkout_it_works_in(self):
+        original = self._start_project_with_commit()
+        chat = self._chat()
+        before = self._chat_branch(chat, "", method="get")
+        self.assertEqual((before.status_code, before.data["branch"], before.data["worktree_path"]), (200, original, ""))
+        attached = self._chat_branch(chat, "feature", create=True)
+        after = self._chat_branch(chat, "", method="get")
+        self.assertEqual((after.data["branch"], after.data["worktree_path"]), ("feature", attached.data["worktree_path"]))
+        self.assertEqual(self.git("branch", "--show-current").strip(), original)
+
+    def test_branch_request_must_name_the_chats_own_project(self):
+        self._start_project_with_commit()
+        chat = self._chat()
+        wrong = self._chat_branch(chat, "feature", create=True, path="/workspace/other")
+        self.assertEqual(wrong.status_code, 400)
+        chat.refresh_from_db()
+        self.assertEqual(chat.worktree_path, "")

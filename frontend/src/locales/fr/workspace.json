@@ -591,6 +591,8 @@
       "useBranch": "Utiliser {{branch}}",
       "selectProject": "Sélectionner le projet",
       "branchChangesApply": "Les changements de branche s'appliquent à ce projet dans tout l'espace de travail.",
+      "branchPerChat": "Le changement de branche ne s'applique qu'à cette conversation. Les autres conversations gardent leur propre branche.",
+      "branchLockedWhileRunning": "La branche ne peut pas changer pendant que l'agent travaille dans cette conversation.",
       "findOrCreateAria": "Rechercher ou créer une branche de projet",
       "findOrCreatePlaceholder": "Rechercher ou créer une branche…",
       "refreshBranches": "Actualiser les branches",
@@ -653,7 +655,9 @@
       "starting": "Démarrage…",
       "planLimitReached": "Limite du forfait atteinte",
       "restoreAndStart": "Restaurer et démarrer",
-      "createAndStart": "Créer et démarrer"
+      "createAndStart": "Créer et démarrer",
+      "includedRateShort": "${{rate}}/min incl.",
+      "afterRateShort": "${{rate}}/min ensuite"
     },
     "edit": {
       "emptyNameError": "Le nom de la machine ne peut pas être vide.",

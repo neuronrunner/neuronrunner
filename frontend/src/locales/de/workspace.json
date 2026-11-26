@@ -591,6 +591,8 @@
       "useBranch": "{{branch}} verwenden",
       "selectProject": "Projekt auswählen",
       "branchChangesApply": "Branch-Änderungen gelten für dieses Projekt im gesamten Workspace.",
+      "branchPerChat": "Die Branch-Auswahl gilt nur für diesen Chat. Andere Chats behalten ihren eigenen Branch.",
+      "branchLockedWhileRunning": "Der Branch kann nicht gewechselt werden, während der Agent in diesem Chat arbeitet.",
       "findOrCreateAria": "Projekt-Branch suchen oder erstellen",
       "findOrCreatePlaceholder": "Branch suchen oder erstellen…",
       "refreshBranches": "Branches aktualisieren",
@@ -653,7 +655,9 @@
       "starting": "Wird gestartet…",
       "planLimitReached": "Tariflimit erreicht",
       "restoreAndStart": "Wiederherstellen & starten",
-      "createAndStart": "Erstellen & starten"
+      "createAndStart": "Erstellen & starten",
+      "includedRateShort": "${{rate}}/Min. inkl.",
+      "afterRateShort": "${{rate}}/Min. danach"
     },
     "edit": {
       "emptyNameError": "Der Maschinenname darf nicht leer sein.",

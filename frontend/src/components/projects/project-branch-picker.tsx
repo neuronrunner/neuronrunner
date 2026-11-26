@@ -15,7 +15,10 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { toaster } from "@/components/ui/toaster";
-import { useRepositoryStatus } from "@/hooks/use-repository-status";
+import { useRepositoryChanges, useRepositoryStatus } from "@/hooks/use-repository-status";
+import { chatCheckoutRequest, chatCheckoutSwitch, repositoryError, type ChatCheckout } from "@/lib/repository-api";
+import useChatStore from "@/stores/chat";
+import { useChatBranchStore } from "@/stores/chat-branch";
 import type { IProject } from "@/stores/sandbox-projects";
 import useSandboxProjectsStore from "@/stores/sandbox-projects";
 import useWorkspacesStore from "@/stores/workspaces";
@@ -41,6 +44,31 @@ export default function ProjectBranchPicker({
   const [query, setQuery] = useState("");
   const [startingVM, setStartingVM] = useState(false);
 
+  // Each chat works in its own branch checkout, so picking a branch here never moves the
+  // project folder or the agents running in other chats.
+  const conversationId = useChatStore((state) => state.conversationId);
+  const generating = useChatStore((state) => state.isStreaming || state.isActivelyGenerating);
+  const pendingBranch = useChatBranchStore((state) => state.pending);
+  const setPendingBranch = useChatBranchStore((state) => state.setPending);
+  const [checkout, setCheckout] = useState<ChatCheckout | null>(null);
+  const [checkoutBusy, setCheckoutBusy] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
+  const chatKey = !inline && conversationId && uuid && path ? `${uuid}:${path}:${conversationId}` : null;
+
+  useEffect(() => {
+    setCheckout(null);
+    setCheckoutError(null);
+    if (!chatKey || !uuid || !path || !conversationId) return;
+    const controller = new AbortController();
+    chatCheckoutRequest(uuid, conversationId, path, controller.signal)
+      .then((next) => {
+        if (!controller.signal.aborted) setCheckout(next);
+      })
+      // A chat that is not tied to this project yet keeps the pending-branch flow below.
+      .catch(() => undefined);
+    return () => controller.abort();
+  }, [chatKey, uuid, path, conversationId]);
+
   const currentSandbox = useSandboxProjectsStore((state) => state.currentSandbox);
   const activeProject =
     project || (currentSandbox?.filesystem_path === path ? currentSandbox : undefined);
@@ -54,16 +82,46 @@ export default function ProjectBranchPicker({
 
   const handleStartVM = async () => {};
 
-  const choose = async (branch: string, create = false) => {
-    if (await repo.switchBranch(branch, create)) {
-      setOpen(false);
-      setQuery("");
-      onSelected?.();
-    }
+  const pendingHere = pendingBranch && pendingBranch.project === activeProject?.uuid ? pendingBranch : null;
+  const shownStatus = checkout ?? repo.status;
+  const busy = repo.busy || checkoutBusy;
+  const locked = generating && Boolean(checkout);
+  const error = checkoutError || repo.error;
+
+  const done = () => {
+    setOpen(false);
+    setQuery("");
+    onSelected?.();
   };
 
-  const branches = repo.status?.branches || [];
-  const currentBranch = repo.status?.branch;
+  const choose = async (branch: string, create = false) => {
+    if (locked || busy) return;
+    if (checkout && uuid && path && conversationId) {
+      setCheckoutBusy(true);
+      setCheckoutError(null);
+      try {
+        const next = await chatCheckoutSwitch(uuid, conversationId, path, branch, create);
+        setCheckout(next);
+        setPendingBranch(null);
+        // A newly created branch also shows up in the project's branch list.
+        useRepositoryChanges.getState().changed(`${uuid}:${path}`);
+        done();
+      } catch (cause) {
+        setCheckoutError(repositoryError(cause));
+      } finally {
+        setCheckoutBusy(false);
+      }
+      return;
+    }
+    // No chat yet: remember the choice, the first message gives it its own checkout.
+    if (!activeProject) return;
+    const sameAsProject = !create && branch === repo.status?.branch;
+    setPendingBranch(sameAsProject ? null : { project: activeProject.uuid, branch, create });
+    done();
+  };
+
+  const branches = shownStatus?.branches || [];
+  const currentBranch = pendingHere?.branch ?? shownStatus?.branch;
 
   let contents: React.ReactNode;
 
@@ -157,7 +215,7 @@ export default function ProjectBranchPicker({
           </div>
           {inline && (
             <p className="mt-2.5 px-2 text-[10px] leading-relaxed text-muted-foreground">
-              {t("projects.branchPicker.branchChangesApply")}
+              {t("projects.branchPicker.branchPerChat")}
             </p>
           )}
         </div>
@@ -172,25 +230,30 @@ export default function ProjectBranchPicker({
             placeholder={t("projects.branchPicker.findOrCreatePlaceholder")}
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            disabled={repo.busy}
+            disabled={busy || locked}
             className="h-8 min-w-0 flex-1 bg-transparent text-xs outline-none"
           />
           <button
             type="button"
             aria-label={t("projects.branchPicker.refreshBranches")}
-            disabled={repo.busy}
+            disabled={busy || locked}
             onClick={repo.refresh}
             className="p-1 text-muted-foreground hover:text-foreground"
           >
             <LuRefreshCw className="h-3.5 w-3.5" />
           </button>
         </div>
-        {repo.error && (
+        {locked && (
+          <p role="status" className="px-2 py-1 text-[11px] text-muted-foreground">
+            {t("projects.branchPicker.branchLockedWhileRunning")}
+          </p>
+        )}
+        {error && (
           <div
             role="alert"
             className="flex items-start justify-between gap-2 rounded-md bg-destructive/10 px-2 py-2 text-xs text-destructive"
           >
-            <span className="min-w-0 flex-1 leading-relaxed">{repo.error}</span>
+            <span className="min-w-0 flex-1 leading-relaxed">{error}</span>
             <button
               type="button"
               onClick={repo.refresh}
@@ -218,7 +281,7 @@ export default function ProjectBranchPicker({
                 <button
                   key={`${branch.remote}:${branch.name}`}
                   type="button"
-                  disabled={repo.busy}
+                  disabled={busy || locked}
                   onClick={() => void choose(branch.name)}
                   className="flex w-full items-center gap-2 rounded-md px-2 py-2 text-left text-xs hover:bg-muted disabled:opacity-50"
                 >
@@ -227,22 +290,22 @@ export default function ProjectBranchPicker({
                   {branch.remote && (
                     <span className="text-[10px] text-muted-foreground">{t("projects.branchPicker.remote")}</span>
                   )}
-                  {branch.name === repo.status?.branch && (
+                  {branch.name === currentBranch && (
                     <LuCheck className="h-3.5 w-3.5" />
                   )}
                 </button>
               ))}
-            {!branches.length && !repo.error && (
+            {!branches.length && !error && (
               <p className="px-2 py-3 text-center text-xs text-muted-foreground">
                 {t("projects.branchPicker.noBranchesFound")}
               </p>
             )}
-            {repo.status &&
+            {shownStatus &&
               query.trim() &&
               !branches.some((branch) => branch.name === query.trim()) && (
                 <button
                   type="button"
-                  disabled={repo.busy}
+                  disabled={busy || locked}
                   onClick={() => void choose(query.trim(), true)}
                   className="flex w-full items-center gap-2 rounded-md px-2 py-2 text-left text-xs hover:bg-muted"
                 >
@@ -250,26 +313,26 @@ export default function ProjectBranchPicker({
                   <span className="truncate">{t("projects.branchPicker.createBranch", { name: query.trim() })}</span>
                 </button>
               )}
-            {inline && repo.status && (
+            {inline && shownStatus && (
               <button
                 type="button"
-                disabled={repo.busy}
-                onClick={() => void choose(repo.status!.branch)}
+                disabled={busy || locked}
+                onClick={() => void choose(currentBranch || shownStatus!.branch)}
                 className="mt-2 w-full rounded-md bg-foreground px-3 py-2 text-xs font-medium text-background hover:bg-foreground/90 disabled:opacity-50"
               >
-                {repo.busy ? t("projects.branchPicker.switchingBranch") : t("projects.branchPicker.useBranch", { branch: repo.status.branch })}
+                {busy ? t("projects.branchPicker.switchingBranch") : t("projects.branchPicker.useBranch", { branch: currentBranch || shownStatus.branch })}
               </button>
             )}
           </div>
         )}
-        {!inline && repo.busy && (
+        {!inline && busy && (
           <p role="status" className="px-2 py-1 text-xs text-muted-foreground">
             {t("projects.branchPicker.switchingBranch")}
           </p>
         )}
         {inline && (
           <p className="px-2 pt-2 text-[10px] leading-relaxed text-muted-foreground">
-            {t("projects.branchPicker.branchChangesApply")}
+            {t("projects.branchPicker.branchPerChat")}
           </p>
         )}
       </div>
@@ -295,8 +358,8 @@ export default function ProjectBranchPicker({
               ? isVMStarting
                 ? t("projects.branchPicker.vmStartingTitle")
                 : t("projects.branchPicker.vmOfflineTitle")
-              : repo.status?.branch
-                ? t("projects.branchPicker.branchTitle", { branch: repo.status.branch })
+              : currentBranch
+                ? t("projects.branchPicker.branchTitle", { branch: currentBranch })
                 : t("projects.branchPicker.chooseBranchAria")
           }
           className="flex h-8 max-w-44 items-center gap-1.5 rounded-md bg-transparent px-2 text-xs text-foreground outline-none transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring"
@@ -306,7 +369,7 @@ export default function ProjectBranchPicker({
           ) : (
             <LuGitBranch className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
           )}
-          <span className="truncate">{repo.status?.branch || t("projects.branchPicker.branchFallback")}</span>
+          <span className="truncate">{currentBranch || t("projects.branchPicker.branchFallback")}</span>
           <LuChevronDown className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
         </button>
       </PopoverTrigger>

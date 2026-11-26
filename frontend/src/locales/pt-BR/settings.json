@@ -254,7 +254,7 @@
         "hint": "Paste your ~/.gemini/oauth_creds.json content, or connect Google OAuth directly from the Cloud Agent Selector.",
         "placeholder": "Paste ~/.gemini/oauth_creds.json or OAuth credentials"
       },
-      "computeNote": "BYOS cobra $0.00 por tokens LLM. A execução ocorre na sua VM na nuvem usando a cota de VM do plano ou seu saldo Top-Up ($0.16–$0.32/h) — sem necessidade de assinatura mensal.",
+      "computeNote": "BYOS cobra $0.00 por tokens de LLM. A execução roda na sua Cloud VM e usa primeiro a cota do plano, depois sua carteira ($0.006–$0.024/min).",
       "manageBilling": "Gerenciar VM e Saldo"
     }
   },
@@ -275,7 +275,7 @@
     "activePlan": "Plano ativo",
     "upgradeTo": "Fazer upgrade para {{plan}}",
     "walletBalance": "Saldo da carteira de uso extra",
-    "walletDescription": "Usada para excedente da cota mensal, modelos premium no Free e no Plus e computação de VM na nuvem avulsa para BYOS/BYOK (US$ 0,16–US$ 0,32/h sem plano mensal). Nunca expira.",
+    "walletDescription": "Usado para consumo além da cota mensal (Cloud VMs a $0.006–$0.024/min) e modelos premium. Nunca expira.",
     "topUpLabel": "Adicionar créditos de uso extra (USD, mín. US$ 10.00)",
     "topUpButton": "Adicionar US$ {{amount}}",
     "topUpNote": "A recarga mínima é de US$ 10.00. Não há taxa adicional de processamento; 100% do valor pago é creditado imediatamente no seu saldo.",
@@ -287,19 +287,19 @@
     "fallbackPlans": {
       "free": {
         "name": "Free",
-        "description": "US$ 0.50/mês cota gratuita (LLMs + VMs 4 núcleos a $0.16/h)"
+        "description": "Cota de Cloud VM de $0.50/mês (Small 2 vCPU · 8 GB a $0.004/min)"
       },
       "plus": {
         "name": "Plus",
-        "description": "Cota de US$ 10,00/mês para VMs na nuvem (~200 vCPU-h) + US$ 2 de LLM da camada gratuita · BYOS/BYOK · Máx. 1 VM (sem equipe)"
+        "description": "Cota de Cloud VM de $10.00/mês (~84 vCPU-h) · Small, Large e Ultra · BYOS/BYOK · Máx. 1 VM"
       },
       "pro": {
         "name": "Pro",
-        "description": "Cota compartilhada de US$ 25,00/mês para VMs na nuvem (~550 vCPU-h) + todos os modelos LLM · Até 4 membros"
+        "description": "Cota de Cloud VM de $25.00/mês (~209 vCPU-h) · Small, Large e Ultra · Até 4 membros"
       },
       "team": {
         "name": "Team",
-        "description": "US$ 200.00/mês compartilhados em 16 modelos e Cloud VMs · Até 20 membros e 20 VMs"
+        "description": "Cota de Cloud VM de $160.00/mês (~1.334 vCPU-h) · Até 20 membros"
       }
     },
     "errors": {

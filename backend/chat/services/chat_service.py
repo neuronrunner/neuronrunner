@@ -148,7 +148,11 @@ class ChatService:
             project = SandboxBootstrapService.conversation_project(self.conversation)
             if project:
                 from sandbox.services.git_service import SandboxGitService
-                SandboxGitService.create_checkpoint(project, label=f"Turn before message {getattr(self.user_msg, 'uuid', '')}")
+                from sandbox.services.conversation_worktree import active_worktree_path
+                SandboxGitService.create_checkpoint(
+                    project, label=f"Turn before message {getattr(self.user_msg, 'uuid', '')}",
+                    workspace_path=active_worktree_path(self.conversation, project),
+                )
         except Exception as cp_err:
             logger.debug("Sandbox git checkpoint skipped or failed: %s", cp_err)
 
@@ -517,7 +521,7 @@ class ChatService:
             "\n"
             "You can use: file_read, file_write, file_patch, shell_exec, "
             "list_directory, glob_files, file_content_search, directory_create, file_rename, http_request, and desktop.\n"
-            "- desktop(action, ...): Control the live KDE Linux desktop (DISPLAY :1) and its virtual speaker (nr_speaker). "
+            "- desktop(action, ...): Control the live Linux desktop (DISPLAY :1) and its virtual speaker (nr_speaker). "
             "Actions: screenshot, click, double_click, right_click, move_mouse, drag, scroll, press, write, launch, wait, screen_size, resize, start_recording, stop_recording. "
             "When the user asks you to open the desktop, use a GUI/browser on the desktop, or do anything visually on the desktop, call the desktop tool immediately—calling it automatically opens the live Desktop panel in the user's UI so they can watch in real time. "
             "Visual actions automatically attach an updated screenshot to your next visual context so you can inspect the GUI without calling view_image separately.\n"
@@ -1828,7 +1832,8 @@ class ChatService:
             project = SandboxBootstrapService.conversation_project(self.conversation)
             if project:
                 from sandbox.services.git_service import SandboxGitService
-                diff_res = SandboxGitService.get_diff(project)
+                from sandbox.services.conversation_worktree import active_worktree_path
+                diff_res = SandboxGitService.get_diff(project, workspace_path=active_worktree_path(self.conversation, project))
                 if diff_res and diff_res.get("has_changes"):
                     file_diff_data = diff_res
         except Exception as diff_err:

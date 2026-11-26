@@ -82,7 +82,7 @@
         "vmBootTimeout": "Virtual machine startup timed out. Please try again.",
         "wsTimeout": "Terminal connection timed out. Click Retry to reconnect.",
         "retryButton": "Retry",
-        "vmDisclaimer": "Your {{agent}} session and credentials stay inside your isolated Cloud VM and are never read or stored on Neuron Runner servers. Neuron Runner is an independent platform not affiliated with this provider; you are solely responsible for complying with your provider's subscription terms.",
+        "vmDisclaimer": "Your {{agent}} sign-in files are stored encrypted in Neuron Runner's database so your Cloud VMs stay signed in, and are also kept in your VM's storage. Disconnecting {{agent}} or deleting your workspace removes the stored copy. Neuron Runner is an independent platform not affiliated with this provider; you are solely responsible for complying with your provider's subscription terms.",
         "vmDisclaimerTerms": "Terms of Service"
       }
     }
@@ -97,13 +97,13 @@
       "schemaName": "Pricing — Neuron Runner",
       "description": "Transparent per-second cloud compute and subscription plans for autonomous AI agents. Free, Plus ($10) and Pro ($25) tiers with dedicated Linux VMs, BYOS and BYOK support.",
       "faq1Question": "How does autonomous cloud agent compute billing work?",
-      "faq1Answer": "Each plan includes a monthly USD compute quota ($0.50 Free, $10 Plus, $25 Pro) for per-second Cloud VM runtime ($0.16/hr 4-core, $0.24/hr 6-core, $0.32/hr 8-core; $0.00/hr when stopped). Bring your own AI subscription (BYOS) or API keys (BYOK) at 0% platform markup.",
+      "faq1Answer": "Each plan includes a monthly USD compute quota ($0.50 Free, $10 Plus, $25 Pro) for per-second dedicated Cloud VMs: Small $0.004/min, Large $0.008/min, Ultra $0.016/min included; 1.5× after the quota; $0.00 when stopped. Bring your own AI subscription (BYOS) or API keys (BYOK) at 0% platform markup.",
       "faq2Question": "Can I bring my own API keys (BYOK)?",
       "faq2Answer": "Yes! On every plan—including Free—you can add your own Anthropic, OpenAI, DeepSeek, or custom provider API keys in Workspace Settings with 0% platform fee."
     }
   },
   "hero": {
-    "badge": "Autonomous cloud agents · Dedicated Linux VM & Live VNC",
+    "badge": "Open-source cloud agents · Dedicated Linux VM & Live VNC",
     "titleLine1": "Your agent works in the cloud.",
     "titleLine2": "With its own computer.",
     "subtitle": "Every project gets an isolated Linux VM, live VNC desktop, browser, and terminal. Delegate a task — your agent writes, runs, and ships code in the cloud without touching your machine.",
@@ -117,7 +117,8 @@
       "gitAutoPr": "Git & Auto-PR",
       "byos": "Bring Your Own Subscription"
     },
-    "discordCta": "Questions? Chat with our team on Discord"
+    "discordCta": "Questions? Chat with our team on Discord",
+    "starOnGithub": "Star on GitHub"
   },
   "connectors": {
     "eyebrow": "Your agent connects to the tools you already use"
@@ -490,12 +491,11 @@
         "badge": "Free Forever",
         "tagline": "Explore autonomous coding with starter cloud Linux VMs, BYOS, and BYOK.",
         "llmAllowance": "$0.50 / mo",
-        "vcpuQuota": "Up to 2 vCPU-hrs / mo",
-        "vcpuSubnote": "Covers Free-Tier LLMs & 4-core VM ($0.16/hr)",
+        "vcpuQuota": "Up to 4 vCPU-hrs / mo",
+        "vcpuSubnote": "Covers a Small VM ($0.004/min)",
         "highlights": [
           "<strong>$0.50/mo unified quota</strong> for 6 Free-Tier LLMs + Cloud VMs",
           "Access to <strong>4-core (8 GB RAM)</strong> Linux sandbox VMs",
-          "Up to <strong>5-minute</strong> auto-stop VM sessions",
           "Bring your <strong>own subscription (BYOS)</strong> or <strong>API keys (BYOK)</strong> at 0% fee"
         ],
         "ctaLabel": "Get Started Free"
@@ -506,13 +506,12 @@
         "badge": "Most Popular",
         "tagline": "Dedicated cloud Linux VMs for your own coding agents: bring your own subscription (BYOS) or API keys.",
         "llmAllowance": "$10.00 / mo",
-        "vcpuQuota": "Up to 200 vCPU-hrs / mo",
-        "vcpuSubnote": "Covers 4/6/8-core VMs and a $2 Free-Tier LLM allowance",
+        "vcpuQuota": "Up to 84 vCPU-hrs / mo",
+        "vcpuSubnote": "Covers Small, Large & Ultra VMs",
         "highlights": [
           "<strong>$10.00/mo quota</strong> for Cloud VMs (<strong>~200 vCPU-hrs</strong>) + <strong>$2 LLM allowance</strong> for Free-Tier models",
           "Bring your <strong>own Claude Code, Codex or Antigravity subscription</strong> (BYOS) or API keys (BYOK)",
-          "Up to <strong>8-core (16 GB RAM)</strong> VMs + live VNC desktop",
-          "<strong>60-minute sessions</strong> & persistent VM disk"
+          "Up to <strong>8-core (16 GB RAM)</strong> VMs + live VNC desktop"
         ],
         "ctaLabel": "Upgrade to Plus"
       },
@@ -522,13 +521,12 @@
         "badge": "4× Power",
         "tagline": "More VM hours, snapshots and up to 4 members for heavy full-stack engineering.",
         "llmAllowance": "$25.00 / mo",
-        "vcpuQuota": "Up to 550 vCPU-hrs / mo",
-        "vcpuSubnote": "Pooled quota for Free-Tier LLMs & 4/6/8-core VMs",
+        "vcpuQuota": "Up to 209 vCPU-hrs / mo",
+        "vcpuSubnote": "Covers Small, Large & Ultra VMs",
         "highlights": [
           "<strong>$25.00/mo pooled quota</strong> for Cloud VMs (<strong>~550 vCPU-hrs</strong>) + Free-Tier LLMs",
           "Premium models are billed from your <strong>wallet</strong> (pay-as-you-go), never from plan quota",
-          "Up to <strong>4 workspace members</strong> · 1 shared Cloud VM",
-          "<strong>60-minute sessions</strong> & persistent VM disk"
+          "Up to <strong>4 workspace members</strong> · 1 shared Cloud VM"
         ],
         "ctaLabel": "Upgrade to Pro"
       },
@@ -538,8 +536,8 @@
         "badge": "Collaborative",
         "tagline": "Dedicated collaborative workspace for teams with up to 20 seats and shared cloud compute.",
         "llmAllowance": "$200.00 / mo",
-        "vcpuQuota": "Up to 400 vCPU-hrs / mo",
-        "vcpuSubnote": "Pooled team quota for 16 LLMs & VMs ($0.16–$0.32/hr)",
+        "vcpuQuota": "Up to 1,334 vCPU-hrs / mo",
+        "vcpuSubnote": "Covers Small, Large & Ultra VMs",
         "highlights": [
           "<strong>$200.00/mo pooled team quota</strong> across 16 LLMs + Cloud VMs",
           "Cloud VM runtime billed from team pool (<strong>$0.16–$0.32/hr</strong> · $0.00 stopped)",
@@ -553,7 +551,7 @@
     "mechanics": {
       "wallet": {
         "title": "Extra-Usage Wallet ($10+ Top-Up)",
-        "description": "Your plan VM quota is always used first; subscriptions do not add wallet cash. Top up (min <s1>$10.00</s1>, 0% fee) for extra Cloud VM compute ($0.16–$0.32/hr) whenever you need more runtime."
+        "description": "Your plan VM quota is always used first; subscriptions do not add wallet cash. Top up (min <s1>$10.00</s1>, 0% fee) for extra Cloud VM runtime at the after-quota rate ($0.006–$0.024/min) whenever you need more."
       },
       "byok": {
         "title": "Bring Your Own Key (0% Fee)",
@@ -575,54 +573,52 @@
     "vms": {
       "vcpuHrsUnit": "{{cpu}} vCPU-hrs",
       "perActiveHour": "/ active hr",
-      "overageRate": "From plan quota · $0.00 stopped",
+      "overageRate": "Plan quota first · $0.00 stopped",
       "cpuLabel": "CPU",
       "cpuValue": "{{cpu}} vCPU",
       "memoryLabel": "Memory",
       "memoryValue": "{{memory}} GB",
-      "nvmeLabel": "NVMe",
-      "nvmeValue": "{{disk}} GB",
       "includedIn": "Included in",
       "bestForLabel": "Best for:",
       "standardTitle": "Standard in every cloud sandbox machine",
       "standardMeta": "Per-second meter · $0.00 when stopped",
       "tiers": {
         "tier_1": {
-          "label": "4-core",
-          "badge": "Standard · tier_1",
-          "tagline": "Everyday coding, scripts, and lightweight web previews.",
+          "label": "Small",
+          "badge": "Standard · SMALL",
+          "tagline": "Everyday coding, agents, scripts, and lightweight web previews.",
           "planAccess": "Free, Plus & Pro",
           "highlights": [
-            "4-core (4 vCPU) dedicated cloud compute",
-            "8 GB DDR high-speed memory · 32 GB NVMe disk",
-            "Rate: $0.16 / active hr ($0.00 when stopped)",
-            "Plus: up to 50 hrs/mo · Pro: up to 137 hrs/mo (included vCPU-hours)"
+            "2 dedicated vCPU (performance-class, never throttled)",
+            "8 GB memory · Persistent workspace volume (by plan)",
+            "$0.004/min included · $0.006/min after quota",
+            "Plus: ~41 hrs/mo · Pro: ~104 hrs/mo from plan quota"
           ],
-          "bestFor": "Frontend apps, APIs & fast scripts"
+          "bestFor": "Coding agents, APIs & fast scripts"
         },
         "tier_2": {
-          "label": "6-core",
-          "badge": "Most Popular · tier_2",
+          "label": "Large",
+          "badge": "Most Popular · LARGE",
           "tagline": "Full-stack development, Docker services, and live VNC tests.",
           "planAccess": "Plus & Pro",
           "highlights": [
-            "6-core (6 vCPU) multi-core build engine",
-            "12 GB DDR memory · 32 GB NVMe disk",
-            "Rate: $0.24 / active hr ($0.00 when stopped)",
-            "Plus: up to 33 hrs/mo · Pro: up to 92 hrs/mo (included vCPU-hours)"
+            "4 dedicated vCPU (performance-class, never throttled)",
+            "16 GB memory · Persistent workspace volume (by plan)",
+            "$0.008/min included · $0.012/min after quota",
+            "Plus: ~20 hrs/mo · Pro: ~52 hrs/mo from plan quota"
           ],
           "bestFor": "Full-stack Next.js, Vite & Docker stacks"
         },
         "tier_3": {
-          "label": "8-core",
-          "badge": "Power · tier_3",
+          "label": "Ultra",
+          "badge": "Power · ULTRA",
           "tagline": "Heavy compilation, large monorepos, and parallel test suites.",
           "planAccess": "Plus & Pro",
           "highlights": [
-            "8-core (8 vCPU) high-concurrency compute",
-            "16 GB DDR large memory pool · 64 GB NVMe disk",
-            "Rate: $0.32 / active hr ($0.00 when stopped)",
-            "Plus: up to 25 hrs/mo · Pro: up to 69 hrs/mo (included vCPU-hours)"
+            "8 dedicated vCPU (performance-class, never throttled)",
+            "32 GB memory · Persistent workspace volume (by plan)",
+            "$0.016/min included · $0.024/min after quota",
+            "Plus: ~10 hrs/mo · Pro: ~26 hrs/mo from plan quota"
           ],
           "bestFor": "Monorepos, Rust/Go compilers & E2E suites"
         }
@@ -644,7 +640,11 @@
           "title": "Auto-Stop Idle Guard",
           "description": "Configurable 2–60 minute inactivity timer automatically stops idle VMs so your cost drops to $0.00."
         }
-      ]
+      ],
+      "perMinIncluded": "/ min included",
+      "afterRatePill": "${{rate}}/min after",
+      "hourlyEquiv": "${{included}}/hr incl. · ${{after}}/hr after",
+      "stoppedFree": "$0 when stopped"
     },
     "compare": {
       "columns": {
@@ -654,7 +654,7 @@
         "pro": "Pro ($25)",
         "team": "Team ($200)"
       },
-      "footnote": "* Free plan unlocks 4-core Cloud Sandbox VMs ($0.16/hr from $0.50 quota) after standard account verification.",
+      "footnote": "* Free plan unlocks Small Cloud VMs (2 vCPU · 8 GB, $0.004/min from the $0.50 quota) after standard account verification. After the quota runs out, VMs bill your wallet at 1.5× ($0.006/min Small).",
       "rows": [
         {
           "feature": "Monthly Price",
@@ -672,24 +672,24 @@
         },
         {
           "feature": "Cloud VM Rate (from Quota)",
-          "free": "$0.16 / hr*",
-          "plus": "$0.16 – $0.32 / hr",
-          "pro": "$0.16 – $0.32 / hr",
-          "team": "$0.16 – $0.32 / hr"
+          "free": "$0.004 / min*",
+          "plus": "$0.004 – $0.016 / min",
+          "pro": "$0.004 – $0.016 / min",
+          "team": "$0.004 – $0.016 / min"
         },
         {
           "feature": "Included VM Compute",
-          "free": "Up to 2 vCPU-hrs / mo",
-          "plus": "Up to 200 vCPU-hrs / mo",
-          "pro": "Up to 550 vCPU-hrs / mo",
-          "team": "Up to 1,250 hrs / mo"
+          "free": "Up to 4 vCPU-hrs / mo",
+          "plus": "Up to 84 vCPU-hrs / mo",
+          "pro": "Up to 209 vCPU-hrs / mo",
+          "team": "Up to 1,334 vCPU-hrs / mo"
         },
         {
           "feature": "Max VM Hardware Tier",
-          "free": "4-core · 8 GB RAM",
-          "plus": "8-core · 16 GB RAM",
-          "pro": "8-core · 16 GB RAM",
-          "team": "8-core · 16 GB RAM"
+          "free": "Small · 2 vCPU · 8 GB",
+          "plus": "Ultra · 8 vCPU · 32 GB",
+          "pro": "Ultra · 8 vCPU · 32 GB",
+          "team": "Ultra · 8 vCPU · 32 GB"
         },
         {
           "feature": "Max Cloud VMs",
@@ -699,18 +699,18 @@
           "team": "1 VM"
         },
         {
+          "feature": "Persistent Storage",
+          "free": "5 GB",
+          "plus": "50 GB",
+          "pro": "100 GB",
+          "team": "100 GB"
+        },
+        {
           "feature": "Workspace Members",
           "free": "1 member",
           "plus": "1 member (no team)",
           "pro": "Up to 4 members",
           "team": "Up to 20 members"
-        },
-        {
-          "feature": "Max VM Session Duration",
-          "free": "5 minutes",
-          "plus": "60 minutes",
-          "pro": "60 minutes",
-          "team": "60 minutes"
         },
         {
           "feature": "Bring Your Own Key (BYOK)",
@@ -747,11 +747,11 @@
         },
         {
           "question": "How is Cloud Sandbox VM runtime billed?",
-          "answer": "Active VMs deduct in USD directly from your monthly plan quota at $0.16/hr for 4-core (tier_1), $0.24/hr for 6-core (tier_2), and $0.32/hr for 8-core (tier_3)—metered per second. Stopped VMs cost strictly $0.00/hr."
+          "answer": "Active VMs are metered per second. Usage first draws from your monthly plan quota at the included rate — Small $0.004/min ($0.24/hr), Large $0.008/min ($0.48/hr), Ultra $0.016/min ($0.96/hr). Once the quota is used up, extra runtime bills your wallet at 1.5×: $0.006, $0.012 and $0.024/min. Stopped VMs cost $0.00."
         },
         {
           "question": "How do I access Cloud Sandbox VMs on the Free plan?",
-          "answer": "The Free plan includes a $0.50/mo compute quota for 4-core Cloud VMs ($0.16/hr). Complete standard account verification (Google/GitHub or phone) in Settings to unlock Cloud VM launches."
+          "answer": "The Free plan includes a $0.50/mo compute quota — about 2 hours on a Small VM (2 vCPU · 8 GB RAM). Complete standard account verification (Google/GitHub or phone) in Settings to unlock Cloud VM launches."
         },
         {
           "question": "What happens if I exceed my plan quota?",
@@ -785,15 +785,15 @@
         "quota": "Monthly VM quota",
         "vcpu": "VM compute included",
         "vm": "Max VM size",
-        "session": "Session length",
         "snapshots": "Snapshots",
         "members": "Members",
-        "byo": "BYOS / BYOK"
+        "byo": "BYOS / BYOK",
+        "storage": "Storage"
       },
       "vcpuValue": "{{hours}} vCPU-hrs",
-      "approxMinutes": "≈ {{minutes}} min on a {{cores}}-core VM",
-      "approxHours": "≈ {{hours}} hrs on a {{cores}}-core VM",
-      "vmSize": "{{cores}}-core · {{ram}} GB RAM",
+      "approxMinutes": "≈ {{minutes}} min on a Small VM",
+      "approxHours": "≈ {{hours}} hrs on a Small VM",
+      "vmSize": "{{cores}} vCPU · {{ram}} GB RAM",
       "minutes": "{{minutes}} min",
       "none": "None",
       "included": "Included",
@@ -1103,6 +1103,26 @@
           "a": "Yes. In Settings > Provider Keys, you can add your own Anthropic, OpenAI, DeepSeek, or custom provider keys with 0% platform markup. BYOK requests do not consume plan allowance; on the Free plan at $0.00 wallet balance, paid models require wallet funds or a paid plan."
         }
       ]
+    }
+  },
+  "openSource": {
+    "eyebrow": "Open source",
+    "title": "Built in the open. Yours to run anywhere.",
+    "description": "Inspect every line of code, self-host on your own infrastructure, or launch instantly in our managed cloud. No black boxes, no vendor lock-in.",
+    "docsCta": "Self-hosting docs",
+    "items": {
+      "transparent": {
+        "title": "Full source on GitHub",
+        "text": "Audit the agent runtime, sandbox orchestration, and web UI completely in the open."
+      },
+      "selfHost": {
+        "title": "Self-host with Docker",
+        "text": "Deploy Neuron Runner on your own server or machine with your own API keys and full data ownership."
+      },
+      "community": {
+        "title": "Community-driven",
+        "text": "Open issues, contribute connectors and features, and shape the roadmap alongside the team."
+      }
     }
   }
 }

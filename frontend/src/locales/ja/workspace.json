@@ -591,6 +591,8 @@
       "useBranch": "{{branch}} を使用",
       "selectProject": "プロジェクトを選択",
       "branchChangesApply": "ブランチの変更はワークスペース全体のこのプロジェクトに適用されます。",
+      "branchPerChat": "ブランチの変更はこのチャットにのみ適用されます。他のチャットはそれぞれのブランチのままです。",
+      "branchLockedWhileRunning": "このチャットでエージェントが作業中はブランチを変更できません。",
       "findOrCreateAria": "プロジェクトブランチを検索または作成",
       "findOrCreatePlaceholder": "ブランチを検索または作成…",
       "refreshBranches": "ブランチを更新",
@@ -653,7 +655,9 @@
       "starting": "起動中…",
       "planLimitReached": "プラン上限に達しました",
       "restoreAndStart": "復元して起動",
-      "createAndStart": "作成して起動"
+      "createAndStart": "作成して起動",
+      "includedRateShort": "枠内 ${{rate}}/分",
+      "afterRateShort": "超過後 ${{rate}}/分"
     },
     "edit": {
       "emptyNameError": "マシン名は空にできません。",

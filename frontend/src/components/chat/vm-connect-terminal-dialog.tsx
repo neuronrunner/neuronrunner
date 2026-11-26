@@ -116,6 +116,8 @@ export default function VmConnectTerminalDialog({
   const outputBufferRef = useRef("");
   const commandDispatchedRef = useRef(false);
   const syncedRef = useRef(false);
+  // The 3 s poll must never overlap itself: slow responses used to trigger several "connected" toasts.
+  const syncInFlightRef = useRef(false);
   const tRef = useRef(t);
   tRef.current = t;
   const fetchVMsRef = useRef(fetchVMs);
@@ -173,7 +175,8 @@ export default function VmConnectTerminalDialog({
 
   const syncFromVm = useCallback(
     async (silent: boolean) => {
-      if (!workspaceUuid || !provider || syncedRef.current) return;
+      if (!workspaceUuid || !provider || syncedRef.current || syncInFlightRef.current) return;
+      syncInFlightRef.current = true;
       if (!silent) {
         setIsSyncing(true);
         setErrorText(null);
@@ -199,6 +202,7 @@ export default function VmConnectTerminalDialog({
           );
         }
       } finally {
+        syncInFlightRef.current = false;
         if (!silent) {
           setIsSyncing(false);
         }
@@ -234,8 +238,9 @@ export default function VmConnectTerminalDialog({
       const cleaned = chunkText.replace(ANSI_ESCAPE_RE, "").replace(/\r\n/g, "\n").replace(/\r/g, "");
       outputBufferRef.current = (outputBufferRef.current + cleaned).slice(-12000);
 
-      // Rejoin only soft-wrapped terminal lines (near terminal width) so short natural line breaks
-      // like `...state=XYZ\nPaste code here` never corrupt the end of an OAuth URL.
+      // Rejoin only wrapped terminal lines (previous line near terminal width) whose continuation is a
+      // single whitespace-free token, so a natural line break like `...state=XYZ\nPaste code here if
+      // prompted >` never glues the next line's first word onto an OAuth URL.
       const wrapThreshold = Math.max(60, (termRef.current?.cols || 80) - 2);
       const rawLines = outputBufferRef.current.split("\n");
       const joinedLines: string[] = [];
@@ -243,7 +248,7 @@ export default function VmConnectTerminalDialog({
         if (
           joinedLines.length > 0 &&
           joinedLines[joinedLines.length - 1].length >= wrapThreshold &&
-          /^\S/.test(line)
+          /^\S+\s*$/.test(line)
         ) {
           joinedLines[joinedLines.length - 1] += line;
         } else {
@@ -879,7 +884,7 @@ export default function VmConnectTerminalDialog({
             {t("home.agentSelector.oauth.vmDisclaimer", {
               agent: meta.name,
               defaultValue:
-                "Your {{agent}} session and credentials stay inside your isolated Cloud VM and are never read or stored on Neuron Runner servers. Neuron Runner is an independent platform not affiliated with this provider; you are solely responsible for complying with your provider's subscription terms.",
+                "Your {{agent}} sign-in files are stored encrypted in Neuron Runner's database so your Cloud VMs stay signed in, and are also kept in your VM's storage. Disconnecting {{agent}} or deleting your workspace removes the stored copy. Neuron Runner is an independent platform not affiliated with this provider; you are solely responsible for complying with your provider's subscription terms.",
             })}{" "}
             <a
               href="/terms-of-service#byok-mcp"

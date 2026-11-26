@@ -71,7 +71,7 @@
         "hideFallback": "Hide manual / VM options",
         "antigravityStepTitle": "1. Authorize in Google tab",
         "antigravityCodeDesc": "After authorizing with Google, copy the authorization code shown on the Antigravity callback page and paste it here:",
-        "vmDisclaimer": "{{agent}} のセッションと認証情報は隔離された Cloud VM 内にのみ保持され、Neuron Runner のサーバーで読み取られたり保存されたりすることはありません。Neuron Runner はこのプロバイダーと提携していない独立したプラットフォームであり、プロバイダーの利用規約を遵守する責任はお客様のみが負います。",
+        "vmDisclaimer": "{{agent}} のサインインファイルは、Cloud VM のサインイン状態を保つため、Neuron Runner のデータベースに暗号化して保存され、VM のストレージにも保管されます。{{agent}} の接続を解除するかワークスペースを削除すると、保存されたコピーは削除されます。Neuron Runner はこのプロバイダーと提携していない独立したプラットフォームであり、プロバイダーの利用規約を遵守する責任はお客様のみが負います。",
         "vmDisclaimerTerms": "利用規約",
         "vmDialogTitle": "VM ターミナルで {{agent}} を接続",
         "vmDialogSubtitle": "分離されたクラウド VM 内の公式 CLI から直接サインインします。生成されたログインリンクをクリックして認証してください。",
@@ -107,13 +107,13 @@
       "schemaName": "料金プラン — Neuron Runner",
       "description": "自律型 AI エージェント向けの、透明性の高い秒単位課金のクラウドコンピュートとサブスクリプションプラン。専用 Linux VM と BYOS・BYOK に対応した Free、Plus（$10）、Pro（$25）の各プラン。",
       "faq1Question": "自律型クラウドエージェントのコンピュート課金はどのように行われますか？",
-      "faq1Answer": "各プランには秒単位のCloud VM稼働時間（4コア $0.16/時、6コア $0.24/時、8コア $0.32/時、停止中 $0.00/時）に使える月間USDコンピュート枠（Free $0.50、Plus $10、Pro $25）が含まれます。ご自身のAIサブスクリプション（BYOS）やAPIキー（BYOK）をプラットフォーム手数料0%で接続できます。",
+      "faq1Answer": "各プランには秒単位の専用Cloud VM向け月間USD枠（Free $0.50、Plus $10、Pro $25）が含まれます：枠内 Small $0.004/分、Large $0.008/分、Ultra $0.016/分、枠超過後は1.5倍、停止中は$0.00。ご自身のAIサブスクリプション（BYOS）やAPIキー（BYOK）を手数料0%で接続できます。",
       "faq2Question": "自分のAPIキーを持ち込む（BYOK）ことはできますか？",
       "faq2Answer": "はい！Freeを含むすべてのプランで、ワークスペース設定からAnthropic、OpenAI、DeepSeek、またはカスタムプロバイダーのAPIキーをプラットフォーム手数料0%で追加できます。"
     }
   },
   "hero": {
-    "badge": "自律型クラウドエージェント · 専用Linux VM＆ライブVNC",
+    "badge": "オープンソースのクラウドエージェント · 専用Linux VM＆ライブVNC",
     "titleLine1": "エージェントはクラウドで働く。",
     "titleLine2": "自分専用のコンピュータで。",
     "subtitle": "すべてのプロジェクトに分離されたLinux VM、ライブVNCデスクトップ、ブラウザ、ターミナルを用意。タスクを任せるだけで、あなたのマシンに触れることなくクラウド上でコードを書き、実行し、出荷します。",
@@ -127,7 +127,8 @@
       "gitAutoPr": "Git＆自動PR",
       "byos": "自分のサブスクを持ち込む"
     },
-    "discordCta": "ご質問がありますか？Discordでチームに相談する"
+    "discordCta": "ご質問がありますか？Discordでチームに相談する",
+    "starOnGithub": "GitHubでスターを付ける"
   },
   "connectors": {
     "eyebrow": "普段使っているツールとシームレスに連携"
@@ -500,12 +501,11 @@
         "badge": "ずっと無料",
         "tagline": "スターター向けクラウドLinux VM・BYOS・BYOKで自律コーディングを体験。",
         "llmAllowance": "$0.50 / 月",
-        "vcpuQuota": "最大 2 vCPU時間 / 月",
-        "vcpuSubnote": "無料LLM＆4コアVMに対応 ($0.16/時)",
+        "vcpuQuota": "月 最大4 vCPU時間",
+        "vcpuSubnote": "Small VMをカバー（$0.004/分）",
         "highlights": [
           "無料LLM 8種＋クラウドVM共通 <strong>月$0.50利用枠</strong>",
           "<strong>4コア (6 GB RAM)</strong> LinuxサンドボックスVM利用可能",
-          "連続VMセッション最大 <strong>20分</strong>",
           "<strong>ご自身のサブスクリプション（BYOS）</strong>または <strong>API キー（BYOK）</strong>を手数料 0% で持ち込めます"
         ],
         "ctaLabel": "無料で始める"
@@ -516,13 +516,12 @@
         "badge": "一番人気",
         "tagline": "ご自身のコーディングエージェント向けの専用クラウド Linux VM: ご自身のサブスクリプション（BYOS）または API キーを持ち込めます。",
         "llmAllowance": "$10.00 / 月",
-        "vcpuQuota": "最大 200 vCPU 時間 / 月",
-        "vcpuSubnote": "4/6/8 コア VM と、無料枠モデル向け $2 の LLM 利用枠を含みます",
+        "vcpuQuota": "月 最大84 vCPU時間",
+        "vcpuSubnote": "Small・Large・Ultra VMをカバー",
         "highlights": [
           "クラウド VM（<strong>約 200 vCPU 時間</strong>）向けの<strong>月額 $10.00 クォータ</strong> + 無料枠モデル向けの <strong>$2 LLM 利用枠</strong>",
           "<strong>ご自身の Claude Code・Codex・Antigravity サブスクリプション</strong>（BYOS）または API キー（BYOK）を持ち込めます",
-          "最大 <strong>4コア (12 GB RAM)</strong> VM + ライブVNCデスクトップ",
-          "<strong>60分セッション</strong>＆2つの永続VMスナップショット"
+          "最大 <strong>4コア (12 GB RAM)</strong> VM + ライブVNCデスクトップ"
         ],
         "ctaLabel": "Plusにアップグレード"
       },
@@ -532,13 +531,12 @@
         "badge": "4倍のパワー",
         "tagline": "負荷の高いフルスタック開発向けに、VM 時間・スナップショットを増やし、最大 4 名まで利用できます。",
         "llmAllowance": "$25.00 / 月",
-        "vcpuQuota": "最大 550 vCPU 時間 / 月",
-        "vcpuSubnote": "無料枠 LLM と 4/6/8 コア VM の共有クォータ",
+        "vcpuQuota": "月 最大209 vCPU時間",
+        "vcpuSubnote": "Small・Large・Ultra VMをカバー",
         "highlights": [
           "クラウド VM（<strong>約 550 vCPU 時間</strong>）+ 無料枠 LLM 向けの<strong>月額 $25.00 共有クォータ</strong>",
           "プレミアムモデルはプランのクォータではなく、<strong>ウォレット</strong>から従量課金されます",
-          "最大 <strong>4人のメンバー</strong> · 最大4台のクラウドVM",
-          "<strong>60分セッション</strong>＆10個の永続VMスナップショット"
+          "最大 <strong>4人のメンバー</strong> · 最大4台のクラウドVM"
         ],
         "ctaLabel": "Proにアップグレード"
       },
@@ -548,8 +546,8 @@
         "badge": "チーム向け",
         "tagline": "最大 20 メンバー & 20 台のクラウド VM を備えた専用チームワークスペース。",
         "llmAllowance": "$200.00 / 月",
-        "vcpuQuota": "最大 400 vCPU時間 / 月",
-        "vcpuSubnote": "チーム共有16モデル＆VM ($0.16–$0.32/時)",
+        "vcpuQuota": "月 最大1,334 vCPU時間",
+        "vcpuSubnote": "Small・Large・Ultra VMをカバー",
         "highlights": [
           "チーム共有 16モデル＋VM共通 <strong>月$200.00枠</strong>",
           "クラウドVMはプールから消費（<strong>$0.16–$0.32/時</strong> · 停止時 $0.00）",
@@ -563,7 +561,7 @@
     "mechanics": {
       "wallet": {
         "title": "追加利用ウォレット（$10〜チャージ）",
-        "description": "まずプランのVM枠が優先消費されます。追加のCloud VM稼働時間（$0.16–$0.32/時）が必要なときは、いつでも残高チャージ（最低<s1>$10.00</s1>・手数料0%）が可能です。"
+        "description": "常にプランのVM枠が先に使われます。サブスクリプションはウォレット残高を追加しません。追加のCloud VM稼働時間は枠超過料金（$0.006–$0.024/分）でチャージ（最低<s1>$10.00</s1>・手数料0%）して利用できます。"
       },
       "byok": {
         "title": "自分のAPIキーを持ち込む（手数料0%）",
@@ -585,56 +583,54 @@
     "vms": {
       "vcpuHrsUnit": "{{cpu}} vCPU時間",
       "perActiveHour": "/ 稼働時間",
-      "overageRate": "プラン枠から消費 · 停止中 $0.00",
+      "overageRate": "プラン枠を優先 · 停止中 $0.00",
       "cpuLabel": "CPU",
       "cpuValue": "{{cpu}} vCPU",
       "memoryLabel": "メモリ",
       "memoryValue": "{{memory}} GB",
-      "nvmeLabel": "NVMe",
-      "nvmeValue": "{{disk}} GB",
       "includedIn": "対象プラン",
       "bestForLabel": "最適な用途:",
       "standardTitle": "すべてのクラウドサンドボックスマシンに標準搭載",
       "standardMeta": "秒単位計測 · 停止時は$0.00",
       "tiers": {
         "tier_1": {
-          "label": "4コア",
-          "badge": "スタンダード · tier_1",
-          "tagline": "日常の開発、スクリプト実行、軽量なWebプレビューに。",
-          "planAccess": "Free、Plus、Pro",
+          "label": "Small",
+          "badge": "スタンダード · SMALL",
+          "tagline": "日常のコーディング、エージェント、スクリプト、軽量なWebプレビューに。",
+          "planAccess": "Free・Plus・Pro",
           "highlights": [
-            "4コア (4 vCPU) 専用クラウドコンピュート",
-            "8 GB 高速DDRメモリ · 32 GB NVMeディスク",
-            "料金: $0.16 / 稼働時間（停止中 $0.00）",
-            "Plus: 最大 50 時間/月 · Pro: 最大 137 時間/月（含まれる vCPU 時間）"
+            "専用vCPU 2基（performanceクラス・スロットリングなし）",
+            "8 GB メモリ · 永続ワークスペースボリューム（プラン別）",
+            "枠内 $0.004/分 · 枠超過後 $0.006/分",
+            "Plus: 月約41時間 · Pro: 月約104時間（プラン枠）"
           ],
-          "bestFor": "フロントエンド、API、軽量スクリプト"
+          "bestFor": "コーディングエージェント・API・高速スクリプト"
         },
         "tier_2": {
-          "label": "6コア",
-          "badge": "一番人気 · tier_2",
+          "label": "Large",
+          "badge": "一番人気 · LARGE",
           "tagline": "フルスタック開発、Dockerサービス、ライブVNCテストに。",
-          "planAccess": "Plus、Pro",
+          "planAccess": "Plus・Pro",
           "highlights": [
-            "4コア (6 vCPU) マルチコアビルドエンジン",
-            "12 GB DDRメモリ · 32 GB NVMeディスク",
-            "料金: $0.24 / 稼働時間（停止中 $0.00）",
-            "Plus: 最大 33 時間/月 · Pro: 最大 92 時間/月（含まれる vCPU 時間）"
+            "専用vCPU 4基（performanceクラス・スロットリングなし）",
+            "16 GB メモリ · 永続ワークスペースボリューム（プラン別）",
+            "枠内 $0.008/分 · 枠超過後 $0.012/分",
+            "Plus: 月約20時間 · Pro: 月約52時間（プラン枠）"
           ],
-          "bestFor": "Next.js・Vite・Dockerのフルスタック構成"
+          "bestFor": "フルスタックNext.js・Vite・Docker"
         },
         "tier_3": {
-          "label": "8コア",
-          "badge": "パワー · tier_3",
-          "tagline": "重いコンパイル、大規模モノレポ、並列テストスイートに。",
-          "planAccess": "Plus、Pro",
+          "label": "Ultra",
+          "badge": "パワー · ULTRA",
+          "tagline": "重いビルド、大規模モノレポ、並列テストスイートに。",
+          "planAccess": "Plus・Pro",
           "highlights": [
-            "8コア (8 vCPU) 高並列コンピュート",
-            "16 GB 大容量DDRメモリ · 64 GB NVMeディスク",
-            "料金: $0.32 / 稼働時間（停止中 $0.00）",
-            "Plus: 最大 25 時間/月 · Pro: 最大 69 時間/月（含まれる vCPU 時間）"
+            "専用vCPU 8基（performanceクラス・スロットリングなし）",
+            "32 GB メモリ · 永続ワークスペースボリューム（プラン別）",
+            "枠内 $0.016/分 · 枠超過後 $0.024/分",
+            "Plus: 月約10時間 · Pro: 月約26時間（プラン枠）"
           ],
-          "bestFor": "モノレポ、Rust/Goコンパイラ、E2Eテスト"
+          "bestFor": "モノレポ・Rust/Goコンパイラ・E2Eスイート"
         }
       },
       "includedCapabilities": [
@@ -654,7 +650,11 @@
           "title": "アイドル自動停止ガード",
           "description": "2〜60分で設定可能な無操作タイマーにより、アイドル状態のVMを自動停止しコストを$0.00に抑えます。"
         }
-      ]
+      ],
+      "perMinIncluded": "/ 分（枠内）",
+      "afterRatePill": "超過後 ${{rate}}/分",
+      "hourlyEquiv": "枠内 ${{included}}/時 · 超過後 ${{after}}/時",
+      "stoppedFree": "停止中 $0"
     },
     "compare": {
       "columns": {
@@ -664,7 +664,7 @@
         "pro": "Pro（$25）",
         "team": "Team ($200)"
       },
-      "footnote": "* Freeプランはアカウント認証後に4コアのクラウドVM（$0.50枠から $0.16/時）を利用可能になります。",
+      "footnote": "* Freeプランは標準アカウント認証後にSmall Cloud VM（2 vCPU · 8 GB、$0.50枠から$0.004/分）を利用できます。枠を使い切るとウォレットから1.5倍（Small $0.006/分）で課金されます。",
       "rows": [
         {
           "feature": "月額料金",
@@ -682,24 +682,24 @@
         },
         {
           "feature": "クラウドVM単価（利用枠から）",
-          "free": "$0.16 / 時*",
-          "plus": "$0.16–$0.32 / 時",
-          "pro": "$0.16–$0.32 / 時",
-          "team": "$0.16–$0.32 / 時"
+          "free": "$0.004 / 分*",
+          "plus": "$0.004 – $0.016 / 分",
+          "pro": "$0.004 – $0.016 / 分",
+          "team": "$0.004 – $0.016 / 分"
         },
         {
           "feature": "含まれる VM コンピュート",
-          "free": "最大 1 時間 / 月",
-          "plus": "最大 200 vCPU 時間 / 月",
-          "pro": "最大 550 vCPU 時間 / 月",
-          "team": "最大 1,666 時間 / 月"
+          "free": "月 最大4 vCPU時間",
+          "plus": "月 最大84 vCPU時間",
+          "pro": "月 最大209 vCPU時間",
+          "team": "月 最大1,334 vCPU時間"
         },
         {
           "feature": "最大VMハードウェア",
-          "free": "4コア · 6 GB RAM",
-          "plus": "4コア · 12 GB RAM",
-          "pro": "6コア · 16 GB RAM",
-          "team": "6コア · 16 GB RAM"
+          "free": "Small · 2 vCPU · 8 GB",
+          "plus": "Ultra · 8 vCPU · 32 GB",
+          "pro": "Ultra · 8 vCPU · 32 GB",
+          "team": "Ultra · 8 vCPU · 32 GB"
         },
         {
           "feature": "最大クラウドVM数",
@@ -707,6 +707,13 @@
           "plus": "1台",
           "pro": "4台",
           "team": "20台"
+        },
+        {
+          "feature": "永続ストレージ",
+          "free": "5 GB",
+          "plus": "50 GB",
+          "pro": "100 GB",
+          "team": "100 GB"
         },
         {
           "feature": "ワークスペースメンバー",
@@ -721,13 +728,6 @@
           "plus": "2個",
           "pro": "10個",
           "team": "20個"
-        },
-        {
-          "feature": "1回の最大VMセッション時間",
-          "free": "20分",
-          "plus": "60分",
-          "pro": "60分",
-          "team": "60分"
         },
         {
           "feature": "自分のキー持ち込み (BYOK)",
@@ -764,11 +764,11 @@
         },
         {
           "question": "Cloud Sandbox VMの稼働時間はどう課金されますか？",
-          "answer": "稼働中のVMは4コア $0.16/時、6コア $0.24/時、8コア $0.32/時で秒単位に月間枠から差し引かれます。停止中のVMは完全に$0.00/時です。"
+          "answer": "稼働中のVMは秒単位で計測されます。まず月間プラン枠が枠内料金で消費されます — Small $0.004/分（$0.24/時）、Large $0.008/分（$0.48/時）、Ultra $0.016/分（$0.96/時）。枠を使い切ると追加分はウォレットから1.5倍で課金されます：$0.006、$0.012、$0.024/分。停止中のVMは$0.00です。"
         },
         {
           "question": "FreeプランでCloud Sandbox VMを使うには？",
-          "answer": "Freeプランには4コアCloud VM（$0.16/時）に使える月間$0.50枠が含まれます。設定でアカウント認証を完了するとVM起動が有効になります。"
+          "answer": "Freeプランには月$0.50の枠が含まれます — Small VM（2 vCPU · 8 GB RAM）で約2時間。設定で標準アカウント認証を完了するとVMを起動できます。"
         },
         {
           "question": "プラン枠を使い切るとどうなりますか？",
@@ -802,15 +802,15 @@
         "quota": "月間VM枠",
         "vcpu": "含まれる VM コンピュート",
         "vm": "最大 VM サイズ",
-        "session": "セッション時間",
         "snapshots": "スナップショット",
         "members": "メンバー",
-        "byo": "BYOS / BYOK"
+        "byo": "BYOS / BYOK",
+        "storage": "ストレージ"
       },
       "vcpuValue": "{{hours}} vCPU 時間",
-      "approxMinutes": "≈ {{cores}} コア VM で {{minutes}} 分",
-      "approxHours": "≈ {{cores}} コア VM で {{hours}} 時間",
-      "vmSize": "{{cores}} コア · {{ram}} GB RAM",
+      "approxMinutes": "≈ Small VMで{{minutes}}分",
+      "approxHours": "≈ Small VMで{{hours}}時間",
+      "vmSize": "{{cores}} vCPU · {{ram}} GB RAM",
       "minutes": "{{minutes}} 分",
       "none": "なし",
       "included": "含まれる",
@@ -1120,6 +1120,26 @@
           "a": "はい。設定 > プロバイダーキーから上乗せ0%で追加できます。BYOKはプラン枠を消費しませんが、Freeプランで残高$0.00の場合は有料モデルに残高または有料プランが必要です。"
         }
       ]
+    }
+  },
+  "openSource": {
+    "eyebrow": "オープンソース",
+    "title": "オープンに開発。どこでも実行可能。",
+    "description": "すべてのコードを検証でき、自社インフラでのセルフホストもマネージドクラウドでの即時起動も可能。ブラックボックスもベンダーロックインもありません。",
+    "docsCta": "セルフホストガイド",
+    "items": {
+      "transparent": {
+        "title": "GitHubで全ソースを公開",
+        "text": "エージェントランタイム、サンドボックス管理、Web UIをすべてオープンに監査できます。"
+      },
+      "selfHost": {
+        "title": "Dockerでセルフホスト",
+        "text": "自身のAPIキーと完全なデータ管理のもと、自分のサーバーやマシンにNeuron Runnerをデプロイできます。"
+      },
+      "community": {
+        "title": "コミュニティ主導",
+        "text": "Issueの起票やコネクタ・機能のコントリビュートを通じて、チームと一緒にロードマップを形作れます。"
+      }
     }
   }
 }

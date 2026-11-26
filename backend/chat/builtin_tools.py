@@ -168,6 +168,7 @@ def _ensure_file_tool_args(tool_name: str, user, arguments: dict) -> dict:
     sandbox_uuid = args_copy.pop("_sandbox_uuid", None)
     vm_uuid = args_copy.pop("_vm_uuid", None) or args_copy.pop("vm_uuid", None)
     runtime_name = args_copy.pop("_runtime", "") or ""
+    workspace_root = args_copy.pop("_workspace_root", None) or None
     args_copy.pop("sandbox_uuid", None)
     args_copy.pop("workspace_uuid", None)
     args_copy.pop("_conversation_id", None)
@@ -183,7 +184,7 @@ def _ensure_file_tool_args(tool_name: str, user, arguments: dict) -> dict:
     if not sandbox:
         return {"error": f"{tool_name}: conversation workspace is unavailable"}
 
-    return {"sandbox": sandbox, "args": args_copy, "runtime": runtime_name}
+    return {"sandbox": sandbox, "args": args_copy, "runtime": runtime_name, "workspace_root": workspace_root}
 
 
 def _execute_in_sandbox(tool_name: str, user, arguments: dict) -> dict:
@@ -197,6 +198,8 @@ def _execute_in_sandbox(tool_name: str, user, arguments: dict) -> dict:
     clean_args = {k: v for k, v in args.items() if not k.startswith("_")}
     from sandbox.services.sandbox_session import get_sandbox_manager
     runtime_kwargs = {"runtime": resolved["runtime"]} if resolved.get("runtime") else {}
+    if resolved.get("workspace_root"):
+        runtime_kwargs["workspace_root"] = resolved["workspace_root"]
     return get_sandbox_manager().execute_tool(project, tool_name, clean_args, **runtime_kwargs)
 
 
@@ -321,6 +324,7 @@ def execute_builtin_tool_stream(user, tool_name: str, arguments: dict, conversat
         arguments.pop("_conversation_id", None)
         arguments.pop("_workspace_uuid", None)
         arguments.pop("_runtime", None)
+        arguments.pop("_workspace_root", None)
         if tool_name == "title_generation":
             yield "result", json.dumps({"error": "Conversation titles are generated automatically in the background."})
             return
@@ -341,6 +345,11 @@ def execute_builtin_tool_stream(user, tool_name: str, arguments: dict, conversat
                 arguments["_sandbox_uuid"] = str(sandbox.uuid)
                 if getattr(sandbox, "vm_id", None):
                     arguments["_vm_uuid"] = str(sandbox.vm_id)
+                # A chat that picked its own branch works in a private worktree, never the shared project folder.
+                from sandbox.services.conversation_worktree import active_worktree_path
+                worktree = active_worktree_path(conversation, sandbox)
+                if worktree:
+                    arguments["_workspace_root"] = worktree
 
         if tool_name == "shell_exec" and stream_output:
             resolved = _ensure_file_tool_args(tool_name, user, arguments)
@@ -358,6 +367,8 @@ def execute_builtin_tool_stream(user, tool_name: str, arguments: dict, conversat
                 close_old_connections()
                 try:
                     runtime_kwargs = {"runtime": resolved["runtime"]} if resolved.get("runtime") else {}
+                    if resolved.get("workspace_root"):
+                        runtime_kwargs["workspace_root"] = resolved["workspace_root"]
                     result = manager.execute_tool(resolved["sandbox"], "shell_exec", clean_args, **runtime_kwargs,
                         on_output=lambda stream, text: events.put(("output", json.dumps({"stream": stream, "text": text}))))
                     events.put(("result", json.dumps(result)))
@@ -742,7 +753,7 @@ BUILTIN_TOOLS = [
         "function": {
             "name": "desktop",
             "description": (
-                "Control the live KDE Linux desktop (DISPLAY :1, with virtual audio sink nr_speaker). "
+                "Control the live Linux desktop (DISPLAY :1, with virtual audio sink nr_speaker). "
                 "Starts the desktop automatically if not running. "
                 "Supports screenshot, click, double_click, right_click, move_mouse, drag, scroll, press, write, "
                 "launch, wait, screen_size, start_recording (captures video + audio to MP4), and stop_recording. "
@@ -773,7 +784,7 @@ BUILTIN_TOOLS = [
                     "keys": {"type": "array", "items": {"type": "string"}, "description": "Sequence of X11 key names to press in order."},
                     "text": {"type": "string", "description": "Literal UTF-8 text to paste/type into the focused field (for action='write')."},
                     "press_enter": {"type": "boolean", "default": False, "description": "Whether to press Return after writing text."},
-                    "command": {"type": "string", "description": "GUI application command to launch on DISPLAY :1 (e.g. 'chromium https://example.com' or 'konsole')."},
+                    "command": {"type": "string", "description": "GUI application command to launch on DISPLAY :1 (e.g. 'chromium https://example.com' or 'xfce4-terminal')."},
                     "path": {"type": "string", "description": "Optional workspace file path to save a screenshot (.png) or screen recording (.mp4)."},
                     "fps": {"type": "integer", "minimum": 1, "maximum": 60, "default": 30, "description": "Frame rate for start_recording (1-60)."},
                     "wait_ms": {"type": "integer", "minimum": 50, "maximum": 15000, "description": "Milliseconds to wait after the action before capturing the screenshot (or duration for action='wait')."},

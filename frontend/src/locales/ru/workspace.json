@@ -597,6 +597,8 @@
       "useBranch": "Использовать {{branch}}",
       "selectProject": "Выбрать проект",
       "branchChangesApply": "Смена ветки применяется к этому проекту во всём рабочем пространстве.",
+      "branchPerChat": "Смена ветки действует только для этого чата. Остальные чаты остаются на своих ветках.",
+      "branchLockedWhileRunning": "Пока агент работает в этом чате, ветку сменить нельзя.",
       "findOrCreateAria": "Найти или создать ветку проекта",
       "findOrCreatePlaceholder": "Найти или создать ветку…",
       "refreshBranches": "Обновить ветки",
@@ -661,7 +663,9 @@
       "restoreAndStart": "Восстановить и запустить",
       "createAndStart": "Создать и запустить",
       "limitReachedDescription_few": "Ваш тариф {{plan}} допускает до {{count}} виртуальных машин. Остановите существующую ВМ или обновите тариф.",
-      "limitReachedDescription_many": "Ваш тариф {{plan}} допускает до {{count}} виртуальных машин. Остановите существующую ВМ или обновите тариф."
+      "limitReachedDescription_many": "Ваш тариф {{plan}} допускает до {{count}} виртуальных машин. Остановите существующую ВМ или обновите тариф.",
+      "includedRateShort": "${{rate}}/мин в квоте",
+      "afterRateShort": "${{rate}}/мин сверх"
     },
     "edit": {
       "emptyNameError": "Имя машины не может быть пустым.",

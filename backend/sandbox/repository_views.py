@@ -6,11 +6,14 @@ import subprocess
 
 import requests
 from django.conf import settings
+from django.core.exceptions import ValidationError as DjangoValidationError
+from django.db import models
 from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from social_django.models import UserSocialAuth
 
+from .services import conversation_worktree
 from .services.repository_browser import read_repository
 from .services.repository_reader import RepositoryUnavailable
 from .views import _get_accessible_project, _has_running_vm, _no_vm_response
@@ -108,6 +111,68 @@ class RepositoryWriteView(APIView):
 
 class RepositorySwitchView(RepositoryWriteView):
     operation = "switch"
+
+
+class RepositoryWorktreeView(APIView):
+    """Pick the branch a single chat works on, without touching the project folder or other chats.
+
+    The URL sandbox only proves workspace access; the chat's own project decides which repository is used.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+
+    def _context(self, request, sandbox_uuid):
+        from chat.models import Conversation
+        from .services.sandbox_service import SandboxBootstrapService
+
+        access = _get_accessible_project(request.user, sandbox_uuid)
+        if not _has_running_vm(access):
+            return None, None, _no_vm_response()
+        conversation_id = request.data.get("conversation_id") or request.query_params.get("conversation_id")
+        conversation = None
+        try:
+            if conversation_id:
+                conversation = Conversation.objects.filter(pk=conversation_id).filter(
+                    models.Q(user=request.user) | models.Q(workspace__memberships__user=request.user)
+                ).distinct().first()
+        except (ValueError, DjangoValidationError):
+            conversation = None
+        project = SandboxBootstrapService.conversation_project(conversation) if conversation else None
+        if not project or project.workspace_id != access.workspace_id:
+            return None, None, Response({"error": "Start the chat in this project before choosing its branch."}, status=404)
+        requested = request.data.get("path") or request.query_params.get("path")
+        if requested and str(requested).rstrip("/") != conversation_worktree.project_repository_path(project):
+            return None, None, Response({"error": "This chat works in a different project."}, status=400)
+        return project, conversation, None
+
+    def _run(self, request, sandbox_uuid, action):
+        project, conversation, failure = self._context(request, sandbox_uuid)
+        if failure:
+            return failure
+        try:
+            return Response(action(project, conversation))
+        except RepositoryUnavailable as error:
+            return Response({"error": str(error), "code": error.code}, status=404)
+        except ValueError as error:
+            return Response({"error": str(error)}, status=400)
+        except (OSError, subprocess.TimeoutExpired):
+            return Response({"error": "Git could not complete this operation. Refresh and try again."}, status=400)
+        except Exception:
+            logger.exception("Chat worktree operation failed")
+            return Response({"error": "The workspace is temporarily unavailable."}, status=503)
+
+    def get(self, request, sandbox_uuid):
+        return self._run(request, sandbox_uuid, conversation_worktree.checkout_status)
+
+    def post(self, request, sandbox_uuid):
+        branch = request.data.get("branch")
+        if not isinstance(branch, str) or not branch:
+            return Response({"error": "Choose a valid branch name."}, status=400)
+        token = _get_user_github_token(request.user, _requested_account(request)) if request.data.get("fetch") is True else None
+        return self._run(request, sandbox_uuid, lambda project, conversation: conversation_worktree.attach_branch(
+            project, conversation, branch, create=request.data.get("create") is True, fetch=request.data.get("fetch") is True, token=token))
+
+    def delete(self, request, sandbox_uuid):
+        return self._run(request, sandbox_uuid, conversation_worktree.detach)
 
 
 class RepositoryPushView(RepositoryWriteView):

@@ -17,6 +17,10 @@ class Conversation(models.Model):
         max_length=24, blank=True, default="",
         help_text="Named local Docker runtime the conversation's tools run in; empty means the workspace default",
     )
+    worktree_path = models.CharField(
+        max_length=120, blank=True, default="",
+        help_text="Private Git worktree (under /workspace/.worktrees) this conversation's agent works in; empty means the project folder",
+    )
 
     class Meta:
         ordering = ['-created_at']

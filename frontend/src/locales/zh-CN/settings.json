@@ -254,7 +254,7 @@
         "hint": "Paste your ~/.gemini/oauth_creds.json content, or connect Google OAuth directly from the Cloud Agent Selector.",
         "placeholder": "Paste ~/.gemini/oauth_creds.json or OAuth credentials"
       },
-      "computeNote": "BYOS 对 LLM Token 收费 $0.00。代理在您的云端 VM 中运行，消耗套餐 VM 配额或 Top-Up 钱包余额（$0.16–$0.32/小时）——无需购买 NeuronRunner 月度订阅。",
+      "computeNote": "BYOS 的 LLM token 费用为 $0.00。执行在你的云虚拟机中进行：先使用套餐额度，再使用充值钱包（$0.006–$0.024/分钟）。",
       "manageBilling": "管理 VM 与充值"
     }
   },
@@ -275,7 +275,7 @@
     "activePlan": "当前方案",
     "upgradeTo": "升级到 {{plan}}",
     "walletBalance": "额外用量钱包余额",
-    "walletDescription": "用于超出每月额度的部分、Free 和 Plus 中的高级模型，以及没有月度方案时 BYOS/BYOK 的独立云虚拟机算力（$0.16–$0.32/小时）。永不过期。",
+    "walletDescription": "用于超出每月套餐额度的使用（云虚拟机 $0.006–$0.024/分钟）及高级模型。永不过期。",
     "topUpLabel": "充值额外用量额度（美元，最低 $10.00）",
     "topUpButton": "充值 ${{amount}}",
     "topUpNote": "最低充值金额为 $10.00。不收取额外支付手续费，您支付的 100% 金额将立即计入您的余额。",
@@ -287,19 +287,19 @@
     "fallbackPlans": {
       "free": {
         "name": "Free",
-        "description": "每月 $0.50 免费额度（LLM + $0.16/时 4 核云端虚拟机）"
+        "description": "每月 $0.50 云虚拟机额度（Small 2 vCPU · 8 GB，$0.004/分钟）"
       },
       "plus": {
         "name": "Plus",
-        "description": "云虚拟机 $10.00/月额度（约 200 vCPU 小时）+ $2 免费层 LLM 额度 · BYOS/BYOK · 最多 1 台虚拟机（无团队功能）"
+        "description": "每月 $10.00 云虚拟机额度（约 84 vCPU 小时）· Small、Large 和 Ultra · BYOS/BYOK · 最多 1 台虚拟机"
       },
       "pro": {
         "name": "Pro",
-        "description": "云虚拟机（约 550 vCPU 小时）+ 所有 LLM 模型的 $25.00/月共享额度 · 最多 4 位成员"
+        "description": "每月 $25.00 云虚拟机额度（约 209 vCPU 小时）· Small、Large 和 Ultra · 最多 4 名成员"
       },
       "team": {
         "name": "Team",
-        "description": "全部 16 模型与云端 VM 通用每月 $200.00 共享池 · 最多 20 位成员与 20 台虚拟机"
+        "description": "每月 $160.00 云虚拟机额度（约 1,334 vCPU 小时）· 最多 20 名成员"
       }
     },
     "errors": {

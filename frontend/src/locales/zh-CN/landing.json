@@ -71,7 +71,7 @@
         "hideFallback": "Hide manual / VM options",
         "antigravityStepTitle": "1. Authorize in Google tab",
         "antigravityCodeDesc": "After authorizing with Google, copy the authorization code shown on the Antigravity callback page and paste it here:",
-        "vmDisclaimer": "您的 {{agent}} 会话和凭据仅保留在您的隔离 Cloud VM 内，Neuron Runner 服务器绝不会读取或存储它们。Neuron Runner 是与该提供商无关联的独立平台；您需自行全权负责遵守提供商的订阅条款。",
+        "vmDisclaimer": "您的 {{agent}} 登录文件会加密存储在 Neuron Runner 的数据库中，以便您的 Cloud VM 保持登录状态，同时也保存在您 VM 的存储中。断开 {{agent}} 或删除您的工作区会删除已存储的副本。Neuron Runner 是与该提供商无关联的独立平台；您需自行全权负责遵守提供商的订阅条款。",
         "vmDisclaimerTerms": "服务条款",
         "vmDialogTitle": "在虚拟机终端中连接 {{agent}}",
         "vmDialogSubtitle": "直接在隔离的云虚拟机内使用官方 CLI 登录。点击生成的登录链接进行授权。",
@@ -107,13 +107,13 @@
       "schemaName": "定价 — Neuron Runner",
       "description": "面向自主 AI Agent 的透明按秒计费云算力与订阅方案。Free、Plus（$10）和 Pro（$25）层级，提供专属 Linux 虚拟机，并支持 BYOS 与 BYOK。",
       "faq1Question": "自主云端智能体的算力如何计费？",
-      "faq1Answer": "每个方案均包含按秒计费的 Cloud VM 每月美元算力额度（Free $0.50、Plus $10、Pro $25；4核 $0.16/小时、6核 $0.24/小时、8核 $0.32/小时，停止时 $0.00/小时）。您可以 0% 平台加价连接自有 AI 订阅（BYOS）或 API 密钥（BYOK）。",
+      "faq1Answer": "每个套餐都包含按秒计费的独享云虚拟机月度 USD 额度（Free $0.50、Plus $10、Pro $25）：额度内 Small $0.004/分钟、Large $0.008/分钟、Ultra $0.016/分钟；超出后 1.5 倍；停止时 $0.00。可零加价接入你自己的 AI 订阅（BYOS）或 API 密钥（BYOK）。",
       "faq2Question": "我可以使用自己的 API 密钥（BYOK）吗？",
       "faq2Answer": "可以！在包括 Free 在内的所有方案中，您都可以在工作区设置中添加自己的 Anthropic、OpenAI、DeepSeek 或自定义提供商 API 密钥，享受 0% 平台加价。"
     }
   },
   "hero": {
-    "badge": "自主云端智能体 · 专属 Linux 虚拟机与实时 VNC",
+    "badge": "开源云端智能体 · 专属 Linux 虚拟机与实时 VNC",
     "titleLine1": "您的智能体在云端工作。",
     "titleLine2": "还拥有专属电脑。",
     "subtitle": "每个项目都配备隔离的 Linux 虚拟机、实时 VNC 桌面、浏览器和终端。只需委派任务，智能体即可在云端编写、运行并交付代码，全程不触碰您的本地环境。",
@@ -127,7 +127,8 @@
       "gitAutoPr": "Git 与自动 PR",
       "byos": "自带订阅 (BYOS)"
     },
-    "discordCta": "有疑问？在 Discord 上与我们的团队交流"
+    "discordCta": "有疑问？在 Discord 上与我们的团队交流",
+    "starOnGithub": "在 GitHub 上加星"
   },
   "connectors": {
     "eyebrow": "智能体可无缝连接您已在使用的工具"
@@ -500,12 +501,11 @@
         "badge": "永久免费",
         "tagline": "使用入门级云端 Linux VM、BYOS 和 BYOK 体验自主编程。",
         "llmAllowance": "$0.50 / 月",
-        "vcpuQuota": "每月最高 2 vCPU 小时",
-        "vcpuSubnote": "覆盖免费 LLM 与 4 核 VM ($0.16/时)",
+        "vcpuQuota": "每月最多 4 vCPU 小时",
+        "vcpuSubnote": "覆盖 Small 虚拟机（$0.004/分钟）",
         "highlights": [
           "6 个免费模型与云端 VM <strong>每月 $0.50 统一额度</strong>",
           "可使用 <strong>4 核（8 GB 内存）</strong> Linux 沙箱虚拟机",
-          "最长 <strong>5 分钟</strong> 自动停止虚拟机会话",
           "自带<strong>您自己的订阅（BYOS）</strong>或 <strong>API 密钥（BYOK）</strong>，0% 手续费"
         ],
         "ctaLabel": "免费开始"
@@ -516,13 +516,12 @@
         "badge": "最受欢迎",
         "tagline": "为您自己的编码 Agent 提供专属云 Linux 虚拟机：自带订阅（BYOS）或 API 密钥。",
         "llmAllowance": "$10.00 / 月",
-        "vcpuQuota": "最多 200 vCPU 小时 / 月",
-        "vcpuSubnote": "涵盖 4/6/8 核虚拟机，并含免费层模型 $2 的 LLM 额度",
+        "vcpuQuota": "每月最多 84 vCPU 小时",
+        "vcpuSubnote": "覆盖 Small、Large 和 Ultra 虚拟机",
         "highlights": [
           "云虚拟机的 <strong>$10.00/月额度</strong>（<strong>约 200 vCPU 小时</strong>）+ 免费层模型的 <strong>$2 LLM 额度</strong>",
           "自带<strong>您自己的 Claude Code、Codex 或 Antigravity 订阅</strong>（BYOS）或 API 密钥（BYOK）",
-          "最高 <strong>8 核（16 GB 内存）</strong> 虚拟机 + 实时 VNC 桌面",
-          "<strong>60 分钟会话</strong> 与持久化虚拟机磁盘"
+          "最高 <strong>8 核（16 GB 内存）</strong> 虚拟机 + 实时 VNC 桌面"
         ],
         "ctaLabel": "升级到 Plus"
       },
@@ -532,13 +531,12 @@
         "badge": "4 倍算力",
         "tagline": "为高强度全栈开发提供更多虚拟机时长、快照，最多 4 位成员。",
         "llmAllowance": "$25.00 / 月",
-        "vcpuQuota": "最多 550 vCPU 小时 / 月",
-        "vcpuSubnote": "免费层 LLM 与 4/6/8 核虚拟机共享额度",
+        "vcpuQuota": "每月最多 209 vCPU 小时",
+        "vcpuSubnote": "覆盖 Small、Large 和 Ultra 虚拟机",
         "highlights": [
           "云虚拟机（<strong>约 550 vCPU 小时</strong>）+ 免费层 LLM 的 <strong>$25.00/月共享额度</strong>",
           "高级模型从您的<strong>钱包</strong>按用量扣费，绝不会消耗方案额度",
-          "最多 <strong>4 名工作区成员</strong> · 1 台共享云端虚拟机",
-          "<strong>60 分钟会话</strong> 与持久化虚拟机磁盘"
+          "最多 <strong>4 名工作区成员</strong> · 1 台共享云端虚拟机"
         ],
         "ctaLabel": "升级到 Pro"
       },
@@ -548,8 +546,8 @@
         "badge": "团队协作",
         "tagline": "专为团队打造的协作工作区，支持多达 20 个席位与共享云端算力。",
         "llmAllowance": "$200.00 / 月",
-        "vcpuQuota": "每月最高 400 vCPU 小时",
-        "vcpuSubnote": "团队共享 16 款模型与 VM ($0.16–$0.32/时)",
+        "vcpuQuota": "每月最多 1,334 vCPU 小时",
+        "vcpuSubnote": "覆盖 Small、Large 和 Ultra 虚拟机",
         "highlights": [
           "团队共享 16 款模型与 VM <strong>每月 $200.00 额度</strong>",
           "云端 VM 从团队池扣除（<strong>$0.16–$0.32/时</strong> · 停机 $0.00）",
@@ -563,7 +561,7 @@
     "mechanics": {
       "wallet": {
         "title": "额外用量钱包（$10 起充）",
-        "description": "始终优先消耗方案内的 VM 额度；订阅不会向钱包充值。需要更多 Cloud VM 运行时长（$0.16–$0.32/小时）时可随时充值（最低 <s1>$10.00</s1>，0% 手续费）。"
+        "description": "始终优先使用套餐虚拟机额度；订阅不会增加钱包余额。需要更多运行时间时，可按超额价格（$0.006–$0.024/分钟）充值（最低 <s1>$10.00</s1>，0% 手续费）。"
       },
       "byok": {
         "title": "自带密钥（0% 手续费）",
@@ -585,56 +583,54 @@
     "vms": {
       "vcpuHrsUnit": "{{cpu}} vCPU 小时",
       "perActiveHour": "/ 活跃小时",
-      "overageRate": "从方案额度扣除 · 停机 $0.00",
+      "overageRate": "优先使用套餐额度 · 停止时 $0.00",
       "cpuLabel": "CPU",
       "cpuValue": "{{cpu}} vCPU",
       "memoryLabel": "内存",
       "memoryValue": "{{memory}} GB",
-      "nvmeLabel": "NVMe",
-      "nvmeValue": "{{disk}} GB",
       "includedIn": "包含于",
       "bestForLabel": "最适合：",
       "standardTitle": "每台云端沙箱机器的标准配置",
       "standardMeta": "按秒计量 · 停止时 $0.00",
       "tiers": {
         "tier_1": {
-          "label": "4 核",
-          "badge": "标准版 · tier_1",
-          "tagline": "日常编程、脚本与轻量 Web 预览。",
+          "label": "Small",
+          "badge": "标准版 · SMALL",
+          "tagline": "日常编码、智能体、脚本和轻量 Web 预览。",
           "planAccess": "Free、Plus 和 Pro",
           "highlights": [
-            "8 核（8 vCPU）专属云端算力",
-            "8 GB DDR 高速内存 · 32 GB NVMe 磁盘",
-            "费率：$0.16 / 运行小时（停机时 $0.00）",
-            "Plus：最多 50 小时/月 · Pro：最多 137 小时/月（含 vCPU 小时）"
+            "2 个独享 vCPU（performance 级，不限流）",
+            "8 GB 内存 · 持久化工作区存储卷（按方案分配）",
+            "额度内 $0.004/分钟 · 超出后 $0.006/分钟",
+            "Plus：约 41 小时/月 · Pro：约 104 小时/月（套餐额度）"
           ],
-          "bestFor": "前端应用、API 与快速脚本"
+          "bestFor": "编码智能体、API 与快速脚本"
         },
         "tier_2": {
-          "label": "6 核",
-          "badge": "最受欢迎 · tier_2",
-          "tagline": "全栈开发、Docker 服务与实时 VNC 测试。",
+          "label": "Large",
+          "badge": "最受欢迎 · LARGE",
+          "tagline": "全栈开发、Docker 服务和实时 VNC 测试。",
           "planAccess": "Plus 和 Pro",
           "highlights": [
-            "8 核（8 vCPU）多核构建引擎",
-            "12 GB DDR 内存 · 32 GB NVMe 磁盘",
-            "费率：$0.24 / 运行小时（停机时 $0.00）",
-            "Plus：最多 33 小时/月 · Pro：最多 92 小时/月（含 vCPU 小时）"
+            "4 个独享 vCPU（performance 级，不限流）",
+            "16 GB 内存 · 持久化工作区存储卷（按方案分配）",
+            "额度内 $0.008/分钟 · 超出后 $0.012/分钟",
+            "Plus：约 20 小时/月 · Pro：约 52 小时/月（套餐额度）"
           ],
-          "bestFor": "全栈 Next.js、Vite 与 Docker 技术栈"
+          "bestFor": "全栈 Next.js、Vite 与 Docker"
         },
         "tier_3": {
-          "label": "8 核",
-          "badge": "高性能 · tier_3",
-          "tagline": "大型编译、大型 Monorepo 与并行测试套件。",
+          "label": "Ultra",
+          "badge": "高性能 · ULTRA",
+          "tagline": "重度编译、大型 Monorepo 和并行测试套件。",
           "planAccess": "Plus 和 Pro",
           "highlights": [
-            "8 核（8 vCPU）高并发算力",
-            "16 GB DDR 大容量内存池 · 64 GB NVMe 磁盘",
-            "费率：$0.32 / 运行小时（停机时 $0.00）",
-            "Plus：最多 25 小时/月 · Pro：最多 69 小时/月（含 vCPU 小时）"
+            "8 个独享 vCPU（performance 级，不限流）",
+            "32 GB 内存 · 持久化工作区存储卷（按方案分配）",
+            "额度内 $0.016/分钟 · 超出后 $0.024/分钟",
+            "Plus：约 10 小时/月 · Pro：约 26 小时/月（套餐额度）"
           ],
-          "bestFor": "Monorepo、Rust/Go 编译器与端到端测试套件"
+          "bestFor": "Monorepo、Rust/Go 编译器与 E2E 套件"
         }
       },
       "includedCapabilities": [
@@ -654,7 +650,11 @@
           "title": "空闲自动停止保护",
           "description": "可配置 2–60 分钟无操作自动关机定时器，在空闲时将费用降至 $0.00。"
         }
-      ]
+      ],
+      "perMinIncluded": "/ 分钟（额度内）",
+      "afterRatePill": "超出后 ${{rate}}/分钟",
+      "hourlyEquiv": "额度内 ${{included}}/小时 · 超出后 ${{after}}/小时",
+      "stoppedFree": "停止时 $0"
     },
     "compare": {
       "columns": {
@@ -664,7 +664,7 @@
         "pro": "Pro（$25）",
         "team": "Team ($200)"
       },
-      "footnote": "* 完成账户验证后，Free 方案即可通过 $0.50 额度使用 4 核云端虚拟机（$0.16/时）。",
+      "footnote": "* Free 套餐在完成标准账户验证后可使用 Small 云虚拟机（2 vCPU · 8 GB，从 $0.50 额度按 $0.004/分钟扣除）。额度用完后从钱包按 1.5 倍扣费（Small $0.006/分钟）。",
       "rows": [
         {
           "feature": "月度价格",
@@ -682,24 +682,24 @@
         },
         {
           "feature": "云端 VM 费率（从额度扣除）",
-          "free": "$0.16 / 时*",
-          "plus": "$0.16 – $0.32 / 时",
-          "pro": "$0.16 – $0.32 / 时",
-          "team": "$0.16 – $0.32 / 时"
+          "free": "$0.004 / 分钟*",
+          "plus": "$0.004 – $0.016 / 分钟",
+          "pro": "$0.004 – $0.016 / 分钟",
+          "team": "$0.004 – $0.016 / 分钟"
         },
         {
           "feature": "包含的虚拟机算力",
-          "free": "最多 1 小时 / 月",
-          "plus": "最多 200 vCPU 小时 / 月",
-          "pro": "最多 550 vCPU 小时 / 月",
-          "team": "最多 1,250 小时 / 月"
+          "free": "每月最多 4 vCPU 小时",
+          "plus": "每月最多 84 vCPU 小时",
+          "pro": "每月最多 209 vCPU 小时",
+          "team": "每月最多 1,334 vCPU 小时"
         },
         {
           "feature": "最高虚拟机硬件规格",
-          "free": "4 核 · 8 GB 内存",
-          "plus": "8 核 · 16 GB 内存",
-          "pro": "8 核 · 16 GB 内存",
-          "team": "8 核 · 16 GB 内存"
+          "free": "Small · 2 vCPU · 8 GB",
+          "plus": "Ultra · 8 vCPU · 32 GB",
+          "pro": "Ultra · 8 vCPU · 32 GB",
+          "team": "Ultra · 8 vCPU · 32 GB"
         },
         {
           "feature": "最大云端虚拟机数量",
@@ -709,18 +709,18 @@
           "team": "1 台"
         },
         {
+          "feature": "持久化存储",
+          "free": "5 GB",
+          "plus": "50 GB",
+          "pro": "100 GB",
+          "team": "100 GB"
+        },
+        {
           "feature": "工作区成员",
           "free": "1 名成员",
           "plus": "1 名成员（无团队）",
           "pro": "最多 4 名成员",
           "team": "最多 20 名成员"
-        },
-        {
-          "feature": "单次最长虚拟机时长",
-          "free": "5 分钟",
-          "plus": "60 分钟",
-          "pro": "60 分钟",
-          "team": "60 分钟"
         },
         {
           "feature": "自带密钥 (BYOK)",
@@ -757,11 +757,11 @@
         },
         {
           "question": "Cloud Sandbox VM 的运行时间如何计费？",
-          "answer": "运行中的 VM 按秒从每月方案额度中扣费：4核 $0.16/小时、6核 $0.24/小时、8核 $0.32/小时。停止的 VM 严格为 $0.00/小时。"
+          "answer": "运行中的虚拟机按秒计费。首先按额度内价格扣除每月套餐额度 — Small $0.004/分钟（$0.24/小时）、Large $0.008/分钟（$0.48/小时）、Ultra $0.016/分钟（$0.96/小时）。额度用完后，额外时长按 1.5 倍从钱包扣除：$0.006、$0.012 和 $0.024/分钟。已停止的虚拟机费用为 $0.00。"
         },
         {
           "question": "如何在 Free 方案中使用 Cloud Sandbox VM？",
-          "answer": "Free 方案包含可用于 4核 Cloud VM（$0.16/小时）的 $0.50/月额度。在设置中完成标准账户验证即可启动 VM。"
+          "answer": "Free 套餐包含每月 $0.50 额度 — 在 Small 虚拟机（2 vCPU · 8 GB 内存）上约 2 小时。在设置中完成标准账户验证即可启动云虚拟机。"
         },
         {
           "question": "超出方案额度后会怎样？",
@@ -795,15 +795,15 @@
         "quota": "每月 VM 额度",
         "vcpu": "包含的虚拟机算力",
         "vm": "最大虚拟机规格",
-        "session": "会话时长",
         "snapshots": "快照",
         "members": "成员",
-        "byo": "BYOS / BYOK"
+        "byo": "BYOS / BYOK",
+        "storage": "存储空间"
       },
       "vcpuValue": "{{hours}} vCPU 小时",
-      "approxMinutes": "≈ {{cores}} 核虚拟机上 {{minutes}} 分钟",
-      "approxHours": "≈ {{cores}} 核虚拟机上 {{hours}} 小时",
-      "vmSize": "{{cores}} 核 · {{ram}} GB 内存",
+      "approxMinutes": "≈ Small 虚拟机 {{minutes}} 分钟",
+      "approxHours": "≈ Small 虚拟机 {{hours}} 小时",
+      "vmSize": "{{cores}} vCPU · {{ram}} GB 内存",
       "minutes": "{{minutes}} 分钟",
       "none": "无",
       "included": "已包含",
@@ -1113,6 +1113,26 @@
           "a": "可以。在“设置 > 提供商密钥”中可 0% 加价添加自有密钥，且不消耗方案额度；Free 方案余额为 $0.00 时，付费模型需钱包余额或付费方案。"
         }
       ]
+    }
+  },
+  "openSource": {
+    "eyebrow": "开源",
+    "title": "开源打造，随处运行。",
+    "description": "审查每一行代码，在您自己的基础设施上自托管，或在我们的托管云中即刻启动。没有黑箱，没有供应商锁定。",
+    "docsCta": "自托管文档",
+    "items": {
+      "transparent": {
+        "title": "GitHub 完整源码",
+        "text": "完全公开透明地审计智能体运行时、沙箱编排与 Web 界面。"
+      },
+      "selfHost": {
+        "title": "使用 Docker 自托管",
+        "text": "使用您自己的 API 密钥，在自有服务器或本机部署 Neuron Runner，完全掌控数据。"
+      },
+      "community": {
+        "title": "社区驱动",
+        "text": "提交 Issue、贡献连接器与功能，与团队一起塑造产品路线图。"
+      }
     }
   }
 }

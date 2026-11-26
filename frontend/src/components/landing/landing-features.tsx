@@ -46,13 +46,19 @@ function FeatureCard({
   return (
     <article
       className={cn(
-        "landing-card group relative flex flex-col overflow-hidden rounded-3xl border backdrop-blur transition-colors",
+        "landing-card group relative flex flex-col overflow-hidden rounded-3xl border shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-xl transition-all duration-300",
         featured
-          ? "border-indigo-500/45 bg-gradient-to-br from-indigo-500/[0.07] via-card/80 to-emerald-500/[0.05] shadow-lg shadow-indigo-500/10 hover:border-indigo-500/65"
-          : "border-border/80 bg-card/60 hover:border-indigo-500/30",
+          ? "border-indigo-500/50 bg-gradient-to-b from-indigo-500/[0.09] via-card/95 to-card/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_20px_50px_-24px_rgba(99,102,241,0.35)] ring-1 ring-indigo-500/20 hover:border-indigo-400/75"
+          : "border-border/75 bg-gradient-to-b from-card/90 to-card/60 hover:border-indigo-500/35 hover:shadow-xl hover:shadow-black/15 dark:hover:shadow-black/45",
         className
       )}
     >
+      {featured && (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-10 top-0 z-10 h-px bg-gradient-to-r from-transparent via-indigo-400 to-transparent"
+        />
+      )}
       <div
         className={cn(
           "relative min-h-[200px] flex-1 overflow-hidden border-b border-border/60 bg-gradient-to-b to-transparent p-5",

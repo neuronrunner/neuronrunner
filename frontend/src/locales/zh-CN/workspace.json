@@ -591,6 +591,8 @@
       "useBranch": "使用 {{branch}}",
       "selectProject": "选择项目",
       "branchChangesApply": "分支更改将应用于整个工作区的此项目。",
+      "branchPerChat": "分支切换仅对此聊天生效。其他聊天保留各自的分支。",
+      "branchLockedWhileRunning": "智能体在此聊天中工作时无法切换分支。",
       "findOrCreateAria": "查找或创建项目分支",
       "findOrCreatePlaceholder": "查找或创建分支…",
       "refreshBranches": "刷新分支",
@@ -653,7 +655,9 @@
       "starting": "正在启动…",
       "planLimitReached": "已达方案上限",
       "restoreAndStart": "恢复并启动",
-      "createAndStart": "创建并启动"
+      "createAndStart": "创建并启动",
+      "includedRateShort": "额度内 ${{rate}}/分钟",
+      "afterRateShort": "超出后 ${{rate}}/分钟"
     },
     "edit": {
       "emptyNameError": "虚拟机名称不能为空。",

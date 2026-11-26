@@ -254,7 +254,7 @@
         "hint": "Paste your ~/.gemini/oauth_creds.json content, or connect Google OAuth directly from the Cloud Agent Selector.",
         "placeholder": "Paste ~/.gemini/oauth_creds.json or OAuth credentials"
       },
-      "computeNote": "BYOS facture 0,00 $ pour les jetons LLM. L'exécution se fait dans votre VM Cloud via le quota VM de votre forfait ou votre solde Top-Up (0,16 $–0,32 $/h) — aucun abonnement mensuel requis.",
+      "computeNote": "BYOS facture $0.00 de tokens LLM. L'exécution se fait dans votre Cloud VM et utilise d'abord le quota du forfait, puis votre portefeuille ($0.006–$0.024/min).",
       "manageBilling": "Gérer VM et Solde"
     }
   },
@@ -275,7 +275,7 @@
     "activePlan": "Forfait actif",
     "upgradeTo": "Passer à {{plan}}",
     "walletBalance": "Solde du portefeuille d'utilisation supplémentaire",
-    "walletDescription": "Utilisé pour les dépassements du quota mensuel, les modèles premium sur Free et Plus et le calcul de VM cloud autonome pour BYOS/BYOK (0,16–0,32 $/h sans forfait mensuel). N'expire jamais.",
+    "walletDescription": "Utilisé au-delà du quota mensuel (Cloud VM à $0.006–$0.024/min) et pour les modèles premium. N'expire jamais.",
     "topUpLabel": "Ajouter des crédits d'utilisation supplémentaire (USD, min. 10,00 $)",
     "topUpButton": "Ajouter {{amount}} $",
     "topUpNote": "Le rechargement minimum est de 10,00 $. Aucuns frais de traitement supplémentaires ne sont facturés ; 100 % du montant payé est crédité immédiatement sur votre solde.",
@@ -287,19 +287,19 @@
     "fallbackPlans": {
       "free": {
         "name": "Free",
-        "description": "0,50 $/mois gratuit (LLMs + VMs 4 cœurs à 0,16 $/h)"
+        "description": "Quota Cloud VM de $0.50/mois (Small 2 vCPU · 8 Go à $0.004/min)"
       },
       "plus": {
         "name": "Plus",
-        "description": "Quota de 10,00 $/mois pour les VM cloud (~200 vCPU-h) + 2 $ de LLM du niveau gratuit · BYOS/BYOK · 1 VM max. (pas d'équipe)"
+        "description": "Quota Cloud VM de $10.00/mois (~84 vCPU-h) · Small, Large et Ultra · BYOS/BYOK · 1 VM max."
       },
       "pro": {
         "name": "Pro",
-        "description": "Quota partagé de 25,00 $/mois pour les VM cloud (~550 vCPU-h) + tous les modèles LLM · Jusqu'à 4 membres"
+        "description": "Quota Cloud VM de $25.00/mois (~209 vCPU-h) · Small, Large et Ultra · Jusqu'à 4 membres"
       },
       "team": {
         "name": "Team",
-        "description": "200,00 $/mois partagés sur 16 modèles & VMs · Jusqu'à 20 membres et 20 VMs"
+        "description": "Quota Cloud VM de $160.00/mois (~1 334 vCPU-h) · Jusqu'à 20 membres"
       }
     },
     "errors": {

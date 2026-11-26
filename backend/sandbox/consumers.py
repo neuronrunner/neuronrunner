@@ -64,6 +64,7 @@ class TerminalConsumer(AsyncWebsocketConsumer):
         self.failure_reported = False
         self.is_connected = True
         self.auth_task = None
+        self.direct_terminal = None
         self.output_task = self.write_task = self.heartbeat_task = None
         self.reader_thread = None
         self.local_master_fd = None
@@ -121,6 +122,9 @@ class TerminalConsumer(AsyncWebsocketConsumer):
         self._record_cmd_async = sync_to_async(self.manager_record_terminal_command, thread_sensitive=False)
         self._update_activity_async = database_sync_to_async(self.manager_update_activity, thread_sensitive=False)
 
+        if await self._open_direct_terminal():
+            return
+
         self.manager = get_sandbox_manager()
         try:
             self.sandbox = await database_sync_to_async(
@@ -175,6 +179,36 @@ class TerminalConsumer(AsyncWebsocketConsumer):
         except Exception as exc:
             logger.exception("Error spawning container PTY for %s: %s", self.sandbox_uuid, exc)
             await self._runtime_failure("Terminal startup failed. Please reconnect.")
+
+    async def _open_direct_terminal(self) -> bool:
+        """Let an extension attach the browser straight to a remote runtime; True when it took over."""
+        from core.extensions import registry as ext_registry
+
+        opener = ext_registry.runtime.open_direct_terminal
+        if opener is None:
+            return False
+        origin = dict(self.scope.get("headers", [])).get(b"origin", b"").decode()
+        try:
+            self.direct_terminal = await asyncio.to_thread(
+                opener, self.project, self.runtime_name, self.auth_payload, origin
+            )
+        except Exception as exc:
+            logger.exception("Direct terminal setup failed for %s", self.sandbox_uuid)
+            await self._runtime_failure(
+                str(exc) if isinstance(exc, ValueError) and str(exc) else "Terminal connection failed. Please reconnect."
+            )
+            return True
+        if self.direct_terminal is None:
+            return False
+        await self._record_terminal_connect()
+        await self.send(text_data=json.dumps(self.direct_terminal.descriptor()))
+        # Only startup uses Django: close this control socket once the ticket window ends.
+        self.auth_task = asyncio.create_task(self._direct_startup_timeout())
+        return True
+
+    async def _direct_startup_timeout(self):
+        await asyncio.sleep(max(0, self.direct_terminal.claims["expires"] - time.time()))
+        await self.close(code=4001)
 
     async def _runtime_failure(self, message):
         if self.failure_reported:
@@ -315,6 +349,24 @@ class TerminalConsumer(AsyncWebsocketConsumer):
             except Exception:
                 logger.exception("Terminal startup failed for %s", self.sandbox_uuid)
                 await self._runtime_failure("Terminal startup failed. Please reconnect.")
+            return
+
+        if self.direct_terminal:
+            try:
+                message = json.loads(text_data)
+                if message.get("type") != "consume":
+                    raise ValueError("Only consumption requests are accepted")
+                if not await self._authorize():
+                    return
+                receipt = await sync_to_async(self.direct_terminal.consume)(message.get("challenge"))
+                await self.send(text_data=json.dumps({
+                    "type": "consumed", "receipt": receipt, "session": self.direct_terminal.claims["session"],
+                }))
+                await self.close(code=1000)
+            except (ValueError, TypeError, KeyError):
+                await self.close(code=4001)
+            except Exception:
+                await self._runtime_failure("Terminal authentication is temporarily unavailable. Please reconnect.")
             return
 
         if not await self._authorize():

@@ -254,7 +254,7 @@
         "hint": "Paste your ~/.gemini/oauth_creds.json content, or connect Google OAuth directly from the Cloud Agent Selector.",
         "placeholder": "Paste ~/.gemini/oauth_creds.json or OAuth credentials"
       },
-      "computeNote": "BYOS berechnet $0,00 für LLM-Tokens. Die Ausführung läuft in Ihrer Cloud-VM und nutzt Ihr VM-Kontingent oder Ihr Top-Up-Guthaben ($0,16–$0,32/Std.) — kein Monatsabo erforderlich.",
+      "computeNote": "BYOS kostet $0.00 für LLM-Tokens. Die Ausführung läuft in deiner Cloud-VM und nutzt zuerst das Plan-Kontingent, dann dein Guthaben ($0.006–$0.024/Min.).",
       "manageBilling": "VM & Guthaben verwalten"
     }
   },
@@ -275,7 +275,7 @@
     "activePlan": "Aktiver Tarif",
     "upgradeTo": "Auf {{plan}} upgraden",
     "walletBalance": "Extra-Nutzungs-Guthaben",
-    "walletDescription": "Wird für die Überschreitung des Monatskontingents, Premium-Modelle bei Free und Plus und eigenständige Cloud-VM-Rechenzeit für BYOS/BYOK ($0,16–$0,32/Std. ohne Monatsplan) verwendet. Läuft nie ab.",
+    "walletDescription": "Für Nutzung über das monatliche Kontingent hinaus (Cloud-VMs $0.006–$0.024/Min.) und Premium-Modelle. Verfällt nie.",
     "topUpLabel": "Extra-Guthaben aufladen (USD, min. 10,00 $)",
     "topUpButton": "${{amount}} hinzufügen",
     "topUpNote": "Mindestaufladung 10,00 $. Keine zusätzliche Zahlungsgebühr — 100 % des gezahlten Betrags werden deinem Guthaben sofort gutgeschrieben.",
@@ -287,19 +287,19 @@
     "fallbackPlans": {
       "free": {
         "name": "Free",
-        "description": "0,50 $/Mon Free-Budget (LLMs + 4-Core-Cloud-VMs à 0,16 $/Std)"
+        "description": "$0.50/Monat Cloud-VM-Kontingent (Small 2 vCPU · 8 GB, $0.004/Min.)"
       },
       "plus": {
         "name": "Plus",
-        "description": "$10,00/Monat Kontingent für Cloud-VMs (~200 vCPU-Std.) + $2 Free-Tier-LLM-Guthaben · BYOS/BYOK · Max. 1 VM (kein Team)"
+        "description": "$10.00/Monat Cloud-VM-Kontingent (~84 vCPU-Std.) · Small, Large & Ultra · BYOS/BYOK · Max. 1 VM"
       },
       "pro": {
         "name": "Pro",
-        "description": "$25,00/Monat gemeinsames Kontingent für Cloud-VMs (~550 vCPU-Std.) + alle LLM-Modelle · Bis zu 4 Mitglieder"
+        "description": "$25.00/Monat Cloud-VM-Kontingent (~209 vCPU-Std.) · Small, Large & Ultra · Bis zu 4 Mitglieder"
       },
       "team": {
         "name": "Team",
-        "description": "200,00 $/Mon Team-Pool für 16 Modelle & Cloud-VMs · Bis zu 20 Mitglieder & 20 VMs"
+        "description": "$160.00/Monat Cloud-VM-Kontingent (~1.334 vCPU-Std.) · Bis zu 20 Mitglieder"
       }
     },
     "errors": {

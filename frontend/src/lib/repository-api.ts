@@ -223,3 +223,18 @@ export async function repositoryMutation<T>(uuid: string, endpoint: string, data
   const response = await authedAxios.post<T>(`${API_BASE}/sandbox/sandboxes/${uuid}/${endpoint}/`, data);
   return response.data;
 }
+
+/** The checkout one chat works in: its private branch worktree, or the project folder until it picks a branch. */
+export interface ChatCheckout extends RepositoryStatus {
+  worktree_path: string;
+}
+export async function chatCheckoutRequest(uuid: string, conversationId: string, path: string, signal?: AbortSignal): Promise<ChatCheckout> {
+  const { data } = await authedAxios.get<ChatCheckout>(`${API_BASE}/sandbox/sandboxes/${uuid}/git/worktree/`, {
+    params: { conversation_id: conversationId, path },
+    signal,
+  });
+  return data;
+}
+export function chatCheckoutSwitch(uuid: string, conversationId: string, path: string, branch: string, create = false): Promise<ChatCheckout> {
+  return repositoryMutation<ChatCheckout>(uuid, "git/worktree", { conversation_id: conversationId, path, branch, create });
+}

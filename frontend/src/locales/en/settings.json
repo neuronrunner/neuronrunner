@@ -254,7 +254,7 @@
         "hint": "Paste your ~/.gemini/oauth_creds.json content, or connect Google OAuth directly from the Cloud Agent Selector.",
         "placeholder": "Paste ~/.gemini/oauth_creds.json or OAuth credentials"
       },
-      "computeNote": "BYOS charges $0.00 for LLM tokens. Execution runs inside your Cloud VM and uses your plan's VM quota or your Top-Up wallet balance ($0.16–$0.32/hr) — no NeuronRunner subscription required.",
+      "computeNote": "BYOS charges $0.00 for LLM tokens. Execution runs inside your Cloud VM and uses your plan's VM quota first, then your Top-Up wallet ($0.006–$0.024/min).",
       "manageBilling": "Manage VM & Top-Up"
     },
     "auxiliary": {
@@ -282,7 +282,7 @@
     "activePlan": "Active plan",
     "upgradeTo": "Upgrade to {{plan}}",
     "walletBalance": "Extra-usage wallet balance",
-    "walletDescription": "Used for monthly quota overage, premium models on Free and Plus, and standalone Cloud VM compute for BYOS/BYOK ($0.16–$0.32/hr without a monthly plan). Never expires.",
+    "walletDescription": "Used for usage beyond your monthly plan quota (Cloud VMs at $0.006–$0.024/min) and premium models. Never expires.",
     "topUpLabel": "Add extra-usage credits (USD, min $10.00)",
     "topUpButton": "Add ${{amount}}",
     "topUpNetCredit": "Wallet credit (0% fee)",
@@ -298,19 +298,19 @@
     "fallbackPlans": {
       "free": {
         "name": "Free",
-        "description": "$0.50/mo free-tier usage quota (LLMs + 4-core Cloud VMs at $0.16/hr)"
+        "description": "$0.50/mo Cloud VM quota (Small 2 vCPU · 8 GB at $0.004/min)"
       },
       "plus": {
         "name": "Plus",
-        "description": "$10.00/mo quota for Cloud VMs (~200 vCPU-hrs) + $2 Free-Tier LLM allowance · BYOS/BYOK · Max 1 VM (no team)"
+        "description": "$10.00/mo Cloud VM quota (~84 vCPU-hrs) · Small, Large & Ultra · BYOS/BYOK · Max 1 VM (no team)"
       },
       "pro": {
         "name": "Pro",
-        "description": "$25.00/mo pooled quota for Cloud VMs (~550 vCPU-hrs) + all LLM models · Up to 4 members"
+        "description": "$25.00/mo Cloud VM quota (~209 vCPU-hrs) · Small, Large & Ultra · Up to 4 members"
       },
       "team": {
         "name": "Team",
-        "description": "$200.00/mo pooled quota across all 16 models & Cloud VMs · Up to 20 members & 20 VMs"
+        "description": "$160.00/mo Cloud VM quota (~1,334 vCPU-hrs) · Up to 20 members"
       }
     },
     "errors": {

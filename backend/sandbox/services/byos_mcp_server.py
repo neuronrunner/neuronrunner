@@ -15,7 +15,7 @@ SERVER_INFO = {"name": "neuronrunner-desktop", "version": "1.0.0"}
 DESKTOP_TOOL_SCHEMA: dict[str, Any] = {
     "name": "desktop",
     "description": (
-        "Control the live KDE Linux desktop (DISPLAY :1, with virtual audio sink nr_speaker). "
+        "Control the live Linux desktop (DISPLAY :1, with virtual audio sink nr_speaker). "
         "Starts the desktop automatically if not running. "
         "Supports screenshot, click, double_click, right_click, move_mouse, drag, scroll, press, write, "
         "launch, wait, screen_size, start_recording (captures video + audio to MP4), and stop_recording. "
@@ -56,7 +56,7 @@ DESKTOP_TOOL_SCHEMA: dict[str, Any] = {
             "keys": {"type": "array", "items": {"type": "string"}, "description": "Sequence of X11 key names to press in order."},
             "text": {"type": "string", "description": "Literal UTF-8 text to paste/type into the focused field (for action='write')."},
             "press_enter": {"type": "boolean", "default": False, "description": "Whether to press Return after writing text."},
-            "command": {"type": "string", "description": "GUI application command to launch on DISPLAY :1 (e.g. 'chromium https://example.com' or 'konsole')."},
+            "command": {"type": "string", "description": "GUI application command to launch on DISPLAY :1 (e.g. 'chromium https://example.com' or 'xfce4-terminal')."},
             "path": {"type": "string", "description": "Optional workspace file path to save a screenshot (.png) or screen recording (.mp4)."},
             "fps": {"type": "integer", "minimum": 1, "maximum": 60, "default": 30, "description": "Frame rate for start_recording (1-60)."},
             "wait_ms": {"type": "integer", "minimum": 50, "maximum": 15000, "description": "Milliseconds to wait after the action before capturing the screenshot (or duration for action='wait')."},

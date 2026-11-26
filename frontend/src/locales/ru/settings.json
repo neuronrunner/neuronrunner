@@ -254,7 +254,7 @@
         "hint": "Paste your ~/.gemini/oauth_creds.json content, or connect Google OAuth directly from the Cloud Agent Selector.",
         "placeholder": "Paste ~/.gemini/oauth_creds.json or OAuth credentials"
       },
-      "computeNote": "BYOS не взимает плату за токены LLM ($0.00). Агенты работают внутри вашей облачной ВМ и расходуют квоту ВМ по тарифу или баланс кошелька Top-Up ($0.16–$0.32/ч) — ежемесячная подписка не обязательна.",
+      "computeNote": "BYOS — $0.00 за LLM-токены. Выполнение идёт в вашей Cloud VM: сначала квота плана, затем кошелёк ($0.006–$0.024/мин).",
       "manageBilling": "Управление ВМ и балансом"
     }
   },
@@ -275,7 +275,7 @@
     "activePlan": "Активный тариф",
     "upgradeTo": "Перейти на {{plan}}",
     "walletBalance": "Баланс дополнительного использования",
-    "walletDescription": "Используется для превышения ежемесячной квоты, премиум-моделей на Free и Plus и отдельных облачных вычислений ВМ для BYOS/BYOK ($0,16–$0,32/ч без ежемесячного тарифа). Не сгорает.",
+    "walletDescription": "Используется для расхода сверх месячной квоты (Cloud VM $0.006–$0.024/мин) и премиум-моделей. Не сгорает.",
     "topUpLabel": "Добавить кредиты дополнительного использования (USD, мин. $10.00)",
     "topUpButton": "Добавить ${{amount}}",
     "topUpNote": "Минимальное пополнение — $10.00. Дополнительная комиссия не взимается; 100% оплаченной суммы сразу зачисляется на ваш баланс.",
@@ -287,19 +287,19 @@
     "fallbackPlans": {
       "free": {
         "name": "Free",
-        "description": "$0.50/мес бесплатная квота (LLM + 2-ядерные ВМ по $0.16/ч)"
+        "description": "Квота Cloud VM $0.50/мес (Small 2 vCPU · 8 ГБ, $0.004/мин)"
       },
       "plus": {
         "name": "Plus",
-        "description": "Квота $10,00/мес на облачные ВМ (~200 vCPU-ч) + $2 на LLM бесплатного уровня · BYOS/BYOK · Макс. 1 ВМ (без команды)"
+        "description": "Квота Cloud VM $10.00/мес (~84 vCPU-ч) · Small, Large и Ultra · BYOS/BYOK · Макс. 1 VM"
       },
       "pro": {
         "name": "Pro",
-        "description": "Общая квота $25,00/мес на облачные ВМ (~550 vCPU-ч) + все модели LLM · До 4 участников"
+        "description": "Квота Cloud VM $25.00/мес (~209 vCPU-ч) · Small, Large и Ultra · До 4 участников"
       },
       "team": {
         "name": "Team",
-        "description": "$200.00/мес общий пул на 16 моделей и облачные ВМ · До 20 участников и 20 ВМ"
+        "description": "Квота Cloud VM $160.00/мес (~1 334 vCPU-ч) · До 20 участников"
       }
     },
     "errors": {

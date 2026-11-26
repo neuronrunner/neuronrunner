@@ -81,7 +81,7 @@ def prepare_playwright(command, env):
             env['PLAYWRIGHT_MCP_CDP_ENDPOINT'] = CDP_URL
             return
         if owner:
-            # Switch a managed headless browser to KDE when the desktop opens.
+            # Switch a managed headless browser to the desktop when the desktop opens.
             os.kill(owner['pid'], signal.SIGTERM)
             for _ in range(100):
                 if not browser_owner(profile):
