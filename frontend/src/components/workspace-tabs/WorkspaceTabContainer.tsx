@@ -329,7 +329,11 @@ export const WorkspaceTabContainer: React.FC<Props> = ({ children }) => {
         {showWorkspaceHeader && (
           <WorkspacePageHeader
             className="absolute inset-x-0 top-0 z-40"
-            actions={<WorkspaceHeaderToolbar animate={isChatRoute && !primaryFileTab} />}
+            actions={
+              isChatRoute && !hasActiveConversation && !primaryFileTab
+                ? undefined
+                : <WorkspaceHeaderToolbar animate={isChatRoute && !primaryFileTab} />
+            }
           >
             <div className="flex min-w-0 flex-1 items-center">
               {!isSidebarOpen && (
