@@ -864,7 +864,7 @@ export default function VmConnectTerminalDialog({
               disabled={status !== "ready" || isSyncing}
               autoComplete="off"
               spellCheck={false}
-              placeholder={provider === "anthropic_sub" ? "code#state" : "code / callback URL"}
+              placeholder={provider === "anthropic_sub" ? "code#state" : "code"}
               className="h-8 w-full font-mono text-xs"
             />
           </form>
