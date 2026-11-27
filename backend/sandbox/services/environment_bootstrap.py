@@ -97,6 +97,40 @@ def _exec_json(runtime, script: str, payload: dict, *, timeout: int = 120) -> di
     return data
 
 
+def _git_credentials_payload(sandbox: Sandbox, user=None) -> dict:
+    """Build credential lines and default Git identity for connected GitHub/GitLab accounts."""
+    owner = user or sandbox.user or getattr(sandbox.workspace, "owner", None)
+    if owner is None:
+        return {"lines": [], "user_name": "", "user_email": ""}
+    lines: list[str] = []
+    login = ""
+    conn = get_github_connection(owner)
+    if conn is not None:
+        extra = getattr(conn, "extra_data", None) or {}
+        gh_token = str(extra.get("access_token") or getattr(conn, "access_token", "") or "").strip()
+        if gh_token:
+            lines.append(f"https://x-access-token:{quote(gh_token, safe='')}@github.com")
+        login = str(extra.get("login") or "").strip()
+    try:
+        from social_django.models import UserSocialAuth
+        gl_conn = UserSocialAuth.objects.filter(user=owner, provider="gitlab").order_by("-id").first()
+        if gl_conn is not None:
+            gl_extra = getattr(gl_conn, "extra_data", None) or {}
+            gl_token = str(gl_extra.get("access_token") or "").strip()
+            if gl_token:
+                import os as _os
+                from urllib.parse import urlsplit as _urlsplit
+                gl_host = _urlsplit(_os.getenv("GITLAB_BASE_URL", "https://gitlab.com")).netloc or "gitlab.com"
+                lines.append(f"https://oauth2:{quote(gl_token, safe='')}@{gl_host}")
+            if not login:
+                login = str(gl_extra.get("login") or "").strip()
+    except Exception:
+        pass
+    user_name = login or str(getattr(owner, "username", "") or "").strip()
+    user_email = str(getattr(owner, "email", "") or "").strip()
+    return {"lines": lines, "user_name": user_name, "user_email": user_email}
+
+
 def _github_clone_url(sandbox: Sandbox, user=None) -> tuple[str, str]:
     """Return (authenticated_clone_url, clean_remote_url) for the environment's repository."""
     raw_url = (sandbox.repo_url or "").strip()
@@ -145,6 +179,30 @@ result = {
 
 root.parent.mkdir(parents=True, exist_ok=True)
 git_dir = root / ".git"
+
+# 0. Refresh Git HTTPS credentials so git pull/fetch/push work without interactive prompts
+git_cred_lines = cfg.get("git_credentials") or []
+if git_cred_lines:
+    try:
+        cred_path = Path("/root/.git-credentials")
+        cred_tmp = Path(f"/root/.git-credentials.tmp-{os.getpid()}")
+        cred_tmp.write_text("\n".join(git_cred_lines) + "\n", encoding="utf-8")
+        os.chmod(cred_tmp, 0o600)
+        cred_tmp.replace(cred_path)
+        subprocess.run(["git", "config", "--global", "credential.helper", "store --file=/root/.git-credentials"], capture_output=True)
+        subprocess.run(["git", "config", "--global", "push.default", "current"], capture_output=True)
+        git_user_name = (cfg.get("git_user_name") or "").strip()
+        git_user_email = (cfg.get("git_user_email") or "").strip()
+        if git_user_name:
+            cur_name = subprocess.run(["git", "config", "--global", "--get", "user.name"], capture_output=True, text=True).stdout.strip()
+            if not cur_name:
+                subprocess.run(["git", "config", "--global", "user.name", git_user_name], capture_output=True)
+        if git_user_email:
+            cur_email = subprocess.run(["git", "config", "--global", "--get", "user.email"], capture_output=True, text=True).stdout.strip()
+            if not cur_email:
+                subprocess.run(["git", "config", "--global", "user.email", git_user_email], capture_output=True)
+    except OSError:
+        pass
 
 # 1. Clone repo if missing
 if auth_url and not git_dir.exists():
@@ -641,6 +699,7 @@ def ensure_environment_ready(sandbox: Sandbox, runtime, *, user=None, force_setu
     root = environment_root_path(sandbox)
     work_dir = environment_working_path(sandbox)
     auth_url, clean_url = _github_clone_url(sandbox, user=user)
+    git_creds = _git_credentials_payload(sandbox, user=user)
 
     prep = _exec_json(
         runtime,
@@ -657,6 +716,9 @@ def ensure_environment_ready(sandbox: Sandbox, runtime, *, user=None, force_setu
             "manifest_fallbacks": list(MANIFEST_FALLBACKS),
             "dep_dirs": list(DERIVED_DEP_DIRS),
             "force_setup": force_setup,
+            "git_credentials": git_creds["lines"],
+            "git_user_name": git_creds["user_name"],
+            "git_user_email": git_creds["user_email"],
         },
         timeout=300,
     )
