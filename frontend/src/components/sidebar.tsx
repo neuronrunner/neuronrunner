@@ -514,12 +514,24 @@ const Sidebar = ({ hideOverlay = false, offsetTop = 0 }: SidebarProps) => {
 
   const toggleProjectExpand = useCallback((uuid: string, e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
-    if (!expandedProjects[uuid]) void fetchConversations(false, uuid);
+    const wasExpanded = expandedProjects[uuid] !== false;
+    if (!wasExpanded) void fetchConversations(false, uuid);
     setExpandedProjects((prev) => ({
       ...prev,
-      [uuid]: !prev[uuid],
+      [uuid]: !(prev[uuid] !== false),
     }));
   }, [expandedProjects, fetchConversations]);
+
+  // Fetch conversations for environments that default to expanded so their chats appear immediately
+  const autoFetchedProjectsRef = useRef<Set<string>>(new Set());
+  useEffect(() => {
+    for (const p of workspaceProjects) {
+      if (expandedProjects[p.uuid] !== false && !autoFetchedProjectsRef.current.has(p.uuid)) {
+        autoFetchedProjectsRef.current.add(p.uuid);
+        void fetchConversations(false, p.uuid);
+      }
+    }
+  }, [workspaceProjects, expandedProjects, fetchConversations]);
 
   const handleProjectHeaderClick = useCallback(async (project: IProject) => {
     await pickSandbox(project.uuid);
@@ -759,7 +771,7 @@ const Sidebar = ({ hideOverlay = false, offsetTop = 0 }: SidebarProps) => {
               ) : workspaceProjects.length > 0 ? (
                 <div className="flex flex-col gap-1 mt-1">
                   {workspaceProjects.map((p) => {
-                    const isExpanded = expandedProjects[p.uuid] === true;
+                    const isExpanded = expandedProjects[p.uuid] !== false;
                     const convIds = projectConversationMap[p.uuid] || [];
                     const projectConvs = (cachedProjectConversations[p.uuid] || conversations).filter((c) => convIds.includes(c.uuid));
                     const isDirectProjectRoute =
