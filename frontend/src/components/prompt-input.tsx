@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useCallback, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import CloudAgentSelector from "@/components/chat/cloud-agent-selector";
 import ImageLightbox from "@/components/image-lightbox";
 import type { ImageData } from "@/stores/chat";
 import {
@@ -1139,6 +1140,9 @@ const PromptInput: React.FC<PromptInputProps> = ({
                                 onChange={handleFileUpload}
                             />
                         </label>
+
+                        {/* Harness / Cloud Agent Selector (active chat composer) */}
+                        {!compact && <CloudAgentSelector variant="composer" />}
 
                         {/* Unified Model & Reasoning Selector */}
                         {currentModel && (

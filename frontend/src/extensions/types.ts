@@ -29,6 +29,7 @@ export interface ExtensionRuntimeBridge {
   resolveProjectRuntimeLabel: (project: { vm_uuid?: string | null }) => string | null;
   onToolEvent: (toolName: string) => void;
   useRuntimeList: () => { items: Array<{ uuid: string; name?: string; status?: string }>; selectedUuid: string | null };
+  ensureRuntimeRunning?: (workspaceUuid?: string) => Promise<boolean>;
 }
 
 export interface ExtensionQuotaBridge {

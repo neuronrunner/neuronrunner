@@ -108,9 +108,10 @@ function AgentBrandLogo({ id, size = 20 }: { id: AgentId; size?: number }) {
 
 interface CloudAgentSelectorProps {
   vmAttached?: boolean;
+  variant?: "pill" | "composer";
 }
 
-export default function CloudAgentSelector({ vmAttached = false }: CloudAgentSelectorProps) {
+export default function CloudAgentSelector({ vmAttached = false, variant = "pill" }: CloudAgentSelectorProps) {
   const { t } = useTranslation("landing");
   const selectedModel = useChatStore((s) => s.selectedModel);
   const setSelectedModel = useChatStore((s) => s.setSelectedModel);
@@ -381,7 +382,11 @@ export default function CloudAgentSelector({ vmAttached = false }: CloudAgentSel
           <button
             type="button"
             aria-label={t("home.agentSelector.ariaLabel", { defaultValue: "Select cloud agent" })}
-            className="group inline-flex items-center gap-2 rounded-full border border-border/75 bg-card/65 py-1 pl-2.5 pr-2.5 font-mono text-[11px] text-muted-foreground shadow-sm backdrop-blur-md transition-all hover:border-foreground/25 hover:bg-card hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className={
+              variant === "composer"
+                ? "group inline-flex h-8 sm:h-8.5 items-center gap-1.5 rounded-lg border border-border/60 bg-muted/35 px-2 sm:px-2.5 text-xs text-muted-foreground transition-colors hover:border-border hover:bg-muted/70 hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/40 shrink-0"
+                : "group inline-flex items-center gap-2 rounded-full border border-border/75 bg-card/65 py-1 pl-2.5 pr-2.5 font-mono text-[11px] text-muted-foreground shadow-sm backdrop-blur-md transition-all hover:border-foreground/25 hover:bg-card hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            }
           >
             <span className="relative flex h-4 w-4 shrink-0 items-center justify-center">
               <AgentBrandLogo id={activeDef?.id ?? "neuron"} size={14} />
@@ -391,7 +396,7 @@ export default function CloudAgentSelector({ vmAttached = false }: CloudAgentSel
                 }`}
               />
             </span>
-            <span className="max-w-[140px] truncate font-medium tracking-tight text-foreground/95">
+            <span className="max-w-[120px] sm:max-w-[140px] truncate font-medium tracking-tight text-foreground/95">
               {activeDef
                 ? t(activeDef.labelKey, { defaultValue: activeDef.fallbackLabel })
                 : t("home.agentSelector.connectAgent", { defaultValue: "Connect Agent" })}
@@ -401,7 +406,8 @@ export default function CloudAgentSelector({ vmAttached = false }: CloudAgentSel
         </PopoverTrigger>
 
         <PopoverContent
-          align="end"
+          side={variant === "composer" ? "top" : "bottom"}
+          align={variant === "composer" ? "start" : "end"}
           sideOffset={8}
           className="w-[392px] max-w-[calc(100vw-1.5rem)] overflow-hidden rounded-2xl border-border/80 bg-popover/95 p-0 shadow-[0_24px_64px_-12px_rgba(0,0,0,0.55)] backdrop-blur-2xl"
         >

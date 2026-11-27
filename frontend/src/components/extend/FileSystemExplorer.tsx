@@ -8,9 +8,10 @@ import { useRouter } from "@/lib/navigation";
 import {
   LuChevronDown, LuChevronRight, LuChevronsDownUp, LuEllipsis, LuFileCode2,
   LuFilePlus, LuFileText, LuFolder, LuFolderOpen, LuFolderPlus, LuGithub,
-  LuCircleAlert, LuImage, LuLoaderCircle, LuPencil, LuRefreshCw, LuSearch, LuSettings, LuTable2, LuTerminal,
+  LuCircleAlert, LuImage, LuLoaderCircle, LuPencil, LuPower, LuRefreshCw, LuSearch, LuSettings, LuTable2, LuTerminal,
   LuTrash2, LuUpload,
 } from "react-icons/lu";
+import frontendExtension from "@cloud";
 import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator,
   DropdownMenuTrigger,
@@ -149,6 +150,54 @@ export const FileSystemExplorer: React.FC = () => {
   const treeRef = useRef<HTMLDivElement>(null);
   const activeId = useRef(sandboxId);
   activeId.current = sandboxId;
+  const { items: runtimes, selectedUuid: selectedRuntimeUuid } = frontendExtension.runtimeBridge.useRuntimeList();
+  const activeRuntime = useMemo(() => {
+    if (frontendExtension.edition !== "cloud") return null;
+    return (
+      runtimes.find((r) => r.uuid === selectedRuntimeUuid && r.status !== "terminated") ||
+      runtimes.find((r) => r.status === "running") ||
+      runtimes.find((r) => r.status !== "terminated") ||
+      null
+    );
+  }, [runtimes, selectedRuntimeUuid]);
+  const runtimeStatus = activeRuntime?.status;
+  const isRuntimeStopped = frontendExtension.edition === "cloud" && Boolean(activeRuntime) && runtimeStatus === "stopped";
+  const [wakingRuntime, setWakingRuntime] = useState(false);
+  const isRuntimeStarting =
+    frontendExtension.edition === "cloud" &&
+    (wakingRuntime || runtimeStatus === "pending" || runtimeStatus === "provisioning" || runtimeStatus === "starting");
+  const autoWokeSandboxesRef = useRef<Set<string>>(new Set());
+  const prevRuntimeStatusRef = useRef<string | undefined>(runtimeStatus);
+
+  const wakeRuntime = useCallback(async () => {
+    const ensureRunning = frontendExtension.runtimeBridge.ensureRuntimeRunning;
+    if (!ensureRunning) return;
+    setWakingRuntime(true);
+    try {
+      await ensureRunning(workspaceUuid || undefined);
+    } finally {
+      setWakingRuntime(false);
+    }
+  }, [workspaceUuid]);
+
+  // Auto-wake a stopped Cloud VM when opening Files so users immediately see their project files
+  useEffect(() => {
+    if (!isRuntimeStopped || !sandboxId || wakingRuntime) return;
+    const key = `${sandboxId}:${activeRuntime?.uuid || ""}`;
+    if (autoWokeSandboxesRef.current.has(key)) return;
+    autoWokeSandboxesRef.current.add(key);
+    void wakeRuntime();
+  }, [isRuntimeStopped, sandboxId, activeRuntime?.uuid, wakingRuntime, wakeRuntime]);
+
+  // Refresh the file tree as soon as a Cloud VM transitions to running
+  useEffect(() => {
+    const prev = prevRuntimeStatusRef.current;
+    prevRuntimeStatusRef.current = runtimeStatus;
+    if (runtimeStatus === "running" && prev && prev !== "running" && sandboxId) {
+      setRefreshing(true);
+      void fetchFiles(sandboxId).finally(() => setRefreshing(false));
+    }
+  }, [runtimeStatus, sandboxId, fetchFiles]);
 
   useEffect(() => {
     setOperation(null);
@@ -641,9 +690,38 @@ export const FileSystemExplorer: React.FC = () => {
           <div className="workspace-tool-empty" data-files-empty-state>
             <div className="flex w-full max-w-xs flex-col items-center">
               <div className="workspace-tool-empty-icon">
-                {isLoading || refreshing ? <LuLoaderCircle className="h-5 w-5 animate-spin" /> : errorMessage ? <LuCircleAlert className="h-5 w-5" /> : query ? <LuSearch className="h-5 w-5" /> : <LuFolderOpen className="h-5 w-5" />}
+                {isLoading || refreshing || isRuntimeStarting ? (
+                  <LuLoaderCircle className="h-5 w-5 animate-spin" />
+                ) : isRuntimeStopped ? (
+                  <LuPower className="h-5 w-5" />
+                ) : errorMessage ? (
+                  <LuCircleAlert className="h-5 w-5" />
+                ) : query ? (
+                  <LuSearch className="h-5 w-5" />
+                ) : (
+                  <LuFolderOpen className="h-5 w-5" />
+                )}
               </div>
-              {isLoading || refreshing || (!sandboxId && !errorMessage) ? (
+              {isRuntimeStarting ? (
+                <p role="status" className="text-[13px] font-medium text-foreground">
+                  {t("explorer.startingMachine", { defaultValue: "Starting machine..." })}
+                </p>
+              ) : isRuntimeStopped ? (
+                <>
+                  <h3 className="workspace-tool-empty-title">
+                    {t("explorer.machineStopped", { defaultValue: "Machine is stopped" })}
+                  </h3>
+                  <p className="workspace-tool-empty-description">
+                    {t("explorer.machineStoppedDesc", {
+                      defaultValue: "Your Cloud VM is asleep to save compute. Start it to browse your files.",
+                    })}
+                  </p>
+                  <Button size="sm" className="mt-5 h-8 shadow-none" onClick={() => void wakeRuntime()}>
+                    <LuPower />
+                    {t("explorer.startMachine", { defaultValue: "Start Machine" })}
+                  </Button>
+                </>
+              ) : isLoading || refreshing || (!sandboxId && !errorMessage) ? (
                 <p role="status" className="text-[13px] font-medium text-foreground">{t("explorer.loadingFiles")}</p>
               ) : errorMessage ? (
                 <>
