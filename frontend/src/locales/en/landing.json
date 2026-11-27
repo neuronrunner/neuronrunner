@@ -22,12 +22,15 @@
       "back": "Back",
       "readyBadge": "Ready",
       "connectedBadge": "Connected",
+      "connectAgent": "Connect Agent",
+      "addApiKeyBadge": "Add API Key",
+      "manageApiKeys": "Manage API keys",
       "oauthConnectBadge": "Connect in VM",
       "reconnect": "Reconnect in VM",
       "agents": {
         "neuron": {
           "name": "Neuron Agent",
-          "desc": "Built-in cloud agent with Neuron Runner models"
+          "desc": "Bring your own API keys (BYOK)"
         },
         "claude": {
           "name": "Claude Code",

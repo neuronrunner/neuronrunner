@@ -22,12 +22,15 @@
       "back": "Geri",
       "readyBadge": "Hazır",
       "connectedBadge": "Bağlı",
+      "connectAgent": "Ajan Bağla",
+      "addApiKeyBadge": "API Anahtarı Ekle",
+      "manageApiKeys": "API anahtarlarını yönet",
       "oauthConnectBadge": "VM'de Bağla",
       "reconnect": "VM'de Yeniden Bağla",
       "agents": {
         "neuron": {
           "name": "Neuron Agent",
-          "desc": "Neuron Runner modelleriyle dahili bulut ajanı"
+          "desc": "Kendi API anahtarlarınla kullan (BYOK)"
         },
         "claude": {
           "name": "Claude Code",

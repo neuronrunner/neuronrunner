@@ -16,12 +16,12 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { toaster } from "@/components/ui/toaster";
 import { authedAxios } from "@/lib/axios";
 import { env } from "@/lib/env";
-import { DEFAULT_PLATFORM_MODELS } from "@/lib/default-models";
 import useChatStore from "@/stores/chat";
 import useModelStore from "@/stores/search-models";
 import useWorkspacesStore from "@/stores/workspaces";
 
 const API_BASE = env.API_URL || "";
+const BYOS_PROVIDER_IDS = new Set<string>(["anthropic_sub", "openai_sub", "antigravity_sub"]);
 
 export type AgentId = "neuron" | ByosProvider;
 export type { ByosProvider };
@@ -45,15 +45,6 @@ interface AgentDefinition {
 }
 
 const AGENT_DEFINITIONS: AgentDefinition[] = [
-  {
-    id: "neuron",
-    labelKey: "home.agentSelector.agents.neuron.name",
-    fallbackLabel: "Neuron Agent",
-    descKey: "home.agentSelector.agents.neuron.desc",
-    fallbackDesc: "Built-in cloud agent with Neuron Runner models",
-    accentClasses:
-      "border-foreground/15 bg-gradient-to-br from-foreground/[0.09] to-foreground/[0.03] text-foreground shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]",
-  },
   {
     id: "anthropic_sub",
     labelKey: "home.agentSelector.agents.claude.name",
@@ -83,6 +74,15 @@ const AGENT_DEFINITIONS: AgentDefinition[] = [
     accentClasses:
       "border-blue-500/25 bg-gradient-to-br from-blue-500/[0.14] via-indigo-500/[0.08] to-amber-500/[0.08] shadow-[inset_0_1px_0_0_rgba(96,165,250,0.18)]",
     preferredModelSuffix: "antigravity-gemini-4-argon-medium",
+  },
+  {
+    id: "neuron",
+    labelKey: "home.agentSelector.agents.neuron.name",
+    fallbackLabel: "Neuron Agent",
+    descKey: "home.agentSelector.agents.neuron.desc",
+    fallbackDesc: "Bring your own API keys (BYOK)",
+    accentClasses:
+      "border-foreground/15 bg-gradient-to-br from-foreground/[0.09] to-foreground/[0.03] text-foreground shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]",
   },
 ];
 
@@ -126,14 +126,19 @@ export default function CloudAgentSelector({ vmAttached = false }: CloudAgentSel
   const [refreshingAgent, setRefreshingAgent] = useState<ByosProvider | null>(null);
   const [vmDialogProvider, setVmDialogProvider] = useState<ByosProvider | null>(null);
 
-  const lastNeuronModelRef = useRef<string>(DEFAULT_PLATFORM_MODELS[0]?.name || "deepseek-v4.1-flash-1017");
+  const lastNeuronModelRef = useRef<string>("");
+
+  const neuronModels = useMemo(
+    () => models.filter((m) => !m.is_byos && !BYOS_PROVIDER_IDS.has(m.provider_name || "")),
+    [models]
+  );
 
   const activeModelObj = useMemo(
     () => models.find((m) => m.name === selectedModel),
     [models, selectedModel]
   );
 
-  const activeAgentId: AgentId = useMemo(() => {
+  const activeAgentId: AgentId | null = useMemo(() => {
     const providerName = activeModelObj?.provider_name;
     if (providerName === "anthropic_sub" || selectedModel.includes("-byos-claude-")) {
       return "anthropic_sub";
@@ -144,8 +149,11 @@ export default function CloudAgentSelector({ vmAttached = false }: CloudAgentSel
     if (providerName === "antigravity_sub" || selectedModel.includes("-byos-antigravity-")) {
       return "antigravity_sub";
     }
-    return "neuron";
-  }, [activeModelObj?.provider_name, selectedModel]);
+    if (activeModelObj && !activeModelObj.is_byos && !BYOS_PROVIDER_IDS.has(providerName || "")) {
+      return "neuron";
+    }
+    return null;
+  }, [activeModelObj, selectedModel]);
 
   useEffect(() => {
     if (activeAgentId === "neuron" && selectedModel) {
@@ -176,19 +184,20 @@ export default function CloudAgentSelector({ vmAttached = false }: CloudAgentSel
 
   const isAgentConnected = useCallback(
     (id: AgentId): boolean => {
-      if (id === "neuron") return true;
+      if (id === "neuron") {
+        if (neuronModels.length > 0) return true;
+        return providerKeys.some((k) => k.auth_type !== "subscription" && !BYOS_PROVIDER_IDS.has(k.provider));
+      }
       if (providerKeys.some((k) => k.provider === id)) return true;
       return models.some((m) => m.provider_name === id);
     },
-    [providerKeys, models]
+    [neuronModels.length, providerKeys, models]
   );
 
   const agentModelCount = useCallback(
     (id: AgentId): number => {
       if (id === "neuron") {
-        return models.filter(
-          (m) => !m.is_byos && !["anthropic_sub", "openai_sub", "antigravity_sub"].includes(m.provider_name || "")
-        ).length;
+        return neuronModels.length;
       }
       const uniqueBaseNames = new Set(
         models
@@ -203,7 +212,7 @@ export default function CloudAgentSelector({ vmAttached = false }: CloudAgentSel
       );
       return uniqueBaseNames.size;
     },
-    [models]
+    [models, neuronModels.length]
   );
 
   const findModelForByosProvider = useCallback(
@@ -271,13 +280,28 @@ export default function CloudAgentSelector({ vmAttached = false }: CloudAgentSel
     [canManageKeys, fetchModelDetails, setSelectedModel, workspaceUuid]
   );
 
+  const openProviderKeysSettings = useCallback(() => {
+    setOpen(false);
+    useWorkspacesStore.getState().setWorkspaceSettingsDialogOpen(true, "provider-keys");
+  }, []);
+
   const activateAgentModel = useCallback(
     (agentId: AgentId) => {
       if (agentId === "neuron") {
-        const target = lastNeuronModelRef.current || DEFAULT_PLATFORM_MODELS[0]?.name || "deepseek-v4.1-flash-1017";
-        setSelectedModel(target);
-        void fetchModelDetails(target);
-        setOpen(false);
+        const currentNeuronModels = useModelStore
+          .getState()
+          .models.filter((m) => !m.is_byos && !BYOS_PROVIDER_IDS.has(m.provider_name || ""));
+        const preferred = lastNeuronModelRef.current;
+        const target =
+          (preferred && currentNeuronModels.some((m) => m.name === preferred) ? preferred : null) ||
+          currentNeuronModels[0]?.name;
+        if (target) {
+          setSelectedModel(target);
+          void fetchModelDetails(target);
+          setOpen(false);
+        } else {
+          openProviderKeysSettings();
+        }
         return;
       }
       const modelName = findModelForByosProvider(agentId);
@@ -288,7 +312,7 @@ export default function CloudAgentSelector({ vmAttached = false }: CloudAgentSel
       setOpen(false);
       void refreshLiveModelsForAgent(agentId);
     },
-    [fetchModelDetails, findModelForByosProvider, refreshLiveModelsForAgent, setSelectedModel]
+    [fetchModelDetails, findModelForByosProvider, openProviderKeysSettings, refreshLiveModelsForAgent, setSelectedModel]
   );
 
   const finishVmConnect = useCallback(
@@ -334,7 +358,11 @@ export default function CloudAgentSelector({ vmAttached = false }: CloudAgentSel
 
   const handleAgentClick = (agent: AgentDefinition) => {
     if (agent.id === "neuron") {
-      activateAgentModel("neuron");
+      if (isAgentConnected("neuron")) {
+        activateAgentModel("neuron");
+      } else {
+        openProviderKeysSettings();
+      }
       return;
     }
     if (isAgentConnected(agent.id)) {
@@ -344,7 +372,7 @@ export default function CloudAgentSelector({ vmAttached = false }: CloudAgentSel
     openVmConnect(agent.id);
   };
 
-  const activeDef = AGENT_DEFINITIONS.find((a) => a.id === activeAgentId) || AGENT_DEFINITIONS[0];
+  const activeDef = activeAgentId ? AGENT_DEFINITIONS.find((a) => a.id === activeAgentId) || null : null;
 
   return (
     <>
@@ -356,11 +384,17 @@ export default function CloudAgentSelector({ vmAttached = false }: CloudAgentSel
             className="group inline-flex items-center gap-2 rounded-full border border-border/75 bg-card/65 py-1 pl-2.5 pr-2.5 font-mono text-[11px] text-muted-foreground shadow-sm backdrop-blur-md transition-all hover:border-foreground/25 hover:bg-card hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <span className="relative flex h-4 w-4 shrink-0 items-center justify-center">
-              <AgentBrandLogo id={activeDef.id} size={14} />
-              <span className="absolute -bottom-0.5 -right-0.5 flex h-1.5 w-1.5 rounded-full bg-emerald-500 ring-2 ring-background" />
+              <AgentBrandLogo id={activeDef?.id ?? "neuron"} size={14} />
+              <span
+                className={`absolute -bottom-0.5 -right-0.5 flex h-1.5 w-1.5 rounded-full ring-2 ring-background ${
+                  activeDef ? "bg-emerald-500" : "bg-amber-500"
+                }`}
+              />
             </span>
             <span className="max-w-[140px] truncate font-medium tracking-tight text-foreground/95">
-              {t(activeDef.labelKey, { defaultValue: activeDef.fallbackLabel })}
+              {activeDef
+                ? t(activeDef.labelKey, { defaultValue: activeDef.fallbackLabel })
+                : t("home.agentSelector.connectAgent", { defaultValue: "Connect Agent" })}
             </span>
             <LuChevronDown className="h-3 w-3 shrink-0 opacity-60 transition-transform duration-200 group-data-[state=open]:rotate-180" />
           </button>
@@ -447,10 +481,26 @@ export default function CloudAgentSelector({ vmAttached = false }: CloudAgentSel
                         )
                       ) : (
                         <span className="shrink-0 rounded-full border border-border/80 bg-background/85 px-2.5 py-1 font-mono text-[10px] font-medium text-foreground/85 shadow-sm transition-all group-hover:border-foreground/30 group-hover:bg-background group-hover:text-foreground">
-                          {t("home.agentSelector.oauthConnectBadge", { defaultValue: "Connect in VM" })}
+                          {agent.id === "neuron"
+                            ? t("home.agentSelector.addApiKeyBadge", { defaultValue: "Add API Key" })
+                            : t("home.agentSelector.oauthConnectBadge", { defaultValue: "Connect in VM" })}
                         </span>
                       )}
                     </button>
+
+                    {agent.id === "neuron" && connected && (
+                      <div className="mr-1.5 flex shrink-0 items-center gap-0.5 rounded-lg border border-border/50 bg-background/45 p-0.5 backdrop-blur-sm">
+                        <button
+                          type="button"
+                          title={t("home.agentSelector.manageApiKeys", { defaultValue: "Manage API keys" })}
+                          aria-label={t("home.agentSelector.manageApiKeys", { defaultValue: "Manage API keys" })}
+                          onClick={openProviderKeysSettings}
+                          className="rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                        >
+                          <LuKeyRound className="h-3.5 w-3.5" />
+                        </button>
+                      </div>
+                    )}
 
                     {agent.id !== "neuron" && connected && (
                       <div className="mr-1.5 flex shrink-0 items-center gap-0.5 rounded-lg border border-border/50 bg-background/45 p-0.5 backdrop-blur-sm">
