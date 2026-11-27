@@ -12,7 +12,6 @@ import useChatStore, { type Message } from "@/stores/chat";
 import useAuthStore from "@/stores/auth";
 import useRecentModelsStore from "@/stores/recent-models";
 import PromptInput from "@/components/prompt-input";
-import { LoadingDots } from "@/components/loading-dots";
 import ChatMessage from "@/components/chat/chat-message";
 import { mergeRequestUpdateMessage } from "@/components/chat/normalize-tool-calls";
 import {
@@ -961,8 +960,8 @@ const ChatWorkspace = () => {
                           </span>
                         </div>
                       ) : (
-                        <div ref={streamAnchorRef} className="px-1 py-2">
-                          <LoadingDots />
+                        <div ref={streamAnchorRef} className="inline-flex items-center px-1 py-2">
+                          <LuLoader2 className="h-4 w-4 animate-spin text-muted-foreground" />
                         </div>
                       )
                     ) : null}
