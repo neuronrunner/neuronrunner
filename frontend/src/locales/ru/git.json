@@ -416,7 +416,7 @@
     "disconnect": "Отключить",
     "disconnectAriaLabel": "Отключить @{{login}}",
     "disconnectTitle": "Отключить @{{login}}?",
-    "disconnectDescription": "NeuronRunner потеряет доступ к приватным репозиториям, issues и pull requests этого аккаунта. Вход через GitHub для этого аккаунта также будет удалён. Репозитории, уже клонированные в ваше рабочее пространство, не будут удалены.",
+    "disconnectDescription": "Neuron Runner потеряет доступ к приватным репозиториям, issues и pull requests этого аккаунта. Вход через GitHub для этого аккаунта также будет удалён. Репозитории, уже клонированные в ваше рабочее пространство, не будут удалены.",
     "disconnectConfirm": "Отключить",
     "disconnecting": "Отключение…",
     "disconnectError": "Не удалось отключить GitHub. Попробуйте снова.",

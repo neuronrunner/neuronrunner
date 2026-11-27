@@ -563,7 +563,7 @@
     "snapshot": {
       "title": "Синтезированный снимок памяти",
       "coreCount": "{{count}} ключевых",
-      "subtitle": "Как NeuronRunner структурирует ваш контекст по категориям",
+      "subtitle": "Как Neuron Runner структурирует ваш контекст по категориям",
       "copied": "Скопировано",
       "copyMarkdown": "Копировать Markdown",
       "factSingle": "{{count}} факт",
@@ -642,7 +642,7 @@
   },
   "apiKeys": {
     "title": "API-ключи",
-    "subtitle": "Управляйте API-ключами для программного доступа к моделям, агентам и автоматизациям NeuronRunner.",
+    "subtitle": "Управляйте API-ключами для программного доступа к моделям, агентам и автоматизациям Neuron Runner.",
     "generateTitle": "Создать новый API-ключ",
     "namePlaceholder": "напр. CLI Runner, Продакшен-агент",
     "createButton": "Создать ключ",

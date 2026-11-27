@@ -27,7 +27,7 @@
       "agents": {
         "neuron": {
           "name": "Neuron Agent",
-          "desc": "Built-in cloud agent with NeuronRunner models"
+          "desc": "Built-in cloud agent with Neuron Runner models"
         },
         "claude": {
           "name": "Claude Code",

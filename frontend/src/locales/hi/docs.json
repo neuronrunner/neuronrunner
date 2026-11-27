@@ -53,8 +53,8 @@
     "dashboard": {
       "verifying": "स्टाफ़ अनुमतियाँ सत्यापित की जा रही हैं...",
       "accessRequiredTitle": "स्टाफ़ एक्सेस आवश्यक",
-      "accessRequiredDesc": "NeuronRunner एडमिन डैशबोर्ड तक पहुँचने के लिए आपको अधिकृत स्टाफ़ / सुपरयूज़र खाते से साइन इन होना चाहिए।",
-      "title": "NeuronRunner एडमिन",
+      "accessRequiredDesc": "Neuron Runner एडमिन डैशबोर्ड तक पहुँचने के लिए आपको अधिकृत स्टाफ़ / सुपरयूज़र खाते से साइन इन होना चाहिए।",
+      "title": "Neuron Runner एडमिन",
       "staffControlBadge": "स्टाफ़ नियंत्रण",
       "subtitle": "चयनित मॉडल, उपयोगकर्ता वर्कस्पेस और सिस्टम कॉन्फ़िगरेशन प्रबंधित करें।",
       "refresh": "रीफ़्रेश करें",

@@ -416,7 +416,7 @@
     "disconnect": "Déconnecter",
     "disconnectAriaLabel": "Déconnecter @{{login}}",
     "disconnectTitle": "Déconnecter @{{login}} ?",
-    "disconnectDescription": "NeuronRunner perdra l'accès aux dépôts privés, aux issues et aux pull requests de ce compte. La connexion GitHub de ce compte sera également supprimée. Les dépôts déjà clonés dans votre espace de travail ne seront pas supprimés.",
+    "disconnectDescription": "Neuron Runner perdra l'accès aux dépôts privés, aux issues et aux pull requests de ce compte. La connexion GitHub de ce compte sera également supprimée. Les dépôts déjà clonés dans votre espace de travail ne seront pas supprimés.",
     "disconnectConfirm": "Déconnecter",
     "disconnecting": "Déconnexion…",
     "disconnectError": "Impossible de déconnecter GitHub. Réessayez.",

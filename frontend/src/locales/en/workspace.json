@@ -836,7 +836,7 @@
   "hello": {
     "badge": "Bring your own AI",
     "title": "Connect your AI to get started",
-    "subtitle": "NeuronRunner runs your agent in its own sandbox; the model runs on your account. Add an API key or sign in with a subscription you already have. You only pay your provider for tokens.",
+    "subtitle": "Neuron Runner runs your agent in its own sandbox; the model runs on your account. Add an API key or sign in with a subscription you already have. You only pay your provider for tokens.",
     "recommended": "Recommended",
     "connected": "Connected",
     "back": "Back",

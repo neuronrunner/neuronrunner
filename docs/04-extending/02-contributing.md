@@ -1,6 +1,6 @@
 ---
 title: Contributing
-description: How to propose changes to NeuronRunner and its docs.
+description: How to propose changes to Neuron Runner and its docs.
 ---
 
 Contributions are welcome, from typo fixes to new features.

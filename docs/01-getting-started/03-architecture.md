@@ -3,7 +3,7 @@ title: Architecture
 description: How the frontend, backend, sandboxes and preview proxy fit together.
 ---
 
-NeuronRunner is a React single-page app talking to a Django ASGI backend. The backend stores state in PostgreSQL and Redis and runs one Docker container per workspace.
+Neuron Runner is a React single-page app talking to a Django ASGI backend. The backend stores state in PostgreSQL and Redis and runs one Docker container per workspace.
 
 ```text
 React 19 + Vite web app
@@ -37,7 +37,7 @@ PostgreSQL     Redis             Docker Engine ──► Preview proxy (:8090)
 1. The browser sends a chat message over HTTP; the reply streams back with Server-Sent Events.
 2. The chat agent calls tools (read file, run command, Git, MCP tools...). Sandbox tools execute inside the workspace container through the Docker API.
 3. The terminal is a WebSocket served by Django Channels. Each connection uses a one-time signed ticket stored in Redis.
-4. Port previews go through the separate preview proxy so sandbox apps never share an origin, cookies or storage with NeuronRunner itself.
+4. Port previews go through the separate preview proxy so sandbox apps never share an origin, cookies or storage with Neuron Runner itself.
 
 ## Isolation
 

@@ -20,7 +20,7 @@ urlpatterns = [
     ),
     path('', include('openai_compat.urls')),
     path('', include('chat.urls')),
-    path('', lambda request: JsonResponse({"status": "ok", "service": "NeuronRunner API"})),
+    path('', lambda request: JsonResponse({"status": "ok", "service": "Neuron Runner API"})),
     path('health/', lambda request: JsonResponse({"status": "ok"})),
     path(
         'config/',

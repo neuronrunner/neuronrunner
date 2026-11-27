@@ -4,7 +4,7 @@
   <img src="assets/readme-cover.png" alt="Neuron Runner — your agent works in the cloud, with its own computer" width="100%">
 </p>
 
-NeuronRunner is an open-source, self-hosted AI coding workspace and multi-model agent platform. It pairs an isolated local Docker sandbox per team workspace with streaming multi-model LLM chat, tool calling, interactive browser terminals, isolated-origin port previews, integrated Git & GitHub PR workflows, BYOK (Bring Your Own Key) provider routing, and Model Context Protocol (MCP) connectors.
+Neuron Runner is an open-source, self-hosted AI coding workspace and multi-model agent platform. It pairs an isolated local Docker sandbox per team workspace with streaming multi-model LLM chat, tool calling, interactive browser terminals, isolated-origin port previews, integrated Git & GitHub PR workflows, BYOK (Bring Your Own Key) provider routing, and Model Context Protocol (MCP) connectors.
 
 ![Django](https://img.shields.io/badge/Django-5.2-092E20?style=flat-square&logo=django)
 ![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react)
@@ -48,7 +48,7 @@ NeuronRunner is an open-source, self-hosted AI coding workspace and multi-model 
 
 - **Isolated Docker Sandboxes**: Every workspace gets an isolated Docker container with a persistent `/workspace` mount, memory/CPU/PID limits (`--pids-limit 256`, `--security-opt no-new-privileges`), and automatic workspace secret injection.
 - **Multi-Model Chat & Tool Calling**: Stream responses from OpenAI, Anthropic, Google Gemini, OpenRouter, xAI, DeepSeek, Ollama, or any OpenAI-compatible endpoint via BYOK (workspace-level encrypted provider keys) or server-configured models.
-- **OpenAI-Compatible Gateway (`/v1/chat/completions`)**: Connect external tools (Continue.dev, Open WebUI, custom scripts) using NeuronRunner API keys.
+- **OpenAI-Compatible Gateway (`/v1/chat/completions`)**: Connect external tools (Continue.dev, Open WebUI, custom scripts) using Neuron Runner API keys.
 - **Interactive Browser Terminal**: Full PTY shell (`xterm.js` + Django Channels WebSocket) running inside your workspace container with one-time signed WebSocket tickets.
 - **Isolated-Origin Live Port Previews**: Automatically detects HTTP servers running inside your workspace container and serves them through an isolated reverse proxy on port `8090`.
 - **Integrated Git & GitHub PR Studio**: Browse branches, inspect staged/unstaged diffs, commit changes, clone repositories, and review GitHub pull requests and issues.
@@ -82,7 +82,7 @@ cp backend/.env.example backend/.env
 docker build -f Dockerfile.sandbox -t neuronrunner-sandbox:latest .
 ```
 
-> If you skip this step, NeuronRunner automatically falls back to `python:3.11-slim`.
+> If you skip this step, Neuron Runner automatically falls back to `python:3.11-slim`.
 
 ### 3. Start the stack
 
@@ -204,4 +204,4 @@ Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) before
 
 ## License
 
-NeuronRunner is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**. See [LICENSE](LICENSE) for the full text.
+Neuron Runner is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**. See [LICENSE](LICENSE) for the full text.

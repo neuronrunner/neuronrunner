@@ -13,7 +13,7 @@ Every workspace runs its code in its own Docker container, the *default runtime*
 docker build -f Dockerfile.sandbox -t neuronrunner-sandbox:latest .
 ```
 
-To use your own image (for example with extra language runtimes), build it and point `DOCKER_SANDBOX_IMAGE` to it. If the preferred image is missing, NeuronRunner uses `DOCKER_SANDBOX_FALLBACK_IMAGE` (`python:3.11-slim`).
+To use your own image (for example with extra language runtimes), build it and point `DOCKER_SANDBOX_IMAGE` to it. If the preferred image is missing, Neuron Runner uses `DOCKER_SANDBOX_FALLBACK_IMAGE` (`python:3.11-slim`).
 
 > [!TIP]
 > Start your custom image `FROM neuronrunner-sandbox:latest` so the tools the agent expects stay available.
@@ -70,11 +70,11 @@ A sandbox with no activity is stopped after `SANDBOX_IDLE_TIMEOUT_DEFAULT` secon
 
 ## Port previews
 
-When a process inside the sandbox listens on an HTTP port, NeuronRunner detects it and serves it through the preview proxy (`run_preview_proxy`, port 8090). Preview URLs carry short-lived tokens stored in Redis.
+When a process inside the sandbox listens on an HTTP port, Neuron Runner detects it and serves it through the preview proxy (`run_preview_proxy`, port 8090). Preview URLs carry short-lived tokens stored in Redis.
 
 > [!WARNING]
-> Serve the preview proxy from a different origin than the app (another subdomain or port). Code running in the sandbox is untrusted; a separate origin keeps it away from NeuronRunner's cookies and storage.
+> Serve the preview proxy from a different origin than the app (another subdomain or port). Code running in the sandbox is untrusted; a separate origin keeps it away from Neuron Runner's cookies and storage.
 
 ## Docker socket access
 
-The backend talks to Docker through `/var/run/docker.sock`, which Compose mounts into the backend container. Anyone who controls the backend can control the Docker host, so run NeuronRunner on a host dedicated to it, keep the host patched, and do not expose the Docker API on the network.
+The backend talks to Docker through `/var/run/docker.sock`, which Compose mounts into the backend container. Anyone who controls the backend can control the Docker host, so run Neuron Runner on a host dedicated to it, keep the host patched, and do not expose the Docker API on the network.

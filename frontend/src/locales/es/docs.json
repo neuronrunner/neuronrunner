@@ -53,8 +53,8 @@
     "dashboard": {
       "verifying": "Verificando permisos de personal...",
       "accessRequiredTitle": "Se requiere acceso de personal",
-      "accessRequiredDesc": "Debes iniciar sesión con una cuenta autorizada de Staff / Superusuario para acceder al panel de administración de NeuronRunner.",
-      "title": "Administración NeuronRunner",
+      "accessRequiredDesc": "Debes iniciar sesión con una cuenta autorizada de Staff / Superusuario para acceder al panel de administración de Neuron Runner.",
+      "title": "Administración Neuron Runner",
       "staffControlBadge": "Control de Staff",
       "subtitle": "Gestiona modelos seleccionados, espacios de trabajo de usuarios y configuraciones del sistema.",
       "refresh": "Actualizar",

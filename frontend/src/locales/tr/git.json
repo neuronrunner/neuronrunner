@@ -416,7 +416,7 @@
     "disconnect": "Bağlantıyı kes",
     "disconnectAriaLabel": "@{{login}} bağlantısını kes",
     "disconnectTitle": "@{{login}} bağlantısı kesilsin mi?",
-    "disconnectDescription": "NeuronRunner bu hesabın özel depolarına, issue'larına ve pull request'lerine erişimini kaybeder. Bu hesapla GitHub oturum açma da kaldırılır. Çalışma alanınıza zaten klonlanmış depolar silinmez.",
+    "disconnectDescription": "Neuron Runner bu hesabın özel depolarına, issue'larına ve pull request'lerine erişimini kaybeder. Bu hesapla GitHub oturum açma da kaldırılır. Çalışma alanınıza zaten klonlanmış depolar silinmez.",
     "disconnectConfirm": "Bağlantıyı kes",
     "disconnecting": "Bağlantı kesiliyor…",
     "disconnectError": "GitHub bağlantısı kesilemedi. Tekrar deneyin.",

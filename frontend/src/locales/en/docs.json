@@ -57,8 +57,8 @@
     "dashboard": {
       "verifying": "Verifying staff permissions...",
       "accessRequiredTitle": "Staff Access Required",
-      "accessRequiredDesc": "You must be signed in with an authorized Staff / Superuser account to access the NeuronRunner Admin Dashboard.",
-      "title": "NeuronRunner Admin",
+      "accessRequiredDesc": "You must be signed in with an authorized Staff / Superuser account to access the Neuron Runner Admin Dashboard.",
+      "title": "Neuron Runner Admin",
       "staffControlBadge": "Staff Control",
       "subtitle": "Manage curated models, user workspaces, and system configurations.",
       "refresh": "Refresh",

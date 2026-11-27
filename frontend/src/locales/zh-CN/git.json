@@ -416,7 +416,7 @@
     "disconnect": "断开连接",
     "disconnectAriaLabel": "断开 @{{login}}",
     "disconnectTitle": "断开 @{{login}}？",
-    "disconnectDescription": "NeuronRunner 将无法访问此账户的私有仓库、issue 和 pull request。此账户的 GitHub 登录也会被移除。已克隆到工作区的仓库不会被删除。",
+    "disconnectDescription": "Neuron Runner 将无法访问此账户的私有仓库、issue 和 pull request。此账户的 GitHub 登录也会被移除。已克隆到工作区的仓库不会被删除。",
     "disconnectConfirm": "断开连接",
     "disconnecting": "正在断开…",
     "disconnectError": "无法断开 GitHub 连接，请重试。",

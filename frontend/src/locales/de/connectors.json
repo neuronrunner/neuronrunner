@@ -36,7 +36,7 @@
     "ariaLabel": "Integrationen",
     "eyebrow": "Workspace / MCP-Integrationen",
     "title": "Integrationen",
-    "subtitle": "Verbinde Plugins und MCP-Server, damit NeuronRunner über all deine Tools hinweg arbeiten kann.",
+    "subtitle": "Verbinde Plugins und MCP-Server, damit Neuron Runner über all deine Tools hinweg arbeiten kann.",
     "openSidebar": "Seitenleiste öffnen",
     "addCustomConnector": "Eigenen Connector hinzufügen",
     "addCustomShort": "Hinzufügen",

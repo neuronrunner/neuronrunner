@@ -563,7 +563,7 @@
     "snapshot": {
       "title": "Aperçu de la mémoire synthétisée",
       "coreCount": "{{count}} priorité essentielle",
-      "subtitle": "Comment NeuronRunner structure votre contexte par catégories",
+      "subtitle": "Comment Neuron Runner structure votre contexte par catégories",
       "copied": "Copié",
       "copyMarkdown": "Copier en Markdown",
       "factSingle": "{{count}} élément",
@@ -642,7 +642,7 @@
   },
   "apiKeys": {
     "title": "Clés API",
-    "subtitle": "Gérez vos clés API pour accéder par programmation aux modèles, agents et workflows d'automatisation NeuronRunner.",
+    "subtitle": "Gérez vos clés API pour accéder par programmation aux modèles, agents et workflows d'automatisation Neuron Runner.",
     "generateTitle": "Générer une nouvelle clé API",
     "namePlaceholder": "ex. CLI Runner, Agent de production",
     "createButton": "Créer une clé",

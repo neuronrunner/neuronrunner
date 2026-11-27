@@ -1,9 +1,9 @@
 ---
 title: Introduction
-description: What NeuronRunner is and what you can do with it.
+description: What Neuron Runner is and what you can do with it.
 ---
 
-NeuronRunner is an open-source, self-hosted AI coding workspace. Each team workspace gets its own isolated Docker sandbox, and a multi-model chat agent works inside it: it reads and edits files, runs commands, starts dev servers and opens pull requests while you watch and steer.
+Neuron Runner is an open-source, self-hosted AI coding workspace. Each team workspace gets its own isolated Docker sandbox, and a multi-model chat agent works inside it: it reads and edits files, runs commands, starts dev servers and opens pull requests while you watch and steer.
 
 ## What you get
 
@@ -23,4 +23,4 @@ NeuronRunner is an open-source, self-hosted AI coding workspace. Each team works
 - [Configuration](../02-self-hosting/01-configuration.md): every environment variable that matters.
 
 > [!NOTE]
-> NeuronRunner is licensed under the GNU Affero General Public License v3.0 (AGPL-3.0). If you run a modified version as a network service, you must make your changes available to its users.
+> Neuron Runner is licensed under the GNU Affero General Public License v3.0 (AGPL-3.0). If you run a modified version as a network service, you must make your changes available to its users.

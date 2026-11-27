@@ -563,7 +563,7 @@
     "snapshot": {
       "title": "合成记忆快照",
       "coreCount": "{{count}} 项核心优先",
-      "subtitle": "NeuronRunner 如何跨类别组织您的上下文",
+      "subtitle": "Neuron Runner 如何跨类别组织您的上下文",
       "copied": "已复制",
       "copyMarkdown": "复制 Markdown",
       "factSingle": "{{count}} 条事实",
@@ -642,7 +642,7 @@
   },
   "apiKeys": {
     "title": "API 密钥",
-    "subtitle": "管理 API 密钥以通过编程方式访问 NeuronRunner 模型、智能体和自动化工作流。",
+    "subtitle": "管理 API 密钥以通过编程方式访问 Neuron Runner 模型、智能体和自动化工作流。",
     "generateTitle": "生成新的 API 密钥",
     "namePlaceholder": "例如 CLI Runner、生产智能体",
     "createButton": "创建密钥",

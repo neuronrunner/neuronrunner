@@ -563,7 +563,7 @@
     "snapshot": {
       "title": "統合メモリスナップショット",
       "coreCount": "重要優先 {{count}} 件",
-      "subtitle": "NeuronRunner がカテゴリ別にコンテキストを整理する方法",
+      "subtitle": "Neuron Runner がカテゴリ別にコンテキストを整理する方法",
       "copied": "コピーしました",
       "copyMarkdown": "Markdown をコピー",
       "factSingle": "{{count}} 件の記録",
@@ -642,7 +642,7 @@
   },
   "apiKeys": {
     "title": "API キー",
-    "subtitle": "NeuronRunner のモデル、エージェント、自動化ワークフローにプログラムからアクセスするための API キーを管理します。",
+    "subtitle": "Neuron Runner のモデル、エージェント、自動化ワークフローにプログラムからアクセスするための API キーを管理します。",
     "generateTitle": "新しい API キーを生成",
     "namePlaceholder": "例: CLI Runner、本番エージェント",
     "createButton": "キーを作成",

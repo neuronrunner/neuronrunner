@@ -416,7 +416,7 @@
     "disconnect": "切断",
     "disconnectAriaLabel": "@{{login}} を切断",
     "disconnectTitle": "@{{login}} を切断しますか？",
-    "disconnectDescription": "NeuronRunner はこのアカウントのプライベートリポジトリ、issue、pull request にアクセスできなくなります。このアカウントの GitHub ログインも削除されます。ワークスペースに既にクローンされたリポジトリは削除されません。",
+    "disconnectDescription": "Neuron Runner はこのアカウントのプライベートリポジトリ、issue、pull request にアクセスできなくなります。このアカウントの GitHub ログインも削除されます。ワークスペースに既にクローンされたリポジトリは削除されません。",
     "disconnectConfirm": "切断",
     "disconnecting": "切断中…",
     "disconnectError": "GitHub を切断できませんでした。もう一度お試しください。",

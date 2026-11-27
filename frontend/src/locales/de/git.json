@@ -416,7 +416,7 @@
     "disconnect": "Trennen",
     "disconnectAriaLabel": "@{{login}} trennen",
     "disconnectTitle": "@{{login}} trennen?",
-    "disconnectDescription": "NeuronRunner verliert den Zugriff auf die privaten Repositories, Issues und Pull Requests dieses Kontos. Die GitHub-Anmeldung für dieses Konto wird ebenfalls entfernt. Bereits in deinen Workspace geklonte Repositories werden nicht gelöscht.",
+    "disconnectDescription": "Neuron Runner verliert den Zugriff auf die privaten Repositories, Issues und Pull Requests dieses Kontos. Die GitHub-Anmeldung für dieses Konto wird ebenfalls entfernt. Bereits in deinen Workspace geklonte Repositories werden nicht gelöscht.",
     "disconnectConfirm": "Trennen",
     "disconnecting": "Wird getrennt…",
     "disconnectError": "GitHub konnte nicht getrennt werden. Versuche es erneut.",

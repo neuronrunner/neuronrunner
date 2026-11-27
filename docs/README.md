@@ -1,6 +1,6 @@
-# NeuronRunner Docs
+# Neuron Runner Docs
 
-This folder is the source of the documentation shown at `/docs` in the NeuronRunner web app.
+This folder is the source of the documentation shown at `/docs` in the Neuron Runner web app.
 Every page is a plain Markdown file, so you can read the docs right here on GitHub, too.
 
 ## Layout
@@ -28,7 +28,7 @@ Each page starts with a small front matter block:
 ```markdown
 ---
 title: Quickstart
-description: Run NeuronRunner locally with Docker Compose in a few minutes.
+description: Run Neuron Runner locally with Docker Compose in a few minutes.
 badge: 5 min        # optional, small label next to the title
 ---
 ```

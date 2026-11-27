@@ -3,7 +3,7 @@ title: Models & Provider Keys
 description: Every workspace brings its own API key or subscription.
 ---
 
-NeuronRunner does not ship a model of its own: each workspace connects the AI it wants to use, and pays that provider directly.
+Neuron Runner does not ship a model of its own: each workspace connects the AI it wants to use, and pays that provider directly.
 
 ## The Hello page
 

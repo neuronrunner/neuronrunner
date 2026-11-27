@@ -177,7 +177,7 @@ def complete_github_connection(request):
         if not uid or not login:
             return fail("Your GitHub account could not be identified. Connect again.")
         if UserSocialAuth.objects.filter(provider="github", uid=uid).exclude(user=user).exists():
-            return fail("This GitHub account is linked to another NeuronRunner account.")
+            return fail("This GitHub account is linked to another Neuron Runner account.")
         replace_other_github_connections(user, uid)
         with transaction.atomic():
             connection, _ = UserSocialAuth.objects.get_or_create(user=user, provider="github", uid=uid)

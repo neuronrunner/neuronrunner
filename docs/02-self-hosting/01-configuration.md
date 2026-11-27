@@ -7,7 +7,7 @@ The backend reads its settings from environment variables. With Docker Compose, 
 
 ## Production checklist
 
-Before running NeuronRunner for anyone but yourself:
+Before running Neuron Runner for anyone but yourself:
 
 - [ ] Set a long random `SECRET_KEY`:
   `python3 -c "import secrets; print(secrets.token_urlsafe(50))"`

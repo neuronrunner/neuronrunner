@@ -50,7 +50,7 @@ const AGENT_DEFINITIONS: AgentDefinition[] = [
     labelKey: "home.agentSelector.agents.neuron.name",
     fallbackLabel: "Neuron Agent",
     descKey: "home.agentSelector.agents.neuron.desc",
-    fallbackDesc: "Built-in cloud agent with NeuronRunner models",
+    fallbackDesc: "Built-in cloud agent with Neuron Runner models",
     accentClasses:
       "border-foreground/15 bg-gradient-to-br from-foreground/[0.09] to-foreground/[0.03] text-foreground shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)]",
   },

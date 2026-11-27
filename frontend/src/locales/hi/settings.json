@@ -563,7 +563,7 @@
     "snapshot": {
       "title": "सिंथेसाइज़्ड मेमोरी स्नैपशॉट",
       "coreCount": "{{count}} कोर प्रायोरिटी",
-      "subtitle": "NeuronRunner कैटेगरीज़ में आपके कॉन्टेक्स्ट को कैसे स्ट्रक्चर करता है",
+      "subtitle": "Neuron Runner कैटेगरीज़ में आपके कॉन्टेक्स्ट को कैसे स्ट्रक्चर करता है",
       "copied": "कॉपी हो गया",
       "copyMarkdown": "Markdown कॉपी करें",
       "factSingle": "{{count}} फ़ैक्ट",
@@ -642,7 +642,7 @@
   },
   "apiKeys": {
     "title": "API Keys",
-    "subtitle": "NeuronRunner मॉडल्स, एजेंट्स और ऑटोमेशन वर्कफ़्लो को प्रोग्रामेटिकली एक्सेस करने के लिए API Keys मैनेज करें।",
+    "subtitle": "Neuron Runner मॉडल्स, एजेंट्स और ऑटोमेशन वर्कफ़्लो को प्रोग्रामेटिकली एक्सेस करने के लिए API Keys मैनेज करें।",
     "generateTitle": "नई API Key जनरेट करें",
     "namePlaceholder": "जैसे CLI Runner, Production Agent",
     "createButton": "Key बनाएं",

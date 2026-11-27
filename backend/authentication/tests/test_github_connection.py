@@ -83,7 +83,7 @@ class GithubConnectionTests(TestCase):
         other = get_user_model().objects.create_user(username="other-connect", email="other@example.com")
         UserSocialAuth.objects.create(user=other, provider="github", uid="42", extra_data={"access_token": "other-token"})
         response, _ = self.callback(self.start()["state"][0])
-        self.assertIn("linked to another NeuronRunner account", response.content.decode())
+        self.assertIn("linked to another Neuron Runner account", response.content.decode())
         self.assertFalse(UserSocialAuth.objects.filter(user=self.user).exists())
 
     def test_untrusted_origin_and_missing_server_configuration_are_reported(self):

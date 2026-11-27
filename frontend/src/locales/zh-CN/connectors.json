@@ -36,7 +36,7 @@
     "ariaLabel": "集成",
     "eyebrow": "工作区 / MCP 集成",
     "title": "集成",
-    "subtitle": "连接插件与 MCP 服务器，让 NeuronRunner 在您的工具间协同工作。",
+    "subtitle": "连接插件与 MCP 服务器，让 Neuron Runner 在您的工具间协同工作。",
     "openSidebar": "打开侧边栏",
     "addCustomConnector": "添加自定义连接器",
     "addCustomShort": "添加自定义",

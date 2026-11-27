@@ -53,8 +53,8 @@
     "dashboard": {
       "verifying": "正在验证员工权限...",
       "accessRequiredTitle": "需要员工权限",
-      "accessRequiredDesc": "您必须使用已授权的员工 / 超级管理员账号登录，才能访问 NeuronRunner 管理控制台。",
-      "title": "NeuronRunner 管理后台",
+      "accessRequiredDesc": "您必须使用已授权的员工 / 超级管理员账号登录，才能访问 Neuron Runner 管理控制台。",
+      "title": "Neuron Runner 管理后台",
       "staffControlBadge": "员工控制台",
       "subtitle": "管理精选模型、用户工作区与系统配置。",
       "refresh": "刷新",

@@ -1,6 +1,6 @@
 ---
 title: Quickstart
-description: Run NeuronRunner locally with Docker Compose in a few minutes.
+description: Run Neuron Runner locally with Docker Compose in a few minutes.
 badge: 5 min
 ---
 
@@ -22,7 +22,7 @@ cp backend/.env.example backend/.env
 `backend/.env` is optional for a local try-out. Without it, Compose uses the defaults from `backend/.env.example`: debug mode with an insecure development `SECRET_KEY`.
 
 > [!WARNING]
-> Before exposing NeuronRunner beyond your own machine, set a real `SECRET_KEY` and `DEBUG=False`. See [Configuration](../02-self-hosting/01-configuration.md).
+> Before exposing Neuron Runner beyond your own machine, set a real `SECRET_KEY` and `DEBUG=False`. See [Configuration](../02-self-hosting/01-configuration.md).
 
 ## 2. Build the sandbox image
 
@@ -30,7 +30,7 @@ cp backend/.env.example backend/.env
 docker build -f Dockerfile.sandbox -t neuronrunner-sandbox:latest .
 ```
 
-This image is what every workspace container runs. If you skip this step, NeuronRunner falls back to `python:3.11-slim`, which works but has far fewer tools installed.
+This image is what every workspace container runs. If you skip this step, Neuron Runner falls back to `python:3.11-slim`, which works but has far fewer tools installed.
 
 ## 3. Start the stack
 
@@ -51,7 +51,7 @@ docker compose up -d --build
 3. Start a chat and ask the agent to do something in the sandbox, for example *"create a Vite React app and start the dev server"*.
 
 > [!TIP]
-> No credit yet? Pick OpenRouter and filter for free models to try NeuronRunner at no cost. See [Models & Provider Keys](../03-features/01-models-and-byok.md).
+> No credit yet? Pick OpenRouter and filter for free models to try Neuron Runner at no cost. See [Models & Provider Keys](../03-features/01-models-and-byok.md).
 
 > [!TIP]
-> When the agent starts a server inside the sandbox, the preview opens through the proxy on port 8090, so the app runs on its own origin, separate from NeuronRunner.
+> When the agent starts a server inside the sandbox, the preview opens through the proxy on port 8090, so the app runs on its own origin, separate from Neuron Runner.

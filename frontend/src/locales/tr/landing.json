@@ -27,7 +27,7 @@
       "agents": {
         "neuron": {
           "name": "Neuron Agent",
-          "desc": "NeuronRunner modelleriyle dahili bulut ajanı"
+          "desc": "Neuron Runner modelleriyle dahili bulut ajanı"
         },
         "claude": {
           "name": "Claude Code",

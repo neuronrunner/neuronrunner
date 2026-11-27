@@ -1,9 +1,9 @@
 ---
 title: Extensions
-description: Add apps, routes, runtimes and UI to NeuronRunner without forking the core.
+description: Add apps, routes, runtimes and UI to Neuron Runner without forking the core.
 ---
 
-NeuronRunner has a small extension system so a separate package can add features without patching the core. Without an extension, everything uses the self-hosted defaults: local Docker sandboxes and no plan limits.
+Neuron Runner has a small extension system so a separate package can add features without patching the core. Without an extension, everything uses the self-hosted defaults: local Docker sandboxes and no plan limits.
 
 ## Backend plugins
 
@@ -47,4 +47,4 @@ CLOUD_FRONTEND_DIR=../my-extension/frontend npm run build
 An extension can add routes, settings tabs, workspace toolbar actions and panels, and can hook into runtime selection and API error handling. The interface is in `frontend/src/extensions/types.ts`. Packages your extension imports are resolved from the core `frontend/node_modules`, so it does not need its own copy of React.
 
 > [!NOTE]
-> Extensions are a code-level integration. Keep them in step with the NeuronRunner version you build against; the interfaces may change between releases.
+> Extensions are a code-level integration. Keep them in step with the Neuron Runner version you build against; the interfaces may change between releases.

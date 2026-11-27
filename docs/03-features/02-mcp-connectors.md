@@ -3,11 +3,11 @@ title: MCP Connectors
 description: Give the agent tools from Model Context Protocol servers.
 ---
 
-The [Model Context Protocol](https://modelcontextprotocol.io) lets external servers offer tools to an AI agent. NeuronRunner can connect to MCP servers and expose their tools in chat.
+The [Model Context Protocol](https://modelcontextprotocol.io) lets external servers offer tools to an AI agent. Neuron Runner can connect to MCP servers and expose their tools in chat.
 
 ## Adding a server
 
-Open the connectors page, choose **Add connector** and enter the server URL. NeuronRunner supports:
+Open the connectors page, choose **Add connector** and enter the server URL. Neuron Runner supports:
 
 - **OAuth**: you are redirected to the provider to approve access.
 - **Bearer token**: paste a token or API key the server expects.

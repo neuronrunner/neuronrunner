@@ -836,7 +836,7 @@
   "hello": {
     "badge": "Kendi yapay zekânı getir",
     "title": "Başlamak için yapay zekânı bağla",
-    "subtitle": "NeuronRunner ajanını kendi sandbox'ında çalıştırır; model ise senin hesabında çalışır. Bir API anahtarı ekle ya da zaten sahip olduğun bir abonelikle giriş yap. Token ücretini yalnızca sağlayıcına ödersin.",
+    "subtitle": "Neuron Runner ajanını kendi sandbox'ında çalıştırır; model ise senin hesabında çalışır. Bir API anahtarı ekle ya da zaten sahip olduğun bir abonelikle giriş yap. Token ücretini yalnızca sağlayıcına ödersin.",
     "recommended": "Önerilen",
     "connected": "Bağlı",
     "back": "Geri",

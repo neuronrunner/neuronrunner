@@ -53,8 +53,8 @@
     "dashboard": {
       "verifying": "スタッフ権限を確認しています...",
       "accessRequiredTitle": "スタッフ権限が必要です",
-      "accessRequiredDesc": "NeuronRunner 管理ダッシュボードにアクセスするには、認可された Staff / Superuser アカウントでサインインする必要があります。",
-      "title": "NeuronRunner 管理",
+      "accessRequiredDesc": "Neuron Runner 管理ダッシュボードにアクセスするには、認可された Staff / Superuser アカウントでサインインする必要があります。",
+      "title": "Neuron Runner 管理",
       "staffControlBadge": "スタッフ管理",
       "subtitle": "厳選モデル、ユーザーワークスペース、システム設定を管理します。",
       "refresh": "更新",

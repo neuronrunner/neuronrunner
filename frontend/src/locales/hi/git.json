@@ -416,7 +416,7 @@
     "disconnect": "डिस्कनेक्ट करें",
     "disconnectAriaLabel": "@{{login}} डिस्कनेक्ट करें",
     "disconnectTitle": "@{{login}} डिस्कनेक्ट करें?",
-    "disconnectDescription": "NeuronRunner इस खाते की निजी रिपॉज़िटरी, issue और pull request तक पहुँच खो देगा। इस खाते का GitHub साइन-इन भी हटा दिया जाएगा। आपके workspace में पहले से क्लोन की गई रिपॉज़िटरी नहीं हटाई जाएँगी।",
+    "disconnectDescription": "Neuron Runner इस खाते की निजी रिपॉज़िटरी, issue और pull request तक पहुँच खो देगा। इस खाते का GitHub साइन-इन भी हटा दिया जाएगा। आपके workspace में पहले से क्लोन की गई रिपॉज़िटरी नहीं हटाई जाएँगी।",
     "disconnectConfirm": "डिस्कनेक्ट करें",
     "disconnecting": "डिस्कनेक्ट हो रहा है…",
     "disconnectError": "GitHub डिस्कनेक्ट नहीं हो सका। फिर से कोशिश करें।",

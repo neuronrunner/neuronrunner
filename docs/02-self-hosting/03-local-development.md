@@ -3,7 +3,7 @@ title: Local Development
 description: Run the backend and frontend from source with hot reload.
 ---
 
-Use this setup when you work on NeuronRunner itself. You still need Docker for sandboxes, and Redis for Channels.
+Use this setup when you work on Neuron Runner itself. You still need Docker for sandboxes, and Redis for Channels.
 
 ## Backend
 

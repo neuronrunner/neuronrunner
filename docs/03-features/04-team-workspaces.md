@@ -3,7 +3,7 @@ title: Team Workspaces
 description: Share a sandbox, secrets and provider keys with your team.
 ---
 
-A workspace is the unit of sharing in NeuronRunner. Its members share the sandbox container, files, secrets and provider keys.
+A workspace is the unit of sharing in Neuron Runner. Its members share the sandbox container, files, secrets and provider keys.
 
 ## Roles
 

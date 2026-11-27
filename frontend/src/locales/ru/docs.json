@@ -53,8 +53,8 @@
     "dashboard": {
       "verifying": "Проверка прав персонала...",
       "accessRequiredTitle": "Требуется доступ персонала",
-      "accessRequiredDesc": "Для доступа к панели администратора NeuronRunner необходимо войти под авторизованной учетной записью Staff / Superuser.",
-      "title": "Админ-панель NeuronRunner",
+      "accessRequiredDesc": "Для доступа к панели администратора Neuron Runner необходимо войти под авторизованной учетной записью Staff / Superuser.",
+      "title": "Админ-панель Neuron Runner",
       "staffControlBadge": "Управление Staff",
       "subtitle": "Управление курируемыми моделями, рабочими пространствами пользователей и системными настройками.",
       "refresh": "Обновить",

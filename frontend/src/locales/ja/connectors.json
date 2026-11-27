@@ -36,7 +36,7 @@
     "ariaLabel": "連携",
     "eyebrow": "ワークスペース / MCP 連携",
     "title": "連携",
-    "subtitle": "プラグインや MCP サーバーを接続し、NeuronRunner がお使いのツールを横断して作業できるようにします。",
+    "subtitle": "プラグインや MCP サーバーを接続し、Neuron Runner がお使いのツールを横断して作業できるようにします。",
     "openSidebar": "サイドバーを開く",
     "addCustomConnector": "カスタムコネクタを追加",
     "addCustomShort": "カスタム追加",
