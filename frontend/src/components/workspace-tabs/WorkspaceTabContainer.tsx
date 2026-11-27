@@ -5,6 +5,7 @@ import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { usePathname, isKnownRoute } from "@/lib/navigation";
 import useNavbarStore from "@/stores/navbar";
+import useNewChatSendStore from "@/stores/new-chat-send";
 import {
   LuArrowLeft,
   LuFileCode2,
@@ -160,7 +161,10 @@ export const WorkspaceTabContainer: React.FC<Props> = ({ children }) => {
     activePrimaryTab && !["chat", "files", "terminal", "git", "browser", "desktop"].includes(activePrimaryTab.type)
   );
   const primaryFileTab = isPanelRoute && isFileTab ? activePrimaryTab : undefined;
-  const isNewChatScreen = isChatRoute && !hasActiveConversation && !primaryFileTab;
+  // The first message is already on screen while the route is still /new; treat it as a
+  // conversation so the header and its inset are there from the first frame (no later jump).
+  const isSendingFromNew = useNewChatSendStore((state) => state.isSendingFromNew);
+  const isNewChatScreen = isChatRoute && !hasActiveConversation && !primaryFileTab && !isSendingFromNew;
   const panelOpen = Boolean(isSplit && rightPanelTab && rightPanelTab.type !== "chat");
   const showPanel = isPanelRoute && !isNewChatScreen && panelOpen;
   const user = useAuthStore((state) => state.user);
@@ -344,7 +348,7 @@ export const WorkspaceTabContainer: React.FC<Props> = ({ children }) => {
             actions={
               isNewChatScreen
                 ? undefined
-                : <WorkspaceHeaderToolbar animate={isChatRoute && !primaryFileTab} />
+                : <WorkspaceHeaderToolbar animate={false} />
             }
           >
             <div className="flex min-w-0 flex-1 items-center">

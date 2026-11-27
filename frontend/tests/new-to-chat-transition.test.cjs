@@ -175,6 +175,7 @@ test("ChatWorkspace preserves activeSessionKey and renders user message immediat
     if (id === "@/stores/recent-models") return { __esModule: true, default: makeHook({ recentModels: [], loadRecentModels: async () => {} }) };
     if (id === "@/stores/sandbox-projects") return { __esModule: true, default: makeHook({ sandboxes: [], sandboxConversations: {}, currentSandbox: null, linkConversationToSandbox: () => {}, ensureSandboxes: async () => {}, pickSandbox: async () => {} }) };
     if (id === "@/stores/sidebar") return { __esModule: true, default: makeHook({ conversations: [] }) };
+    if (id === "@/stores/new-chat-send") return { __esModule: true, default: makeHook({ isSendingFromNew: false, setIsSendingFromNew: () => {} }) };
     if (id === "@/stores/workspace-tabs") return { __esModule: true, default: makeHook({ tabs: [], splitTabs: [], openChatTab: () => {}, updateChatTabTitle: () => {} }) };
     if (id === "@/components/prompt-input") return { __esModule: true, default: () => React.createElement("textarea", { "data-testid": "prompt-textarea" }) };
     if (id === "@/components/loading-dots") return { LoadingDots: stub("LoadingDots") };

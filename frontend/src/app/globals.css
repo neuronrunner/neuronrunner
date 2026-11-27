@@ -472,7 +472,9 @@ textarea::placeholder {
 
 /* Chat scroll container */
 #chat-scroll-container {
-  scrollbar-gutter: stable;
+  /* No reserved gutter: it left an empty strip at the right edge (the composer, header and
+     gradient span the full width) even when nothing scrolls. */
+  scrollbar-gutter: auto;
   scrollbar-width: thin;
   scrollbar-color: color-mix(in srgb, var(--muted-foreground) 20%, transparent) transparent;
   overflow-x: hidden;

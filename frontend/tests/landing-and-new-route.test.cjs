@@ -48,6 +48,7 @@ function createStoreHook(getState) {
 const useAuthHook = createAuthHook();
 const useSidebarHook = createStoreHook(() => sidebarState);
 const useNavbarHook = createStoreHook(() => navbarState);
+const useNewChatSendHook = createStoreHook(() => ({ isSendingFromNew: false, setIsSendingFromNew: () => {} }));
 const useWorkspaceTabsHook = createStoreHook(() => workspaceTabsState);
 const useChatHook = createStoreHook(() => ({ conversationId: null, reset: () => {} }));
 const useSandboxProjectsHook = createStoreHook(() => ({ sidebarWidth: 360, setSidebarWidth: () => {}, isSidebarResizing: false, setSidebarResizing: () => {}, currentSandbox: null, workspaceSandbox: null }));
@@ -79,6 +80,7 @@ function loadTs(relPath) {
     if (id === "@/stores/auth") return { __esModule: true, default: useAuthHook };
     if (id === "@/stores/sidebar") return { __esModule: true, default: useSidebarHook };
     if (id === "@/stores/navbar") return { __esModule: true, default: useNavbarHook };
+    if (id === "@/stores/new-chat-send") return { __esModule: true, default: useNewChatSendHook };
     if (id === "@/stores/workspace-tabs") return { __esModule: true, default: useWorkspaceTabsHook, detectFileType: () => "code" };
     if (id === "@/stores/chat") return { __esModule: true, default: useChatHook };
     if (id === "@/stores/sandbox-projects") return { __esModule: true, default: useSandboxProjectsHook };

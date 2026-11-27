@@ -27,6 +27,7 @@ import {
 import useSandboxProjectsStore from "@/stores/sandbox-projects";
 import useSidebarStore from "@/stores/sidebar";
 import useWorkspaceTabsStore from "@/stores/workspace-tabs";
+import useNewChatSendStore from "@/stores/new-chat-send";
 import ChatProjectSelector from "@/components/projects/chat-project-selector";
 import CloudAgentSelector from "@/components/chat/cloud-agent-selector";
 import AmbientGlow from "@/components/chat/ambient-glow";
@@ -126,6 +127,18 @@ const ChatWorkspace = () => {
     (isNewRoute && isSendingFromNew) ||
     (Boolean(uuid) && createdFromNewUuid === uuid);
   const isLandingMode = isNewRoute && !isSendingFromNew;
+
+  // Let the workspace shell reserve its header as soon as the first message is sent,
+  // not only after the route moves to /chat/<id> (that late switch shifted the content).
+  const isSendingFromNewRoute = isNewRoute && isSendingFromNew;
+  useLayoutEffect(() => {
+    useNewChatSendStore.getState().setIsSendingFromNew(isSendingFromNewRoute);
+  }, [isSendingFromNewRoute]);
+  useLayoutEffect(
+    () => () => useNewChatSendStore.getState().setIsSendingFromNew(false),
+    []
+  );
+
   const activeSessionKey = isCreatedFromNewSession
     ? `new-sending-${newSendNonce}`
     : isNewRoute
@@ -193,15 +206,23 @@ const ChatWorkspace = () => {
     const padding = getComputedStyle(content);
     // Reserve a viewport for the latest prompt and answer, even while loading.
     // Layout offsets stay stable during message entrance animations.
-    const turnHeight = anchor ? spacer.offsetTop - anchor.offsetTop : 0;
+    // Measure with fractional rects (offsetTop rounds to integers) and floor the result:
+    // rounding up here left the content 1px taller than the viewport, which showed a
+    // scrollbar on a conversation that fits. Rects stay correct inside the handoff
+    // transform because both elements share it.
+    const turnHeight = anchor
+      ? spacer.getBoundingClientRect().top - anchor.getBoundingClientRect().top
+      : 0;
     const height = anchor
       ? Math.max(
           0,
-          container.clientHeight -
-            turnHeight -
-            parseFloat(padding.paddingTop) -
-            parseFloat(padding.paddingBottom) -
-            1
+          Math.floor(
+            container.clientHeight -
+              turnHeight -
+              parseFloat(padding.paddingTop) -
+              parseFloat(padding.paddingBottom) -
+              1
+          )
         )
       : 0;
     const nextHeight = `${height}px`;
@@ -251,9 +272,21 @@ const ChatWorkspace = () => {
       const messageAnimation = contentContainerRef.current
         ? animatePromptPosition(contentContainerRef.current, position, PROMPT_TRANSITION_DURATION, elapsed)
         : null;
+      // The handoff transform pushes the messages below the viewport for a moment; without
+      // this the scroller briefly shows a scrollbar for overflow that is only visual.
+      const scroller = scrollContainerRef.current;
+      const restoreOverflow = () => {
+        if (scroller) scroller.style.overflowY = "";
+      };
+      if (scroller && messageAnimation) {
+        scroller.style.overflowY = "hidden";
+        messageAnimation.addEventListener("finish", restoreOverflow);
+        messageAnimation.addEventListener("cancel", restoreOverflow);
+      }
       return () => {
         promptAnimation?.cancel();
         messageAnimation?.cancel();
+        restoreOverflow();
       };
     }
 
@@ -739,6 +772,8 @@ const ChatWorkspace = () => {
       setSentMessageText(trimmed);
       if (draftPrompt) setDraftPrompt(null);
       setNewSendNonce((n) => n + 1);
+      // Same batch as the local state so the shell mounts its header in the same commit.
+      useNewChatSendStore.getState().setIsSendingFromNew(true);
       setIsSendingFromNew(true);
 
       try {
