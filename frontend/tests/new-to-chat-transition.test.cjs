@@ -185,6 +185,7 @@ test("ChatWorkspace preserves activeSessionKey and renders user message immediat
     if (id === "@/components/chat/ambient-glow") return { __esModule: true, default: stub("AmbientGlow") };
     if (id === "@/components/home-welcome") return { HomeSuggestions: stub("HomeSuggestions") };
     if (id === "@/components/seo") return { SEO: stub("SEO") };
+    if (id === "@cloud") return { __esModule: true, default: { edition: "oss", runtimeBridge: { useRuntimeList: () => ({ items: [], selectedUuid: null }) } } };
     if (id === "react-i18next") return { useTranslation: () => ({ t: (k) => k }) };
     return Module.prototype.require.call(loaded, id);
   };

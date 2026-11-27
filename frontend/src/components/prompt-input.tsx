@@ -1142,7 +1142,14 @@ const PromptInput: React.FC<PromptInputProps> = ({
                         </label>
 
                         {/* Harness / Cloud Agent Selector (active chat composer) */}
-                        {!compact && <CloudAgentSelector variant="composer" />}
+                        {!compact && (
+                            <>
+                                <CloudAgentSelector variant="composer" />
+                                {currentModel && (
+                                    <span className="h-3.5 w-px bg-border/70 shrink-0" aria-hidden="true" />
+                                )}
+                            </>
+                        )}
 
                         {/* Unified Model & Reasoning Selector */}
                         {currentModel && (

@@ -8,6 +8,7 @@
     "chatPlaceholder": "Ask anything...",
     "chatMobilePlaceholder": "Ask anything...",
     "codePlaceholder": "Describe what you want to build...",
+    "preparingEnvironment": "Preparing environment...",
     "codeMobilePlaceholder": "Describe what to build...",
     "dropFilesTitle": "Drop files to attach",
     "dropFilesDescription": "Images and documents (PNG, JPG, PDF, TXT, MD, CSV, Code up to 10MB)",

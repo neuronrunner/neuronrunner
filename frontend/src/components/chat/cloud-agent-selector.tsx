@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import {
   LuCheck,
   LuChevronDown,
+  LuChevronUp,
   LuKeyRound,
   LuLoader,
   LuRefreshCw,
@@ -384,24 +385,36 @@ export default function CloudAgentSelector({ vmAttached = false, variant = "pill
             aria-label={t("home.agentSelector.ariaLabel", { defaultValue: "Select cloud agent" })}
             className={
               variant === "composer"
-                ? "group inline-flex h-8 sm:h-8.5 items-center gap-1.5 rounded-lg border border-border/60 bg-muted/35 px-2 sm:px-2.5 text-xs text-muted-foreground transition-colors hover:border-border hover:bg-muted/70 hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/40 shrink-0"
+                ? "group inline-flex h-8 sm:h-8.5 items-center gap-1.5 rounded-lg px-2 sm:px-2.5 text-xs sm:text-sm text-foreground/90 transition-colors hover:bg-muted/60 dark:hover:bg-zinc-800/60 hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/40 cursor-pointer select-none shrink-0"
                 : "group inline-flex items-center gap-2 rounded-full border border-border/75 bg-card/65 py-1 pl-2.5 pr-2.5 font-mono text-[11px] text-muted-foreground shadow-sm backdrop-blur-md transition-all hover:border-foreground/25 hover:bg-card hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             }
           >
             <span className="relative flex h-4 w-4 shrink-0 items-center justify-center">
               <AgentBrandLogo id={activeDef?.id ?? "neuron"} size={14} />
-              <span
-                className={`absolute -bottom-0.5 -right-0.5 flex h-1.5 w-1.5 rounded-full ring-2 ring-background ${
-                  activeDef ? "bg-emerald-500" : "bg-amber-500"
-                }`}
-              />
+              {(variant !== "composer" || !activeDef) && (
+                <span
+                  className={`absolute -bottom-0.5 -right-0.5 flex h-1.5 w-1.5 rounded-full ring-2 ring-background ${
+                    activeDef ? "bg-emerald-500" : "bg-amber-500"
+                  }`}
+                />
+              )}
             </span>
-            <span className="max-w-[120px] sm:max-w-[140px] truncate font-medium tracking-tight text-foreground/95">
+            <span
+              className={
+                variant === "composer"
+                  ? "max-w-[120px] sm:max-w-[140px] truncate font-medium text-foreground/90 group-hover:text-foreground transition-colors"
+                  : "max-w-[120px] sm:max-w-[140px] truncate font-medium tracking-tight text-foreground/95"
+              }
+            >
               {activeDef
                 ? t(activeDef.labelKey, { defaultValue: activeDef.fallbackLabel })
                 : t("home.agentSelector.connectAgent", { defaultValue: "Connect Agent" })}
             </span>
-            <LuChevronDown className="h-3 w-3 shrink-0 opacity-60 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+            {variant === "composer" ? (
+              <LuChevronUp className="h-3.5 w-3.5 shrink-0 text-muted-foreground/70 group-hover:text-foreground transition-transform duration-200 group-data-[state=open]:rotate-180" />
+            ) : (
+              <LuChevronDown className="h-3 w-3 shrink-0 opacity-60 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+            )}
           </button>
         </PopoverTrigger>
 

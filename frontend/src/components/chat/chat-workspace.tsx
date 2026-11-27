@@ -33,6 +33,7 @@ import CloudAgentSelector from "@/components/chat/cloud-agent-selector";
 import AmbientGlow from "@/components/chat/ambient-glow";
 import { HomeSuggestions } from "@/components/home-welcome";
 import { SEO } from "@/components/seo";
+import frontendExtension from "@cloud";
 
 /**
  * Unified chat workspace shared across `/new` and `/chat/:uuid`.
@@ -43,6 +44,16 @@ import { SEO } from "@/components/seo";
 const ChatWorkspace = () => {
   const { t } = useTranslation("chat");
   const { t: tLanding } = useTranslation("landing");
+  const { items: cloudRuntimes, selectedUuid: selectedCloudRuntimeUuid } = frontendExtension.runtimeBridge.useRuntimeList();
+  const activeCloudRuntime = useMemo(() => {
+    if (frontendExtension.edition !== "cloud") return null;
+    return (
+      cloudRuntimes.find((r) => r.uuid === selectedCloudRuntimeUuid && r.status !== "terminated") ||
+      cloudRuntimes.find((r) => r.status === "running") ||
+      cloudRuntimes.find((r) => r.status !== "terminated") ||
+      null
+    );
+  }, [cloudRuntimes, selectedCloudRuntimeUuid]);
   const params = useParams();
   const pathname = usePathname();
   const location = useLocation();
@@ -944,10 +955,20 @@ const ChatWorkspace = () => {
                       </div>
                     ) : showLivePlaceholder ? (
                       useModelStartingLoading ? (
-                        <div className="flex items-center gap-3 px-1 py-2">
-                          <LuLoader2 className="h-4 w-4 animate-spin text-muted-foreground" />
-                          <span className="text-xs font-mono text-muted-foreground">
+                        <div className="flex items-center gap-2.5 px-1 py-2">
+                          <LuLoader2 className="h-3.5 w-3.5 animate-spin text-muted-foreground" />
+                          <span className="text-xs font-medium text-muted-foreground">
                             {loadingLabel}
+                          </span>
+                        </div>
+                      ) : currentSandbox?.setup_status === "running" ||
+                        (frontendExtension.edition === "cloud" &&
+                          Boolean(activeCloudRuntime) &&
+                          ["pending", "provisioning", "starting"].includes(activeCloudRuntime?.status || "")) ? (
+                        <div ref={streamAnchorRef} className="inline-flex items-center gap-2.5 px-1 py-2">
+                          <LuLoader2 className="h-3.5 w-3.5 animate-spin text-indigo-400" />
+                          <span className="text-xs font-medium text-muted-foreground animate-pulse">
+                            {t("composer.preparingEnvironment", { defaultValue: "Preparing environment..." })}
                           </span>
                         </div>
                       ) : (
