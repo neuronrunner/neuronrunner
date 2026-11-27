@@ -431,5 +431,33 @@
     "connectError": "GitHub bağlanamadı. Tekrar deneyin.",
     "personal": "Kişisel hesap",
     "reconnect": "Yeniden bağla"
+  },
+  "gitlabAccount": {
+    "title": "GitLab Hesabı",
+    "personal": "Kişisel",
+    "description": "Repo erişimi ve Free başlangıç kredisi doğrulaması için GitLab hesabını bağla.",
+    "connectedBadge": "Bağlı",
+    "notConfiguredBadge": "Yapılandırılmadı",
+    "loading": "GitLab bağlantısı yükleniyor",
+    "retry": "Tekrar dene",
+    "emptyTitle": "Bağlı GitLab hesabı yok",
+    "emptyDescription": "Repolarına erişmek ve hesabını doğrulamak için GitLab hesabını bağla.",
+    "notConfiguredDescription": "GitLab OAuth bu sunucuda henüz yapılandırılmadı.",
+    "connect": "GitLab Bağla",
+    "reconnect": "Yeniden Bağla",
+    "connecting": "Bağlanıyor…",
+    "disconnect": "Bağlantıyı Kes",
+    "disconnectAriaLabel": "@{{login}} GitLab hesabının bağlantısını kes",
+    "disconnectTitle": "@{{login}} bağlantısı kesilsin mi?",
+    "disconnectDescription": "GitLab OAuth anahtarın iptal edilecek ve hesabından kaldırılacak.",
+    "disconnectConfirm": "Bağlantıyı Kes",
+    "disconnecting": "Kesiliyor…",
+    "loadError": "GitLab hesap durumu yüklenemedi.",
+    "connectError": "GitLab hesabı bağlanamadı.",
+    "disconnectError": "GitLab hesabının bağlantısı kesilemedi.",
+    "connectSuccessTitle": "GitLab bağlandı",
+    "connectSuccessDescription": "GitLab hesabın artık bağlı.",
+    "disconnectSuccessTitle": "GitLab bağlantısı kesildi",
+    "disconnectSuccessDescription": "@{{login}} hesabından kaldırıldı."
   }
 }

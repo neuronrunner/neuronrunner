@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ConnectorIcon } from "@/components/connectors/connector-icon";
 import { ConnectorDialog } from "@/components/connectors/connector-dialog";
 import GithubAccountConnection from "@/components/connectors/github-account-connection";
+import GitlabAccountConnection from "@/components/connectors/gitlab-account-connection";
 import { API_BASE, authedAxios } from "@/lib/axios";
 import { catalogDate, connectableConnectors as connectors, connectorCanConnect, connectorCategories, connectorCategoryDescription, connectorCategoryLabel, connectorError, connectorServerName, type Connector, type ConnectorServer } from "@/lib/connectors";
 import { cn } from "@/lib/utils";
@@ -431,7 +432,10 @@ function ConnectorsWorkspaceView() {
               {/* Connections Tab */}
               {tab === "connections" && (
                 <section aria-label={t("workspace.connections.ariaLabel")} className="connectors-enter space-y-7" style={{ animationDelay: "220ms" }}>
-                  <GithubAccountConnection onCountChange={setGithubAccountCount} />
+                  <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+                    <GithubAccountConnection onCountChange={setGithubAccountCount} />
+                    <GitlabAccountConnection />
+                  </div>
 
                   <div>
                     <div className="mb-3.5 flex items-center justify-between gap-3">

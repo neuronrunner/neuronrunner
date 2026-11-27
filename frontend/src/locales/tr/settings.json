@@ -355,7 +355,8 @@
       "gitUnlockSubtitle": "$10 (~84 vCPU-saat) Free Bulut VM kotanı aktif etmek için Git hesabını bir kez bağla.",
       "connectGithub": "GitHub Bağla",
       "connectGitlab": "GitLab Bağla",
-      "gitConnectError": "Git hesabı bağlanamadı. Tekrar dene."
+      "gitConnectError": "Git hesabı bağlanamadı. Tekrar dene.",
+      "gitlabNotConfigured": "GitLab OAuth bu sunucuda henüz yapılandırılmadı"
     },
     "cards": {
       "creditsUsed": "Kullanılan çalışma alanı kredisi",

@@ -355,7 +355,8 @@
       "gitUnlockSubtitle": "Link a Git account once to activate your $10 (~84 vCPU-hrs) Free Cloud VM quota.",
       "connectGithub": "Connect GitHub",
       "connectGitlab": "Connect GitLab",
-      "gitConnectError": "Could not connect your Git account. Try again."
+      "gitConnectError": "Could not connect your Git account. Try again.",
+      "gitlabNotConfigured": "GitLab OAuth is not configured on this server yet"
     },
     "cards": {
       "creditsUsed": "Workspace credits used",

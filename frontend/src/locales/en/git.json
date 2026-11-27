@@ -431,5 +431,33 @@
     "connectError": "GitHub could not be connected. Try again.",
     "personal": "Personal account",
     "reconnect": "Reconnect"
+  },
+  "gitlabAccount": {
+    "title": "GitLab Account",
+    "personal": "Personal",
+    "description": "Link your GitLab account for repository access and Free starter credit verification.",
+    "connectedBadge": "Connected",
+    "notConfiguredBadge": "Not configured",
+    "loading": "Loading GitLab connection",
+    "retry": "Try again",
+    "emptyTitle": "No GitLab account connected",
+    "emptyDescription": "Connect your GitLab account to link repositories and verify your account.",
+    "notConfiguredDescription": "GitLab OAuth is not configured on this server yet.",
+    "connect": "Connect GitLab",
+    "reconnect": "Reconnect",
+    "connecting": "Connecting…",
+    "disconnect": "Disconnect",
+    "disconnectAriaLabel": "Disconnect GitLab account @{{login}}",
+    "disconnectTitle": "Disconnect @{{login}}?",
+    "disconnectDescription": "Your GitLab OAuth token will be revoked and removed from this account.",
+    "disconnectConfirm": "Disconnect",
+    "disconnecting": "Disconnecting…",
+    "loadError": "Could not load GitLab account status.",
+    "connectError": "Could not connect GitLab account.",
+    "disconnectError": "Could not disconnect GitLab account.",
+    "connectSuccessTitle": "GitLab connected",
+    "connectSuccessDescription": "Your GitLab account is now linked.",
+    "disconnectSuccessTitle": "GitLab disconnected",
+    "disconnectSuccessDescription": "@{{login}} was removed from your account."
   }
 }
