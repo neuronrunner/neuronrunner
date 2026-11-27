@@ -4,6 +4,7 @@ Chat service for handling text-based LLM predictions.
 import hashlib
 import json
 import logging
+import os
 import re
 from queue import Empty, Queue
 import time
@@ -989,6 +990,16 @@ class ChatService:
         content = parent.content
         original_title = self.conversation.title
         title_target = self._auxiliary_llm_target()
+        if title_target is None:
+            server_key = (getattr(settings, "OPENROUTER_API_KEY", None) or os.getenv("OPENROUTER_API_KEY", "")).strip()
+            server_model = (getattr(settings, "OPENROUTER_TITLE_MODEL", None) or os.getenv("OPENROUTER_TITLE_MODEL", "")).strip()
+            if server_key and server_model:
+                server_base = (getattr(settings, "OPENROUTER_BASE_URL", None) or os.getenv("OPENROUTER_BASE_URL", "")).strip() or "https://openrouter.ai/api/v1"
+                title_target = {
+                    "api_key": server_key,
+                    "base_url": server_base,
+                    "model": server_model,
+                }
 
         def worker():
             close_old_connections()
