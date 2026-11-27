@@ -678,12 +678,11 @@ const ChatWorkspace = () => {
 
   const currentMessageUuid = currentMessage?.uuid;
 
-  const currentModelName = useMemo(() => {
-    if (!selectedModel) return t("page.defaultModel");
-    return selectedModel.split(":")[0] || t("page.defaultModel");
-  }, [selectedModel, t]);
-
-  const loadingLabel = useMemo(() => t("page.loadingModel", { model: currentModelName }), [currentModelName, t]);
+  const isEnvCreating =
+    currentSandbox?.setup_status === "running" ||
+    (frontendExtension.edition === "cloud" &&
+      Boolean(activeCloudRuntime) &&
+      ["pending", "provisioning", "starting"].includes(activeCloudRuntime?.status || ""));
 
   const conversationChain = useMemo<Message[]>(() => {
     if (!messages.length) return [];
@@ -953,18 +952,8 @@ const ChatWorkspace = () => {
                           isLive
                         />
                       </div>
-                    ) : showLivePlaceholder ? (
-                      useModelStartingLoading ? (
-                        <div className="flex items-center gap-2.5 px-1 py-2">
-                          <LuLoader2 className="h-3.5 w-3.5 animate-spin text-muted-foreground" />
-                          <span className="text-xs font-medium text-muted-foreground">
-                            {loadingLabel}
-                          </span>
-                        </div>
-                      ) : currentSandbox?.setup_status === "running" ||
-                        (frontendExtension.edition === "cloud" &&
-                          Boolean(activeCloudRuntime) &&
-                          ["pending", "provisioning", "starting"].includes(activeCloudRuntime?.status || "")) ? (
+                    ) : showLivePlaceholder || useModelStartingLoading ? (
+                      isEnvCreating ? (
                         <div ref={streamAnchorRef} className="inline-flex items-center gap-2.5 px-1 py-2">
                           <LuLoader2 className="h-3.5 w-3.5 animate-spin text-indigo-400" />
                           <span className="text-xs font-medium text-muted-foreground animate-pulse">
@@ -976,13 +965,6 @@ const ChatWorkspace = () => {
                           <LoadingDots />
                         </div>
                       )
-                    ) : useModelStartingLoading ? (
-                      <div className="flex items-center gap-3 px-1 py-2">
-                        <LuLoader2 className="h-4 w-4 animate-spin text-muted-foreground" />
-                        <span className="text-xs font-mono text-muted-foreground">
-                          {loadingLabel}
-                        </span>
-                      </div>
                     ) : null}
                   </div>
                 )}
