@@ -488,9 +488,9 @@
       "free": {
         "name": "Free",
         "period": "/ month",
-        "badge": "Starter Credit",
-        "tagline": "Explore autonomous coding with $10 starter cloud Linux VM credit, BYOS, and BYOK.",
-        "llmAllowance": "$10.00 starter",
+        "badge": "Starter",
+        "tagline": "Try cloud Linux VMs with $10 starter credit, BYOS, and BYOK.",
+        "llmAllowance": "$10 starter",
         "vcpuQuota": "Up to 84 vCPU-hrs",
         "vcpuSubnote": "Covers a Small VM ($0.004/min)",
         "highlights": [
@@ -504,8 +504,8 @@
         "name": "Pro",
         "period": "/ month",
         "badge": "Most Popular",
-        "tagline": "Dedicated cloud Linux VMs for solo builders: bring your own subscription (BYOS) or API keys.",
-        "llmAllowance": "$20.00 / mo",
+        "tagline": "Dedicated cloud VMs for solo builders with BYOS or BYOK.",
+        "llmAllowance": "$20 / mo",
         "vcpuQuota": "Up to 167 vCPU-hrs / mo",
         "vcpuSubnote": "Covers Small, Large & Ultra VMs",
         "highlights": [
@@ -518,9 +518,9 @@
       "max": {
         "name": "Max",
         "period": "/ month",
-        "badge": "Power & Small Teams",
-        "tagline": "Bonus compute quota, 4 parallel VMs, and up to 5 members for heavy full-stack engineering.",
-        "llmAllowance": "$55.00 / mo",
+        "badge": "Power",
+        "tagline": "Bonus compute, 4 parallel VMs, and up to 5 workspace members.",
+        "llmAllowance": "$55 / mo",
         "vcpuQuota": "Up to 459 vCPU-hrs / mo",
         "vcpuSubnote": "Covers Small, Large & Ultra VMs",
         "highlights": [
@@ -533,9 +533,9 @@
       "team": {
         "name": "Team",
         "period": "/ month",
-        "badge": "Collaborative",
-        "tagline": "Dedicated collaborative workspace for engineering teams with up to 20 seats and 10 parallel VMs.",
-        "llmAllowance": "$220.00 / mo",
+        "badge": "Teams",
+        "tagline": "Shared compute workspace for up to 20 seats and 10 parallel VMs.",
+        "llmAllowance": "$220 / mo",
         "vcpuQuota": "Up to 1,834 vCPU-hrs / mo",
         "vcpuSubnote": "Covers Small, Large & Ultra VMs",
         "highlights": [

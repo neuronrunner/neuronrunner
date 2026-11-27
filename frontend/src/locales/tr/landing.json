@@ -488,9 +488,9 @@
       "free": {
         "name": "Free",
         "period": "/ ay",
-        "badge": "Başlangıç Kredisi",
-        "tagline": "$10 başlangıç bulut Linux VM kredisi, BYOS ve BYOK ile otonom kodlamayı keşfedin.",
-        "llmAllowance": "$10.00 başlangıç",
+        "badge": "Başlangıç",
+        "tagline": "$10 başlangıç kredisi, BYOS ve BYOK ile bulut VM'leri deneyin.",
+        "llmAllowance": "$10 başlangıç",
         "vcpuQuota": "84 vCPU-saate kadar",
         "vcpuSubnote": "Small VM'yi kapsar ($0.004/dk)",
         "highlights": [
@@ -504,8 +504,8 @@
         "name": "Pro",
         "period": "/ ay",
         "badge": "En Popüler",
-        "tagline": "Bireysel geliştiriciler için özel bulut Linux VM'ler: kendi aboneliğinizi (BYOS) veya API anahtarlarınızı getirin.",
-        "llmAllowance": "$20.00 / ay",
+        "tagline": "Bireysel geliştiriciler için BYOS/BYOK destekli özel bulut VM'ler.",
+        "llmAllowance": "$20 / ay",
         "vcpuQuota": "Aylık 167 vCPU-saate kadar",
         "vcpuSubnote": "Small, Large ve Ultra VM'leri kapsar",
         "highlights": [
@@ -518,9 +518,9 @@
       "max": {
         "name": "Max",
         "period": "/ ay",
-        "badge": "Güçlü & Küçük Ekipler",
-        "tagline": "Yoğun full-stack mühendisliği için bonus kota, 4 paralel VM ve 5 üyeye kadar çalışma alanı.",
-        "llmAllowance": "$55.00 / ay",
+        "badge": "Güçlü",
+        "tagline": "Bonus kota, 4 paralel VM ve 5 üyeye kadar çalışma alanı.",
+        "llmAllowance": "$55 / ay",
         "vcpuQuota": "Aylık 459 vCPU-saate kadar",
         "vcpuSubnote": "Small, Large ve Ultra VM'leri kapsar",
         "highlights": [
@@ -533,9 +533,9 @@
       "team": {
         "name": "Team",
         "period": "/ ay",
-        "badge": "İş Birliği",
-        "tagline": "20 üyeye kadar ekipler için 10 paralel VM ve ortak işlem gücüyle özel iş birliği çalışma alanı.",
-        "llmAllowance": "$220.00 / ay",
+        "badge": "Ekipler",
+        "tagline": "20 üyeye kadar ekipler için 10 paralel VM ve ortak havuz.",
+        "llmAllowance": "$220 / ay",
         "vcpuQuota": "Aylık 1,834 vCPU-saate kadar",
         "vcpuSubnote": "Small, Large ve Ultra VM'leri kapsar",
         "highlights": [
