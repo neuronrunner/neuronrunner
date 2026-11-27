@@ -738,6 +738,16 @@ class SandboxFileListCreateView(APIView):
             # Refresh from the live workspace filesystem when a runtime is already running.
             try:
                 sandbox_manager._sync_file_tree_to_db(project)
+                from utils.cache import get_sandbox_files as _peek_files
+                cached_now = _peek_files(str(project.uuid)) or []
+                # On a freshly woken ephemeral VM, /workspace/<env> is empty until
+                # ensure_environment_ready clones the repo / restores saved state.
+                if len(cached_now) <= 1 and (getattr(project, "repo_url", "") or getattr(project, "state_saved_at", None)):
+                    runtime = sandbox_manager.get_or_create_sandbox(project)
+                    if runtime is not None:
+                        from sandbox.services.environment_bootstrap import ensure_environment_ready
+                        ensure_environment_ready(project, runtime, user=request.user)
+                        sandbox_manager._sync_file_tree_to_db(project)
             except Exception as e:
                 logger.warning("Failed to sync file tree for sandbox %s: %s", project.uuid, e)
                 return Response({"error": "Workspace storage is unavailable. Please retry."}, status=503)
