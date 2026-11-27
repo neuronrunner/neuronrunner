@@ -478,7 +478,7 @@
       "badge": "Öngörülebilir VM Planları · Saniye Bazlı Ücretlendirme · Boşta $0.00 VM",
       "titleLine1": "Sizinle birlikte büyüyen sade VM planları.",
       "titleLine2": "Kendi yapay zekânızı getirin.",
-      "subtitle": "<s1>Aylık $0.50 Bulut VM kullanımıyla</s1> ücretsiz başlayın, kendi Claude Code, Codex veya Antigravity aboneliğinizle özel Linux VM'ler için <s2>Plus ($10) veya Pro ($25)</s2> planına geçin ya da %0 komisyonla kendi API anahtarlarınızı bağlayın."
+      "subtitle": "<s1>$10 başlangıç Bulut VM kredisiyle</s1> ücretsiz başlayın, kendi Claude Code, Codex veya Antigravity aboneliğinizle özel Linux VM'ler için <s2>Pro ($20), Max ($50) veya Team ($200)</s2> planına geçin ya da %0 komisyonla kendi API anahtarlarınızı bağlayın."
     },
     "planLabels": {
       "llmAllowance": "Kullanım Kotası (LLM + VM)",
@@ -488,61 +488,60 @@
       "free": {
         "name": "Free",
         "period": "/ ay",
-        "badge": "Sonsuza Dek Ücretsiz",
-        "tagline": "Başlangıç bulut Linux VM'leri, BYOS ve BYOK ile otonom kodlamayı keşfedin.",
-        "llmAllowance": "$0.50 / ay",
-        "vcpuQuota": "Aylık 4 vCPU-saate kadar",
+        "badge": "Başlangıç Kredisi",
+        "tagline": "$10 başlangıç bulut Linux VM kredisi, BYOS ve BYOK ile otonom kodlamayı keşfedin.",
+        "llmAllowance": "$10.00 başlangıç",
+        "vcpuQuota": "84 vCPU-saate kadar",
         "vcpuSubnote": "Small VM'yi kapsar ($0.004/dk)",
         "highlights": [
-          "6 Ücretsiz LLM + Bulut VM için aylık <strong>$0.50 tek kota</strong>",
-          "<strong>4 çekirdek (8 GB RAM)</strong> Linux sandbox VM erişimi",
+          "Bulut VM için <strong>$10.00 başlangıç kredisi</strong> (~42 saat Small VM)",
+          "<strong>2 çekirdek (8 GB RAM)</strong> Linux sandbox VM · 1 aktif VM",
           "Kendi <strong>aboneliğinizi (BYOS)</strong> veya <strong>API anahtarlarınızı (BYOK)</strong> %0 komisyonla getirin"
         ],
         "ctaLabel": "Ücretsiz Başlayın"
       },
-      "plus": {
-        "name": "Plus",
-        "period": "/ ay",
-        "badge": "En Popüler",
-        "tagline": "Kendi kodlama ajanlarınız için özel bulut Linux VM'ler: kendi aboneliğinizi (BYOS) veya API anahtarlarınızı getirin.",
-        "llmAllowance": "$10.00 / ay",
-        "vcpuQuota": "Aylık 84 vCPU-saate kadar",
-        "vcpuSubnote": "Small, Large ve Ultra VM'leri kapsar",
-        "highlights": [
-          "Bulut VM için aylık <strong>$10.00 kota</strong> (<strong>~200 vCPU-sa</strong>) + Ücretsiz Katman modelleri için <strong>$2 LLM hakkı</strong>",
-          "<strong>Kendi Claude Code, Codex veya Antigravity aboneliğinizi</strong> (BYOS) ya da API anahtarlarınızı (BYOK) getirin",
-          "<strong>8 çekirdeğe (16 GB RAM)</strong> kadar VM + canlı VNC masaüstü"
-        ],
-        "ctaLabel": "Plus'a Yükseltin"
-      },
       "pro": {
         "name": "Pro",
         "period": "/ ay",
-        "badge": "4× Güç",
-        "tagline": "Yoğun full-stack mühendisliği için daha fazla VM saati, snapshot ve 4 üyeye kadar çalışma alanı.",
-        "llmAllowance": "$25.00 / ay",
-        "vcpuQuota": "Aylık 209 vCPU-saate kadar",
+        "badge": "En Popüler",
+        "tagline": "Bireysel geliştiriciler için özel bulut Linux VM'ler: kendi aboneliğinizi (BYOS) veya API anahtarlarınızı getirin.",
+        "llmAllowance": "$20.00 / ay",
+        "vcpuQuota": "Aylık 167 vCPU-saate kadar",
         "vcpuSubnote": "Small, Large ve Ultra VM'leri kapsar",
         "highlights": [
-          "Bulut VM (<strong>~550 vCPU-sa</strong>) + Ücretsiz Katman LLM'ler için aylık <strong>$25.00 ortak kota</strong>",
-          "Premium modeller plan kotasından değil, <strong>cüzdanınızdan</strong> kullandıkça öde şeklinde düşer",
-          "<strong>4 çalışma alanı üyesine</strong> kadar · 1 ortak Bulut VM"
+          "Bulut VM için aylık <strong>$20.00 işlem gücü kotası</strong> (<strong>~167 vCPU-sa</strong>)",
+          "<strong>2 paralel VM</strong>'e kadar (Small, Large ve Ultra · 8 vCPU · 32 GB)",
+          "<strong>Kendi Claude Code, Codex veya Antigravity aboneliğinizi</strong> (BYOS) ya da API anahtarlarınızı (BYOK) getirin"
         ],
         "ctaLabel": "Pro'ya Yükseltin"
+      },
+      "max": {
+        "name": "Max",
+        "period": "/ ay",
+        "badge": "Güçlü & Küçük Ekipler",
+        "tagline": "Yoğun full-stack mühendisliği için bonus kota, 4 paralel VM ve 5 üyeye kadar çalışma alanı.",
+        "llmAllowance": "$55.00 / ay",
+        "vcpuQuota": "Aylık 459 vCPU-saate kadar",
+        "vcpuSubnote": "Small, Large ve Ultra VM'leri kapsar",
+        "highlights": [
+          "Bulut VM için aylık <strong>$55.00 kota</strong> (<strong>$5 bonus</strong> dahil, ~459 vCPU-sa)",
+          "<strong>4 paralel Bulut VM</strong>'e kadar (8 vCPU · 32 GB) ve sınırsız ortam",
+          "Ortak işlem gücü havuzuyla <strong>5 çalışma alanı üyesine</strong> kadar"
+        ],
+        "ctaLabel": "Max'a Yükseltin"
       },
       "team": {
         "name": "Team",
         "period": "/ ay",
         "badge": "İş Birliği",
-        "tagline": "20 üyeye kadar ekipler için ortak işlem gücüyle özel iş birliği çalışma alanı.",
-        "llmAllowance": "$200.00 / ay",
-        "vcpuQuota": "Aylık 1,334 vCPU-saate kadar",
+        "tagline": "20 üyeye kadar ekipler için 10 paralel VM ve ortak işlem gücüyle özel iş birliği çalışma alanı.",
+        "llmAllowance": "$220.00 / ay",
+        "vcpuQuota": "Aylık 1,834 vCPU-saate kadar",
         "vcpuSubnote": "Small, Large ve Ultra VM'leri kapsar",
         "highlights": [
-          "Ekip için 16 LLM + Bulut VM'de aylık <strong>$200.00 ortak kota</strong>",
-          "Bulut VM çalışması havuzdan düşer (<strong>$0.16–$0.32/sa</strong> · boşta $0.00)",
+          "Ekip için aylık <strong>$220.00 ortak kota</strong> (<strong>$20 bonus</strong> dahil, ~1,834 vCPU-sa)",
+          "<strong>10 paralel Bulut VM</strong>'e kadar (8 vCPU · 32 GB) ve kalıcı disk",
           "<strong>20 çalışma alanı üyesine</strong> kadar ve rol izinleri",
-          "<strong>1 ortak Bulut VM</strong> (8 çekirdeğe kadar) ve kalıcı disk",
           "<strong>Ortak ekstra kullanım cüzdanı</strong> ve tek ekip faturası"
         ],
         "ctaLabel": "Team Planını Başlatın"
@@ -587,12 +586,12 @@
           "label": "Small",
           "badge": "Standart · SMALL",
           "tagline": "Günlük kodlama, ajanlar, scriptler ve hafif web önizlemeleri.",
-          "planAccess": "Free, Plus ve Pro",
+          "planAccess": "Free, Pro, Max ve Team",
           "highlights": [
             "2 adanmış vCPU (performance sınıfı, kısıtlanmaz)",
             "8 GB bellek · Kalıcı çalışma alanı hacmi (plana göre)",
             "Kota içi $0.004/dk · kota sonrası $0.006/dk",
-            "Plus: ~41 sa/ay · Pro: ~104 sa/ay plan kotasından"
+            "Pro: ~83 sa/ay · Max: ~230 sa/ay · Team: ~915 sa/ay"
           ],
           "bestFor": "Kodlama ajanları, API'ler ve hızlı scriptler"
         },
@@ -600,12 +599,12 @@
           "label": "Large",
           "badge": "En Popüler · LARGE",
           "tagline": "Full-stack geliştirme, Docker servisleri ve canlı VNC testleri.",
-          "planAccess": "Plus ve Pro",
+          "planAccess": "Pro, Max ve Team",
           "highlights": [
             "4 adanmış vCPU (performance sınıfı, kısıtlanmaz)",
             "16 GB bellek · Kalıcı çalışma alanı hacmi (plana göre)",
             "Kota içi $0.008/dk · kota sonrası $0.012/dk",
-            "Plus: ~20 sa/ay · Pro: ~52 sa/ay plan kotasından"
+            "Pro: ~41 sa/ay · Max: ~115 sa/ay · Team: ~458 sa/ay"
           ],
           "bestFor": "Full-stack Next.js, Vite ve Docker yığınları"
         },
@@ -613,12 +612,12 @@
           "label": "Ultra",
           "badge": "Güç · ULTRA",
           "tagline": "Ağır derlemeler, büyük monorepolar ve paralel test paketleri.",
-          "planAccess": "Plus ve Pro",
+          "planAccess": "Pro, Max ve Team",
           "highlights": [
             "8 adanmış vCPU (performance sınıfı, kısıtlanmaz)",
             "32 GB bellek · Kalıcı çalışma alanı hacmi (plana göre)",
             "Kota içi $0.016/dk · kota sonrası $0.024/dk",
-            "Plus: ~10 sa/ay · Pro: ~26 sa/ay plan kotasından"
+            "Pro: ~20 sa/ay · Max: ~57 sa/ay · Team: ~229 sa/ay"
           ],
           "bestFor": "Monorepolar, Rust/Go derleyicileri ve E2E testleri"
         }
@@ -650,87 +649,87 @@
       "columns": {
         "feature": "Özellik",
         "free": "Free",
-        "plus": "Plus ($10)",
-        "pro": "Pro ($25)",
+        "pro": "Pro ($20)",
+        "max": "Max ($50)",
         "team": "Team ($200)"
       },
-      "footnote": "* Free plan, standart hesap doğrulamasından sonra Small Bulut VM'lerini (2 vCPU · 8 GB, $0.50 kotadan $0.004/dk) açar. Kota bitince VM'ler cüzdandan 1.5× ücretlendirilir (Small için $0.006/dk).",
+      "footnote": "* Free plan, standart hesap doğrulamasından sonra $10 başlangıç Bulut VM kredisi (Small 2 vCPU · 8 GB, $0.004/dk) içerir. Kota bitince VM'ler cüzdandan 1.5× ücretlendirilir (Small için $0.006/dk).",
       "rows": [
         {
           "feature": "Aylık Fiyat",
           "free": "$0 / ay",
-          "plus": "$10 / ay",
-          "pro": "$25 / ay",
+          "pro": "$20 / ay",
+          "max": "$50 / ay",
           "team": "$200 / ay"
         },
         {
-          "feature": "Aylık VM Kotası",
-          "free": "$0.50 / ay",
-          "plus": "$10.00 / ay",
-          "pro": "$25.00 / ay",
-          "team": "$200.00 / ay"
+          "feature": "İşlem Gücü Kotası",
+          "free": "$10.00 başlangıç",
+          "pro": "$20.00 / ay",
+          "max": "$55.00 / ay (+$5 bonus)",
+          "team": "$220.00 / ay (+$20 bonus)"
         },
         {
           "feature": "Bulut VM Tarifesi (Kotadan)",
           "free": "$0.004 / dk*",
-          "plus": "$0.004 – $0.016 / dk",
           "pro": "$0.004 – $0.016 / dk",
+          "max": "$0.004 – $0.016 / dk",
           "team": "$0.004 – $0.016 / dk"
         },
         {
           "feature": "Dahil VM Hesaplama",
-          "free": "Aylık 4 vCPU-saate kadar",
-          "plus": "Aylık 84 vCPU-saate kadar",
-          "pro": "Aylık 209 vCPU-saate kadar",
-          "team": "Aylık 1,334 vCPU-saate kadar"
+          "free": "84 vCPU-saate kadar",
+          "pro": "Aylık 167 vCPU-saate kadar",
+          "max": "Aylık 459 vCPU-saate kadar",
+          "team": "Aylık 1,834 vCPU-saate kadar"
         },
         {
           "feature": "Maks. VM Donanım Katmanı",
           "free": "Small · 2 vCPU · 8 GB",
-          "plus": "Ultra · 8 vCPU · 32 GB",
           "pro": "Ultra · 8 vCPU · 32 GB",
+          "max": "Ultra · 8 vCPU · 32 GB",
           "team": "Ultra · 8 vCPU · 32 GB"
         },
         {
-          "feature": "Maks. Bulut VM Sayısı",
+          "feature": "Paralel Bulut VM Sayısı",
           "free": "1 VM",
-          "plus": "1 VM",
-          "pro": "1 VM",
-          "team": "1 VM"
+          "pro": "2 VM",
+          "max": "4 VM",
+          "team": "10 VM"
         },
         {
           "feature": "Ortamlar",
           "free": "Sınırsız",
-          "plus": "Sınırsız",
           "pro": "Sınırsız",
+          "max": "Sınırsız",
           "team": "Sınırsız"
         },
         {
           "feature": "Çalışma Alanı Üyeleri",
           "free": "1 üye",
-          "plus": "1 üye (ekip yok)",
-          "pro": "4 üyeye kadar",
+          "pro": "1 üye",
+          "max": "5 üyeye kadar",
           "team": "20 üyeye kadar"
         },
         {
           "feature": "Kendi Anahtarını Getir (BYOK)",
           "free": "%0 komisyon",
-          "plus": "%0 komisyon",
           "pro": "%0 komisyon",
+          "max": "%0 komisyon",
           "team": "%0 komisyon"
         },
         {
           "feature": "Ekstra Kullanım Yüklemeleri",
           "free": "Min. $10.00 (%0 ücret)",
-          "plus": "Min. $10.00 (%0 ücret)",
           "pro": "Min. $10.00 (%0 ücret)",
+          "max": "Min. $10.00 (%0 ücret)",
           "team": "Min. $10.00 (ortak cüzdan, %0 ücret)"
         },
         {
           "feature": "Kota Önceliği ve Havuz",
           "free": "Önce kota · 1 üye",
-          "plus": "Önce kota · 1 üye",
-          "pro": "Önce kota · Ortak havuz",
+          "pro": "Önce kota · 1 üye",
+          "max": "Önce kota · Ortak havuz",
           "team": "Önce kota · Ortak havuz"
         }
       ]
@@ -743,7 +742,7 @@
       "items": [
         {
           "question": "Aylık VM kotası nasıl çalışır?",
-          "answer": "Plus ($10) ve Pro ($25), yalnızca Bulut VM çalışma süresine ayrılmış aylık USD işlem gücü kotası içerir ($10 Plus, $25 Pro; Free'de $0.50). Kendi yapay zekâ aboneliğinizi (BYOS) veya API anahtarlarınızı (BYOK) %0 platform komisyonuyla bağlarsınız."
+          "answer": "Pro ($20), Max ($50) ve Team ($200), Bulut VM çalışma süresine ayrılmış aylık USD işlem gücü kotası içerir ($20 Pro, $55 Max, $220 Team; Free'de $10 başlangıç kredisi). Kendi yapay zekâ aboneliğinizi (BYOS) veya API anahtarlarınızı (BYOK) %0 platform komisyonuyla bağlarsınız."
         },
         {
           "question": "Bulut Sandbox VM kullanımı nasıl ücretlendirilir?",
@@ -751,7 +750,7 @@
         },
         {
           "question": "Free planda Bulut Sandbox VM'lere nasıl erişebilirim?",
-          "answer": "Free plan aylık $0.50 işlem gücü kotası içerir — Small VM'de (2 vCPU · 8 GB RAM) yaklaşık 2 saat. Ayarlar bölümünden standart hesap doğrulamasını (Google/GitHub veya telefon) tamamlayarak VM başlatmayı açabilirsiniz."
+          "answer": "Free plan $10 başlangıç işlem gücü kredisi içerir — Small VM'de (2 vCPU · 8 GB RAM) yaklaşık 42 saat. Ayarlar bölümünden standart hesap doğrulamasını (Google/GitHub veya telefon) tamamlayarak VM başlatmayı açabilirsiniz."
         },
         {
           "question": "Plan kotamı aşarsam ne olur?",
@@ -769,7 +768,7 @@
     },
     "bottomCta": {
       "title": "Bugün ücretsiz başlayın. Ürettikçe yükseltin.",
-      "description": "Free planında aylık $0.50 Bulut VM kullanımı alın ya da kendi yapay zekâ aboneliğiniz veya API anahtarlarınızla özel Linux VM'ler için Plus ($10) ve Pro ($25) planlarına geçin.",
+      "description": "Free planında $10 başlangıç Bulut VM kredisi alın ya da kendi yapay zekâ aboneliğiniz veya API anahtarlarınızla özel Linux VM'ler için Pro ($20), Max ($50) ve Team ($200) planlarına geçin.",
       "managePlan": "Çalışma Alanı Planını Yönet",
       "getStarted": "Ücretsiz başlayın",
       "signIn": "Giriş yap"
@@ -782,9 +781,10 @@
     },
     "specs": {
       "labels": {
-        "quota": "Aylık VM kotası",
+        "quota": "İşlem gücü kotası",
         "vcpu": "Dahil VM hesaplama",
         "vm": "Maks. VM boyutu",
+        "parallelVms": "Paralel VM",
         "snapshots": "Snapshot",
         "members": "Üyeler",
         "byo": "BYOS / BYOK",

@@ -478,7 +478,7 @@
       "badge": "Predictable VM Plans · Per-Second Compute · $0.00 Idle VMs",
       "titleLine1": "Simple VM plans that scale with you.",
       "titleLine2": "Bring your own AI.",
-      "subtitle": "Start free with <s1>$0.50/mo of Cloud VM compute</s1>, upgrade to <s2>Plus ($10) or Pro ($25)</s2> for dedicated Linux VMs with your own Claude Code, Codex, or Antigravity subscription, or connect your own API keys at 0% platform fee."
+      "subtitle": "Start free with <s1>$10 starter Cloud VM credit</s1>, upgrade to <s2>Pro ($20), Max ($50), or Team ($200)</s2> for dedicated Linux VMs with your own Claude Code, Codex, or Antigravity subscription, or connect your own API keys at 0% platform fee."
     },
     "planLabels": {
       "llmAllowance": "Usage Quota (LLM + VM)",
@@ -488,61 +488,60 @@
       "free": {
         "name": "Free",
         "period": "/ month",
-        "badge": "Free Forever",
-        "tagline": "Explore autonomous coding with starter cloud Linux VMs, BYOS, and BYOK.",
-        "llmAllowance": "$0.50 / mo",
-        "vcpuQuota": "Up to 4 vCPU-hrs / mo",
+        "badge": "Starter Credit",
+        "tagline": "Explore autonomous coding with $10 starter cloud Linux VM credit, BYOS, and BYOK.",
+        "llmAllowance": "$10.00 starter",
+        "vcpuQuota": "Up to 84 vCPU-hrs",
         "vcpuSubnote": "Covers a Small VM ($0.004/min)",
         "highlights": [
-          "<strong>$0.50/mo unified quota</strong> for 6 Free-Tier LLMs + Cloud VMs",
-          "Access to <strong>4-core (8 GB RAM)</strong> Linux sandbox VMs",
+          "<strong>$10.00 starter credit</strong> for Cloud VMs (~42 hrs Small VM)",
+          "Access to <strong>2-core (8 GB RAM)</strong> Linux sandbox VMs · 1 active VM",
           "Bring your <strong>own subscription (BYOS)</strong> or <strong>API keys (BYOK)</strong> at 0% fee"
         ],
         "ctaLabel": "Get Started Free"
       },
-      "plus": {
-        "name": "Plus",
-        "period": "/ month",
-        "badge": "Most Popular",
-        "tagline": "Dedicated cloud Linux VMs for your own coding agents: bring your own subscription (BYOS) or API keys.",
-        "llmAllowance": "$10.00 / mo",
-        "vcpuQuota": "Up to 84 vCPU-hrs / mo",
-        "vcpuSubnote": "Covers Small, Large & Ultra VMs",
-        "highlights": [
-          "<strong>$10.00/mo quota</strong> for Cloud VMs (<strong>~200 vCPU-hrs</strong>) + <strong>$2 LLM allowance</strong> for Free-Tier models",
-          "Bring your <strong>own Claude Code, Codex or Antigravity subscription</strong> (BYOS) or API keys (BYOK)",
-          "Up to <strong>8-core (16 GB RAM)</strong> VMs + live VNC desktop"
-        ],
-        "ctaLabel": "Upgrade to Plus"
-      },
       "pro": {
         "name": "Pro",
         "period": "/ month",
-        "badge": "4× Power",
-        "tagline": "More VM hours, snapshots and up to 4 members for heavy full-stack engineering.",
-        "llmAllowance": "$25.00 / mo",
-        "vcpuQuota": "Up to 209 vCPU-hrs / mo",
+        "badge": "Most Popular",
+        "tagline": "Dedicated cloud Linux VMs for solo builders: bring your own subscription (BYOS) or API keys.",
+        "llmAllowance": "$20.00 / mo",
+        "vcpuQuota": "Up to 167 vCPU-hrs / mo",
         "vcpuSubnote": "Covers Small, Large & Ultra VMs",
         "highlights": [
-          "<strong>$25.00/mo pooled quota</strong> for Cloud VMs (<strong>~550 vCPU-hrs</strong>) + Free-Tier LLMs",
-          "Premium models are billed from your <strong>wallet</strong> (pay-as-you-go), never from plan quota",
-          "Up to <strong>4 workspace members</strong> · 1 shared Cloud VM"
+          "<strong>$20.00/mo compute quota</strong> for Cloud VMs (<strong>~167 vCPU-hrs</strong>)",
+          "Up to <strong>2 parallel VMs</strong> (Small, Large & Ultra up to 8 vCPU · 32 GB)",
+          "Bring your <strong>own Claude Code, Codex or Antigravity subscription</strong> (BYOS) or API keys (BYOK)"
         ],
         "ctaLabel": "Upgrade to Pro"
+      },
+      "max": {
+        "name": "Max",
+        "period": "/ month",
+        "badge": "Power & Small Teams",
+        "tagline": "Bonus compute quota, 4 parallel VMs, and up to 5 members for heavy full-stack engineering.",
+        "llmAllowance": "$55.00 / mo",
+        "vcpuQuota": "Up to 459 vCPU-hrs / mo",
+        "vcpuSubnote": "Covers Small, Large & Ultra VMs",
+        "highlights": [
+          "<strong>$55.00/mo compute quota</strong> (<strong>$5 bonus</strong> included, ~459 vCPU-hrs)",
+          "Up to <strong>4 parallel Cloud VMs</strong> (up to 8 vCPU · 32 GB) & unlimited environments",
+          "Up to <strong>5 workspace members</strong> with shared compute pool"
+        ],
+        "ctaLabel": "Upgrade to Max"
       },
       "team": {
         "name": "Team",
         "period": "/ month",
         "badge": "Collaborative",
-        "tagline": "Dedicated collaborative workspace for teams with up to 20 seats and shared cloud compute.",
-        "llmAllowance": "$200.00 / mo",
-        "vcpuQuota": "Up to 1,334 vCPU-hrs / mo",
+        "tagline": "Dedicated collaborative workspace for engineering teams with up to 20 seats and 10 parallel VMs.",
+        "llmAllowance": "$220.00 / mo",
+        "vcpuQuota": "Up to 1,834 vCPU-hrs / mo",
         "vcpuSubnote": "Covers Small, Large & Ultra VMs",
         "highlights": [
-          "<strong>$200.00/mo pooled team quota</strong> across 16 LLMs + Cloud VMs",
-          "Cloud VM runtime billed from team pool (<strong>$0.16–$0.32/hr</strong> · $0.00 stopped)",
+          "<strong>$220.00/mo pooled team quota</strong> (<strong>$20 bonus</strong> included, ~1,834 vCPU-hrs)",
+          "Up to <strong>10 parallel Cloud VMs</strong> (up to 8 vCPU · 32 GB) & persistent disks",
           "Up to <strong>20 workspace members</strong> & role permissions",
-          "<strong>1 shared Cloud VM</strong> (up to 8-core) & persistent disk",
           "<strong>Shared extra-usage wallet</strong> & unified team invoices"
         ],
         "ctaLabel": "Start Team Plan"
@@ -587,12 +586,12 @@
           "label": "Small",
           "badge": "Standard · SMALL",
           "tagline": "Everyday coding, agents, scripts, and lightweight web previews.",
-          "planAccess": "Free, Plus & Pro",
+          "planAccess": "Free, Pro, Max & Team",
           "highlights": [
             "2 dedicated vCPU (performance-class, never throttled)",
             "8 GB memory · Persistent workspace volume (by plan)",
             "$0.004/min included · $0.006/min after quota",
-            "Plus: ~41 hrs/mo · Pro: ~104 hrs/mo from plan quota"
+            "Pro: ~83 hrs/mo · Max: ~230 hrs/mo · Team: ~915 hrs/mo"
           ],
           "bestFor": "Coding agents, APIs & fast scripts"
         },
@@ -600,12 +599,12 @@
           "label": "Large",
           "badge": "Most Popular · LARGE",
           "tagline": "Full-stack development, Docker services, and live VNC tests.",
-          "planAccess": "Plus & Pro",
+          "planAccess": "Pro, Max & Team",
           "highlights": [
             "4 dedicated vCPU (performance-class, never throttled)",
             "16 GB memory · Persistent workspace volume (by plan)",
             "$0.008/min included · $0.012/min after quota",
-            "Plus: ~20 hrs/mo · Pro: ~52 hrs/mo from plan quota"
+            "Pro: ~41 hrs/mo · Max: ~115 hrs/mo · Team: ~458 hrs/mo"
           ],
           "bestFor": "Full-stack Next.js, Vite & Docker stacks"
         },
@@ -613,12 +612,12 @@
           "label": "Ultra",
           "badge": "Power · ULTRA",
           "tagline": "Heavy compilation, large monorepos, and parallel test suites.",
-          "planAccess": "Plus & Pro",
+          "planAccess": "Pro, Max & Team",
           "highlights": [
             "8 dedicated vCPU (performance-class, never throttled)",
             "32 GB memory · Persistent workspace volume (by plan)",
             "$0.016/min included · $0.024/min after quota",
-            "Plus: ~10 hrs/mo · Pro: ~26 hrs/mo from plan quota"
+            "Pro: ~20 hrs/mo · Max: ~57 hrs/mo · Team: ~229 hrs/mo"
           ],
           "bestFor": "Monorepos, Rust/Go compilers & E2E suites"
         }
@@ -650,87 +649,87 @@
       "columns": {
         "feature": "Feature",
         "free": "Free",
-        "plus": "Plus ($10)",
-        "pro": "Pro ($25)",
+        "pro": "Pro ($20)",
+        "max": "Max ($50)",
         "team": "Team ($200)"
       },
-      "footnote": "* Free plan unlocks Small Cloud VMs (2 vCPU · 8 GB, $0.004/min from the $0.50 quota) after standard account verification. After the quota runs out, VMs bill your wallet at 1.5× ($0.006/min Small).",
+      "footnote": "* Free plan includes $10 starter Cloud VM credit (Small 2 vCPU · 8 GB, $0.004/min) after standard account verification. After the quota runs out, VMs bill your wallet at 1.5× ($0.006/min Small).",
       "rows": [
         {
           "feature": "Monthly Price",
           "free": "$0 / mo",
-          "plus": "$10 / mo",
-          "pro": "$25 / mo",
+          "pro": "$20 / mo",
+          "max": "$50 / mo",
           "team": "$200 / mo"
         },
         {
-          "feature": "Monthly VM Quota",
-          "free": "$0.50 / mo",
-          "plus": "$10.00 / mo",
-          "pro": "$25.00 / mo",
-          "team": "$200.00 / mo"
+          "feature": "Compute Quota",
+          "free": "$10.00 starter",
+          "pro": "$20.00 / mo",
+          "max": "$55.00 / mo (+$5 bonus)",
+          "team": "$220.00 / mo (+$20 bonus)"
         },
         {
           "feature": "Cloud VM Rate (from Quota)",
           "free": "$0.004 / min*",
-          "plus": "$0.004 – $0.016 / min",
           "pro": "$0.004 – $0.016 / min",
+          "max": "$0.004 – $0.016 / min",
           "team": "$0.004 – $0.016 / min"
         },
         {
           "feature": "Included VM Compute",
-          "free": "Up to 4 vCPU-hrs / mo",
-          "plus": "Up to 84 vCPU-hrs / mo",
-          "pro": "Up to 209 vCPU-hrs / mo",
-          "team": "Up to 1,334 vCPU-hrs / mo"
+          "free": "Up to 84 vCPU-hrs",
+          "pro": "Up to 167 vCPU-hrs / mo",
+          "max": "Up to 459 vCPU-hrs / mo",
+          "team": "Up to 1,834 vCPU-hrs / mo"
         },
         {
           "feature": "Max VM Hardware Tier",
           "free": "Small · 2 vCPU · 8 GB",
-          "plus": "Ultra · 8 vCPU · 32 GB",
           "pro": "Ultra · 8 vCPU · 32 GB",
+          "max": "Ultra · 8 vCPU · 32 GB",
           "team": "Ultra · 8 vCPU · 32 GB"
         },
         {
-          "feature": "Max Cloud VMs",
+          "feature": "Parallel Cloud VMs",
           "free": "1 VM",
-          "plus": "1 VM",
-          "pro": "1 VM",
-          "team": "1 VM"
+          "pro": "2 VMs",
+          "max": "4 VMs",
+          "team": "10 VMs"
         },
         {
           "feature": "Environments",
           "free": "Unlimited",
-          "plus": "Unlimited",
           "pro": "Unlimited",
+          "max": "Unlimited",
           "team": "Unlimited"
         },
         {
           "feature": "Workspace Members",
           "free": "1 member",
-          "plus": "1 member (no team)",
-          "pro": "Up to 4 members",
+          "pro": "1 member",
+          "max": "Up to 5 members",
           "team": "Up to 20 members"
         },
         {
           "feature": "Bring Your Own Key (BYOK)",
           "free": "0% fee",
-          "plus": "0% fee",
           "pro": "0% fee",
+          "max": "0% fee",
           "team": "0% fee"
         },
         {
           "feature": "Extra-Usage Top-Ups",
           "free": "Min $10.00 (0% fee)",
-          "plus": "Min $10.00 (0% fee)",
           "pro": "Min $10.00 (0% fee)",
+          "max": "Min $10.00 (0% fee)",
           "team": "Min $10.00 (shared wallet, 0% fee)"
         },
         {
           "feature": "Quota Priority & Pooling",
           "free": "Allowance first · 1 member",
-          "plus": "Allowance first · 1 member",
-          "pro": "Allowance first · Shared pool",
+          "pro": "Allowance first · 1 member",
+          "max": "Allowance first · Shared pool",
           "team": "Allowance first · Shared pool"
         }
       ]
@@ -743,7 +742,7 @@
       "items": [
         {
           "question": "How does the monthly VM quota work?",
-          "answer": "Plus ($10) and Pro ($25) include a monthly USD compute quota ($10 Plus, $25 Pro; Free includes $0.50) dedicated exclusively to Cloud VM runtime. You connect your own AI subscription (BYOS) or API keys (BYOK) at 0% platform markup."
+          "answer": "Pro ($20), Max ($50), and Team ($200) include a monthly USD compute quota ($20 Pro, $55 Max, $220 Team; Free includes $10 starter credit) dedicated to Cloud VM runtime. You connect your own AI subscription (BYOS) or API keys (BYOK) at 0% platform markup."
         },
         {
           "question": "How is Cloud Sandbox VM runtime billed?",
@@ -751,7 +750,7 @@
         },
         {
           "question": "How do I access Cloud Sandbox VMs on the Free plan?",
-          "answer": "The Free plan includes a $0.50/mo compute quota — about 2 hours on a Small VM (2 vCPU · 8 GB RAM). Complete standard account verification (Google/GitHub or phone) in Settings to unlock Cloud VM launches."
+          "answer": "The Free plan includes $10 starter compute credit — about 42 hours on a Small VM (2 vCPU · 8 GB RAM). Complete standard account verification (Google/GitHub or phone) in Settings to unlock Cloud VM launches."
         },
         {
           "question": "What happens if I exceed my plan quota?",
@@ -769,7 +768,7 @@
     },
     "bottomCta": {
       "title": "Start free today. Upgrade as you ship.",
-      "description": "Get $0.50/mo of Cloud VM compute on the Free plan, or upgrade to Plus ($10) and Pro ($25) for dedicated Linux VMs with your own AI subscription or API keys.",
+      "description": "Get $10 starter Cloud VM credit on the Free plan, or upgrade to Pro ($20), Max ($50), and Team ($200) for dedicated Linux VMs with your own AI subscription or API keys.",
       "managePlan": "Manage Workspace Plan",
       "getStarted": "Get started for free",
       "signIn": "Sign in"
@@ -782,9 +781,10 @@
     },
     "specs": {
       "labels": {
-        "quota": "Monthly VM quota",
+        "quota": "Compute quota",
         "vcpu": "VM compute included",
         "vm": "Max VM size",
+        "parallelVms": "Parallel VMs",
         "snapshots": "Snapshots",
         "members": "Members",
         "byo": "BYOS / BYOK",
