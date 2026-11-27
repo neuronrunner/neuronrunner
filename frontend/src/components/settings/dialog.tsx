@@ -6,7 +6,6 @@ import {
   LuBrain,
   LuBriefcase,
   LuKey,
-  LuKeyRound,
   LuLock,
   LuUser,
   LuUsers,
@@ -16,7 +15,6 @@ import WorkspaceSelector from "./workspace-selector";
 import WorkspaceTab from "./tabs/WorkspaceTab";
 import TeamTab from "./tabs/TeamTab";
 import ProviderKeysTab from "./tabs/ProviderKeysTab";
-import VMSecretsTab from "./tabs/VMSecretsTab";
 import ProfileTab from "./tabs/ProfileTab";
 import PersonalizationTab from "./tabs/PersonalizationTab";
 import SecurityTab from "./tabs/SecurityTab";
@@ -28,7 +26,6 @@ const TAB_IDS: readonly string[] = [
   "workspace",
   "team",
   "provider-keys",
-  "secrets",
   ...frontendExtension.settingsTabs.map((tab) => tab.id),
   "profile",
   "personalization",
@@ -100,7 +97,6 @@ export default function SettingsDialog() {
       "workspace",
       "team",
       "provider-keys",
-      "secrets",
       ...frontendExtension.settingsTabs
         .filter((tab) => tab.sectionKey === "workspace")
         .map((tab) => tab.id),
@@ -134,7 +130,6 @@ export default function SettingsDialog() {
       { id: "workspace", label: t("common:settings.tabs.workspace"), icon: LuBriefcase, section: t("common:settings.sections.workspace") },
       { id: "team", label: t("common:settings.tabs.team"), icon: LuUsers, section: t("common:settings.sections.workspace") },
       { id: "provider-keys", label: t("common:settings.tabs.providerKeys"), icon: LuKey, section: t("common:settings.sections.workspace") },
-      { id: "secrets", label: t("common:settings.tabs.vmSecrets"), icon: LuKeyRound, section: t("common:settings.sections.workspace") },
       ...frontendExtension.settingsTabs
         .filter((tab) => tab.sectionKey === "workspace")
         .map((tab) => ({
@@ -184,8 +179,6 @@ function renderTabContent(tab: SettingsTab) {
       return <TeamTab />;
     case "provider-keys":
       return <ProviderKeysTab />;
-    case "secrets":
-      return <VMSecretsTab />;
     case "profile":
       return <ProfileTab />;
     case "personalization":
