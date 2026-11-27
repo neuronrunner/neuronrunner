@@ -377,8 +377,8 @@ if lockfiles:
     if found:
         lock_hash = digest.hexdigest()[:16]
 
-if not store_root.is_dir() or not lock_hash:
-    print(json.dumps({"cached": False, "mode": None, "lock_hash": lock_hash}))
+if not store_root.is_dir() or not os.access(store_root, os.W_OK) or not lock_hash:
+    print(json.dumps({"cached": False, "mode": "readonly" if store_root.is_dir() and not os.access(store_root, os.W_OK) else None, "lock_hash": lock_hash}))
     sys.exit(0)
 
 present = [d for d in dep_dirs if (work_dir / d).is_dir() and not (work_dir / d).is_symlink()]
@@ -453,6 +453,9 @@ max_total_bytes = int(cfg.get("max_total_bytes") or 1024 * 1024 * 1024)
 
 if not store_root.is_dir() or not root.is_dir():
     print(json.dumps({"saved": False, "skipped": "no_store_or_root"}))
+    sys.exit(0)
+if not os.access(store_root, os.W_OK):
+    print(json.dumps({"saved": False, "skipped": "readonly_store"}))
     sys.exit(0)
 
 # Opportunistically prune expired >7d deps entries in this workspace store
@@ -777,7 +780,7 @@ def clear_environment_deps_cache(sandbox: Sandbox, runtime=None) -> dict:
     removed = 0
     if runtime is not None:
         script = (
-            "import base64, json, shutil, sys\n"
+            "import base64, json, os, shutil, sys\n"
             "from pathlib import Path\n"
             "cfg = json.loads(base64.b64decode(sys.argv[1]).decode('utf-8'))\n"
             "store = Path(cfg['store_root'])\n"
@@ -785,11 +788,14 @@ def clear_environment_deps_cache(sandbox: Sandbox, runtime=None) -> dict:
             "count = 0\n"
             "for sub in ('deps', 'deps-dir'):\n"
             "  d = store / sub\n"
-            "  if not d.is_dir(): continue\n"
+            "  if not d.is_dir() or not os.access(d, os.W_OK): continue\n"
             "  for entry in list(d.iterdir()):\n"
             "    if entry.name.startswith(prefix):\n"
-            "      shutil.rmtree(entry, ignore_errors=True) if entry.is_dir() else entry.unlink(missing_ok=True)\n"
-            "      count += 1\n"
+            "      try:\n"
+            "        shutil.rmtree(entry, ignore_errors=True) if entry.is_dir() else entry.unlink(missing_ok=True)\n"
+            "        count += 1\n"
+            "      except OSError:\n"
+            "        pass\n"
             "print(json.dumps({'removed': count}))\n"
         )
         res = _exec_json(runtime, script, {"store_root": STORE_ROOT, "env_id": str(sandbox.uuid)}, timeout=60)
