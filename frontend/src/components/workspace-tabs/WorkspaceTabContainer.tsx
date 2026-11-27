@@ -14,7 +14,6 @@ import {
   LuGlobe,
   LuImage,
   LuLoaderCircle,
-  LuMessageSquare,
   LuMonitor,
   LuPanelLeftOpen,
   LuPanelRightClose,
@@ -25,7 +24,7 @@ import {
 } from "react-icons/lu";
 import ConversationTitleInput from "@/components/conversation-title-input";
 import FadingText from "@/components/fading-text";
-import { WorkspacePageHeader, WorkspacePageTitle } from "@/components/workspace-page-header";
+import { WorkspacePageHeader } from "@/components/workspace-page-header";
 import WorkspaceHeaderToolbar from "@/components/workspace-header-toolbar";
 import { Button } from "@/components/ui/button";
 import useChatStore from "@/stores/chat";
@@ -154,6 +153,13 @@ export const WorkspaceTabContainer: React.FC<Props> = ({ children }) => {
   const activeConversationId = conversationUuidFromRoute || (isChatRoute ? conversationId : undefined);
   const isNewRoute = !conversationUuidFromRoute || conversationUuidFromRoute === "new" || pathname === "/new" || pathname === "/chat";
   const hasActiveConversation = !isNewRoute && Boolean(activeConversationId && activeConversationId !== "new");
+
+  const projectName = useSandboxProjectsStore((state) => {
+    if (!hasActiveConversation || !activeConversationId) return "";
+    const sandboxId = Object.keys(state.sandboxConversations).find((id) => state.sandboxConversations[id]?.includes(activeConversationId));
+    const sandbox = state.sandboxes.find((item) => item.uuid === sandboxId);
+    return sandbox ? sandbox.display_name || sandbox.slug : "";
+  });
 
   const rightPanelTab = splitTabs.find((item) => item.id === activeSplitTabId) || splitTabs[0];
   const activePrimaryTab = tabs.find((item) => item.id === activeTabId) || tabs[0];
@@ -344,7 +350,7 @@ export const WorkspaceTabContainer: React.FC<Props> = ({ children }) => {
         )}
         {showWorkspaceHeader && (
           <WorkspacePageHeader
-            className="absolute inset-x-0 top-0 z-40"
+            className={cn("absolute inset-x-0 top-0 z-40", !primaryFileTab && "border-b-0 bg-transparent backdrop-blur-none")}
             actions={
               isNewChatScreen
                 ? undefined
@@ -425,14 +431,24 @@ export const WorkspaceTabContainer: React.FC<Props> = ({ children }) => {
                     );
                   })}
                 </div>
-              ) : hasActiveConversation ? (
-                <WorkspacePageTitle icon={LuMessageSquare}>
-                  <ConversationTitleInput variant="workspace" />
-                </WorkspacePageTitle>
-              ) : isChatRoute ? (
-                <WorkspacePageTitle icon={LuMessageSquare}>
-                  <FadingText text={t("tabContainer.newConversation")} className="block px-1 text-sm font-semibold leading-none tracking-[-0.01em] text-foreground/80" />
-                </WorkspacePageTitle>
+              ) : hasActiveConversation || isChatRoute ? (
+                <div className="flex min-w-0 flex-1 items-center gap-1.5 text-sm">
+                  {projectName && (
+                    <>
+                      <span className="min-w-0 max-w-[240px] shrink truncate font-medium text-muted-foreground" title={projectName}>
+                        {projectName}
+                      </span>
+                      <span aria-hidden="true" className="shrink-0 text-muted-foreground/40">/</span>
+                    </>
+                  )}
+                  <div className="min-w-0 max-w-[420px] flex-1 font-semibold leading-none tracking-[-0.01em] text-foreground/80">
+                    {hasActiveConversation ? (
+                      <ConversationTitleInput variant="workspace" />
+                    ) : (
+                      <FadingText text={t("tabContainer.newConversation")} className="block text-sm font-semibold leading-none tracking-[-0.01em] text-foreground/80" />
+                    )}
+                  </div>
+                </div>
               ) : null}
             </div>
           </WorkspacePageHeader>

@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'openai_compat',
     'mcp',
     'sandbox.apps.SandboxConfig',
+    'issues.apps.IssuesConfig',
 ]
 
 MIDDLEWARE = [

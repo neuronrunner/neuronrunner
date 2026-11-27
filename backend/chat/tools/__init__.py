@@ -52,3 +52,8 @@ try:
     import chat.tools.browser  # noqa: E402,F401 — registers built-in browser handler
 except ImportError:
     logger.warning("browser tool module not available")
+
+try:
+    import chat.tools.issues  # noqa: E402,F401 — registers issue tracker handlers
+except ImportError:
+    logger.warning("issues tool module not available")

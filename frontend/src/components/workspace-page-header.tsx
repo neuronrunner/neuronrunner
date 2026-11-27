@@ -1,5 +1,7 @@
 import type { ComponentProps, ReactNode } from "react";
 import type { IconType } from "react-icons";
+import { LuPanelLeftOpen } from "react-icons/lu";
+import useSidebarStore from "@/stores/sidebar";
 import { cn } from "@/lib/utils";
 
 export function WorkspacePageHeader({
@@ -26,5 +28,22 @@ export function WorkspacePageTitle({ icon: Icon, children }: { icon: IconType; c
         {children}
       </div>
     </div>
+  );
+}
+
+/** Pages without a top bar still need a way to reopen the sidebar; this floats in the corner only while it is closed. */
+export function WorkspaceSidebarToggle({ label }: { label: string }) {
+  const isOpen = useSidebarStore((state) => state.isOpen);
+  if (isOpen) return null;
+  return (
+    <button
+      type="button"
+      aria-label={label}
+      title={label}
+      onClick={() => useSidebarStore.getState().toggle()}
+      className="absolute left-3 top-2.5 z-40 inline-flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted/70 hover:text-foreground"
+    >
+      <LuPanelLeftOpen className="h-5 w-5" />
+    </button>
   );
 }

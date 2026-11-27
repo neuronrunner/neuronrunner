@@ -12,6 +12,7 @@ import {
   LuFolderPlus,
   LuGitBranch,
   LuGithub,
+  LuGitlab,
   LuKeyRound,
   LuLoaderCircle,
   LuSparkles,
@@ -25,8 +26,8 @@ import { toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
 import { API_BASE, authedAxios } from "@/lib/axios";
 import { ENVIRONMENT_PRESETS } from "@/lib/environment-presets";
-import { normalizeProjectPath, parseGithubRepository } from "@/lib/project-import";
-import GithubRepositoryAccess from "@/components/git/github-repository-access";
+import { DEFAULT_GITLAB_HOST, normalizeProjectPath, parseGithubRepository, parseGitlabRepository } from "@/lib/project-import";
+import RepositoryBrowser, { type GitProvider } from "@/components/git/repository-browser";
 import ProjectFolderPicker from "./project-folder-picker";
 import useChatStore from "@/stores/chat";
 import useSandboxProjectsStore from "@/stores/sandbox-projects";
@@ -39,14 +40,27 @@ interface Props {
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
   onCreated?: (project: IProject) => Promise<void> | void;
-  initialMode?: "new" | "folder" | "github";
+  /** "github" and "gitlab" are kept for older callers; both open the single repository flow. */
+  initialMode?: "new" | "folder" | "repo" | "github" | "gitlab";
+}
+
+type Mode = "new" | "folder" | "repo";
+const normalizeMode = (mode: Props["initialMode"]): Mode => (mode === "new" || mode === "folder" ? mode : "repo");
+
+/** The provider is read from what the user pastes or picks, never chosen separately. */
+function detectRepository(value: string, gitlabHost: string) {
+  const github = parseGithubRepository(value);
+  if (github) return { provider: "github" as GitProvider, repository: github };
+  const gitlab = parseGitlabRepository(value, gitlabHost);
+  if (gitlab) return { provider: "gitlab" as GitProvider, repository: gitlab };
+  return null;
 }
 
 export default function CreateProjectDialog({
   open: controlledOpen,
   onOpenChange,
   onCreated,
-  initialMode = "github",
+  initialMode = "repo",
 }: Props) {
   const { t } = useTranslation("workspace");
   const router = useRouter();
@@ -57,11 +71,12 @@ export default function CreateProjectDialog({
   const workspaceSandbox = useSandboxProjectsStore(state => state.workspaceSandbox);
   const workspaceUuid = useWorkspacesStore(state => state.currentWorkspace?.uuid || state.currentWorkspaceUuid);
 
-  const [mode, setMode] = useState<"new" | "folder" | "github">(initialMode);
+  const [mode, setMode] = useState<Mode>(normalizeMode(initialMode));
   const [displayName, setDisplayName] = useState("");
   const [displayNameEdited, setDisplayNameEdited] = useState(false);
   const [folderPath, setFolderPath] = useState("");
   const [repoUrl, setRepoUrl] = useState("");
+  const [gitlabHost, setGitlabHost] = useState(DEFAULT_GITLAB_HOST);
   const [defaultBranch, setDefaultBranch] = useState("main");
   const [workingSubdir, setWorkingSubdir] = useState("");
   const [destination, setDestination] = useState("");
@@ -72,19 +87,23 @@ export default function CreateProjectDialog({
   const [secretsText, setSecretsText] = useState("");
   const [usageGuide, setUsageGuide] = useState("");
   const [phase, setPhase] = useState<"idle" | "connecting" | "creating">("idle");
+  const [connectingProvider, setConnectingProvider] = useState<GitProvider>("github");
   const [error, setError] = useState("");
   const submitting = useRef(false);
 
   const busy = phase !== "idle";
-  const repository = parseGithubRepository(repoUrl);
-  const targetPath = normalizeProjectPath(mode !== "github" ? folderPath : destination);
+  const isRepoMode = mode === "repo";
+  const detected = detectRepository(repoUrl, gitlabHost);
+  const repository = detected?.repository ?? null;
+  const provider = detected?.provider ?? null;
+  const targetPath = normalizeProjectPath(isRepoMode ? destination : folderPath);
 
   useEffect(() => {
     if (open) {
-      setMode(initialMode);
+      setMode(normalizeMode(initialMode));
       return;
     }
-    setMode(initialMode);
+    setMode(normalizeMode(initialMode));
     setDisplayName("");
     setDisplayNameEdited(false);
     setFolderPath("");
@@ -104,7 +123,7 @@ export default function CreateProjectDialog({
   const changeRepository = (value: string, branch?: string | null) => {
     setRepoUrl(value);
     setError("");
-    const repo = parseGithubRepository(value);
+    const repo = detectRepository(value, gitlabHost)?.repository ?? null;
     if (branch) setDefaultBranch(branch);
     if (!destinationEdited) {
       setDestination(repo ? `/workspace/${repo.name}` : "");
@@ -120,7 +139,7 @@ export default function CreateProjectDialog({
 
   const submit = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (busy || submitting.current || !workspaceUuid || !targetPath || (mode === "github" && !repository)) return;
+    if (busy || submitting.current || !workspaceUuid || !targetPath || (isRepoMode && !repository)) return;
     submitting.current = true;
     setError("");
     const store = useSandboxProjectsStore.getState();
@@ -137,9 +156,9 @@ export default function CreateProjectDialog({
         display_name: displayName.trim() || undefined,
         filesystem_path: targetPath,
         workspace_uuid: workspaceUuid,
-        source: mode === "github" ? "github" : mode === "new" ? "new" : "existing",
-        lazy: mode === "github",
-        ...(mode === "github" && repository
+        source: isRepoMode ? provider ?? "github" : mode === "new" ? "new" : "existing",
+        lazy: isRepoMode,
+        ...(isRepoMode && repository
           ? {
               repo_full_name: repository.fullName,
               repo_url: repository.url,
@@ -181,7 +200,7 @@ export default function CreateProjectDialog({
       }
       setOpen(false);
       toaster.create({
-        title: mode === "github" ? t("projects.create.toastImported") : t("projects.create.toastCreated"),
+        title: isRepoMode ? t("projects.create.toastImported") : t("projects.create.toastCreated"),
         description: project.repo_full_name || project.filesystem_path,
         type: "success",
       });
@@ -215,7 +234,7 @@ export default function CreateProjectDialog({
             <div role="group" aria-label={t("projects.create.sourceAria")} className="grid grid-cols-3 gap-1 rounded-lg bg-muted/50 p-1">
               {(
                 [
-                  { id: "github", Icon: LuGithub, title: t("projects.create.modeGithub") },
+                  { id: "repo", Icon: LuGitBranch, title: t("projects.create.modeRepository") },
                   { id: "new", Icon: LuFolderPlus, title: t("projects.create.modeNew") },
                   { id: "folder", Icon: LuFolder, title: t("projects.create.modeExisting") },
                 ] as const
@@ -225,7 +244,15 @@ export default function CreateProjectDialog({
                   type="button"
                   aria-pressed={mode === id}
                   disabled={busy}
-                  onClick={() => { setMode(id); setError(""); }}
+                  onClick={() => {
+                    if (id !== mode) {
+                      setRepoUrl("");
+                      if (!destinationEdited) setDestination("");
+                      if (!displayNameEdited) setDisplayName("");
+                    }
+                    setMode(id);
+                    setError("");
+                  }}
                   className={cn(
                     "flex min-w-0 items-center justify-center gap-1.5 rounded-md px-1 py-2 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50",
                     mode === id ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
@@ -237,32 +264,45 @@ export default function CreateProjectDialog({
               ))}
             </div>
 
-            {mode === "github" ? (
+            {isRepoMode ? (
               <div className="space-y-3.5">
-                <GithubRepositoryAccess
-                  key={workspaceUuid}
+                <div className="space-y-1.5">
+                  <label htmlFor="project-repository" className="text-xs font-medium">{t("projects.create.repoLabel")}</label>
+                  <div className="relative">
+                    <Input
+                      id="project-repository"
+                      placeholder={t("projects.create.repoPlaceholder")}
+                      value={repoUrl}
+                      disabled={busy}
+                      autoComplete="off"
+                      spellCheck={false}
+                      aria-describedby="repository-help"
+                      className={provider ? "pr-24" : undefined}
+                      onChange={event => changeRepository(event.target.value)}
+                    />
+                    {provider && (
+                      <span className="pointer-events-none absolute right-2 top-1/2 inline-flex -translate-y-1/2 items-center gap-1 rounded-md bg-muted px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
+                        {provider === "github" ? <LuGithub aria-hidden className="h-3 w-3" /> : <LuGitlab aria-hidden className="h-3 w-3" />}
+                        {provider === "github" ? "GitHub" : "GitLab"}
+                      </span>
+                    )}
+                  </div>
+                  <p id="repository-help" className="text-[11px] leading-relaxed text-muted-foreground">{t("projects.create.repoHelp")}</p>
+                  {repoUrl.trim() && !repository && <p className="text-xs text-destructive">{t("projects.create.invalidRepoUrl")}</p>}
+                </div>
+
+                <RepositoryBrowser
+                  key={`repos-${workspaceUuid}`}
                   uuid={workspaceSandbox?.workspace_uuid === workspaceUuid ? workspaceSandbox.uuid : undefined}
                   disabled={busy}
                   value={repository?.url}
-                  onSelect={url => changeRepository(url)}
-                  onSelectRepo={repo => changeRepository(repo.clone_url, repo.default_branch)}
-                  onConnectingChange={connecting => setPhase(current => connecting ? "connecting" : current === "connecting" ? "idle" : current)}
+                  onSelect={repo => changeRepository(repo.clone_url, repo.default_branch)}
+                  onGitlabBaseUrl={baseUrl => { try { setGitlabHost(new URL(baseUrl).host); } catch { /* keep default host */ } }}
+                  onConnectingChange={(connectingProvider, connecting) => {
+                    if (connecting) setConnectingProvider(connectingProvider);
+                    setPhase(current => connecting ? "connecting" : current === "connecting" ? "idle" : current);
+                  }}
                 />
-                <div className="space-y-1.5">
-                  <label htmlFor="project-repository" className="text-xs font-medium">{t("projects.create.githubRepoLabel")}</label>
-                  <Input
-                    id="project-repository"
-                    placeholder={t("projects.create.githubRepoPlaceholder")}
-                    value={repoUrl}
-                    disabled={busy}
-                    autoComplete="off"
-                    spellCheck={false}
-                    aria-describedby="repository-help"
-                    onChange={event => changeRepository(event.target.value)}
-                  />
-                  <p id="repository-help" className="text-[11px] leading-relaxed text-muted-foreground">{t("projects.create.githubRepoHelp")}</p>
-                  {repoUrl.trim() && !repository && <p className="text-xs text-destructive">{t("projects.create.invalidGithubUrl")}</p>}
-                </div>
 
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   <div className="space-y-1.5">
@@ -350,7 +390,7 @@ export default function CreateProjectDialog({
                     </div>
                   </div>
 
-                  {mode === "github" && (
+                  {isRepoMode && (
                     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                       <div className="space-y-1.5">
                         <label htmlFor="project-destination" className="text-xs font-medium">{t("projects.create.folderPath")}</label>
@@ -448,7 +488,7 @@ export default function CreateProjectDialog({
               <div className="flex items-center gap-2 rounded-lg bg-muted/40 px-3 py-2 text-xs">
                 <LuGitBranch className="h-4 w-4 shrink-0 text-muted-foreground" />
                 <span className="min-w-0 truncate text-muted-foreground">
-                  {mode === "github"
+                  {isRepoMode
                     ? t("projects.create.lazyGithubHint", "Saved instantly — repository clones automatically on first task.")
                     : mode === "new"
                       ? t("projects.create.emptyRepoHint")
@@ -467,10 +507,10 @@ export default function CreateProjectDialog({
 
           <DialogFooter className="shrink-0 gap-2 border-t bg-muted/15 px-5 py-3 sm:space-x-0">
             <Button type="button" variant="ghost" onClick={close} disabled={busy}>{t("common.cancel")}</Button>
-            <Button type="submit" className="gap-2" disabled={!workspaceUuid || !targetPath || busy || (mode === "github" && !repository)}>
-              {busy ? <LuLoaderCircle className="h-4 w-4 animate-spin" /> : mode === "github" ? <LuGithub className="h-4 w-4" /> : <LuArrowRight className="h-4 w-4" />}
+            <Button type="submit" className="gap-2" disabled={!workspaceUuid || !targetPath || busy || (isRepoMode && !repository)}>
+              {busy ? <LuLoaderCircle className="h-4 w-4 animate-spin" /> : isRepoMode && provider === "github" ? <LuGithub className="h-4 w-4" /> : isRepoMode && provider === "gitlab" ? <LuGitlab className="h-4 w-4" /> : <LuArrowRight className="h-4 w-4" />}
               {phase === "connecting"
-                ? t("projects.create.connectingGithub")
+                ? t(connectingProvider === "gitlab" ? "projects.create.connectingGitlab" : "projects.create.connectingGithub")
                 : phase === "creating"
                   ? t("projects.create.creatingProject")
                   : mode === "folder"

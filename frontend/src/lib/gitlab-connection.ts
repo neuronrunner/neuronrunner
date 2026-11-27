@@ -98,3 +98,29 @@ export async function connectGitlabAccount(signal?: AbortSignal): Promise<void> 
     throw error;
   }
 }
+
+export interface GitlabRepository {
+  name: string;
+  full_name: string;
+  clone_url: string;
+  private: boolean;
+  description?: string | null;
+  default_branch?: string | null;
+}
+
+export interface GitlabAccess {
+  connected: boolean;
+  username?: string;
+  reason?: "not_connected" | "expired";
+  can_access_private?: boolean | null;
+  repos: GitlabRepository[];
+  has_next?: boolean;
+  base_url?: string;
+  error?: string | null;
+}
+
+export async function gitlabRepositories(uuid?: string, page: number = 1, signal?: AbortSignal) {
+  const url = uuid ? `${API_BASE}/sandbox/sandboxes/${uuid}/gitlab/repos/` : `${API_BASE}/sandbox/gitlab/repos/`;
+  const { data } = await authedAxios.get<GitlabAccess>(url, { params: { page }, signal });
+  return data;
+}

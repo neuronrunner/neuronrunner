@@ -1424,7 +1424,7 @@ class SandboxAgentToolsView(APIView):
             setup_script = data.get("setup_script") or ""
             maintenance_script = data.get("maintenance_script") or ""
             usage_guide = data.get("usage_guide") or ""
-            lazy = bool(data.get("lazy")) or bool(repo_full_name or repo_url) or data.get("source") == "github"
+            lazy = bool(data.get("lazy")) or bool(repo_full_name or repo_url) or data.get("source") in ("github", "gitlab")
 
             sandbox = Sandbox(
                 user=request.user,
@@ -1601,6 +1601,82 @@ class SandboxGithubReposView(APIView):
         if connection:
             connection.delete()
         return Response({"success": True})
+
+
+class SandboxGitlabReposView(APIView):
+    """List GitLab projects the connected account is a member of."""
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, sandbox_uuid=None):
+        import requests
+        from authentication.gitlab_connection import (
+            _gitlab_config,
+            fresh_gitlab_token,
+            get_gitlab_connection,
+            refresh_gitlab_token,
+        )
+
+        if sandbox_uuid is not None:
+            _get_accessible_project(request.user, sandbox_uuid)
+        try:
+            page = int(request.query_params.get("page", 1))
+            if page < 1 or page > 100:
+                raise ValueError
+        except (TypeError, ValueError):
+            return Response({"error": "Invalid repository page."}, status=400)
+        base_url, _, _ = _gitlab_config()
+        connection = get_gitlab_connection(request.user)
+        token = fresh_gitlab_token(connection) if connection else None
+        if not token:
+            return Response({"connected": False, "reason": "not_connected", "repos": [], "base_url": base_url})
+        params = {"membership": "true", "order_by": "last_activity_at", "sort": "desc", "per_page": 30, "page": page}
+
+        def fetch(access_token):
+            return requests.get(
+                f"{base_url}/api/v4/projects",
+                headers={"Authorization": f"Bearer {access_token}", "Accept": "application/json"},
+                params=params,
+                timeout=15,
+                allow_redirects=False,
+            )
+
+        try:
+            response = fetch(token)
+            if response.status_code == 401:
+                refreshed = refresh_gitlab_token(connection)
+                response = fetch(refreshed) if refreshed else response
+            if response.status_code == 401:
+                return Response({"connected": False, "reason": "expired", "repos": [], "base_url": base_url})
+            if response.status_code != 200:
+                message = "Repositories could not be loaded from GitLab. Try again."
+                if response.status_code in (403, 429):
+                    message = "GitLab denied access or its request limit was reached. Reconnect or try again later."
+                return Response({"error": message}, status=502)
+            repos = [
+                {
+                    "name": r.get("name"),
+                    "full_name": r.get("path_with_namespace"),
+                    "clone_url": r.get("http_url_to_repo"),
+                    "private": r.get("visibility") != "public",
+                    "description": r.get("description"),
+                    "default_branch": r.get("default_branch") or "main",
+                }
+                for r in response.json()
+                if r.get("path_with_namespace") and r.get("http_url_to_repo")
+            ]
+            scopes = str((connection.extra_data or {}).get("scope") or "").replace(",", " ").split()
+            private_access = ("read_repository" in scopes or "api" in scopes) if scopes else None
+            return Response({
+                "connected": True,
+                "username": (connection.extra_data or {}).get("login"),
+                "can_access_private": private_access,
+                "repos": repos,
+                "has_next": page < 100 and bool(response.headers.get("X-Next-Page")),
+                "page": page,
+                "base_url": base_url,
+            })
+        except (requests.RequestException, ValueError, TypeError, AttributeError):
+            return Response({"error": "Repositories could not be loaded from GitLab. Try again."}, status=502)
 
 
 # ─── HuggingFace Model Catalog (Import From HF) ──────────────────────────────

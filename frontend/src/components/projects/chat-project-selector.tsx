@@ -39,7 +39,7 @@ export default function ChatProjectSelector() {
   const [editTarget, setEditTarget] = useState<IProject | null>(null);
   const [removeTarget, setRemoveTarget] = useState<IProject | null>(null);
   const [createOpen, setCreateOpen] = useState(false);
-  const [createMode, setCreateMode] = useState<"new" | "folder" | "github">("github");
+  const [createMode, setCreateMode] = useState<"new" | "folder" | "repo">("repo");
   const searchRef = useRef<HTMLInputElement>(null);
 
   const selected = current?.workspace_uuid === workspaceUuid ? current : null;
@@ -67,7 +67,7 @@ export default function ChatProjectSelector() {
     setPending(null);
   };
 
-  const create = (mode: "new" | "folder" | "github") => {
+  const create = (mode: "new" | "folder" | "repo") => {
     setCreateMode(mode);
     setOpen(false);
     setPending(null);
@@ -224,7 +224,7 @@ export default function ChatProjectSelector() {
                 <div className="border-t bg-muted/15 p-1">
                   <button
                     type="button"
-                    onClick={() => create("github")}
+                    onClick={() => create("repo")}
                     className="flex w-full items-center gap-2 rounded-md px-2.5 py-2 text-left text-sm hover:bg-muted"
                   >
                     <LuGithub className="h-4 w-4 text-muted-foreground" />

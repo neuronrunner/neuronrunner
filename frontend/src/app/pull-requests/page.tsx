@@ -23,7 +23,6 @@ import {
   LuLoaderCircle,
   LuMessageSquare,
   LuMilestone,
-  LuPanelLeftOpen,
   LuPlus,
   LuRefreshCw,
   LuSearch,
@@ -37,8 +36,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Button } from "@/components/ui/button";
 import { toaster } from "@/components/ui/toaster";
-import { WorkspacePageHeader, WorkspacePageTitle } from "@/components/workspace-page-header";
-import WorkspaceHeaderToolbar from "@/components/workspace-header-toolbar";
+import { WorkspaceSidebarToggle } from "@/components/workspace-page-header";
 import { RepositoryPicker } from "@/components/git/repository-picker";
 import { BranchComparison, PullStatus, RepositoryEmptyState, RepositoryLoading, RepositoryTimestamp } from "@/components/git/repository-ui";
 import { AIResolutionStudio, type AIStudioMode } from "@/components/git/ai-resolution-studio";
@@ -72,9 +70,21 @@ import {
 } from "@/lib/repository-api";
 import { useRouter } from "@/lib/navigation";
 import { useCloseRightPanelOnMount } from "@/hooks/use-close-right-panel";
-import useSidebarStore from "@/stores/sidebar";
+import { useLoadMoreOnScroll } from "@/hooks/use-load-more-on-scroll";
+import { readListCache, writeListCache } from "@/lib/list-cache";
 import useWorkspaceTabsStore from "@/stores/workspace-tabs";
 import { cn } from "@/lib/utils";
+
+interface PullsCache {
+  pulls: PullRequest[];
+  hasNext: boolean;
+}
+interface PullCounts {
+  open: number;
+  closed: number;
+}
+const pullsCacheKey = (uuid?: string, path?: string, filter?: string) => (uuid && path ? `pr:${uuid}:${path}:${filter}` : null);
+const countsCacheKey = (uuid?: string, path?: string) => (uuid && path ? `pr-counts:${uuid}:${path}` : null);
 
 export default function PullRequestsPage() {
   const { t } = useTranslation("git");
@@ -82,7 +92,6 @@ export default function PullRequestsPage() {
   useCloseRightPanelOnMount();
   const browser = useWorkspaceRepositories();
   const removeRepository = browser.removeRepository;
-  const isSidebarOpen = useSidebarStore((state) => state.isOpen);
   const isSplit = useWorkspaceTabsStore((state) => state.isSplit);
   const vms: Array<{ uuid: string; name: string; status: string }> = [];
   const selectVM = async (_uuid: string) => {};
@@ -99,8 +108,10 @@ export default function PullRequestsPage() {
   const targetPrNumber = Number.isFinite(parsedUrlPr) && parsedUrlPr > 0 ? parsedUrlPr : null;
 
   const [filter, setFilter] = useState<"open" | "closed">(urlFilter);
-  const [pulls, setPulls] = useState<PullRequest[]>([]);
-  const [hasNext, setHasNext] = useState(false);
+  const initialKey = pullsCacheKey(browser.uuid, browser.repository?.path, urlFilter);
+  const initialCache = readListCache<PullsCache>(initialKey);
+  const [pulls, setPulls] = useState<PullRequest[]>(initialCache?.pulls ?? []);
+  const [hasNext, setHasNext] = useState(initialCache?.hasNext ?? false);
   const [page, setPage] = useState(1);
   const [revision, setRevision] = useState(0);
   const [error, setError] = useState<string | null>(null);
@@ -109,11 +120,17 @@ export default function PullRequestsPage() {
   const [loadMoreError, setLoadMoreError] = useState<string | null>(null);
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState<PullRequest | null>(null);
-  const [dataLoaded, setDataLoaded] = useState(false);
+  const [dataLoaded, setDataLoaded] = useState(Boolean(initialCache));
+  const [counts, setCounts] = useState<PullCounts | null>(
+    readListCache<PullCounts>(countsCacheKey(browser.uuid, browser.repository?.path)) ?? null
+  );
 
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const loadMoreRef = useRef<HTMLDivElement>(null);
   const prevRepoRef = useRef<string | null>(null);
+  const viewKeyRef = useRef<string | null>(initialKey);
+  const generationRef = useRef(0);
+  const loadMoreInFlight = useRef(false);
 
   const path = browser.repository?.path;
   const repoKey = browser.repository?.github_repository || path || "";
@@ -168,11 +185,23 @@ export default function PullRequestsPage() {
     prevRepoRef.current = currentRepoId;
 
     if (!isVMRunning || !browser.uuid || !path || !browser.repository?.github_repository) {
+      viewKeyRef.current = null;
       setPulls([]);
       setHasNext(false);
       setDataLoaded(false);
       return;
     }
+    // Entering another view (page, repo or tab): paint its last result at once and refresh behind it;
+    // with nothing cached, drop the previous view's rows so they are never shown under the wrong tab.
+    const cacheKey = pullsCacheKey(browser.uuid, path, filter);
+    if (viewKeyRef.current !== cacheKey) {
+      viewKeyRef.current = cacheKey;
+      const cached = readListCache<PullsCache>(cacheKey);
+      setPulls(cached?.pulls ?? []);
+      setHasNext(cached?.hasNext ?? false);
+      setDataLoaded(Boolean(cached));
+    }
+    generationRef.current += 1;
     setLoading(true);
     setPage(1);
     repositoryRequest<PullRequestsResponse>(
@@ -187,6 +216,7 @@ export default function PullRequestsPage() {
           setPulls(list);
           setHasNext(Boolean(response.has_next));
           setDataLoaded(true);
+          writeListCache<PullsCache>(cacheKey, { pulls: list, hasNext: Boolean(response.has_next) });
           setSelected((prev) => {
             if (!prev) return prev;
             const updated = list.find((item) => item.number === prev.number);
@@ -251,81 +281,66 @@ export default function PullRequestsPage() {
     browser.repository?.github_repository,
   ]);
 
+  // Totals for the Open/Closed badges (cached; failures just leave the badges out).
   useEffect(() => {
-    if (
-      !hasNext ||
-      loading ||
-      loadingMore ||
-      loadMoreError ||
-      !isVMRunning ||
-      !browser.uuid ||
-      !path ||
-      !browser.repository?.github_repository ||
-      selected ||
-      !loadMoreRef.current
-    )
+    const key = countsCacheKey(browser.uuid, path);
+    if (!key || !browser.uuid || !browser.repository?.github_repository) {
+      setCounts(null);
       return;
-
+    }
+    setCounts(readListCache<PullCounts>(key) ?? null);
     const controller = new AbortController();
-    let isPending = false;
+    repositoryRequest<{ counts?: PullCounts }>(browser.uuid, "github/pull-requests/counts", { path }, controller.signal)
+      .then((response) => {
+        if (controller.signal.aborted || !response.counts) return;
+        setCounts(response.counts);
+        writeListCache<PullCounts>(key, response.counts);
+      })
+      .catch(() => {});
+    return () => controller.abort();
+  }, [browser.uuid, path, browser.repository?.github_repository, revision]);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (!entries.some((e) => e.isIntersecting) || isPending) return;
-        isPending = true;
-        setLoadingMore(true);
-        const nextPage = page + 1;
-        repositoryRequest<PullRequestsResponse>(
-          browser.uuid!,
-          "github/pull-requests",
-          { path, state: filter, page: nextPage, per_page: 30 },
-          controller.signal
-        )
-          .then((response) => {
-            if (controller.signal.aborted) return;
-            setPulls((prev) => {
-              const existing = new Set(prev.map((p) => p.number));
-              const additions = (response.pull_requests || []).filter((p) => !existing.has(p.number));
-              return [...prev, ...additions];
-            });
-            setPage(nextPage);
-            setHasNext(Boolean(response.has_next));
-          })
-          .catch((cause) => {
-            if (controller.signal.aborted) return;
-            if (repositoryUnavailable(cause)) removeRepository(path);
-            else if (!isNoActiveVM(cause)) setLoadMoreError(repositoryError(cause));
-          })
-          .finally(() => {
-            if (!controller.signal.aborted) {
-              setLoadingMore(false);
-              isPending = false;
-            }
-          });
-      },
-      { root: scrollContainerRef.current, rootMargin: "200px" }
-    );
-
-    observer.observe(loadMoreRef.current);
-    return () => {
-      observer.disconnect();
-      controller.abort();
+  // Next page. Deliberately not tied to an effect cleanup: toggling `loadingMore` must never cancel
+  // (and so re-send) the request it just started.
+  const loadMore = useCallback(async () => {
+    const uuid = browser.uuid;
+    if (loadMoreInFlight.current || !hasNext || !isVMRunning || !uuid || !path || !browser.repository?.github_repository) return;
+    const generation = generationRef.current;
+    const nextPage = page + 1;
+    loadMoreInFlight.current = true;
+    setLoadingMore(true);
+    setLoadMoreError(null);
+    try {
+      const response = await repositoryRequest<PullRequestsResponse>(uuid, "github/pull-requests", {
+        path,
+        state: filter,
+        page: nextPage,
+        per_page: 30,
+      });
+      if (generationRef.current !== generation) return; // the list was reloaded or switched meanwhile
+      setPulls((prev) => {
+        const existing = new Set(prev.map((p) => p.number));
+        return [...prev, ...(response.pull_requests || []).filter((p) => !existing.has(p.number))];
+      });
+      setPage(nextPage);
+      setHasNext(Boolean(response.has_next));
+    } catch (cause) {
+      if (generationRef.current !== generation) return;
+      if (repositoryUnavailable(cause)) removeRepository(path);
+      else if (!isNoActiveVM(cause)) setLoadMoreError(repositoryError(cause));
+    } finally {
+      loadMoreInFlight.current = false;
       setLoadingMore(false);
-    };
-  }, [
-    hasNext,
-    loading,
-    loadingMore,
-    loadMoreError,
-    isVMRunning,
-    browser.uuid,
-    path,
-    browser.repository?.github_repository,
-    filter,
-    page,
-    selected,
-    removeRepository,
-  ]);
+    }
+  }, [browser.uuid, path, browser.repository?.github_repository, isVMRunning, hasNext, page, filter, removeRepository]);
+
+  useLoadMoreOnScroll({
+    enabled: hasNext && !loading && !loadingMore && !loadMoreError && !selected,
+    onLoadMore: loadMore,
+    rootRef: scrollContainerRef,
+    sentinelRef: loadMoreRef,
+    itemCount: pulls.length,
+  });
 
   const filteredPulls = pulls.filter((pull) => {
     const labelNames = (pull.labels || []).map((l) => l.name).join(" ");
@@ -352,27 +367,11 @@ export default function PullRequestsPage() {
   };
 
   return (
-    <main className="workspace-page flex h-full min-h-0 min-w-0 flex-col bg-background">
-      <WorkspacePageHeader actions={<WorkspaceHeaderToolbar />}>
-        <div className="flex min-w-0 flex-1 items-center">
-          {!isSidebarOpen && (
-            <button
-              type="button"
-              aria-label={t("common.openSidebar")}
-              onClick={() => useSidebarStore.getState().toggle()}
-              className="mr-2 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-            >
-              <LuPanelLeftOpen className="h-5 w-5" />
-            </button>
-          )}
-          <WorkspacePageTitle icon={LuGitPullRequest}>
-            <span className="title-fade-in block truncate px-1">{t("pullRequests.title")}</span>
-          </WorkspacePageTitle>
-        </div>
-      </WorkspacePageHeader>
+    <main className="workspace-page relative flex h-full min-h-0 min-w-0 flex-col bg-background">
+      <WorkspaceSidebarToggle label={t("common.openSidebar")} />
 
       <div ref={scrollContainerRef} className="workspace-scroll min-h-0 flex-1 overflow-y-auto overscroll-contain">
-        <div className="mx-auto w-full max-w-5xl space-y-6 px-4 py-6 sm:px-8 sm:py-9">
+        <div className="mx-auto w-full max-w-5xl space-y-6 px-4 pb-6 pt-14 sm:px-8 sm:pb-9">
           <div className="workspace-page-enter flex items-start justify-between gap-4">
             <div>
               <p className="mb-2 text-[10px] font-medium uppercase tracking-[0.16em] text-muted-foreground">
@@ -551,6 +550,11 @@ export default function PullRequestsPage() {
                                 )}
                               />
                               {state === "open" ? t("status.open") : t("status.closed")}
+                              {counts && (
+                                <span className="rounded-full bg-muted-foreground/15 px-1.5 py-px text-[10px] font-semibold tabular-nums text-muted-foreground">
+                                  {counts[state]}
+                                </span>
+                              )}
                             </button>
                           ))}
                         </div>
@@ -589,7 +593,7 @@ export default function PullRequestsPage() {
                     </div>
                   )}
 
-                  {loading && !selected ? (
+                  {loading && !selected && !dataLoaded ? (
                     <RepositoryLoading label={t("pullRequests.loading")} />
                   ) : !error && (dataLoaded || Boolean(selected)) && (
                     <div className="workspace-page-enter" style={{ animationDelay: "170ms" }}>

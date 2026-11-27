@@ -156,46 +156,6 @@ export interface IssueMilestone {
   state?: string;
   due_on?: string | null;
 }
-export interface IssueComment {
-  id: number;
-  url: string;
-  author: string;
-  author_avatar?: string;
-  created_at: string;
-  updated_at?: string;
-  body: string;
-}
-export interface IssueCommentsResponse {
-  repository: string | null;
-  issue_number: number;
-  comments: IssueComment[];
-}
-export interface Issue {
-  number: number;
-  title: string;
-  url: string;
-  state: "open" | "closed";
-  state_reason?: "completed" | "not_planned" | "reopened" | string | null;
-  author: string;
-  author_avatar?: string;
-  assignees?: IssueAssignee[];
-  milestone?: IssueMilestone | null;
-  created_at: string;
-  updated_at: string;
-  closed_at?: string | null;
-  body: string;
-  comments: number;
-  labels: IssueLabel[];
-}
-export interface IssuesResponse {
-  repository: string | null;
-  issues: Issue[];
-  has_next: boolean;
-}
-export interface IssueDetailResponse {
-  repository: string | null;
-  issue: Issue | null;
-}
 export async function repositoryRequest<T>(uuid: string, endpoint: string, params: Record<string, string | number> = {}, signal?: AbortSignal): Promise<T> {
   const { data } = await authedAxios.get<T>(`${API_BASE}/sandbox/sandboxes/${uuid}/${endpoint}/`, { params, signal });
   return data;

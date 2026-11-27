@@ -170,7 +170,7 @@ class RepositoryBrowserTests(TestCase):
         shutil.rmtree(self.repo)
         self.assertEqual(self.get("git/repositories").data["repositories"], [])
         with patch("sandbox.repository_views.requests.get") as github:
-            for endpoint in ("git/repository", "git/history", "git/file-diff", "github/pull-requests", "github/issues"):
+            for endpoint in ("git/repository", "git/history", "git/file-diff", "github/pull-requests"):
                 response = self.get(endpoint, file="tracked.txt")
                 self.assertEqual(response.status_code, 404, response.data)
                 self.assertEqual(response.data["code"], "repository_unavailable")
@@ -217,7 +217,6 @@ class RepositoryBrowserTests(TestCase):
         with patch("sandbox.repository_views.requests.get") as github:
             self.assertEqual(self.get("git/repositories").status_code, 404)
             self.assertEqual(self.get("github/pull-requests").status_code, 404)
-            self.assertEqual(self.get("github/issues").status_code, 404)
             github.assert_not_called()
 
     def test_github_remote_credentials_are_not_returned(self):
@@ -243,6 +242,25 @@ class RepositoryBrowserTests(TestCase):
         self.assertEqual(github.call_args.kwargs["headers"]["Authorization"], "Bearer test-token")
         self.assertFalse(github.call_args.kwargs["allow_redirects"])
 
+    def test_pull_request_counts_use_search_for_open_and_closed(self):
+        self.git("remote", "add", "origin", "git@github.com:acme/app.git")
+        UserSocialAuth.objects.create(user=self.user, provider="github", uid="test", extra_data={"access_token": "test-token"})
+
+        def search(url, **kwargs):
+            total = 4 if "is:open" in kwargs["params"]["q"] else 17
+            return MagicMock(status_code=200, links={}, json=MagicMock(return_value={"total_count": total, "items": []}))
+
+        with patch("sandbox.repository_views.requests.get", side_effect=search) as github:
+            result = self.get("github/pull-requests/counts")
+        self.assertEqual(result.status_code, 200)
+        self.assertEqual(result.json(), {"repository": "acme/app", "counts": {"open": 4, "closed": 17}})
+        queries = [call.kwargs["params"]["q"] for call in github.call_args_list]
+        self.assertEqual(queries, ["repo:acme/app is:pr is:open", "repo:acme/app is:pr is:closed"])
+        self.assertEqual(github.call_args.args[0], "https://api.github.com/search/issues")
+        self.assertEqual(github.call_args.kwargs["headers"]["Authorization"], "Bearer test-token")
+        with patch("sandbox.repository_views.requests.get", return_value=MagicMock(status_code=403, links={})):
+            self.assertEqual(self.get("github/pull-requests/counts").status_code, 502)
+
     def test_public_repositories_and_visible_api_failure(self):
         self.git("remote", "add", "origin", "https://github.com/acme/app.git")
         response = MagicMock(status_code=200, links={})
@@ -259,76 +277,6 @@ class RepositoryBrowserTests(TestCase):
             self.git("remote", "add", "origin", "https://github.com/acme/app.git")
             self.assertEqual(self.get("github/pull-requests", state="bad").status_code, 400)
             github.assert_not_called()
-
-    def test_github_issues_filters_prs_and_handles_labels_and_pagination(self):
-        self.git("remote", "add", "origin", "git@github.com:acme/app.git")
-        UserSocialAuth.objects.create(user=self.user, provider="github", uid="test-issue", extra_data={"access_token": "issue-token"})
-        response = MagicMock(status_code=200, links={"next": {"url": "next"}})
-        response.json.return_value = [
-            {"number": 10, "title": "A PR", "state": "open", "pull_request": {"url": "..."}, "user": {"login": "maya"}},
-            {"number": 11, "title": "A Real Issue", "state": "open", "user": {"login": "alex"}, "comments": 3, "labels": [{"name": "bug", "color": "d73a4a"}]},
-            {"number": 12, "title": "Closed Issue", "state": "closed", "user": {"login": "sam"}},
-        ]
-        with patch("sandbox.repository_views.requests.get", return_value=response) as github:
-            result = self.get("github/issues", state="open", page=1)
-        self.assertEqual(result.status_code, 200)
-        issues = result.json()["issues"]
-        self.assertEqual(len(issues), 2)
-        self.assertEqual(issues[0]["number"], 11)
-        self.assertEqual(issues[0]["labels"][0]["name"], "bug")
-        self.assertEqual(issues[0]["comments"], 3)
-        self.assertTrue(result.json()["has_next"])
-        self.assertEqual(github.call_args.kwargs["headers"]["Authorization"], "Bearer issue-token")
-
-    def test_github_issues_search_api_dict_response_and_closed_filter(self):
-        self.git("remote", "add", "origin", "git@github.com:acme/app.git")
-        response = MagicMock(status_code=200, links={})
-        response.json.return_value = {
-            "total_count": 1,
-            "items": [
-                {"number": 42, "title": "A Closed Issue", "state": "closed", "user": {"login": "dev"}, "comments": 0, "labels": []},
-            ],
-        }
-        with patch("sandbox.repository_views.requests.get", return_value=response) as github:
-            result = self.get("github/issues", state="closed", page=1)
-        self.assertEqual(result.status_code, 200)
-        issues = result.json()["issues"]
-        self.assertEqual(len(issues), 1)
-        self.assertEqual(issues[0]["number"], 42)
-        self.assertEqual(issues[0]["state"], "closed")
-        self.assertFalse(result.json()["has_next"])
-        self.assertIn("is:closed", github.call_args.kwargs["params"]["q"])
-        self.assertIn("is:issue", github.call_args.kwargs["params"]["q"])
-
-    def test_github_issues_no_remote_and_invalid_filter(self):
-        with patch("sandbox.repository_views.requests.get") as github:
-            self.assertEqual(self.get("github/issues").json()["issues"], [])
-            self.git("remote", "add", "origin", "https://github.com/acme/app.git")
-            self.assertEqual(self.get("github/issues", state="bad").status_code, 400)
-            github.assert_not_called()
-
-    def test_github_issue_comments(self):
-        self.git("remote", "add", "origin", "git@github.com:acme/app.git")
-        response = MagicMock(status_code=200)
-        response.json.return_value = [
-            {
-                "id": 101,
-                "html_url": "https://github.com/acme/app/issues/42#issuecomment-101",
-                "user": {"login": "sarah", "avatar_url": "https://avatars.example.com/sarah"},
-                "created_at": "2026-10-01T12:00:00Z",
-                "updated_at": "2026-10-01T12:00:00Z",
-                "body": "Reproduced on staging.",
-            }
-        ]
-        with patch("sandbox.repository_views.requests.get", return_value=response) as github:
-            result = self.get("github/issues/42/comments")
-        self.assertEqual(result.status_code, 200)
-        comments = result.json()["comments"]
-        self.assertEqual(len(comments), 1)
-        self.assertEqual(comments[0]["author"], "sarah")
-        self.assertEqual(comments[0]["author_avatar"], "https://avatars.example.com/sarah")
-        self.assertEqual(comments[0]["body"], "Reproduced on staging.")
-        self.assertIn("issues/42/comments", github.call_args.args[0])
 
     def test_github_pull_request_details_and_resources(self):
         self.git("remote", "add", "origin", "git@github.com:acme/app.git")
@@ -720,54 +668,6 @@ class RepositoryBrowserTests(TestCase):
         result = self.client.post(url, {**payload, "source": "existing", "filesystem_path": "/workspace/cloned repo"}, format="json")
         self.assertEqual(result.status_code, 201, result.data)
         self.assertEqual(Sandbox.objects.filter(workspace=self.workspace).count(), 3)
-
-    def test_github_issue_detail_returns_issue_and_rejects_pull_requests(self):
-        with patch("sandbox.repository_views.requests.get") as github:
-            no_remote = self.get("github/issues/15")
-            self.assertEqual(no_remote.status_code, 200)
-            self.assertEqual(no_remote.json(), {"repository": None, "issue": None})
-            github.assert_not_called()
-
-        self.git("remote", "add", "origin", "git@github.com:acme/app.git")
-
-        issue_response = MagicMock(status_code=200)
-        issue_response.json.return_value = {
-            "number": 15,
-            "title": "Fix race condition",
-            "state": "open",
-            "state_reason": None,
-            "body": "Details here",
-            "user": {"login": "alex", "avatar_url": "https://avatars.example.com/alex"},
-            "comments": 2,
-            "labels": [{"name": "bug", "color": "d73a4a"}],
-            "assignees": [{"login": "maya", "avatar_url": "https://avatars.example.com/maya"}],
-            "milestone": {"title": "v1.2"},
-            "html_url": "https://github.com/acme/app/issues/15",
-            "created_at": "2026-10-01T10:00:00Z",
-            "updated_at": "2026-10-02T10:00:00Z",
-            "closed_at": None,
-        }
-        with patch("sandbox.repository_views.requests.get", return_value=issue_response) as github:
-            res = self.get("github/issues/15")
-        self.assertEqual(res.status_code, 200, res.data)
-        self.assertEqual(res.json()["repository"], "acme/app")
-        self.assertEqual(res.json()["issue"]["number"], 15)
-        self.assertEqual(res.json()["issue"]["title"], "Fix race condition")
-        self.assertEqual(res.json()["issue"]["milestone"]["title"], "v1.2")
-        self.assertIn("repos/acme/app/issues/15", github.call_args.args[0])
-
-        pr_item_response = MagicMock(status_code=200)
-        pr_item_response.json.return_value = {
-            "number": 16,
-            "title": "A PR with same namespace",
-            "state": "open",
-            "pull_request": {"url": "https://api.github.com/repos/acme/app/pulls/16"},
-            "user": {"login": "maya"},
-        }
-        with patch("sandbox.repository_views.requests.get", return_value=pr_item_response):
-            pr_res = self.get("github/issues/16")
-        self.assertEqual(pr_res.status_code, 404)
-
 
     def _chat(self):
         from chat.models import Conversation

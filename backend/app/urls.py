@@ -12,6 +12,7 @@ urlpatterns = [
     path('users/', include('user.urls')),
     path('mcp/', include('mcp.urls')),
     path('sandbox/', include('sandbox.urls')),
+    path('issues/', include('issues.urls')),
     *expand_urlpatterns(ext_registry.app.extra_urlpatterns),
     path(
         'sandboxes/<uuid:sandbox_uuid>/suggestions/',

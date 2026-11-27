@@ -486,6 +486,35 @@ class RepositoryPullRequestsView(APIView):
             return Response({"error": "Pull request could not be created on GitHub. Try again."}, status=502)
 
 
+class RepositoryPullRequestCountsView(APIView):
+    """Open and closed (incl. merged) pull request totals, for the filter badges."""
+
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, sandbox_uuid):
+        repo, headers, error_response = _get_github_repo_context(request.user, sandbox_uuid, request)
+        if error_response:
+            return error_response
+        if not repo:
+            return Response({"repository": None, "counts": {"open": 0, "closed": 0}})
+        counts = {}
+        try:
+            for state in ("open", "closed"):
+                response = requests.get(
+                    "https://api.github.com/search/issues",
+                    headers=headers,
+                    params={"q": f"repo:{repo} is:pr is:{state}", "per_page": 1},
+                    timeout=15,
+                    allow_redirects=False,
+                )
+                if response.status_code != 200:
+                    return _handle_github_error(response)
+                counts[state] = int(response.json().get("total_count", 0))
+        except (requests.RequestException, ValueError, KeyError, TypeError):
+            return Response({"error": "Pull request counts could not be loaded from GitHub. Try again."}, status=502)
+        return Response({"repository": repo, "counts": counts})
+
+
 class RepositoryPullRequestDetailView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
@@ -808,254 +837,3 @@ class RepositoryPullRequestChecksView(APIView):
             })
         except (requests.RequestException, ValueError, KeyError, TypeError):
             return Response({"error": "Checks could not be loaded from GitHub. Try again."}, status=502)
-
-
-def _serialize_issue(repo, item):
-    """Normalize a GitHub issue JSON object into the API response shape."""
-    raw_labels = item.get("labels") or []
-    labels = [
-        {
-            "name": label["name"],
-            "color": label.get("color", "666666"),
-            "description": label.get("description") or "",
-        }
-        for label in raw_labels
-        if isinstance(label, dict) and "name" in label
-    ]
-    author_user = item.get("user") or {}
-    raw_assignees = item.get("assignees") or []
-    assignees = [
-        {
-            "login": a["login"],
-            "avatar_url": a.get("avatar_url") or "",
-        }
-        for a in raw_assignees
-        if isinstance(a, dict) and "login" in a
-    ]
-    raw_milestone = item.get("milestone")
-    milestone = None
-    if isinstance(raw_milestone, dict) and raw_milestone.get("title"):
-        milestone = {
-            "title": raw_milestone.get("title", ""),
-            "state": raw_milestone.get("state", "open"),
-            "due_on": raw_milestone.get("due_on"),
-        }
-    return {
-        "number": item["number"],
-        "title": item["title"],
-        "url": f"https://github.com/{repo}/issues/{item['number']}",
-        "state": item["state"],
-        "state_reason": item.get("state_reason"),
-        "author": author_user.get("login", ""),
-        "author_avatar": author_user.get("avatar_url", ""),
-        "assignees": assignees,
-        "milestone": milestone,
-        "created_at": item.get("created_at"),
-        "updated_at": item.get("updated_at"),
-        "closed_at": item.get("closed_at"),
-        "comments": item.get("comments", 0),
-        "labels": labels,
-        "body": item.get("body") or "",
-    }
-
-
-class RepositoryIssuesView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
-
-    def get(self, request, sandbox_uuid):
-        project = _get_accessible_project(request.user, sandbox_uuid)
-        req_path = request.query_params.get("path", "/workspace")
-        repo = None
-        if _has_live_runtime(project):
-            try:
-                repository = read_repository(project, "status", req_path)
-                repo = repository["github_repository"]
-            except RepositoryUnavailable as error:
-                repo = _db_github_repo_for_path(getattr(project, "workspace", None), req_path)
-                if not repo:
-                    return Response({"error": str(error), "code": error.code}, status=404)
-            except (ValueError, OSError, subprocess.TimeoutExpired):
-                repo = _db_github_repo_for_path(getattr(project, "workspace", None), req_path)
-                if not repo:
-                    return Response({"error": "Choose a Git repository in this workspace."}, status=400)
-            except Exception:
-                repo = _db_github_repo_for_path(getattr(project, "workspace", None), req_path)
-                if not repo:
-                    return Response({"error": "The workspace is temporarily unavailable."}, status=503)
-        else:
-            repo = _db_github_repo_for_path(getattr(project, "workspace", None), req_path)
-            if not repo:
-                return _no_vm_response()
-        if not repo:
-            return Response({"repository": None, "issues": [], "has_next": False})
-        state = request.query_params.get("state", "open")
-        try:
-            page = int(request.query_params.get("page", "1"))
-        except (ValueError, TypeError):
-            page = 0
-        try:
-            per_page = int(request.query_params.get("per_page", "50"))
-        except (ValueError, TypeError):
-            per_page = 50
-        per_page = max(1, min(per_page, 100))
-        if state not in ("open", "closed") or not 1 <= page <= 100:
-            return Response({"error": "Invalid issue filter."}, status=400)
-        connection = get_github_connection(request.user, request.query_params.get("account"))
-        token = (connection.extra_data or {}).get("access_token") if connection else None
-        if not token:
-            token = getattr(settings, "GITHUB_TOKEN", None) or os.getenv("GITHUB_TOKEN")
-        headers = {"Accept": "application/vnd.github+json"}
-        if token:
-            headers["Authorization"] = f"Bearer {token}"
-        try:
-            search_params = {
-                "q": f"repo:{repo} is:issue is:{state}",
-                "page": page,
-                "per_page": per_page,
-                "sort": "updated",
-                "order": "desc",
-            }
-            response = requests.get(
-                "https://api.github.com/search/issues",
-                headers=headers,
-                params=search_params,
-                timeout=15,
-                allow_redirects=False,
-            )
-            if response.status_code == 422:
-                response = requests.get(
-                    f"https://api.github.com/repos/{repo}/issues",
-                    headers=headers,
-                    params={"state": state, "page": page, "per_page": per_page, "sort": "updated", "direction": "desc"},
-                    timeout=15,
-                    allow_redirects=False,
-                )
-            if response.status_code != 200:
-                message = "GitHub is temporarily unavailable. Try again later."
-                if response.status_code == 404:
-                    message = "Repository unavailable. For private repositories, sign in with a GitHub account that has access."
-                elif response.status_code == 401:
-                    message = "Your GitHub connection has expired. Sign in with GitHub again."
-                elif response.status_code in (403, 429):
-                    message = "GitHub denied access or its request limit was reached. Try again later."
-                return Response({"error": message}, status=502)
-
-            payload = response.json()
-            if isinstance(payload, dict):
-                raw_items = payload.get("items", [])
-                total_count = payload.get("total_count", 0)
-                has_next = "next" in response.links or (page * per_page < total_count)
-            else:
-                raw_items = payload
-                has_next = "next" in response.links
-
-            issues = [
-                _serialize_issue(repo, item)
-                for item in raw_items
-                if isinstance(item, dict) and "pull_request" not in item
-            ]
-            return Response({"repository": repo, "issues": issues, "has_next": has_next})
-        except (requests.RequestException, ValueError, KeyError, TypeError):
-            return Response({"error": "Issues could not be loaded from GitHub. Try again."}, status=502)
-
-
-class RepositoryIssueDetailView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
-
-    def get(self, request, sandbox_uuid, issue_number=None):
-        if issue_number is None:
-            try:
-                issue_number = int(request.query_params.get("issue_number") or request.query_params.get("number") or 0)
-            except (ValueError, TypeError):
-                issue_number = 0
-        if not issue_number or issue_number <= 0:
-            return Response({"error": "Issue number is required."}, status=400)
-        repo, headers, error_response = _get_github_repo_context(request.user, sandbox_uuid, request)
-        if error_response:
-            return error_response
-        if not repo:
-            return Response({"repository": None, "issue": None})
-        try:
-            response = requests.get(
-                f"https://api.github.com/repos/{repo}/issues/{issue_number}",
-                headers=headers,
-                timeout=15,
-                allow_redirects=False,
-            )
-            if response.status_code != 200:
-                return _handle_github_error(response, "Issue not found.")
-            item = response.json()
-            if not isinstance(item, dict) or "pull_request" in item:
-                return Response({"error": "Issue not found."}, status=404)
-            return Response({"repository": repo, "issue": _serialize_issue(repo, item)})
-        except (requests.RequestException, ValueError, KeyError, TypeError):
-            return Response({"error": "Issue details could not be loaded from GitHub. Try again."}, status=502)
-
-
-class RepositoryIssueCommentsView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
-
-    def get(self, request, sandbox_uuid, issue_number=None):
-        project = _get_accessible_project(request.user, sandbox_uuid)
-        if not _has_running_vm(project):
-            return _no_vm_response()
-        if issue_number is None:
-            try:
-                issue_number = int(request.query_params.get("issue_number", 0))
-            except (ValueError, TypeError):
-                issue_number = 0
-        if not issue_number or issue_number <= 0:
-            return Response({"error": "Issue number is required."}, status=400)
-        try:
-            repository = read_repository(project, "status", request.query_params.get("path", "/workspace"))
-        except RepositoryUnavailable as error:
-            return Response({"error": str(error), "code": error.code}, status=404)
-        except (ValueError, OSError, subprocess.TimeoutExpired):
-            return Response({"error": "Choose a Git repository in this workspace."}, status=400)
-        except Exception:
-            return Response({"error": "The workspace is temporarily unavailable."}, status=503)
-        repo = repository["github_repository"]
-        if not repo:
-            return Response({"repository": None, "issue_number": issue_number, "comments": []})
-        connection = get_github_connection(request.user, request.query_params.get("account"))
-        token = (connection.extra_data or {}).get("access_token") if connection else None
-        if not token:
-            token = getattr(settings, "GITHUB_TOKEN", None) or os.getenv("GITHUB_TOKEN")
-        headers = {"Accept": "application/vnd.github+json"}
-        if token:
-            headers["Authorization"] = f"Bearer {token}"
-        try:
-            response = requests.get(
-                f"https://api.github.com/repos/{repo}/issues/{issue_number}/comments",
-                headers=headers,
-                params={"per_page": 100},
-                timeout=15,
-                allow_redirects=False,
-            )
-            if response.status_code != 200:
-                message = "GitHub is temporarily unavailable. Try again later."
-                if response.status_code == 404:
-                    message = "Comments not found for this issue."
-                elif response.status_code == 401:
-                    message = "Your GitHub connection has expired. Sign in with GitHub again."
-                elif response.status_code in (403, 429):
-                    message = "GitHub denied access or its request limit was reached. Try again later."
-                return Response({"error": message}, status=502)
-            raw_comments = response.json() if isinstance(response.json(), list) else []
-            comments = [
-                {
-                    "id": c.get("id"),
-                    "url": c.get("html_url") or "",
-                    "author": (c.get("user") or {}).get("login", ""),
-                    "author_avatar": (c.get("user") or {}).get("avatar_url", ""),
-                    "created_at": c.get("created_at"),
-                    "updated_at": c.get("updated_at"),
-                    "body": c.get("body") or "",
-                }
-                for c in raw_comments
-                if isinstance(c, dict)
-            ]
-            return Response({"repository": repo, "issue_number": issue_number, "comments": comments})
-        except (requests.RequestException, ValueError, KeyError, TypeError):
-            return Response({"error": "Comments could not be loaded from GitHub. Try again."}, status=502)
-

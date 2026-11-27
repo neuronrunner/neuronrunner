@@ -115,8 +115,9 @@ def _git_credentials_payload(sandbox: Sandbox, user=None) -> dict:
         from social_django.models import UserSocialAuth
         gl_conn = UserSocialAuth.objects.filter(user=owner, provider="gitlab").order_by("-id").first()
         if gl_conn is not None:
+            from authentication.gitlab_connection import fresh_gitlab_token
+            gl_token = str(fresh_gitlab_token(gl_conn) or "").strip()
             gl_extra = getattr(gl_conn, "extra_data", None) or {}
-            gl_token = str(gl_extra.get("access_token") or "").strip()
             if gl_token:
                 import os as _os
                 from urllib.parse import urlsplit as _urlsplit

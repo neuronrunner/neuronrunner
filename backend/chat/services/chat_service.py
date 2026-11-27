@@ -305,6 +305,14 @@ class ChatService:
         merged.extend(tool for tool in BUILTIN_TOOLS if tool["function"]["name"] in recovery_names)
         merged.append(VIEW_IMAGE_TOOL)
         merged.append(IMAGE_SEARCH_TOOL)
+        if conversation is not None:
+            # The issue tracker belongs to an environment, so only chats bound to one get the tools.
+            from chat.tools.issues import ISSUE_TOOLS
+            from sandbox.services.sandbox_service import SandboxBootstrapService as _Bootstrap
+
+            if _Bootstrap.conversation_project(conversation):
+                present = {tool.get("function", {}).get("name") for tool in merged}
+                merged.extend(tool for tool in ISSUE_TOOLS if tool["function"]["name"] not in present)
 
         merged.extend(mcp_tools)
         # Keep sandbox routing private even with older database tool schemas.
@@ -504,6 +512,7 @@ class ChatService:
             "- http_request(url, method, headers, body): Make HTTP/API requests inside the conversation workspace sandbox.\n"
             "- view_image(source or sources): Open one image with source, or up to 8 image URLs/workspace photos together with sources. Batch related images in one call for comparison. All successfully opened images are automatically added to your next request's visual context. Use this to inspect images; use Markdown to show them to the user.\n"
             "- Present images directly as Markdown: ![caption](https://example.com/photo.jpg) or ![caption](/workspace/project/photo.png). The UI resolves workspace files automatically. Put multiple image references on consecutive lines or consecutive paragraphs to show them side by side. Do not call display_image or paste base64 image data.\n"
+            "- issue_list/issue_get/issue_create/issue_comment/issue_update: The environment's issue tracker. When this conversation was started from an issue, report progress with issue_comment and, once the change is ready, issue_update (status in_review plus branch and pr_url). Open a new issue with issue_create for separate problems you find; never close issues yourself.\n"
             "Proactively use these tools if the user mentions past interactions or asks about current events.\n"
             "Do NOT call memory/search tools on simple greetings or social chit-chat (e.g. 'hello', 'hi').\n"
             "\n"

@@ -37,6 +37,11 @@ BYOS_BRIDGE_BUILTIN_NAMES: tuple[str, ...] = (
     "note_list",
     "note_search",
     "session_search",
+    "issue_list",
+    "issue_get",
+    "issue_create",
+    "issue_comment",
+    "issue_update",
 )
 
 BYOS_BRIDGE_BUILTIN_SET = frozenset(BYOS_BRIDGE_BUILTIN_NAMES)
@@ -84,9 +89,10 @@ def _builtin_schema_map() -> dict[str, dict]:
     from chat.tools.browser import BROWSER_TOOL
     from chat.tools.display_image import DISPLAY_IMAGE_TOOL
     from chat.tools.image_search import IMAGE_SEARCH_TOOL
+    from chat.tools.issues import ISSUE_TOOLS
 
     schemas: dict[str, dict] = {}
-    for entry in (*BUILTIN_TOOLS, BROWSER_TOOL, DISPLAY_IMAGE_TOOL, IMAGE_SEARCH_TOOL):
+    for entry in (*BUILTIN_TOOLS, BROWSER_TOOL, DISPLAY_IMAGE_TOOL, IMAGE_SEARCH_TOOL, *ISSUE_TOOLS):
         fn = entry.get("function") if isinstance(entry, dict) else None
         if not isinstance(fn, dict):
             continue

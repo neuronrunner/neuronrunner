@@ -5,6 +5,7 @@ import json
 import logging
 import os
 import secrets
+import time
 from urllib.parse import urlencode, urlsplit
 
 import requests
@@ -68,6 +69,59 @@ def replace_other_gitlab_connections(user, uid):
     UserSocialAuth.objects.filter(pk__in=[connection.pk for connection in others]).delete()
     for connection in others:
         revoke_gitlab_token((connection.extra_data or {}).get("access_token"))
+
+
+def get_gitlab_connection(user):
+    return UserSocialAuth.objects.filter(user=user, provider="gitlab").order_by("-id").first()
+
+
+def refresh_gitlab_token(connection):
+    """Exchange the stored refresh token for a new access token (GitLab tokens expire after ~2h)."""
+    base_url, client_id, client_secret = _gitlab_config()
+    extra = dict(connection.extra_data or {})
+    refresh_token = extra.get("refresh_token")
+    if not refresh_token or not client_id or not client_secret:
+        return None
+    data = {
+        "client_id": client_id,
+        "client_secret": client_secret,
+        "refresh_token": refresh_token,
+        "grant_type": "refresh_token",
+    }
+    if extra.get("redirect_uri"):
+        data["redirect_uri"] = extra["redirect_uri"]
+    try:
+        response = requests.post(f"{base_url}/oauth/token", headers={"Accept": "application/json"}, data=data, timeout=15)
+        response.raise_for_status()
+        payload = response.json()
+    except (requests.RequestException, ValueError) as exc:
+        logger.warning("GitLab token refresh failed: %s", exc)
+        return None
+    token = payload.get("access_token")
+    if not token:
+        return None
+    extra.update(
+        access_token=token,
+        refresh_token=payload.get("refresh_token") or refresh_token,
+        expires_at=int(time.time()) + int(payload.get("expires_in") or 7200),
+    )
+    connection.extra_data = extra
+    connection.save(update_fields=["extra_data"])
+    return token
+
+
+def fresh_gitlab_token(connection):
+    """Return a usable access token, refreshing it first when it is about to expire."""
+    if connection is None:
+        return None
+    extra = connection.extra_data or {}
+    token = str(extra.get("access_token") or "").strip()
+    expires_at = extra.get("expires_at")
+    if token and expires_at and int(expires_at) - 300 > time.time():
+        return token
+    if expires_at or not token:
+        return refresh_gitlab_token(connection) or (token or None)
+    return token
 
 
 class GitlabAccountsView(APIView):
@@ -225,6 +279,8 @@ class GitlabOAuthCallbackView(APIView):
                     "login": login,
                     "id": uid,
                     "scope": data.get("scope", ""),
+                    "expires_at": int(time.time()) + int(data.get("expires_in") or 7200),
+                    "redirect_uri": redirect_uri,
                     "created_at": gitlab_user.get("created_at"),
                 }
                 connection.save()

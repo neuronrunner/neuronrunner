@@ -173,7 +173,7 @@ interface SandboxState {
     maintenance_script?: string;
     usage_guide?: string;
     lazy?: boolean;
-    source?: "new" | "existing" | "github";
+    source?: "new" | "existing" | "github" | "gitlab";
   }) => Promise<IProject | null>;
   updateSandbox: (
     sandboxUuid: string,

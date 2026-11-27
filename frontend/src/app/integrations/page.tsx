@@ -3,9 +3,9 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
-import { LuArrowDownWideNarrow, LuArrowLeft, LuArrowRight, LuCheck, LuChevronDown, LuChevronRight, LuInfo, LuLoader, LuPanelLeftOpen, LuPlug, LuPlus, LuSearch, LuX } from "react-icons/lu";
+import { LuArrowDownWideNarrow, LuArrowLeft, LuArrowRight, LuCheck, LuChevronDown, LuChevronRight, LuInfo, LuLoader, LuPlug, LuPlus, LuSearch, LuX } from "react-icons/lu";
 import { Button } from "@/components/ui/button";
-import { WorkspacePageHeader, WorkspacePageTitle } from "@/components/workspace-page-header";
+import { WorkspaceSidebarToggle } from "@/components/workspace-page-header";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ConnectorIcon } from "@/components/connectors/connector-icon";
 import { ConnectorDialog } from "@/components/connectors/connector-dialog";
@@ -15,7 +15,6 @@ import { API_BASE, authedAxios } from "@/lib/axios";
 import { catalogDate, connectableConnectors as connectors, connectorCanConnect, connectorCategories, connectorCategoryDescription, connectorCategoryLabel, connectorError, connectorServerName, type Connector, type ConnectorServer } from "@/lib/connectors";
 import { cn } from "@/lib/utils";
 import useAuthStore from "@/stores/auth";
-import useSidebarStore from "@/stores/sidebar";
 import ConnectorsLandingPage from "@/components/connectors/connectors-landing";
 import { SEO } from "@/components/seo";
 import "./integrations.css";
@@ -49,7 +48,6 @@ function compareFeatured(a: Connector, b: Connector, locale = "en") {
 function ConnectorsWorkspaceView() {
   const { t, i18n } = useTranslation("connectors");
   const locale = i18n.resolvedLanguage || "en";
-  const isSidebarOpen = useSidebarStore((state) => state.isOpen);
   const token = useAuthStore((state) => state.token);
   const userId = useAuthStore((state) => state.user?.uuid);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -188,57 +186,25 @@ function ConnectorsWorkspaceView() {
   const openConnector = (connector: Connector) => setSelection({ connector, server: serverByName.get(connectorServerName(connector)) });
   const updateServer = (server: ConnectorServer) => setServers((current) => [...current.filter((item) => item.uuid !== server.uuid), server]);
 
+  const addCustomConnectorButton = (
+    <Button
+      variant="outline"
+      size="sm"
+      onClick={() => setSelection({ connector: null })}
+      className="h-8 shrink-0 gap-1.5 rounded-full border-border/80 bg-card/80 px-3 text-xs hover:border-primary/40"
+    >
+      <LuPlus className="h-3.5 w-3.5" />
+      <span className="hidden sm:inline">{t("workspace.addCustomConnector")}</span>
+      <span className="sm:hidden">{t("workspace.addCustomShort")}</span>
+    </Button>
+  );
+
   return (
-    <section aria-label={t("workspace.ariaLabel")} className="connectors-page flex h-full min-h-0 min-w-0 flex-col bg-background">
-      <WorkspacePageHeader
-        actions={
-          <div className="flex shrink-0 items-center gap-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setSelection({ connector: null })}
-              className="h-7 shrink-0 gap-1.5 rounded-full border-border/80 bg-card/80 px-3 text-xs hover:border-primary/40"
-            >
-              <LuPlus className="h-3.5 w-3.5" />
-              <span className="hidden sm:inline">{t("workspace.addCustomConnector")}</span>
-              <span className="sm:hidden">{t("workspace.addCustomShort")}</span>
-            </Button>
-          </div>
-        }
-      >
-        <div className="flex min-w-0 flex-1 items-center">
-          {!isSidebarOpen && (
-            <button
-              type="button"
-              aria-label={t("workspace.openSidebar")}
-              onClick={() => useSidebarStore.getState().toggle()}
-              className="mr-2 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-            >
-              <LuPanelLeftOpen className="h-5 w-5" />
-            </button>
-          )}
-          <WorkspacePageTitle icon={LuPlug}>
-            {activeCategory ? (
-              <div className="flex min-w-0 items-center gap-1.5 px-1">
-                <button
-                  type="button"
-                  onClick={closeCategory}
-                  className="shrink-0 transition-colors hover:text-primary"
-                >
-                  {t("workspace.title")}
-                </button>
-                <LuChevronRight aria-hidden="true" className="h-3.5 w-3.5 shrink-0 text-muted-foreground/60" />
-                <span className="truncate font-medium text-muted-foreground">{activeCategoryLabel}</span>
-              </div>
-            ) : (
-              <span className="block truncate px-1">{t("workspace.title")}</span>
-            )}
-          </WorkspacePageTitle>
-        </div>
-      </WorkspacePageHeader>
+    <section aria-label={t("workspace.ariaLabel")} className="connectors-page relative flex h-full min-h-0 min-w-0 flex-col bg-background">
+      <WorkspaceSidebarToggle label={t("workspace.openSidebar")} />
 
       <div ref={scrollContainer} className="workspace-scroll min-h-0 flex-1 overflow-y-auto overscroll-contain" data-testid="connectors-scroll">
-        <div className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-8 sm:py-9">
+        <div className="mx-auto w-full max-w-5xl px-4 pb-6 pt-14 sm:px-8 sm:pb-9">
           {/* Subpage View */}
           {activeCategory && tab === "explore" ? (
             <div className="connectors-enter">
@@ -252,6 +218,8 @@ function ConnectorsWorkspaceView() {
                   <span>{t("workspace.backToExplore")}</span>
                 </button>
 
+                <div className="flex items-center gap-2">
+                {addCustomConnectorButton}
                 <Select value={sort} onValueChange={setSort}>
                   <SelectTrigger aria-label={t("workspace.sort.ariaLabel")} className="h-8 w-auto gap-2 rounded-full border-border/80 bg-card/80 px-3 text-xs text-muted-foreground shadow-none dark:bg-white/[0.03]">
                     <LuArrowDownWideNarrow aria-hidden="true" className="h-3.5 w-3.5" />
@@ -262,6 +230,7 @@ function ConnectorsWorkspaceView() {
                     <SelectItem value="name">{t("workspace.sort.nameAsc")}</SelectItem>
                   </SelectContent>
                 </Select>
+                </div>
               </div>
 
               <div className="mb-6">
@@ -359,6 +328,7 @@ function ConnectorsWorkspaceView() {
                   <p className="mt-1.5 max-w-lg text-sm leading-relaxed text-muted-foreground">
                     {t("workspace.subtitle")}
                   </p>
+                  <div className="mt-4">{addCustomConnectorButton}</div>
                 </div>
                 <ConnectorConstellation />
               </div>
