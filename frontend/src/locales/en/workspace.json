@@ -894,6 +894,17 @@
     "errors": {
       "connect": "Could not connect this key. Check it and try again.",
       "addModels": "Could not add the selected models. Try again."
+    },
+    "git": {
+      "title": "Connect GitHub or GitLab",
+      "description": "Link your Git account to clone and push private repositories.",
+      "cloudDescription": "Link your Git account for private repositories and unlock your $10 Free starter credit.",
+      "creditBadge": "Unlocks $10 Free credit",
+      "creditUnlocked": "$10 Free credit unlocked",
+      "githubDesc": "Clone & push private repos, PRs, and issues",
+      "gitlabDesc": "Link your GitLab account for repositories",
+      "notConfigured": "Not configured",
+      "connectError": "Could not connect your Git account. Try again."
     }
   },
   "runtimes": {

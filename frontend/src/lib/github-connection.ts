@@ -19,6 +19,7 @@ export interface GithubAccess {
 }
 
 export interface GithubAccount { id: string; login?: string | null }
+export interface GithubAccountStatus { accounts: GithubAccount[]; configured: boolean }
 
 export const GITHUB_ACCOUNTS_EVENT = "github-accounts-changed";
 
@@ -26,9 +27,17 @@ export function notifyGithubAccountsChanged() {
   if (typeof window !== "undefined") window.dispatchEvent(new Event(GITHUB_ACCOUNTS_EVENT));
 }
 
+export async function getGithubAccountStatus(signal?: AbortSignal): Promise<GithubAccountStatus> {
+  const { data } = await authedAxios.get<{ accounts: GithubAccount[]; configured?: boolean }>(`${API_BASE}/auth/github/accounts/`, { signal });
+  return {
+    accounts: Array.isArray(data.accounts) ? data.accounts : [],
+    configured: data.configured !== false,
+  };
+}
+
 export async function listGithubAccounts(signal?: AbortSignal) {
-  const { data } = await authedAxios.get<{ accounts: GithubAccount[] }>(`${API_BASE}/auth/github/accounts/`, { signal });
-  return data.accounts;
+  const status = await getGithubAccountStatus(signal);
+  return status.accounts;
 }
 
 export async function disconnectGithubAccount(id: string, signal?: AbortSignal) {

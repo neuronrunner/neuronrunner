@@ -350,7 +350,12 @@
       "left": "${{amount}} left",
       "monthlyCycle": "Monthly Cycle (100%)",
       "vmQuota": "Cloud VM Usage (from shared quota): <strong>{{used}} / {{included}} vCPU-hours</strong> ({{remaining}} vCPU-hrs usable)",
-      "verifyForFreeVm": "Complete account verification in Settings to unlock Cloud VM launches on the Free plan"
+      "verifyForFreeVm": "Complete account verification in Settings to unlock Cloud VM launches on the Free plan",
+      "gitUnlockTitle": "Connect GitHub or GitLab to unlock your $10 Free starter credit",
+      "gitUnlockSubtitle": "Link a Git account once to activate your $10 (~84 vCPU-hrs) Free Cloud VM quota.",
+      "connectGithub": "Connect GitHub",
+      "connectGitlab": "Connect GitLab",
+      "gitConnectError": "Could not connect your Git account. Try again."
     },
     "cards": {
       "creditsUsed": "Workspace credits used",

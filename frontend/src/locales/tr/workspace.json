@@ -894,6 +894,17 @@
     "errors": {
       "connect": "Bu anahtar bağlanamadı. Kontrol edip tekrar dene.",
       "addModels": "Seçilen modeller eklenemedi. Tekrar dene."
+    },
+    "git": {
+      "title": "GitHub veya GitLab bağla",
+      "description": "Özel repoları klonlamak ve push etmek için Git hesabını bağla.",
+      "cloudDescription": "Özel repolarına erişmek ve $10 Free başlangıç kredisini açmak için Git hesabını bağla.",
+      "creditBadge": "$10 Free kredi açar",
+      "creditUnlocked": "$10 Free kredi açıldı",
+      "githubDesc": "Özel repoları klonla, push et, PR ve issue yönet",
+      "gitlabDesc": "Repoların için GitLab hesabını bağla",
+      "notConfigured": "Yapılandırılmadı",
+      "connectError": "Git hesabı bağlanamadı. Tekrar dene."
     }
   },
   "runtimes": {

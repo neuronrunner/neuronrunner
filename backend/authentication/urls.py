@@ -1,6 +1,7 @@
 from django.urls import path
 
 from .github_connection import GithubAccountsView, GithubConnectionStartView
+from .gitlab_connection import GitlabAccountsView, GitlabConnectionStartView, GitlabOAuthCallbackView
 
 from .views import (
     GithubOAuthCallbackView,
@@ -38,4 +39,9 @@ urlpatterns = [
     path('github/result/', GithubOAuthResultView.as_view(), name='github_oauth_result'),
     path('github/callback/', GithubOAuthCallbackView.as_view(), name='github_oauth_callback'),
     path('github/callback', GithubOAuthCallbackView.as_view()),
+    path('gitlab/accounts/', GitlabAccountsView.as_view(), name='gitlab_accounts'),
+    path('gitlab/accounts/<str:uid>/', GitlabAccountsView.as_view(), name='gitlab_account_detail'),
+    path('gitlab/connect/', GitlabConnectionStartView.as_view(), name='gitlab_connection_start'),
+    path('gitlab/callback/', GitlabOAuthCallbackView.as_view(), name='gitlab_oauth_callback'),
+    path('gitlab/callback', GitlabOAuthCallbackView.as_view()),
 ]

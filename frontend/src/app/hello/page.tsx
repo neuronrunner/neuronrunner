@@ -12,7 +12,10 @@ import {
   LuCircleCheck,
   LuEye,
   LuEyeOff,
+  LuGitBranch,
+  LuGithub,
   LuKeyRound,
+  LuLoaderCircle,
   LuLock,
   LuRoute,
   LuSearch,
@@ -23,14 +26,27 @@ import {
   LuWaves,
   LuZap,
 } from "react-icons/lu";
-import { SiGooglegemini, SiOpenai } from "react-icons/si";
+import { SiGitlab, SiGooglegemini, SiOpenai } from "react-icons/si";
 import { AntigravityBrandLogo, ClaudeBrandLogo, OpenAICodexBrandLogo } from "@/components/brand-logos";
 import VmConnectTerminalDialog, { type ByosProvider } from "@/components/chat/vm-connect-terminal-dialog";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { LoadingDots } from "@/components/loading-dots";
+import frontendExtension from "@cloud";
 import { authedAxios, API_BASE } from "@/lib/axios";
+import {
+  connectGithubAccount,
+  getGithubAccountStatus,
+  notifyGithubAccountsChanged,
+  type GithubAccount,
+} from "@/lib/github-connection";
+import {
+  connectGitlabAccount,
+  getGitlabAccountStatus,
+  notifyGitlabAccountsChanged,
+  type GitlabAccount,
+} from "@/lib/gitlab-connection";
 import { cn } from "@/lib/utils";
 import useAuthStore from "@/stores/auth";
 import useChatStore from "@/stores/chat";
@@ -223,6 +239,13 @@ export default function HelloPage() {
   const [search, setSearch] = useState("");
   const [freeOnly, setFreeOnly] = useState(false);
   const [byosProvider, setByosProvider] = useState<ByosProvider | null>(null);
+  const [githubAccount, setGithubAccount] = useState<GithubAccount | null>(null);
+  const [githubConfigured, setGithubConfigured] = useState(true);
+  const [gitlabAccount, setGitlabAccount] = useState<GitlabAccount | null>(null);
+  const [gitlabConfigured, setGitlabConfigured] = useState(false);
+  const [connectingGit, setConnectingGit] = useState<"github" | "gitlab" | null>(null);
+  const [gitError, setGitError] = useState("");
+  const isCloud = frontendExtension.edition === "cloud";
 
   useEffect(() => {
     if (user && token && !hasLoadedWorkspaces) void useWorkspacesStore.getState().fetchWorkspaces();
@@ -231,6 +254,50 @@ export default function HelloPage() {
   useEffect(() => {
     if (workspaceUuid) void fetchStatus(workspaceUuid);
   }, [workspaceUuid, fetchStatus]);
+
+  useEffect(() => {
+    if (!user || !token) return;
+    const controller = new AbortController();
+    void getGithubAccountStatus(controller.signal)
+      .then((res) => {
+        if (controller.signal.aborted) return;
+        setGithubAccount(res.accounts[0] ?? null);
+        setGithubConfigured(res.configured);
+      })
+      .catch(() => undefined);
+    void getGitlabAccountStatus(controller.signal)
+      .then((res) => {
+        if (controller.signal.aborted) return;
+        setGitlabAccount(res.accounts[0] ?? null);
+        setGitlabConfigured(res.configured);
+      })
+      .catch(() => undefined);
+    return () => controller.abort();
+  }, [user, token]);
+
+  const handleConnectGit = async (gitProvider: "github" | "gitlab") => {
+    setConnectingGit(gitProvider);
+    setGitError("");
+    try {
+      if (gitProvider === "github") {
+        await connectGithubAccount();
+        notifyGithubAccountsChanged();
+        const res = await getGithubAccountStatus();
+        setGithubAccount(res.accounts[0] ?? null);
+      } else {
+        await connectGitlabAccount();
+        notifyGitlabAccountsChanged();
+        const res = await getGitlabAccountStatus();
+        setGitlabAccount(res.accounts[0] ?? null);
+      }
+    } catch (err: any) {
+      if (err?.name !== "AbortError") {
+        setGitError(errorMessage(err, err?.message || t("hello.git.connectError")));
+      }
+    } finally {
+      setConnectingGit(null);
+    }
+  };
 
   const workspaceBase = workspaceUuid ? `${API_BASE}/sandbox/workspaces/${workspaceUuid}` : "";
 
@@ -630,8 +697,138 @@ export default function HelloPage() {
       );
     }
 
+    const gitConnected = Boolean(githubAccount || gitlabAccount);
+
     return (
       <div className="space-y-6">
+        {/* Git account connection (GitHub / GitLab) */}
+        <section className="space-y-3">
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div className="flex items-start gap-3">
+              <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-emerald-500/25 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                <LuGitBranch className="h-4 w-4" />
+              </span>
+              <div className="min-w-0">
+                <h2 className="text-[15px] font-semibold tracking-tight text-foreground">
+                  {t("hello.git.title")}
+                </h2>
+                <p className="mt-0.5 text-xs text-muted-foreground">
+                  {isCloud ? t("hello.git.cloudDescription") : t("hello.git.description")}
+                </p>
+              </div>
+            </div>
+            {isCloud && (
+              <span
+                className={cn(
+                  "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-semibold tracking-tight",
+                  gitConnected
+                    ? "border-emerald-500/35 bg-emerald-500/12 text-emerald-600 dark:text-emerald-300"
+                    : "border-indigo-500/35 bg-indigo-500/12 text-indigo-600 dark:text-indigo-300"
+                )}
+              >
+                {gitConnected ? <LuCircleCheck className="h-3.5 w-3.5" /> : <LuSparkles className="h-3.5 w-3.5" />}
+                {gitConnected ? t("hello.git.creditUnlocked") : t("hello.git.creditBadge")}
+              </span>
+            )}
+          </div>
+
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {/* GitHub */}
+            <button
+              type="button"
+              disabled={!githubConfigured || connectingGit !== null}
+              onClick={() => void handleConnectGit("github")}
+              className={cn(
+                "group relative flex items-center gap-3 overflow-hidden rounded-2xl border p-3.5 text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/50 disabled:cursor-not-allowed disabled:opacity-60",
+                githubAccount
+                  ? "border-emerald-500/35 bg-gradient-to-b from-emerald-500/[0.06] via-card/95 to-card/75 hover:border-emerald-500/55"
+                  : "border-border/75 bg-gradient-to-b from-card/90 to-card/60 hover:-translate-y-0.5 hover:border-foreground/30 hover:bg-card/95 hover:shadow-lg hover:shadow-black/10 dark:hover:shadow-black/40"
+              )}
+            >
+              <span className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border/80 bg-muted/60 text-foreground transition-transform duration-200 group-hover:scale-105">
+                <LuGithub className="h-5 w-5" />
+              </span>
+              <span className="relative min-w-0 flex-1">
+                <span className="flex items-center gap-2">
+                  <span className="truncate text-[14px] font-semibold tracking-tight text-foreground">GitHub</span>
+                  {githubAccount && (
+                    <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/[0.12] px-2 py-0.5 text-[10px] font-semibold text-emerald-600 dark:text-emerald-300">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                      {t("hello.connected")}
+                    </span>
+                  )}
+                </span>
+                <span className="mt-0.5 block truncate text-xs text-muted-foreground">
+                  {githubAccount
+                    ? `@${githubAccount.login || "GitHub"}`
+                    : !githubConfigured
+                      ? t("hello.git.notConfigured")
+                      : t("hello.git.githubDesc")}
+                </span>
+              </span>
+              {connectingGit === "github" ? (
+                <LuLoaderCircle className="relative h-4 w-4 shrink-0 animate-spin text-muted-foreground" />
+              ) : (
+                <LuArrowRight className="relative h-4 w-4 shrink-0 text-muted-foreground/50 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-foreground" />
+              )}
+            </button>
+
+            {/* GitLab */}
+            <button
+              type="button"
+              disabled={!gitlabConfigured || connectingGit !== null}
+              onClick={() => void handleConnectGit("gitlab")}
+              className={cn(
+                "group relative flex items-center gap-3 overflow-hidden rounded-2xl border p-3.5 text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/50 disabled:cursor-not-allowed disabled:opacity-60",
+                gitlabAccount
+                  ? "border-emerald-500/35 bg-gradient-to-b from-emerald-500/[0.06] via-card/95 to-card/75 hover:border-emerald-500/55"
+                  : "border-border/75 bg-gradient-to-b from-card/90 to-card/60 hover:-translate-y-0.5 hover:border-orange-500/45 hover:bg-card/95 hover:shadow-lg hover:shadow-black/10 dark:hover:shadow-black/40"
+              )}
+            >
+              <span className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-orange-500/25 bg-orange-500/10 text-orange-500 transition-transform duration-200 group-hover:scale-105">
+                <SiGitlab className="h-5 w-5" />
+              </span>
+              <span className="relative min-w-0 flex-1">
+                <span className="flex items-center gap-2">
+                  <span className="truncate text-[14px] font-semibold tracking-tight text-foreground">GitLab</span>
+                  {gitlabAccount ? (
+                    <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/[0.12] px-2 py-0.5 text-[10px] font-semibold text-emerald-600 dark:text-emerald-300">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                      {t("hello.connected")}
+                    </span>
+                  ) : !gitlabConfigured ? (
+                    <span className="inline-flex items-center rounded-full border border-border/70 bg-muted/60 px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
+                      {t("hello.git.notConfigured")}
+                    </span>
+                  ) : null}
+                </span>
+                <span className="mt-0.5 block truncate text-xs text-muted-foreground">
+                  {gitlabAccount
+                    ? `@${gitlabAccount.login || "GitLab"}`
+                    : t("hello.git.gitlabDesc")}
+                </span>
+              </span>
+              {connectingGit === "gitlab" ? (
+                <LuLoaderCircle className="relative h-4 w-4 shrink-0 animate-spin text-muted-foreground" />
+              ) : (
+                <LuArrowRight className="relative h-4 w-4 shrink-0 text-muted-foreground/50 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-foreground" />
+              )}
+            </button>
+          </div>
+
+          {gitError && (
+            <p className="rounded-xl border border-red-500/25 bg-red-500/10 px-3.5 py-2.5 text-xs text-red-600 dark:text-red-400">
+              {gitError}
+            </p>
+          )}
+        </section>
+
+        {/* Hairline divider */}
+        <div
+          aria-hidden="true"
+          className="h-px w-full bg-gradient-to-r from-transparent via-border/90 to-transparent"
+        />
+
         {/* Subscription CLI providers */}
         <section className="space-y-3">
           <div className="flex items-start gap-3">

@@ -181,7 +181,13 @@ def complete_github_connection(request):
         replace_other_github_connections(user, uid)
         with transaction.atomic():
             connection, _ = UserSocialAuth.objects.get_or_create(user=user, provider="github", uid=uid)
-            connection.extra_data = {"access_token": token, "login": login, "id": uid, "scope": ",".join(scopes)}
+            connection.extra_data = {
+                "access_token": token,
+                "login": login,
+                "id": uid,
+                "scope": ",".join(scopes),
+                "created_at": github_user.get("created_at"),
+            }
             connection.save()
         delete_cache(f"github-connect-error:{user.pk}")
         return popup_response(origin, connected=True, username=login)

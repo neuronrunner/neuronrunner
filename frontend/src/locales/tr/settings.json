@@ -350,7 +350,12 @@
       "left": "${{amount}} kaldı",
       "monthlyCycle": "Aylık Dönem (%100)",
       "vmQuota": "Bulut VM Kullanımı (ortak kotadan): <strong>{{used}} / {{included}} vCPU-saat</strong> ({{remaining}} vCPU-saat kullanılabilir)",
-      "verifyForFreeVm": "Free planda Bulut VM başlatmayı açmak için Ayarlar'dan hesap doğrulamasını tamamlayın"
+      "verifyForFreeVm": "Free planda Bulut VM başlatmayı açmak için Ayarlar'dan hesap doğrulamasını tamamlayın",
+      "gitUnlockTitle": "$10 Free başlangıç kredini açmak için GitHub veya GitLab bağla",
+      "gitUnlockSubtitle": "$10 (~84 vCPU-saat) Free Bulut VM kotanı aktif etmek için Git hesabını bir kez bağla.",
+      "connectGithub": "GitHub Bağla",
+      "connectGitlab": "GitLab Bağla",
+      "gitConnectError": "Git hesabı bağlanamadı. Tekrar dene."
     },
     "cards": {
       "creditsUsed": "Kullanılan çalışma alanı kredisi",
