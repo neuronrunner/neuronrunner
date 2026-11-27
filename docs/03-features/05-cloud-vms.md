@@ -10,17 +10,16 @@ On Neuron Runner Cloud every workspace runs in an isolated Linux machine with a 
 
 ## Stopping and starting
 
-A VM closes about 30 seconds after you stop using it, meaning no terminal or desktop tab is open and no agent is running. The next time you open the terminal or desktop or run an agent, the VM restores from a memory snapshot in seconds. Compute is only billed while the VM is running — stopped VMs cost `$0.00`.
+A VM closes about 5 minutes after you stop using it, meaning no terminal or desktop tab is open and no agent is running. The next time you open the terminal, desktop, or Files panel — or send a message to an agent — the VM wakes from a memory snapshot in seconds. Compute is only billed while the VM is running — stopped VMs cost `$0.00`.
 
-A VM also stops on its own after the maximum run time of 24 hours. Before shutdown, active environments are checkpointed automatically so you can pick up right where you left off.
+A VM also stops on its own after the maximum run time of 24 hours. Before shutdown, active environments and home settings are checkpointed automatically so you can pick up right where you left off.
 
-## Local NVMe disk & persistence
+## Local NVMe disk & read-only persistence store
 
-`/workspace` runs directly on the container's **fast local ephemeral NVMe disk** so installs, builds, and git operations run at full local speed. Instead of enforcing per-plan disk caps or cold-storage locks, Neuron Runner Cloud persists only what matters in a hidden workspace store (`/var/lib/nr-store`):
+`/workspace` and `/root` run directly on the container's **fast local ephemeral NVMe disk** so installs, builds, and git operations run at full local speed. The workspace Volume is mounted **read-only** at `/var/lib/nr-store` — user shells and agents cannot write arbitrary files to it. Instead, only Neuron Runner's privileged checkpoint packer uploads validated, size-capped archives between sessions:
 
-- **Environment state checkpoints (`state/<env>.tar.zst`):** Unpushed commits (git bundle), uncommitted diffs, and untracked source files are archived automatically after agent turns and on container shutdown. See [Environments](./06-environments.md) for the exact size guardrails (**50 MB** per untracked file, **1 GB** total state cap).
-- **Derived dependency caches (`deps/` & `deps-dir/`):** `node_modules`, `.venv`, `venv`, and `vendor` are cached per lockfile hash (≤ 300 MB as fast `tar.zst` archives extracted to local NVMe; > 300 MB as symlinked directories; capped at **5 GB** per environment) and automatically pruned after **7 days** of inactivity.
-- **Agent and tool settings in the home directory:** Sign-in files and settings for Claude Code, Codex, and Gemini (`~/.claude`, `~/.codex`, `~/.gemini`), `~/.claude.json`, global npm packages (`~/.npm-global`), SSH keys (`~/.ssh`), `~/.gitconfig`, and shell history.
+- **Environment state checkpoints (`state/<env>.tar.zst`):** Unpushed commits (git bundle), uncommitted diffs, and untracked source files are archived periodically (every 5 minutes) and on clean container shutdown. See [Environments](./06-environments.md) for the exact size guardrails (**50 MB** per untracked file, **1 GB** total state cap).
+- **Agent and tool settings (`home.tar.zst`):** Sign-in files and settings for Claude Code, Codex, and Gemini (`~/.claude`, `~/.codex`, `~/.gemini`), `~/.claude.json`, global npm packages (`~/.npm-global`), SSH keys (`~/.ssh`), `~/.gitconfig`, and shell history are restored into local `/root` on boot and packed on checkpoint/exit (**100 MB** cap).
 - **Agent sign-ins & encrypted secrets:** Stored encrypted in Neuron Runner's database and injected into every new VM and environment run.
 
 ## Shared read-only package cache
