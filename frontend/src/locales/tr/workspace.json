@@ -909,12 +909,20 @@
       "title": "GitHub veya GitLab bağla",
       "description": "Özel repoları klonlamak ve push etmek için Git hesabını bağla.",
       "cloudDescription": "Özel repolarına erişmek ve $10 Free başlangıç kredisini açmak için Git hesabını bağla.",
+      "stepBadge": "Adım 1 / 2",
+      "stepSubtitle": "$10 Free başlangıç kredini açmak ve bulut VM'ini başlatabilmek için önce GitHub veya GitLab hesabını bağla. Sonrasında yapay zekâ ajanını bağlayacaksın.",
+      "stepHint": "GitHub veya GitLab bağladığında $10 Free başlangıç kredin açılır ve bir sonraki adımda ajan bağlantısı aktif olur.",
+      "continueToAi": "Yapay zekâ kurulumuna geç",
       "creditBadge": "$10 Free kredi açar",
       "creditUnlocked": "$10 Free kredi açıldı",
       "githubDesc": "Özel repoları klonla, push et, PR ve issue yönet",
       "gitlabDesc": "Repoların için GitLab hesabını bağla",
       "notConfigured": "Yapılandırılmadı",
       "connectError": "Git hesabı bağlanamadı. Tekrar dene."
+    },
+    "steps": {
+      "git": "Git Bağla",
+      "ai": "Yapay Zekâ Bağla"
     }
   },
   "runtimes": {

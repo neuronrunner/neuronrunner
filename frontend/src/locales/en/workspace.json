@@ -909,12 +909,20 @@
       "title": "Connect GitHub or GitLab",
       "description": "Link your Git account to clone and push private repositories.",
       "cloudDescription": "Link your Git account for private repositories and unlock your $10 Free starter credit.",
+      "stepBadge": "Step 1 of 2",
+      "stepSubtitle": "Connect your GitHub or GitLab account to unlock your $10 Free starter credit and start your cloud VM. Next, you'll connect your AI agent.",
+      "stepHint": "Connecting GitHub or GitLab unlocks your $10 Free starter credit so your cloud VM can start in the next step.",
+      "continueToAi": "Continue to AI setup",
       "creditBadge": "Unlocks $10 Free credit",
       "creditUnlocked": "$10 Free credit unlocked",
       "githubDesc": "Clone & push private repos, PRs, and issues",
       "gitlabDesc": "Link your GitLab account for repositories",
       "notConfigured": "Not configured",
       "connectError": "Could not connect your Git account. Try again."
+    },
+    "steps": {
+      "git": "Connect Git",
+      "ai": "Connect AI"
     }
   },
   "runtimes": {
